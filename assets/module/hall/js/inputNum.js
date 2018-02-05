@@ -106,7 +106,6 @@ cc.Class({
             object.inputNum5.string = "";
             object.inputNum6.string = "";
         }
-        debugger
     },
     JRsucess: function(result,object){
         var data = JSON.parse(result);
