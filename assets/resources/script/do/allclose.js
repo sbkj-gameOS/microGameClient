@@ -26,7 +26,7 @@ cc.Class({
     overNotice: function(){
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
         // 以下代码可能会会影响房间进入速度
-        let WjfFn = require('WJFCommon');
+        /*let WjfFn = require('WJFCommon');
         let WJF = new WjfFn();
         let socket = WJF.connect();
         socket.emit("overGame" ,JSON.stringify({})) ;
@@ -35,6 +35,6 @@ cc.Class({
             cc.log('eeeeeeeeeeee',e)
             let alert_pre = cc.find('Canvas/alert');//弹出框
             this.closeMenu();
-        })
+        })*/
     },
 });

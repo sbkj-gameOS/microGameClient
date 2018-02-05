@@ -60,6 +60,7 @@ cc.Class({
      * @param context
      */
     joinroom_event:function(data , context){
+        cc.log('RoomInit---context',context)
         //如果是2人的模式  就只加自己和对家
         context = cc.find('Canvas').getComponent('MajiangDataBind') ;
         // 判断玩家人数
