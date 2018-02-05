@@ -11,12 +11,19 @@ cc.Class({
     onLoad: function () {
        
     },
+    //离开房间
     leaveClick:function(){
         this.openAlert('是否退出房间','hall');
     },
+    //解散房间
     overClick:function(){
         this.openAlert('是否解散房间','over');
     },
+
+    //设置
+    
+
+    
     // 弹框弹出
     openAlert:function(str,close){
         let alert = cc.instantiate(this.alert2);

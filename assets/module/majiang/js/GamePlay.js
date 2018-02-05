@@ -1,6 +1,5 @@
-var WJFCommon = require("WJFCommon");
 cc.Class({
-    extends: WJFCommon,
+    extends: cc.Component,
 
     properties: {
 
@@ -8,12 +7,11 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-       
+
     },
-    
+    //出牌
 
 
 
-    
-    
+    //摸牌
 });
