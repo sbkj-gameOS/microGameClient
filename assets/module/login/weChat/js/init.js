@@ -35,6 +35,7 @@ cc.Class({
         let he = this;
         if(cc.weijifen == null){
             cc.weijifen = {};
+            cc.weijifen.settingflag = false;
             cc.weijifen.GameBase = GameBase ;            
             cc.weijifen.http = require("HTTP");
             cc.weijifen.localStorage = require('IOUtils');

@@ -64,9 +64,6 @@ cc.Class({
             cc.sys.localStorage.removeItem('unOver');      
             cc.sys.localStorage.removeItem('clear');   
             cc.sys.localStorage.removeItem('cb');        
-
-
-
         }
 
         this.disconnect();
