@@ -7,12 +7,13 @@ cc.Class({
         setting:cc.Prefab,
     },
     onLoad: function () {
+
     },
     init:function(name){
         this.clearPerfab();
         let web = this.title.parent.children[2];
         for(let i in this.title.children){
-            this.title.children[i].active = false;
+            this.title.children[i].active = false ;
         }
         this.title.children[name].active = true;
         if(name == 10 || name == 11 || name ==14){
@@ -25,13 +26,48 @@ cc.Class({
             }else if(name == 14){
                 gameroom = cc.instantiate(this.setting);
             }
-            //根据状态将获取到的PreFab挂载到弹框上(即：此节点上)
             gameroom.parent = this.node
         }else{
             web.active = true;
+            web = web.getComponent(cc.WebView);
+            /**
+             * data数组
+             * 0：服务协议内嵌url地址
+             * 1：家长监护工程内嵌url地址
+             * 2：活动内嵌url地址
+             * 3：通知内嵌url地址
+             * 4：帮助内嵌url地址
+             * 5：商城内嵌url地址
+             * 6：提现内嵌url地址
+             * 7：战况内嵌url地址
+             * 8：排名内嵌url地址
+             * 9：
+             * 10：
+             * 11：
+             * 12：
+             * 13：玩家信息
+             * @type {Array}
+             */
+            var data = [
+                        "服务协议内嵌url地址",
+                        "家长监护工程内嵌url地址",
+                        "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
+                        "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "帮助内嵌url地址",
+                        "/shop/shopPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "提现内嵌url地址",
+                        "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
+                    ];
+            web.url = cc.weijifen.url + data[name];
         }
     },
-    //清除留下的东西---即摧毁节点
+    //清除留下的东西
     clearPerfab: function(){
         if(cc.find('Canvas/menu/joinroom')){
             cc.find('Canvas/menu/joinroom').destroy();
