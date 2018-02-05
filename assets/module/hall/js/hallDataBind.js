@@ -59,10 +59,11 @@ cc.Class({
 			this.headImg(this.headimg,cc.weijifen.user.headimgurl,true);
             // this.cards.string = cc.weijifen.user.cards + "张" ;
             // this.goldcoins.string = cc.weijifen.user.goldcoins + '个';
-            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this)   
-            this.gundongText();
             //请求获取当前用户是否已经参加了房间
             cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,this.roomSuccess,this.roomError,this);
+
+            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this)   
+            this.gundongText();
             //获取是否有新的通知
             cc.weijifen.http.httpGet('/activity/findActivityListGame?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this);            
         }
@@ -70,11 +71,10 @@ cc.Class({
 
     },
     carderror: function(result,object){
-        this.alert('充值失败');
+        // this.alert('充值失败');
     },
     cardsucess:function(result,object){
         var data = JSON.parse(result) ;
-        //debugger
             cc.weijifen.user.cards = data.cards;
             object.cards.string = cc.weijifen.user.cards ;
             object.goldcoins.string = cc.weijifen.user.goldcoins;
@@ -89,6 +89,7 @@ cc.Class({
 	tzerror: function(result,object){	
     },
     roomSuccess: function(result,object){
+        debugger
 		let data = JSON.parse(result);
         if(data.room){
 			object.getGame(data);

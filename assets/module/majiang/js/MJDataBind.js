@@ -2,25 +2,47 @@ var WJFCommon = require("WJFCommon");
 cc.Class({
     extends: WJFCommon,
     properties: {
-
+        right_player: cc.Node,
+        left_player: cc.Node,
+        top_player: cc.Node,
+        current_player:cc.Node,
+        deskcards_current_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        deskcards_right_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        deskcards_top_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        deskcards_left_panel:{
+            default:null ,
+            type : cc.Node
+        },
     },
     onLoad: function () {
 
         //初始化房间信息
         this.playerIsReady();
 
-        //初始化对象池
-        this.init_pool();
+        // //初始化对象池
+        // this.init_pool();
 
-
-        //加载调用方法js
-        let socket = this.socket();
-
-        var RoomInitFn = require('RoomInit');
-        this.map("joinroom" , RoomInitFn.joinroom_event);//加入房间
+        // let self = this ;
+        // if(this.ready()){
+        //     let socket = this.socket();
+        //     *
+        //      * 接受指令
+             
+        //     var RoomInitFn = require('RoomInit');
+        //     this.map("joinroom" , RoomInitFn.joinroom_event);//加入房间
+            
+        // }
 
     },
-
 
 
 
@@ -50,11 +72,25 @@ cc.Class({
             this.ggButton.node.active = true ;
         }
          
+        this.joinRoom();
+        //设置游戏玩家数量
+        if(cc.weijifen.playerNum == 2){
+            this.left_player.active = false;
+            this.right_player.active = false;
+            this.deskcards_current_panel.width = 650;
+            this.deskcards_top_panel.width = 650;
+            this.deskcards_top_panel.y =10;
+        }else if(cc.weijifen.playerNum == 3){
+            this.left_player.active = false;      
+            this.deskcards_current_panel.width = 600;
+            this.deskcards_top_panel.width = 600;  
+            this.deskcards_current_panel.x = -154;
+            this.deskcards_top_panel.x = -144;     
+            this.deskcards_right_panel.x = -83;  
+            this.deskcards_top_panel.y =10;   
+        }
 
 
-        let playerNum;
-        playerNum = cc.weijifen.playerNum;
-        this.player_num(playerNum);
 
         //房间号显示
         if(cc.weijifen.match =='false'){
@@ -149,8 +185,25 @@ cc.Class({
                 this.cardpool.put(cc.instantiate(this.cards_current));
             }
         }
-        this.exchange_state("init" , this);
+        // this.exchange_state("init" , this);
         // let self = this ;
+    },
+    joinRoom:function(){
+        //开始匹配
+        console.log('--------------');
+        let socket = this.socket();
+        var param = {
+            token:cc.weijifen.authorization,
+            playway:cc.weijifen.playway,
+            orgi:cc.weijifen.user.orgi
+        } ;
+        if ( cc.weijifen.room ) {
+            param.room = cc.weijifen.room ;
+        }else{
+            param.playway = '402888815e6f0177015e71529f3a0001',
+            param.match = 1 ; 
+        }
+        socket.emit("joinroom" ,JSON.stringify(param)) ;
     },
 });
 
