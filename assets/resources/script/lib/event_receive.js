@@ -23,7 +23,7 @@ cc.Class({
             //debugger
             // 点击准备，
             socket.emit('readyGame',JSON.stringify({}))
-            debugger
+            // debugger
         });
     },
     /*

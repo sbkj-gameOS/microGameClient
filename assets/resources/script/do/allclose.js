@@ -22,7 +22,18 @@ cc.Class({
     leavaNotice: function(){
         this.node.dispatchEvent( new cc.Event.EventCustom('leaveGame', true) );
     },
+    /*确定结束游戏*/
     overNotice: function(){
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
+        let WjfFn = require('WJFCommon');
+        let WJF = new WjfFn();
+        WJF.connect();
+        socket.emit("overGame" ,JSON.stringify(param)) ;
+
+        this.node.on('gameOver',function(e){
+            cc.log('eeeeeeeeeeee',e)
+            let alert_pre = cc.find('Canvas/alert');//弹出框
+            this.closeMenu();
+        })
     },
 });

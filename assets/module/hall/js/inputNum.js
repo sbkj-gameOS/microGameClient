@@ -106,6 +106,7 @@ cc.Class({
             object.inputNum5.string = "";
             object.inputNum6.string = "";
         }
+        debugger
     },
     JRsucess: function(result,object){
         var data = JSON.parse(result);
@@ -144,7 +145,7 @@ cc.Class({
                 cc.weijifen.dialog.destroy();
                 cc.weijifen.dialog = null ;
                 cc.weijifen.dialog = cc.instantiate(object.shopping);
-                cc.weijifen.dialog.parent = cc.find('Canvas')
+                cc.weijifen.dialog.parent = cc.find('Canvas');
             }
         }  
     },
@@ -207,7 +208,6 @@ cc.Class({
         
         var data = JSON.parse(result);
         //playerNum,cardNum
-
         if(data.error){  
             object.closeloadding();
             object.alert2('比赛未开始或者您没资格进入比赛');
@@ -237,9 +237,4 @@ cc.Class({
         object.closeloadding();
         object.alert2('比赛未开始或者您没资格进入比赛');
     }
-
-
-
-    
-    
 });
