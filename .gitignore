@@ -1,0 +1,9 @@
+.DS_Store
+temp/
+packages/
+library/
+local/
+build/
+creator.d.ts
+jsconfig.json
+project.json
