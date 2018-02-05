@@ -6,27 +6,31 @@ cc.Class({
 
     properties: {
         cardNum:cc.Label,
-    	inputNum1: {
+        inputNum1: {
             default: null,
             type: cc.Label
         },
-		inputNum2: {
+        inputNum2: {
             default: null,
             type: cc.Label
         },
-		inputNum3: {
+        inputNum3: {
             default: null,
             type: cc.Label
         },
-		inputNum4: {
+        inputNum4: {
             default: null,
             type: cc.Label
         },
-		inputNum5: {
+        inputNum5: {
             default: null,
             type: cc.Label
         },
-		inputNum6: {
+        inputNum6: {
+            default: null,
+            type: cc.Label
+        },
+        notice: {
             default: null,
             type: cc.Label
         },
@@ -38,8 +42,6 @@ cc.Class({
         if(this.cardNum){
             this.cardNum.string =  cc.weijifen.user.cards + '张'
         }
-
-        this.notice.active =false;
         if(this.zhoupic){
             cc.weijifen.http.httpGet('/api/room/queryUserWinner?token='+cc.weijifen.authorization,this.countsucess,this.counterror,this);            
         }
@@ -51,8 +53,8 @@ cc.Class({
      /*   console.log(event.currentTarget.name);
         console.log(this);*/
         var num = event.currentTarget.name,
-        	num_parent = event.currentTarget.parent.parent;
-             
+            num_parent = event.currentTarget.parent.parent;
+        this.notice.string ='';     
 
         // var num_show = num_parent.getChildByName('dark').getChildByName('dark'+array.length).getChildByName('num').getComponent(cc.Label);
      /*   cc.log(num_parent.getChildByName('dark'))
@@ -60,27 +62,27 @@ cc.Class({
         cc.log(num_parent.getChildByName('dark').getChildByName('dark'+array.length).getChildByName('num').getComponent(cc.Label))
         // debugger*/
         // num_show.string = num;
-		if(array.length == 0){
-			this.inputNum1.string = num;
-		}else if(array.length == 1){
-			this.inputNum2.string = num;
-		}else if(array.length == 2){
-			this.inputNum3.string = num;
-		}else if(array.length == 3){
-			this.inputNum4.string = num;
-		}else if(array.length == 4){
-			this.inputNum5.string = num;
-		}else if(array.length == 5){
-			this.inputNum6.string = num;
-		}
+        if(array.length == 0){
+            this.inputNum1.string = num;
+        }else if(array.length == 1){
+            this.inputNum2.string = num;
+        }else if(array.length == 2){
+            this.inputNum3.string = num;
+        }else if(array.length == 3){
+            this.inputNum4.string = num;
+        }else if(array.length == 4){
+            this.inputNum5.string = num;
+        }else if(array.length == 5){
+            this.inputNum6.string = num;
+        }
       /*  cc.log(event.currentTarget)
         cc.log(event.currentTarget.parent)
         cc.log(event.currentTarget.parent.parent)*/
            array += num;
-		if(array.length == 6){
-			this.click();
-		}
-		// debugger
+        if(array.length == 6){
+            this.click();
+        }
+        // debugger
     },
     /*
     * 房间号已经是6位，可以进入
@@ -106,7 +108,6 @@ cc.Class({
         }
     },
     JRsucess: function(result,object){
-        
         var data = JSON.parse(result);
         if(data.playway&&data.room){
             //cc.weijifen.room = data.room;
@@ -131,7 +132,7 @@ cc.Class({
             });
         }else if(data.error){
         // debugger  
-            object.notice.getComponent('cc.Label').string =data.msg;
+            object.notice.string = data.msg;
             object.inputNum1.string = "";
             object.inputNum2.string = "";
             object.inputNum3.string = "";
@@ -146,48 +147,46 @@ cc.Class({
                 cc.weijifen.dialog.parent = cc.find('Canvas')
             }
         }  
-        debugger  
-
     },
     JRerror: function(object){
-        object.notice.getComponent('cc.Label').string ='连接失败';      
-		object.inputNum1.string = "";
-		object.inputNum2.string = "";
-		object.inputNum3.string = "";
-		object.inputNum4.string = "";
-		object.inputNum5.string = "";
-		object.inputNum6.string = "";
+        object.notice.string ='连接失败';      
+        object.inputNum1.string = "";
+        object.inputNum2.string = "";
+        object.inputNum3.string = "";
+        object.inputNum4.string = "";
+        object.inputNum5.string = "";
+        object.inputNum6.string = "";
         array = "";
        
     },
-	//清空按钮
-	emptyClick:function(){
-		array = "";
-		this.inputNum1.string = "";
-		this.inputNum2.string = "";
-		this.inputNum3.string = "";
-		this.inputNum4.string = "";
-		this.inputNum5.string = "";
-		this.inputNum6.string = "";
-	},
-	//删除按钮
-	removeOneClick:function(){
-		if(array != ""){
-			if(array.length == 1){
-				this.inputNum1.string = "";
-			}else if(array.length == 2){
-				this.inputNum2.string = "";
-			}else if(array.length == 3){
-				this.inputNum3.string = "";
-			}else if(array.length == 4){
-				this.inputNum4.string = "";
-			}else if(array.length == 5){
-				this.inputNum5.string = "";
-			}else if(array.length == 6){
-				this.inputNum6.string = "";
-			}
-			array = array.substr(0,array.length-1);
-		}
+    //清空按钮
+    emptyClick:function(){
+        array = "";
+        this.inputNum1.string = "";
+        this.inputNum2.string = "";
+        this.inputNum3.string = "";
+        this.inputNum4.string = "";
+        this.inputNum5.string = "";
+        this.inputNum6.string = "";
+    },
+    //删除按钮
+    removeOneClick:function(){
+        if(array != ""){
+            if(array.length == 1){
+                this.inputNum1.string = "";
+            }else if(array.length == 2){
+                this.inputNum2.string = "";
+            }else if(array.length == 3){
+                this.inputNum3.string = "";
+            }else if(array.length == 4){
+                this.inputNum4.string = "";
+            }else if(array.length == 5){
+                this.inputNum5.string = "";
+            }else if(array.length == 6){
+                this.inputNum6.string = "";
+            }
+            array = array.substr(0,array.length-1);
+        }
     },
     helpClick: function(){
         cc.weijifen.dialog1 = cc.instantiate(this.help);
