@@ -1,8 +1,7 @@
-let WJFCommon = require("WJFCommon"),
-    WJF = new WJFCommon();
+let WJFCommon = require("WJFCommon");
 // 创建房间之后进入
 cc.Class({
-    extends: cc.Component,
+    extends: WJFCommon,
     properties: {
          //ljh追加 房号 
         room_num:{
@@ -269,10 +268,6 @@ cc.Class({
                     }
                 }
             }
-            // if(context.playersarray.length == 4){
-            //     context.ready2.active = false;
-            //     var action = cc.moveTo(0.2,-21,-151);
-            //     context.readybth.runAction(action);
             }   
     },
    

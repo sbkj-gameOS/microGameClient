@@ -6,34 +6,38 @@ cc.Class({
     },
     onLoad: function () {
 
-        /**
-         * 初始化房间信息
-         * 1.房间号
-         * 2.显示游戏规则
-         * 3.用户头像
-         * 4.游戏logo
-         */
+        //初始化房间信息
+        this.playerIsReady();
+
+        //初始化对象池
+        this.init_pool();
+
 
         //加载调用方法js
+        let socket = this.socket();
+
         var RoomInitFn = require('RoomInit');
+        this.map("joinroom" , RoomInitFn.joinroom_event);//加入房间
 
-        this.settingBtn();
-        this.quanNum();
-        this.roomNum();
-        this.playerIsReady();
     },
-      // 初始化房间信息
-    playerIsReady:function () {
-       /* let node = new cc.Node('Sprite');
-        let sp = node.addComponent(cc.Sprite);
 
-        sp.spriteFrame = this.sprite;
-        node.parent = this.node;
-        console.log(sp)*/
-        // cc.log('Roominit-this',this)
-        if(cc.weijifen.match == 'true' && cc.weijifen.starttime){
-            this.starttime.node.parent.active = true;
+
+
+
+    // 初始化房间信息
+    playerIsReady:function () {
+        // // 游戏logo
+        if(cc.weijifen.GameBase.gameModel =='wz'){
+            if(cc.weijifen.playType == "LG"){
+                sprite.spriteFrame = this.bkLogoImgLG;//龙港游戏logo
+            }else{
+                sprite.spriteFrame = this.bkLogoImgTP;//台炮游戏logo
+            }
+        }else if(cc.weijifen.GameBase.gameModel =='jx'){
+            sprite.spriteFrame = this.jxLogoImgLG;
         }
+
+
         cc.weijifen.playersss = 0;  
         if(cc.weijifen.browserType=="wechat"){
             this.wxButton.node.active = true ;
@@ -45,37 +49,14 @@ cc.Class({
         }else if(cc.weijifen.browserType != null){
             this.ggButton.node.active = true ;
         }
-         // 游戏类型
-        if(cc.weijifen.GameBase.gameModel =='wz'){
-            if(cc.weijifen.playType == "LG"){
-                sprite.spriteFrame = this.bkLogoImgLG;//龙港游戏logo
-            }else{
-                sprite.spriteFrame = this.bkLogoImgTP;//台炮游戏logo
-            }
-        }else if(cc.weijifen.GameBase.gameModel =='jx'){
-            sprite.spriteFrame = this.jxLogoImgLG;
-        } else {
-            console.log('长春麻将MJDataBind')
-        }
-        console.log('wjf_num',cc.weijifen.playerNum)
-        // console.log('cc.weijifen',cc.weijifen)
+         
 
 
         let playerNum;
         playerNum = cc.weijifen.playerNum;
         this.player_num(playerNum);
-    },
-    /*
-    * '设置'内容显示
-    */
-    settingBtn: function () {
-        let setting_menu = cc.find('Canvas/other/setting');
-        setting_menu.active = false;
-    },
-    /*
-    *  房间号显示
-    */
-    roomNum: function () {
+
+        //房间号显示
         if(cc.weijifen.match =='false'){
             let roomNum = cc.find('Canvas/roomNum').getChildByName('room')._components[0];// roomNum节点
             roomNum.string = cc.weijifen.room;
@@ -89,11 +70,7 @@ cc.Class({
             this.ready2.active = false;
             this.readybth.x = -4;
         };
-    },
-    /*
-    *  圈数显示
-    */
-    quanNum: function () {
+
         /*设置圈数，圈数条显示*/
         let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点
         this.maxRound = 0;
@@ -103,50 +80,77 @@ cc.Class({
         // this.totaljs.string = '圈数  '+ this.maxRound;
         quanNum.string = '0/' + this.maxRound;
     },
-    // 玩家
-    player_num: function (playerNum) {
-        function getNode (parentStr,subNameStr) {
-            let head_parent = cc.find(parentStr).getChildByName(subNameStr);
-            return head_parent;
-        }
-        let head_l = getNode('Canvas/players','head_left'),
-            head_r = getNode('Canvas/players','head_right'),
-            head_c_name = getNode('Canvas/players/head_current','name').getComponent(cc.Label),
-            head_c_img = getNode('Canvas/players/head_current','head_img').getComponent(cc.Sprite),
-            desk_t = getNode('Canvas/cards/deskcards','top')
-            ;
-        // 个人信息
-        if (cc.weijifen.user) {
-            let user = cc.weijifen.user,
-                imgUrl = user.headimgurl;
-            head_c_name.string = user.username;
-            if (imgUrl) {
-                cc.loader.load({
-                    url: imgUrl,
-                    type: 'jpg'
-                },function (err,texture) {
-                    head_img.spriteFrame = new cc.SperiteFrame(texture);
-                })
-            }
-        }
-        cc.weijifen.playerNum = playerNum;
-        // 显示头像个数
-        if(cc.weijifen.playerNum){
-            if(cc.weijifen.playerNum == 2){
-
-                head_l.active = false;
-                head_r.active = false;
-
-            }else if(cc.weijifen.playerNum == 3){
-                head_l.active = false;      
-            }
-        }
-    },
     /*
     * 初始化对象池
     */
     init_pool: function () {
+        /**
+         * 已初始的玩家对象池 ， 牌局结束 或者 有新玩家加入， 老玩家离开 等事件的时候，需要做对象池回收
+         * @type {Array}
+         */
+        this.playersarray = new Array();        //玩家列表
 
+        this.playercards = new Array();         //手牌对象
+
+        this.leftcards = new Array();           //左侧玩家手牌
+        this.rightcards = new Array();          //右侧玩家手牌
+        this.topcards = new Array() ;           //对家手牌
+
+        this.deskcards = new Array();           //当前玩家和 对家 已出牌
+
+        this.chis = [];
+        this.gangs = [];
+        this.dans = [];
+
+        this.right ='';// 用户信息
+        this.left = '';
+        this.top = '';
+        cc.weijifen.wanfa = null;//玩法
+
+        this.centertimer = null ;//中间时间
+        ////debugger
+         
+        /**
+         * 预制的 对象池
+         * @type {cc.NodePool}
+         */
+        this.playerspool = new cc.NodePool();
+        /**
+         * 当前玩家的 麻将牌的 对象池
+         * @type {cc.NodePool}
+         */
+        this.cardpool = new cc.NodePool();
+        this.alert = new cc.NodePool();
+        this.setting = new cc.NodePool();
+        this.leave = new cc.NodePool();
+        
+        // 操作按钮
+        this.alert.put(cc.instantiate(this.isOver));
+        this.setting.put(cc.instantiate(this.gameSettingClick));
+        this.leave.put(cc.instantiate(this.leave_alert));
+        /**
+         *
+         * 初始化玩家 的 对象池
+         */
+        for(var i=0 ; i<4 ; i++){
+            this.playerspool.put(cc.instantiate(this.playerprefab));
+        }
+        ////debugger
+        /**
+         * 初始化当前玩家的麻将牌 对象池
+         * 将麻将放到对象池
+         */
+        if(cc.weijifen.cardNum){
+            for(var i=0;i<cc.weijifen.cardNum+1;i++){
+                this.cardpool.put(cc.instantiate(this.cards_current));
+            }
+        }else{
+            for(var i=0 ; i<14 ; i++){
+                this.cardpool.put(cc.instantiate(this.cards_current));
+            }
+        }
+        this.exchange_state("init" , this);
+        // let self = this ;
     },
 });
 
