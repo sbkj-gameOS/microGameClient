@@ -12,10 +12,7 @@ cc.Class({
     },
     onLoad: function () {
         // 建立scoket连接
-        var WJF = new WJFCommon();
-        // console.log()
-        WJF.connect();
-        debugger
+     
 
     },
      /**
@@ -24,7 +21,6 @@ cc.Class({
      * @param context
      */
     joinroom_event:function(data , context){
-        cc.log('joinroom——event----RoomInit---context',context)
         //如果是2人的模式  就只加自己和对家
         context = cc.find('Canvas').getComponent('MJDataBind');
         context.init_pool(context);
