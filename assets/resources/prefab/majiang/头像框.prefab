@@ -655,31 +655,32 @@
     "_atlas": null
   },
   {
-    "__type__": "52856Y20m9A6Ky8fUrvUF7w",
+    "__type__": "80d59jWupNF1ITqC4enkivH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "headimg": {
-      "__id__": 11
-    },
-    "count": {
-      "__id__": 7
-    },
-    "pname": {
+    "target": null,
+    "dong": null,
+    "nan": null,
+    "xi": null,
+    "bei": null,
+    "headimg": null,
+    "on_off_line": null,
+    "username": {
       "__id__": 4
     },
-    "txt": {
-      "__id__": 2
+    "goldcoins": {
+      "__id__": 7
     },
-    "banker": {
+    "selected": null,
+    "creator": {
       "__id__": 14
     },
-    "ting": {
-      "__id__": 17
-    }
+    "selectcards": null,
+    "selectcolor": null
   },
   {
     "__type__": "cc.PrefabInfo",
