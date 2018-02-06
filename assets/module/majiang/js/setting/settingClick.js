@@ -5,6 +5,10 @@ cc.Class({
 
     properties: {
         alert2 : cc.Prefab,
+        summary:{
+            default:null ,
+            type : cc.Prefab
+        },
     },
 
     // use this for initialization
@@ -44,6 +48,46 @@ cc.Class({
         alert.children[2].getComponent(cc.Label).string= str;
         alert.children[3].getComponent(cc.Button).clickEvents[0].customEventData = close;
         alert.parent = cc.find('Canvas');
+    },
+
+    /**
+     * 解散房间的事件
+     */
+    isOver_event:function(){
+debugger
+        var mj = cc.find('Canvas').getComponent('MJDataBind');
+        cc.sys.localStorage.setItem('unOver','true');
+        if(mj.alert.size()>0){
+            var alert = mj.alert.get();
+            alert.parent = cc.find("Canvas");
+            let node = alert.getComponent('overGameClick') ;
+            node.txt.string = '你的好友请求解散房间' ;
+            node.button.active = false;
+            node.button2.active = true;
+            node.labei.active =false;
+            node.labei2.active = true;
+            node.time =30;
+            mj.t = setInterval(function(){node.daojishi()},1000)  ;  
+            
+                   
+        }
+    },
+
+    gameOver_event: function(data,context){
+        debugger
+        let time;
+        if(cc.sys.localStorage.getItem('unOver')=='true'){
+            time = 0;
+            cc.sys.localStorage.removeItem('unOver');
+        }else{
+            time = 3000;
+        }
+        setTimeout(function(){this.endGameOver(data,context)},time)   
+    },
+    endGameOver: function(data,context){
+        let temp = cc.instantiate(this.summary) ;
+        temp.parent = context.root() ;
+        temp.getComponent('SummaryClick').setDataEnd(data); 
     },
 
 });

@@ -54,6 +54,11 @@ cc.Class({
             this.map("banker" , gameStartInit.banker_event);//庄家
             this.map("players" , gameStartInit.players_event);//接受玩家列表
             this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
+
+            var settingClick = require('settingClick');
+            var settingClick = new settingClick();
+            this.map("isOver" , settingClick.isOver_event);
+            this.map("gameOver",settingClick.gameOver_event);
         // }
 
         socket.on("command" , function(result){
@@ -61,6 +66,18 @@ cc.Class({
             console.log(data.command);
             console.log(data);
             self.getSelf().route(data.command)(data , self);
+        });
+
+        this.node.on('overGame',function(event){
+            let socket = self.getSelf().socket();
+            if(event.getUserData()){
+                socket.emit('overGame',JSON.stringify({
+                    REFUSE : event.getUserData()
+                }))
+            }else{
+                socket.emit('overGame',JSON.stringify({
+                }))
+            }
         });
     },
     getSelf: function(){
