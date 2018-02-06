@@ -53,6 +53,7 @@ cc.Class({
             
             this.map("banker" , gameStartInit.banker_event);//庄家
             this.map("players" , gameStartInit.players_event);//接受玩家列表
+            this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
         // }
 
         socket.on("command" , function(result){
