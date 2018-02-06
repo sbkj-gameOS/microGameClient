@@ -6,14 +6,6 @@ cc.Class({
         left_player: cc.Node,
         top_player: cc.Node,
         current_player:cc.Node,
-        playerprefab:{
-            default : null ,
-            type : cc.Prefab
-        },
-        cards_current:{
-            default:null ,
-            type : cc.Prefab
-        },
         deskcards_current_panel:{
             default:null ,
             type : cc.Node
@@ -53,10 +45,15 @@ cc.Class({
             
         // }
 
-        socket.on("command" , function(data){
+        socket.on("command" , function(result){
+            var data = self.getSelf().parse(result);
             console.log('data',data);
             self.getSelf().route(data.command)(data , self);
         });
+    },
+    getSelf: function(){
+        var self =cc.find("Canvas").getComponent("MJDataBind");
+        return self;
     },
     // 初始化房间信息
     playerIsReady:function () {
@@ -199,12 +196,6 @@ cc.Class({
         }
         // this.exchange_state("init" , this);
         // let self = this ;
-    },
-    /**
-     * 状态切换，使用状态参数 切换，避免直接修改 对象状态，避免混乱
-     */
-    exchange_state:function(state , object){
-        cc.weijifen.state = state;
     },
     joinRoom:function(){
         //开始匹配

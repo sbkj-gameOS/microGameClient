@@ -15,45 +15,6 @@ cc.Class({
         WJF.connect();
 
     },
-   
-    /*
-    * 点击‘准备按钮’
-    */
-    onClick: function (e) {
-        //开始匹配
-        cc.sys.localStorage.setItem('already','true');
-        // 头像移开中心地点
-        let ok_current = cc.find('Canvas/players').getChildByName('ok_current'),
-            buttons = cc.find('Canvas/bg/center/button');
-            ok_current.active = true;
-            buttons.active = false;
-        // console.log(mjdata)
-        let action = cc.moveTo(0.5,880,274);
-        // mjdata.setting_coin.runAction(action);
-        // let count = event.target.getComponent('Ready').count;
-        let count = 0;
-
-        let socket = WJF.socket();
-        let param = {
-            token:cc.weijifen.authorization,
-            playway:cc.weijifen.playway,
-            orgi:cc.weijifen.user.orgi
-        } ;
-        if ( cc.weijifen.room ) {
-            param.room = cc.weijifen.room;
-        }
-        // let majiang = this.target.getComponent("MJDataBind");
-        /*majiang.waittingForPlayers();//等待玩家进入*/
-        // if(count == 0){
-        //     event.target.getComponent('Ready').count=count+1;
-        //     socket.emit("joinroom" ,JSON.stringify(param)) ;
-        // }else{
-            this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));// 向节点分发readyGM自定义事件  Event.EventCustom     
-        // }
-
-       
-        // debugger
-    },
      /**
      * 新创建牌局，首个玩家加入，进入等待状态，等待其他玩家加入，服务端会推送 players数据
      * @param data
