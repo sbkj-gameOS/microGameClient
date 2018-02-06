@@ -38,6 +38,7 @@ cc.Class({
     
 
     
+    
     // 弹框弹出
     openAlert:function(str,close){
 
