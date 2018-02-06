@@ -12,7 +12,10 @@ cc.Class({
     },
     onLoad: function () {
         // 建立scoket连接
+        var WJF = new WJFCommon();
+        // console.log()
         WJF.connect();
+        debugger
 
     },
      /**
@@ -21,16 +24,14 @@ cc.Class({
      * @param context
      */
     joinroom_event:function(data , context){
-        cc.log('RoomInit---context',context)
+        cc.log('joinroom——event----RoomInit---context',context)
         //如果是2人的模式  就只加自己和对家
         context = cc.find('Canvas').getComponent('MJDataBind');
         context.init_pool(context);
-                debugger
         context.current_player.active = false;
         // 判断玩家人数
         if(cc.weijifen.playerNum == 2){
             if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
-                debugger
                 var player = context.playerspool.get();//从玩家缓存对象池中拿到玩家对象
                 var playerscript = player.getComponent("MaJiangPlayer");// MaJiangPlayer为 初始化玩家信息
                 var inx = null , tablepos = "";
@@ -237,7 +238,38 @@ cc.Class({
             }
             }   
     },
-    
+    onClick: function (e) {
+        //开始匹配
+        cc.sys.localStorage.setItem('already','true');
+        // 头像移开中心地点
+        let ok_current = cc.find('Canvas/players').getChildByName('ok_current'),
+            buttons = cc.find('Canvas/bg/center/button');
+            current_head = cc.find('Canvas/players/current_head');
+            current_head.active = true;
+        // console.log(mjdata)
+        let action = cc.moveTo(0.5,880,274);
+        // mjdata.setting_coin.runAction(action);
+        // let count = event.target.getComponent('Ready').count;
+        let count = 0;
+
+        let socket = this.socket();
+        let param = {
+            token:cc.weijifen.authorization,
+            playway:cc.weijifen.playway,
+            orgi:cc.weijifen.user.orgi
+        } ;
+        if ( cc.weijifen.room ) {
+            param.room = cc.weijifen.room;
+        }
+        // let majiang = this.target.getComponent("MJDataBind");
+        /*majiang.waittingForPlayers();//等待玩家进入*/
+        // if(count == 0){
+        //     event.target.getComponent('Ready').count=count+1;
+        //     socket.emit("joinroom" ,JSON.stringify(param)) ;
+        // }else{
+            this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));// 自定义事件  Event.EventCustom     
+        // }
+    },
 });
 
 
