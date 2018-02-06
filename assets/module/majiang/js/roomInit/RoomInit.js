@@ -25,7 +25,8 @@ cc.Class({
         //如果是2人的模式  就只加自己和对家
         context = cc.find('Canvas').getComponent('MJDataBind');
         context.init_pool(context);
-
+                debugger
+        context.current_player.active = false;
         // 判断玩家人数
         if(cc.weijifen.playerNum == 2){
             if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
@@ -48,8 +49,10 @@ cc.Class({
                     cc.sys.localStorage.setItem('count','2')
                     
                 }
+                // 一下开始报错
                 playerscript.init(data , inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                 context.playersarray.push(player) ;
+                debugger
                 if(data.status == 'READY'){    
                     cc.find('Canvas/ready/'+tablepos+'_ready').active =true;
                     if(data.id == cc.weijifen.user.id){

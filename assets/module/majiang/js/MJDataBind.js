@@ -45,7 +45,7 @@ cc.Class({
         //     let socket = this.socket();
         //     *
         //      * 接受指令
-             
+            
             var RoomInitFn = require('RoomInit');
             var gameStartInit = require('GameStartInit');
             var roomInit = new RoomInitFn();
