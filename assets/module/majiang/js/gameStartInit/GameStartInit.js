@@ -6,6 +6,10 @@ cc.Class({
         left_ready: cc.Node,
         top_ready:cc.Node,
         current_ready:cc.Node,
+        right_player: cc.Node,
+        left_player: cc.Node,
+        top_player: cc.Node,
+        current_player:cc.Node,
     },
 
     //
@@ -14,7 +18,7 @@ cc.Class({
     },
 
     /**
-     * 获取所有玩家信息
+     * 
      *
      * 方位
      *
@@ -25,19 +29,20 @@ cc.Class({
      * 宝牌/财神
      */
     
+    //获取所有玩家信息
     players_event:function(data,context){
         
         context = cc.find("Canvas").getComponent("MJDataBind") ;
         //cc.sys.localStorage.setItem(players,data.players.length);
         cc.sys.localStorage.setItem(players,data.players.length);
         if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
-            context.collect(context) ;    //先回收资源，然后再初始化
-            context.killPlayers(data);
+            this.collect(context) ;    //先回收资源，然后再初始化
+            this.killPlayers(data);
             
         }
 
         //OK手势隐藏
-        context.allReadyFalse();        
+        this.allReadyFalse();        
         
 
         var inx = 0 ;
@@ -55,77 +60,77 @@ cc.Class({
         }
         if(cc.weijifen.playerNum==2){
             if(mytime==1){
-                context.dong(0);
-                context.publicData(0,data,'current',context.current_player,0,0,context);
+                this.dong(0);
+                this.publicData(0,data,'current',context.current_player,0,0,context);
                 if(data.players.length==2){          
-                    context.publicData(1,data,'top',context.top_player,1,2,context);
+                    this.publicData(1,data,'top',context.top_player,1,2,context);
                 }
             }else{
-                context.dong(2);
-                context.publicData(0,data,'top',context.top_player,1,2,context);
-                context.publicData(1,data,'current',context.current_player,0,0,context);
+                this.dong(2);
+                this.publicData(0,data,'top',context.top_player,1,2,context);
+                this.publicData(1,data,'current',context.current_player,0,0,context);
             }       
         }else if(cc.weijifen.playerNum==3){
             if(mytime==1){
-                context.dong(0);                
-                context.publicData(0,data,'current',context.current_player,0,0,context);
+                this.dong(0);                
+                this.publicData(0,data,'current',context.current_player,0,0,context);
                 if(data.players.length==2){          
-                    context.publicData(1,data,'right',context.right_player,0,1,context);        
+                    this.publicData(1,data,'right',context.right_player,0,1,context);        
                 }else if(data.players.length==3){
-                    context.publicData(1,data,'right',context.right_player,0,1,context);        
-                    context.publicData(2,data,'top',context.top_player,1,2,context);
+                    this.publicData(1,data,'right',context.right_player,0,1,context);        
+                    this.publicData(2,data,'top',context.top_player,1,2,context);
                 }
             }else if(mytime==2){
-                context.dong(1);                
-                context.publicData(0,data,'top',context.top_player,1,2,context);
-                context.publicData(1,data,'current',context.current_player,0,0,context);
+                this.dong(1);                
+                this.publicData(0,data,'top',context.top_player,1,2,context);
+                this.publicData(1,data,'current',context.current_player,0,0,context);
                 if(data.players.length==3){
-                    context.publicData(2,data,'right',context.right_player,0,1,context);        
+                    this.publicData(2,data,'right',context.right_player,0,1,context);        
                 }
             }else if(mytime==3){
-                context.dong(2);                
-                context.publicData(0,data,'right',context.right_player,0,1,context);
-                context.publicData(1,data,'top',context.top_player,1,2,context);
-                context.publicData(2,data,'current',context.current_player,0,0,context);
+                this.dong(2);                
+                this.publicData(0,data,'right',context.right_player,0,1,context);
+                this.publicData(1,data,'top',context.top_player,1,2,context);
+                this.publicData(2,data,'current',context.current_player,0,0,context);
             }
         }else{
             if(mytime==1){
-                context.dong(0);                
-                context.publicData(0,data,'current',context.current_player,0,0,context);
+                this.dong(0);                
+                this.publicData(0,data,'current',context.current_player,0,0,context);
                 if(data.players.length==2){          
-                    context.publicData(1,data,'right',context.right_player,0,1,context);         
+                    this.publicData(1,data,'right',context.right_player,0,1,context);         
                 }else if(data.players.length ==3){
-                    context.publicData(1,data,'right',context.right_player,0,1,context);
-                    context.publicData(2,data,'top',context.top_player,1,2,context);                         
+                    this.publicData(1,data,'right',context.right_player,0,1,context);
+                    this.publicData(2,data,'top',context.top_player,1,2,context);                         
                 }else if(data.players.length ==4){
-                    context.publicData(1,data,'right',context.right_player,0,1,context);    
-                    context.publicData(2,data,'top',context.top_player,1,2,context);                
-                    context.publicData(3,data,'left',context.left_player,2,3,context);                                      
+                    this.publicData(1,data,'right',context.right_player,0,1,context);    
+                    this.publicData(2,data,'top',context.top_player,1,2,context);                
+                    this.publicData(3,data,'left',context.left_player,2,3,context);                                      
                 }
             }else if(mytime == 2){
-                context.dong(3);                
-                context.publicData(0,data,'left',context.left_player,2,3,context);
-                context.publicData(1,data,'current',context.current_player,0,0,context);         
+                this.dong(3);                
+                this.publicData(0,data,'left',context.left_player,2,3,context);
+                this.publicData(1,data,'current',context.current_player,0,0,context);         
                 if(data.players.length ==3){
-                    context.publicData(2,data,'right',context.right_player,0,1,context);
+                    this.publicData(2,data,'right',context.right_player,0,1,context);
                 }else if(data.players.length ==4){
-                    context.publicData(2,data,'right',context.right_player,0,1,context);          
-                    context.publicData(3,data,'top',context.top_player,1,2,context);         
+                    this.publicData(2,data,'right',context.right_player,0,1,context);          
+                    this.publicData(3,data,'top',context.top_player,1,2,context);         
                 }
             }else if(mytime ==3){
-                context.dong(2);                
-                context.publicData(0,data,'top',context.top_player,1,2,context);  
-                context.publicData(1,data,'left',context.left_player,2,3,context);
-                context.publicData(2,data,'current',context.current_player,0,0,context);                     
+                this.dong(2);                
+                this.publicData(0,data,'top',context.top_player,1,2,context);  
+                this.publicData(1,data,'left',context.left_player,2,3,context);
+                this.publicData(2,data,'current',context.current_player,0,0,context);                     
                 if(data.players.length ==4){
-                    context.publicData(3,data,'right',context.right_player,0,1,context);       
+                    this.publicData(3,data,'right',context.right_player,0,1,context);       
                 }
             }else if(mytime == 4){
-                context.dong(1);                
-                context.publicData(0,data,'right',context.right_player,0,1,context);
-                context.publicData(1,data,'top',context.top_player,1,2,context);
-                context.publicData(2,data,'left',context.left_player,2,3,context);               
-                context.publicData(3,data,'current',context.current_player,0,0,context);
+                this.dong(1);                
+                this.publicData(0,data,'right',context.right_player,0,1,context);
+                this.publicData(1,data,'top',context.top_player,1,2,context);
+                this.publicData(2,data,'left',context.left_player,2,3,context);               
+                this.publicData(3,data,'current',context.current_player,0,0,context);
             }
         }     
         var peo = context.playersarray;
@@ -195,6 +200,33 @@ cc.Class({
                 i++ ;
             }
         }
+    },
+    dong: function(count){
+        cc.weijifen.bankercount = count;         
+    },
+    publicData:function(inx,data,fangwei,OPparent,int,count,context){
+        if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
+            let player0 = context.playerspool.get();
+            let playerscript0 = player0.getComponent("MaJiangPlayer");
+            player0.setPosition(0,0);
+            context.playersarray.push(player0) ;
+            player0.parent = OPparent;
+            playerscript0.init(data.players[inx] , int , fangwei,count);                
+            cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
+            cc.sys.localStorage.setItem('count',count);                                  
+        }   
+    },
+    killPlayers: function(data){
+        cc.sys.localStorage.removeItem('top');
+        cc.sys.localStorage.removeItem('left');
+        cc.sys.localStorage.removeItem('right');
+        let players = data.players.length;
+        let count = cc.sys.localStorage.getItem('count');
+        if(Number(count)==players&&cc.beimi.match == 'true'){
+            cc.sys.localStorage.setItem('count',String(Number(count)-1));
+        }
+
+        cc.beimi.playersss = data.players.length;
     },
 
 });
