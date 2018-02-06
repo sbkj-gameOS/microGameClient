@@ -22,7 +22,6 @@ cc.Class({
      *
      * 方位
      *
-     * 庄家
      *
      * 色子点数
      *
@@ -193,7 +192,7 @@ cc.Class({
         for(var i=0 ; i<context.playersarray.length ; ){
             let player = context.playersarray[i] ;
             var playerscript = player.getComponent("MaJiangPlayer");
-            if(playerscript.data.id != cc.beimi.user.id){       //当前 玩家不回收，最终 Destroy 的时候会被回收
+            if(playerscript.data.id != cc.weijifen.user.id){       //当前 玩家不回收，最终 Destroy 的时候会被回收
                 context.playerspool.put(player);
                 context.playersarray.splice(i,1) ;
             }else{
@@ -222,11 +221,11 @@ cc.Class({
         cc.sys.localStorage.removeItem('right');
         let players = data.players.length;
         let count = cc.sys.localStorage.getItem('count');
-        if(Number(count)==players&&cc.beimi.match == 'true'){
+        if(Number(count)==players&&cc.weijifen.match == 'true'){
             cc.sys.localStorage.setItem('count',String(Number(count)-1));
         }
 
-        cc.beimi.playersss = data.players.length;
+        cc.weijifen.playersss = data.players.length;
     },
 
 });
