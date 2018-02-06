@@ -11,6 +11,8 @@ cc.Class({
     onLoad: function () {
        
     },
+    //设置
+    
     settingBtnClick: function (event) {
         // var action = cc.moveTo(0.5,cc.p(390,265));
         let settting_box = cc.find('Canvas/other/setting');
@@ -30,14 +32,11 @@ cc.Class({
     leaveClick:function(){
         this.openAlert('是否退出房间','hall');
     },
-    //解散房间
+    // 点击解散房间按钮
     overClick:function(){
         this.openAlert('是否解散房间','over');
     },
-    //设置
 
-    
-    
     // 弹框弹出
     openAlert:function(str,close){
 
@@ -46,5 +45,5 @@ cc.Class({
         alert.children[3].getComponent(cc.Button).clickEvents[0].customEventData = close;
         alert.parent = cc.find('Canvas');
     },
-   
+
 });

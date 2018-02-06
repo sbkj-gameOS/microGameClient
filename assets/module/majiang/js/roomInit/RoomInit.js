@@ -27,6 +27,7 @@ cc.Class({
         context.current_player.active = false;
         // 判断玩家人数
         if(cc.weijifen.playerNum == 2){
+        
             if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
                 var player = context.playerspool.get();//从玩家缓存对象池中拿到玩家对象
                 var playerscript = player.getComponent("MaJiangPlayer");// MaJiangPlayer为 初始化玩家信息
@@ -49,7 +50,6 @@ cc.Class({
                 // 一下开始报错
                 playerscript.init(data , inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                 context.playersarray.push(player) ;
-                debugger
                 if(data.status == 'READY'){    
                     cc.find('Canvas/ready/'+tablepos+'_ready').active =true;
                     if(data.id == cc.weijifen.user.id){
@@ -57,7 +57,6 @@ cc.Class({
                         context.ready2.active = false ;
                     }  
                 }
-                
             }else{
                 var playerarray = context.playersarray;
                 if(playerarray){
@@ -239,9 +238,11 @@ cc.Class({
         cc.sys.localStorage.setItem('already','true');
         // 头像移开中心地点
         let ok_current = cc.find('Canvas/players').getChildByName('ok_current'),
-            buttons = cc.find('Canvas/bg/center/button');
-            current_head = cc.find('Canvas/players/current_head');
+            buttons = cc.find('Canvas/bg/center/button'),
+            current_head = cc.find('Canvas/players/head_current');
             current_head.active = true;
+            buttons.active = false;
+            ok_current.active = true;
         // console.log(mjdata)
         let action = cc.moveTo(0.5,880,274);
         // mjdata.setting_coin.runAction(action);
