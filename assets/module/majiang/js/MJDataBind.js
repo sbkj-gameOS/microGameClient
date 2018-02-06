@@ -6,6 +6,14 @@ cc.Class({
         left_player: cc.Node,
         top_player: cc.Node,
         current_player:cc.Node,
+        playerprefab:{
+            default : null ,
+            type : cc.Prefab
+        },
+        cards_current:{
+            default:null ,
+            type : cc.Prefab
+        },
         deskcards_current_panel:{
             default:null ,
             type : cc.Node

@@ -4539,6 +4539,8 @@
     "left_player": null,
     "top_player": null,
     "current_player": null,
+    "playerprefab": null,
+    "cards_current": null,
     "deskcards_current_panel": null,
     "deskcards_right_panel": null,
     "deskcards_top_panel": null,
@@ -12771,6 +12773,12 @@
     },
     "current_player": {
       "__id__": 145
+    },
+    "playerprefab": {
+      "__uuid__": "0ff5646e-3775-4978-aebf-162f2fe0cbcb"
+    },
+    "cards_current": {
+      "__uuid__": "668e666e-f99a-4bda-9e53-2e3d2cd2ecc0"
     },
     "deskcards_current_panel": {
       "__id__": 167

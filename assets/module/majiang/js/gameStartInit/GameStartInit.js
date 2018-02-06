@@ -28,7 +28,7 @@ cc.Class({
      * @param context
      */
     banker_event:function(data, context){
-        context = cc.find('Canvas').getComponent('MajiangDataBind');
+        context = cc.find('Canvas').getComponent('MJDataBind');
         for(var inx = 0 ; inx<context.playersarray.length ; inx++){
             let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
             if(data.userid == cc.beimi.user.id){
