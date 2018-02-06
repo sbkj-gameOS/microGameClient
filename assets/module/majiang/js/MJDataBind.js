@@ -39,10 +39,11 @@ cc.Class({
         //      * 接受指令
              
             var RoomInitFn = require('RoomInit');
+            var gameStartInit = require('GameStartInit');
             var roomInit = new RoomInitFn();
-
             this.map("joinroom" , roomInit.joinroom_event);//加入房间
             
+            this.map("banker" , gameStartInit.banker_event);//庄家
         // }
 
         socket.on("command" , function(result){

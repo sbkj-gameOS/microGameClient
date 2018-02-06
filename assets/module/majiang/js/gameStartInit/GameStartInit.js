@@ -2,7 +2,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
+        right_ready: cc.Node,
+        left_ready: cc.Node,
+        top_ready:cc.Node,
+        current_ready:cc.Node,
     },
 
     //
@@ -32,6 +35,8 @@ cc.Class({
             context.killPlayers(data);
             
         }
+
+        //OK手势隐藏
         context.allReadyFalse();        
         
 
@@ -167,5 +172,29 @@ cc.Class({
         }
     },
 
+
+    allReadyFalse: function(){
+        this.left_ready.active = false;
+        this.right_ready.active = false;
+        this.top_ready.active = false;
+        this.current_ready.active = false;        
+    },
+
+    /**
+     * 回收系统资源，用于清理资源
+     * @param context
+     */
+    collect:function(context){
+        for(var i=0 ; i<context.playersarray.length ; ){
+            let player = context.playersarray[i] ;
+            var playerscript = player.getComponent("MaJiangPlayer");
+            if(playerscript.data.id != cc.beimi.user.id){       //当前 玩家不回收，最终 Destroy 的时候会被回收
+                context.playerspool.put(player);
+                context.playersarray.splice(i,1) ;
+            }else{
+                i++ ;
+            }
+        }
+    },
 
 });
