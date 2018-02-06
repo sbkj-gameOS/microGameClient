@@ -30,7 +30,7 @@ cc.Class({
         this.playerIsReady();
 
         // //初始化对象池
-        // this.init_pool();
+        this.init_pool();
 
         let self = this ;
         // if(this.ready()){
