@@ -79,6 +79,21 @@ cc.Class({
                 }))
             }
         });
+
+
+        cc.sys.localStorage.setItem('count','0');
+        cc.sys.localStorage.removeItem('current');
+        cc.sys.localStorage.removeItem('right');
+        cc.sys.localStorage.removeItem('left');
+        cc.sys.localStorage.removeItem('top');
+        cc.sys.localStorage.removeItem('altake');      
+        cc.sys.localStorage.removeItem('alting');
+        cc.sys.localStorage.removeItem('guo');  
+        cc.sys.localStorage.removeItem('unOver');      
+        cc.sys.localStorage.removeItem('clear');   
+        cc.sys.localStorage.removeItem('cb');   
+
+          cc.sys.localStorage.clear();
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");

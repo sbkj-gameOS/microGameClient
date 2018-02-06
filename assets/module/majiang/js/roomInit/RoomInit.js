@@ -33,7 +33,7 @@ cc.Class({
                 var playerscript = player.getComponent("MaJiangPlayer");// MaJiangPlayer为 初始化玩家信息
                 var inx = null , tablepos = "";
                 if(data.id == cc.weijifen.user.id){
-                    player.setPosition(-584 , -269);
+                    player.setPosition(-596 , -295);
                     player.parent = context.root();
                     tablepos = "current" ;
                     cc.sys.localStorage.setItem('current',data.id);
@@ -57,7 +57,7 @@ cc.Class({
                         context.ready2.active = false ;
                     }  
                 }
-            }else{
+            }else{ 
                 var playerarray = context.playersarray;
                 if(playerarray){
                     for(let i =0 ; i< playerarray.length;i++){
