@@ -150,7 +150,7 @@ cc.Class({
         }
         if(cc.weijifen.state !='ready' && cc.weijifen.state !='init'){
             if(cc.weijifen.playType != "LG"){
-                context.windFW(context);
+                // context.windFW(context);
             }
         }
     },

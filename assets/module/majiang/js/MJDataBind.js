@@ -44,6 +44,7 @@ cc.Class({
             this.map("joinroom" , roomInit.joinroom_event);//加入房间
             
             this.map("banker" , gameStartInit.banker_event);//庄家
+            this.map("players" , gameStartInit.players_event);//接受玩家列表
         // }
 
         socket.on("command" , function(result){
