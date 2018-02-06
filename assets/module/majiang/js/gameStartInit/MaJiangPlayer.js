@@ -51,14 +51,14 @@ cc.Class({
             this.on_off_line.active = true;
             this.headimg.color = new cc.Color(42, 25, 25);
         }else{
-            this.on_off_line.active = false;
-            this.headimg.color = new cc.Color(255, 255, 255);
+            // this.on_off_line.active = false;//是否离线
+            // this.headimg.color = new cc.Color(255, 255, 255);
         }
-        if(inx == 0){
-            this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
-        }else if(inx == 1){
-            this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
-        }
+        // if(inx == 0){
+        //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
+        // }else if(inx == 1){
+        //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
+        // }
         if(playerdata.headimgurl){
             var imgurl = playerdata.headimgurl;
             var sprite = this.headimg.getComponent(cc.Sprite);
