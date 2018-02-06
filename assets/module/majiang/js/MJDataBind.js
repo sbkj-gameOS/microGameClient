@@ -6,14 +6,6 @@ cc.Class({
         left_player: cc.Node,
         top_player: cc.Node,
         current_player:cc.Node,
-        playerprefab:{
-            default : null ,
-            type : cc.Prefab
-        },
-        cards_current:{
-            default:null ,
-            type : cc.Prefab
-        },
         deskcards_current_panel:{
             default:null ,
             type : cc.Node
@@ -136,7 +128,7 @@ cc.Class({
     /*
     * 初始化对象池
     */
-    init_pool: function () {
+    init_pool: function (context) {
         /**
          * 已初始的玩家对象池 ， 牌局结束 或者 有新玩家加入， 老玩家离开 等事件的时候，需要做对象池回收
          * @type {Array}
@@ -178,9 +170,9 @@ cc.Class({
         this.leave = new cc.NodePool();
         
         // 操作按钮
-        this.alert.put(cc.instantiate(this.isOver));
+       /* this.alert.put(cc.instantiate(this.isOver));
         this.setting.put(cc.instantiate(this.gameSettingClick));
-        this.leave.put(cc.instantiate(this.leave_alert));
+        this.leave.put(cc.instantiate(this.leave_alert));*/
         /**
          *
          * 初始化玩家 的 对象池

@@ -70,7 +70,7 @@ cc.Class({
             if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
                 debugger
                 var player = context.playerspool.get();//从玩家缓存对象池中拿到玩家对象
-                var playerscript = player.getComponent("MaJiangPlayer");// MaJiangPlayer为初始化玩家信息的
+                var playerscript = player.getComponent("MaJiangPlayer");// MaJiangPlayer为 初始化玩家信息
                 var inx = null , tablepos = "";
                 if(data.id == cc.weijifen.user.id){
                     player.setPosition(-584 , -269);
