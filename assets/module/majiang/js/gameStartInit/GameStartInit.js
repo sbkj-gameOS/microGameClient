@@ -594,7 +594,7 @@ cc.Class({
                     context.lgdong(data);
                 }
         },2000)      
-
+    },
 
     allReadyFalse: function(){
         this.left_ready.active = false;
