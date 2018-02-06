@@ -89,7 +89,7 @@ cc.Class({
 	tzerror: function(result,object){	
     },
     roomSuccess: function(result,object){
-        debugger
+        // debugger
 		let data = JSON.parse(result);
         if(data.room){
 			object.getGame(data);

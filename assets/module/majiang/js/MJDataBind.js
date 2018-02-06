@@ -24,28 +24,37 @@ cc.Class({
         },
     },
     onLoad: function () {
-
+        let socket = this.socket();
+        console.log('this',this)
         //初始化房间信息
         this.playerIsReady();
 
         // //初始化对象池
         // this.init_pool();
 
-        // let self = this ;
+        let self = this ;
         // if(this.ready()){
         //     let socket = this.socket();
         //     *
         //      * 接受指令
              
-        //     var RoomInitFn = require('RoomInit');
-        //     this.map("joinroom" , RoomInitFn.joinroom_event);//加入房间
+            var RoomInitFn = require('RoomInit');
+            var roomInit = new RoomInitFn();
+
+            this.map("joinroom" , roomInit.joinroom_event);//加入房间
             
         // }
 
+        socket.on("command" , function(result){
+            var data = self.getSelf().parse(result);
+            console.log('data',data);
+            self.getSelf().route(data.command)(data , self);
+        });
     },
-
-
-
+    getSelf: function(){
+        var self =cc.find("Canvas").getComponent("MJDataBind");
+        return self;
+    },
     // 初始化房间信息
     playerIsReady:function () {
         // // 游戏logo
@@ -91,7 +100,6 @@ cc.Class({
         }
 
 
-
         //房间号显示
         if(cc.weijifen.match =='false'){
             let roomNum = cc.find('Canvas/roomNum').getChildByName('room')._components[0];// roomNum节点
@@ -114,6 +122,7 @@ cc.Class({
             this.maxRound = cc.weijifen.maxRound;
         }
         // this.totaljs.string = '圈数  '+ this.maxRound;
+        this.routes = {};
         quanNum.string = '0/' + this.maxRound;
     },
     /*

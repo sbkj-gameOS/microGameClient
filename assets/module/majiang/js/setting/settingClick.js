@@ -35,7 +35,6 @@ cc.Class({
         this.openAlert('是否解散房间','over');
     },
     //设置
-    
 
     
     

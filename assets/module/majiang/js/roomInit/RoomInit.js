@@ -62,13 +62,15 @@ cc.Class({
     joinroom_event:function(data , context){
         cc.log('RoomInit---context',context)
         //如果是2人的模式  就只加自己和对家
-        context = cc.find('Canvas').getComponent('MajiangDataBind') ;
+        context = cc.find('Canvas').getComponent('MJDataBind');
+        context.init_pool(context);
+
         // 判断玩家人数
         if(cc.weijifen.playerNum == 2){
             if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
-
+                debugger
                 var player = context.playerspool.get();//从玩家缓存对象池中拿到玩家对象
-                var playerscript = player.getComponent("MaJiangPlayer");
+                var playerscript = player.getComponent("MaJiangPlayer");// MaJiangPlayer为初始化玩家信息的
                 var inx = null , tablepos = "";
                 if(data.id == cc.weijifen.user.id){
                     player.setPosition(-584 , -269);
