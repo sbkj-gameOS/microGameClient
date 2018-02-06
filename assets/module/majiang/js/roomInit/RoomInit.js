@@ -233,39 +233,35 @@ cc.Class({
             }
             }   
     },
-    onClick: function (e) {
+    onClick: function (event) {
         //开始匹配
-        cc.sys.localStorage.setItem('already','true');
-        // 头像移开中心地点
-        let ok_current = cc.find('Canvas/players').getChildByName('ok_current'),
-            buttons = cc.find('Canvas/bg/center/button'),
-            current_head = cc.find('Canvas/players/head_current');
-            current_head.active = true;
-            buttons.active = false;
-            ok_current.active = true;
-        // console.log(mjdata)
-        let action = cc.moveTo(0.5,880,274);
+        //cc.sys.localStorage.setItem('already','true');
+        let mjdata = cc.find('Canvas').getComponent('MJDataBind');
+        // var action = cc.moveTo(0.5,880,274);
         // mjdata.setting_coin.runAction(action);
-        // let count = event.target.getComponent('Ready').count;
-        let count = 0;
+        // var count = event.target.getComponent('Ready').count;
 
         let socket = this.socket();
-        let param = {
+        var param = {
             token:cc.weijifen.authorization,
             playway:cc.weijifen.playway,
             orgi:cc.weijifen.user.orgi
         } ;
         if ( cc.weijifen.room ) {
-            param.room = cc.weijifen.room;
+            param.room = cc.weijifen.room ;
         }
         // let majiang = this.target.getComponent("MJDataBind");
-        /*majiang.waittingForPlayers();//等待玩家进入*/
+        this.waittingForPlayers();
         // if(count == 0){
         //     event.target.getComponent('Ready').count=count+1;
         //     socket.emit("joinroom" ,JSON.stringify(param)) ;
         // }else{
-            this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));// 自定义事件  Event.EventCustom     
+            this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));       
         // }
+    },
+    waittingForPlayers:function(){
+        let context = cc.find('Canvas').getComponent('MJDataBind');
+        context.exchange_state("ready" , context);
     },
 });
 

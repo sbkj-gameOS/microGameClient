@@ -14,6 +14,10 @@ cc.Class({
             default:null ,
             type : cc.Prefab
         },
+        statebtn:{
+            default : null ,
+            type : cc.Node
+        },
         deskcards_current_panel:{
             default:null ,
             type : cc.Node
@@ -30,6 +34,20 @@ cc.Class({
             default:null ,
             type : cc.Node
         },
+        desk_tip:{
+            default:null ,
+            type : cc.Node
+        },
+        actionnode_deal:{      //动作节点
+            default:null ,
+            type : cc.Node
+        },
+        searchlight:{
+            default:null ,
+            type : cc.Node
+        },
+        setting_coin: cc.Node, 
+        current_ready:cc.Node,
     },
     onLoad: function () {
         let socket = this.socket();
@@ -78,6 +96,15 @@ cc.Class({
                 socket.emit('overGame',JSON.stringify({
                 }))
             }
+        });
+
+        this.node.on('readyGM',function(event){ 
+            //alert();
+            var context = cc.find('Canvas').getComponent('MJDataBind'); 
+            context.current_ready.active = true ;    
+            let socket = self.getSelf().socket();
+            socket.emit('readyGame',JSON.stringify({
+            }))
         });
 
 
@@ -238,7 +265,7 @@ cc.Class({
                 this.cardpool.put(cc.instantiate(this.cards_current));
             }
         }
-        // this.exchange_state("init" , this);
+        this.exchange_state("init" , this);
         // let self = this ;
     },
     joinRoom:function(){
@@ -257,6 +284,158 @@ cc.Class({
             param.match = 1 ; 
         }
         socket.emit("joinroom" ,JSON.stringify(param)) ;
+    },
+    /**
+     * 状态切换，使用状态参数 切换，避免直接修改 对象状态，避免混乱
+     */
+    exchange_state:function(state , object){
+        cc.weijifen.state = state;
+        object = cc.find('Canvas').getComponent('MJDataBind');
+        let readybtn = null , waitting = null , selectbtn = null , banker = null ,ready2 = null ;
+
+        for(var i=0 ; i<object.statebtn.children.length ; i++){
+            let target = object.statebtn.children[i] ;
+            if(target.name == "readybtn"){
+                readybtn = target ;
+            }else if(target.name == "waitting"){
+                waitting = target ;
+            }else if(target.name == "select"){
+                selectbtn = target ;
+            }else if(target.name == "banker"){
+                banker = target ;
+            }else if(target.name == 'friendButton'){
+                ready2 = target;
+            }
+            target.active = false ;
+           
+        };
+        switch(state){
+            case "init" :
+                object.desk_tip.active = false;
+                readybtn.active = true ;
+                if(cc.weijifen.room.length ==6){
+                    ready2.active = true ;
+                }
+                // object.actionnode_deal.active =false ;
+
+                /**
+                 * 探照灯 熄灭
+                 */
+                // object.exchange_searchlight("none",object);
+
+                break;
+            case "ready" :
+                waitting.active = true ;
+                //ljh改 开局60s
+                //object.timer(object , 60) ;
+                break;
+            case "begin" :
+                object.readyNoActive(object); 
+                //waitting.active = false ;
+                /**
+                 * 显示 当前还有多少张底牌
+                 * @type {boolean}
+                 */
+                object.desk_tip.active = true;
+                /**
+                 * 开始发牌动画，取消所有进行中的计时器
+                 */
+                object.canceltimer(object);
+                break;
+            case "play" :
+                /**
+                 * 一个短暂的状态，等待下一步指令是 定缺 还是直接开始打牌 ， 持续时间的计时器是 2秒
+                 */
+                if(cc.weijifen.bankers){
+                    banker.active = true ;
+                }
+                object.readyNoActive(object); 
+                object.timer(object , 0) ;
+                break   ;
+            case "selectcolor" :
+                /**
+                 * 定缺 ，由服务端确定是否有此个节点，下个版本将会实现流程引擎控制 游戏 节点，一切都在服务端 进行配置工作
+                 * @type {boolean}
+                 */
+                object.exchange_searchlight("current",object);
+                selectbtn.active = true ;
+                object.timer(object , 0) ;
+                break   ;
+            case "selectresult" :
+                /**
+                 * 选择了定缺结果，关闭选择按钮
+                 * @type {boolean}
+                 */
+                selectbtn.active = false ;
+                object.canceltimer(object) ;
+                break   ;
+            case "lasthands" :
+                /**
+                 * 选择了定缺结果，关闭选择按钮
+                 * @type {boolean}
+                 */
+                banker.active = true ;
+                /**
+                 * 计时器方向
+                 */
+               
+                object.timer(object , 8) ; 
+                
+                break   ;
+            case "otherplayer" :
+            
+                /**
+                 * 计时器方向
+                 */
+                if(cc.weijifen.match){
+                    object.timer(object , 15) ;             
+                }else{
+                    object.timer(object , 8) ; 
+                }
+                break   ;
+            case "takecard" :
+                /**
+                 * 选择了定缺结果，关闭选择按钮
+                 * @type {boolean}
+                 */
+                banker.active = false;
+                //object.canceltimer(object) ;
+                break   ;
+            case "nextplayer" :
+                if(object.action ){
+                    if(object.action == "two"){
+                        // let ani = object.actionnode_two.getComponent(cc.Animation);
+                        // ani.play("majiang_action_end") ;
+                    }else if(object.action == "three") {
+                        let ani = object.actionnode_three.getComponent(cc.Animation);
+                        ani.play("majiang_three_action_end") ;
+                    }else if(object.action == "deal") {
+                        object.actionnode_deal.active = false ;
+                    }
+                }
+                object.action = null ;
+                /**
+                 * 选择了定缺结果，关闭选择按钮
+                 * @type {boolean}
+                 */
+                if(cc.weijifen.match){
+                    object.timer(object , 15) ;             
+                }else{
+                    object.timer(object , 8) ; 
+                }
+                break   ;
+        }
+    },
+    exchange_searchlight:function(direction , context){
+        cc.sys.localStorage.removeItem('cl');      
+        context = cc.find('Canvas').getComponent('MJDataBind');
+        for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+            if(direction == context.searchlight.children[inx].name){
+                context.searchlight.children[inx].active = true ;
+            }else{
+                context.searchlight.children[inx].active = false ;
+            }
+        }
     },
 });
 
