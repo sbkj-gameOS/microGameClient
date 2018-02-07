@@ -24,17 +24,13 @@ cc.Class({
     },
      //离开游戏  不结束游戏
     leaveGameClick:function(){
-        debugger
-        
         let WJFFn = require('WJFCommon');
         let WJF = new WJFFn();
         WJF.scene("gameMain" ,WJF);
-        debugger
         this.node.dispatchEvent( new cc.Event.EventCustom('leaveGame', true) );
     },
     /*确定结束游戏*/
     overNotice: function(){
-        debugger
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
         // 以下代码可能会会影响房间进入速度
         /*let WjfFn = require('WJFCommon');

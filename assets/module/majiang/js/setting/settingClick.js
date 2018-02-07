@@ -58,7 +58,6 @@ cc.Class({
      * 解散房间的事件
      */
     isOver_event:function(){
-debugger
         var mj = cc.find('Canvas').getComponent('MJDataBind');
         cc.sys.localStorage.setItem('unOver','true');
         if(mj.alert.size()>0){
@@ -78,7 +77,6 @@ debugger
     },
 
     gameOver_event: function(data,context){
-        debugger
         let time;
         if(cc.sys.localStorage.getItem('unOver')=='true'){
             time = 0;
