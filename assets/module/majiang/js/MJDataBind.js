@@ -48,6 +48,7 @@ cc.Class({
         },
         setting_coin: cc.Node, 
         current_ready:cc.Node,
+        starttime: cc.Label
     },
     onLoad: function () {
         let socket = this.socket();
@@ -67,8 +68,9 @@ cc.Class({
             var RoomInitFn = require('RoomInit');
             var gameStartInit = require('GameStartInit');
             var roomInit = new RoomInitFn();
+
             this.map("joinroom" , roomInit.joinroom_event);//加入房间
-            
+            gameStartInit = new gameStartInit();
             this.map("banker" , gameStartInit.banker_event);//庄家
             this.map("players" , gameStartInit.players_event);//接受玩家列表
             this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
@@ -106,7 +108,7 @@ cc.Class({
             socket.emit('readyGame',JSON.stringify({
             }))
         });
-
+        // gameStartInit.players_event();
 
         cc.sys.localStorage.setItem('count','0');
         cc.sys.localStorage.removeItem('current');
@@ -119,8 +121,6 @@ cc.Class({
         cc.sys.localStorage.removeItem('unOver');      
         cc.sys.localStorage.removeItem('clear');   
         cc.sys.localStorage.removeItem('cb');   
-
-          cc.sys.localStorage.clear();
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");

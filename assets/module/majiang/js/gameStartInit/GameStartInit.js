@@ -1,5 +1,6 @@
+var WJFCommon = require("WJFCommon");
 cc.Class({
-    extends: cc.Component,
+    extends: WJFCommon,
 
     properties: {
         right_ready: cc.Node,
@@ -14,7 +15,6 @@ cc.Class({
 
     //
     onLoad: function () {
-
     },
 
     /**
@@ -30,9 +30,7 @@ cc.Class({
     
     //获取所有玩家信息
     players_event:function(data,context){
-        
-        context = cc.find("Canvas").getComponent("MJDataBind") ;
-        //cc.sys.localStorage.setItem(players,data.players.length);
+        context = cc.find("Canvas").getComponent("MJDataBind");
         cc.sys.localStorage.setItem(players,data.players.length);
         if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
             this.collect(context) ;    //先回收资源，然后再初始化
@@ -182,10 +180,13 @@ cc.Class({
      * @param context
      */
     play_event:function(data , context){
+        context = cc.find('Canvas').getComponent('MJDataBind');
+        //比赛倒计时设置为隐藏
         if(context.starttime.node.parent.active ==true){
             context.starttime.node.parent.active =false;
         }
-        context.reinitGame(context);
+        var gameStartInit = require('GameStartInit');
+        gameStartInit.reinitGame(context);
         for(let h=0 ;h<data.players.length;h++){
             var players = data.players[h];
             //这里有一个判定 如果是重连的话 就不用setouttime   
@@ -193,7 +194,7 @@ cc.Class({
                 cc.sys.localStorage.setItem('cb','true');
             }
         }
-        context.loadding();                                                
+        this.loadding();                                                
         if(cc.find('Canvas/summary')){
             cc.find('Canvas/summary').destroy();
         }
@@ -647,4 +648,96 @@ cc.Class({
         cc.weijifen.playersss = data.players.length;
     },
 
+    reinitGame: function(){
+        context = cc.find('Canvas').getComponent('MJDataBind');
+        this.tingnoaction();        
+        this.destroycards('deskcard',context);
+        this.destroycards('leftdesk',context);
+        this.destroycards('rightdesk',context);
+        this.destroycards('topdesk',context);
+        this.destroyPlayer(context);  
+        this.tingactivefalse();  
+        this.inintBuHuan();
+        //清空补花数据
+        this.destroybuhuas('left',context);
+        this.destroybuhuas('right',context);
+        this.destroybuhuas('top',context);
+        this.destroybuhuas('my',context);
+
+        cc.sys.localStorage.removeItem('altake');
+        cc.sys.localStorage.removeItem('alting');
+        cc.sys.localStorage.removeItem('altings');
+        cc.sys.localStorage.removeItem('guo');
+        cc.sys.localStorage.removeItem('cb');        
+        
+     },
+
+    tingnoaction:function(){
+        let length =cc.find('Canvas/content/handcards/deskcard/layout').children.length;
+        for(let i =0; i<length;i++){
+            let cards =cc.find('Canvas/content/handcards/deskcard/layout').children[i];
+            let button = cc.find('Canvas/content/handcards/deskcard/layout').children[i].children[0];
+            let handCards = cards.getComponent("HandCards");
+            handCards.cardvalue.color = new cc.Color(255, 255, 255);
+            button.getComponent(cc.Button).interactable= true;
+        }
+        if(cc.find('Canvas/tingselect')){
+            cc.find('Canvas/tingselect').active = false;
+        }
+    },
+    destroycards :function(fangwei,context){
+        let handcard =cc.find('Canvas/content/handcards/'+fangwei+'/layout').children.length;
+        let deskcard =cc.find('Canvas/content/deskcards/'+fangwei+'/layout').children.length;
+        let kong =cc.find('Canvas/content/handcards/'+fangwei+'/kong').children.length;
+        if(fangwei == 'deskcard'){
+            for(let i =0 ; i< handcard; i++){
+                let handcards = context.playercards[i].getComponent("HandCards");
+                handcards.csImageTop.active = false;
+                handcards.target.zIndex = 0;
+                handcards.target.children[0].getComponent(cc.Button).enabled = true;
+                handcards.cardvalue.color = new cc.Color(255, 255, 255);
+                handcards.reinit();
+                context.cardpool.put(context.playercards[i]);
+                }
+                context.playercards = [];
+        }else{
+            for(let i =0 ; i< handcard; i++){
+                cc.find('Canvas/content/handcards/'+fangwei+'/layout').children[i].destroy();
+            }
+                if(fangwei == 'leftdesk'){
+                   this.leftcards=[];
+                }else if(fangwei == 'rightdesk'){
+                   this.rightcards=[];
+                }else{
+                   this.topcards=[];                                                          
+                }   
+        }
+        for(let i = 0;i< deskcard;i++ ){
+            cc.find('Canvas/content/deskcards/'+fangwei+'/layout').children[i].destroy();
+                
+        }
+        for(let i = 1;i< kong;i++ ){
+            cc.find('Canvas/content/handcards/'+fangwei+'/kong').children[i].destroy();
+        }
+    },
+    tingactivefalse: function(){
+         this.currentting.active =false;
+         this.topting.active =false;
+         this.rightting.active =false;
+         this.leftting.active =false;
+     },
+     inintBuHuan: function(){
+        cc.beimi.powerCard = null;  
+     },
+     destroybuhuas:function(fangwei,context){
+        let buhua,buhuaList;
+        if(fangwei == "my"){
+            buhuaList = cc.find('Canvas/content/handcards/my/bh-bottom');
+        }else{
+            buhuaList = cc.find('Canvas/content/handcards/'+fangwei+'/buhua');
+        }
+        for(let i = 0;i< buhuaList.children.length;i++ ){
+            buhuaList.children[i].destroy(); 
+        }
+     },
 });
