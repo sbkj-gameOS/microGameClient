@@ -35,10 +35,14 @@ cc.Class({
     //离开房间
     leaveClick:function(){
         this.openAlert('是否退出房间','hall');
+        let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+        btn.active = false;
     },
     // 点击解散房间按钮
     overClick:function(){
         this.openAlert('是否解散房间','over');
+        let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+        btn.active = true;
     },
 
     // 弹框弹出
@@ -88,6 +92,34 @@ debugger
         let temp = cc.instantiate(this.summary) ;
         temp.parent = context.root() ;
         temp.getComponent('SummaryClick').setDataEnd(data); 
+    },
+    /**
+    */
+    over_event: function(){
+              
+        cc.weijifen.maxRound =null;
+        cc.weijifen.op =null;
+        cc.weijifen.playerNum = null;
+        cc.weijifen.room=null;
+        cc.weijifen.cardNum = null;
+        cc.sys.localStorage.setItem('dis','true');        
+        if(cc.weijifen.GameBase.gameModel=='wz'){
+            cc.director.loadScene('温州');
+        }else{
+            cc.director.loadScene('gameMain');                    
+        }
+        let mj = cc.find('Canvas').getComponent('MJDataBind');
+        clearTimeout(mj.t);  
+        // var desk = require("DeskCards");
+        // var jiantou = new desk();
+        // jiantou.xiaochu();
+    },
+    unOver_event: function(){
+        let mj = cc.find('Canvas').getComponent('MJDataBind')
+        cc.sys.localStorage.removeItem('unOver');
+        let dialog = cc.find("Canvas/isover") ;
+        clearTimeout(mj.t);
+        mj.alert.put(dialog);
     },
 
 });

@@ -26,7 +26,7 @@ cc.Class({
         this.closeMenu();
     },
 
-    //退出返回房间
+    //退出之后返回房间
     hall:function(){
         this.leavaNotice();
         this.toHall();

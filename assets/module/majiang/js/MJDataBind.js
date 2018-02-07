@@ -79,6 +79,8 @@ cc.Class({
             var settingClick = new settingClick();
             this.map("isOver" , settingClick.isOver_event);
             this.map("gameOver",settingClick.gameOver_event);
+            this.map("over" , settingClick.over_event);
+            this.map("unOver" , settingClick.unOver_event);
         // }
 
         socket.on("command" , function(result){
