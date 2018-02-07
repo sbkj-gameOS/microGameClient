@@ -4137,6 +4137,7 @@
     "setting_coin": null,
     "current_ready": null,
     "starttime": null,
+    "roomInfo": null,
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
@@ -8921,7 +8922,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "宝牌",
+    "_name": "baocard",
     "_objFlags": 0,
     "_parent": {
       "__id__": 216
@@ -8973,7 +8974,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "宝牌",
+    "_name": "baocard",
     "_objFlags": 0,
     "_parent": {
       "__id__": 217
@@ -9032,7 +9033,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "M_autumn",
+    "_name": "card",
     "_objFlags": 0,
     "_parent": {
       "__id__": 218
@@ -9169,7 +9170,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "花牌",
+    "_name": "huacard",
     "_objFlags": 0,
     "_parent": {
       "__id__": 216
@@ -9289,7 +9290,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "B_bamboo_1",
+    "_name": "buhua",
     "_objFlags": 0,
     "_parent": {
       "__id__": 224
@@ -9435,7 +9436,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 232
@@ -9483,7 +9484,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "B_bamboo_2",
+    "_name": "buhua",
     "_objFlags": 0,
     "_parent": {
       "__id__": 229
@@ -9677,7 +9678,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "L_bamboo_1",
+    "_name": "buhua",
     "_objFlags": 0,
     "_parent": {
       "__id__": 234
@@ -9871,7 +9872,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "R_bamboo_2",
+    "_name": "buhua",
     "_objFlags": 0,
     "_parent": {
       "__id__": 239
@@ -13011,7 +13012,7 @@
     "_fitHeight": true
   },
   {
-    "__type__": "a6714zsHhtBz66Wjrre/FqT",
+    "__type__": "8bd7eb6ZplBxIx2msga8LgN",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -13062,6 +13063,9 @@
     },
     "starttime": {
       "__id__": 320
+    },
+    "roomInfo": {
+      "__id__": 323
     }
   }
 ]

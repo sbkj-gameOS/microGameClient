@@ -48,7 +48,8 @@ cc.Class({
         },
         setting_coin: cc.Node, 
         current_ready:cc.Node,
-        starttime: cc.Label
+        starttime: cc.Label,
+        roomInfo: cc.Node,
     },
     onLoad: function () {
         let socket = this.socket();
@@ -70,11 +71,12 @@ cc.Class({
             var roomInit = new RoomInitFn();
 
             this.map("joinroom" , roomInit.joinroom_event);//加入房间
-            gameStartInit = new gameStartInit();
             this.map("banker" , gameStartInit.banker_event);//庄家
             this.map("players" , gameStartInit.players_event);//接受玩家列表
             this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
-
+            var gamePlay = require('GamePlay');
+            this.map("lasthands" , gamePlay.lasthands_event);//庄家开始打牌了，允许出牌
+            this.map("takecards" , gamePlay.takecard_event);//我出的牌   
             var settingClick = require('settingClick');
             var settingClick = new settingClick();
             this.map("isOver" , settingClick.isOver_event);
