@@ -218,16 +218,17 @@ cc.Class({
                 // context.windFW(context);//显示东南西北
             }
             cc.weijifen.baopai = null;
-            context.roomInfo.active = true;                
-            context.totaljs.string = '圈数  '+(data.round+1) +'/'+context.maxRound;
+            context.roomInfo.active = true;    
+            let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点            
+            quanNum.string = '圈数  '+(data.round+1) +'/'+context.maxRound;
+            let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];// quan节点   
             if(cc.weijifen.GameBase.gameModel == 'jx'){
-                context.wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
+                wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
             }else{
-                context.wanfa.string = data.op;
+                wanfa.string = data.op;
             }
             cc.weijifen.wanfa = data.op;
-            context = cc.find('Canvas').getComponent('MJDataBind');   
-            context.readyNoActive(context);   
+            gameStartInit.allReadyFalse(context);   
             /**
              * 改变状态，开始发牌
              * 
@@ -597,11 +598,11 @@ cc.Class({
             },2000)      
         },
 
-        allReadyFalse: function(){
-            this.left_ready.active = false;
-            this.right_ready.active = false;
-            this.top_ready.active = false;
-            this.current_ready.active = false;        
+        allReadyFalse: function(context){
+            context.left_ready.active = false;
+            context.right_ready.active = false;
+            context.top_ready.active = false;
+            context.current_ready.active = false;        
         },
 
         /**
