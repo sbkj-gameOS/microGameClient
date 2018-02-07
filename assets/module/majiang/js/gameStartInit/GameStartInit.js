@@ -11,6 +11,45 @@ cc.Class({
         left_player: cc.Node,
         top_player: cc.Node,
         current_player:cc.Node,
+        ZM:cc.Prefab,
+        FM:cc.Prefab,
+        godcard:cc.Node,
+        desk_cards:{
+            default:null ,
+            type : cc.Label
+        },
+        one_card_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        cards_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        right_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        cards_right:{
+            default:null ,
+            type : cc.Prefab
+        },
+        top_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        cards_top:{
+            default:null ,
+            type : cc.Prefab
+        },
+        left_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        cards_left:{
+            default:null ,
+            type : cc.Prefab
+        },
     },
 
     //
@@ -186,6 +225,7 @@ cc.Class({
                 context.starttime.node.parent.active =false;
             }
             var gameStartInit = require('GameStartInit');
+            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             gameStartInit.reinitGame(context);
             for(let h=0 ;h<data.players.length;h++){
                 var players = data.players[h];
@@ -280,30 +320,30 @@ cc.Class({
                         cc.weijifen.baopai = powerCard;
                         for(let i= 0 ; i<powerCard.length;i++){
                             cc.weijifen.caishenCard += powerCard[i]+",";
-                            var laiziZM = cc.instantiate(context.ZM);
-                            laiziZM.parent = context.godcard.children[1];
+                            var laiziZM = cc.instantiate(gameStartInitNode.ZM);
+                            laiziZM.parent = gameStartInitNode.godcard.children[0];
                             var LZH  = laiziZM.getComponent('DeskCards');
                             LZH.init(powerCard[i],'B',true);
                         }
                     }
                 }
             }else{
-                cc.find('Canvas/global/main/godcard').children[0].active =true;
+                cc.find('Canvas/cards/tesucards/baocard/baocard').active =true;
                 if(data.player.powerCard){
                     let cards = context.decode(data.player.powerCard);
                     //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
                     for(let i= 0 ; i<cards.length;i++){
-                        var laiziZM = cc.instantiate(context.ZM);
-                        laiziZM.parent = context.godcard.children[1];
+                        var laiziZM = cc.instantiate(gameStartInitNode.ZM);
+                        laiziZM.parent = gameStartInitNode.godcard.children[0];
                         var LZH  = laiziZM.getComponent('DeskCards');
                         LZH.init(cards[i],'B',true);
                     }
                 }else{
-                    context.godcard.children[1].x = -560;                
-                    var laiziFM = cc.instantiate(context.FM);
+                    cc.find('Canvas/cards/tesucards/baocard/baocard/card').x = -560;                
+                    var laiziFM = cc.instantiate(gameStartInitNode.FM);
                     var LZH = laiziFM.getComponent('DeskCards');
                     LZH.init(-3,'Z',true);
-                    laiziFM.parent = context.godcard.children[1];
+                    laiziFM.parent = gameStartInitNode.godcard.children[0];
                 }
             }
             //当前玩家补花 data.player
@@ -314,7 +354,7 @@ cc.Class({
                 let temp = context.player(temp_player.playuser, context);
                 //console.log(temp.tablepos);
                 for(var i = 0;i<buhua.length;i++){
-                    context.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
+                    gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
                 }
             }
 
@@ -326,7 +366,7 @@ cc.Class({
                     let temp = context.player(data.players[i].playuser, context);
                     //console.log(temp.tablepos);
                     for(var j = 0;j<buhua.length;j++){
-                        context.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
+                        gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
                     }
                 }
             }
@@ -334,7 +374,7 @@ cc.Class({
 
             //var cards = temp_player.cards;
             setTimeout(function(){
-                context.calcdesc_cards(context , 136 , data.deskcards) ;
+                gameStartInit.calcdesc_cards(gameStartInitNode , 136 , data.deskcards) ;
             } , 0) ;
             var groupNums = 0 ;
             var pTimes;
@@ -349,7 +389,7 @@ cc.Class({
                     //这里有一个判定 如果是重连的话 就不用setouttime   
                     if(data.player.played||players.played||data.player.actions.length>0||players.action){
                         //cc.sys.localStorage.setItem('cb','true');
-                        context.initMjCards(groupNums , context , cards , temp_player.banker) ;
+                        gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
 
                         /**
                          * 初始化其他玩家数据
@@ -374,13 +414,13 @@ cc.Class({
                                         break;
                                     }
                                 }
-                                context.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
+                                gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
                             }
                         }
                         groupNums = groupNums + 1 ;
                     }else{
                         setTimeout(function(){
-                            context.initMjCards(groupNums , context , cards , temp_player.banker) ;
+                            gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
                             /**
                              * 初始化其他玩家数据
                              */
@@ -405,7 +445,7 @@ cc.Class({
                                             break;
                                         }
                                     }
-                                    context.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
+                                    gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
                                 }
                             }
                             groupNums = groupNums + 1 ;
@@ -475,10 +515,10 @@ cc.Class({
                 }
                 if(data.player.banker == true){
                     let datas ={};
+                    debugger
                     datas.userid = data.player.playuser;
                     context.banker_event(datas,context);
                 }
-                // debugger
                 if(data.player.ting){
                     context.currentting.active = true ; 
                     cc.sys.localStorage.setItem('alting','true');
@@ -513,11 +553,11 @@ cc.Class({
                             if(action[i].action=='gang'&&cards.length==1){
                                 let a =cards.concat(cards);
                                 let b = a.concat(a)
-                                context.cardModle(b,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);  
+                                gameStartInit.cardModle(b,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);  
                             }else{
                                 function sortNumber(a,b){return a - b}
                                 cards.sort(sortNumber);
-                                context.cardModle(cards,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);  
+                                gameStartInit.cardModle(cards,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);  
                             }
                         }else {
                             var a = cards.slice(0,3);
@@ -567,11 +607,11 @@ cc.Class({
                                 if(action[j].action=='gang'&&cards.length==1){
                                     let a =cards.concat(cards);
                                     let b = a.concat(a)
-                                    context.cardModle(b,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
+                                    gameStartInit.cardModle(b,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
                                 }else{
                                     function sortNumber(a,b){return a - b}
                                     cards.sort(sortNumber);
-                                    context.cardModle(cards,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
+                                    gameStartInit.cardModle(cards,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
                                 }
                                 }else {
                                 let a = cards.slice(0,3);
@@ -587,7 +627,7 @@ cc.Class({
                         var deskcardss = context.decode(data.players[i].played); 
                         var player = context.player(data.players[i].playuser, context);
                         for(let j =0 ; j< deskcardss.length;j++){
-                            context.initDeskCards(deskcardss[j],player.tablepos,context)
+                            gameStartInit.initDeskCards(deskcardss[j],player.tablepos,context)
                         }
                     }
                 } 
@@ -737,5 +777,97 @@ cc.Class({
                 buhuaList.children[i].destroy(); 
             }
          },
+         /**
+         * 显示 剩余牌
+         * @param start
+         * @param end
+         */
+        calcdesc_cards:function(context ,start , end){
+            var gameStartInit = require('GameStartInit');
+            start = start - 1 ;
+            if(start > end){
+                context.desk_cards.string = start ;
+                setTimeout(function(){
+                    gameStartInit.calcdesc_cards(context , start , end ) ;
+                } , 5) ;
+            }
+        },
+
+        initMjCards:function(group , context , cards , banker){
+            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+            //context = cc.find('Canvas').getComponent('MajiangDataBind');        
+            for(var i=group*4 ; i< cards.length && i<(group+1)*4 ; i++){
+                if(context.cardpool){
+                    let temp = context.cardpool.get();
+                    let temp_script = temp.getComponent("HandCards") ;
+        
+                    context.playercards.push(temp);
+        
+                    temp_script.init(cards[i]);
+        
+                    if(banker == true && i == (cards.length - 1)){
+                        temp.parent = gameStartInitNode.one_card_panel ;  //庄家的最后一张牌
+                    }else{
+                        temp.parent = gameStartInitNode.cards_panel ;
+                    }
+        
+                    setTimeout(function(){
+                        temp.parent = gameStartInitNode.cards_panel ;
+                    } , 200) ;
+                }   
+            }
+        },
+
+        /**
+         * 初始化其他玩家手牌，
+         * @param groupNums
+         * @param deskcards
+         * @param inx
+         * @param context
+         * @param spec 是否特殊的牌，即刚抓起来的牌
+         */
+        initPlayerHandCards:function(groupNums , deskcards , inx , context , spec,banker,peoNum){
+            var gameStartInit = require('GameStartInit');
+            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+            let parent = gameStartInitNode.right_panel;
+            let cardarray = context.rightcards;
+            let prefab = gameStartInitNode.cards_right ;
+            if(peoNum == 2){
+                parent = gameStartInitNode.top_panel  ;
+                cardarray = context.topcards   ;
+                prefab = gameStartInitNode.cards_top ;
+            }else if(peoNum ==3&&inx ==1){
+                parent = gameStartInitNode.top_panel  ;
+                cardarray = context.topcards   ;
+                prefab = gameStartInitNode.cards_top ;
+            }else{   
+                if(inx == 1){
+                    parent = gameStartInitNode.top_panel  ;
+                    cardarray = context.topcards   ;
+                    prefab = gameStartInitNode.cards_top ;
+                }else if(inx == 2){
+                    parent = gameStartInitNode.left_panel  ;
+                    cardarray = context.leftcards;
+                    prefab = gameStartInitNode.cards_left ;
+                }
+            }
+          
+            gameStartInit.initOtherCards(groupNums , context , deskcards , prefab , cardarray , parent , spec , inx,banker);    //左侧，
+        },
+        initOtherCards:function(group , context , cards , prefab , cardsarray, parent , spec , inx,banker){
+            context = cc.find('Canvas').getComponent('MJDtaBind');        
+            for(let i = 0 ; i < parent.children.length; i ++){
+                parent.children[i].getComponent('SpecCards').node.height = 0;
+                parent.children[i].getComponent('SpecCards').node.width = 0 ;
+            }
+            for(var i=group*4 ; i< cards && i<(group+1)*4 ; i++) {
+                let temp = cc.instantiate(prefab) ;
+                let temp_script = temp.getComponent("SpecCards") ;
+                temp_script.init(spec,inx);
+
+                temp.parent = parent ;
+                cardsarray.push(temp) ;
+            }
+        },
     },
 });

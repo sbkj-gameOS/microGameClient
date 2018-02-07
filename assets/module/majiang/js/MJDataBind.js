@@ -458,6 +458,32 @@ cc.Class({
         object.unscheduleAllCallbacks();
         object.mjtimer.string = "00" ;
     },
+    timer:function(object , times){
+        if(times > 9){
+            object.mjtimer.string = times ;
+        }else{
+            object.mjtimer.string = "0"+times ;
+        }
+
+        object.callback = function(){
+            times = times - 1 ;
+            if(times >= 0){
+                let text = times ;
+                if(times < 10){
+                    text = "0"+times ;
+                }
+                object.mjtimer.string = text ;
+                // if(times< 5){
+                //     cc.beimi.audio.playSFX('timeup_alarm.mp3');                    
+                // }
+            }
+        }
+        object.unscheduleAllCallbacks();
+        /**
+         * 启动计时器，应该从后台传入 配置数据，控制 等待玩家 的等待时长
+         */
+        object.schedule(object.callback, 1, times, 0);
+    },
 });
 
 

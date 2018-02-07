@@ -10,25 +10,83 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "handcards",
+    "_name": "dan",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 9
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 8
+        "__id__": 12
+      }
+    ],
+    "_prefab": {
+      "__id__": 13
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 41,
+      "height": 80
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -73.5,
+      "y": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "麻将牌-自己出牌对家出牌对家碰牌 (2)",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 6
       },
       {
-        "__id__": 9
-      },
-      {
-        "__id__": 10
+        "__id__": 7
       }
     ],
     "_prefab": {
@@ -51,66 +109,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90,
-      "height": 136
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": -288.725,
-      "y": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "M_autumn",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [
-      {
-        "__id__": 3
-      }
-    ],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 6
-      }
-    ],
-    "_prefab": {
-      "__id__": 7
-    },
-    "_id": "",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 90,
-      "height": 136
+      "width": 41,
+      "height": 60
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -119,7 +119,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -12
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -130,14 +130,14 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "财神-top",
+    "_name": "麻将牌-牌面-wind1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 4
@@ -163,17 +163,17 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30.8,
-      "height": 30.8
+      "width": 34,
+      "height": 51
     },
-    "_rotationX": 0,
-    "_rotationY": 0,
+    "_rotationX": 180,
+    "_rotationY": 180,
     "_scaleX": 1,
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 18.4,
-      "y": 14.5
+      "x": 0,
+      "y": 4
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -191,44 +191,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "dfaf0636-9182-4543-8766-150d6a3c6aaa"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "668e666e-f99a-4bda-9e53-2e3d2cd2ecc0"
-    },
-    "fileId": "e1IUW60AZNSYrWSe6OX25P",
-    "sync": false
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "b2bde301-3bb6-4d07-a5b0-99cafcbec717"
+      "__uuid__": "629278d0-1e12-4527-bdd2-772164fe92f7"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -244,7 +207,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "ab2500fa-9ff8-4489-a1c7-5febd50136b7"
+      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
     }
   },
   {
@@ -253,9 +216,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "668e666e-f99a-4bda-9e53-2e3d2cd2ecc0"
+      "__uuid__": "676e53b9-5864-433c-be7e-0054439945f4"
     },
-    "fileId": "39qzKdtj9K1pZoGmzdralG",
+    "fileId": "acdUqhtJpPM7tpHeeBrdFG",
     "sync": false
   },
   {
@@ -263,12 +226,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 1
+      "__id__": 2
     },
     "_enabled": true,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "e4bdf463-8262-4239-814f-6db29a003f22"
+    },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -280,92 +245,142 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": null
+    "_atlas": {
+      "__uuid__": "79938bea-34a0-4ab7-8cdb-4ec11ac6ad4b"
+    }
   },
   {
-    "__type__": "cc.Button",
+    "__type__": "3cada6eY9hMLpEhYI/11j9X",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 1
+      "__id__": 2
     },
     "_enabled": true,
-    "transition": 0,
-    "pressedColor": {
-      "__type__": "cc.Color",
-      "r": 211,
-      "g": 211,
-      "b": 211,
-      "a": 255
+    "beimi0": {
+      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
     },
-    "hoverColor": {
+    "count": {
+      "__id__": 8
+    },
+    "target": {
+      "__id__": 2
+    }
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 9
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 20,
+    "_fontSize": 20,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "1",
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "New Label",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 8
+      }
+    ],
+    "_prefab": {
+      "__id__": 10
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
       "__type__": "cc.Color",
       "r": 255,
       "g": 255,
       "b": 255,
       "a": 255
     },
-    "duration": 0.1,
-    "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
-    "clickEvents": [],
-    "_N$interactable": true,
-    "_N$enableAutoGrayEffect": false,
-    "_N$normalColor": {
-      "__type__": "cc.Color",
-      "r": 214,
-      "g": 214,
-      "b": 214,
-      "a": 255
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
     },
-    "_N$disabledColor": {
-      "__type__": "cc.Color",
-      "r": 124,
-      "g": 124,
-      "b": 124,
-      "a": 255
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 11.12,
+      "height": 40
     },
-    "_N$normalSprite": null,
-    "_N$disabledSprite": null,
-    "_N$target": {
-      "__id__": 1
-    }
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -1,
+      "y": -55
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
   },
   {
-    "__type__": "8d271DN4NxFLK415gZTT/F5",
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "676e53b9-5864-433c-be7e-0054439945f4"
+    },
+    "fileId": "ccVSwOO7ZLxJ+Pr+O7yLES",
+    "sync": false
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "676e53b9-5864-433c-be7e-0054439945f4"
+    },
+    "fileId": "43xnvq7thH+LZ8u2+CmgIN",
+    "sync": false
+  },
+  {
+    "__type__": "3cada6eY9hMLpEhYI/11j9X",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "beimi0": {
+      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
+    },
+    "count": {
+      "__id__": 8
+    },
     "target": {
-      "__id__": 1
-    },
-    "majing": {
-      "__id__": 2
-    },
-    "caishen": {
       "__id__": 3
-    },
-    "atlas": {
-      "__uuid__": "ab2500fa-9ff8-4489-a1c7-5febd50136b7"
-    },
-    "chun": {
-      "__uuid__": "1fa963ae-0152-4399-aa55-d5c2e387ea3a"
-    },
-    "ju": {
-      "__uuid__": "f8f0f239-9241-46b8-98e5-a2ad6b485907"
-    },
-    "lan": {
-      "__uuid__": "3674b13c-c6f9-4402-ae28-aa5cb8097c61"
-    },
-    "xia": {
-      "__uuid__": "16b5ee7c-348f-40ff-90d0-e215fd91a918"
-    },
-    "zhu": {
-      "__uuid__": "2b5d43e3-c9d5-40e6-9a04-d7a5c60972c6"
     }
   },
   {
@@ -374,9 +389,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "668e666e-f99a-4bda-9e53-2e3d2cd2ecc0"
+      "__uuid__": "676e53b9-5864-433c-be7e-0054439945f4"
     },
-    "fileId": "43fHwNAENML5W5GnLnPidu",
+    "fileId": "4fuTMiNJpDY7SM0bZXoLlP",
     "sync": false
   }
 ]
