@@ -47,9 +47,16 @@ cc.Class({
             type : cc.Node
         },
         setting_coin: cc.Node, 
+        right_ready: cc.Node,
+        left_ready: cc.Node,
+        top_ready:cc.Node,
         current_ready:cc.Node,
         starttime: cc.Label,
         roomInfo: cc.Node,
+        mjtimer:{
+            default:null ,
+            type:cc.Label
+        },
     },
     onLoad: function () {
         let socket = this.socket();
@@ -440,6 +447,16 @@ cc.Class({
                 context.searchlight.children[inx].active = false ;
             }
         }
+    },
+    readyNoActive: function(context){
+        context.right_ready.active = false;
+        context.left_ready.active = false;
+        context.top_ready.active = false;
+        context.current_ready.active =false;  
+    },
+    canceltimer:function(object){
+        object.unscheduleAllCallbacks();
+        object.mjtimer.string = "00" ;
     },
 });
 

@@ -228,7 +228,7 @@ cc.Class({
                 wanfa.string = data.op;
             }
             cc.weijifen.wanfa = data.op;
-            gameStartInit.allReadyFalse(context);   
+            context.readyNoActive(context);   
             /**
              * 改变状态，开始发牌
              * 
@@ -596,13 +596,6 @@ cc.Class({
                         context.lgdong(data);
                     }
             },2000)      
-        },
-
-        allReadyFalse: function(context){
-            context.left_ready.active = false;
-            context.right_ready.active = false;
-            context.top_ready.active = false;
-            context.current_ready.active = false;        
         },
 
         /**
