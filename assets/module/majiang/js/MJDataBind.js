@@ -334,7 +334,7 @@ cc.Class({
                 /**
                  * 探照灯 熄灭
                  */
-                // object.exchange_searchlight("none",object);
+                object.exchange_searchlight("none",object);
 
                 break;
             case "ready" :
@@ -485,6 +485,17 @@ cc.Class({
          * 启动计时器，应该从后台传入 配置数据，控制 等待玩家 的等待时长
          */
         object.schedule(object.callback, 1, times, 0);
+    },
+    exchange_searchlight:function(direction , context){
+        cc.sys.localStorage.removeItem('cl');      
+        context = cc.find('Canvas').getComponent('MJDataBind');
+        for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+            if(direction == context.searchlight.children[inx].name){
+                context.searchlight.children[inx].active = true ;
+            }else{
+                context.searchlight.children[inx].active = false ;
+            }
+        }
     },
 });
 
