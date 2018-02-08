@@ -83,7 +83,9 @@ cc.Class({
             this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
             var gamePlay = require('GamePlay');
             this.map("lasthands" , gamePlay.lasthands_event);//庄家开始打牌了，允许出牌
-            this.map("takecards" , gamePlay.takecard_event);//我出的牌   
+            this.map("takecards" , gamePlay.takecard_event);//我出的牌  
+            var gameEvent = require('GameEvent');
+            this.map("action" , gameEvent.action_event);//服务端发送的 动作事件，有杠碰吃胡过可以选择 
             var settingClick = require('settingClick');
             var settingClick = new settingClick();
             this.map("isOver" , settingClick.isOver_event);
