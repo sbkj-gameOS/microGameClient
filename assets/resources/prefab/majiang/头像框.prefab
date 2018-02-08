@@ -127,8 +127,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 2,
-      "y": -76
+      "x": -68,
+      "y": -133
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -172,8 +172,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 290,
-      "height": 40
+      "width": 99.36,
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -181,8 +181,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 181,
-      "y": 80
+      "x": 83,
+      "y": 90
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -200,14 +200,16 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 30,
-    "_fontSize": 30,
-    "_lineHeight": 40,
+    "_actualFontSize": 14,
+    "_fontSize": 24,
+    "_lineHeight": 20,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "1ff877b1-82ec-4e7c-9c34-37b0b807192c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "田帅",
+    "_N$string": "Guest_1dc5RQ",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -259,7 +261,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 66.74,
+      "width": 55.62,
       "height": 40
     },
     "_rotationX": 0,
@@ -268,8 +270,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 67.5,
-      "y": 51.79999999999999
+      "x": 59,
+      "y": 71.79999999999998
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -287,8 +289,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 30,
-    "_fontSize": 30,
+    "_actualFontSize": 25,
+    "_fontSize": 25,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,

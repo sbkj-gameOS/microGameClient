@@ -83,7 +83,9 @@ cc.Class({
             this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
             var gamePlay = require('GamePlay');
             this.map("lasthands" , gamePlay.lasthands_event);//庄家开始打牌了，允许出牌
-            this.map("takecards" , gamePlay.takecard_event);//我出的牌   
+            this.map("takecards" , gamePlay.takecard_event);//我出的牌  
+            var gameEvent = require('GameEvent');
+            this.map("action" , gameEvent.action_event);//服务端发送的 动作事件，有杠碰吃胡过可以选择 
             var settingClick = require('settingClick');
             var settingClick = new settingClick();
             this.map("isOver" , settingClick.isOver_event);
@@ -332,7 +334,7 @@ cc.Class({
                 /**
                  * 探照灯 熄灭
                  */
-                // object.exchange_searchlight("none",object);
+                object.exchange_searchlight("none",object);
 
                 break;
             case "ready" :
@@ -483,6 +485,17 @@ cc.Class({
          * 启动计时器，应该从后台传入 配置数据，控制 等待玩家 的等待时长
          */
         object.schedule(object.callback, 1, times, 0);
+    },
+    exchange_searchlight:function(direction , context){
+        cc.sys.localStorage.removeItem('cl');      
+        context = cc.find('Canvas').getComponent('MJDataBind');
+        for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+            if(direction == context.searchlight.children[inx].name){
+                context.searchlight.children[inx].active = true ;
+            }else{
+                context.searchlight.children[inx].active = false ;
+            }
+        }
     },
 });
 

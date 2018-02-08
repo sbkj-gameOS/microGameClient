@@ -50,6 +50,10 @@ cc.Class({
             default:null ,
             type : cc.Prefab
         },
+        buhua_top:cc.Prefab,
+        buhua_lef:cc.Prefab,
+        buhua_right:cc.Prefab,
+        buhua_my:cc.Prefab,
     },
 
     //
@@ -69,6 +73,7 @@ cc.Class({
         
         //获取所有玩家信息
         players_event:function(data,context){
+            debugger
             context = cc.find("Canvas").getComponent("MJDataBind");
             cc.sys.localStorage.setItem(players,data.players.length);
             if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
@@ -260,7 +265,7 @@ cc.Class({
             cc.weijifen.baopai = null;
             context.roomInfo.active = true;    
             let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点            
-            quanNum.string = '圈数  '+(data.round+1) +'/'+context.maxRound;
+            quanNum.string = (data.round+1) +'/'+context.maxRound;//圈数
             let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];// quan节点   
             if(cc.weijifen.GameBase.gameModel == 'jx'){
                 wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
@@ -282,7 +287,7 @@ cc.Class({
             context.right_player.runAction(action);
             var action = cc.moveTo(0.2,-570,80);
             context.left_player.runAction(action);
-            var action = cc.moveTo(0.2,-325,297);
+            var action = cc.moveTo(0.2,439,324);
             context.top_player.runAction(action);
             }
             //游戏开始 干掉打牌和听得缓存
@@ -350,8 +355,9 @@ cc.Class({
             var buhua;
             if(temp_player.buHua){
                 buhua = context.decode(temp_player.buHua);//补花
+                // buhua = [-35,-34];
                 console.log(buhua);
-                let temp = context.player(temp_player.playuser, context);
+                let temp = gameStartInit.player(temp_player.playuser, context);
                 //console.log(temp.tablepos);
                 for(var i = 0;i<buhua.length;i++){
                     gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
@@ -360,11 +366,13 @@ cc.Class({
 
             //其他玩家补花 data.players
             for(var i = 0; i <data.players.length;i++){
+                // data.players[i].buHua = 1;
                 if(data.players[i].buHua){
-                    buhua = context.decode(data.players[i].buHua);//补花
+                    // buhua = context.decode(data.players[i].buHua);//补花
+                    // buhua = [-35,-34];
                     console.log(buhua);
-                    let temp = context.player(data.players[i].playuser, context);
-                    //console.log(temp.tablepos);
+                    let temp = gameStartInit.player(data.players[i].playuser, context);
+                    console.log(temp.tablepos);
                     for(var j = 0;j<buhua.length;j++){
                         gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
                     }
@@ -454,9 +462,9 @@ cc.Class({
                 }
             }
             setTimeout(function(){
-                cc.weijifen.audio.playSFX('shuffle.mp3');            
-                let ani = context.cards_panel.getComponent(cc.Animation);
-                ani.play("majiang_reorder") ;
+                // cc.weijifen.audio.playSFX('shuffle.mp3');            
+                let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
+                // ani.play("majiang_reorder") ;
                 var maxvalue  = -100;
                 var maxvalluecard ;
                 //排序 
@@ -475,7 +483,7 @@ cc.Class({
                     }
 
                 }
-                context.initcardwidth(); 
+                gameStartInit.initcardwidth(); 
                 if(temp_player.banker == true&&!data.player.played){
                     //maxvalluecard.getComponent("HandCards").lastone() ;
                 }         
@@ -509,15 +517,14 @@ cc.Class({
                         istake=true;
                     }
                     if(data.players[i].ting){
-                        let playerss = context.player(data.players[i].playuser , context);
+                        let playerss = gameStartInit.player(data.players[i].playuser , context);
                         context[playerss.tablepos+'ting'].active = true;
                     }
                 }
                 if(data.player.banker == true){
                     let datas ={};
-                    debugger
                     datas.userid = data.player.playuser;
-                    context.banker_event(datas,context);
+                    gameStartInit.banker_event(datas,context);
                 }
                 if(data.player.ting){
                     context.currentting.active = true ; 
@@ -553,15 +560,15 @@ cc.Class({
                             if(action[i].action=='gang'&&cards.length==1){
                                 let a =cards.concat(cards);
                                 let b = a.concat(a)
-                                gameStartInit.cardModle(b,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);  
+                                gameStartInit.cardModle(b,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
                             }else{
                                 function sortNumber(a,b){return a - b}
                                 cards.sort(sortNumber);
-                                gameStartInit.cardModle(cards,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);  
+                                gameStartInit.cardModle(cards,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
                             }
                         }else {
                             var a = cards.slice(0,3);
-                            context.cardModle(a,cc.find('Canvas/content/handcards/deskcard/kong'),isGang,'',context,action[i].action);
+                            context.cardModle(a,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);
                             for(let h =3 ; h<cards.length; h++){
                                 context.selectaction_event({userid:cc.weijifen.user.id,cards:[cards[h]],card:-1,action:'dan'},context);            
                             }            
@@ -571,11 +578,11 @@ cc.Class({
                     //重连判断 其他人的desk和action
                     for(let i=0 ; i< data.players.length;i++){
                         //判断谁是庄家
-                    var player = context.player(data.players[i].playuser, context);
+                    var player = gameStartInit.player(data.players[i].playuser, context);
                     var datas={}
                     if(data.players[i].banker==true){
                         datas.userid = data.players[i].playuser;
-                        context.banker_event(datas,context);
+                        gameStartInit.banker_event(datas,context);
                         // for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                         //     let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
                         //     if(temp.data.id == data.players[i].playuser){
@@ -585,7 +592,7 @@ cc.Class({
                     }
                     //其他玩家的kong 牌
                     if(data.touchPlay ){
-                        let player = context.player(data.touchPlay , context)
+                        let player = gameStartInit.player(data.touchPlay , context)
                         context.exchange_searchlight(player.tablepos , context);
                         if(data.touchPlay == cc.weijifen.user.id){
                             cc.sys.localStorage.setItem('take','true');
@@ -607,15 +614,15 @@ cc.Class({
                                 if(action[j].action=='gang'&&cards.length==1){
                                     let a =cards.concat(cards);
                                     let b = a.concat(a)
-                                    gameStartInit.cardModle(b,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
+                                    gameStartInit.cardModle(b,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
                                 }else{
                                     function sortNumber(a,b){return a - b}
                                     cards.sort(sortNumber);
-                                    gameStartInit.cardModle(cards,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
+                                    gameStartInit.cardModle(cards,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
                                 }
                                 }else {
                                 let a = cards.slice(0,3);
-                                context.cardModle(a,cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);
+                                context.cardModle(a,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);
                                 for(let h =3 ; h<cards.length; h++){
                                     context.selectaction_event({userid:player.data.id,cards:[cards[h]],card:-1,action:'dan'},context)                             
                                 }                        
@@ -625,7 +632,7 @@ cc.Class({
                     //其他玩家的桌牌     
                     if(data.players[i].played){
                         var deskcardss = context.decode(data.players[i].played); 
-                        var player = context.player(data.players[i].playuser, context);
+                        var player = gameStartInit.player(data.players[i].playuser, context);
                         for(let j =0 ; j< deskcardss.length;j++){
                             gameStartInit.initDeskCards(deskcardss[j],player.tablepos,context)
                         }
@@ -855,7 +862,7 @@ cc.Class({
             gameStartInit.initOtherCards(groupNums , context , deskcards , prefab , cardarray , parent , spec , inx,banker);    //左侧，
         },
         initOtherCards:function(group , context , cards , prefab , cardsarray, parent , spec , inx,banker){
-            context = cc.find('Canvas').getComponent('MJDtaBind');        
+            context = cc.find('Canvas').getComponent('MJDataBind');        
             for(let i = 0 ; i < parent.children.length; i ++){
                 parent.children[i].getComponent('SpecCards').node.height = 0;
                 parent.children[i].getComponent('SpecCards').node.width = 0 ;
@@ -868,6 +875,66 @@ cc.Class({
                 temp.parent = parent ;
                 cardsarray.push(temp) ;
             }
+        },
+        /**
+         * 此为恢复麻将状态  1、宽度 2、缩回来 3、颜色 
+         * ting  true 为听牌时的状态
+         */
+        initcardwidth: function(ting){
+            let length  = cc.find('Canvas/cards/handcards/current/currenthandcards').children.length; 
+            for(let i =0; i<length;i++){
+                let target =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
+                let card = target.getComponent('HandCards');
+                card.take=false;
+                if(cc.weijifen.cardNum > 14){ 
+                    card.cardvalue.width = 67.5;
+                    card.cardvalue.height = 102.5;
+                    target.width=65.5;
+                }else{
+                    target.width=73;    
+                }
+                card.target.y = 0; 
+                //ting牌的时候 和 财神的牌是灰色的   听牌听完恢复 财神为持续状态
+                if(!ting&&!card.caishen&&cc.sys.localStorage.getItem('ting')!='true'){
+                    card.cardvalue.color = new cc.Color(255, 255, 255); 
+                }
+            }
+            cc.find('Canvas/cards/handcards/current/currenthandcards').sortAllChildren();
+        },
+        player:function(pid , context){
+            let player ;
+            context= cc.find('Canvas').getComponent('MJDataBind');
+            for(var inx = 0 ; inx<context.playersarray.length ; inx++){
+                let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
+                if(temp.data.id == pid){
+                    player = temp ; break ;
+                }
+            }
+            return player ;
+        },
+        buhuaModle:function(cards,parent,back,fangwei,context,action){
+            let opParent = cc.find("Canvas/cards/tesucards/huacard/"+parent+"");
+            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+            var card,temp;
+            if(fangwei == 'top'){
+                card = cc.instantiate(gameStartInitNode.buhua_top);
+                temp = card.getComponent('BuHuaAction');
+            }else if(fangwei == 'left'){
+                card = cc.instantiate(gameStartInitNode.buhua_lef);
+                temp = card.getComponent('BuHuaAction');
+            }else if(fangwei == 'right'){
+                card = cc.instantiate(gameStartInitNode.buhua_right);
+                temp = card.getComponent('BuHuaAction');
+            }else{
+                card = cc.instantiate(gameStartInitNode.buhua_my);
+                temp = card.getComponent('BuHuaAction');
+            }
+            // for(var i = 0; i<cards.length;i++){
+                //填充内容元素
+                temp.init(cards,fangwei);
+                //挂载父节点元素
+                card.parent = opParent;
+            // }
         },
     },
 });
