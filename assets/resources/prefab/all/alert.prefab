@@ -292,7 +292,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 315,
+      "width": 320,
       "height": 32
     },
     "_rotationX": 0,
@@ -642,7 +642,8 @@
     "node": {
       "__id__": 16
     },
-    "_enabled": true
+    "_enabled": true,
+    "button": null
   },
   {
     "__type__": "cc.PrefabInfo",

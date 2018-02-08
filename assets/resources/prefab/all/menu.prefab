@@ -2084,7 +2084,8 @@
     "node": {
       "__id__": 64
     },
-    "_enabled": true
+    "_enabled": true,
+    "button": null
   },
   {
     "__type__": "cc.PrefabInfo",
