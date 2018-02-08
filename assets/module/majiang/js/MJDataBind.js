@@ -86,8 +86,9 @@ cc.Class({
             this.map("takecards" , gamePlay.takecard_event);//我出的牌  
             var gameEvent = require('GameEvent');
             this.map("action" , gameEvent.action_event);//服务端发送的 动作事件，有杠碰吃胡过可以选择 
-            var settingClick = require('settingClick');
-            var settingClick = new settingClick();
+            /*var settingClick = require('settingClick');
+            var settingClick = new settingClick();*/
+            var settingClick = cc.find('Canvas/js/settingClick');
             this.map("isOver" , settingClick.isOver_event);
             this.map("gameOver",settingClick.gameOver_event);
             this.map("over" , settingClick.over_event);

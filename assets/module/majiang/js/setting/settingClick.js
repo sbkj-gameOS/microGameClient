@@ -17,7 +17,7 @@ cc.Class({
     },
 
     //设置
-    statics: {
+    // statics: {
 
         settingBtnClick: function (event) {
             // var action = cc.moveTo(0.5,cc.p(390,265));
@@ -121,5 +121,5 @@ cc.Class({
             clearTimeout(mj.t);
             mj.alert.put(dialog);
         },
-    }
+    // }
 });
