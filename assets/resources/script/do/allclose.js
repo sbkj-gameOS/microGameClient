@@ -15,7 +15,7 @@ cc.Class({
     toHall:function(){
         cc.director.loadScene("gameMain") ;
     },
-    closeWIND: function(){
+    closeWIND: function()
         // 摧毁弹出框
         cc.find('Canvas/alert').destroy();
     },

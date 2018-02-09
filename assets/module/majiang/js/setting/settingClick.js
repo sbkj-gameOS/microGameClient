@@ -86,7 +86,7 @@ cc.Class({
             }else{
                 time = 3000;
             }
-            setTimeout(function(){this.endGameOver(data,context)},time)   
+            setTimeout(function(){this.endGameOver(data,context)},time)
         },
         endGameOver: function(data,context){
             let temp = cc.instantiate(this.summary) ;
