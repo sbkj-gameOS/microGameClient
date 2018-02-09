@@ -122,6 +122,44 @@ cc.Class({
             socket.emit('readyGame',JSON.stringify({
             }))
         });
+
+        this.node.on('takecard', function (event) {
+            debugger
+            var context = cc.find('Canvas').getComponent('MJDataBind');             
+            // cc.weijifen.audio.playSFX('select.mp3');                            
+            if(cc.sys.localStorage.getItem('take') == 'true'){
+                let card = event.target.getComponent("TakeMJCard");
+                if(card != null){
+                    let cardValue = card.target.getComponent('HandCards');
+                    gamePlay.takecard_event({userid:cc.weijifen.user.id,card:cardValue.value},self);
+                    let card_script = card.target.getComponent("HandCards") ;
+                    /**
+                     * 提交数据，等待服务器返回
+                     */
+    
+                        //开始匹配
+                    let socket = self.getSelf().socket();
+                    
+                    if (cc.sys.localStorage.getItem('ting') == 'true') {  
+                        context.tingting.active = true ;
+                        setTimeout(function(){context.tingting.active = false},2000);
+                        // cc.weijifen.audio.playSFX('nv/ting.mp3');                                
+                        let socket = self.getSelf().socket();
+                        cc.sys.localStorage.removeItem('ting') ;
+                        socket.emit("selectaction" , JSON.stringify({
+                            action:"ting",
+                            actionCard:[card_script.value]
+                        }));
+                        self.getSelf().tingAction();    
+                    } else {
+                        socket.emit("doplaycards" , card_script.value) ;
+                    }
+                    //cc.find("");
+                    self.getSelf().shouOperationMune();
+                }
+                event.stopPropagation();
+            }
+        });
         // gameStartInit.players_event();
 
         cc.sys.localStorage.setItem('count','0');
@@ -139,6 +177,14 @@ cc.Class({
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");
         return self;
+    },
+    shouOperationMune: function(){
+        var action = cc.moveTo(0.5,1122,-100);
+        this.actionnode_two.x=1122;
+        cc.sys.localStorage.removeItem('altake');
+        //this.actionnode_two.runAction(action);
+        //this.actionnode_two.active = false;
+        
     },
     // 初始化房间信息
     playerIsReady:function () {
@@ -477,7 +523,7 @@ cc.Class({
                 }
                 object.mjtimer.string = text ;
                 // if(times< 5){
-                //     cc.beimi.audio.playSFX('timeup_alarm.mp3');                    
+                //     cc.weijifen.audio.playSFX('timeup_alarm.mp3');                    
                 // }
             }
         }

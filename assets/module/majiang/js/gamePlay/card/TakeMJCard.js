@@ -110,12 +110,12 @@ cc.Class({
         }
     }, 
     huifu: function(){
-        const length  = cc.find('Canvas/content/handcards/deskcard/layout').children.length;
+        const length  = cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
         for(let i =0; i<length;i++){
-            let cards =cc.find('Canvas/content/handcards/deskcard/layout').children[i];
+            let cards =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
             let handCards = cards.getComponent("HandCards");
             handCards.take = false;
-            let button = cc.find('Canvas/content/handcards/deskcard/layout').children[i].children[0];                
+            let button = cc.find('Canvas/cards/handcards/current/currenthandcards').children[i].children[0];                
             
             let card = cards.getComponent('HandCards');
             if(cc.weijifen.cardNum > 14){ 

@@ -148,7 +148,7 @@ cc.Class({
             this.cardvalue.children[1].width = 70;
             
             this.target.width=63;
-            cc.find('Canvas/content/handcards/deskcard/layout').y =5;
+            cc.find('Canvas/cards/handcards/current/currenthandcards').y =5;
         }else if(!pd){
             this.target.width = 73;
         }
