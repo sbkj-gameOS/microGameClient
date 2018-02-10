@@ -145,6 +145,7 @@ cc.Class({
         
     },   
     init2: function(){
+        debugger
         this.goon2.active = true;
         this.close2.active =true;
         var userInfo = this.data;
@@ -163,6 +164,7 @@ cc.Class({
                 list.parent = this.layout2;   
              }
         }
+        debugger
     },
     dayingjia: function(counts,inx){
         let zhen = true;
@@ -196,8 +198,10 @@ cc.Class({
         this.init();
     },
     setDataEnd: function(data){
+        debugger
         this.data = data;
         this.init2();
+        debugger
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
