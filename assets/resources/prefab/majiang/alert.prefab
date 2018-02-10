@@ -609,7 +609,7 @@
       "__id__": 19
     },
     "component": "close",
-    "handler": "overNotice",
+    "handler": "hall",
     "customEventData": "hall"
   },
   {

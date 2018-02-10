@@ -33,8 +33,8 @@ cc.Class({
     onLoad: function () {
     },
     init:function(){
-        debugger
-        let player = cc.find('Canvas').getComponent('MajiangDataBind').playersarray;
+        
+        let player = cc.find('Canvas').getComponent('MJDataBind').playersarray;
         let userInfo = this.data;
         let headimg;
         console.log(this.data)
@@ -49,7 +49,7 @@ cc.Class({
                 headimg = pl.data.headimgurl;
                 this.username.string = pl.data.username;
             }
-            if(this.data.user == cc.beimi.user.id){
+            if(this.data.user == cc.weijifen.user.id){
                 this.myself.active = true;
             }
         }

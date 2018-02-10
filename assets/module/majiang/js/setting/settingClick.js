@@ -1,5 +1,4 @@
 var MJDataBind = require("MJDataBind");
-var allclose = require("allclose");
 cc.Class({
     extends: MJDataBind,
 
@@ -13,7 +12,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-       
+            console.log('th*/**/*/*/*/*/*/*/',cc.find('Canvas/js/settingClick').getComponent('settingClick'))
     },
 
     //设置
@@ -38,15 +37,17 @@ cc.Class({
         leaveClick:function(){
             this.openAlert('是否退出房间','hall');
             let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+            
             btn.active = false;
         },
         // 点击解散房间按钮
         overClick:function(){
-            debugger
+            
+            cc.log('解散按钮')
             this.openAlert('是否解散房间','over');
             let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
             btn.active = true;
-            debugger
+            
         },
 
         // 弹框弹出
@@ -63,7 +64,8 @@ cc.Class({
          * 解散房间的事件
          */
         isOver_event:function(){
-            debugger
+            
+            cc.log('isOver_event')
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
             if(mj.alert.size()>0){
@@ -78,11 +80,14 @@ cc.Class({
                 node.time =30;
                 mj.t = setInterval(function(){node.daojishi()},1000)  ;  
             }
-            debugger
+            
         },
 
         gameOver_event: function(data,context){
-            debugger
+            console.log('this****************',this);
+            let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
+            
+            console.log('进入Game_over_event',self.endGameOver)
             let time;
             if(cc.sys.localStorage.getItem('unOver')=='true'){
                 time = 0;
@@ -90,15 +95,17 @@ cc.Class({
             }else{
                 time = 3000;
             }
-            setTimeout(function(){this.endGameOver(data,context)},time)
-            debugger
+            setTimeout(function(){self.endGameOver(data,context)},time)
+            
         },
         endGameOver: function(data,context){
-            debugger
+            
+            console.log('进入endGameOver')
+
             let temp = cc.instantiate(this.summary) ;
             temp.parent = context.root() ;
             temp.getComponent('SummaryClick').setDataEnd(data); 
-            debugger
+            
         },
         /**
         */

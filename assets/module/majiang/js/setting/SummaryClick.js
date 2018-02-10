@@ -48,8 +48,8 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.times = 60;
-        if(cc.beimi.wanfa){
-            this.op.string = cc.beimi.wanfa;
+        if(cc.weijifen.wanfa){
+            this.op.string = cc.weijifen.wanfa;
         }
         var time = new Date();
         var hours = time.getHours();
@@ -62,7 +62,7 @@ cc.Class({
         }
         //切换游戏财神图片
         var sprite = this.csNode.getComponent(cc.Sprite);
-        if(cc.beimi.GameBase.gameModel =='wz'){
+        if(cc.weijifen.GameBase.gameModel =='wz'){
             sprite.spriteFrame = this.cs1;
             this.csNode.width = this.csNode.width - 40 ;
             this.csNode.y = this.csNode.y - 10 ;
@@ -87,7 +87,7 @@ cc.Class({
         let he = this;
         this.goon1.active = true;
         this.close1.active =true;
-        if(cc.beimi.match == 'true'){
+        if(cc.weijifen.match == 'true'){
             this.t = setInterval(function(){he.daojishi()},1000)  ;
         }else{
             this.miao.node.active = false;
@@ -101,15 +101,15 @@ cc.Class({
         this.dabaopai.active = true;
         console.log(userInfo);
         let card,baopai;
-        if(cc.beimi.GameBase.gameModel =='wz'){
-            if(cc.beimi.baopai){
-                for(var i = 0;i<cc.beimi.baopai.length; i++){
+        if(cc.weijifen.GameBase.gameModel =='wz'){
+            if(cc.weijifen.baopai){
+                for(var i = 0;i<cc.weijifen.baopai.length; i++){
                     card = cc.instantiate(this.bp);
                     baopai  = card.getComponent('DeskCards');
-                    if(cc.beimi.powerCard!=null){
+                    if(cc.weijifen.powerCard!=null){
                         baopai.node.children[1].active = true;
                     }    
-                    baopai.init(cc.beimi.baopai[i],'B',true);
+                    baopai.init(cc.weijifen.baopai[i],'B',true);
                     card.parent = this.bpp;    
                 }
             }else{
@@ -129,7 +129,7 @@ cc.Class({
                 list.parent = this.layout;   
                 if(userInfo.playOvers[i].win ==false){
                 }
-                if(userInfo.playOvers[i].user == cc.beimi.user.id){
+                if(userInfo.playOvers[i].user == cc.weijifen.user.id){
                     if(userInfo.playOvers[i].win ==true){
                         this.win.active =true;
                     }else if(userInfo.playOvers[i].count<0){
@@ -145,7 +145,7 @@ cc.Class({
         
     },   
     init2: function(){
-        debugger
+        
         this.goon2.active = true;
         this.close2.active =true;
         var userInfo = this.data;
@@ -164,7 +164,7 @@ cc.Class({
                 list.parent = this.layout2;   
              }
         }
-        debugger
+        
     },
     dayingjia: function(counts,inx){
         let zhen = true;
@@ -198,10 +198,10 @@ cc.Class({
         this.init();
     },
     setDataEnd: function(data){
-        debugger
+        
         this.data = data;
         this.init2();
-        debugger
+        
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
