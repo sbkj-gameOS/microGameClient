@@ -48,7 +48,7 @@ cc.Class({
         this.tablepos = tablepos ;
         this.count = count;
         if(!playerdata.online){
-            this.on_off_line.active = true;
+            // this.on_off_line.active = true;
             this.headimg.color = new cc.Color(42, 25, 25);
         }else{
             // this.on_off_line.active = false;//是否离线

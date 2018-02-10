@@ -37,147 +37,271 @@ cc.Class({
 	    //掉线 和上线
 	    takecard_event:function(data , context){
 
-	        // context = cc.find('Canvas').getComponent('MajiangDataBind');
-	        // cc.sys.localStorage.removeItem('cb');          
-	        // context.qujuju(data);
-	        // let kongcard ; 
+	        context = cc.find('Canvas').getComponent('MJDataBind');
+	        var gameStartInit = require('GameStartInit');
+	        var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+	        var gamePlay = require('GamePlay');
+	        cc.sys.localStorage.removeItem('cb');          
+	        gamePlay.qujuju(data);
+	        let kongcard ; 
 	        // cc.weijifen.audio.playSFX('give.mp3');
-	        // let playerss = context.player(data.userid , context);
-	        // if(data.ting){
-	        //     if(context[playerss.tablepos+'ting'].active ==false){
-	        //         context.tingting.active = true ;
-	        //         setTimeout(function(){context.tingting.active = false ;},2000);
-	        //         context[playerss.tablepos+'ting'].active = true ; 
-	        //     }
-	        // }
-	        // if(data.userid == cc.weijifen.user.id) {
-	        //     if(!data.ting){
-	        //        context.tingnoaction();
-	        // }
+	        let playerss = gameStartInit.player(data.userid , context);
+	        if(data.ting){
+	            if(context[playerss.tablepos+'ting'].active ==false){
+	                context.tingting.active = true ;
+	                setTimeout(function(){context.tingting.active = false ;},2000);
+	                context[playerss.tablepos+'ting'].active = true ; 
+	            }
+	        }
+	        if(data.userid == cc.weijifen.user.id) {
+	            if(!data.ting){
+	               gameStartInit.tingnoaction();
+	        }
 	        
-	        // let father = cc.find('Canvas').getComponent('MajiangDataBind').selectfather;
-	        // if(father.active == true){
-	        //     father.active= false;
-	        //     father.children[0].children[1].children.splice(0,father.children[0].children[1].children.length);
-	        // }
+	        let father = cc.find('Canvas').getComponent('MJDataBind').selectfather;
+	        if(father.active == true){
+	            father.active= false;
+	            father.children[0].children[1].children.splice(0,father.children[0].children[1].children.length);
+	        }
 	        
 
-	        //     context.initcardwidth();
+	            gameStartInit.initcardwidth();
 	        
-	        //     if(data.ting){
-	        //         cc.sys.localStorage.setItem('alting','true'); 
-	        //         cc.sys.localStorage.setItem('altings','true');  
-	        //         cc.sys.localStorage.setItem('take','true');   
+	            if(data.ting){
+	                cc.sys.localStorage.setItem('alting','true'); 
+	                cc.sys.localStorage.setItem('altings','true');  
+	                cc.sys.localStorage.setItem('take','true');   
 
-	        //     }else{
-	        //         cc.sys.localStorage.removeItem('alting');
-	        //     }
-	        //     if(data.notSend||(cc.sys.localStorage.getItem('take') != 'true'&&!data.allow)){
-	        //         return;
-	        //     }
-	        //     cc.sys.localStorage.removeItem('altake');
-	        //     cc.sys.localStorage.removeItem('take');
-	        //     for (var inx = 0; inx < context.playercards.length;i++ ) {
-	        //         let handcards = context.playercards[inx].getComponent("HandCards");
-	        //         handcards.reinit();
-	        //         if (data.card == handcards.value) {
-	        //             context.playercards[inx].zIndex = 0 ;
-	        //             /**
-	        //              * 从数组中移除
-	        //              */
-	        //             context.playercards[inx].parent = null;
+	            }else{
+	                cc.sys.localStorage.removeItem('alting');
+	            }
+	            if(data.notSend||(cc.sys.localStorage.getItem('take') != 'true'&&!data.allow)){
+	                return;
+	            }
+	            cc.sys.localStorage.removeItem('altake');
+	            cc.sys.localStorage.removeItem('take');
+	            for (var inx = 0; inx < context.playercards.length;i++ ) {
+	                let handcards = context.playercards[inx].getComponent("HandCards");
+	                handcards.reinit();
+	                if (data.card == handcards.value) {
+	                    context.playercards[inx].zIndex = 0 ;
+	                    /**
+	                     * 从数组中移除
+	                     */
+	                    context.playercards[inx].parent = null;
 
-	        //             handcards.reinit();
-	        //             /**
-	        //              * 还回 对象池
-	        //              */
-	        //             context.cardpool.put(context.playercards[inx]);
-	        //             /**
-	        //              * 从数组中移除
-	        //              */
-	        //             context.playercards.splice(inx, 1);
-	        //             /**
-	        //              * 放到桌面 ， 需要重构
-	        //              */
-	        //             let desk_card = cc.instantiate(context.takecards_one);
-	        //             let temp = desk_card.getComponent("DeskCards");
-	        //             temp.init(handcards.value,'B');
+	                    handcards.reinit();
+	                    /**
+	                     * 还回 对象池
+	                     */
+	                    context.cardpool.put(context.playercards[inx]);
+	                    /**
+	                     * 从数组中移除
+	                     */
+	                    context.playercards.splice(inx, 1);
+	                    /**
+	                     * 放到桌面 ， 需要重构
+	                     */
+	                    let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
+	                    let temp = desk_card.getComponent("DeskCards");
+	                    temp.init(handcards.value,'B');
 
-	        //             context.deskcards.push(desk_card);
-	        //             desk_card.parent = context.deskcards_current_panel;
+	                    context.deskcards.push(desk_card);
+	                    desk_card.parent = context.deskcards_current_panel;
 	                    
-	        //         }else{
-	        //             handcards.reinit();
-	        //             if(handcards.selectcolor == true){
-	        //                 context.playercards[inx].zIndex = 1000 + handcards.value ;
-	        //             }else{
-	        //                 if(handcards.value >= 0){
-	        //                     context.playercards[inx].zIndex = handcards.value ;
-	        //                 }else{
-	        //                     context.playercards[inx].zIndex = 200 + handcards.value ;
-	        //                 }
+	                }else{
+	                    handcards.reinit();
+	                    if(handcards.selectcolor == true){
+	                        context.playercards[inx].zIndex = 1000 + handcards.value ;
+	                    }else{
+	                        if(handcards.value >= 0){
+	                            context.playercards[inx].zIndex = handcards.value ;
+	                        }else{
+	                            context.playercards[inx].zIndex = 200 + handcards.value ;
+	                        }
 
-	        //                 if(context.playercards[inx].children[1].active){
-	        //                     context.playercards[inx].zIndex = -1;
-	        //                 }
-	        //             }
-	        //             inx = inx + 1 ;     //遍历 ++,不处理移除的 牌
-	        //         }
-	        //     }
-	        //     context.exchange_state("takecard" , context);  //隐藏 提示状态
-	        // }else{
-	        //     //其他玩家出牌   
-	        //     let temp = context.player(data.userid , context) ;
-	        //     let cardpanel  , cardprefab , deskcardpanel;
-	        //     if(!data.notSend){
-	        //     if(temp.tablepos == "right"){
-	        //         for(var inx = 0 ; inx < context.right_panel.children.length ; inx++){
-	        //             let right_temp = context.right_panel.children[inx].getComponent("SpecCards");
-	        //             right_temp.reinit();
-	        //         }
-	        //         cardpanel = context.right_panel ;
-	        //         cardprefab = context.takecards_right ;
-	        //         deskcardpanel = context.deskcards_right_panel ;
+	                        if(context.playercards[inx].children[1].active){
+	                            context.playercards[inx].zIndex = -1;
+	                        }
+	                    }
+	                    inx = inx + 1 ;     //遍历 ++,不处理移除的 牌
+	                }
+	            }
+	            context.exchange_state("takecard" , context);  //隐藏 提示状态
+	        }else{
+	            //其他玩家出牌   
+	            let temp = gameStartInit.player(data.userid , context) ;
+	            let cardpanel  , cardprefab , deskcardpanel;
+	            if(!data.notSend){
+	            if(temp.tablepos == "right"){
+	                for(var inx = 0 ; inx < gameStartInitNode.right_panel.children.length ; inx++){
+	                    let right_temp = gameStartInitNode.right_panel.children[inx].getComponent("SpecCards");
+	                    right_temp.reinit();
+	                }
+	                cardpanel = gameStartInitNode.right_panel ;
+	                cardprefab = gameStartInitNode.takecards_right ;
+	                deskcardpanel = context.deskcards_right_panel ;
 
-	        //         let desk_card = cc.instantiate(cardprefab);
-	        //         let desk_script = desk_card.getComponent("DeskCards");
-	        //         desk_script.init(data.card,'R');
-	        //         desk_card.parent = deskcardpanel ;
+	                let desk_card = cc.instantiate(cardprefab);
+	                let desk_script = desk_card.getComponent("DeskCards");
+	                desk_script.init(data.card,'R');
+	                desk_card.parent = deskcardpanel ;
 
-	        //     }else if(temp.tablepos == "left"){
-	        //         for(var inx = 0 ; inx < context.left_panel.children.length ; inx++){
-	        //             let left_temp = context.left_panel.children[inx].getComponent("SpecCards");
-	        //             left_temp.reinit();
-	        //         }
-	        //         cardpanel = context.left_panel ;
-	        //         cardprefab = context.takecards_left ;
-	        //         deskcardpanel = context.deskcards_left_panel ;
+	            }else if(temp.tablepos == "left"){
+	                for(var inx = 0 ; inx < gameStartInitNode.left_panel.children.length ; inx++){
+	                    let left_temp = gameStartInitNode.left_panel.children[inx].getComponent("SpecCards");
+	                    left_temp.reinit();
+	                }
+	                cardpanel = gameStartInitNode.left_panel ;
+	                cardprefab = gameStartInitNode.takecards_left ;
+	                deskcardpanel = context.deskcards_left_panel ;
 
-	        //         let desk_card = cc.instantiate(cardprefab);
-	        //         let desk_script = desk_card.getComponent("DeskCards");
-	        //         desk_script.init(data.card,'L');
-	        //         desk_card.parent = deskcardpanel ;
-	        //     }else if(temp.tablepos == "top"){
-	        //         for(var inx = 0 ; inx < context.top_panel.children.length ; inx++){
-	        //             let top_temp = context.top_panel.children[inx].getComponent("SpecCards");
-	        //             top_temp.reinit();
-	        //         }
-	        //         cardpanel = context.top_panel ;
-	        //         cardprefab = context.takecards_one ;
-	        //         deskcardpanel = context.deskcards_top_panel ;
+	                let desk_card = cc.instantiate(cardprefab);
+	                let desk_script = desk_card.getComponent("DeskCards");
+	                desk_script.init(data.card,'L');
+	                desk_card.parent = deskcardpanel ;
+	            }else if(temp.tablepos == "top"){
+	                for(var inx = 0 ; inx < gameStartInitNode.top_panel.children.length ; inx++){
+	                    let top_temp = gameStartInitNode.top_panel.children[inx].getComponent("SpecCards");
+	                    top_temp.reinit();
+	                }
+	                cardpanel = gameStartInitNode.top_panel ;
+	                cardprefab = gameStartInitNode.takecards_one ;
+	                deskcardpanel = context.deskcards_top_panel ;
 
-	        //         let desk_card = cc.instantiate(cardprefab);
-	        //         let desk_script = desk_card.getComponent("DeskCards");
-	        //         desk_script.init(data.card,'B');
-	        //         desk_card.parent = deskcardpanel ;
-	        //     }
-	        //     /**
-	        //      * 销毁其中一个对象
-	        //      */
+	                let desk_card = cc.instantiate(cardprefab);
+	                let desk_script = desk_card.getComponent("DeskCards");
+	                desk_script.init(data.card,'B');
+	                desk_card.parent = deskcardpanel ;
+	            }
+	            /**
+	             * 销毁其中一个对象
+	             */
 	            
-	        //         cardpanel.children[cardpanel.children.length - 1].destroy();                
-	        //     }
-	        // }
+	                cardpanel.children[cardpanel.children.length - 1].destroy();                
+	            }
+	        }
+	    },
+	    /**
+	     * 下一个玩家抓牌的事件， 如果上一个玩家出牌后，没有其他玩家杠、碰、吃、胡等动作，则会同时有一个抓牌的事件，否则，会等待玩家 杠、碰、吃、胡完成
+	     * @param data
+	     * @param context
+	     */
+	    dealcard_event:function(data , context){   
+	      	var gamePlay = require('GamePlay');
+	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){
+	            setTimeout(function(){gamePlay.dealcards(data,context)},2100);
+	                  
+
+	            
+	            
+	        }else{
+	            gamePlay.dealcards(data,context);
+	        }
+	    },
+	    dealcards: function(data,context){
+	        cc.sys.localStorage.removeItem('cb');  
+	        var gamePlay = require('GamePlay');
+	        var gameStartInit = require('GameStartInit');
+	        var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+	        context=cc.find('Canvas').getComponent('MJDataBind');
+	        context.closeloadding();
+	        if(cc.weijifen.playerNum){
+	            var peoNum = cc.weijifen.playerNum;
+	        }
+	        let player = gameStartInit.player(data.userid , context);
+	        gamePlay.select_action_searchlight(data, context , player);
+
+	        //摸牌补花
+	        if(data.bu){
+	            var buhua = context.decode(data.bu);//补花
+	            for(var i = 0;i<buhua.length;i++){
+	                gameStartInit.buhuaModle(buhua[i],player.tablepos,'',player.tablepos,context,"");
+	            }
+	        }
+
+	        if(data.userid == cc.weijifen.user.id){
+	            if(cc.sys.localStorage.getItem('altings') != 'true'){
+	                gameStartInit.tingnoaction();
+	            }
+	            if(cc.sys.localStorage.getItem('altake')!='true'){
+	                cc.sys.localStorage.setItem('take','true');
+	            }else{
+	                cc.sys.localStorage.removeItem('altake');                
+	            }
+	            gamePlay.initDealHandCards(context , data);   
+	            if(context.action123 !='deal'){
+	                context.shouOperationMune();                                    
+	            }
+	        }else{
+	            context.shouOperationMune();                    
+	            let inx = 0 ;
+	            if(player.tablepos == "top"){
+	                //context.right_panel ;
+	                inx = 1 ;
+	            }else if(player.tablepos == "left"){
+	                inx = 2 ;
+	            }
+	            gameStartInit.initPlayerHandCards(0 , 1 , inx , context , true,peoNum);
+	        }
+	        gameStartInitNode.desk_cards.string = data.deskcards ;
+	        if(data.power){
+	            if(data.powerCard&&data.powerCard.length>0){
+	                for(let i=0 ; i<cc.find('Canvas/global/main/godcard/child').children.length;i++){
+	                    cc.find('Canvas/global/main/godcard/child').children[i].destroy();
+	                }
+	                cc.weijifen.baopai = data.powerCard;
+	                for(let i= 0 ; i<data.powerCard.length;i++){
+	                    var laiziZM = cc.instantiate(context.ZM);
+	                    laiziZM.parent = context.godcard.children[1];
+	                    var LZH  = laiziZM.getComponent('DeskCards');
+	                    LZH.init(data.powerCard[i],'B',true);
+	                    // cc.weijifen.baopai = data.powerCard[i];
+	                }
+	            }else{
+	                var laiziFM = cc.instantiate(context.FM);
+	                var LZH = laiziFM.getComponent('DeskCards');
+	                //LZH.init(-4);
+	                laiziFM.parent = context.godcard.children[1];
+	            }
+	        }
+	    },
+	    select_action_searchlight:function(data , context , player){
+	        context.exchange_searchlight(player.tablepos , context);
+	        /**
+	         */
+	        context.exchange_state("nextplayer" , context);
+	    },
+	    initDealHandCards:function(context , data){
+	    	var gameStartInit = require('GameStartInit');
+	    	context=cc.find('Canvas').getComponent('MJDataBind');
+	        gameStartInit.initcardwidth();
+	        if(true){
+	            let temp = context.cardpool.get();
+	            let temp_script = temp.getComponent("HandCards") ;
+	            context.playercards.push(temp);
+	            temp_script.init(data.card);
+	            temp_script.lastone();
+	            temp.zIndex = 2000; //直接放到最后了，出牌后，恢复 zIndex
+	            temp.parent = context.cards_panel ;  //庄家的最后一张牌
+	        }   
+    	},
+    	qujuju: function(data){
+    		var gameStartInit = require('GameStartInit');
+	        let player = gameStartInit.player(data.userid , this);
+	        let opParent;
+	        if(player.tablepos == 'current'){
+	            opParent = cc.find("Canvas/cards/handcards/current/kongcards") ;
+	        }else{
+	            opParent = cc.find("Canvas/cards/handcards/"+player.tablepos+"/kongcards") ;
+	        }
+	        if(opParent.children.length>1){
+	            try{
+	                opParent.children[opParent.children.length-1].children[1].getComponent('DanAction').jujufei();                  
+	            }catch(e){
+	                console.log('ohuo');
+	            }
+	        }
 	    },
     }
     //出牌

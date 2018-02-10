@@ -54,6 +54,18 @@ cc.Class({
         buhua_lef:cc.Prefab,
         buhua_right:cc.Prefab,
         buhua_my:cc.Prefab,
+        takecards_one:{         //我的和 对家出的牌
+            default:null ,
+            type : cc.Prefab
+        },
+        takecards_left:{
+            default:null ,
+            type : cc.Prefab
+        },
+        takecards_right:{
+            default:null ,
+            type : cc.Prefab
+        },
     },
 
     //
@@ -73,17 +85,16 @@ cc.Class({
         
         //获取所有玩家信息
         players_event:function(data,context){
-            debugger
             context = cc.find("Canvas").getComponent("MJDataBind");
+            var gameStartInit = require('GameStartInit');
             cc.sys.localStorage.setItem(players,data.players.length);
             if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
-                this.collect(context) ;    //先回收资源，然后再初始化
-                this.killPlayers(data);
-                
+                gameStartInit.collect(context) ;    //先回收资源，然后再初始化
+                gameStartInit.killPlayers(data);
             }
 
             //OK手势隐藏
-            this.allReadyFalse();        
+            context.readyNoActive(context);        
             
 
             var inx = 0 ;
@@ -101,77 +112,77 @@ cc.Class({
             }
             if(cc.weijifen.playerNum==2){
                 if(mytime==1){
-                    this.dong(0);
-                    this.publicData(0,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(0);
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
                     if(data.players.length==2){          
-                        this.publicData(1,data,'top',context.top_player,1,2,context);
+                        gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     }
                 }else{
-                    this.dong(2);
-                    this.publicData(0,data,'top',context.top_player,1,2,context);
-                    this.publicData(1,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(2);
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
                 }       
             }else if(cc.weijifen.playerNum==3){
                 if(mytime==1){
-                    this.dong(0);                
-                    this.publicData(0,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(0);                
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
                     if(data.players.length==2){          
-                        this.publicData(1,data,'right',context.right_player,0,1,context);        
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
                     }else if(data.players.length==3){
-                        this.publicData(1,data,'right',context.right_player,0,1,context);        
-                        this.publicData(2,data,'top',context.top_player,1,2,context);
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
                     }
                 }else if(mytime==2){
-                    this.dong(1);                
-                    this.publicData(0,data,'top',context.top_player,1,2,context);
-                    this.publicData(1,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(1);                
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
                     if(data.players.length==3){
-                        this.publicData(2,data,'right',context.right_player,0,1,context);        
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);        
                     }
                 }else if(mytime==3){
-                    this.dong(2);                
-                    this.publicData(0,data,'right',context.right_player,0,1,context);
-                    this.publicData(1,data,'top',context.top_player,1,2,context);
-                    this.publicData(2,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(2);                
+                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
+                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
                 }
             }else{
                 if(mytime==1){
-                    this.dong(0);                
-                    this.publicData(0,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(0);                
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
                     if(data.players.length==2){          
-                        this.publicData(1,data,'right',context.right_player,0,1,context);         
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);         
                     }else if(data.players.length ==3){
-                        this.publicData(1,data,'right',context.right_player,0,1,context);
-                        this.publicData(2,data,'top',context.top_player,1,2,context);                         
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                         
                     }else if(data.players.length ==4){
-                        this.publicData(1,data,'right',context.right_player,0,1,context);    
-                        this.publicData(2,data,'top',context.top_player,1,2,context);                
-                        this.publicData(3,data,'left',context.left_player,2,3,context);                                      
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);    
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                
+                        gameStartInit.publicData(3,data,'left',context.left_player,2,3,context);                                      
                     }
                 }else if(mytime == 2){
-                    this.dong(3);                
-                    this.publicData(0,data,'left',context.left_player,2,3,context);
-                    this.publicData(1,data,'current',context.current_player,0,0,context);         
+                    gameStartInit.dong(3);                
+                    gameStartInit.publicData(0,data,'left',context.left_player,2,3,context);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);         
                     if(data.players.length ==3){
-                        this.publicData(2,data,'right',context.right_player,0,1,context);
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);
                     }else if(data.players.length ==4){
-                        this.publicData(2,data,'right',context.right_player,0,1,context);          
-                        this.publicData(3,data,'top',context.top_player,1,2,context);         
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);          
+                        gameStartInit.publicData(3,data,'top',context.top_player,1,2,context);         
                     }
                 }else if(mytime ==3){
-                    this.dong(2);                
-                    this.publicData(0,data,'top',context.top_player,1,2,context);  
-                    this.publicData(1,data,'left',context.left_player,2,3,context);
-                    this.publicData(2,data,'current',context.current_player,0,0,context);                     
+                    gameStartInit.dong(2);                
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);  
+                    gameStartInit.publicData(1,data,'left',context.left_player,2,3,context);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);                     
                     if(data.players.length ==4){
-                        this.publicData(3,data,'right',context.right_player,0,1,context);       
+                        gameStartInit.publicData(3,data,'right',context.right_player,0,1,context);       
                     }
                 }else if(mytime == 4){
-                    this.dong(1);                
-                    this.publicData(0,data,'right',context.right_player,0,1,context);
-                    this.publicData(1,data,'top',context.top_player,1,2,context);
-                    this.publicData(2,data,'left',context.left_player,2,3,context);               
-                    this.publicData(3,data,'current',context.current_player,0,0,context);
+                    gameStartInit.dong(1);                
+                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
+                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
+                    gameStartInit.publicData(2,data,'left',context.left_player,2,3,context);               
+                    gameStartInit.publicData(3,data,'current',context.current_player,0,0,context);
                 }
             }     
             var peo = context.playersarray;
@@ -398,7 +409,6 @@ cc.Class({
                     if(data.player.played||players.played||data.player.actions.length>0||players.action){
                         //cc.sys.localStorage.setItem('cb','true');
                         gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
-
                         /**
                          * 初始化其他玩家数据
                          */
@@ -501,7 +511,7 @@ cc.Class({
             /**
              * 初始化状态，首个玩家加入，然后开始等待其他玩家 ， 如果是 恢复数据， 则不会进入
              */
-            //this.statusbtn.active = true ;
+            //gameStartInit.statusbtn.active = true ;
             //ljh改  神牌
             
                 
@@ -540,7 +550,7 @@ cc.Class({
                     if(data.player.played){
                         var deskcards  = context.decode(data.player.played);
                         for(let i=0;i <deskcards.length;i++){
-                            let desk_card = cc.instantiate(context.takecards_one);
+                            let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
                             let temp = desk_card.getComponent("DeskCards");
                             temp.init(deskcards[i],'B');
                             context.deskcards.push(desk_card);
@@ -583,12 +593,6 @@ cc.Class({
                     if(data.players[i].banker==true){
                         datas.userid = data.players[i].playuser;
                         gameStartInit.banker_event(datas,context);
-                        // for(var inx = 0 ; inx<context.playersarray.length ; inx++){
-                        //     let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
-                        //     if(temp.data.id == data.players[i].playuser){
-                        //         temp.banker(); break ;
-                        //     }
-                        // }
                     }
                     //其他玩家的kong 牌
                     if(data.touchPlay ){
@@ -688,22 +692,42 @@ cc.Class({
 
             cc.weijifen.playersss = data.players.length;
         },
-
+        initDeskCards: function(card,fangwei,context){
+            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+            debugger
+            if(fangwei =='left'){
+                let desk_card = cc.instantiate(gameStartInitNode.takecards_left);
+                let desk_script = desk_card.getComponent("DeskCards");
+                desk_script.init(card,'L');
+                desk_card.parent = context.deskcards_left_panel ;
+            }else if(fangwei == 'right'){
+                let desk_card = cc.instantiate(gameStartInitNode.takecards_right);
+                let desk_script = desk_card.getComponent("DeskCards");
+                desk_script.init(card,'R');
+                desk_card.parent = context.deskcards_right_panel ;
+            }else if(fangwei=='top'){
+                let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
+                let desk_script = desk_card.getComponent("DeskCards");
+                desk_script.init(card,'B');
+                desk_card.parent = context.deskcards_top_panel ;
+            }   
+        },
         reinitGame: function(context){
             context = cc.find('Canvas').getComponent('MJDataBind');
-            this.tingnoaction();        
-            this.destroycards('current',context);
-            this.destroycards('left',context);
-            this.destroycards('right',context);
-            this.destroycards('top',context);
-            this.destroyPlayer(context);  
-            this.tingactivefalse();  
-            this.inintBuHuan();
+            var gameStartInit = require('GameStartInit');
+            gameStartInit.tingnoaction();        
+            gameStartInit.destroycards('current',context);
+            gameStartInit.destroycards('left',context);
+            gameStartInit.destroycards('right',context);
+            gameStartInit.destroycards('top',context);
+            gameStartInit.destroyPlayer(context);  
+            gameStartInit.tingactivefalse();  
+            gameStartInit.inintBuHuan();
             //清空补花数据
-            this.destroybuhuas('left',context);
-            this.destroybuhuas('right',context);
-            this.destroybuhuas('top',context);
-            this.destroybuhuas('current',context);
+            gameStartInit.destroybuhuas('left',context);
+            gameStartInit.destroybuhuas('right',context);
+            gameStartInit.destroybuhuas('top',context);
+            gameStartInit.destroybuhuas('current',context);
 
             cc.sys.localStorage.removeItem('altake');
             cc.sys.localStorage.removeItem('alting');
@@ -753,11 +777,11 @@ cc.Class({
                     cc.find('Canvas/cards/handcards/'+fangwei+'/'+fangwei+'handcards').children[i].destroy();
                 }
                     if(fangwei == 'leftdesk'){
-                       this.leftcards=[];
+                       context.leftcards=[];
                     }else if(fangwei == 'rightdesk'){
-                       this.rightcards=[];
+                       context.rightcards=[];
                     }else{
-                       this.topcards=[];                                                          
+                       context.topcards=[];                                                          
                     }   
             }
             for(let i = 0;i< deskcard;i++ ){
@@ -769,10 +793,10 @@ cc.Class({
             }
         },
         tingactivefalse: function(){
-             // this.currentting.active =false;
-             // this.topting.active =false;
-             // this.rightting.active =false;
-             // this.leftting.active =false;
+             // gameStartInit.currentting.active =false;
+             // gameStartInit.topting.active =false;
+             // gameStartInit.rightting.active =false;
+             // gameStartInit.leftting.active =false;
          },
          inintBuHuan: function(){
             cc.weijifen.powerCard = null;  

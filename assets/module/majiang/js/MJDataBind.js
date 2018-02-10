@@ -57,6 +57,11 @@ cc.Class({
             default:null ,
             type:cc.Label
         },
+        selectfather:cc.Node,
+        actionnode_two:{        //动作节点
+            default:null ,
+            type : cc.Node
+        },
     },
     onLoad: function () {
         let socket = this.socket();
@@ -73,10 +78,8 @@ cc.Class({
         //     *
         //      * 接受指令
             
-            var RoomInitFn = require('RoomInit');
+            var roomInit = require('RoomInit');
             var gameStartInit = require('GameStartInit');
-            var roomInit = new RoomInitFn();
-
             this.map("joinroom" , roomInit.joinroom_event);//加入房间
             this.map("banker" , gameStartInit.banker_event);//庄家
             this.map("players" , gameStartInit.players_event);//接受玩家列表
@@ -84,6 +87,7 @@ cc.Class({
             var gamePlay = require('GamePlay');
             this.map("lasthands" , gamePlay.lasthands_event);//庄家开始打牌了，允许出牌
             this.map("takecards" , gamePlay.takecard_event);//我出的牌  
+            this.map("dealcard" , gamePlay.dealcard_event) ;                //我出的牌
             var gameEvent = require('GameEvent');
             this.map("action" , gameEvent.action_event);//服务端发送的 动作事件，有杠碰吃胡过可以选择 
             /*var settingClick = require('settingClick');
@@ -100,6 +104,20 @@ cc.Class({
             console.log(data.command);
             console.log(data);
             self.getSelf().route(data.command)(data , self);
+        });
+
+        /**
+         * 接受传送的 玩家列表（含AI）
+         */
+        socket.on("players" , function(result){
+            var data = self.getSelf().parse(result) ;
+            console.log('players');
+            console.log(data);
+            self.getSelf().route("players")(data, self);
+        });
+
+        socket.on("talkOnSay" , function(result){
+            self.talk_event(result,null) ;
         });
 
         this.node.on('overGame',function(event){
@@ -124,7 +142,6 @@ cc.Class({
         });
 
         this.node.on('takecard', function (event) {
-            debugger
             var context = cc.find('Canvas').getComponent('MJDataBind');             
             // cc.weijifen.audio.playSFX('select.mp3');                            
             if(cc.sys.localStorage.getItem('take') == 'true'){
@@ -155,10 +172,32 @@ cc.Class({
                         socket.emit("doplaycards" , card_script.value) ;
                     }
                     //cc.find("");
-                    self.getSelf().shouOperationMune();
+                    // self.getSelf().shouOperationMune();
                 }
                 event.stopPropagation();
             }
+        });
+
+
+        this.node.on('mjSelection',function(event){
+            let father = cc.find('Canvas').getComponent('MJDataBind').selectfather;
+            father.active= false;
+            father.children[0].children[1].children.splice(0,father.children[0].children[1].children.length);
+            let socket = self.getSelf().socket();
+            let params = [];
+            let sendEvent ;
+            console.log(event);
+            if ( event.getUserData() ) {
+                sendEvent = event.getUserData().name ;
+                params = event.getUserData().params ;
+            }
+            socket.emit("selectaction" , JSON.stringify({
+                action:sendEvent,
+                actionCard:params
+            }));
+            //cc.find("");
+            self.getSelf().shouOperationMune();
+            event.stopPropagation();
         });
         // gameStartInit.players_event();
 
@@ -284,7 +323,6 @@ cc.Class({
         cc.weijifen.wanfa = null;//玩法
 
         this.centertimer = null ;//中间时间
-        ////debugger
          
         /**
          * 预制的 对象池
@@ -311,7 +349,6 @@ cc.Class({
         for(var i=0 ; i<4 ; i++){
             this.playerspool.put(cc.instantiate(this.playerprefab));
         }
-        ////debugger
         /**
          * 初始化当前玩家的麻将牌 对象池
          * 将麻将放到对象池

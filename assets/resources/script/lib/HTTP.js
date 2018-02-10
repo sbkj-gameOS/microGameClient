@@ -44,7 +44,7 @@ var HTTP = cc.Class({
         if (cc.sys.isNative) {
             xhr.setRequestHeader("Accept-Encoding", "gzip,deflate");
         }
-        xhr.timeout = 3000;// 5 seconds for timeout
+        xhr.timeout = 7000;// 5 seconds for timeout
 
         xhr.send();
         },
