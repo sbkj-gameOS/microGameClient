@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -4167,7 +4167,9 @@
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
-    "summary": null
+    "summary": {
+      "__uuid__": "97072231-7ccd-4d86-87e8-6e5abaf9ba43"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -14738,14 +14740,8 @@
     "actionnode_two": {
       "__id__": 238
     },
-    "dan_childrend": {
-      "__id__": 361
-    },
-    "mjUnit": {
-      "__uuid__": "7c9199e5-5ee1-4018-b3ff-18aef60dd3e0"
-    },
-    "card4": {
-      "__id__": 268
-    }
+    "dan_childrend": null,
+    "mjUnit": null,
+    "card4": null
   }
 ]

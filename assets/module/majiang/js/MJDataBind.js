@@ -93,9 +93,9 @@ cc.Class({
             var gameEvent = require('GameEvent');
             this.map("action" , gameEvent.action_event);//服务端发送的 动作事件，有杠碰吃胡过可以选择
             this.map("selectaction" , gameEvent.selectaction_event) ;        //我选择的动作， 杠碰吃胡 
-            /*var settingClick = require('settingClick');
-            var settingClick = new settingClick();*/
-            var settingClick = cc.find('Canvas/js/settingClick');
+            var settingClick = require('settingClick');
+            var settingClick = new settingClick();
+            // var settingClick = cc.find('Canvas/js/settingClick');
             this.map("isOver" , settingClick.isOver_event);
             this.map("gameOver",settingClick.gameOver_event);
             this.map("over" , settingClick.over_event);
