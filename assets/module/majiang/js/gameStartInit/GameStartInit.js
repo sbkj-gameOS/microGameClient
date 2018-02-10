@@ -241,6 +241,7 @@ cc.Class({
                 context.starttime.node.parent.active =false;
             }
             var gameStartInit = require('GameStartInit');
+            var gameEvent = require('GameEvent');
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             gameStartInit.reinitGame(context);
             for(let h=0 ;h<data.players.length;h++){
@@ -570,15 +571,15 @@ cc.Class({
                             if(action[i].action=='gang'&&cards.length==1){
                                 let a =cards.concat(cards);
                                 let b = a.concat(a)
-                                gameStartInit.cardModle(b,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
+                                gameEvent.cardModle(b,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
                             }else{
                                 function sortNumber(a,b){return a - b}
                                 cards.sort(sortNumber);
-                                gameStartInit.cardModle(cards,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
+                                gameEvent.cardModle(cards,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
                             }
                         }else {
                             var a = cards.slice(0,3);
-                            context.cardModle(a,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);
+                            gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);
                             for(let h =3 ; h<cards.length; h++){
                                 context.selectaction_event({userid:cc.weijifen.user.id,cards:[cards[h]],card:-1,action:'dan'},context);            
                             }            
@@ -618,15 +619,15 @@ cc.Class({
                                 if(action[j].action=='gang'&&cards.length==1){
                                     let a =cards.concat(cards);
                                     let b = a.concat(a)
-                                    gameStartInit.cardModle(b,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
+                                    gameEvent.cardModle(b,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
                                 }else{
                                     function sortNumber(a,b){return a - b}
                                     cards.sort(sortNumber);
-                                    gameStartInit.cardModle(cards,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
+                                    gameEvent.cardModle(cards,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);   
                                 }
                                 }else {
                                 let a = cards.slice(0,3);
-                                context.cardModle(a,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);
+                                gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/'+player.tablepos+'desk/kong'),isGang,player.tablepos,context,action[j].action);
                                 for(let h =3 ; h<cards.length; h++){
                                     context.selectaction_event({userid:player.data.id,cards:[cards[h]],card:-1,action:'dan'},context)                             
                                 }                        
@@ -960,5 +961,6 @@ cc.Class({
                 card.parent = opParent;
             // }
         },
+
     },
 });

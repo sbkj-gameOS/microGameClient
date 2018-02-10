@@ -67,7 +67,7 @@ cc.Class({
             //获取是否有新的通知
             cc.weijifen.http.httpGet('/activity/findActivityListGame?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this);            
         }
-        console.log('cc.weijifen---handDataBind',cc.weijifen)
+        // console.log('cc.weijifen---handDataBind',cc.weijifen)
 
     },
     carderror: function(result,object){
