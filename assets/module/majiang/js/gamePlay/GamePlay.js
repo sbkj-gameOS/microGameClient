@@ -187,7 +187,7 @@ cc.Class({
 	     * @param data
 	     * @param context
 	     */
-	    dealcard_event:function(data , context){   
+	    dealcard_event:function(data , context){
 	      	var gamePlay = require('GamePlay');
 	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){
 	            setTimeout(function(){gamePlay.dealcards(data,context)},2100);
@@ -247,8 +247,8 @@ cc.Class({
 	        gameStartInitNode.desk_cards.string = data.deskcards ;
 	        if(data.power){
 	            if(data.powerCard&&data.powerCard.length>0){
-	                for(let i=0 ; i<cc.find('Canvas/global/main/godcard/child').children.length;i++){
-	                    cc.find('Canvas/global/main/godcard/child').children[i].destroy();
+	                for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/baocard/card').children.length;i++){
+	                    cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[i].destroy();
 	                }
 	                cc.weijifen.baopai = data.powerCard;
 	                for(let i= 0 ; i<data.powerCard.length;i++){
@@ -267,9 +267,8 @@ cc.Class({
 	        }
 	    },
 	    select_action_searchlight:function(data , context , player){
+	    	context=cc.find('Canvas').getComponent('MJDataBind');
 	        context.exchange_searchlight(player.tablepos , context);
-	        /**
-	         */
 	        context.exchange_state("nextplayer" , context);
 	    },
 	    initDealHandCards:function(context , data){

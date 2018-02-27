@@ -65,6 +65,17 @@ cc.Class({
         dan_childrend: cc.Node,
         mjUnit:cc.Prefab,
         card4:cc.Node,
+        cards_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        tingSelect:cc.Node,
+        tingSelectch:cc.Prefab,
+        tingting: cc.Node,
+        currentting: cc.Node,
+        topting: cc.Node,
+        rightting: cc.Node,
+        leftting: cc.Node,
     },
     onLoad: function () {
         let socket = this.socket();
@@ -96,6 +107,8 @@ cc.Class({
             var settingClick = require('settingClick');
             var settingClick = new settingClick();
             // var settingClick = cc.find('Canvas/js/settingClick');
+            var gameOver = require('GameOver');
+            this.map("allcards" , gameOver.allcards_event) ;
             this.map("isOver" , settingClick.isOver_event);
             this.map("gameOver",settingClick.gameOver_event);
             this.map("over" , settingClick.over_event);
@@ -308,9 +321,10 @@ cc.Class({
             }));*/
             //记录听得状态后，在出牌阶段判断状态并发送听牌事件。
             var context = cc.find('Canvas').getComponent('MJDataBind'); 
+            var gameStartInit = require('GameStartInit');
             cc.sys.localStorage.setItem('ting','true') ;
             cc.sys.localStorage.setItem('alting','true') ;
-            context.initcardwidth(true);
+            gameStartInit.initcardwidth(true);
             self.getSelf().tingAction();                 
             if (context.tings){
                 let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
@@ -758,6 +772,20 @@ cc.Class({
             }else{
                 context.searchlight.children[inx].active = false ;
             }
+        }
+    },
+    tingAction: function(dd){
+        let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
+        for(let i =0; i<length;i++){
+            let cards =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
+            let button = cc.find('Canvas/cards/handcards/current/currenthandcards').children[i].children[0];
+            let handCards = cards.getComponent("HandCards");
+            if(dd){
+                handCards.cardvalue.color = new cc.Color(255, 255, 255); 
+            }else{
+                handCards.cardvalue.color = new cc.Color(118, 118, 118);                
+            }
+            button.getComponent(cc.Button).interactable= false;
         }
     },
 });

@@ -51,8 +51,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 35,
-      "height": 53
+      "width": 40,
+      "height": 56
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -60,8 +60,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -93,
-      "y": 5
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -287,9 +287,7 @@
     "atlas": {
       "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
     },
-    "beimi0": {
-      "__uuid__": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1"
-    },
+    "weijifen0": null,
     "cardvalue": {
       "__id__": 1
     },

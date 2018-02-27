@@ -48,8 +48,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 35,
-      "height": 48
+      "width": 40,
+      "height": 56
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -57,8 +57,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -98,
-      "y": 5
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -109,8 +109,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 36,
-      "height": 52
+      "width": 40,
+      "height": 56
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -380,9 +380,7 @@
     "atlas": {
       "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
     },
-    "beimi0": {
-      "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
-    },
+    "weijifen0": null,
     "cardvalue": {
       "__id__": 2
     },
