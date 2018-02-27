@@ -32,9 +32,9 @@ cc.Class({
     },
     /*确定结束游戏*/
     overNotice: function(){
-        
+        debugger
         console.log('***********进入overNotice')
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
-        
+        debugger
     },
 });

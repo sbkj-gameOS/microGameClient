@@ -12,7 +12,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-            console.log('th*/**/*/*/*/*/*/*/',cc.find('Canvas/js/settingClick').getComponent('settingClick'))
+
+        console.log('th*/**/*/*/*/*/*/*/',cc.find('Canvas/js/settingClick').getComponent('settingClick'))
     },
 
     //设置
@@ -61,18 +62,20 @@ cc.Class({
         },
 
         /**
-         * 解散房间的事件
+         * 一方要求解散时，向其他玩家发送请求信息
          */
         isOver_event:function(){
-            
+            debugger
             cc.log('isOver_event')
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
             if(mj.alert.size()>0){
                 var alert = mj.alert.get();
                 alert.parent = cc.find("Canvas");
-                let node = alert.getComponent('overGameClick') ;
-                node.txt.string = '你的好友请求解散房间' ;
+                console.log(this)
+                // let node = alert.getComponent('overGameClick') ;
+                let node = alert.getComponent('settingClick') ;
+                node.waiting.string = '你的好友请求解散房间' ;
                 node.button.active = false;
                 node.button2.active = true;
                 node.labei.active =false;

@@ -310,8 +310,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 35.5
+      "x": 5.684341886080802e-14,
+      "y": 35.50000000000006
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -353,9 +353,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 41,
-    "_left": 258.5,
-    "_right": 258.5,
-    "_top": 88,
+    "_left": 258.50000000000006,
+    "_right": 258.49999999999994,
+    "_top": 87.99999999999994,
     "_bottom": 171,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -414,7 +414,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 160,
       "height": 40
     },
     "_rotationX": 0,
@@ -423,7 +423,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 5.684341886080802e-14,
       "y": 0
     },
     "_skewX": 0,
@@ -449,7 +449,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "",
+    "_N$string": "等待其他玩家进入",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -513,7 +513,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -88,
+      "x": -87.99999999999994,
       "y": -58
     },
     "_skewX": 0,
@@ -844,7 +844,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -88,
+      "x": -87.99999999999994,
       "y": -58
     },
     "_skewX": 0,
@@ -969,7 +969,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 77,
+      "x": 77.00000000000006,
       "y": -57
     },
     "_skewX": 0,
