@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "953ab98f-5aba-485d-8055-e93f7c4f02e9",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "房间房号": {
+      "ver": "1.0.3",
+      "uuid": "5fbd87ea-3323-4c78-858e-9c620987ebef",
+      "rawTextureUuid": "953ab98f-5aba-485d-8055-e93f7c4f02e9",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 671,
+      "height": 32,
+      "rawWidth": 671,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
