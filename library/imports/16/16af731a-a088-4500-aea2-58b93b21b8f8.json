@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "麻将牌-自己杠牌",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      1986,
+      1524,
+      46,
+      72
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      46,
+      72
+    ]
+  }
+}

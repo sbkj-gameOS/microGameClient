@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "轮到对家",
+    "texture": "f441827d-feef-414f-be6f-92dc933b7c1d",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      95,
+      36
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      95,
+      36
+    ]
+  }
+}

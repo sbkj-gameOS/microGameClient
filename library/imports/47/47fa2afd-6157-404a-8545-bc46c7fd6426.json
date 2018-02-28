@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "吃碰杠-自摸特效2",
+    "texture": "fb1513ad-21fb-498f-a775-ff96b28f0529",
+    "atlas": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1",
+    "rect": [
+      1869,
+      1945,
+      138,
+      102
+    ],
+    "offset": [
+      -60,
+      -28
+    ],
+    "originalSize": [
+      306,
+      192
+    ]
+  }
+}

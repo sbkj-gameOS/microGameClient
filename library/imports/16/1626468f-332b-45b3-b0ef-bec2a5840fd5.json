@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "东",
+    "texture": "aa36598c-efc6-48b0-8ef2-75924e2ba33b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      25,
+      25
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      25,
+      25
+    ]
+  }
+}

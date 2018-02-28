@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "绿色牌面",
+    "texture": "9404bf58-b5a8-4c05-9882-d6666bd77be7",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      90,
+      119
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      119
+    ]
+  }
+}

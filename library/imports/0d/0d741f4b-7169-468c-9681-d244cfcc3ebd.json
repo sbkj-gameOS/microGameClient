@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "商城-B0C49FAA-拷贝",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      1206,
+      1638,
+      229,
+      54
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      229,
+      54
+    ],
+    "rotated": 1
+  }
+}

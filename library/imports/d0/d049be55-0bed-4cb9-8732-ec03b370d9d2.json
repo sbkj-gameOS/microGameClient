@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "过",
+    "texture": "ece8e8c4-7142-4cd2-a696-346e73dd7f3b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      107,
+      97
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      107,
+      97
+    ]
+  }
+}

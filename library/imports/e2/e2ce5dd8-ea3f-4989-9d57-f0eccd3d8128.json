@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "手机信号背景",
+    "texture": "d0894319-f55e-4dc6-8d75-01ec2e2ca581",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      142,
+      40
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      142,
+      40
+    ]
+  }
+}

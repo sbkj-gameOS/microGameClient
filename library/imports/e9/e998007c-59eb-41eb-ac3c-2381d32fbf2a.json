@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "标题_协议",
+    "texture": "9942ce7f-11a7-40eb-9a96-d4162a420184",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      326,
+      50
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      326,
+      50
+    ]
+  }
+}

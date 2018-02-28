@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "个人信息",
+    "texture": "ca65fb6f-d786-41e0-ad23-cfae32da4112",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      326,
+      50
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      326,
+      50
+    ]
+  }
+}

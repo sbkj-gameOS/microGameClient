@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "红色",
+    "texture": "3c2d7d5e-80fd-456c-a01f-b7bcc5f225f9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      118,
+      106
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      118,
+      106
+    ]
+  }
+}

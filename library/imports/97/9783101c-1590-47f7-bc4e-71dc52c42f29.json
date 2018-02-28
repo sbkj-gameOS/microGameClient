@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "#血流-Z4",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      1795,
+      1795,
+      98,
+      32
+    ],
+    "offset": [
+      -15,
+      0
+    ],
+    "originalSize": [
+      128,
+      32
+    ],
+    "rotated": 1
+  }
+}

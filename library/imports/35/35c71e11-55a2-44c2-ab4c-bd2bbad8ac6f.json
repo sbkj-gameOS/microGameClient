@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "宝牌",
+    "texture": "7d193d22-d910-4e98-a9ba-19e0381a3065",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      234,
+      300
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      234,
+      300
+    ]
+  }
+}

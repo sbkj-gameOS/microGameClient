@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "底分字-黄色-y5",
+    "texture": "9c30446b-c73c-4760-ac4b-10df466811fb",
+    "atlas": "26448b36-9591-4cde-a43d-353a50452f2f",
+    "rect": [
+      1974,
+      1318,
+      15,
+      22
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      15,
+      22
+    ],
+    "rotated": 1
+  }
+}

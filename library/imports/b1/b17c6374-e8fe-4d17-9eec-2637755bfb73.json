@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "标题_提现",
+    "texture": "d114e13b-1914-4794-9bf9-b5aa183c0726",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      326,
+      50
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      326,
+      50
+    ]
+  }
+}

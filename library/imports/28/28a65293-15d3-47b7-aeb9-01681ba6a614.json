@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "牌局结束-a4",
+    "texture": "fb1513ad-21fb-498f-a775-ff96b28f0529",
+    "atlas": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1",
+    "rect": [
+      505,
+      2016,
+      59,
+      30
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      59,
+      30
+    ]
+  }
+}

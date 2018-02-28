@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "吃碰杠-吃特效5",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      445,
+      1684,
+      201,
+      202
+    ],
+    "offset": [
+      -6,
+      8
+    ],
+    "originalSize": [
+      251,
+      234
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "account_checkbox_unchecked",
+    "texture": "7cd2e4c6-b8ce-4ff3-9fb3-7926a31a1487",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      22,
+      22
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      22,
+      22
+    ]
+  }
+}

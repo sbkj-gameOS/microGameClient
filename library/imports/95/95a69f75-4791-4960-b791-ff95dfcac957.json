@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "比赛大厅btn",
+    "texture": "1471af49-ba19-4896-a616-d10819db45df",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      239,
+      329
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      239,
+      329
+    ]
+  }
+}

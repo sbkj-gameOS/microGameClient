@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "战况",
+    "texture": "63cab552-f969-4a24-b2dd-248bbff17604",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      57,
+      80
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      57,
+      80
+    ]
+  }
+}

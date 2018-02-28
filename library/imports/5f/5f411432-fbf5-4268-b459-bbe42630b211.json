@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "玩家头像-贴边切图-玩家头像框底玻璃_贴边",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      1739,
+      1418,
+      94,
+      88
+    ],
+    "offset": [
+      -1,
+      0
+    ],
+    "originalSize": [
+      96,
+      88
+    ],
+    "rotated": 1
+  }
+}

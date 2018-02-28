@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "信号1",
+    "texture": "a3ee3745-a2e9-4228-a48e-8daf49475095",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      26,
+      17
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      26,
+      17
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "桌布",
+    "texture": "d7847968-a76f-4766-a6c5-e1352098842c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      1334,
+      750
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1334,
+      750
+    ]
+  }
+}

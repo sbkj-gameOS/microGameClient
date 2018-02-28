@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "商城",
+    "texture": "fbf70bff-1c94-4263-a0a8-53c715b976f8",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      67,
+      78
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      67,
+      78
+    ]
+  }
+}

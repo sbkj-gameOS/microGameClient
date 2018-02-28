@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "黄色牌面",
+    "texture": "7fc26ee0-df12-401c-b82e-df5e5ac4b9c9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      90,
+      119
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      119
+    ]
+  }
+}

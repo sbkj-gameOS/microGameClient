@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "电量时间wifi-wifi",
+    "texture": "fb1513ad-21fb-498f-a775-ff96b28f0529",
+    "atlas": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1",
+    "rect": [
+      2024,
+      1021,
+      27,
+      23
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      27,
+      23
+    ],
+    "rotated": 1
+  }
+}

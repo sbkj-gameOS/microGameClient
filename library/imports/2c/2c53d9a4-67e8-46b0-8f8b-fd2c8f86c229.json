@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "房卡",
+    "texture": "e6f24930-adf3-4d7e-90ea-1b6617d68699",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      126,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      126,
+      28
+    ]
+  }
+}

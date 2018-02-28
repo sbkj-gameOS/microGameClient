@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "青色牌面",
+    "texture": "fd9c7c91-9255-4823-bf8b-d8517c729704",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      90,
+      119
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      119
+    ]
+  }
+}

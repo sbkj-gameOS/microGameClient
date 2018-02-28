@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "北",
+    "texture": "026f9fc6-682b-4f7c-bfbe-2cf61cfe296f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      25,
+      25
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      25,
+      25
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "麻将牌-牌面-tong9",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      947,
+      1970,
+      77,
+      111
+    ],
+    "offset": [
+      -1,
+      0
+    ],
+    "originalSize": [
+      79,
+      111
+    ],
+    "rotated": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "创建房间按钮",
+    "texture": "dbecf7e6-5947-4d76-a2d3-2aa4a6c68c9a",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      176,
+      71
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      176,
+      71
+    ]
+  }
+}

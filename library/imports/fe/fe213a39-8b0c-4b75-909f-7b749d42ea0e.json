@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "听1",
+    "texture": "ffe005a5-4c96-41c0-96e3-30a410f51382",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      210,
+      166
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      210,
+      166
+    ]
+  }
+}

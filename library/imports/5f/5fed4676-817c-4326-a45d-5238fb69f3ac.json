@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "提示框_拒绝按钮",
+    "texture": "9a1204d1-cf1d-4fc3-8fff-82b0a5893283",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      176,
+      71
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      176,
+      71
+    ]
+  }
+}

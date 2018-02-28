@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "时间方位",
+    "texture": "c144653c-575f-4e3e-9860-0c563322c3f7",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      120,
+      120
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      120,
+      120
+    ]
+  }
+}

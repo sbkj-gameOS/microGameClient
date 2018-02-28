@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "弹框背景",
+    "texture": "b1001198-d9a3-4954-9955-4ca56a630dc1",
+    "atlas": "",
+    "rect": [
+      3,
+      5,
+      512,
+      279
+    ],
+    "offset": [
+      0.5,
+      -2.5
+    ],
+    "originalSize": [
+      517,
+      284
+    ]
+  }
+}

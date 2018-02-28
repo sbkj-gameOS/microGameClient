@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "选中框",
+    "texture": "e8afb9b4-514e-4d33-8cd2-6fddbe36cba8",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      202,
+      181
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      202,
+      181
+    ]
+  }
+}

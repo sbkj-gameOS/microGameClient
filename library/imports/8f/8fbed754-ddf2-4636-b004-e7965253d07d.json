@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "碰",
+    "texture": "3eb4cd12-2a58-4270-9611-20c8887b1a3d",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      127,
+      114
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      127,
+      114
+    ]
+  }
+}

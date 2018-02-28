@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "#血流-effect_b1",
+    "texture": "30c05c6d-d05d-4893-9922-48a7385c8db3",
+    "atlas": "c1a3894d-ecd5-4442-adcb-3363966af0a2",
+    "rect": [
+      1710,
+      1813,
+      83,
+      83
+    ],
+    "offset": [
+      -4,
+      88
+    ],
+    "originalSize": [
+      287,
+      259
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "麻将桌背景",
+    "texture": "db9d2f52-5ea2-4d98-a0d0-f22cb0da2fd3",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      518,
+      508
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      518,
+      508
+    ]
+  }
+}

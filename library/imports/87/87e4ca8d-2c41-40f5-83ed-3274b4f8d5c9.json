@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "牌-13",
+    "texture": "9c30446b-c73c-4760-ac4b-10df466811fb",
+    "atlas": "26448b36-9591-4cde-a43d-353a50452f2f",
+    "rect": [
+      182,
+      1304,
+      30,
+      44
+    ],
+    "offset": [
+      1,
+      1
+    ],
+    "originalSize": [
+      58,
+      58
+    ],
+    "rotated": 1
+  }
+}
