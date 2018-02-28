@@ -261,10 +261,10 @@ cc.Class({
                 var bth = cc.find('Canvas/bg/center/button/readybtn');
                 bth.active =true;  
                 bth.x= -10;
-                var laizi = cc.find('Canvas/cards/tesucards/baocard/baocard/card').children
+                var laizi = cc.find('Canvas/cards/tesucards/baocard/card').children
                 if(laizi){
                     for(let i =0 ; i < laizi.length ; i ++ ){
-                        cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[i].destroy();
+                        cc.find('Canvas/cards/tesucards/baocard/card').children[i].destroy();
                     }
                 }     
             }
@@ -332,8 +332,8 @@ cc.Class({
                         gameStartInitNode.godcard.children[1].x = -555;                    
                     }
                     if(powerCard&&powerCard.length>0){
-                        for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/baocard/card').children.length;i++){
-                            cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[i].destroy();
+                        for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/card').children.length;i++){
+                            cc.find('Canvas/cards/tesucards/baocard/card').children[i].destroy();
                         }
                         cc.weijifen.baopai = powerCard;
                         for(let i= 0 ; i<powerCard.length;i++){
@@ -346,7 +346,7 @@ cc.Class({
                     }
                 }
             }else{
-                cc.find('Canvas/cards/tesucards/baocard/baocard').active =true;
+                cc.find('Canvas/cards/tesucards/baocard').active =true;
                 if(data.player.powerCard){
                     let cards = context.decode(data.player.powerCard);
                     //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
@@ -357,7 +357,7 @@ cc.Class({
                         LZH.init(cards[i],'B',true);
                     }
                 }else{
-                    cc.find('Canvas/cards/tesucards/baocard/baocard/card').x = -560;                
+                    cc.find('Canvas/cards/tesucards/baocard/card').x = -560;                
                     var laiziFM = cc.instantiate(gameStartInitNode.FM);
                     var LZH = laiziFM.getComponent('DeskCards');
                     LZH.init(-3,'Z',true);

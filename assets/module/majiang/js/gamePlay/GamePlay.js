@@ -247,22 +247,22 @@ cc.Class({
 	        gameStartInitNode.desk_cards.string = data.deskcards ;
 	        if(data.power){
 	            if(data.powerCard&&data.powerCard.length>0){
-	                for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/baocard/card').children.length;i++){
-	                    cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[i].destroy();
+	                for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/child').children.length;i++){
+	                    cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
 	                }
 	                cc.weijifen.baopai = data.powerCard;
 	                for(let i= 0 ; i<data.powerCard.length;i++){
-	                    var laiziZM = cc.instantiate(context.ZM);
-	                    laiziZM.parent = context.godcard.children[1];
+	                    var laiziZM = cc.instantiate(gameStartInitNode.ZM);
+	                    laiziZM.parent = gameStartInitNode.godcard.children[1];
 	                    var LZH  = laiziZM.getComponent('DeskCards');
 	                    LZH.init(data.powerCard[i],'B',true);
 	                    // cc.weijifen.baopai = data.powerCard[i];
 	                }
 	            }else{
-	                var laiziFM = cc.instantiate(context.FM);
+	                var laiziFM = cc.instantiate(gameStartInitNode.FM);
 	                var LZH = laiziFM.getComponent('DeskCards');
 	                //LZH.init(-4);
-	                laiziFM.parent = context.godcard.children[1];
+	                laiziFM.parent = gameStartInitNode.godcard.children[1];
 	            }
 	        }
 	    },
