@@ -536,7 +536,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "轮到右家",
+    "_name": "right",
     "_objFlags": 0,
     "_parent": {
       "__id__": 10
@@ -614,7 +614,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "轮到对家",
+    "_name": "top",
     "_objFlags": 0,
     "_parent": {
       "__id__": 10
@@ -692,7 +692,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "轮到左家",
+    "_name": "left",
     "_objFlags": 0,
     "_parent": {
       "__id__": 10
@@ -770,7 +770,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "轮到本家",
+    "_name": "current",
     "_objFlags": 0,
     "_parent": {
       "__id__": 10
@@ -6025,7 +6025,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_id": "29QmUZtclJNLdy0g0WGb/E",
@@ -9562,7 +9562,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 55,
       "height": 39
     },
     "_rotationX": 0,
@@ -9615,7 +9615,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 55,
       "height": 39
     },
     "_resize": 1,
@@ -13955,8 +13955,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -266,
-      "y": 280
+      "x": 495,
+      "y": 307
     },
     "_skewX": 0,
     "_skewY": 0,
