@@ -37,7 +37,7 @@ cc.Class({
         var oper = new cc.Event.EventCustom('restar', true) ;
         oper.setUserData(a) ;
         this.node.dispatchEvent( oper );
-            }
+    }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 
