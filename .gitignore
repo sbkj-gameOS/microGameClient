@@ -5,5 +5,4 @@ library/
 local/
 build/
 creator.d.ts
-jsconfig.json
 

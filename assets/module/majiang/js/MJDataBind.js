@@ -76,8 +76,6 @@ cc.Class({
         topting: cc.Node,
         rightting: cc.Node,
         leftting: cc.Node,
-        ready2: cc.Node,
-        readybth: cc.Node,
     },
     onLoad: function () {
         let socket = this.socket();
