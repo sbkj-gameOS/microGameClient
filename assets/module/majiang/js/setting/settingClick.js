@@ -13,7 +13,6 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
 
-        console.log('th*/**/*/*/*/*/*/*/',cc.find('Canvas/js/settingClick').getComponent('settingClick'))
     },
 
     //设置
@@ -72,7 +71,6 @@ cc.Class({
             if(mj.alert.size()>0){
                 var alert = mj.alert.get();
                 alert.parent = cc.find("Canvas");
-                console.log(this)
                 // let node = alert.getComponent('overGameClick') ;
                 let node = alert.getComponent('settingClick') ;
                 node.waiting.string = '你的好友请求解散房间' ;
@@ -87,10 +85,9 @@ cc.Class({
         },
 
         gameOver_event: function(data,context){
-            console.log('this****************',this);
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
             
-            console.log('进入Game_over_event',self.endGameOver)
+            console.log('进入Game_over_event')
             let time;
             if(cc.sys.localStorage.getItem('unOver')=='true'){
                 time = 0;

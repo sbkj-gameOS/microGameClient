@@ -76,6 +76,8 @@ cc.Class({
         topting: cc.Node,
         rightting: cc.Node,
         leftting: cc.Node,
+        ready2: cc.Node,
+        readybth: cc.Node,
     },
     onLoad: function () {
         let socket = this.socket();
@@ -202,7 +204,6 @@ cc.Class({
             let socket = self.getSelf().socket();
             let params = [];
             let sendEvent ;
-            console.log(event);
             if ( event.getUserData() ) {
                 sendEvent = event.getUserData().name ;
                 params = event.getUserData().params ;

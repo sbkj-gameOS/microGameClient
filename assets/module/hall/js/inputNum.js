@@ -36,7 +36,6 @@ cc.Class({
         },
     },
 
-    // use this for initialization
     onLoad: function () {
         array = "";
         if(this.cardNum){
@@ -50,18 +49,9 @@ cc.Class({
     * 房间号监听输入
     */
     clickNum: function(event){
-     /*   console.log(event.currentTarget.name);
-        console.log(this);*/
         var num = event.currentTarget.name,
             num_parent = event.currentTarget.parent.parent;
         this.notice.string ='';     
-
-        // var num_show = num_parent.getChildByName('dark').getChildByName('dark'+array.length).getChildByName('num').getComponent(cc.Label);
-     /*   cc.log(num_parent.getChildByName('dark'))
-        cc.log(num_parent.getChildByName('dark').getChildByName('dark'+array.length))
-        cc.log(num_parent.getChildByName('dark').getChildByName('dark'+array.length).getChildByName('num').getComponent(cc.Label))
-        // debugger*/
-        // num_show.string = num;
         if(array.length == 0){
             this.inputNum1.string = num;
         }else if(array.length == 1){
@@ -75,9 +65,6 @@ cc.Class({
         }else if(array.length == 5){
             this.inputNum6.string = num;
         }
-      /*  cc.log(event.currentTarget)
-        cc.log(event.currentTarget.parent)
-        cc.log(event.currentTarget.parent.parent)*/
            array += num;
         if(array.length == 6){
             this.click();
@@ -110,7 +97,6 @@ cc.Class({
     JRsucess: function(result,object){
         var data = JSON.parse(result);
         if(data.playway&&data.room){
-            //cc.weijifen.room = data.room;
             cc.weijifen.playway = data.playway;
             if(data.match){
                 cc.weijifen.match = data.match ; 
@@ -196,9 +182,6 @@ cc.Class({
         let type = event.target.name;
         let arry = event.target.children[0].getComponent(cc.Label).string.split(' ')
         cc.weijifen.starttime = arry[1];
-        // let alert = cc.instantiate(this.alert2);
-        // alert.parent = this.root();
-        // cc.director.loadScene('majiang');
         this.loadding();
         cc.weijifen.http.httpGet('/api/room/match?token='+cc.weijifen.authorization+'&type='+type,this.jjsucess,this.jjerror,this);
     },

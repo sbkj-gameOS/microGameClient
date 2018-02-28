@@ -99,7 +99,6 @@ cc.Class({
         //     a.fontSize = 30;
         // }
         this.dabaopai.active = true;
-        console.log(userInfo);
         let card,baopai;
         if(cc.weijifen.GameBase.gameModel =='wz'){
             if(cc.weijifen.baopai){
@@ -150,7 +149,6 @@ cc.Class({
         this.close2.active =true;
         var userInfo = this.data;
         this.gameend.active = true;
-        console.log(userInfo);
         if(userInfo.players){
             let win = false;
             let lose = false;

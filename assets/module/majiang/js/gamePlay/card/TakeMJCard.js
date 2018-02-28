@@ -27,7 +27,6 @@ cc.Class({
         
     },
     mouseupClick: function(event){
-        console.log(this.y);
         if(cc.sys.localStorage.getItem('delta')>90){
             event.target.x = 0;
             event.target.y = 0;
@@ -45,12 +44,6 @@ cc.Class({
             event.target.y += delta.y;
             cc.sys.localStorage.setItem('delta',event.target.y);
         }
-        // console.log('currentTarget:'+event.currentTarget.x);
-        // console.log('currentTouch:'+event.currentTouch._point.x);
-        // console.log('target:'+event.target.x);
-        // console.log('touch:'+event.touch._point.x);
-        // console.log('parent:'+ event.target.parent.x+'  '+event.target.parent.name)
-        // console.log('------'+Number(event.touch._point.x - event.target.parent.x));
     },
     onClick:function(event){
         let context = cc.find('Canvas').getComponent('MJDataBind');         
@@ -90,7 +83,7 @@ cc.Class({
                         let cv = context.tings[j].card; 
                         if((cv<0&&parseInt(cv/4 )==parseInt(handCards.value/4 ))||(cv>=0&&handCards.mjtype==parseInt(cv/36)&&parseInt((handCards.value%36)/4)==parseInt((cv%36)/4))){
                             let tingcards = context.decode(context.tings[j].cards);
-                            console.log(tingcards);
+                            // console.log(tingcards);
                             context.tingSelect.active = true;                            
                             for(let s = 0 ; s< tingcards.length;s++){
                                 let limian = cc.instantiate(context.tingSelectch);

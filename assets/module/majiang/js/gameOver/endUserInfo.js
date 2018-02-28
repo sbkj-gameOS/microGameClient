@@ -37,7 +37,6 @@ cc.Class({
         let player = cc.find('Canvas').getComponent('MJDataBind').playersarray;
         let userInfo = this.data;
         let headimg;
-        console.log(this.data)
         this.huCount.string = userInfo.huCount;
         this.dianCount.string = userInfo.dianCount;
         this.touchBao.string = userInfo.touchBao;

@@ -369,7 +369,6 @@ cc.Class({
             if(temp_player.buHua){
                 buhua = context.decode(temp_player.buHua);//补花
                 // buhua = [-35,-34];
-                console.log(buhua);
                 let temp = gameStartInit.player(temp_player.playuser, context);
                 //console.log(temp.tablepos);
                 for(var i = 0;i<buhua.length;i++){
@@ -379,13 +378,9 @@ cc.Class({
 
             //其他玩家补花 data.players
             for(var i = 0; i <data.players.length;i++){
-                // data.players[i].buHua = 1;
+                // data.players[i].buHua = 1
                 if(data.players[i].buHua){
-                    // buhua = context.decode(data.players[i].buHua);//补花
-                    // buhua = [-35,-34];
-                    console.log(buhua);
                     let temp = gameStartInit.player(data.players[i].playuser, context);
-                    console.log(temp.tablepos);
                     for(var j = 0;j<buhua.length;j++){
                         gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
                     }

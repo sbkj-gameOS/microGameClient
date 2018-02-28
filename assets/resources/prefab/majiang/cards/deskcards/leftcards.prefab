@@ -684,8 +684,12 @@
     "target": {
       "__id__": 1
     },
-    "jiantou": null,
-    "jiantou2": null,
+    "jiantou": {
+      "__id__": 15
+    },
+    "jiantou2": {
+      "__id__": 14
+    },
     "b_chun": null,
     "b_ju": null,
     "b_lan": null,

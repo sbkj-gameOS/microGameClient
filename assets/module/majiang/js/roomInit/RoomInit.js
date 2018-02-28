@@ -25,7 +25,6 @@ cc.Class({
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             //如果是2人的模式  就只加自己和对家
             console.log('------------join------');
-            console.log(this);
             context = cc.find('Canvas').getComponent('MJDataBind') ;
             if(cc.weijifen.playerNum == 2){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
