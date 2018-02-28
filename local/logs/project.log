@@ -1,0 +1,331 @@
+2018-02-28T09:34:25.646Z - normal: Load ~/.CocosCreator/settings.json
+2018-02-28T09:34:25.662Z - normal: checking language setting...
+2018-02-28T09:34:25.662Z - normal: Language: zh
+2018-02-28T09:34:27.377Z - success: protocol editor-framework registered
+2018-02-28T09:34:27.377Z - success: protocol app registered
+2018-02-28T09:34:27.377Z - success: protocol theme registered
+2018-02-28T09:34:27.377Z - success: protocol profile registered
+2018-02-28T09:34:27.377Z - success: protocol packages registered
+2018-02-28T09:34:27.377Z - success: protocol unpack registerred
+2018-02-28T09:34:27.377Z - success: protocol disable-commonjs registerred
+2018-02-28T09:34:27.658Z - normal: connected!
+2018-02-28T09:34:27.658Z - normal: Check project F:\allWorkspace\git\microGameClient
+2018-02-28T09:34:27.705Z - normal: Initializing Cocos2d
+2018-02-28T09:34:27.955Z - normal: Initializing Asset Database
+2018-02-28T09:34:27.986Z - success: protocol uuid registerred
+2018-02-28T09:34:27.986Z - success: protocol db registerred
+2018-02-28T09:34:27.986Z - success: protocol thumbnail registerred
+2018-02-28T09:34:27.986Z - normal: Loading editor/builtin packages
+2018-02-28T09:34:28.002Z - success: anysdk loaded
+2018-02-28T09:34:28.131Z - success: assets loaded
+2018-02-28T09:34:28.131Z - success: builder loaded
+2018-02-28T09:34:28.131Z - success: hierarchy loaded
+2018-02-28T09:34:28.146Z - success: inspector loaded
+2018-02-28T09:34:28.146Z - success: keystore loaded
+2018-02-28T09:34:28.146Z - success: node-library loaded
+2018-02-28T09:34:28.146Z - success: package-asset loaded
+2018-02-28T09:34:28.146Z - success: preferences loaded
+2018-02-28T09:34:28.146Z - success: project-exporter loaded
+2018-02-28T09:34:28.162Z - success: project-importer loaded
+2018-02-28T09:34:28.162Z - success: project-settings loaded
+2018-02-28T09:34:28.162Z - success: ui-kit loaded
+2018-02-28T09:34:28.162Z - success: ui-grid loaded
+2018-02-28T09:34:28.178Z - success: scene loaded
+2018-02-28T09:34:28.178Z - success: sprite-editor loaded
+2018-02-28T09:34:28.178Z - success: store loaded
+2018-02-28T09:34:28.178Z - success: timeline loaded
+2018-02-28T09:34:28.178Z - normal: Loading builtin packages
+2018-02-28T09:34:28.178Z - success: asset-db-debugger loaded
+2018-02-28T09:34:28.178Z - success: color-picker loaded
+2018-02-28T09:34:28.178Z - success: console loaded
+2018-02-28T09:34:28.193Z - success: package-manager loaded
+2018-02-28T09:34:28.193Z - success: sdkbox loaded
+2018-02-28T09:34:28.193Z - success: tester loaded
+2018-02-28T09:34:28.193Z - success: ui-kit-preview-extra loaded
+2018-02-28T09:34:28.193Z - success: ui-kit-preview loaded
+2018-02-28T09:34:28.193Z - success: ui-tree loaded
+2018-02-28T09:34:29.081Z - normal: Initializing project F:\allWorkspace\git\microGameClient
+2018-02-28T09:34:29.097Z - normal: Loading packages
+2018-02-28T09:34:29.097Z - normal: Watching packages
+2018-02-28T09:34:29.112Z - normal: Run Application
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\0.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\0.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\0.png\0 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\0.png\0. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\1.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\1.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\1.png\1 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\1.png\1. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\2.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\2.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\2.png\2 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\2.png\2. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\3.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\3.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\3.png\3 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\3.png\3. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\4.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\4.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\4.png\4 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\4.png\4. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\5.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\5.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\5.png\5 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\5.png\5. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\6.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\6.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\6.png\6 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\6.png\6. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\7.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\7.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\7.png\7 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\7.png\7. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\8.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\8.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\8.png\8 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\8.png\8. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\9.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\9.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\9.png\9 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\9.png\9. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\delBtn.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\delBtn.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\delBtn.png\delBtn is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\delBtn.png\delBtn. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\joinBtnBk.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\joinBtnBk.png. Assigning a new uuid.
+2018-02-28T09:34:29.941Z - failed: [db-task][init] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\joinBtnBk.png\joinBtnBk is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\joinBtnBk.png\joinBtnBk. Assigning a new uuid.
+2018-02-28T09:34:33.386Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["#血流/X1.png","#血流/X2.png","#血流/effect_a5.png","#血流/effect_b16.png","#血流/glass_c1.png","倒计时/5.png","分享/subtitle.png","反馈/反馈-按下.png","吃碰杠/提示牌.png","吃碰杠/杠特效1.png","吃碰杠/碰特效1.png","吃碰杠/自摸特效2.png","商城/shop_special_title.png","游戏更新/提示.png","牌局结束/a4.png","玩家信息/base_coin.png","玩家信息/base_name.png","用户栏-文字/1.png","用户栏-文字/房卡：.png","电量时间wifi/wifi-拷贝.png","电量时间wifi/wifi.png","系统公告/free_event.png","结算/a1.png","结算/base.png","聊天/dialog1.png","聊天/dialog11.png","聊天/dialog4.png","聊天/dialog9.png","背景/背景可随意拉伸铺满.jpg","背景/龙纹居中.png","设置/off.png","邮件/content2.png","邮件/mail_base.png","麻将牌/牌面/suo2.png"]
+2018-02-28T09:34:33.432Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["#按钮/big_#button.png","#按钮/small_refuse.png","#按钮/small_update.png","#血流/effect_a1.png","#血流/effect_a3.png","#血流/effect_a6.png","#血流/effect_b12.png","#血流/effect_b13.png","#血流/effect_b14.png","#血流/effect_b15.png","#血流/effect_b4.png","#血流/effect_b6.png","#血流/effect_b7.png","#血流/glass_a1.png","#血流/万.png","#血流/条.png","#血流/筒.png","倒计时/0.png","倒计时/1.png","倒计时/countdown_numbers.png","倒计时/中心点切图/time1.png","倒计时/中心点切图/time2.png","倒计时/中心点切图/time3.png","倒计时/中心点切图/time4.png","倒计时/中心点切图/time5.png","倒计时/切边切图/time11.png","倒计时/切边切图/time22.png","倒计时/切边切图/time33.png","倒计时/切边切图/time55.png","加入房间/0.png","加入房间/1.png","加入房间/text.png","加入房间/tips.png","反馈/发送_小.png","反馈/答复-按下.png","反馈/系统回复框.png","吃碰杠/杠.png","吃碰杠/杠特效2.png","吃碰杠/杠特效4.png","吃碰杠/碰特效3.png","吃碰杠/胡特效1.png","吃碰杠/自摸.png","吃碰杠/自摸特效1.png","吃碰杠/自摸特效3.png","吃碰杠/自摸特效4.png","吃碰杠/自摸特效5.png","吃碰杠/自摸特效6.png","吃碰杠/自摸特效7.png","吃碰杠/自摸特效8.png","商城/房卡（大）备份-拷贝.png","牌局结束/base_loser.png","牌局结束/base_winner.png","牌局结束/button_next.png","牌局结束/button_share.png","牌局结束/result1.png","玩家信息/avatar1.png","玩家信息/avatar2.png","玩家信息/coin.png","玩家信息/line.png","玩家信息/title.png","玩家头像/banker.png","玩家头像/room_creater.png","玩家头像/中心点切图/玩家头像切图大小.png","玩家头像/中心点切图/玩家头像框底玻璃.png","用户栏-文字/0.png","用户栏-文字/2.png","用户栏-文字/3.png","用户栏-文字/4.png","用户栏-文字/5.png","用户栏-文字/6.png","用户栏-文字/7.png","用户栏-文字/8.png","用户栏-文字/万.png","用户栏-文字/张.png","系统公告/button_big.png","系统公告/content.png","系统公告/subtitle.png","结算/result_draw.png","结算/result_lose.png","结算/result_win.png","结算/winner.png","聊天/diaglog_box2.png","聊天/dialog7.png","聊天/expression_on.png","背景/game_title6.png","背景/table_corner4.png","邮件/content1.png","邮件/消息.png","邮件/联系我们-按下.png","麻将牌/a玩家出牌_.png","麻将牌/牌面/flower1.png","麻将牌/牌面/season1.png","麻将牌/自己出牌对家出牌对家碰牌 (2).png"]
+2018-02-28T09:34:33.682Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["#按钮/big_cancel.png","#按钮/big_ok.png","#按钮/small_#button.png","#按钮/small_agree.png","#按钮/small_cancel.png","#按钮/small_ok.png","#血流/X3.png","#血流/Y1.png","#血流/Y2.png","#血流/Y3.png","#血流/Y4.png","#血流/Z1.png","#血流/Z2.png","#血流/Z3.png","#血流/Z4.png","#血流/effect_A.png","#血流/effect_B.png","#血流/effect_a2.png","#血流/effect_a4.png","#血流/effect_a7.png","#血流/effect_a8.png","#血流/effect_b1.png","#血流/effect_b10.png","#血流/effect_b11.png","#血流/effect_b2.png","#血流/effect_b3.png","#血流/effect_b5.png","#血流/effect_b8.png","#血流/effect_b9.png","#血流/glass_a2.png","#血流/glass_a3.png","#血流/glass_b0.png","#血流/glass_b1.png","#血流/glass_b2.png","#血流/glass_b3.png","#血流/glass_b4.png","#血流/glass_b5.png","#血流/glass_b6.png","#血流/glass_b7.png","#血流/glass_b8.png","#血流/glass_b9.png","#血流/glass_c2.png","倒计时/2.png","倒计时/3.png","倒计时/4.png","倒计时/6.png","倒计时/7.png","倒计时/8.png","倒计时/9.png","倒计时/切边切图/time44.png","分享/button1_big.png","分享/button2_big.png","分享/content.png","分享/title_share.png","分享/wechat_icon.png","加入房间/2.png","加入房间/3.png","加入房间/4.png","加入房间/5.png","加入房间/6.png","加入房间/7.png","加入房间/8.png","加入房间/9.png","加入房间/circle.png","加入房间/delete.png","加入房间/retype.png","加入房间/title_join.png","反馈/不得少于8个字.png","反馈/反馈.png","反馈/感谢您的反馈.png","反馈/提交_小.png","反馈/玩家反馈框.png","反馈/答复.png","吃碰杠/吃.png","吃碰杠/吃特效1.png","吃碰杠/吃特效2.png","吃碰杠/吃特效3.png","吃碰杠/吃特效4.png","吃碰杠/吃特效5.png","吃碰杠/吃特效6.png","吃碰杠/提示_吃.png","吃碰杠/提示_杠.png","吃碰杠/提示_碰.png","吃碰杠/提示_胡.png","吃碰杠/提示_过.png","吃碰杠/提示框.png","吃碰杠/杠特效3.png","吃碰杠/碰.png","吃碰杠/碰特效2.png","吃碰杠/碰特效4.png","吃碰杠/胡.png","吃碰杠/胡特效2.png","吃碰杠/胡特效3.png","吃碰杠/胡特效4.png","商城/B0C49FAA-拷贝.png","商城/好友同玩！.png","商城/购买房卡请联系微信：jiumei091.png","牌局结束/a1.png","牌局结束/a2.png","牌局结束/a3.png","牌局结束/result2.png","牌局结束/title.png","牌局结束/win.png","玩家信息/IP.png","玩家信息/avatar_遮盖锯齿边框_对齐中心点.png","玩家头像/中心点切图/玩家头像默认.png","玩家头像/贴边切图/玩家头像切图大小_贴边.png","玩家头像/贴边切图/玩家头像框底玻璃_贴边.png","玩家头像/贴边切图/玩家头像默认_贴边.png","用户栏-文字/9.png","电量时间wifi/半电.png","电量时间wifi/圆角矩形-19.png","电量时间wifi/没电.png","电量时间wifi/满电.png","电量时间wifi/颜色.jpg","系统公告/title.png","结算/a2.png","结算/a3.png","结算/a4.png","结算/bankrupt.png","结算/button_next.png","结算/button_share.png","聊天/base.png","聊天/dialog10.png","聊天/dialog2.png","聊天/dialog3.png","聊天/dialog5.png","聊天/dialog6.png","聊天/dialog8.png","聊天/dialog_box1.png","聊天/dialog_box3.png","聊天/dialog_line.png","聊天/dialog_off.png","聊天/dialog_on.png","聊天/expression_off.png","聊天/icon_chat.png","聊天/input.png","聊天/send.png","背景/game_title7.png","背景/table_corner1.png","背景/table_corner2.png","背景/table_corner3.png","设置/adjust_button.png","设置/dark.png","设置/light.png","设置/log_out.png","设置/music1.png","设置/music2.png","设置/on.png","设置/title_setting.png","邮件/消息-按下.png","邮件/联系我们.png","麻将牌/侧家出牌.png","麻将牌/侧家手牌.png","麻将牌/侧家杠牌.png","麻将牌/对家手牌.png","麻将牌/对家杠牌.png","麻将牌/牌面/flower2.png","麻将牌/牌面/flower3.png","麻将牌/牌面/flower4.png","麻将牌/牌面/season2.png","麻将牌/牌面/season3.png","麻将牌/牌面/season4.png","麻将牌/牌面/suo1.png","麻将牌/牌面/suo3.png","麻将牌/牌面/suo4.png","麻将牌/牌面/suo5.png","麻将牌/牌面/suo6.png","麻将牌/牌面/suo7.png","麻将牌/牌面/suo8.png","麻将牌/牌面/suo9.png","麻将牌/牌面/tong1.png","麻将牌/牌面/tong2.png","麻将牌/牌面/tong3.png","麻将牌/牌面/tong4.png","麻将牌/牌面/tong5.png","麻将牌/牌面/tong6.png","麻将牌/牌面/tong7.png","麻将牌/牌面/tong8.png","麻将牌/牌面/tong9.png","麻将牌/牌面/wan1.png","麻将牌/牌面/wan2.png","麻将牌/牌面/wan3.png","麻将牌/牌面/wan4.png","麻将牌/牌面/wan5.png","麻将牌/牌面/wan6.png","麻将牌/牌面/wan7.png","麻将牌/牌面/wan8.png","麻将牌/牌面/wan9.png","麻将牌/牌面/wind1.png","麻将牌/牌面/wind2.png","麻将牌/牌面/wind3.png","麻将牌/牌面/wind4.png","麻将牌/牌面/wind5.png","麻将牌/牌面/wind6.png","麻将牌/牌面/wind7.png","麻将牌/自己出牌对家出牌对家碰牌.png","麻将牌/自己手牌.png","麻将牌/自己杠牌.png","麻将牌/麻将牌.png"]
+2018-02-28T09:34:33.870Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["底分字/0.png","底分字/1.png","底分字/2.png","底分字/3.png","底分字/4.png","底分字/5.png","底分字/6.png","底分字/7.png","底分字/8.png","底分字/9.png","底分字/绿色/g-.png","底分字/绿色/g.png","底分字/绿色/g0.png","底分字/绿色/g1.png","底分字/绿色/g2.png","底分字/绿色/g3.png","底分字/绿色/g4.png","底分字/绿色/g5.png","底分字/绿色/g6.png","底分字/绿色/g7.png","底分字/绿色/g8.png","底分字/绿色/g9.png","底分字/绿色/gg.png","底分字/绿色/g万.png","底分字/绿色/g千.png","底分字/蓝色/b-.png","底分字/蓝色/b.png","底分字/蓝色/b0.png","底分字/蓝色/b1.png","底分字/蓝色/b2.png","底分字/蓝色/b3.png","底分字/蓝色/b4.png","底分字/蓝色/b5.png","底分字/蓝色/b6.png","底分字/蓝色/b7.png","底分字/蓝色/b8.png","底分字/蓝色/b9.png","底分字/蓝色/bb.png","底分字/蓝色/b万.png","底分字/蓝色/b千.png","底分字/青色/c-.png","底分字/青色/c.png","底分字/青色/c0.png","底分字/青色/c1.png","底分字/青色/c2.png","底分字/青色/c3.png","底分字/青色/c4.png","底分字/青色/c5.png","底分字/青色/c6.png","底分字/青色/c7.png","底分字/青色/c8.png","底分字/青色/c9.png","底分字/青色/cc.png","底分字/青色/c万.png","底分字/青色/c千.png","底分字/黄色/y-.png","底分字/黄色/y.png","底分字/黄色/y0.png","底分字/黄色/y1.png","底分字/黄色/y2.png","底分字/黄色/y3.png","底分字/黄色/y4.png","底分字/黄色/y5.png","底分字/黄色/y6.png","底分字/黄色/y7.png","底分字/黄色/y8.png","底分字/黄色/y9.png","底分字/黄色/yy.png","底分字/黄色/y万.png","底分字/黄色/y千.png","牌/1.png","牌/10.png","牌/11.png","牌/12.png","牌/13.png","牌/2.png","牌/3.png","牌/4.png","牌/5.png","牌/6.png","牌/7.png","牌/8.png","牌/9.png","牌/r1.png","牌/r10.png","牌/r11.png","牌/r12.png","牌/r13.png","牌/r2.png","牌/r3.png","牌/r4.png","牌/r5.png","牌/r6.png","牌/r7.png","牌/r8.png","牌/r9.png","牌/大王_中.png","牌/大王_大.png","牌/大王_小.png","牌/小王_中.png","牌/小王_大.png","牌/小王_小.png","牌/底_中.png","牌/底_大.png","牌/底_小.png","牌/方片.png","牌/梅花.png","牌/红心.png","牌/背_大.png","牌/黑桃.png"]
+2018-02-28T09:34:34.129Z - failed: [db-task][init] path collision, the path for a7bf7c3f-b0d7-4e4d-a025-4a85accb64b1 is already in used by a7bf7c3f-b0d7-4e4d-a025-4a85accb64b1. Assigning a new path.
+2018-02-28T09:34:34.160Z - failed: [db-task][init] path collision, the path for ed65c6d0-2552-40e4-a8cd-60fd2e4fbf22 is already in used by ed65c6d0-2552-40e4-a8cd-60fd2e4fbf22. Assigning a new path.
+2018-02-28T09:34:34.160Z - failed: [db-task][init] path collision, the path for 1bdc5445-6328-404d-92cd-1efb317f454c is already in used by 1bdc5445-6328-404d-92cd-1efb317f454c. Assigning a new path.
+2018-02-28T09:34:34.176Z - failed: [db-task][init] path collision, the path for 5282fd3a-fd38-4e77-afbf-d46db2f4fcdb is already in used by 5282fd3a-fd38-4e77-afbf-d46db2f4fcdb. Assigning a new path.
+2018-02-28T09:34:34.192Z - failed: [db-task][init] path collision, the path for 0ecdeec1-6a27-4714-ac4b-fb4df13bfbbe is already in used by 0ecdeec1-6a27-4714-ac4b-fb4df13bfbbe. Assigning a new path.
+2018-02-28T09:34:34.207Z - failed: [db-task][init] path collision, the path for 2cbc9d11-8c12-4a73-bdda-97913ab14129 is already in used by 2cbc9d11-8c12-4a73-bdda-97913ab14129. Assigning a new path.
+2018-02-28T09:34:34.207Z - failed: [db-task][init] path collision, the path for 6b93f00a-96cc-4c69-b84c-02ce7282d6a8 is already in used by 6b93f00a-96cc-4c69-b84c-02ce7282d6a8. Assigning a new path.
+2018-02-28T09:34:34.223Z - failed: [db-task][init] path collision, the path for 20b8a86e-d71a-4619-8855-e6021493a7c8 is already in used by 20b8a86e-d71a-4619-8855-e6021493a7c8. Assigning a new path.
+2018-02-28T09:34:34.223Z - failed: [db-task][init] path collision, the path for 30d7fe93-e816-4562-8050-82f164e24ce3 is already in used by 30d7fe93-e816-4562-8050-82f164e24ce3. Assigning a new path.
+2018-02-28T09:34:34.254Z - failed: [db-task][init] path collision, the path for 6bae7464-0798-48f1-b17a-c45894c7f056 is already in used by 6bae7464-0798-48f1-b17a-c45894c7f056. Assigning a new path.
+2018-02-28T09:34:34.254Z - failed: [db-task][init] path collision, the path for 4d8c28e6-c9f1-4996-b8c9-b471398eba79 is already in used by 4d8c28e6-c9f1-4996-b8c9-b471398eba79. Assigning a new path.
+2018-02-28T09:34:34.285Z - failed: [db-task][init] path collision, the path for 1071df83-6313-4f30-bd86-89240f6ade29 is already in used by 1071df83-6313-4f30-bd86-89240f6ade29. Assigning a new path.
+2018-02-28T09:34:38.363Z - success: preview server running at http://localhost:7456
+2018-02-28T09:34:45.732Z - normal: 1.6.2
+2018-02-28T09:34:45.995Z - warn: The id already added in the tree: 0e18a7e3-94ef-40e3-ac3d-bdb701765e23
+2018-02-28T09:34:46.668Z - warn: Script attached to "gang_an" in prefab "gang_an.prefab" is missing or invalid. Detailed information:
+Node path: "gang_an"
+Asset url: "db://assets/resources/prefab/majiang/actions/gang_an.prefab"
+Script UUID: "ed85c3ba-c050-4ed6-86b8-56b0df8b783b"
+Class ID: "ed85cO6wFBO1oa4VrDfi3g7"
+
+2018-02-28T09:34:46.671Z - warn: Script attached to "gang_ming" in prefab "gang_ming.prefab" is missing or invalid. Detailed information:
+Node path: "gang_ming"
+Asset url: "db://assets/resources/prefab/majiang/actions/gang_ming.prefab"
+Script UUID: "ed85c3ba-c050-4ed6-86b8-56b0df8b783b"
+Class ID: "ed85cO6wFBO1oa4VrDfi3g7"
+
+2018-02-28T09:34:47.703Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/green"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "1dc62cea-7e5f-44d0-ad95-8416ac862ef6"
+
+2018-02-28T09:34:47.703Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/purple"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "9f143e29-e419-43d6-bd4a-c6eceeee0311"
+
+2018-02-28T09:34:47.703Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "7c9bf197-4015-4592-aedd-7d705aae9694"
+
+2018-02-28T09:34:47.705Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "2f51d0bd-bbd2-4956-954c-da6b448d323a"
+
+2018-02-28T09:34:47.706Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/up"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "5a52409b-a132-46b6-8c4a-f04dfffe519c"
+
+2018-02-28T09:34:47.707Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/right"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "8dbe2614-753c-46d2-9cd4-c531a217b698"
+
+2018-02-28T09:34:47.711Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/down"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "8184a4c6-4bf7-4760-a17e-fca50163aa5c"
+
+2018-02-28T09:34:47.711Z - warn: The Asset used by component "cc.Sprite" in prefab "top.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/left"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/top.prefab"
+Missing uuid: "b9d41a52-705a-4021-95af-eb9bac80260b"
+
+2018-02-28T09:34:47.719Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/green"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "1dc62cea-7e5f-44d0-ad95-8416ac862ef6"
+
+2018-02-28T09:34:47.720Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/purple"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "9f143e29-e419-43d6-bd4a-c6eceeee0311"
+
+2018-02-28T09:34:47.721Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "7c9bf197-4015-4592-aedd-7d705aae9694"
+
+2018-02-28T09:34:47.721Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "2f51d0bd-bbd2-4956-954c-da6b448d323a"
+
+2018-02-28T09:34:47.722Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/jiantou/left"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "b9d41a52-705a-4021-95af-eb9bac80260b"
+
+2018-02-28T09:34:47.723Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/jiantou/right"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "8dbe2614-753c-46d2-9cd4-c531a217b698"
+
+2018-02-28T09:34:47.724Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/jiantou/down"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "8184a4c6-4bf7-4760-a17e-fca50163aa5c"
+
+2018-02-28T09:34:47.725Z - warn: The Asset used by component "cc.Sprite" in prefab "L_bamboo_1.prefab" is missing. Detailed information:
+Node path: "L_bamboo_1/jiantou/up"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/L_bamboo_1.prefab"
+Missing uuid: "5a52409b-a132-46b6-8c4a-f04dfffe519c"
+
+2018-02-28T09:34:47.727Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/green"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "1dc62cea-7e5f-44d0-ad95-8416ac862ef6"
+
+2018-02-28T09:34:47.731Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/purple"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "9f143e29-e419-43d6-bd4a-c6eceeee0311"
+
+2018-02-28T09:34:47.731Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "7c9bf197-4015-4592-aedd-7d705aae9694"
+
+2018-02-28T09:34:47.732Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "2f51d0bd-bbd2-4956-954c-da6b448d323a"
+
+2018-02-28T09:34:47.738Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/jiantou/up"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "5a52409b-a132-46b6-8c4a-f04dfffe519c"
+
+2018-02-28T09:34:47.738Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/jiantou/right"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "8dbe2614-753c-46d2-9cd4-c531a217b698"
+
+2018-02-28T09:34:47.739Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/jiantou/left"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "b9d41a52-705a-4021-95af-eb9bac80260b"
+
+2018-02-28T09:34:47.740Z - warn: The Asset used by component "cc.Sprite" in prefab "R_bamboo_1.prefab" is missing. Detailed information:
+Node path: "R_bamboo_1/jiantou/down"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/R_bamboo_1.prefab"
+Missing uuid: "8184a4c6-4bf7-4760-a17e-fca50163aa5c"
+
+2018-02-28T09:34:47.742Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/green"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "1dc62cea-7e5f-44d0-ad95-8416ac862ef6"
+
+2018-02-28T09:34:47.742Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/purple"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "9f143e29-e419-43d6-bd4a-c6eceeee0311"
+
+2018-02-28T09:34:47.742Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "7c9bf197-4015-4592-aedd-7d705aae9694"
+
+2018-02-28T09:34:47.742Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/3"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "2f51d0bd-bbd2-4956-954c-da6b448d323a"
+
+2018-02-28T09:34:47.743Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/down"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "8184a4c6-4bf7-4760-a17e-fca50163aa5c"
+
+2018-02-28T09:34:47.743Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/left"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "b9d41a52-705a-4021-95af-eb9bac80260b"
+
+2018-02-28T09:34:47.743Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/right"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "8dbe2614-753c-46d2-9cd4-c531a217b698"
+
+2018-02-28T09:34:47.744Z - warn: The Asset used by component "cc.Sprite" in prefab "MY.prefab" is missing. Detailed information:
+Node path: "B_autumn/jiantou/up"
+Asset url: "db://assets/resources/prefab/majiang/cards/dan/MY.prefab"
+Missing uuid: "5a52409b-a132-46b6-8c4a-f04dfffe519c"
+
+2018-02-28T09:36:24.508Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\0.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\0.png. Assigning a new uuid.
+2018-02-28T09:36:24.509Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\0.png\0 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\0.png\0. Assigning a new uuid.
+2018-02-28T09:36:24.516Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\1.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\1.png. Assigning a new uuid.
+2018-02-28T09:36:24.516Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\1.png\1 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\1.png\1. Assigning a new uuid.
+2018-02-28T09:36:24.519Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\2.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\2.png. Assigning a new uuid.
+2018-02-28T09:36:24.519Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\2.png\2 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\2.png\2. Assigning a new uuid.
+2018-02-28T09:36:24.521Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\3.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\3.png. Assigning a new uuid.
+2018-02-28T09:36:24.521Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\3.png\3 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\3.png\3. Assigning a new uuid.
+2018-02-28T09:36:24.523Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\4.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\4.png. Assigning a new uuid.
+2018-02-28T09:36:24.523Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\4.png\4 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\4.png\4. Assigning a new uuid.
+2018-02-28T09:36:24.525Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\5.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\5.png. Assigning a new uuid.
+2018-02-28T09:36:24.525Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\5.png\5 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\5.png\5. Assigning a new uuid.
+2018-02-28T09:36:24.527Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\6.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\6.png. Assigning a new uuid.
+2018-02-28T09:36:24.527Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\6.png\6 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\6.png\6. Assigning a new uuid.
+2018-02-28T09:36:24.528Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\7.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\7.png. Assigning a new uuid.
+2018-02-28T09:36:24.529Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\7.png\7 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\7.png\7. Assigning a new uuid.
+2018-02-28T09:36:24.530Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\8.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\8.png. Assigning a new uuid.
+2018-02-28T09:36:24.530Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\8.png\8 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\8.png\8. Assigning a new uuid.
+2018-02-28T09:36:24.531Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\9.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\9.png. Assigning a new uuid.
+2018-02-28T09:36:24.532Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\9.png\9 is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\9.png\9. Assigning a new uuid.
+2018-02-28T09:36:24.533Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\delBtn.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\delBtn.png. Assigning a new uuid.
+2018-02-28T09:36:24.533Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\delBtn.png\delBtn is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\delBtn.png\delBtn. Assigning a new uuid.
+2018-02-28T09:36:24.535Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\joinBtnBk.png is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\joinBtnBk.png. Assigning a new uuid.
+2018-02-28T09:36:24.535Z - failed: [db-task][sync-changes] uuid collision, the uuid for F:\allWorkspace\git\microGameClient\assets\resources\images\majiang\num\joinBtnBk.png\joinBtnBk is already in used by F:\allWorkspace\git\microGameClient\assets\resources\images\gameMain\num\joinBtnBk.png\joinBtnBk. Assigning a new uuid.
+2018-02-28T09:36:25.293Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["#血流/X1.png","#血流/X2.png","#血流/effect_a5.png","#血流/effect_b16.png","#血流/glass_c1.png","倒计时/5.png","分享/subtitle.png","反馈/反馈-按下.png","吃碰杠/提示牌.png","吃碰杠/杠特效1.png","吃碰杠/碰特效1.png","吃碰杠/自摸特效2.png","商城/shop_special_title.png","游戏更新/提示.png","牌局结束/a4.png","玩家信息/base_coin.png","玩家信息/base_name.png","用户栏-文字/1.png","用户栏-文字/房卡：.png","电量时间wifi/wifi-拷贝.png","电量时间wifi/wifi.png","系统公告/free_event.png","结算/a1.png","结算/base.png","聊天/dialog1.png","聊天/dialog11.png","聊天/dialog4.png","聊天/dialog9.png","背景/背景可随意拉伸铺满.jpg","背景/龙纹居中.png","设置/off.png","邮件/content2.png","邮件/mail_base.png","麻将牌/牌面/suo2.png"]
+2018-02-28T09:36:25.339Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["#按钮/big_#button.png","#按钮/small_refuse.png","#按钮/small_update.png","#血流/effect_a1.png","#血流/effect_a3.png","#血流/effect_a6.png","#血流/effect_b12.png","#血流/effect_b13.png","#血流/effect_b14.png","#血流/effect_b15.png","#血流/effect_b4.png","#血流/effect_b6.png","#血流/effect_b7.png","#血流/glass_a1.png","#血流/万.png","#血流/条.png","#血流/筒.png","倒计时/0.png","倒计时/1.png","倒计时/countdown_numbers.png","倒计时/中心点切图/time1.png","倒计时/中心点切图/time2.png","倒计时/中心点切图/time3.png","倒计时/中心点切图/time4.png","倒计时/中心点切图/time5.png","倒计时/切边切图/time11.png","倒计时/切边切图/time22.png","倒计时/切边切图/time33.png","倒计时/切边切图/time55.png","加入房间/0.png","加入房间/1.png","加入房间/text.png","加入房间/tips.png","反馈/发送_小.png","反馈/答复-按下.png","反馈/系统回复框.png","吃碰杠/杠.png","吃碰杠/杠特效2.png","吃碰杠/杠特效4.png","吃碰杠/碰特效3.png","吃碰杠/胡特效1.png","吃碰杠/自摸.png","吃碰杠/自摸特效1.png","吃碰杠/自摸特效3.png","吃碰杠/自摸特效4.png","吃碰杠/自摸特效5.png","吃碰杠/自摸特效6.png","吃碰杠/自摸特效7.png","吃碰杠/自摸特效8.png","商城/房卡（大）备份-拷贝.png","牌局结束/base_loser.png","牌局结束/base_winner.png","牌局结束/button_next.png","牌局结束/button_share.png","牌局结束/result1.png","玩家信息/avatar1.png","玩家信息/avatar2.png","玩家信息/coin.png","玩家信息/line.png","玩家信息/title.png","玩家头像/banker.png","玩家头像/room_creater.png","玩家头像/中心点切图/玩家头像切图大小.png","玩家头像/中心点切图/玩家头像框底玻璃.png","用户栏-文字/0.png","用户栏-文字/2.png","用户栏-文字/3.png","用户栏-文字/4.png","用户栏-文字/5.png","用户栏-文字/6.png","用户栏-文字/7.png","用户栏-文字/8.png","用户栏-文字/万.png","用户栏-文字/张.png","系统公告/button_big.png","系统公告/content.png","系统公告/subtitle.png","结算/result_draw.png","结算/result_lose.png","结算/result_win.png","结算/winner.png","聊天/diaglog_box2.png","聊天/dialog7.png","聊天/expression_on.png","背景/game_title6.png","背景/table_corner4.png","邮件/content1.png","邮件/消息.png","邮件/联系我们-按下.png","麻将牌/a玩家出牌_.png","麻将牌/牌面/flower1.png","麻将牌/牌面/season1.png","麻将牌/自己出牌对家出牌对家碰牌 (2).png"]
+2018-02-28T09:36:25.621Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["#按钮/big_cancel.png","#按钮/big_ok.png","#按钮/small_#button.png","#按钮/small_agree.png","#按钮/small_cancel.png","#按钮/small_ok.png","#血流/X3.png","#血流/Y1.png","#血流/Y2.png","#血流/Y3.png","#血流/Y4.png","#血流/Z1.png","#血流/Z2.png","#血流/Z3.png","#血流/Z4.png","#血流/effect_A.png","#血流/effect_B.png","#血流/effect_a2.png","#血流/effect_a4.png","#血流/effect_a7.png","#血流/effect_a8.png","#血流/effect_b1.png","#血流/effect_b10.png","#血流/effect_b11.png","#血流/effect_b2.png","#血流/effect_b3.png","#血流/effect_b5.png","#血流/effect_b8.png","#血流/effect_b9.png","#血流/glass_a2.png","#血流/glass_a3.png","#血流/glass_b0.png","#血流/glass_b1.png","#血流/glass_b2.png","#血流/glass_b3.png","#血流/glass_b4.png","#血流/glass_b5.png","#血流/glass_b6.png","#血流/glass_b7.png","#血流/glass_b8.png","#血流/glass_b9.png","#血流/glass_c2.png","倒计时/2.png","倒计时/3.png","倒计时/4.png","倒计时/6.png","倒计时/7.png","倒计时/8.png","倒计时/9.png","倒计时/切边切图/time44.png","分享/button1_big.png","分享/button2_big.png","分享/content.png","分享/title_share.png","分享/wechat_icon.png","加入房间/2.png","加入房间/3.png","加入房间/4.png","加入房间/5.png","加入房间/6.png","加入房间/7.png","加入房间/8.png","加入房间/9.png","加入房间/circle.png","加入房间/delete.png","加入房间/retype.png","加入房间/title_join.png","反馈/不得少于8个字.png","反馈/反馈.png","反馈/感谢您的反馈.png","反馈/提交_小.png","反馈/玩家反馈框.png","反馈/答复.png","吃碰杠/吃.png","吃碰杠/吃特效1.png","吃碰杠/吃特效2.png","吃碰杠/吃特效3.png","吃碰杠/吃特效4.png","吃碰杠/吃特效5.png","吃碰杠/吃特效6.png","吃碰杠/提示_吃.png","吃碰杠/提示_杠.png","吃碰杠/提示_碰.png","吃碰杠/提示_胡.png","吃碰杠/提示_过.png","吃碰杠/提示框.png","吃碰杠/杠特效3.png","吃碰杠/碰.png","吃碰杠/碰特效2.png","吃碰杠/碰特效4.png","吃碰杠/胡.png","吃碰杠/胡特效2.png","吃碰杠/胡特效3.png","吃碰杠/胡特效4.png","商城/B0C49FAA-拷贝.png","商城/好友同玩！.png","商城/购买房卡请联系微信：jiumei091.png","牌局结束/a1.png","牌局结束/a2.png","牌局结束/a3.png","牌局结束/result2.png","牌局结束/title.png","牌局结束/win.png","玩家信息/IP.png","玩家信息/avatar_遮盖锯齿边框_对齐中心点.png","玩家头像/中心点切图/玩家头像默认.png","玩家头像/贴边切图/玩家头像切图大小_贴边.png","玩家头像/贴边切图/玩家头像框底玻璃_贴边.png","玩家头像/贴边切图/玩家头像默认_贴边.png","用户栏-文字/9.png","电量时间wifi/半电.png","电量时间wifi/圆角矩形-19.png","电量时间wifi/没电.png","电量时间wifi/满电.png","电量时间wifi/颜色.jpg","系统公告/title.png","结算/a2.png","结算/a3.png","结算/a4.png","结算/bankrupt.png","结算/button_next.png","结算/button_share.png","聊天/base.png","聊天/dialog10.png","聊天/dialog2.png","聊天/dialog3.png","聊天/dialog5.png","聊天/dialog6.png","聊天/dialog8.png","聊天/dialog_box1.png","聊天/dialog_box3.png","聊天/dialog_line.png","聊天/dialog_off.png","聊天/dialog_on.png","聊天/expression_off.png","聊天/icon_chat.png","聊天/input.png","聊天/send.png","背景/game_title7.png","背景/table_corner1.png","背景/table_corner2.png","背景/table_corner3.png","设置/adjust_button.png","设置/dark.png","设置/light.png","设置/log_out.png","设置/music1.png","设置/music2.png","设置/on.png","设置/title_setting.png","邮件/消息-按下.png","邮件/联系我们.png","麻将牌/侧家出牌.png","麻将牌/侧家手牌.png","麻将牌/侧家杠牌.png","麻将牌/对家手牌.png","麻将牌/对家杠牌.png","麻将牌/牌面/flower2.png","麻将牌/牌面/flower3.png","麻将牌/牌面/flower4.png","麻将牌/牌面/season2.png","麻将牌/牌面/season3.png","麻将牌/牌面/season4.png","麻将牌/牌面/suo1.png","麻将牌/牌面/suo3.png","麻将牌/牌面/suo4.png","麻将牌/牌面/suo5.png","麻将牌/牌面/suo6.png","麻将牌/牌面/suo7.png","麻将牌/牌面/suo8.png","麻将牌/牌面/suo9.png","麻将牌/牌面/tong1.png","麻将牌/牌面/tong2.png","麻将牌/牌面/tong3.png","麻将牌/牌面/tong4.png","麻将牌/牌面/tong5.png","麻将牌/牌面/tong6.png","麻将牌/牌面/tong7.png","麻将牌/牌面/tong8.png","麻将牌/牌面/tong9.png","麻将牌/牌面/wan1.png","麻将牌/牌面/wan2.png","麻将牌/牌面/wan3.png","麻将牌/牌面/wan4.png","麻将牌/牌面/wan5.png","麻将牌/牌面/wan6.png","麻将牌/牌面/wan7.png","麻将牌/牌面/wan8.png","麻将牌/牌面/wan9.png","麻将牌/牌面/wind1.png","麻将牌/牌面/wind2.png","麻将牌/牌面/wind3.png","麻将牌/牌面/wind4.png","麻将牌/牌面/wind5.png","麻将牌/牌面/wind6.png","麻将牌/牌面/wind7.png","麻将牌/自己出牌对家出牌对家碰牌.png","麻将牌/自己手牌.png","麻将牌/自己杠牌.png","麻将牌/麻将牌.png"]
+2018-02-28T09:36:26.099Z - warn: [SpriteAtlas import] Some of the frame keys have been reformatted : ["底分字/0.png","底分字/1.png","底分字/2.png","底分字/3.png","底分字/4.png","底分字/5.png","底分字/6.png","底分字/7.png","底分字/8.png","底分字/9.png","底分字/绿色/g-.png","底分字/绿色/g.png","底分字/绿色/g0.png","底分字/绿色/g1.png","底分字/绿色/g2.png","底分字/绿色/g3.png","底分字/绿色/g4.png","底分字/绿色/g5.png","底分字/绿色/g6.png","底分字/绿色/g7.png","底分字/绿色/g8.png","底分字/绿色/g9.png","底分字/绿色/gg.png","底分字/绿色/g万.png","底分字/绿色/g千.png","底分字/蓝色/b-.png","底分字/蓝色/b.png","底分字/蓝色/b0.png","底分字/蓝色/b1.png","底分字/蓝色/b2.png","底分字/蓝色/b3.png","底分字/蓝色/b4.png","底分字/蓝色/b5.png","底分字/蓝色/b6.png","底分字/蓝色/b7.png","底分字/蓝色/b8.png","底分字/蓝色/b9.png","底分字/蓝色/bb.png","底分字/蓝色/b万.png","底分字/蓝色/b千.png","底分字/青色/c-.png","底分字/青色/c.png","底分字/青色/c0.png","底分字/青色/c1.png","底分字/青色/c2.png","底分字/青色/c3.png","底分字/青色/c4.png","底分字/青色/c5.png","底分字/青色/c6.png","底分字/青色/c7.png","底分字/青色/c8.png","底分字/青色/c9.png","底分字/青色/cc.png","底分字/青色/c万.png","底分字/青色/c千.png","底分字/黄色/y-.png","底分字/黄色/y.png","底分字/黄色/y0.png","底分字/黄色/y1.png","底分字/黄色/y2.png","底分字/黄色/y3.png","底分字/黄色/y4.png","底分字/黄色/y5.png","底分字/黄色/y6.png","底分字/黄色/y7.png","底分字/黄色/y8.png","底分字/黄色/y9.png","底分字/黄色/yy.png","底分字/黄色/y万.png","底分字/黄色/y千.png","牌/1.png","牌/10.png","牌/11.png","牌/12.png","牌/13.png","牌/2.png","牌/3.png","牌/4.png","牌/5.png","牌/6.png","牌/7.png","牌/8.png","牌/9.png","牌/r1.png","牌/r10.png","牌/r11.png","牌/r12.png","牌/r13.png","牌/r2.png","牌/r3.png","牌/r4.png","牌/r5.png","牌/r6.png","牌/r7.png","牌/r8.png","牌/r9.png","牌/大王_中.png","牌/大王_大.png","牌/大王_小.png","牌/小王_中.png","牌/小王_大.png","牌/小王_小.png","牌/底_中.png","牌/底_大.png","牌/底_小.png","牌/方片.png","牌/梅花.png","牌/红心.png","牌/背_大.png","牌/黑桃.png"]
+2018-02-28T09:36:26.412Z - failed: [db-task][sync-changes] path collision, the path for a7bf7c3f-b0d7-4e4d-a025-4a85accb64b1 is already in used by a7bf7c3f-b0d7-4e4d-a025-4a85accb64b1. Assigning a new path.
+2018-02-28T09:36:26.424Z - failed: [db-task][sync-changes] path collision, the path for ed65c6d0-2552-40e4-a8cd-60fd2e4fbf22 is already in used by ed65c6d0-2552-40e4-a8cd-60fd2e4fbf22. Assigning a new path.
+2018-02-28T09:36:26.437Z - failed: [db-task][sync-changes] path collision, the path for 1bdc5445-6328-404d-92cd-1efb317f454c is already in used by 1bdc5445-6328-404d-92cd-1efb317f454c. Assigning a new path.
+2018-02-28T09:36:26.459Z - failed: [db-task][sync-changes] path collision, the path for 5282fd3a-fd38-4e77-afbf-d46db2f4fcdb is already in used by 5282fd3a-fd38-4e77-afbf-d46db2f4fcdb. Assigning a new path.
+2018-02-28T09:36:26.465Z - failed: [db-task][sync-changes] path collision, the path for 0ecdeec1-6a27-4714-ac4b-fb4df13bfbbe is already in used by 0ecdeec1-6a27-4714-ac4b-fb4df13bfbbe. Assigning a new path.
+2018-02-28T09:36:26.487Z - failed: [db-task][sync-changes] path collision, the path for 2cbc9d11-8c12-4a73-bdda-97913ab14129 is already in used by 2cbc9d11-8c12-4a73-bdda-97913ab14129. Assigning a new path.
+2018-02-28T09:36:26.491Z - failed: [db-task][sync-changes] path collision, the path for 6b93f00a-96cc-4c69-b84c-02ce7282d6a8 is already in used by 6b93f00a-96cc-4c69-b84c-02ce7282d6a8. Assigning a new path.
+2018-02-28T09:36:26.517Z - failed: [db-task][sync-changes] path collision, the path for 20b8a86e-d71a-4619-8855-e6021493a7c8 is already in used by 20b8a86e-d71a-4619-8855-e6021493a7c8. Assigning a new path.
+2018-02-28T09:36:26.520Z - failed: [db-task][sync-changes] path collision, the path for 30d7fe93-e816-4562-8050-82f164e24ce3 is already in used by 30d7fe93-e816-4562-8050-82f164e24ce3. Assigning a new path.
+2018-02-28T09:36:26.546Z - failed: [db-task][sync-changes] path collision, the path for 6bae7464-0798-48f1-b17a-c45894c7f056 is already in used by 6bae7464-0798-48f1-b17a-c45894c7f056. Assigning a new path.
+2018-02-28T09:36:26.549Z - failed: [db-task][sync-changes] path collision, the path for 4d8c28e6-c9f1-4996-b8c9-b471398eba79 is already in used by 4d8c28e6-c9f1-4996-b8c9-b471398eba79. Assigning a new path.
+2018-02-28T09:36:26.585Z - failed: [db-task][sync-changes] path collision, the path for 1071df83-6313-4f30-bd86-89240f6ade29 is already in used by 1071df83-6313-4f30-bd86-89240f6ade29. Assigning a new path.
+2018-02-28T09:36:30.898Z - error: TypeError: Cannot read property 'hidden' of null
+    at r.forEach.t (D:\CocosCreator\resources\app.asar\asset-db\lib\tasks.js:1:14284)
+    at Array.forEach (native)
+    at Async.waterfall (D:\CocosCreator\resources\app.asar\asset-db\lib\tasks.js:1:14035)
+    at D:\CocosCreator\resources\app.asar\node_modules\async\lib\async.js:52:16
+    at D:\CocosCreator\resources\app.asar\node_modules\async\lib\async.js:1209:30
+    at Async.waterfall (D:\CocosCreator\resources\app.asar\asset-db\lib\tasks.js:1:7723)
+    at D:\CocosCreator\resources\app.asar\node_modules\async\lib\async.js:52:16
+    at D:\CocosCreator\resources\app.asar\node_modules\async\lib\async.js:1209:30
+    at Async.eachLimit.e (D:\CocosCreator\resources\app.asar\asset-db\lib\tasks.js:1:7701)
+    at D:\CocosCreator\resources\app.asar\node_modules\async\lib\async.js:52:16
+    at process.on.t (D:\CocosCreator\resources\app.asar\editor\core\editor-init.js:1:992)
+    at emitOne (events.js:101:20)
+    at process.emit (events.js:188:7)
+    at process._fatalException (bootstrap_node.js:304:26)
+2018-02-28T09:37:30.022Z - error: Package Watcher Error: Error watching file for changes: EPERM
+    at FSWatcher.on.on.on.on.on.on.e (D:\CocosCreator\resources\app.asar\editor-framework\lib\main\editor.js:1:5011)
+    at emitOne (events.js:96:13)
+    at FSWatcher.emit (events.js:188:7)
+    at FSWatcher._handleError (D:\CocosCreator\resources\app.asar\node_modules\chokidar\index.js:252:10)
+    at D:\CocosCreator\resources\app.asar\node_modules\chokidar\lib\nodefs-handler.js:54:5
+    at Array.forEach (native)
+    at fsWatchBroadcast (D:\CocosCreator\resources\app.asar\node_modules\chokidar\lib\nodefs-handler.js:53:36)
+    at D:\CocosCreator\resources\app.asar\node_modules\chokidar\lib\nodefs-handler.js:94:21
+    at FSReqWrap.oncomplete (fs.js:123:15)
