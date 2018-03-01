@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -4253,6 +4253,7 @@
     "leftting": null,
     "ready2": null,
     "readybth": null,
+    "isOver": null,
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
@@ -11205,8 +11206,7 @@
     "top_hua": {
       "__id__": 360
     },
-    "liuju": null,
-    "desk_cards": null
+    "liuju": null
   },
   {
     "__type__": "cc.Node",
@@ -16696,6 +16696,9 @@
     },
     "readybth": {
       "__id__": 91
+    },
+    "isOver": {
+      "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     }
   }
 ]

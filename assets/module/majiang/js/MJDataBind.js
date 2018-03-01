@@ -78,6 +78,9 @@ cc.Class({
         leftting: cc.Node,
         ready2: cc.Node,
         readybth: cc.Node,
+        isOver: cc.Prefab,
+      /*  gameSettingClick: cc.Prefab,
+        leave_alert: cc.Prefab*/
     },
     onLoad: function () {
         let socket = this.socket();
@@ -381,6 +384,36 @@ cc.Class({
         });
         // gameStartInit.players_event();
 
+        this.node.on('restar',function(event){
+            if(event.getUserData()){                
+                if(cc.weijifen.GameBase.gameModel=='wz'){
+                    cc.director.loadScene('温州');
+                }else{
+                    cc.director.loadScene('gameMain');                    
+                }
+            }else{
+                if(cc.sys.localStorage.getItem('clear') != 'true'){
+                    var context = cc.find('Canvas').getComponent('MajiangDataBind'); 
+                    var bth = cc.find('Canvas/bg/center/button/readybtn');
+                    if(cc.weijifen.match != 'true'){
+                        bth.active =true;  
+                        bth.x= -10;
+                    }
+                    var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children
+                    if(laizi){
+                        for(let i =0 ; i < laizi.length ; i ++ ){
+                            cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
+                        }
+                    }     
+                    context.reinitGame(context);
+                }
+                cc.sys.localStorage.removeItem('clear');
+                self.getSelf().shouOperationMune();
+                event.target.parent.destroy(); 
+            }        
+        });
+
+
         cc.sys.localStorage.setItem('count','0');
         cc.sys.localStorage.removeItem('current');
         cc.sys.localStorage.removeItem('right');
@@ -519,8 +552,8 @@ cc.Class({
         this.leave = new cc.NodePool();
         
         // 操作按钮
-       /* this.alert.put(cc.instantiate(this.isOver));
-        this.setting.put(cc.instantiate(this.gameSettingClick));
+        this.alert.put(cc.instantiate(this.isOver));
+        /*this.setting.put(cc.instantiate(this.gameSettingClick));
         this.leave.put(cc.instantiate(this.leave_alert));*/
         /**
          *
