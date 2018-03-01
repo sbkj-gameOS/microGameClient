@@ -329,7 +329,7 @@ cc.Class({
                         sprite.spriteFrame = context.cs2;
                         context.csNode.width = 110; 
                         context.csNode.setPosition(-551,301);
-                        gameStartInitNode.godcard.children[1].x = -555;                    
+                        gameStartInitNode.godcard.children[1].x = -570;                    
                     }
                     if(powerCard&&powerCard.length>0){
                         for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/card').children.length;i++){

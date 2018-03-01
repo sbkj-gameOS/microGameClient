@@ -116,7 +116,7 @@ cc.Class({
                 card.parent = this.bpp;
             }
         }
-        this.num.string = cc.find('Canvas').getComponent('MajiangDataBind').gddesk_cards;
+        this.num.string = cc.find('Canvas').getComponent('MJDataBind').gddesk_cards;
         if(userInfo.playOvers){
             let win = false;
             let lose = false;

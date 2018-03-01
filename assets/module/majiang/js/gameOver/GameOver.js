@@ -39,7 +39,25 @@ cc.Class({
 	        }
 
 	        gameOver.huaction(playerid);
-	        setTimeout(function(){context.endList(data,context,playerid)},3000)
+	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000)
+	    },
+	    endList:function(data,context,playerid,a){
+	    	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+	    	var gameOver = require('GameOver');
+	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
+	    	var settingClickNode = cc.find('Canvas/js/settingClick').getComponent('settingClick');
+	        context.gddesk_cards = gameStartInitNode.desk_cards.string;
+	        gameStartInitNode.desk_cards.string = '136';
+	        let temp = cc.instantiate(settingClickNode.summary) ;
+	        temp.parent = context.root() ;
+	        temp.getComponent('SummaryClick').setData(data); 
+	        temp.zIndex = 999;
+	        if(playerid){
+	            gameOver.huaction2(playerid);
+	        }else{
+	            gameOverNode.liuju.active = false;
+	        }
+	        
 	    },
 	    huaction: function(playerid){
 	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
