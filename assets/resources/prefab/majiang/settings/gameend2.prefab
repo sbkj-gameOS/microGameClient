@@ -2180,7 +2180,9 @@
     "jifan": {
       "__id__": 27
     },
-    "card": null,
+    "card": {
+      "__uuid__": "8c6742ec-0a6f-4554-a9ed-8b3eb590c655"
+    },
     "win": {
       "__id__": 40
     },
@@ -2199,8 +2201,12 @@
     "bei": {
       "__id__": 45
     },
-    "redwin": null,
-    "diaopao": null,
+    "redwin": {
+      "__uuid__": "ca9de082-be93-411d-bf2a-054e5000615c"
+    },
+    "diaopao": {
+      "__uuid__": "3cb6049d-b7e8-4d75-b5cd-c7f48ba97099"
+    },
     "target": {
       "__id__": 1
     },

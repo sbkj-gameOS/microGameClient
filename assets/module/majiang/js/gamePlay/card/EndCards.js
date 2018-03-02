@@ -91,13 +91,13 @@ cc.Class({
             if(units){
                 let point = '';
                 for(let i =0 ;i< units.length;i++){
-                    if(cc.beimi.GameBase.gameModel == 'wz'){
+                    if(cc.weijifen.GameBase.gameModel == 'wz'){
                         point = units[i].point;
                     }
                     this.hu.string += (units[i].tip+' '+ point +' ');
                 } 
             }  
-            if(cc.beimi.GameBase.gameModel != 'wz'){
+            if(cc.weijifen.GameBase.gameModel != 'wz'){
                 this.jifan.string = fan +'番'+'   '+gang +'杠   ';
                 if(this.data.balance.noTing == true){
                     noTing = '未上听';
@@ -120,7 +120,7 @@ cc.Class({
                 if(this[pl.wind]){
                     this[pl.wind].active = true;                    
                 }
-                if(this.data.user == cc.beimi.banker){
+                if(this.data.user == cc.weijifen.banker){
                     this.banker.active = true ; 
                 }
                 headimg = pl.data.headimgurl;
@@ -139,7 +139,7 @@ cc.Class({
         }
         this.count.string= this.data.count;
         if(this.data.win ==true){
-            //cc.beimi.audio.playSFX('nv/hu.mp3');
+            //cc.weijifen.audio.playSFX('nv/hu.mp3');
             this.target.getComponent(cc.Sprite).spriteFrame = this.redwin;
             this.win.active = true;
         }
@@ -166,13 +166,9 @@ cc.Class({
                     }
                 }else if(this.data.actions[i].action=='dan'){
                     let mj = cc.find('Canvas').getComponent('MJDataBind');
-                    let player = mj.player(this.data.user,mj);
-                    let card ;
-                    if(player.tablepos == 'current' ){
-                        card = cc.find('Canvas/content/handcards/deskcard/kong').children[i+1];
-                    }else{
-                        card = cc.find('Canvas/content/handcards/'+player.tablepos+'desk/kong').children[i+1];
-                    }
+                    var gameStartInit = require('GameStartInit');
+                    let player = gameStartInit.player(this.data.user,mj);
+                    let card = cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards').children[i+1];
                     for(let q = 0 ; q< card.children.length; q++){
                         let xiao = cc.instantiate(this.card);
                         let xiaocard = xiao.getComponent('DanAction');

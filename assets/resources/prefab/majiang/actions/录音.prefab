@@ -147,7 +147,7 @@
     "_atlas": null
   },
   {
-    "__type__": "ac9b4vOTi9OKqQ68Kuj6+oT",
+    "__type__": "1cf08+5bIpD66lx96vqpccl",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -161,7 +161,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9910fff9-15b8-4dc1-8868-d05f808a1ef4"
     },
     "fileId": "5ank5CdilB/pjLFHYl9Ypz",
     "sync": false
@@ -204,7 +204,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 319.98,
+      "width": 316.67,
       "height": 80
     },
     "_rotationX": 0,
@@ -236,9 +236,7 @@
     "_fontSize": 60,
     "_lineHeight": 80,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "1149c671-43cb-452b-92f2-97562263c8d8"
-    },
+    "_N$file": null,
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "录音中 。。",
@@ -269,7 +267,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9910fff9-15b8-4dc1-8868-d05f808a1ef4"
     },
     "fileId": "bdxvtFYWZF+pBc2MgGEVh7",
     "sync": false
@@ -280,7 +278,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "9910fff9-15b8-4dc1-8868-d05f808a1ef4"
     },
     "fileId": "0bVISgmiFK8Lb3TC5Qvvj1",
     "sync": false

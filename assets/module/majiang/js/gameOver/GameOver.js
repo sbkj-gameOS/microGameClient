@@ -116,13 +116,12 @@ cc.Class({
 	    },
 	    huaction2:function(playerid){
 	    	var gameStartInit = require('GameStartInit');
+	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
 	        let ani = gameOverNode.current_hu.getComponent(cc.Animation);
 	        gameOverNode.current_hu.active =false;
 	        ani.stop("current_hu") ;
 	        let player = gameStartInit.player(playerid , this);
 	        player.target.scale = 0.91;
-	        
-
 	    },
     }
 });

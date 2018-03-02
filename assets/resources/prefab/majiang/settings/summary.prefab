@@ -739,8 +739,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
-      "height": 150
+      "width": 80,
+      "height": 80
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2734,8 +2734,12 @@
     "liuju": {
       "__id__": 56
     },
-    "bp": null,
-    "bpb": null,
+    "bp": {
+      "__uuid__": "c435ff8d-689a-452a-94e2-be8da56df342"
+    },
+    "bpb": {
+      "__uuid__": "4bed75a8-cc8a-4e41-b653-d21718c28b57"
+    },
     "bpp": {
       "__id__": 69
     },
