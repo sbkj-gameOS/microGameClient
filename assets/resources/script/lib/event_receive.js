@@ -20,10 +20,10 @@ cc.Class({
             context.current_ready.active = true ; //当前玩家准备（手）   
             cc.log(self)
             let socket = self.getSelf().socket();
-            //debugger
+            //
             // 点击准备，
             socket.emit('readyGame',JSON.stringify({}))
-            // debugger
+            // 
         });
     },
     /*

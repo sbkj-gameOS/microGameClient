@@ -58,7 +58,7 @@ cc.Class({
         * button2为离开但不退游戏的下部按钮
         * labei：等待玩家显示字
         */
-        debugger
+        
         //this.scene("gameMain" , this);
         cc.sys.localStorage.setItem('unOver','true');
         this.button.active = false;
@@ -69,11 +69,11 @@ cc.Class({
         // this.daojishi();
         // this.labei2.string = '还有'+this.time +'自动解散'
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
-        debugger
+        
     },
     //继续游戏 发送一个不退出请求
     goonGameClick: function(){
-        debugger
+        
         let REFUSE = true;
         var oper = new cc.Event.EventCustom('overGame', true) ;
         oper.setUserData(REFUSE) ;
@@ -84,7 +84,7 @@ cc.Class({
         // dailog.destroy();
 
         //alert();
-        debugger
+        
     },
     dontLeaveGameClick: function(){
         let mj = cc.find('Canvas').getComponent('MajiangDataBind')        

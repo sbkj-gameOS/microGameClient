@@ -53,7 +53,7 @@ cc.Class({
 			}
 
             // this.username ? this.username = {} : this.username={};
-            //debugger
+            //
             this.username.string = cc.weijifen.user.nickname;
             //玩家头像
 			this.headImg(this.headimg,cc.weijifen.user.headimgurl,true);
@@ -89,7 +89,7 @@ cc.Class({
 	tzerror: function(result,object){	
     },
     roomSuccess: function(result,object){
-        // debugger
+        // 
 		let data = JSON.parse(result);
         if(data.room){
 			object.getGame(data);
@@ -105,7 +105,7 @@ cc.Class({
     },
 	//滚动公告字幕
 	gundongText:function(){
-        //debugger
+        //
 		var self = this;
         var text = self.message;
         var width = self.message.node.parent.width;

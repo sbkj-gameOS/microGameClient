@@ -36,9 +36,13 @@ cc.Class({
         //离开房间
         leaveClick:function(){
             this.openAlert('是否退出房间','hall');
-            let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
-            
-            btn.active = false;
+          /*  let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+            btn.active = false;*/
+            let leave_btn = cc.find('Canvas').getChildByName('alert').getChildByName('isleave_btns');
+            leave_btn.active = true;
+            let over_btn = cc.find('Canvas').getChildByName('alert').getChildByName('isover_btns');
+            over_btn.active = false;
+
         },
         // 点击解散房间按钮
         overClick:function(){

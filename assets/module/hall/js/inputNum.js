@@ -69,7 +69,7 @@ cc.Class({
         if(array.length == 6){
             this.click();
         }
-        // debugger
+        // 
     },
     /*
     * 房间号已经是6位，可以进入
@@ -117,7 +117,7 @@ cc.Class({
                 cc.director.loadScene('majiang');
             });
         }else if(data.error){
-        // debugger  
+        //   
             object.notice.string = data.msg;
             object.inputNum1.string = "";
             object.inputNum2.string = "";
