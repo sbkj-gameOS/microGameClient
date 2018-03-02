@@ -58,91 +58,93 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        // this.musicSlider.progress = cc.beimi.audio.getBGMVolume();
-        // this.music.fillRange  = cc.beimi.audio.getBGMVolume() ;
+        // this.musicSlider.progress = cc.weijifen.audio.getBGMVolume();
+        // this.music.fillRange  = cc.weijifen.audio.getBGMVolume() ;
 
-        // this.soundSlider.progress = cc.beimi.audio.getSFXVolume();
-        // this.sound.fillRange =cc.beimi.audio.getSFXVolume();
+        // this.soundSlider.progress = cc.weijifen.audio.getSFXVolume();
+        // this.sound.fillRange =cc.weijifen.audio.getSFXVolume();
+        debugger  
         if(cc.find('Canvas/global')){
             this.bgonload();
             this.cardonload();
         }
-        if(cc.beimi.audio.getState() == cc.audioEngine.AudioState.PLAYING){
+        if(cc.weijifen.audio.getState() == cc.audioEngine.AudioState.PLAYING){
             this.musicon.active = true ;
             this.musicoff.active =  false;
         }else{
             this.musicon.active = false ;
             this.musicoff.active =  true
         }
-        if(cc.beimi.audio.getSFXVolume()>0){
+        if(cc.weijifen.audio.getSFXVolume()>0){
             this.soundon.active = true ;
             this.soundoff.active =false;
         }else{
             this.soundon.active = false ;
             this.soundoff.active =true;
         }
-        if(cc.beimi.click ==1){
+        if(cc.weijifen.click ==1){
             this.danji.active = true;
             this.shuangji.active = false;
         }else{
             this.danji.active = false;
             this.shuangji.active = true;
         }
-
+        debugger
+  
     },
     // onMusicSlide:function(slider){
     //     if(cc.sys.localStorage.getItem('nobgm')=='true'){
-    //         cc.beimi.audio.playBGM("bgMain.mp3");
+    //         cc.weijifen.audio.playBGM("bgMain.mp3");
     //         cc.sys.localStorage.removeItem('nobgm');
     //     }
     //     this.music.fillRange  = slider.progress ;
-    //     cc.beimi.audio.setBGMVolume(slider.progress) ;
+    //     cc.weijifen.audio.setBGMVolume(slider.progress) ;
     //     this.musicon.active = true ;
     //     this.musicoff.active =  false;
     // },
     // onSoundSlide:function(slider){
     //     this.sound.fillRange  = slider.progress ;
-    //     cc.beimi.audio.setSFXVolume(slider.progress) ;
+    //     cc.weijifen.audio.setSFXVolume(slider.progress) ;
     //     this.soundon.active = true ;
     //     this.soundoff.active =  false;
     // },
     onSoundBtnClick:function(){
-        //console.log(cc.beimi.audio.getSFXVolume());
-        if(cc.beimi.audio.getSFXVolume()>0){
+        //console.log(cc.weijifen.audio.getSFXVolume());
+        if(cc.weijifen.audio.getSFXVolume()>0){
             this.soundon.active = false ;
             this.soundoff.active =true;
-            cc.beimi.audio.setSFXVolume(0);
+            cc.weijifen.audio.setSFXVolume(0);
         }else{
             this.soundon.active =true;
             this.soundoff.active =false;
-            cc.beimi.audio.setSFXVolume(1); 
+            cc.weijifen.audio.setSFXVolume(1); 
         }
     },
     onMusiceBtnClick:function(){
-        if(cc.beimi.audio.getState() == cc.audioEngine.AudioState.PLAYING){
+        if(cc.weijifen.audio.getState() == cc.audioEngine.AudioState.PLAYING){
             this.musicon.active = false ;
             this.musicoff.active =  true;
-            cc.beimi.audio.pauseAll();
-            //cc.beimi.audio.setBGMVolume(0);
+            cc.weijifen.audio.pauseAll();
+            //cc.weijifen.audio.setBGMVolume(0);
             cc.sys.localStorage.setItem('nobgm','true');
         }else{
             this.musicon.active = true ;
             this.musicoff.active =  false;
-            cc.beimi.audio.playBGM("bgFight.mp3");
-            cc.beimi.audio.setBGMVolume(1);           
+            cc.weijifen.audio.playBGM("bgFight.mp3");
+            cc.weijifen.audio.setBGMVolume(1);           
             cc.sys.localStorage.removeItem('nobgm');
         }
     },
     dnajiClick: function(){
-        if(cc.beimi.click == 1){
+        if(cc.weijifen.click == 1){
             this.danji.active = false;
             this.shuangji.active = true;
-            cc.beimi.click = 2 ;
+            cc.weijifen.click = 2 ;
             cc.sys.localStorage.setItem('click',2);
         }else{
             this.danji.active = true;
             this.shuangji.active = false;
-            cc.beimi.click = 1 ;
+            cc.weijifen.click = 1 ;
             cc.sys.localStorage.setItem('click',1);
             
         }

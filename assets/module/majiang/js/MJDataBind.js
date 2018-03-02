@@ -79,8 +79,8 @@ cc.Class({
         ready2: cc.Node,
         readybth: cc.Node,
         isOver: cc.Prefab,
-      /*  gameSettingClick: cc.Prefab,
-        leave_alert: cc.Prefab*/
+        gameSettingClick: cc.Prefab,
+        // leave_alert: cc.Prefab
     },
     onLoad: function () {
         let socket = this.socket();
@@ -554,8 +554,8 @@ cc.Class({
         
         // 操作按钮
         this.alert.put(cc.instantiate(this.isOver));
-        /*this.setting.put(cc.instantiate(this.gameSettingClick));
-        this.leave.put(cc.instantiate(this.leave_alert));*/
+        this.setting.put(cc.instantiate(this.gameSettingClick));
+        // this.leave.put(cc.instantiate(this.leave_alert));
         /**
          *
          * 初始化玩家 的 对象池

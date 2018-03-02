@@ -86,7 +86,14 @@ cc.Class({
             }
             
         },
-
+        // 设置桌面等
+        gameSetting:function(){
+            debugger
+            let mjdata = cc.find('Canvas').getComponent('MJDataBind');
+            let setting = cc.instantiate(mjdata.gameSettingClick);
+            setting.parent = mjdata.node;
+            debugger
+        },
         gameOver_event: function(data,context){
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
             
