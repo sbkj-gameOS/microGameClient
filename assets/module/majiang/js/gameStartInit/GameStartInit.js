@@ -781,7 +781,7 @@ cc.Class({
                     }   
             }
             for(let i = 0;i< deskcard;i++ ){
-                cc.find('Canvas/cards/deskcards/'+fangwei+'/'+fangwei+'handcards').children[i].destroy();
+                cc.find('Canvas/cards/deskcards/'+fangwei+'').children[i].destroy();
                     
             }
             for(let i = 1;i< kong;i++ ){

@@ -385,6 +385,7 @@ cc.Class({
         // gameStartInit.players_event();
 
         this.node.on('restar',function(event){
+            var gameStartInit = require('GameStartInit');
             if(event.getUserData()){                
                 if(cc.weijifen.GameBase.gameModel=='wz'){
                     cc.director.loadScene('温州');
@@ -405,7 +406,7 @@ cc.Class({
                             cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
                         }
                     }     
-                    context.reinitGame(context);
+                    gameStartInit.reinitGame(context);
                 }
                 cc.sys.localStorage.removeItem('clear');
                 self.getSelf().shouOperationMune();
