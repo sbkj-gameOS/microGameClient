@@ -66,6 +66,10 @@ cc.Class({
             default:null ,
             type : cc.Prefab
         },
+        csNode:{
+            default:null,
+            type:cc.Node
+        },
     },
 
     //
@@ -261,10 +265,10 @@ cc.Class({
                 var bth = cc.find('Canvas/bg/center/button/readybtn');
                 bth.active =true;  
                 bth.x= -10;
-                var laizi = cc.find('Canvas/cards/tesucards/baocard/card').children
+                var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children
                 if(laizi){
                     for(let i =0 ; i < laizi.length ; i ++ ){
-                        cc.find('Canvas/cards/tesucards/baocard/card').children[i].destroy();
+                        cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
                     }
                 }     
             }
@@ -316,30 +320,18 @@ cc.Class({
                 if(temp_player.powerCard){
                     var powerCard = context.decode(temp_player.powerCard);
                     cc.weijifen.powerCard = powerCard;
-                    context.csNode.active = true;
+                    gameStartInitNode.csNode.active = true;
                     //切换财神图片
-                    var sprite = context.csNode.getComponent(cc.Sprite);
-                    if(powerCard.length == 1){//财神个数
-                        sprite.spriteFrame = context.cs1;
-                        context.csNode.width = 65;
-                        context.csNode.setPosition(-568,301);
-                        gameStartInitNode.godcard.children[1].x = -570;
-                        
-                    }else{
-                        sprite.spriteFrame = context.cs2;
-                        context.csNode.width = 110; 
-                        context.csNode.setPosition(-551,301);
-                        gameStartInitNode.godcard.children[1].x = -570;                    
-                    }
+                    var sprite = gameStartInitNode.csNode.getComponent(cc.Sprite);
                     if(powerCard&&powerCard.length>0){
-                        for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/card').children.length;i++){
-                            cc.find('Canvas/cards/tesucards/baocard/card').children[i].destroy();
+                        for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/child').children.length;i++){
+                            cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
                         }
                         cc.weijifen.baopai = powerCard;
                         for(let i= 0 ; i<powerCard.length;i++){
                             cc.weijifen.caishenCard += powerCard[i]+",";
                             var laiziZM = cc.instantiate(gameStartInitNode.ZM);
-                            laiziZM.parent = gameStartInitNode.godcard.children[0];
+                            laiziZM.parent = gameStartInitNode.godcard.children[1];
                             var LZH  = laiziZM.getComponent('DeskCards');
                             LZH.init(powerCard[i],'B',true);
                         }
@@ -352,25 +344,25 @@ cc.Class({
                     //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
                     for(let i= 0 ; i<cards.length;i++){
                         var laiziZM = cc.instantiate(gameStartInitNode.ZM);
-                        laiziZM.parent = gameStartInitNode.godcard.children[0];
+                        laiziZM.parent = gameStartInitNode.godcard.children[1];
                         var LZH  = laiziZM.getComponent('DeskCards');
                         LZH.init(cards[i],'B',true);
                     }
                 }else{
-                    cc.find('Canvas/cards/tesucards/baocard/card').x = -560;                
+                    cc.find('Canvas/cards/tesucards/baocard/child').x = -560;                
                     var laiziFM = cc.instantiate(gameStartInitNode.FM);
                     var LZH = laiziFM.getComponent('DeskCards');
                     LZH.init(-3,'Z',true);
-                    laiziFM.parent = gameStartInitNode.godcard.children[0];
+                    laiziFM.parent = gameStartInitNode.godcard.children[1];
                 }
             }
+
             //当前玩家补花 data.player
             var buhua;
             if(temp_player.buHua){
                 buhua = context.decode(temp_player.buHua);//补花
-                // buhua = [-35,-34];
+                console.log(buhua);
                 let temp = gameStartInit.player(temp_player.playuser, context);
-                //console.log(temp.tablepos);
                 for(var i = 0;i<buhua.length;i++){
                     gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
                 }
@@ -378,9 +370,11 @@ cc.Class({
 
             //其他玩家补花 data.players
             for(var i = 0; i <data.players.length;i++){
-                // data.players[i].buHua = 1
                 if(data.players[i].buHua){
+                    buhua = context.decode(data.players[i].buHua);//补花
+                    console.log(buhua);
                     let temp = gameStartInit.player(data.players[i].playuser, context);
+                    //console.log(temp.tablepos);
                     for(var j = 0;j<buhua.length;j++){
                         gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
                     }
@@ -799,7 +793,7 @@ cc.Class({
          },
          destroybuhuas:function(fangwei,context){
             let buhua,buhuaList;
-            buhuaList = cc.find('Canvas/cards/tesucards/huacard/'+fangwei+'/buhua');
+            buhuaList = cc.find('Canvas/cards/tesucards/huacard/'+fangwei+'');
             for(let i = 0;i< buhuaList.children.length;i++ ){
                 buhuaList.children[i].destroy(); 
             }

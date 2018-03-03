@@ -284,24 +284,26 @@
       "__id__": 1
     },
     "_enabled": true,
-    "weijifen0": null,
+    "weijifen0": {
+      "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
+    },
     "target": {
       "__id__": 1
     },
     "b_chun": {
-      "__uuid__": "1fa963ae-0152-4399-aa55-d5c2e387ea3a"
+      "__uuid__": "4bec0ee1-7308-4c61-8fc8-9b9ff553e099"
     },
     "b_ju": {
-      "__uuid__": "f8f0f239-9241-46b8-98e5-a2ad6b485907"
+      "__uuid__": "dbe2b53c-2652-4354-b2c5-de029e33b6a3"
     },
     "b_lan": {
-      "__uuid__": "3674b13c-c6f9-4402-ae28-aa5cb8097c61"
+      "__uuid__": "e64b0bb0-7e86-42d5-85d4-66253eda12b0"
     },
     "b_xia": {
-      "__uuid__": "16b5ee7c-348f-40ff-90d0-e215fd91a918"
+      "__uuid__": "db8175c0-fc35-444e-9429-6ad8338146e2"
     },
     "b_zhu": {
-      "__uuid__": "2b5d43e3-c9d5-40e6-9a04-d7a5c60972c6"
+      "__uuid__": "5b899056-bedc-4b7a-aea6-aefb94e81bf8"
     },
     "hua": null
   },
