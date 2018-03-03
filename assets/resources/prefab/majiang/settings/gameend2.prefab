@@ -2210,8 +2210,12 @@
     "target": {
       "__id__": 1
     },
-    "hua": null,
-    "buhua": null,
+    "hua": {
+      "__uuid__": "a21cc8b1-0473-41cd-af0a-e158f316649f"
+    },
+    "buhua": {
+      "__uuid__": "d65f35b7-d8b7-48d4-8e94-0e764e007993"
+    },
     "huaParent": {
       "__id__": 62
     },

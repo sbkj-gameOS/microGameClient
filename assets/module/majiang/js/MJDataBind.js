@@ -80,7 +80,6 @@ cc.Class({
         readybth: cc.Node,
         isOver: cc.Prefab,
         gameSettingClick: cc.Prefab,
-        // leave_alert: cc.Prefab
     },
     onLoad: function () {
         let socket = this.socket();
@@ -441,17 +440,6 @@ cc.Class({
     },
     // 初始化房间信息
     playerIsReady:function () {
-        // // 游戏logo
-        if(cc.weijifen.GameBase.gameModel =='wz'){
-            if(cc.weijifen.playType == "LG"){
-                sprite.spriteFrame = this.bkLogoImgLG;//龙港游戏logo
-            }else{
-                sprite.spriteFrame = this.bkLogoImgTP;//台炮游戏logo
-            }
-        }else if(cc.weijifen.GameBase.gameModel =='jx'){
-            sprite.spriteFrame = this.jxLogoImgLG;
-        }
-
 
         cc.weijifen.playersss = 0;  
         if(cc.weijifen.browserType=="wechat"){
@@ -472,7 +460,7 @@ cc.Class({
             this.right_player.active = false;
             this.deskcards_current_panel.width = 650;
             this.deskcards_top_panel.width = 650;
-            this.deskcards_top_panel.y =10;
+            // this.deskcards_top_panel.y =10;
         }else if(cc.weijifen.playerNum == 3){
             this.left_player.active = false;      
             this.deskcards_current_panel.width = 600;

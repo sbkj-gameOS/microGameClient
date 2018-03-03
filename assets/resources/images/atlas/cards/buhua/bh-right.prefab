@@ -284,7 +284,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "weijifen0": null,
+    "weijifen0": {
+      "__uuid__": "48bbc34e-d304-4947-a0fc-bba08f27205b"
+    },
     "target": {
       "__id__": 1
     },
