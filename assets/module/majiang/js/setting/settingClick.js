@@ -88,11 +88,9 @@ cc.Class({
         },
         // 设置桌面等
         gameSetting:function(){
-            debugger
             let mjdata = cc.find('Canvas').getComponent('MJDataBind');
             let setting = cc.instantiate(mjdata.gameSettingClick);
             setting.parent = mjdata.node;
-            debugger
         },
         gameOver_event: function(data,context){
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
@@ -144,6 +142,65 @@ cc.Class({
             let dialog = cc.find("Canvas/isover") ;
             clearTimeout(mj.t);
             mj.alert.put(dialog);
+        },
+          // 设置背景有颜色
+        bgsetting: function(){
+
+            let bg = cc.find('Canvas/bg');
+            if(cc.sys.localStorage.getItem('bgcolor')=='green'){
+                bg.children[0].active = true ;
+                bg.children[1].active = false;
+                bg.children[2].active = false;                
+            }else if(cc.sys.localStorage.getItem('bgcolor')=='blue'){
+                bg.children[0].active = false ;
+                bg.children[1].active = true;
+                bg.children[2].active = false; 
+            }else if(cc.sys.localStorage.getItem('bgcolor')=='red'){
+                bg.children[0].active = false ;
+                bg.children[1].active = false;
+                bg.children[2].active = true; 
+            }
+        },
+        cardsetting: function(){
+            // let he = this;
+            let he = cc.find('Canvas').getComponent('MJDataBind'),
+                setClick = cc.find('Canvas/js/settingClick').getComponent('settingClick');
+            debugger
+            //手牌颜色变化
+            for(let i = 0; i< he.cards_panel.children.length;i++){
+                he.cards_panel.children[i].getComponent('HandCards').cardcolor();
+            };
+            setClick.foreachCards(he.top_panel,'SpecCards');
+            setClick.foreachCards(he.left_panel,'SpecCards');
+            setClick.foreachCards(he.right_panel,'SpecCards');
+            //桌面牌颜色变化
+            setClick.foreachCards(he.deskcards_current_panel,'DeskCards');
+            setClick.foreachCards(he.deskcards_left_panel,'DeskCards');
+            setClick.foreachCards(he.deskcards_right_panel,'DeskCards');
+            setClick.foreachCards(he.deskcards_top_panel,'DeskCards');
+            //宝牌颜色变化
+            setClick.foreachCards(he.godcard.children[1],'DeskCards');        
+            //补花颜色变化 判断如果有的情况
+            setClick.foreachCards(cc.find('Canvas/content/handcards/my/bh-bottom'),'BuHuaAction');
+            setClick.foreachCards(cc.find("Canvas/content/handcards/right/buhua"),'BuHuaAction');
+            setClick.foreachCards(cc.find("Canvas/content/handcards/left/buhua"),'BuHuaAction');
+            setClick.foreachCards(cc.find("Canvas/content/handcards/top/buhua"),'BuHuaAction');
+            
+            //king里面啊的牌变化
+
+            setClick.foreachDancrads(cc.find("Canvas/content/handcards/deskcard/kong"));
+            setClick.foreachDancrads(cc.find("Canvas/content/handcards/topdesk/kong"));
+            setClick.foreachDancrads(cc.find("Canvas/content/handcards/leftdesk/kong"));
+            setClick.foreachDancrads(cc.find("Canvas/content/handcards/rightdesk/kong"));
+           
+
+        },
+        foreachCards: function(fangwei,ff){
+            for(let i = 0; i< fangwei.children.length;i++){
+                if(fangwei.children[i]!=null){
+                    fangwei.children[i].getComponent(ff).cardcolor();                
+                }
+            }
         },
     // }
 });

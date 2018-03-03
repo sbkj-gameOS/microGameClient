@@ -13,6 +13,12 @@ cc.Class({
         let menu = cc.find("Canvas/menu");
         cc.weijifen.menu.put(menu);
     },
+    closeSetting: function () {
+        let setting = cc.find("Canvas/setting");
+        // cc.weijifen.menu.put(setting);
+        setting.active = false;
+        
+    },
     toHall:function(){
         cc.director.loadScene("gameMain") ;
     },

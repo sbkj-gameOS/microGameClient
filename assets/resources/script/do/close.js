@@ -25,7 +25,10 @@ cc.Class({
     menu: function(){
         this.closeMenu();
     },
-
+    // 关闭音效等设置
+    setting: function () {
+        this.closeSetting();   
+    },  
     //退出之后返回房间
     hall:function(){
         this.leavaNotice();

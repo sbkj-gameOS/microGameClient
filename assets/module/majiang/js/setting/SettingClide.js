@@ -63,7 +63,6 @@ cc.Class({
 
         // this.soundSlider.progress = cc.weijifen.audio.getSFXVolume();
         // this.sound.fillRange =cc.weijifen.audio.getSFXVolume();
-        debugger  
         if(cc.find('Canvas/global')){
             this.bgonload();
             this.cardonload();
@@ -89,7 +88,6 @@ cc.Class({
             this.danji.active = false;
             this.shuangji.active = true;
         }
-        debugger
   
     },
     // onMusicSlide:function(slider){
@@ -150,32 +148,35 @@ cc.Class({
         }
     },
     cardClick(event){
+        debugger
         let parent = event.target.parent.parent;
-        let mj = cc.find('Canvas').getComponent('MajiangDataBind');        
+        let mj = cc.find('Canvas/js/settingClick').getComponent('settingClick');      
         for(let i = 0 ; i < parent.children.length; i++ ){
             parent.children[i].children[0].active = false;
         }
         event.target.parent.children[0].active = true;
 
         cc.sys.localStorage.setItem('cardcolor',event.target.name);
-        if(cc.find('Canvas/global')){
+        if(cc.find('Canvas/bg')){
             mj.cardsetting();     
         }   
     },
     BGClick(event){
-       
+        
         let parent = event.target.parent;
         for(let i = 0 ; i< parent.children.length; i++){
             parent.children[i].children[0].active = false;
         }
         event.target.children[0].active = true ; 
         cc.sys.localStorage.setItem('bgcolor',event.target.name);
-        if(cc.find('Canvas/global/main/bg/背景')){
-            let mj = cc.find('Canvas').getComponent('MajiangDataBind');      
+        if(cc.find('Canvas/bg')){
+            let mj = cc.find('Canvas/js/settingClick').getComponent('settingClick');      
             mj.bgsetting(); 
         }
+        
     },
     bgonload: function(){
+        
         if(cc.sys.localStorage.getItem('bgcolor')=='green'){
             this.YBG.active = true ;
             this.BBG.active = false;
@@ -205,4 +206,5 @@ cc.Class({
             this.Rcard.active = true; 
         }
     },
+   
 });
