@@ -130,12 +130,13 @@ cc.Class({
     },
     cardcolor:function(){
         if(cc.sys.localStorage.getItem('cardcolor')=='yellow'){
+        console.log('Buhua********')
             this.target.children[0].active = false;
             this.target.children[1].active = false;
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='green'){
+        }else if(cc.sys.localStorage.getItem('cardcolor')=='blue'){
             this.target.children[0].active = true;
             this.target.children[1].active = false;
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='red'){
+        }else if(cc.sys.localStorage.getItem('cardcolor')=='purple'){
             this.target.children[0].active = false;
             this.target.children[1].active = true;
         }

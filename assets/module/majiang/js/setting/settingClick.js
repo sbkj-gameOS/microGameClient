@@ -165,7 +165,6 @@ cc.Class({
             // let he = this;
             let he = cc.find('Canvas').getComponent('MJDataBind'),
                 setClick = cc.find('Canvas/js/settingClick').getComponent('settingClick');
-            debugger
             //手牌颜色变化
             for(let i = 0; i< he.cards_panel.children.length;i++){
                 he.cards_panel.children[i].getComponent('HandCards').cardcolor();
@@ -181,25 +180,40 @@ cc.Class({
             //宝牌颜色变化
             setClick.foreachCards(he.godcard.children[1],'DeskCards');        
             //补花颜色变化 判断如果有的情况
-            setClick.foreachCards(cc.find('Canvas/content/handcards/my/bh-bottom'),'BuHuaAction');
-            setClick.foreachCards(cc.find("Canvas/content/handcards/right/buhua"),'BuHuaAction');
-            setClick.foreachCards(cc.find("Canvas/content/handcards/left/buhua"),'BuHuaAction');
-            setClick.foreachCards(cc.find("Canvas/content/handcards/top/buhua"),'BuHuaAction');
+            setClick.foreachCards(cc.find('Canvas/cards/tesucards/huacard/current/buhua'),'BuHuaAction');
+            setClick.foreachCards(cc.find("Canvas/cards/tesucards/huacard/right/buhua"),'BuHuaAction');
+            setClick.foreachCards(cc.find("Canvas/cards/tesucards/huacard/left/buhua"),'BuHuaAction');
+            setClick.foreachCards(cc.find("Canvas/cards/tesucards/huacard/top/buhua"),'BuHuaAction');
             
             //king里面啊的牌变化
 
-            setClick.foreachDancrads(cc.find("Canvas/content/handcards/deskcard/kong"));
-            setClick.foreachDancrads(cc.find("Canvas/content/handcards/topdesk/kong"));
-            setClick.foreachDancrads(cc.find("Canvas/content/handcards/leftdesk/kong"));
-            setClick.foreachDancrads(cc.find("Canvas/content/handcards/rightdesk/kong"));
+            setClick.foreachDancrads(cc.find("Canvas/cards/handcards/current/kongcards"));
+            setClick.foreachDancrads(cc.find("Canvas/cards/handcards/top/kongcards"));
+            setClick.foreachDancrads(cc.find("Canvas/cards/handcards/left/kongcards"));
+            setClick.foreachDancrads(cc.find("Canvas/cards/handcards/right/kongcards"));
            
 
         },
         foreachCards: function(fangwei,ff){
-            for(let i = 0; i< fangwei.children.length;i++){
-                if(fangwei.children[i]!=null){
-                    fangwei.children[i].getComponent(ff).cardcolor();                
+            if (fangwei) {
+
+                for(let i = 0; i< fangwei.children.length;i++){
+                    if(fangwei.children.length){
+                        console.log('children_component---------------',fangwei.children[i].getComponent(ff))
+                        fangwei.children[i].getComponent(ff).cardcolor();                
+                    }
                 }
+            }
+            
+        },
+        foreachDancrads: function(fangwei){
+            if (fangwei) {
+            // console.log('name',fangwei.parent.name)
+            // console.log('this---------',this)
+
+                for(let i = 0 ; i < fangwei.children.length; i++){
+                    this.foreachCards(fangwei.children[i],'DanAction');
+                }    
             }
         },
     // }

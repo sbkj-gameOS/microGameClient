@@ -148,7 +148,6 @@ cc.Class({
         }
     },
     cardClick(event){
-        debugger
         let parent = event.target.parent.parent;
         let mj = cc.find('Canvas/js/settingClick').getComponent('settingClick');      
         for(let i = 0 ; i < parent.children.length; i++ ){
@@ -185,7 +184,7 @@ cc.Class({
             this.YBG.active = false ;
             this.BBG.active = true;
             this.RBG.active = false; 
-        }else if(cc.sys.localStorage.getItem('bgcolor')=='red'){
+        }else if(cc.sys.localStorage.getItem('bgcolor')=='purple'){
             this.YBG.active = false ;
             this.BBG.active = false;
             this.RBG.active = true; 
@@ -196,11 +195,11 @@ cc.Class({
             this.Ycard.active = true ;
             this.Bcard.active = false;
             this.Rcard.active = false;                
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='green'){
+        }else if(cc.sys.localStorage.getItem('cardcolor')=='blue'){
             this.Ycard.active = false ;
             this.Bcard.active = true;
             this.Rcard.active = false; 
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='red'){
+        }else if(cc.sys.localStorage.getItem('cardcolor')=='purple'){
             this.Ycard.active = false ;
             this.Bcard.active = false;
             this.Rcard.active = true; 

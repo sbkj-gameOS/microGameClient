@@ -8,7 +8,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        console.log(this.button)
         if(this.button){
             this.button.node.on('click', this.callback, this);
         }

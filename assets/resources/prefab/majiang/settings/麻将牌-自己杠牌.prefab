@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "endbh-top",
+    "_name": "麻将牌-自己杠牌",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -19,23 +19,20 @@
       },
       {
         "__id__": 5
-      },
-      {
-        "__id__": 8
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 8
       },
       {
-        "__id__": 12
+        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 13
+      "__id__": 10
     },
     "_id": "",
     "_opacity": 255,
@@ -54,8 +51,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 54
+      "width": 35,
+      "height": 53
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -63,8 +60,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0.8
+      "x": -93,
+      "y": 5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -108,8 +105,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30.5,
-      "height": 6.2
+      "width": 32.8,
+      "height": 41.4
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -117,8 +114,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -22.1
+      "x": 0.4,
+      "y": 4
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -136,7 +133,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "1f2373d9-86bb-4771-aa46-d042b5e7449e"
+      "__uuid__": "2e9c7670-b695-4048-959e-da3cf1d3a342"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -161,9 +158,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "a21cc8b1-0473-41cd-af0a-e158f316649f"
+      "__uuid__": "f7fafeff-9d95-4aa8-a286-44193e77fafd"
     },
-    "fileId": "a5c5gTTLJO2LeaqnWuRK3m",
+    "fileId": "4buxnnIKtEjoePsPKSaITy",
     "sync": false
   },
   {
@@ -201,8 +198,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30.5,
-      "height": 6.2
+      "width": 33.7,
+      "height": 41.4
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -210,8 +207,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -22.1
+      "x": 0.4,
+      "y": 4
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -229,7 +226,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "e4b2c5b9-4b13-423c-9122-c866b21e613a"
+      "__uuid__": "c89304e2-34f2-4fd3-8df0-db1fd814e9e0"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -254,75 +251,21 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "a21cc8b1-0473-41cd-af0a-e158f316649f"
+      "__uuid__": "f7fafeff-9d95-4aa8-a286-44193e77fafd"
     },
-    "fileId": "18oQksY3NNgYXgkCG5iPtW",
+    "fileId": "4a5vkav9FLD6ZR7L+D0F0i",
     "sync": false
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "财神-top",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": false,
-    "_components": [
-      {
-        "__id__": 9
-      }
-    ],
-    "_prefab": {
-      "__id__": 10
-    },
-    "_id": "",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 16.1,
-      "height": 17.1
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 7.2,
-      "y": 17.8
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
   },
   {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 8
+      "__id__": 1
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "90cddba5-e0a3-489d-b083-40122d88fdc8"
+      "__uuid__": "16af731a-a088-4500-aea2-58b93b21b8f8"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -338,78 +281,36 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "2cd601d7-09ae-419c-a77c-0fe55cfa14a8"
+      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
     }
   },
   {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "a21cc8b1-0473-41cd-af0a-e158f316649f"
-    },
-    "fileId": "80JspCnEVAEbw3IG7XQNCi",
-    "sync": false
-  },
-  {
-    "__type__": "cc.Sprite",
+    "__type__": "0f1077dQLtEG7Er/4Vm0dg1",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "d0dfc100-c4be-45de-8df6-1c51de881c06"
+    "atlas": {
+      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
     },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
-    }
-  },
-  {
-    "__type__": "f6d9dxkh+5Px4wnEJ49Wi6I",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
     "weijifen0": {
-      "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
+      "__uuid__": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1"
+    },
+    "cardvalue": {
+      "__id__": 1
     },
     "target": {
       "__id__": 1
     },
-    "b_chun": {
-      "__uuid__": "4bec0ee1-7308-4c61-8fc8-9b9ff553e099"
-    },
-    "b_ju": {
-      "__uuid__": "dbe2b53c-2652-4354-b2c5-de029e33b6a3"
-    },
-    "b_lan": {
-      "__uuid__": "e64b0bb0-7e86-42d5-85d4-66253eda12b0"
-    },
-    "b_xia": {
-      "__uuid__": "db8175c0-fc35-444e-9429-6ad8338146e2"
-    },
-    "b_zhu": {
-      "__uuid__": "5b899056-bedc-4b7a-aea6-aefb94e81bf8"
-    },
-    "hua": null
+    "jiantou": null,
+    "jiantou2": null,
+    "b_chun": null,
+    "b_ju": null,
+    "b_lan": null,
+    "b_xia": null,
+    "b_zhu": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -417,9 +318,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "a21cc8b1-0473-41cd-af0a-e158f316649f"
+      "__uuid__": "f7fafeff-9d95-4aa8-a286-44193e77fafd"
     },
-    "fileId": "dd1vobF7JEA7cmDZRhlOnl",
+    "fileId": "39K7F9QyNCrYLUCEluGZPk",
     "sync": false
   }
 ]

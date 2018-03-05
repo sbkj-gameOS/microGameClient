@@ -36,13 +36,15 @@ cc.Class({
         this.spec = false ;
     },
     cardcolor:function(){
+        
         if(cc.sys.localStorage.getItem('cardcolor')=='yellow'){
+            console.log('specCards,blue')
             this.cardvalue.children[0].active = false;
             this.cardvalue.children[1].active = false;
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='green'){
+        }else if(cc.sys.localStorage.getItem('cardcolor')=='blue'){
             this.cardvalue.children[0].active = true;
             this.cardvalue.children[1].active = false;
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='red'){
+        }else if(cc.sys.localStorage.getItem('cardcolor')=='purple'){
             this.cardvalue.children[0].active = false;
             this.cardvalue.children[1].active = true;
         }

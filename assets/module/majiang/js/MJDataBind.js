@@ -6,6 +6,7 @@ cc.Class({
         left_player: cc.Node,
         top_player: cc.Node,
         current_player:cc.Node,
+        godcard:cc.Node,
         playerprefab:{
             default : null ,
             type : cc.Prefab
@@ -43,6 +44,18 @@ cc.Class({
             type : cc.Node
         },
         searchlight:{
+            default:null ,
+            type : cc.Node
+        },
+        left_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        right_panel:{
+            default:null ,
+            type : cc.Node
+        },
+        top_panel:{
             default:null ,
             type : cc.Node
         },
