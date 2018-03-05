@@ -443,7 +443,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 12
@@ -624,7 +624,7 @@
       "__id__": 7
     },
     "_enabled": true,
-    "transition": 3,
+    "transition": 0,
     "pressedColor": {
       "__type__": "cc.Color",
       "r": 211,
@@ -672,7 +672,7 @@
       "__id__": 12
     },
     "checkEvents": [],
-    "_N$isChecked": true
+    "_N$isChecked": false
   },
   {
     "__type__": "cc.ToggleGroup",
