@@ -7,7 +7,8 @@ cc.Class({
         setting:cc.Prefab,
     },
     onLoad: function () {
-
+        let selectTest = require('menuSet');
+        cc.weijifen.selectTest = new selectTest();
     },
     init:function(name){
         this.clearPerfab();
@@ -30,6 +31,12 @@ cc.Class({
         }else{
             web.active = true;
             web = web.getComponent(cc.WebView);
+            var scheme = "matchList";// 这里是与内部页面约定的关键字
+            web.setJavascriptInterfaceScheme(scheme);
+            function jsCallback (url) {
+                console.log("jsCallback");
+            }
+            web.setOnJSCallback(jsCallback);
             /**
              * data数组
              * 0：服务协议内嵌url地址
@@ -41,7 +48,7 @@ cc.Class({
              * 6：提现内嵌url地址
              * 7：战况内嵌url地址
              * 8：排名内嵌url地址
-             * 9：
+             * 9：比赛大厅url地址
              * 10：
              * 11：
              * 12：
@@ -66,6 +73,9 @@ cc.Class({
                     ];
             web.url = cc.weijifen.url + data[name];
         }
+    },
+    testCode: function(){
+        console.log("testCode");
     },
     //清除留下的东西
     clearPerfab: function(){
