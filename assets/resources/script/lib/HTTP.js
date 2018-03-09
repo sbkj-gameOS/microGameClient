@@ -6,16 +6,16 @@ var HTTP = cc.Class({
     statics: {
         //127.0.0.1:8188 192.168.0.101
         // 测试
-        baseURL:"http://game.daily.bizpartner.cn",
-        wsURL : "http://game.daily.bizpartner.cn:9081",
+        // baseURL:"http://game.daily.bizpartner.cn",
+        // wsURL : "http://game.daily.bizpartner.cn:9081",
         
         // 正式
-        // baseURL:"http://game.bizpartner.cn",
-        // wsURL : "http://game.bizpartner.cn:9081",
+        baseURL:"http://game.bizpartner.cn",
+        wsURL : "http://game.bizpartner.cn:9081",
 
-      /*  // 于浩
-        baseURL:"http://192.168.123.222:8081",
-        wsURL : "http://192.168.123.222:9081",*/
+        // 于浩
+        // baseURL:"http://tssb.bizpartner.cn:8011",
+        // wsURL : "http://tssb.bizpartner.cn:9081",
 
         
         authorization: null,

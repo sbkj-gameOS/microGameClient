@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -4259,6 +4259,7 @@
     "readybth": null,
     "isOver": null,
     "gameSettingClick": null,
+    "room_num": null,
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
@@ -16794,7 +16795,9 @@
     "top_panel": {
       "__id__": 186
     },
-    "setting_coin": null,
+    "setting_coin": {
+      "__id__": 277
+    },
     "right_ready": {
       "__id__": 101
     },
@@ -16866,6 +16869,9 @@
     },
     "gameSettingClick": {
       "__uuid__": "2fc96a5d-da1f-4f6c-83f4-87a7df6bc09f"
+    },
+    "room_num": {
+      "__id__": 410
     }
   }
 ]

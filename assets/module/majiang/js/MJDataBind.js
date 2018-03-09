@@ -93,6 +93,11 @@ cc.Class({
         readybth: cc.Node,
         isOver: cc.Prefab,
         gameSettingClick: cc.Prefab,
+        setting_coin: cc.Node, 
+        room_num:{
+            default:null,
+            type: cc.Node
+        },
     },
     onLoad: function () {
         let socket = this.socket();
@@ -484,20 +489,18 @@ cc.Class({
             this.deskcards_top_panel.y =10;   
         }
 
-
         //房间号显示
         if(cc.weijifen.match =='false'){
             let roomNum = cc.find('Canvas/roomNum').getChildByName('room')._components[0];// roomNum节点
             roomNum.string = cc.weijifen.room;
             cc.log(roomNum)
         }else if(cc.weijifen.match == 'true'){
-            this.setting_coin.children[0].children[0].children[0].getCompoCanent(cc.Label).string = '退出';
-            this.setting_coin.children[1].active = false;
-            this.room_num.parent.children[2].active =false;
-            this.room_num.parent.children[1].getComponent(cc.Label).string = '比赛模式';
-            this.room_num.parent.children[1].x = this.room_num.parent.children[1].x +20;
+            this.setting_coin.children[1].active = false;//解散按钮隐藏
+            this.room_num.getComponent(cc.Label).string = '比赛模式';
             this.ready2.active = false;
-            this.readybth.x = -4;
+            this.readybth.active = false;
+            // this.readybth.x = -4;
+            this.current_ready.active = true;
         };
 
         /*设置圈数，圈数条显示*/
@@ -624,7 +627,11 @@ cc.Class({
         switch(state){
             case "init" :
                 object.desk_tip.active = false;
-                readybtn.active = true ;
+                if(cc.weijifen.match == 'true'){//非比赛模式准备按钮显示
+                    readybtn.active = false ;
+                }else{
+                    readybtn.active = true ;
+                }
                 if(cc.weijifen.room.length ==6){
                     ready2.active = true ;
                 }
