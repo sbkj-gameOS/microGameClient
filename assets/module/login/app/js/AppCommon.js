@@ -4,9 +4,40 @@ var a = 1;
 cc.Class({
     extends: weijifenCommon,
     properties: {
+        agree:{
+            default:null,
+            type: cc.Node
+        },
+        successBtn:{
+            default:null,
+            type: cc.Node
+        },
+        loginLogoNode:{
+            default:null,
+            type:cc.Node
+        },
+        WZLogo:{
+            default:null,
+            type:cc.SpriteFrame
+        },
+        CCLogo:{
+            default:null,
+            type:cc.SpriteFrame
+        },
+        JXLogo:cc.SpriteFrame,
     },
     // 首次加载页面方法
     onLoad: function () {
+        var GameBase = {'gameModel':'ch'} ;
+        cc.weijifen.GameBase = GameBase ;
+        var sprite = this.loginLogoNode.getComponent(cc.Sprite);
+        if(cc.weijifen.GameBase.gameModel =='wz'){
+            sprite.spriteFrame = this.WZLogo;
+        }else if(cc.weijifen.GameBase.gameModel == 'ch'){
+            sprite.spriteFrame = this.CCLogo;
+        }else if(cc.weijifen.GameBase.gameModel == 'jx'){
+            sprite.spriteFrame = this.JXLogo;
+        }
         cc.weijifen.game = {
             model : null ,
             playway : null,
@@ -70,13 +101,16 @@ cc.Class({
     },
 
     wxlogin: function(){
-        if(cc.sys.localStorage.getItem("xySuccess")!=1){
-            cc.sys.localStorage.setItem("xySuccess","1");
-            this.hall("uiuiui");
-            this.hall("0");
-        }else if(tongyi){
+        // if(cc.sys.localStorage.getItem("xySuccess")!=1){
+        //     cc.sys.localStorage.setItem("xySuccess","1");
+        //     this.hall("uiuiui");
+        //     this.hall("0");
+        // }else 
+        if(tongyi){
+            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "WXLoginOK","1");
+            //WXLoginOK
             //this.tourist();
-            //this.login();    
+            //this.login();
         }else{
             this.alert('请同意用户使用协议');
         }

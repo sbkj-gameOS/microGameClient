@@ -1,0 +1,84 @@
+var WJFCommon = require("WJFCommon");
+cc.Class({
+    extends: WJFCommon,
+
+    properties: {    
+        loaddingPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+        alertPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+        menuPrefab: {
+            default: null,
+            type: cc.Prefab
+        }
+    },
+    // use this for initialization
+    onLoad: function () {
+        this.initMgr();        
+        let he = this;
+        if(!cc.sys.isNative && cc.sys.isMobile){
+            var canvas = this.node.getComponent(cc.Canvas);
+            canvas.fitHeight = true;
+            canvas.fitWidth = true;
+        }
+        //预加载majiang场景
+        cc.director.preloadScene('majiang');
+    },
+    initMgr:function(){
+        let he = this;
+        if(cc.weijifen == null){
+            cc.weijifen = {};
+            cc.weijifen.settingflag = false;
+            cc.weijifen.http = require("HTTP");
+            cc.weijifen.localStorage = require('IOUtils');
+            cc.weijifen.seckey = "weijifen";
+            cc.weijifen.dialog = null ;
+            cc.weijifen.dialogtwo = null;
+            cc.weijifen.paystatus = null ;
+            cc.weijifen.starttime ='';
+            cc.weijifen.room = null;
+            cc.weijifen.loadding = new cc.NodePool();
+            cc.weijifen.loadding.put(cc.instantiate(this.loaddingPrefab)); // 创建节点
+            cc.weijifen.dialog = new cc.NodePool();
+            cc.weijifen.dialog.put(cc.instantiate(this.alertPrefab)); // 创建节点
+            cc.weijifen.menu = new cc.NodePool();
+            cc.weijifen.menu.put(cc.instantiate(this.menuPrefab));//菜单框
+            //单击/双击
+            cc.weijifen.click = cc.sys.localStorage.getItem('click');
+            //游戏场景的背景
+            cc.weijifen.bgcolor = cc.sys.localStorage.getItem('bgcolor');
+            //唱戏场景的麻将牌花色
+            cc.weijifen.cardcolor = cc.sys.localStorage.getItem('cardcolor');
+            //声音的
+            var Audios = require("Audios");
+            cc.weijifen.audio = new Audios();
+            cc.weijifen.audio.init();
+            
+            if(cc.sys.isNative){
+                window.io = SocketIO;
+            }else{
+                window.io = require("socket.io");
+            }
+
+            cc.weijifen.alert = function(code) {
+                if(cc.weijifen.dialog.size() > 0){
+                    this.alertdialog = cc.weijifen.dialog.get();
+                    this.alertdialog.parent = cc.find("Canvas");
+                    let node = this.alertdialog.getChildByName("message") ;
+                    if(node!=null && node.getComponent(cc.Label)){
+                        node.getComponent(cc.Label).string = code ;
+                    }
+                }
+                return this.alertdialog;
+            }
+            //播放背景音乐
+            if(cc.sys.localStorage.getItem('nobgm') != 'true'){
+                cc.weijifen.audio.playBGM("bgFight.mp3");
+            }
+        }
+    },
+});
