@@ -83,7 +83,6 @@ cc.Class({
 
     },
     tzsucess: function(result,object){
-        debugger
 		let data = JSON.parse(result);  
         let message = cc.find('Canvas').getComponent('hallDataBind').message;
         // if (data.context) {}
