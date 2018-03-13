@@ -65,7 +65,9 @@ cc.Class({
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this)   
             this.gundongText();
             //获取是否有新的通知
-            cc.weijifen.http.httpGet('/activity/findActivityListGame?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this);            
+            // cc.weijifen.http.httpGet('/activity/findActivityListGame?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this);  
+            cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
+
         }
         // console.log('cc.weijifen---handDataBind',cc.weijifen)
 
@@ -81,12 +83,20 @@ cc.Class({
 
     },
     tzsucess: function(result,object){
-		var data = JSON.parse(result);  
+        debugger
+		let data = JSON.parse(result);  
+        let message = cc.find('Canvas').getComponent('hallDataBind').message;
+        // if (data.context) {}
+            // message = 
+        data.context ? message.string = data.context : message.string = '暂无公告！';
         if(data.tz){
             object.hall(3);
-        }
+        }// 通知弹框
+
 	},
 	tzerror: function(result,object){	
+        debugger
+
     },
     roomSuccess: function(result,object){
         // 
