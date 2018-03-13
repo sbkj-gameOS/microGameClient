@@ -43,13 +43,15 @@ cc.Class({
          * 如果没有对话数据，则重新使用游客注册接口
          */
         var xySuccess = cc.weijifen.localStorage.get("xySuccess");
-        this.tourist();        
+        /*this.tourist();*/  
+
         if(xySuccess == 1){
             this.successBtn.active = false;
             this.login();
         }       
         WXorBlow = require('ShareWx');  
         cc.weijifen.WXorBlow = new WXorBlow();
+        // cc.weijifen.authorization = '61d8be72e66449aa9e0dc93df8a6122c';//测试用token、
         cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,this.roomSuccess,this.roomError,this);        
         cc.weijifen.WXorBlow.init();   
         //请求获取当前用户是否已经参加了房间   
