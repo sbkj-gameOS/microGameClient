@@ -711,7 +711,7 @@ cc.Class({
             gameStartInit.destroycards('right',context);
             gameStartInit.destroycards('top',context);
             gameStartInit.destroyPlayer(context);  
-            gameStartInit.tingactivefalse();  
+            context.tingactivefalse(context);  
             gameStartInit.inintBuHuan();
             //清空补花数据
             gameStartInit.destroybuhuas('left',context);

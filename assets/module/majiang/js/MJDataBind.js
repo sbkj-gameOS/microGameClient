@@ -776,6 +776,13 @@ cc.Class({
         context.top_ready.active = false;
         context.current_ready.active =false;  
     },
+    tingactivefalse: function(context){
+         context.currentting.active =false;
+         context.topting.active =false;
+         context.rightting.active =false;
+         context.leftting.active =false;
+         
+    },
     canceltimer:function(object){
         object.unscheduleAllCallbacks();
         object.mjtimer.string = "00" ;
