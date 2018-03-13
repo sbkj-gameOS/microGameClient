@@ -65,12 +65,13 @@ cc.Class({
                         "提现内嵌url地址",
                         "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
-                        "",
+                        "/match/goMatchPage?token="+cc.weijifen.authorization+"",
                         "",
                         "",
                         "",
                         "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
                     ];
+            cc.log(web);
             web.url = cc.weijifen.url + data[name];
         }
     },
