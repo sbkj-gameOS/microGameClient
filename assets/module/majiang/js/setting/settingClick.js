@@ -72,6 +72,7 @@ cc.Class({
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
             if(mj.alert.size()>0){
+                //debugger
                 var alert = mj.alert.get();
                 alert.parent = cc.find("Canvas");
                 let node = alert.getComponent('overGameClick') ;
@@ -137,13 +138,14 @@ cc.Class({
             // jiantou.xiaochu();
         },
         unOver_event: function(){
+            //debugger
             let mj = cc.find('Canvas').getComponent('MJDataBind')
             cc.sys.localStorage.removeItem('unOver');
-            let dialog = cc.find("Canvas/isover") ;
+           /* let dialog = cc.find("Canvas/alert") ;
             clearTimeout(mj.t);
-            mj.alert.put(dialog);
+            mj.alert.put(dialog);*/
         },
-          // 设置背景有颜色
+          // 设置背景有颜色    
         bgsetting: function(){
 
             let bg = cc.find('Canvas/bg');
