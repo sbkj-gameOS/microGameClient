@@ -8,7 +8,7 @@ cc.Class({
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
-        cc.weijifen.match = new h5CallCocos();
+        // cc.weijifen.match = new h5CallCocos();
     },
     init:function(name){
         this.clearPerfab();

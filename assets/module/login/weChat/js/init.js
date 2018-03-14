@@ -68,6 +68,8 @@ cc.Class({
             if(cc.sys.localStorage.getItem('nobgm') != 'true'){
                 cc.weijifen.audio.playBGM("bgFight.mp3");
             }
+            var h5CallCocos = require('h5CallCocos');
+            cc.weijifen.match = new h5CallCocos();
         }
     },
 });
