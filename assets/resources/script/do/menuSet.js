@@ -7,8 +7,8 @@ cc.Class({
         setting:cc.Prefab,
     },
     onLoad: function () {
-        let selectTest = require('menuSet');
-        cc.weijifen.selectTest = new selectTest();
+        let h5CallCocos = require('h5CallCocos');
+        cc.weijifen.match = new h5CallCocos();
     },
     init:function(name){
         this.clearPerfab();
