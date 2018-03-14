@@ -48,7 +48,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -2310,8 +2310,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 63,
-      "height": 63
+      "width": 73,
+      "height": 73
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2520,8 +2520,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 64,
-      "height": 64
+      "width": 74,
+      "height": 74
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2551,7 +2551,7 @@
       "__uuid__": "23ca8900-57a2-4aea-a448-4b8245438147"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -2607,8 +2607,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 126,
-      "height": 28
+      "width": 165,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2616,7 +2616,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -327,
+      "x": -311,
       "y": 265
     },
     "_skewX": 0,
@@ -2659,8 +2659,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 42,
-      "height": 40
+      "width": 67.8,
+      "height": 24.6
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2668,8 +2668,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 15,
-      "y": 0
+      "x": 17.3,
+      "y": 0.9
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2687,8 +2687,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 18,
-    "_fontSize": 18,
+    "_actualFontSize": 14,
+    "_fontSize": 25,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -2696,7 +2696,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "0",
+    "_N$string": "999998",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -2714,7 +2714,7 @@
       "__uuid__": "7200f6d8-64d1-4008-88b3-531dbb591350"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -3055,8 +3055,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 144.70000000000002,
-      "height": 26
+      "width": 193.70000000000002,
+      "height": 32
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3064,8 +3064,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -318,
-      "y": 297
+      "x": -296,
+      "y": 303
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3107,7 +3107,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 141,
+      "width": 190,
       "height": 40
     },
     "_rotationX": 0,
@@ -3135,14 +3135,14 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 15,
-    "_fontSize": 20,
+    "_actualFontSize": 22,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "ljhsneererreerererer",
+    "_N$string": "T。篮球疯子爱健身",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -3186,8 +3186,8 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 144.70000000000002,
-      "height": 26
+      "width": 193.70000000000002,
+      "height": 32
     },
     "_resize": 1,
     "_N$layoutType": 1,
@@ -3481,7 +3481,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 481.46,
+      "width": 197.52,
       "height": 30
     },
     "_rotationX": 0,
@@ -3516,7 +3516,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "Labelwrewrwqrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+    "_N$string": "祝您游戏愉快~",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
