@@ -56,11 +56,11 @@ cc.Class({
              * @type {Array}
              */
             var data = [
-                        "服务协议内嵌url地址",
-                        "家长监护工程内嵌url地址",
+                        "/help/serviceXy",
+                        "/help/parentJhgc",
                         "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
                         "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
-                        "帮助内嵌url地址",
+                        "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
                         "/shop/shopPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "提现内嵌url地址",
                         "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
