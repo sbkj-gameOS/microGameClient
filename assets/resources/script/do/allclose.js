@@ -24,7 +24,8 @@ cc.Class({
     },
     closeWIND: function(){
         // 摧毁弹出框
-        cc.find('Canvas/alert').destroy();
+        // cc.find('Canvas/alert').destroy();
+        cc.find('Canvas/setting').destroy();
     },
     leavaNotice: function(){
         this.node.dispatchEvent( new cc.Event.EventCustom('leaveGame', true) );

@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "c8fe17e3-42e4-4f58-98ec-b07830291960",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "桌面信息背景": {
+      "ver": "1.0.3",
+      "uuid": "5c19eb8a-84c1-4c1e-8ca2-5199bb150eb8",
+      "rawTextureUuid": "c8fe17e3-42e4-4f58-98ec-b07830291960",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 671,
+      "height": 32,
+      "rawWidth": 671,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
