@@ -101,13 +101,17 @@ cc.Class({
     },
     onLoad: function () {
         let socket = this.socket();
+
+        let self = this ;
         //初始化房间信息
-        this.playerIsReady();
+        socket.on('connect', function () {
+            self.playerIsReady(self);
+        });
+
 
         // //初始化对象池
         this.init_pool();
 
-        let self = this ;
         // if(this.ready()){
         //     let socket = this.socket();
         //     *
@@ -453,36 +457,36 @@ cc.Class({
         
     },
     // 初始化房间信息
-    playerIsReady:function () {
+    playerIsReady:function (self) {
 
         cc.weijifen.playersss = 0;  
         if(cc.weijifen.browserType=="wechat"){
-            this.wxButton.node.active = true ;
+            self.wxButton.node.active = true ;
             let room ='';//房间号
             if(cc.weijifen.match != 'true'){
                 room = cc.weijifen.room
             }
             cc.weijifen.WXorBlow.shareRoom(room);                    
         }else if(cc.weijifen.browserType != null){
-            this.ggButton.node.active = true ;
+            self.ggButton.node.active = true ;
         }
          
-        this.joinRoom();
+        self.joinRoom();
         //设置游戏玩家数量
         if(cc.weijifen.playerNum == 2){
-            this.left_player.active = false;
-            this.right_player.active = false;
-            this.deskcards_current_panel.width = 650;
-            this.deskcards_top_panel.width = 650;
+            self.left_player.active = false;
+            self.right_player.active = false;
+            self.deskcards_current_panel.width = 650;
+            self.deskcards_top_panel.width = 650;
             // this.deskcards_top_panel.y =10;
         }else if(cc.weijifen.playerNum == 3){
-            this.left_player.active = false;      
-            this.deskcards_current_panel.width = 600;
-            this.deskcards_top_panel.width = 600;  
-            this.deskcards_current_panel.x = -154;
-            this.deskcards_top_panel.x = -144;     
-            this.deskcards_right_panel.x = -83;  
-            this.deskcards_top_panel.y =10;   
+            self.left_player.active = false;      
+            self.deskcards_current_panel.width = 600;
+            self.deskcards_top_panel.width = 600;  
+            self.deskcards_current_panel.x = -154;
+            self.deskcards_top_panel.x = -144;     
+            self.deskcards_right_panel.x = -83;  
+            self.deskcards_top_panel.y =10;   
         }
 
         //房间号显示
@@ -491,23 +495,23 @@ cc.Class({
             roomNum.string = cc.weijifen.room;
             cc.log(roomNum)
         }else if(cc.weijifen.match == 'true'){
-            this.setting_coin.children[1].active = false;//解散按钮隐藏
-            this.room_num.getComponent(cc.Label).string = '比赛模式';
-            this.ready2.active = false;
-            this.readybth.active = false;
+            self.setting_coin.children[1].active = false;//解散按钮隐藏
+            self.room_num.getComponent(cc.Label).string = '比赛模式';
+            self.ready2.active = false;
+            self.readybth.active = false;
             // this.readybth.x = -4;
-            this.current_ready.active = true;
+            self.current_ready.active = true;
         };
 
         /*设置圈数，圈数条显示*/
         let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点
-        this.maxRound = 0;
+        self.maxRound = 0;
         if(cc.weijifen.maxRound){
-            this.maxRound = cc.weijifen.maxRound;
+            self.maxRound = cc.weijifen.maxRound;
         }
-        // this.totaljs.string = '圈数  '+ this.maxRound;
-        this.routes = {};
-        quanNum.string = '0/' + this.maxRound;
+        // self.totaljs.string = '圈数  '+ self.maxRound;
+        self.routes = {};
+        quanNum.string = '0/' + self.maxRound;
     },
     /*
     * 初始化对象池
