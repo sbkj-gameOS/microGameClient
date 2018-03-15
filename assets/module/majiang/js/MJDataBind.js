@@ -139,8 +139,6 @@ cc.Class({
 
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
-            console.log(data.command);
-            console.log(data);
             self.getSelf().route(data.command)(data , self);
         });
 
@@ -149,8 +147,6 @@ cc.Class({
          */
         socket.on("players" , function(result){
             var data = self.getSelf().parse(result) ;
-            console.log('players');
-            console.log(data);
             self.getSelf().route("players")(data, self);
         });
 
@@ -585,7 +581,6 @@ cc.Class({
     },
     joinRoom:function(){
         //开始匹配
-        console.log('--------------');
         let socket = this.socket();
         var param = {
             token:cc.weijifen.authorization,

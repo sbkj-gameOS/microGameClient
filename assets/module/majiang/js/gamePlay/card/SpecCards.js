@@ -38,7 +38,6 @@ cc.Class({
     cardcolor:function(){
         
         if(cc.sys.localStorage.getItem('cardcolor')=='yellow'){
-            console.log('specCards,blue')
             this.cardvalue.children[0].active = false;
             this.cardvalue.children[1].active = false;
         }else if(cc.sys.localStorage.getItem('cardcolor')=='blue'){

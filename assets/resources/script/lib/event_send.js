@@ -17,8 +17,6 @@ cc.Class({
         */
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
-            console.log(data.command);
-            console.log(data);
             self.getSelf().route(data.command)(data , self);
         });
     },

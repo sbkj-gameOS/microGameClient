@@ -9,7 +9,6 @@ cc.Class({
     },
     mosiOrpepleClick(event){
         let moshi = event.target.name;
-        console.log(moshi)
         return moshi;
     },
     gameTypeClick(toggle,playerData){

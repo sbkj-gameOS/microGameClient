@@ -77,7 +77,6 @@ cc.Class({
     click: function(){
         var room={};
         room.room = array;
-        console.log(room);
         
         if(cc.weijifen.authorization){
             cc.weijifen.room =array;
@@ -186,7 +185,6 @@ cc.Class({
         cc.weijifen.http.httpGet('/api/room/match?token='+cc.weijifen.authorization+'&type='+type,this.jjsucess,this.jjerror,this);
     },
     jjsucess: function(result,object){
-        console.log(result);
         
         var data = JSON.parse(result);
         //playerNum,cardNum

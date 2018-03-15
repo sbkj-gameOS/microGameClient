@@ -58,7 +58,6 @@ cc.Class({
         * button2为离开但不退游戏的下部按钮
         * labei：等待玩家显示字
         */
-        console.log('解散按钮')
         //this.scene("gameMain" , this);
         cc.sys.localStorage.setItem('unOver','true');
         this.button.active = false;
@@ -96,7 +95,6 @@ cc.Class({
 
 
         //debugger
-        console.log('离开房间')
         cc.sys.localStorage.setItem('dis','true');        
         this.disconnect();
         if(cc.weijifen.GameBase.gameModel=='wz'){
@@ -110,7 +108,6 @@ cc.Class({
         this.time =this.time-1;
         if(this.labei2 && this.time > -1){
             this.labei2.getComponent(cc.Label).string = this.time;
-            console.log(this.time);
             return
         }
         /*let alert = cc.find('Canvas/alert');

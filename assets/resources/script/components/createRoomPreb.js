@@ -12,7 +12,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        console.log('ppp')
         if(cc.weijifen.GameBase.gameModel =='ch'){
             this.allfunction(['长春'],[this.ch]);
         }else if(cc.weijifen.GameBase.gameModel =='wz'){

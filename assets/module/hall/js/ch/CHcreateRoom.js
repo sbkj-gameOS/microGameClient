@@ -27,7 +27,6 @@ cc.Class({
     },
     // 点击创建按钮
     createClick:function(){
-        console.log('开始创建长春麻将，CHcreateRoom')
         playerData = playerData.split("@@");
         playerData.pop();
         garams.waytype = playerData;

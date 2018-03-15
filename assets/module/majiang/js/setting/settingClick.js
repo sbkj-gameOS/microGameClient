@@ -96,7 +96,6 @@ cc.Class({
         gameOver_event: function(data,context){
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
             
-            console.log('进入Game_over_event')
             let time;
             if(cc.sys.localStorage.getItem('unOver')=='true'){
                 time = 0;
@@ -108,8 +107,6 @@ cc.Class({
             
         },
         endGameOver: function(data,context){
-            
-            console.log('进入endGameOver')
 
             let temp = cc.instantiate(this.summary) ;
             temp.parent = context.root() ;
@@ -201,7 +198,7 @@ cc.Class({
 
                 for(let i = 0; i< fangwei.children.length;i++){
                     if(fangwei.children.length){
-                        console.log('children_component---------------',fangwei.children[i].getComponent(ff))
+                        // console.log('children_component---------------',fangwei.children[i].getComponent(ff))
                         fangwei.children[i].getComponent(ff).cardcolor();                
                     }
                 }

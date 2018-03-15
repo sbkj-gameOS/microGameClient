@@ -361,7 +361,6 @@ cc.Class({
             var buhua;
             if(temp_player.buHua){
                 buhua = context.decode(temp_player.buHua);//补花
-                console.log(buhua);
                 let temp = gameStartInit.player(temp_player.playuser, context);
                 for(var i = 0;i<buhua.length;i++){
                     gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
@@ -372,7 +371,6 @@ cc.Class({
             for(var i = 0; i <data.players.length;i++){
                 if(data.players[i].buHua){
                     buhua = context.decode(data.players[i].buHua);//补花
-                    console.log(buhua);
                     let temp = gameStartInit.player(data.players[i].playuser, context);
                     //console.log(temp.tablepos);
                     for(var j = 0;j<buhua.length;j++){

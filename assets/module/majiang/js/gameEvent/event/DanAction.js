@@ -179,7 +179,6 @@ cc.Class({
     },    
     cardcolor:function(){
         if(cc.sys.localStorage.getItem('cardcolor')=='yellow'){
-            console.log('DanAction,blue')
             this.target.children[0].active = false;
             this.target.children[1].active = false;
             this.target.children[2].active = false;
