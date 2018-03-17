@@ -110,7 +110,8 @@ cc.Class({
         
         this.hu.string += noTing + '  '+drop + ' ' + tai;
         let player = cc.find('Canvas').getComponent('MJDataBind').playersarray;
-        var cardsss = this.decode(this.data.cards);
+        var cardsss = this.data.cards;
+        // var cardsss = this.decode(this.data.cards);
         function sortNumber(a,b){return a - b}
         cardsss.sort(sortNumber);
         
@@ -146,7 +147,8 @@ cc.Class({
         for(let i = 0;i<this.data.actions.length;i++){
             let kong = cc.instantiate(this.mjkong);
             kong.parent = this.mjloyad;
-            let action = this.decode(this.data.actions[i].card);
+            // let action = this.decode(this.data.actions[i].card);
+            let action = this.data.actions[i].card;
             function sortNumber(a,b){return a - b};
             action.sort(sortNumber);
                 if(this.data.actions[i].action=='gang'&&action.length ==1){

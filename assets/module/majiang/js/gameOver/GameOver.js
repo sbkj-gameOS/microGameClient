@@ -15,6 +15,7 @@ cc.Class({
     //结束游戏    结算
     statics: {
     	allcards_event:function(data , context){
+    		cc.log('----------进入allcards监听函数--------')
     		context = cc.find('Canvas').getComponent('MJDataBind');
     		var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
     		var gameOver = require('GameOver');
@@ -42,6 +43,7 @@ cc.Class({
 	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000)
 	    },
 	    endList:function(data,context,playerid,a){
+	    	cc.log('--------进入结算列表--------data',data)
 	    	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
 	    	var gameOver = require('GameOver');
 	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
@@ -60,6 +62,7 @@ cc.Class({
 	        
 	    },
 	    huaction: function(playerid){
+	    	cc.log('--------进入huaction-------',playerid)
 	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
 	    	var gameStartInit = require('GameStartInit');
 	        if(playerid){

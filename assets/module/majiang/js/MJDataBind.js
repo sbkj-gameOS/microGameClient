@@ -100,65 +100,97 @@ cc.Class({
         },
     },
     onLoad: function () {
-        let socket = this.socket();
-
         let self = this ;
-        //初始化房间信息
-        socket.on('connect', function () {
-            self.playerIsReady(self);
-        });
-
+        let socket = this.socket(self);
 
         // //初始化对象池
         this.init_pool();
 
+        var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
+        //初始化房间信息
+        socket.on('connect', function () {
+            self.playerIsReady(self);
+            roomInit = require('RoomInit');
+            gameStartInit = require('GameStartInit');
+            self.map("joinroom" , roomInit.joinroom_event,self);//加入房间
+            self.map("banker" , gameStartInit.banker_event,self);//庄家
+            self.map("players" , gameStartInit.players_event,self);//接受玩家列表
+            self.map("play" , gameStartInit.play_event,self);//人齐了，接收发牌信息
+            gamePlay = require('GamePlay');
+            self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
+            self.map("takecards" , gamePlay.takecard_event,self);//我出的牌  
+            self.map("dealcard" , gamePlay.dealcard_event,self) ;                //我出的牌
+            gameEvent = require('GameEvent');
+            self.map("action" , gameEvent.action_event,self);//服务端发送的 动作事件，有杠碰吃胡过可以选择
+            self.map("selectaction" , gameEvent.selectaction_event,self) ;        //我选择的动作， 杠碰吃胡 
+            settingClick = require('settingClick');
+            settingClick = new settingClick();
+            // var settingClick = cc.find('Canvas/js/settingClick');
+            gameOver = require('GameOver');
+            self.map("allcards" , gameOver.allcards_event,self) ;
+            self.map("isOver" , settingClick.isOver_event,self);
+            self.map("gameOver",settingClick.gameOver_event,self);
+            self.map("over" , settingClick.over_event,self);
+            self.map("unOver" , settingClick.unOver_event,self);
+        });
         // if(this.ready()){
         //     let socket = this.socket();
         //     *
         //      * 接受指令
-            
-            var roomInit = require('RoomInit');
-            var gameStartInit = require('GameStartInit');
-            this.map("joinroom" , roomInit.joinroom_event);//加入房间
-            this.map("banker" , gameStartInit.banker_event);//庄家
-            this.map("players" , gameStartInit.players_event);//接受玩家列表
-            this.map("play" , gameStartInit.play_event);//人齐了，接收发牌信息
-            var gamePlay = require('GamePlay');
-            this.map("lasthands" , gamePlay.lasthands_event);//庄家开始打牌了，允许出牌
-            this.map("takecards" , gamePlay.takecard_event);//我出的牌  
-            this.map("dealcard" , gamePlay.dealcard_event) ;                //我出的牌
-            var gameEvent = require('GameEvent');
-            this.map("action" , gameEvent.action_event);//服务端发送的 动作事件，有杠碰吃胡过可以选择
-            this.map("selectaction" , gameEvent.selectaction_event) ;        //我选择的动作， 杠碰吃胡 
-            var settingClick = require('settingClick');
-            var settingClick = new settingClick();
-            // var settingClick = cc.find('Canvas/js/settingClick');
-            var gameOver = require('GameOver');
-            this.map("allcards" , gameOver.allcards_event) ;
-            this.map("isOver" , settingClick.isOver_event);
-            this.map("gameOver",settingClick.gameOver_event);
-            this.map("over" , settingClick.over_event);
-            this.map("unOver" , settingClick.unOver_event);
         // }
 
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
-            self.getSelf().route(data.command)(data , self);
+            console.log('command---',data.command);
+            cc.log('data+++',data);
+          /*  if (data.command == 'play') {
+                console.log('--------发送play事件------')
+            } 
+            if (data.command == 'players') {
+                console.log('--------发送players事件------')
+            }
+            if (data.command == 'banker') {
+                console.log('--------发送banker事件------')
+            }*/
+            /*if (data.command == 'action') {
+                console.log('--------发送action事件------')
+            }*/
+           /* if (data.command == 'lasthands') {
+                console.log('--------发送lasthands事件------')
+            }*/
+            self.getSelf().route(data.command,self)(data , self);
         });
-
+        socket.on("play",function(result){
+            var data = self.getSelf().parse(result);
+            self.getSelf().route('play',self)(data , self);
+        })
+        socket.on("takecards",function(result){
+            var data = self.getSelf().parse(result);
+            self.getSelf().route('takecards',self)(JSON.parse(data) , self);
+        })
+        socket.on("action",function(result){
+            var data = self.getSelf().parse(result);
+            cc.log('%%%%%%%%%%%%%%%%%%%%%%%%监听到action事件%%%%%%%%%%%%%%',data)
+            self.getSelf().route('action',self)(JSON.parse(data) , self);
+        })
+        socket.on("allcards",function(result){
+            var data = self.getSelf().parse(result);
+            cc.log('##################监听到allcards事件######',data)
+            self.getSelf().route('allcards',self)(JSON.parse(data) , self);
+        })
         /**
          * 接受传送的 玩家列表（含AI）
          */
         socket.on("players" , function(result){
             var data = self.getSelf().parse(result) ;
-            self.getSelf().route("players")(data, self);
+            self.getSelf().route("players",self)(data, self);
         });
 
         socket.on("talkOnSay" , function(result){
             self.talk_event(result,null) ;
         });
 
-        this.node.on('overGame',function(event){
+        self.node.on('overGame',function(event){
             let socket = self.getSelf().socket();
             if(event.getUserData()){
                 socket.emit('overGame',JSON.stringify({
@@ -170,7 +202,7 @@ cc.Class({
             }
         });
 
-        this.node.on('readyGM',function(event){ 
+        self.node.on('readyGM',function(event){ 
             //alert();
             var context = cc.find('Canvas').getComponent('MJDataBind'); 
             context.current_ready.active = true ;    
@@ -179,9 +211,11 @@ cc.Class({
             }))
         });
 
-        this.node.on('takecard', function (event) {
+        // 出牌拿牌
+        self.node.on('takecard', function (event) {
             var context = cc.find('Canvas').getComponent('MJDataBind');             
-            // cc.weijifen.audio.playSFX('select.mp3');                            
+            // cc.weijifen.audio.playSFX('select.mp3');            
+            // debugger                
             if(cc.sys.localStorage.getItem('take') == 'true'){
                 let card = event.target.getComponent("TakeMJCard");
                 if(card != null){
@@ -217,7 +251,7 @@ cc.Class({
         });
 
 
-        this.node.on('mjSelection',function(event){
+        self.node.on('mjSelection',function(event){
             let father = cc.find('Canvas').getComponent('MJDataBind').selectfather;
             father.active= false;
             father.children[0].children[1].children.splice(0,father.children[0].children[1].children.length);
@@ -239,7 +273,7 @@ cc.Class({
         /**
          * ActionEvent发射的事件 ， 点击 碰
          */
-        this.node.on("peng",function(event){
+        self.node.on("peng",function(event){
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -250,7 +284,8 @@ cc.Class({
             self.getSelf().shouOperationMune();
             event.stopPropagation();
         });
-        this.node.on("dan",function(event){
+        self.node.on("dan",function(event){
+            // debugger
             cc.sys.localStorage.removeItem('guo');            
             var context = cc.find('Canvas').getComponent('MJDataBind'); 
             if ( context.dans && context.dans.length > 1 ) {
@@ -271,7 +306,7 @@ cc.Class({
             self.getSelf().shouOperationMune();
             event.stopPropagation();
         });
-        this.node.on("gang",function(event){
+        self.node.on("gang",function(event){
             cc.sys.localStorage.removeItem('guo');            
             var context = cc.find('Canvas').getComponent('MJDataBind'); 
             if ( context.gangs && context.gangs.length > 1 ) {
@@ -296,7 +331,7 @@ cc.Class({
         /**
          * ActionEvent发射的事件 ， 点击 吃
          */
-        this.node.on("chi",function(event){
+        self.node.on("chi",function(event){
             cc.sys.localStorage.removeItem('guo');            
             var context = cc.find('Canvas').getComponent('MJDataBind'); 
             if ( context.chis && context.chis.length > 1 ) {
@@ -333,7 +368,8 @@ cc.Class({
         /**
          * ActionEvent发射的事件 ， 点击 听
          */
-        this.node.on("ting",function(event){
+        self.node.on("ting",function(event){
+            cc.log('发送-----------听-----------听----')
             cc.sys.localStorage.removeItem('guo');            
             /*let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -368,8 +404,9 @@ cc.Class({
         /**
          * ActionEvent发射的事件 ， 点击 胡
          */
-        this.node.on("hu",function(event){
-            //cc.beimi.audio.playSFX('nv/hu.mp3');            
+        self.node.on("hu",function(event){
+            //cc.beimi.audio.playSFX('nv/hu.mp3');  
+            cc.log('-----------监听到“胡”事件-------------')          
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -383,7 +420,7 @@ cc.Class({
         /**
          * ActionEvent发射的事件 ， 点击 过
          */
-        this.node.on("guo",function(event){
+        self.node.on("guo",function(event){
             //当自己收到的事件是guo时  为true  别人
             if(cc.sys.localStorage.getItem('guo')!='true'||cc.sys.localStorage.getItem('alting')=='true'){
                 cc.sys.localStorage.removeItem('altake');
@@ -401,7 +438,7 @@ cc.Class({
         });
         // gameStartInit.players_event();
 
-        this.node.on('restar',function(event){
+        self.node.on('restar',function(event){
             var gameStartInit = require('GameStartInit');
             if(event.getUserData()){                
                 if(cc.weijifen.GameBase.gameModel=='wz'){
@@ -474,6 +511,7 @@ cc.Class({
         self.joinRoom();
         //设置游戏玩家数量
         if(cc.weijifen.playerNum == 2){
+            // cc
             self.left_player.active = false;
             self.right_player.active = false;
             self.deskcards_current_panel.width = 650;
@@ -509,9 +547,11 @@ cc.Class({
         if(cc.weijifen.maxRound){
             self.maxRound = cc.weijifen.maxRound;
         }
-        // self.totaljs.string = '圈数  '+ self.maxRound;
+        // this.totaljs.string = '圈数  '+ this.maxRound;
         self.routes = {};
         quanNum.string = '0/' + self.maxRound;
+        cc.log('MJDataBind-self',self.routes)
+        // cc.log('MJDataBind-self',self)
     },
     /*
     * 初始化对象池
@@ -582,6 +622,7 @@ cc.Class({
         }
         this.exchange_state("init" , this);
         // let self = this ;
+        cc.log()
     },
     joinRoom:function(){
         //开始匹配
@@ -621,7 +662,6 @@ cc.Class({
                 ready2 = target;
             }
             target.active = false ;
-           
         };
         switch(state){
             case "init" :
@@ -824,6 +864,7 @@ cc.Class({
         }
     },
     tingAction: function(dd){
+        cc.log('tingAction-----------函数中的----dd-----',dd)
         let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
         for(let i =0; i<length;i++){
             let cards =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];

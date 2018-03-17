@@ -89,6 +89,8 @@ cc.Class({
         
         //获取所有玩家信息
         players_event:function(data,context){
+           /* console.log('palyer_event进入')
+            cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
             var gameStartInit = require('GameStartInit');
             cc.sys.localStorage.setItem(players,data.players.length);
@@ -217,6 +219,7 @@ cc.Class({
          * @param context
          */
         banker_event:function(data, context){
+            cc.log('接收庄家信息')
             context = cc.find('Canvas').getComponent('MJDataBind');
             for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                 let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
@@ -235,11 +238,16 @@ cc.Class({
 
         /**
          * 接收发牌信息，需要根据玩家位置确定是哪家的牌
-         * @param data
+         * @param data  事件返回信息。包括牌、用户、
          * @param context
          */
-        play_event:function(data , context){
+        play_event:function(data , context, self){
+            console.log(' ---------进入发牌事件-------self')
+        /*    cc.log('发牌事件-——---data',typeof data)
+            cc.log('发牌事件-——---context',context)*/
             context = cc.find('Canvas').getComponent('MJDataBind');
+            var data = JSON.parse(data);
+
             var gameEvent = require('GameEvent');
             //比赛倒计时设置为隐藏
             if(context.starttime.node.parent.active ==true){
@@ -312,13 +320,21 @@ cc.Class({
             cc.sys.localStorage.removeItem('take');
             cc.sys.localStorage.removeItem('ting') ;        
             context.exchange_state("begin" , context);
+            /*
+            * temp_player 为当前用户的信息
+            * cards       当前用户手牌的信息
+            * context.decode() Base64.js中方法，用来将cards信息解码为十进制数
+            */
             var temp_player = data.player ;
-            var cards = context.decode(temp_player.cards);
-            
-
+            // var cards = context.decode(temp_player.cards);
+            var cards = data.player.cards;
+            /*cc.log('手牌值……………………………^^^^^^^^^^^^^^^^',data.cards)
+            cc.log('powerCards……………………………^^^^^^^^^^^^^^^^',temp_player)
+            cc.log('-----------wjfgamebase-------',cc.weijifen.GameBase)*/
             if(cc.weijifen.GameBase.gameModel == 'wz'){
                 if(temp_player.powerCard){
-                    var powerCard = context.decode(temp_player.powerCard);
+                    // var powerCard = context.decode(temp_player.powerCard);
+                    var powerCard = temp_player.powerCard;
                     cc.weijifen.powerCard = powerCard;
                     gameStartInitNode.csNode.active = true;
                     //切换财神图片
@@ -340,7 +356,8 @@ cc.Class({
             }else{
                 cc.find('Canvas/cards/tesucards/baocard').active =true;
                 if(data.player.powerCard){
-                    let cards = context.decode(data.player.powerCard);
+                    let cards = data.player.powerCard;
+                    // let cards = context.decode(data.player.powerCard);
                     //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
                     for(let i= 0 ; i<cards.length;i++){
                         var laiziZM = cc.instantiate(gameStartInitNode.ZM);
@@ -467,9 +484,11 @@ cc.Class({
                 var maxvalue  = -100;
                 var maxvalluecard ;
                 //排序 
+                cc.log('--------init时对牌面进行排序-------------')
                 for(var i=0 ; i<context.playercards.length ; i++ ){
                     if(context.playercards[i].children[1].active == false){
                         let temp_script = context.playercards[i].getComponent("HandCards") ;
+                cc.log('gamestartinit------------485行-----',temp_script)
                         if(temp_script.value >= 0){
                             context.playercards[i].zIndex = temp_script.value ;
                         }else{
@@ -533,11 +552,13 @@ cc.Class({
                     context.tingAction(true);                
                 }
                 //如果自己有已经打的牌或者其他人有打牌 或者有action的时候
+                cc.log('//------如果自己有已经打的牌或者其他人有打牌 或者有action----------')
                 if(data.player.played||istake||data.player.actions.length>0){
                     cc.sys.localStorage.setItem('cl','true');
                     //重连判断deskcard
                     if(data.player.played){
-                        var deskcards  = context.decode(data.player.played);
+                        // var deskcards  = context.decode(data.player.played);
+                        var deskcards  = data.player.played;
                         for(let i=0;i <deskcards.length;i++){
                             let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
                             let temp = desk_card.getComponent("DeskCards");
@@ -549,7 +570,7 @@ cc.Class({
                     var action = data.player.actions;
                     for(let i = 0;i< action.length;i++){
                         var isGang = false;
-                        var cards = context.decode(action[i].card);
+                        var cards = action[i].card;
                         //console.log(cards);
                         
                         if(action[i].type =='an'){
@@ -598,7 +619,8 @@ cc.Class({
                         var action = data.players[i].actions;                    
                         for(let j =0 ; j< action.length ;j++){
                             var isGang =false;
-                            var cards = context.decode(action[j].card);
+                            // var cards = context.decode(action[j].card);
+                            var cards = action[j].card;
                             
                             if(action[j].type =='an'){
                                 isGang =true;
@@ -624,7 +646,8 @@ cc.Class({
                     }
                     //其他玩家的桌牌     
                     if(data.players[i].played){
-                        var deskcardss = context.decode(data.players[i].played); 
+                        // var deskcardss = context.decode(data.players[i].played); 
+                        var deskcardss = data.players[i].played; 
                         var player = gameStartInit.player(data.players[i].playuser, context);
                         for(let j =0 ; j< deskcardss.length;j++){
                             gameStartInit.initDeskCards(deskcardss[j],player.tablepos,context)
@@ -821,7 +844,6 @@ cc.Class({
                     let temp_script = temp.getComponent("HandCards") ;
         
                     context.playercards.push(temp);
-        
                     temp_script.init(cards[i]);
         
                     if(banker == true && i == (cards.length - 1)){

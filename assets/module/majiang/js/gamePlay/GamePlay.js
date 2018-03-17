@@ -36,7 +36,6 @@ cc.Class({
 	     */
 	    //掉线 和上线
 	    takecard_event:function(data , context){
-
 	        context = cc.find('Canvas').getComponent('MJDataBind');
 	        var gameStartInit = require('GameStartInit');
 	        var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
@@ -188,6 +187,7 @@ cc.Class({
 	     * @param context
 	     */
 	    dealcard_event:function(data , context){
+	    	// debugger
 	      	var gamePlay = require('GamePlay');
 	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){
 	            setTimeout(function(){gamePlay.dealcards(data,context)},2100);

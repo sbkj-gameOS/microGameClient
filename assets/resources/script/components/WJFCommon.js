@@ -24,7 +24,9 @@ cc.Class({
          * 登录成功后，创建 Socket链接，
          */
         this.disconnect();
-        cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL + '/bm/game');
+        //cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL + '/bm/game');
+        cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL);
+
         cc.weijifen.socket.ondisconnect = function(){
             console.log('user disconnected');
         };
@@ -149,11 +151,12 @@ cc.Class({
         }
         return socket ;
     },
-    map:function(command, callback){
-        this.routes[command] = callback || function(){};
+    map:function(command, callback,self){
+        self.routes[command] = callback || function(){};
     },
-    route:function(command){
-        return this.routes[command] || function(){};
+    route:function(command,self){
+        // debugger
+        return self.routes[command] || function(){};
     },
     talkPlay:function(){},
     talkRecord:function(){},

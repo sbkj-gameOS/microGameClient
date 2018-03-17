@@ -50,10 +50,12 @@ cc.Class({
     statics: {
         /**
          * 接受服务端的数据，玩家杠碰、吃胡等动作
-         * @param data
+         * @param data 包含事件信息
          * @param context
          */
         action_event:function(data, context){
+            cc.log('-----action_event--------------',data)
+            cc.log('^^^^^^^^^^^^action_event^^^^^^^^^^^^^^^^^^^',JSON.stringify(data))
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
             context = cc.find('Canvas').getComponent('MJDataBind');     
             cc.sys.localStorage.setItem('altake','true');
@@ -70,7 +72,7 @@ cc.Class({
             }
             context.gangs = data["gangs"]?data["gangs"]:[];
             context.dans = data["dans"]?data["dans"]:[];
-            context.tings = data["tings"]?data["tings"]:[];
+            context.tings = data["tings"]?JSON.parse(data["tings"]):[];
             if(data.deal == true){  //发牌的动作
                 cc.sys.localStorage.setItem('guo','true');
                 // let desk_script = context.actionnode_two.getComponent("DeskCards") ;
@@ -106,7 +108,7 @@ cc.Class({
                     ting.x = - 200 + count * 110 ;
                     count++;
                 }
-                {
+                if(data.guo) {
                     guo.active =true;
                     guo.x = - 200 + count * 110 ;
                     count++;
