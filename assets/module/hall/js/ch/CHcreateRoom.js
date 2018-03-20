@@ -27,6 +27,7 @@ cc.Class({
     },
     // 点击创建按钮
     createClick:function(){
+        debugger
         playerData = playerData.split("@@");
         playerData.pop();
         garams.waytype = playerData;

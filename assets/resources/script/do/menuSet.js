@@ -17,15 +17,13 @@ cc.Class({
             this.title.children[i].active = false ;
         }
         this.title.children[name].active = true;
-        if(name == 10 || name == 11 || name ==14){
+        if(name == 10 || name == 11){
             let gameroom;
             web.active = false;
             if(name ==10){
                 gameroom = cc.instantiate(this.joinRoom);
             }else if(name == 11){
                 gameroom = cc.instantiate(this.createRoom);
-            }else if(name == 14){
-                gameroom = cc.instantiate(this.setting);
             }
             gameroom.parent = this.node
         }else{

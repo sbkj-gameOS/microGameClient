@@ -48,7 +48,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -2616,8 +2616,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -311,
-      "y": 265
+      "x": -309,
+      "y": 263
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2689,7 +2689,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 14,
     "_fontSize": 25,
-    "_lineHeight": 40,
+    "_lineHeight": 25,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "50befab0-30f4-4e11-991b-8813b96e126c"
@@ -3050,12 +3050,12 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
+      "x": 0,
       "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 193.70000000000002,
+      "width": 303.7,
       "height": 32
     },
     "_rotationX": 0,
@@ -3064,7 +3064,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -296,
+      "x": -390,
       "y": 303
     },
     "_skewX": 0,
@@ -3107,7 +3107,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 190,
+      "width": 300,
       "height": 40
     },
     "_rotationX": 0,
@@ -3116,8 +3116,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1.8499999999999943,
-      "y": 0
+      "x": 153.70000000000002,
+      "y": -2
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3135,9 +3135,9 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 22,
+    "_actualFontSize": 30,
     "_fontSize": 30,
-    "_lineHeight": 40,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
@@ -3186,7 +3186,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 193.70000000000002,
+      "width": 303.7,
       "height": 32
     },
     "_resize": 1,
@@ -3360,7 +3360,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -286,
+      "x": -275,
       "y": 0
     },
     "_skewX": 0,
