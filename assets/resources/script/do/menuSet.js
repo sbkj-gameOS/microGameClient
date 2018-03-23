@@ -17,15 +17,13 @@ cc.Class({
             this.title.children[i].active = false ;
         }
         this.title.children[name].active = true;
-        if(name == 10 || name == 11 || name ==14){
+        if(name == 10 || name == 11){
             let gameroom;
             web.active = false;
             if(name ==10){
                 gameroom = cc.instantiate(this.joinRoom);
             }else if(name == 11){
                 gameroom = cc.instantiate(this.createRoom);
-            }else if(name == 14){
-                gameroom = cc.instantiate(this.setting);
             }
             gameroom.parent = this.node
         }else{
@@ -64,8 +62,8 @@ cc.Class({
                         "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
                         "/shop/shopPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
-                        "提现内嵌url地址",
-                        "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
+                        "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
                         "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "/match/goMatchPage?token="+cc.weijifen.authorization+"",
                         "",
@@ -75,6 +73,9 @@ cc.Class({
                     ];
             cc.log(web);
             web.url = cc.weijifen.url + data[name];
+            WebView = function(e){
+                e.preventDefault();
+            }
         }
     },
     testCode: function(){

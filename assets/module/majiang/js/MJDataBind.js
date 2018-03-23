@@ -98,6 +98,7 @@ cc.Class({
             default:null,
             type: cc.Node
         },
+        noticeShare: cc.Node
     },
     onLoad: function () {
         let self = this ;
