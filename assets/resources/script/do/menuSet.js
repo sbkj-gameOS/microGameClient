@@ -60,8 +60,8 @@ cc.Class({
                         "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
                         "/shop/shopPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
-                        "提现内嵌url地址",
-                        "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
+                        "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
                         "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "/match/goMatchPage?token="+cc.weijifen.authorization+"",
                         "",
@@ -71,6 +71,9 @@ cc.Class({
                     ];
             cc.log(web);
             web.url = cc.weijifen.url + data[name];
+            WebView = function(e){
+                e.preventDefault();
+            }
         }
     },
     testCode: function(){
