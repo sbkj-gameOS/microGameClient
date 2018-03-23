@@ -35,6 +35,8 @@ cc.Class({
             web.setJavascriptInterfaceScheme(scheme);
             function jsCallback (url) {
                 console.log("jsCallback");
+                //回掉操作。当webview里操作外部方法时，通过这里调用。例如，支付。
+                var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",url);
             }
             web.setOnJSCallback(jsCallback);
             /**

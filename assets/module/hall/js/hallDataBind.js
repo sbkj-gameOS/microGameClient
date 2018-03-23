@@ -62,13 +62,24 @@ cc.Class({
             //请求获取当前用户是否已经参加了房间
             cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,this.roomSuccess,this.roomError,this);
 
-            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this)   
+            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
             this.gundongText();
             //获取是否有新的通知
             // cc.weijifen.http.httpGet('/activity/findActivityListGame?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this);  
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
 
         }
+        var self = this ;
+        cc.weijifen.iPayBack = function(result) {
+            //支付成功提示,重新获取用户数据刷新数据。
+            if ( 'error' == result ) {
+                self.alert("失败!");
+            } else {
+                //验证返回的签名是否正确
+                cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
+                self.alert("充值成功!");
+            }
+        };
         // console.log('cc.weijifen---handDataBind',cc.weijifen)
 
     },

@@ -64,17 +64,6 @@ cc.Class({
                 window.io = require("socket.io");
             }
 
-            cc.weijifen.alert = function(code) {
-                if(cc.weijifen.dialog.size() > 0){
-                    this.alertdialog = cc.weijifen.dialog.get();
-                    this.alertdialog.parent = cc.find("Canvas");
-                    let node = this.alertdialog.getChildByName("message") ;
-                    if(node!=null && node.getComponent(cc.Label)){
-                        node.getComponent(cc.Label).string = code ;
-                    }
-                }
-                return this.alertdialog;
-            }
             //播放背景音乐
             if(cc.sys.localStorage.getItem('nobgm') != 'true'){
                 cc.weijifen.audio.playBGM("bgFight.mp3");

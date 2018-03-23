@@ -38,6 +38,10 @@ cc.Class({
         }else if(cc.weijifen.GameBase.gameModel == 'jx'){
             sprite.spriteFrame = this.JXLogo;
         }
+        var self = this ;
+        cc.weijifen.wxAuth = function(code) {
+            self.login(code,self) ;
+        };
         cc.weijifen.game = {
             model : null ,
             playway : null,
@@ -79,6 +83,7 @@ cc.Class({
         tongyi = toggle.isChecked;
     },
     guestSucess:function(result , object){
+        object.alert(result);
         var data = JSON.parse(result) ;
         if(data!=null && data.token!=null && data.data!=null){
             //放在全局变量
@@ -108,6 +113,7 @@ cc.Class({
         // }else 
         if(tongyi){
             var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "WXLoginOK","1");
+            //this.login('12345',this) ;
             //WXLoginOK
             //this.tourist();
             //this.login();
@@ -115,55 +121,50 @@ cc.Class({
             this.alert('请同意用户使用协议');
         }
     },
-    login:function(){
+    login:function(code,target){
         this.io = require("IOUtils");
         this.loadding();
-        if(this.getUrlParam("invitationcode")){
-            var code = values[i].split('=')[1];
-            this.loadding();
-            cc.weijifen.http.httpGet('/wxController/getLoginCode?invitationcode='+this.getUrlParam("invitationcode"),this.wxseccess,this.error,this);
-        }
+        // if(this.getUrlParam("invitationcode")){
+        //     var code = values[i].split('=')[1];
+        //     this.loadding();
+        //     cc.weijifen.http.httpGet('/wxController/getLoginCode?invitationcode='+this.getUrlParam("invitationcode"),this.wxseccess,this.error,this);
+        // }
 
-        //判断是否有充值
-        if (this.getUrlParam('status')){
-            cc.weijifen.paystatus = this.getUrlParam("invitationcode");
-        }
+        // //判断是否有充值
+        // if (this.getUrlParam('status')){
+        //     cc.weijifen.paystatus = this.getUrlParam("invitationcode");
+        // }
 
         //直接点击链接登陆
-        if (this.getUrlParam('userId')){
-            //console.log(value);
-            this.loadding();
-            cc.weijifen.http.httpGet('/wxController/getWxUserToken?userId='+this.getUrlParam('userId'),this.sucess,this.error,this);
-        }
-
-        
+        //console.log(value);
+        cc.weijifen.http.httpGet('/android/appLogin?code='+code+'&gameModel='+cc.weijifen.GameBase.gameModel,target.sucess,target.error,target);
     },
-   sucess:function(result,object){
-       var data = JSON.parse(result) ;
-       if(data != null && data.success == true && data.token!=null){
+    sucess:function(result,object){
+        var data = JSON.parse(result) ;
+        if(data != null && data.success == true && data.token!=null){
            //放在全局变量
            //object.reset(data , result);
            //cc.weijifen.authorization = data.token;
            //cc.weijifen.user = data.playUser;
            //cc.sys.localStorage.setItem('userinfo',result);
-             object.reset(data,result);  
+            object.reset(data,result);  
            /**
             * 登录成功后即创建Socket链接
             */
-          
+            console.log('ok:'+data.token);
             object.loadding();
             //房间号参数不为空    直接进入房间
-            if (object.getUrlParam('roomNum') != 'null' && object.getUrlParam('roomNum') != null){
-                var room={};
-                room.room = object.getUrlParam('roomNum');
-                room.token = cc.weijifen.authorization;
-                cc.weijifen.http.httpPost('/api/room/query',room,object.JRsucess,object.JRerror,object);
-            }else{
-                object.connect();
-                object.scene('gameMain' , object) ;
-            }
-       }
-   },
+            //if (object.getUrlParam('roomNum') != 'null' && object.getUrlParam('roomNum') != null){
+            //     var room={};
+            //     room.room = object.getUrlParam('roomNum');
+            //     room.token = cc.weijifen.authorization;
+            //     cc.weijifen.http.httpPost('/api/room/query',room,object.JRsucess,object.JRerror,object);
+            // }else{
+            //object.connect();
+            object.scene('gameMain' , object) ;
+            // }
+        }
+    },
    error:function(object){
        object.closeloadding(object.loaddingDialog);
        object.alert("网络异常，服务访问失败");

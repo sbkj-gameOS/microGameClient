@@ -101,7 +101,8 @@ cc.Class({
     },
     onLoad: function () {
         let self = this ;
-        let socket = this.socket(self);
+        //let socket = this.socket(self);
+        let socket = this.connect() ;
 
         // //初始化对象池
         this.init_pool();
@@ -878,6 +879,12 @@ cc.Class({
             button.getComponent(cc.Button).interactable= false;
         }
     },
+    onDestroy:function(){
+        if(this.ready()) {
+            let socket = this.socket();
+            socket.disconnect();
+        }
+    }
 });
 
 
