@@ -27,6 +27,11 @@ cc.Class({
             }
             gameroom.parent = this.node
         }else{
+            var self = this ;
+            cc.weijifen.testCode = function(data) {
+                        console.log("data:"+data);
+                self.testCode(data,self) ;
+            };
             web.active = true;
             web = web.getComponent(cc.WebView);
             var scheme = "matchList";// 这里是与内部页面约定的关键字
@@ -61,9 +66,10 @@ cc.Class({
                         "/help/serviceXy",
                         "/help/parentJhgc",
                         "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
-                        "/gameNotice/goNoticePage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
+                        "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
                         "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
-                        "/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
+                        //"/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
+                        "http://game.cdn.bizpartner.cn/shop/shopPage.html?token="+cc.weijifen.authorization,
                         "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
                         "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
                         "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
@@ -75,12 +81,16 @@ cc.Class({
                     ];
             cc.log(web);
             web.url = cc.weijifen.url + data[name];
+            if (name == 5) {
+                web.url = data[name]
+            };
+            cc.log(web.url)
             WebView = function(e){
                 e.preventDefault();
             }
         }
     },
-    testCode: function(data){
+    testCode: function(data,target){
         console.log("data:"+data);
     },
     //清除留下的东西
