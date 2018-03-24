@@ -33,6 +33,8 @@ cc.Class({
             web.setJavascriptInterfaceScheme(scheme);
             function jsCallback (url) {
                 console.log("jsCallback");
+                var str = url.replace(scheme + '://', '');
+                var data = JSON.stringify(str);// {a: 0, b: 1}
                 //回掉操作。当webview里操作外部方法时，通过这里调用。例如，支付。
                 var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",url);
             }
@@ -59,9 +61,9 @@ cc.Class({
                         "/help/serviceXy",
                         "/help/parentJhgc",
                         "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
-                        "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "/gameNotice/goNoticePage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
                         "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
-                        "/shop/shopPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+                        "/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
                         "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
                         "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
                         "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
@@ -78,8 +80,8 @@ cc.Class({
             }
         }
     },
-    testCode: function(){
-        console.log("testCode");
+    testCode: function(data){
+        console.log("data:"+data);
     },
     //清除留下的东西
     clearPerfab: function(){
