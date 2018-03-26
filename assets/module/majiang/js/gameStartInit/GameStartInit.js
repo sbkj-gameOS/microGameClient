@@ -328,6 +328,10 @@ cc.Class({
             var temp_player = data.player ;
             // var cards = context.decode(temp_player.cards);
             var cards = data.player.cards;
+            // var sezi = data.player.sezi;
+
+
+
             /*cc.log('手牌值……………………………^^^^^^^^^^^^^^^^',data.cards)
             cc.log('powerCards……………………………^^^^^^^^^^^^^^^^',temp_player)
             cc.log('-----------wjfgamebase-------',cc.weijifen.GameBase)*/

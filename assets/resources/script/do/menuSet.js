@@ -63,21 +63,21 @@ cc.Class({
              * @type {Array}
              */
             var data = [
-                        "/help/serviceXy",
-                        "/help/parentJhgc",
-                        "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
-                        "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
-                        "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
-                        //"/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
-                        "http://game.cdn.bizpartner.cn/shop/shopPage.html?token="+cc.weijifen.authorization,
-                        "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
-                        "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
-                        "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
-                        "/match/goMatchPage?token="+cc.weijifen.authorization+"",
-                        "",
-                        "",
-                        "",
-                        "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
+            /* 0 */     "/help/serviceXy",
+            /* 1 */     "/help/parentJhgc",
+            /* 2 */     "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
+            /* 3 */     "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+            /* 4 */     "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
+                        // "/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
+            /* 5 */     "http://game.cdn.bizpartner.cn/shop/shopPage.html?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel, 
+            /* 6 */     "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
+            /* 7 */     "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
+            /* 8 */     "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
+            /* 9 */     "/match/goMatchPage?token="+cc.weijifen.authorization+"",
+            /* 10 */    "",
+            /* 11 */    "",
+            /* 12 */    "",
+            /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
                     ];
             cc.log(web);
             web.url = cc.weijifen.url + data[name];

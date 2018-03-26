@@ -105,7 +105,6 @@ cc.Class({
 
 	},
 	tzerror: function(result,object){	
-        debugger
 
     },
     roomSuccess: function(result,object){
