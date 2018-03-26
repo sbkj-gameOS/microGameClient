@@ -85,9 +85,9 @@ cc.Class({
                 web.url = data[name]
             };
             cc.log(web.url)
-            WebView = function(e){
+            /*WebView = function(e){
                 e.preventDefault();
-            }
+            }*/
         }
     },
     testCode: function(data,target){

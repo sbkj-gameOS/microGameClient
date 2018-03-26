@@ -51,7 +51,6 @@ cc.Class({
             this._animCtrl = this.loaddingDialog.getComponent(cc.Animation);
             var animState = this._animCtrl.play("loadding");
         }
-        // debugger
     },
     alert:function(message){
         if(cc.weijifen.dialog.size() > 0){
