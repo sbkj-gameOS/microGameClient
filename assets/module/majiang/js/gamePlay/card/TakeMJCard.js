@@ -27,6 +27,7 @@ cc.Class({
         
     },
     mouseupClick: function(event){
+        // cc.log('getItem(data)#######3',cc.sys.localStorage.getItem('delta'))
         if(cc.sys.localStorage.getItem('delta')>90){
             event.target.x = 0;
             event.target.y = 0;
@@ -37,6 +38,7 @@ cc.Class({
         cc.sys.localStorage.removeItem('delta');
     },
     touchendClick:function(event){
+        // cc.log('touchendClick____-cards',)
         let card = event.target.parent.getComponent('HandCards');
         if(cc.sys.localStorage.getItem('alting')!='true'&&cc.sys.localStorage.getItem('ting')!='true'&&!card.caishen){
             var delta = event.touch.getDelta();
@@ -46,9 +48,24 @@ cc.Class({
         }
     },
     onClick:function(event){
-        let context = cc.find('Canvas').getComponent('MJDataBind');         
-        let handCards = this.target.getComponent("HandCards")
+        let context = cc.find('Canvas').getComponent('MJDataBind'); 
+        let handCards = this.target.getComponent("HandCards");
+       /* cc.log('handCards///////////////////',handCards)                
+        cc.log('---------------点击——————————————————————————————————')
+        cc.log('context============',context)                
+        cc.log('click************',cc.weijifen.click) // null               
+        cc.log('handCards.take^^^^^^^^^^^^',handCards.take)  // false              
+        cc.log('context.tings^^^^^^^^^^^^',context.tings)   // undefined             */
+        // /*null*/cc.log('cc.sys.localStorage.getItem^^^^^^^^^^^^',cc.sys.localStorage.getItem('ting'))                
+        /*
+            1、刚进入自己手牌少；
+            2、点击出牌是没反应：
+                且没有获取到存在本地的值。
+        
+        */
         let self = this ;
+
+        // null  && 
         if(cc.weijifen.click == 1 &&cc.sys.localStorage.getItem('alting') !='true'){
             this.huifu();            
             this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true) );
@@ -82,7 +99,8 @@ cc.Class({
                     for(let j = 0 ; j< context.tings.length;j++){
                         let cv = context.tings[j].card; 
                         if((cv<0&&parseInt(cv/4 )==parseInt(handCards.value/4 ))||(cv>=0&&handCards.mjtype==parseInt(cv/36)&&parseInt((handCards.value%36)/4)==parseInt((cv%36)/4))){
-                            let tingcards = context.decode(context.tings[j].cards);
+                            // let tingcards = context.decode(context.tings[j].cards);
+                            let tingcards = context.tings[j].cards;
                             // console.log(tingcards);
                             context.tingSelect.active = true;                            
                             for(let s = 0 ; s< tingcards.length;s++){

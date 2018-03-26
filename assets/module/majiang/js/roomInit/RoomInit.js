@@ -79,7 +79,6 @@ cc.Class({
                                     context.readyNoActive(context);
                                 }
                             }
-                                
                         }
                     }
                 }
@@ -267,6 +266,13 @@ cc.Class({
     waittingForPlayers:function(){
         let context = cc.find('Canvas').getComponent('MJDataBind');
         context.exchange_state("ready" , context);
+    },
+    /*分享好友*/
+    showActive: function () {
+        let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
+    },
+    unactive: function(event){
+        event.target.active = false;
     },
 });
 

@@ -46,7 +46,13 @@ cc.Class({
             console.log('Hello Mover!');
         });
     },
+    /*
+    * @param cvalue 手牌所代表的数字
+    * @param pd
+    */
     init:function(cvalue,pd){
+        // cc.log('牌面cvalue-----',cvalue)
+        cc.log('pd++++++++',pd)
         this.cardcolor();        
         this.caishen = false ; 
         this.take = false;

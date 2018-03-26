@@ -43,7 +43,7 @@ cc.Class({
         return object.getComponent(common);
     },
     loadding:function(){
-        debugger
+        // debugger
         if(cc.weijifen.loadding.size() > 0){
             this.loaddingDialog = cc.weijifen.loadding.get();
             this.loaddingDialog.parent = cc.find("Canvas");
@@ -51,7 +51,7 @@ cc.Class({
             this._animCtrl = this.loaddingDialog.getComponent(cc.Animation);
             var animState = this._animCtrl.play("loadding");
         }
-        debugger
+        // debugger
     },
     alert:function(message){
         if(cc.weijifen.dialog.size() > 0){
