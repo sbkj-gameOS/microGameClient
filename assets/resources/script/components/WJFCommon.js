@@ -25,11 +25,29 @@ cc.Class({
          */
         this.disconnect();
         //cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL + '/bm/game');
-        cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL);
+        cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL,{'reconnect': true});
 
         cc.weijifen.socket.ondisconnect = function(){
             console.log('user disconnected');
         };
+        cc.weijifen.socket.on('connect_failed', function(data) {
+                console.log("connect_failed to Server");  
+        });
+        cc.weijifen.socket.on('connect_failed', function(data) {
+                console.log("connect_failed to Server");
+        });
+        cc.weijifen.socket.on('error', function(data) {
+            console.log("error");
+        });
+        cc.weijifen.socket.on('error', function(data) {
+            console.log("error");
+        });
+        cc.weijifen.socket.on('reconnecting', function (data) {
+            console.log("reconnecting");
+        });
+        cc.weijifen.socket.on('reconnect', function (data) {
+            console.log("reconnect");
+        });
         return cc.weijifen.socket ;
     },
     disconnect:function(){
