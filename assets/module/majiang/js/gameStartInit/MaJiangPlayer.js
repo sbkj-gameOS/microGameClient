@@ -32,6 +32,14 @@ cc.Class({
         selectcolor:{
             default:null ,
             type : cc.Node
+        },
+        sezi:{
+            default: null,
+            type: cc.SpriteAtlas
+        },
+        sezivalues: {
+            default: null,
+            type: cc.Node
         }
     },
 
@@ -42,7 +50,7 @@ cc.Class({
         this.creator.active = false ;
         
     },
-    init:function(playerdata , inx , tablepos,count){
+    init:function(playerdata , inx , tablepos,count,seziArr){
         this.creator.active = false ;
         this.data = playerdata ;    //存放玩家数据
         this.tablepos = tablepos ;
@@ -56,7 +64,7 @@ cc.Class({
         }
         // if(inx == 0){
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
-        // }else if(inx == 1){
+        // }else if(inx == 1){http://docs.cocos.com/creator/api/zh/classes/SpriteAtlas.html#getspriteframes
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
         // }
         if(playerdata.headimgurl){
@@ -71,7 +79,33 @@ cc.Class({
         }
         this.username.string = playerdata.username ;
         this.goldcoins.string = playerdata.goldcoins ;
-        
+
+
+
+        // 获取到的图集 = this.sezi.getSpriteFrame(值);
+        // this.sezis[i].getComponent(cc.Sprite).spriteFrame = 获取到的图集;
+        // cc.log(this.sezi.getSpriteFrame('1'))
+        // cc.log(sezis[0].getComponent(cc.Sprite).spriteFrame)
+
+
+        if (seziArr) {
+            var sezis = this.node.children[5].children;
+            for (let i = 0;i< seziArr.length;i++) {
+        // debugger
+                let j = (1+i).toString();
+                cc.log()
+                cc.log('原始',sezis[i].getComponent(cc.Sprite).spriteFrame)
+                cc.log('真实d',this.sezi.getSpriteFrame(j))
+                sezis[i].getComponent(cc.Sprite).spriteFrame = this.sezi.getSpriteFrame(j);
+                this.sezivalues[i] = sezis[i];
+            }
+            this.node.children[5].active = true;
+           /* cc.log('我是player照片那个的色字',seziArr)
+            cc.log(this.sezivalues[0].getComponent(cc.Sprite).spriteFrame)
+            cc.log('/////')*/
+        }
+
+
     },
     banker:function(){
         this.creator.active = true;

@@ -69,7 +69,7 @@ cc.Class({
         csNode:{
             default:null,
             type:cc.Node
-        },
+        }
     },
 
     //
@@ -89,10 +89,13 @@ cc.Class({
         
         //获取所有玩家信息
         players_event:function(data,context){
+            var seziArr ;
+            cc.weijifen.seziData = {}; 
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
             var gameStartInit = require('GameStartInit');
+            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             cc.sys.localStorage.setItem(players,data.players.length);
             if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
                 gameStartInit.collect(context) ;    //先回收资源，然后再初始化
@@ -101,7 +104,7 @@ cc.Class({
 
             //OK手势隐藏
             context.readyNoActive(context);        
-            
+            cc.log()
 
             var inx = 0 ;
             context.arry = [];
@@ -113,82 +116,86 @@ cc.Class({
                     context.arry.push(time);
                     if(data.players[i].id == cc.weijifen.user.id ){
                         var mytime = context.arry.length;
+                        cc.weijifen.seziData.mytime = mytime;
                     }
                 }
             }
+
+
+
             if(cc.weijifen.playerNum==2){
                 if(mytime==1){
                     gameStartInit.dong(0);
-                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context,seziArr);
                     if(data.players.length==2){          
-                        gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
+                        gameStartInit.publicData(1,data,'top',context.top_player,1,2,context,seziArr);
                     }
                 }else{
                     gameStartInit.dong(2);
-                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
-                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context,seziArr);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context,seziArr);
                 }       
             }else if(cc.weijifen.playerNum==3){
                 if(mytime==1){
                     gameStartInit.dong(0);                
-                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context,seziArr);
                     if(data.players.length==2){          
-                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);        
                     }else if(data.players.length==3){
-                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
-                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);        
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context,seziArr);
                     }
                 }else if(mytime==2){
                     gameStartInit.dong(1);                
-                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
-                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context,seziArr,seziArr);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context,seziArr);
                     if(data.players.length==3){
-                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);        
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context,seziArr);        
                     }
                 }else if(mytime==3){
                     gameStartInit.dong(2);                
-                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
-                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
-                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context,seziArr);
+                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context,seziArr);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context,seziArr);
                 }
             }else{
                 if(mytime==1){
                     gameStartInit.dong(0);                
-                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context,seziArr);
                     if(data.players.length==2){          
-                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);         
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);         
                     }else if(data.players.length ==3){
-                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);
-                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                         
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context,seziArr);                         
                     }else if(data.players.length ==4){
-                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);    
-                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                
-                        gameStartInit.publicData(3,data,'left',context.left_player,2,3,context);                                      
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);    
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context,seziArr);                
+                        gameStartInit.publicData(3,data,'left',context.left_player,2,3,context,seziArr);                                      
                     }
                 }else if(mytime == 2){
                     gameStartInit.dong(3);                
-                    gameStartInit.publicData(0,data,'left',context.left_player,2,3,context);
-                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);         
+                    gameStartInit.publicData(0,data,'left',context.left_player,2,3,context,seziArr);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context,seziArr);         
                     if(data.players.length ==3){
-                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context,seziArr);
                     }else if(data.players.length ==4){
-                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);          
-                        gameStartInit.publicData(3,data,'top',context.top_player,1,2,context);         
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context,seziArr);          
+                        gameStartInit.publicData(3,data,'top',context.top_player,1,2,context,seziArr);         
                     }
                 }else if(mytime ==3){
                     gameStartInit.dong(2);                
-                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);  
-                    gameStartInit.publicData(1,data,'left',context.left_player,2,3,context);
-                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);                     
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context,seziArr);  
+                    gameStartInit.publicData(1,data,'left',context.left_player,2,3,context,seziArr);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context,seziArr);                     
                     if(data.players.length ==4){
-                        gameStartInit.publicData(3,data,'right',context.right_player,0,1,context);       
+                        gameStartInit.publicData(3,data,'right',context.right_player,0,1,context,seziArr);       
                     }
                 }else if(mytime == 4){
                     gameStartInit.dong(1);                
-                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
-                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
-                    gameStartInit.publicData(2,data,'left',context.left_player,2,3,context);               
-                    gameStartInit.publicData(3,data,'current',context.current_player,0,0,context);
+                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context,seziArr);
+                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context,seziArr);
+                    gameStartInit.publicData(2,data,'left',context.left_player,2,3,context,seziArr);               
+                    gameStartInit.publicData(3,data,'current',context.current_player,0,0,context,seziArr);
                 }
             }     
             var peo = context.playersarray;
@@ -235,14 +242,12 @@ cc.Class({
                 }
             }
         },
-
         /**
          * 接收发牌信息，需要根据玩家位置确定是哪家的牌
          * @param data  事件返回信息。包括牌、用户、
          * @param context
          */
         play_event:function(data , context, self){
-            console.log(' ---------进入发牌事件-------self')
         /*    cc.log('发牌事件-——---data',typeof data)
             cc.log('发牌事件-——---context',context)*/
             context = cc.find('Canvas').getComponent('MJDataBind');
@@ -328,7 +333,11 @@ cc.Class({
             var temp_player = data.player ;
             // var cards = context.decode(temp_player.cards);
             var cards = data.player.cards;
-            // var sezi = data.player.sezi;
+            var seziArr = data.player.sezi;
+            cc.weijifen.seziArr = seziArr;
+
+            // 色子
+            gameStartInit.initSezi(data,seziArr,context);
 
 
 
@@ -448,6 +457,7 @@ cc.Class({
                         groupNums = groupNums + 1 ;
                     }else{
                         setTimeout(function(){
+                            // 初始化牌面
                             gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
                             /**
                              * 初始化其他玩家数据
@@ -684,17 +694,103 @@ cc.Class({
         dong: function(count){
             cc.weijifen.bankercount = count;         
         },
-        publicData:function(inx,data,fangwei,OPparent,int,count,context){
+        publicData:function(inx,data,fangwei,OPparent,int,count,context,seziArr){
+            cc.log(seziArr)
+
             if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
-                let player0 = context.playerspool.get();
+                let player0 = context.playerspool.get();// 头像框
                 let playerscript0 = player0.getComponent("MaJiangPlayer");
                 player0.setPosition(0,0);
                 context.playersarray.push(player0) ;
                 player0.parent = OPparent;
-                playerscript0.init(data.players[inx] , int , fangwei,count);                
+                playerscript0.init(data.players[inx] , int , fangwei,count,seziArr);                
                 cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
                 cc.sys.localStorage.setItem('count',count);                                  
             }   
+        },
+        /*
+        * 初始化色子
+        *
+        */
+        initSezi: function (data,seziArr,context) {
+            var gameStartInit = require('GameStartInit');
+            var mytime = cc.weijifen.seziData.mytime;
+            if(cc.weijifen.playerNum==2){
+                if(mytime==1){
+                    gameStartInit.dong(0);
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context,seziArr);
+                    if(data.players.length==2){          
+                        gameStartInit.publicData(1,data,'top',context.top_player,1,2,context,seziArr);
+                    }
+                }else{
+                    gameStartInit.dong(2);
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context,seziArr);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context,seziArr);
+                }       
+            }else if(cc.weijifen.playerNum==3){
+                if(mytime==1){
+                    gameStartInit.dong(0);                
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context,seziArr);
+                    if(data.players.length==2){          
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);        
+                    }else if(data.players.length==3){
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);        
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context,seziArr);
+                    }
+                }else if(mytime==2){
+                    gameStartInit.dong(1);                
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context,seziArr,seziArr);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context,seziArr);
+                    if(data.players.length==3){
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context,seziArr);        
+                    }
+                }else if(mytime==3){
+                    gameStartInit.dong(2);                
+                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context,seziArr);
+                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context,seziArr);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context,seziArr);
+                }
+            }else{
+                if(mytime==1){
+                    gameStartInit.dong(0);                
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context,seziArr);
+                    if(data.players.length==2){          
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);         
+                    }else if(data.players.length ==3){
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context,seziArr);                         
+                    }else if(data.players.length ==4){
+                        gameStartInit.publicData(1,data,'right',context.right_player,0,1,context,seziArr);    
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context,seziArr);                
+                        gameStartInit.publicData(3,data,'left',context.left_player,2,3,context,seziArr);                                      
+                    }
+                }else if(mytime == 2){
+                    gameStartInit.dong(3);                
+                    gameStartInit.publicData(0,data,'left',context.left_player,2,3,context,seziArr);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context,seziArr);         
+                    if(data.players.length ==3){
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context,seziArr);
+                    }else if(data.players.length ==4){
+                        gameStartInit.publicData(2,data,'right',context.right_player,0,1,context,seziArr);          
+                        gameStartInit.publicData(3,data,'top',context.top_player,1,2,context,seziArr);         
+                    }
+                }else if(mytime ==3){
+                    gameStartInit.dong(2);                
+                    gameStartInit.publicData(0,data,'top',context.top_player,1,2,context,seziArr);  
+                    gameStartInit.publicData(1,data,'left',context.left_player,2,3,context,seziArr);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context,seziArr);                     
+                    if(data.players.length ==4){
+                        gameStartInit.publicData(3,data,'right',context.right_player,0,1,context,seziArr);       
+                    }
+                }else if(mytime == 4){
+                    gameStartInit.dong(1);                
+                    gameStartInit.publicData(0,data,'right',context.right_player,0,1,context,seziArr);
+                    gameStartInit.publicData(1,data,'top',context.top_player,1,2,context,seziArr);
+                    gameStartInit.publicData(2,data,'left',context.left_player,2,3,context,seziArr);               
+                    gameStartInit.publicData(3,data,'current',context.current_player,0,0,context,seziArr);
+                }
+            }  
+            
         },
         killPlayers: function(data){
             cc.sys.localStorage.removeItem('top');
@@ -816,7 +912,7 @@ cc.Class({
          inintBuHuan: function(){
             cc.weijifen.powerCard = null;  
          },
-         destroybuhuas:function(fangwei,context){
+        destroybuhuas:function(fangwei,context){
             let buhua,buhuaList;
             buhuaList = cc.find('Canvas/cards/tesucards/huacard/'+fangwei+'');
             for(let i = 0;i< buhuaList.children.length;i++ ){
@@ -838,7 +934,10 @@ cc.Class({
                 } , 5) ;
             }
         },
-
+        /*
+        * 麻将牌面赋值
+        * @param 
+        */
         initMjCards:function(group , context , cards , banker){
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             //context = cc.find('Canvas').getComponent('MajiangDataBind');        

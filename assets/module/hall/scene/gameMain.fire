@@ -915,7 +915,10 @@
     "node": {
       "__id__": 17
     },
-    "_enabled": true
+    "_enabled": true,
+    "gameSettingClick": {
+      "__uuid__": "2fc96a5d-da1f-4f6c-83f4-87a7df6bc09f"
+    }
   },
   {
     "__type__": "cc.Node",

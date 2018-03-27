@@ -52,7 +52,6 @@ cc.Class({
     */
     init:function(cvalue,pd){
         // cc.log('牌面cvalue-----',cvalue)
-        cc.log('pd++++++++',pd)
         this.cardcolor();        
         this.caishen = false ; 
         this.take = false;
@@ -141,6 +140,7 @@ cc.Class({
         // if(deskcard == "suo2"){
         //     cardframe = this.weijifen0.getSpriteFrame('麻将牌-牌面-'+deskcard);
         // }else{
+            // 将plist放到节点上，根据名称从里面拿相应的图片
             cardframe = this.atlas.getSpriteFrame(deskcard);
         // }
         this.cardvalue.getComponent(cc.Sprite).spriteFrame = cardframe;
