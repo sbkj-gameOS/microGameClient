@@ -69,7 +69,7 @@ cc.Class({
             /* 3 */     "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
             /* 4 */     "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
                         // "/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
-            /* 5 */     "http://game.cdn.bizpartner.cn/shop/shopPage.html?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel, 
+            /* 5 */     "http://game.cdn.bizpartner.cn/shop/shopPage.html?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel,
             /* 6 */     "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
             /* 7 */     "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
             /* 8 */     "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
