@@ -10,6 +10,9 @@ cc.Class({
         cc.weijifen.dialog.put(dialog);
     },
     closeMenu: function(){
+        var web = cc.find('Canvas').children[3].children[2].getComponent(cc.WebView);
+        web.url = '';
+
         let menu = cc.find("Canvas/menu");
         cc.weijifen.menu.put(menu);
     },
