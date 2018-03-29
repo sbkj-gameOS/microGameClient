@@ -1,4 +1,5 @@
 var WJFCommon = require("WJFCommon");
+var GameBase = {gameModel: "ch"}
 cc.Class({
     extends: WJFCommon,
 
