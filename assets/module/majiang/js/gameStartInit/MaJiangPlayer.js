@@ -33,14 +33,7 @@ cc.Class({
             default:null ,
             type : cc.Node
         },
-        sezi:{
-            default: null,
-            type: cc.SpriteAtlas
-        },
-        sezivalues: {
-            default: null,
-            type: cc.Node
-        }
+     
     },
 
     // use this for initialization
@@ -79,32 +72,6 @@ cc.Class({
         }
         this.username.string = playerdata.username ;
         this.goldcoins.string = playerdata.goldcoins ;
-
-
-
-        // 获取到的图集 = this.sezi.getSpriteFrame(值);
-        // this.sezis[i].getComponent(cc.Sprite).spriteFrame = 获取到的图集;
-        // cc.log(this.sezi.getSpriteFrame('1'))
-        // cc.log(sezis[0].getComponent(cc.Sprite).spriteFrame)
-
-
-        if (seziArr) {
-            var sezis = this.node.children[5].children;
-            for (let i = 0;i< seziArr.length;i++) {
-        // debugger
-                let j = (1+i).toString();
-                cc.log()
-                cc.log('原始',sezis[i].getComponent(cc.Sprite).spriteFrame)
-                cc.log('真实d',this.sezi.getSpriteFrame(j))
-                sezis[i].getComponent(cc.Sprite).spriteFrame = this.sezi.getSpriteFrame(j);
-                this.sezivalues[i] = sezis[i];
-            }
-            this.node.children[5].active = true;
-           /* cc.log('我是player照片那个的色字',seziArr)
-            cc.log(this.sezivalues[0].getComponent(cc.Sprite).spriteFrame)
-            cc.log('/////')*/
-        }
-
 
     },
     banker:function(){

@@ -172,12 +172,10 @@ cc.Class({
         })
         socket.on("action",function(result){
             var data = self.getSelf().parse(result);
-            cc.log('%%%%%%%%%%%%%%%%%%%%%%%%监听到action事件%%%%%%%%%%%%%%',data)
             self.getSelf().route('action',self)(JSON.parse(data) , self);
         })
         socket.on("allcards",function(result){
             var data = self.getSelf().parse(result);
-            cc.log('##################监听到allcards事件######',data)
             self.getSelf().route('allcards',self)(JSON.parse(data) , self);
         })
         /**
@@ -521,12 +519,12 @@ cc.Class({
             // this.deskcards_top_panel.y =10;
         }else if(cc.weijifen.playerNum == 3){
             self.left_player.active = false;      
-            self.deskcards_current_panel.width = 600;
+           /* self.deskcards_current_panel.width = 600;
             self.deskcards_top_panel.width = 600;  
             self.deskcards_current_panel.x = -154;
             self.deskcards_top_panel.x = -144;     
             self.deskcards_right_panel.x = -83;  
-            self.deskcards_top_panel.y =10;   
+            self.deskcards_top_panel.y =10;   */
         }
 
         //房间号显示

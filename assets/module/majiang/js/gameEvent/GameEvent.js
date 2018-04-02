@@ -54,8 +54,7 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
-            cc.log('-----action_event--------------',data)
-            cc.log('^^^^^^^^^^^^action_event^^^^^^^^^^^^^^^^^^^',JSON.stringify(data))
+            cc.log('-----action_event--------------',data)  
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
             context = cc.find('Canvas').getComponent('MJDataBind');     
             cc.sys.localStorage.setItem('altake','true');
@@ -312,6 +311,7 @@ cc.Class({
                     temp = card.getComponent('DanAction');
                 }else{
                     cardOp = gameStartInit.findCardForKong(parent,cards[0],action) ;
+                    console.log('进入GameEvent中-----313---当前方位是current',cardOp)
                     card = cc.instantiate(gameEventNode.dan_mycurrent);
                     temp = card.getComponent('DanAction');
                 } 
@@ -321,6 +321,7 @@ cc.Class({
                     card.parent = cardOp.cardNode ;
                     cardOp.cardNode.sortAllChildren();
                 } else {
+                    // 此处若报错为：Cannot read property 'children' of undefined，则是方位没有存到缓存中
                     var dan = cardOp.cardNode.children[cardOp.cardNum].getComponent('DanAction');
                     dan.count.string = Number(Number(dan.count.string)+1);
                     dan.countactive();
