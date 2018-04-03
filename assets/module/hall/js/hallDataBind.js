@@ -28,11 +28,23 @@ cc.Class({
 			type:cc.SpriteFrame
         },  
         backRoom: cc.Node,
+        chJoinRoomImg:{
+            default:null,
+            type:cc.SpriteFrame
+        },  
     },
     onLoad: function () {
         
         //如果weijifen已经加载好了
         if(this.ready()){   
+            // 牌局类型
+            if (cc.weijifen.GameBase.gameModel == 'ch') {
+                var object = this.chJoinRoomImg;
+                var sprite = cc.find('Canvas/main/game/10').getComponent(cc.Sprite);
+                sprite.spriteFrame = object;
+            }
+
+
             //重置分享按钮的设置
             if(cc.weijifen.browserType=="wechat"){
                 cc.weijifen.WXorBlow.shareRoom();
@@ -71,7 +83,7 @@ cc.Class({
         }
         var self = this ;
         cc.weijifen.iPayBack = function(result) {
-            //支付成功提示,重新获取用户数据刷新数据。
+            //支付成功提示,重新获取用户数据刷新数据。  
             if ( 'error' == result ) {
                 self.alert("失败!");
             } else {
