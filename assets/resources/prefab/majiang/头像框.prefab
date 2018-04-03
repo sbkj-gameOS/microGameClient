@@ -133,8 +133,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -68,
-      "y": -133
+      "x": -67,
+      "y": -141
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -749,7 +749,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": {
       "__id__": 30
@@ -1043,13 +1043,7 @@
       "__id__": 14
     },
     "selectcards": null,
-    "selectcolor": null,
-    "sezi": {
-      "__uuid__": "efc26372-94ea-4a40-908b-55e6c3fc3f17"
-    },
-    "sezivalues": {
-      "__id__": 23
-    }
+    "selectcolor": null
   },
   {
     "__type__": "cc.PrefabInfo",

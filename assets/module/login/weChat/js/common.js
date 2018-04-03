@@ -58,6 +58,10 @@ cc.Class({
         //请求获取当前用户是否已经参加了房间   
         
     },
+    /*场景适应屏幕*/  
+    suitScene: function () {    
+        cc.view.setDesignResolutionSize(1280 , 720, cc.ResolutionPolicy.FIXED_WIDTH);
+    }, 
     //重连后进入重新获得的一些数据
     roomSuccess: function(result,object){
         let data = JSON.parse(result);
@@ -70,7 +74,7 @@ cc.Class({
     roomError: function(object){
         object.alert("网络异常");
     },
-    //游客登录方法
+    //游客登录方法 
     tourist: function(){
         if(tongyi){
             this.loadding();
