@@ -35,7 +35,5 @@ cc.Class({
             garams.token = cc.weijifen.authorization;
         }
         this.onClick(garams);
-    }
-    
-    
+    } 
 });

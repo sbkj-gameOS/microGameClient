@@ -31,6 +31,7 @@ cc.Class({
         if(cc.sys.localStorage.getItem('delta')>90){
             event.target.x = 0;
             event.target.y = 0;
+            console.log('^^^^^^^^^mouseupClick^^^^^^^^^^',)
             this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true));
         }
         event.target.x = 0;
@@ -50,20 +51,16 @@ cc.Class({
     onClick:function(event){
         let context = cc.find('Canvas').getComponent('MJDataBind'); 
         let handCards = this.target.getComponent("HandCards");
-       /* cc.log('handCards///////////////////',handCards)                
         cc.log('---------------点击——————————————————————————————————')
+      /*  cc.log('handCards///////////////////',handCards)                
         cc.log('context============',context)                
         cc.log('click************',cc.weijifen.click) // null               
         cc.log('handCards.take^^^^^^^^^^^^',handCards.take)  // false              
         cc.log('context.tings^^^^^^^^^^^^',context.tings)   // undefined             */
         // /*null*/cc.log('cc.sys.localStorage.getItem^^^^^^^^^^^^',cc.sys.localStorage.getItem('ting'))                
-        /*
-            1、刚进入自己手牌少；
-            2、点击出牌是没反应：
-                且没有获取到存在本地的值。
         
-        */
-        let self = this ;
+           
+        let self = this;
 
         // null  && 
         if(cc.weijifen.click == 1 &&cc.sys.localStorage.getItem('alting') !='true'){
@@ -81,6 +78,7 @@ cc.Class({
                 }
                 event.target.x = 0;
                 event.target.y = 0;
+                
                 this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true) );
             }else{
                 this.huifu();

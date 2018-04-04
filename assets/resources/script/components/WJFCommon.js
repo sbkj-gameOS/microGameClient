@@ -61,7 +61,6 @@ cc.Class({
         return object.getComponent(common);
     },
     loadding:function(){
-        // debugger
         if(cc.weijifen.loadding.size() > 0){
             this.loaddingDialog = cc.weijifen.loadding.get();
             this.loaddingDialog.parent = cc.find("Canvas");
@@ -174,7 +173,6 @@ cc.Class({
         self.routes[command] = callback || function(){};
     },
     route:function(command,self){
-        // debugger
         return self.routes[command] || function(){};
     },
     talkPlay:function(){},

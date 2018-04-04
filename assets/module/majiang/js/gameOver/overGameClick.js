@@ -72,7 +72,6 @@ cc.Class({
     },
     //继续游戏 发送一个不退出请求
     goonGameClick: function(){
-        //debugger    
         let REFUSE = true;
         var oper = new cc.Event.EventCustom('overGame', false) ;
         // var oper = new cc.Event.EventCustom('overGame', true) ;
@@ -92,9 +91,6 @@ cc.Class({
         dialog.destroy();
     },
     leaveGameClick:function(){
-
-
-        //debugger
         cc.sys.localStorage.setItem('dis','true');        
         this.disconnect();
         if(cc.weijifen.GameBase.gameModel=='wz'){

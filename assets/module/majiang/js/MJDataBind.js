@@ -111,6 +111,7 @@ cc.Class({
         var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
         //初始化房间信息
         socket.on('connect', function () {
+            console.log('88888888888888888****************88888888888')
             self.playerIsReady(self);
             roomInit = require('RoomInit');
             gameStartInit = require('GameStartInit');
@@ -167,9 +168,11 @@ cc.Class({
             self.getSelf().route('play',self)(data , self);
         })
         socket.on("takecards",function(result){
+            console.log('监听到takecards事件')
             var data = self.getSelf().parse(result);
             self.getSelf().route('takecards',self)(JSON.parse(data) , self);
         })
+
         socket.on("action",function(result){
             var data = self.getSelf().parse(result);
             self.getSelf().route('action',self)(JSON.parse(data) , self);
@@ -215,7 +218,7 @@ cc.Class({
         self.node.on('takecard', function (event) {
             var context = cc.find('Canvas').getComponent('MJDataBind');             
             // cc.weijifen.audio.playSFX('select.mp3');            
-            // debugger                
+
             if(cc.sys.localStorage.getItem('take') == 'true'){
                 let card = event.target.getComponent("TakeMJCard");
                 if(card != null){
@@ -285,7 +288,6 @@ cc.Class({
             event.stopPropagation();
         });
         self.node.on("dan",function(event){
-            // debugger
             cc.sys.localStorage.removeItem('guo');            
             var context = cc.find('Canvas').getComponent('MJDataBind'); 
             if ( context.dans && context.dans.length > 1 ) {
@@ -852,7 +854,7 @@ cc.Class({
          */
         object.schedule(object.callback, 1, times, 0);
     },
-    exchange_searchlight:function(direction , context){
+    /*exchange_searchlight:function(direction , context){
         cc.sys.localStorage.removeItem('cl');      
         context = cc.find('Canvas').getComponent('MJDataBind');
         for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
@@ -862,7 +864,7 @@ cc.Class({
                 context.searchlight.children[inx].active = false ;
             }
         }
-    },
+    },*/
     tingAction: function(dd){
         cc.log('tingAction-----------函数中的----dd-----',dd)
         let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;

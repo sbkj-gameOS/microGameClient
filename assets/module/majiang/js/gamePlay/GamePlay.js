@@ -187,7 +187,6 @@ cc.Class({
 	     * @param context
 	     */
 	    dealcard_event:function(data , context){
-	    	// debugger
 	      	var gamePlay = require('GamePlay');
 	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){
 	            setTimeout(function(){gamePlay.dealcards(data,context)},2100);

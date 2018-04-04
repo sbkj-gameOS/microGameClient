@@ -243,6 +243,7 @@ cc.Class({
          */
         play_event:function(data , context, self){
             console.log(' ---------进入发牌事件-------self')
+
         /*    cc.log('发牌事件-——---data',typeof data)
             cc.log('发牌事件-——---context',context)*/
             context = cc.find('Canvas').getComponent('MJDataBind');
@@ -292,11 +293,16 @@ cc.Class({
             let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点            
             quanNum.string = (data.round+1) +'/'+context.maxRound;//圈数
             let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];// quan节点   
+           
+
+            // 游戏规则
             if(cc.weijifen.GameBase.gameModel == 'jx'){
+                // wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
                 wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
             }else{
                 wanfa.string = data.op;
             }
+                cc.log(data)
             cc.weijifen.wanfa = data.op;
             context.readyNoActive(context);   
             /**
@@ -612,8 +618,9 @@ cc.Class({
                             cc.sys.localStorage.setItem('take','true');
                         }   
                     }
+                    // 是否庄家，是否打牌
                     if(!data.player.played&&data.player.banker){
-                        //cc.sys.localStorage.setItem('take','true');
+                        cc.sys.localStorage.setItem('take','true');
                     }
                     if(data.players[i].actions.length>0){            
                         var action = data.players[i].actions;                    
