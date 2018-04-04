@@ -43,6 +43,9 @@ cc.Class({
                 var sprite = cc.find('Canvas/main/game/10').getComponent(cc.Sprite);
                 sprite.spriteFrame = object;
             }
+            if (cc.weijifen.GameBase.gameModel == 'jx') {
+                cc.find('Canvas/main/menu/top/logo').active = false
+            }
 
 
             //重置分享按钮的设置
