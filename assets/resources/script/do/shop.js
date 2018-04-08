@@ -30,6 +30,12 @@ cc.Class({
             price.string = data.shopList[i].price+"元";
             shopOne.parent = content;
         }
+        var shopBox = cc.find('Canvas/setting/content');
+        var shopPay = cc.find('Canvas/setting/content').children;
+        shopPay[1].x = shopPay[0].x - 10;
+        shopPay[2].x = shopPay[1].x + 208 + 50;
+        shopPay[3].x = shopPay[2].x + 208 + 50;
+        shopPay[4].x = shopPay[3].x + 208 + 50;
         content.children[0].active = false;
     },
     shopError: function(object){
