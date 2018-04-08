@@ -1356,7 +1356,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": {
       "__id__": 51
@@ -2562,7 +2562,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 242,
+      "width": 500,
       "height": 15
     },
     "_rotationX": 0,
@@ -2571,7 +2571,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -429,
+      "x": -305,
       "y": 250
     },
     "_skewX": 0,
@@ -2685,7 +2685,7 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_N$string": "",
-    "_N$horizontalAlign": 0,
+    "_N$horizontalAlign": 2,
     "_N$verticalAlign": 0,
     "_N$fontFamily": "Arial",
     "_N$overflow": 3
