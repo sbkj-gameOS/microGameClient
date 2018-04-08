@@ -28,11 +28,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 51
+        "__id__": 52
       }
     ],
     "_prefab": {
-      "__id__": 52
+      "__id__": 53
     },
     "_id": "",
     "_opacity": 255,
@@ -801,10 +801,13 @@
       },
       {
         "__id__": 49
+      },
+      {
+        "__id__": 50
       }
     ],
     "_prefab": {
-      "__id__": 50
+      "__id__": 51
     },
     "_id": "",
     "_opacity": 255,
@@ -893,8 +896,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1073,
-      "height": 40
+      "width": 208,
+      "height": 208
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -902,8 +905,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -432.5,
+      "y": 130
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1562,7 +1565,38 @@
       "height": 468
     },
     "_resize": 2,
-    "_N$layoutType": 1,
+    "_N$layoutType": 3,
+    "_N$padding": 0,
+    "_N$cellSize": {
+      "__type__": "cc.Size",
+      "width": 208,
+      "height": 208
+    },
+    "_N$startAxis": 0,
+    "_N$paddingLeft": 0,
+    "_N$paddingRight": 0,
+    "_N$paddingTop": 0,
+    "_N$paddingBottom": 0,
+    "_N$spacingX": 0,
+    "_N$spacingY": 0,
+    "_N$verticalDirection": 1,
+    "_N$horizontalDirection": 0
+  },
+  {
+    "__type__": "cc.Layout",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 25
+    },
+    "_enabled": true,
+    "_layoutSize": {
+      "__type__": "cc.Size",
+      "width": 300,
+      "height": 200
+    },
+    "_resize": 0,
+    "_N$layoutType": 0,
     "_N$padding": 0,
     "_N$cellSize": {
       "__type__": "cc.Size",
