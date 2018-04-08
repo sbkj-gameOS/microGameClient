@@ -48,7 +48,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -918,6 +918,9 @@
     "_enabled": true,
     "gameSettingClick": {
       "__uuid__": "2fc96a5d-da1f-4f6c-83f4-87a7df6bc09f"
+    },
+    "shopPage": {
+      "__uuid__": "ff70addd-b59e-4810-b165-c6c46893ea26"
     }
   },
   {
