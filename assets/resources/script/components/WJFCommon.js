@@ -1,3 +1,6 @@
+/*
+* @全局方法
+*/
 cc.Class({
     extends: cc.Component,
 

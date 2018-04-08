@@ -1,3 +1,6 @@
+/*
+* 麻将场景初始化
+*/
 var WJFCommon = require("WJFCommon");
 cc.Class({
     extends: WJFCommon,
@@ -111,7 +114,6 @@ cc.Class({
         var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
         //初始化房间信息
         socket.on('connect', function () {
-            console.log('88888888888888888****************88888888888')
             self.playerIsReady(self);
             roomInit = require('RoomInit');
             gameStartInit = require('GameStartInit');
@@ -144,23 +146,6 @@ cc.Class({
 
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
-            console.log('command---',data.command);
-            cc.log('data+++',data);
-          /*  if (data.command == 'play') {
-                console.log('--------发送play事件------')
-            } 
-            if (data.command == 'players') {
-                console.log('--------发送players事件------')
-            }
-            if (data.command == 'banker') {
-                console.log('--------发送banker事件------')
-            }*/
-            /*if (data.command == 'action') {
-                console.log('--------发送action事件------')
-            }*/
-           /* if (data.command == 'lasthands') {
-                console.log('--------发送lasthands事件------')
-            }*/
             self.getSelf().route(data.command,self)(data , self);
         });
         socket.on("play",function(result){
@@ -168,7 +153,6 @@ cc.Class({
             self.getSelf().route('play',self)(data , self);
         })
         socket.on("takecards",function(result){
-            console.log('监听到takecards事件')
             var data = self.getSelf().parse(result);
             self.getSelf().route('takecards',self)(JSON.parse(data) , self);
         })
@@ -214,7 +198,7 @@ cc.Class({
             }))
         });
 
-        // 出牌拿牌
+        // 监听出牌拿牌
         self.node.on('takecard', function (event) {
             var context = cc.find('Canvas').getComponent('MJDataBind');             
             // cc.weijifen.audio.playSFX('select.mp3');            
@@ -371,7 +355,6 @@ cc.Class({
          * ActionEvent发射的事件 ， 点击 听
          */
         self.node.on("ting",function(event){
-            cc.log('发送-----------听-----------听----')
             cc.sys.localStorage.removeItem('guo');            
             /*let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -408,7 +391,6 @@ cc.Class({
          */
         self.node.on("hu",function(event){
             //cc.beimi.audio.playSFX('nv/hu.mp3');  
-            cc.log('-----------监听到“胡”事件-------------')          
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -495,7 +477,9 @@ cc.Class({
         //this.actionnode_two.active = false;
         
     },
-    // 初始化房间信息
+    /*
+    * 初始化房间信息
+    */
     playerIsReady:function (self) {
 
         cc.weijifen.playersss = 0;  
@@ -787,18 +771,18 @@ cc.Class({
         }
     },
     mjOperation : function(event,params,context){
-            this.selectfather.active = true;
-            //context.card4.getComponent('operation').setAction(event);
-            for(var i = 0 ; i < params.length;i++ ){
-                var b = cc.instantiate(context.card4);
-                b.getComponent('operation').setAction({'name':event,'params':params[i]});
-                b.parent = context.dan_childrend;
-                for(var j = 0 ; j< params[i].length; j++){
-                    var a = cc.instantiate(context.mjUnit);
-                    a.getComponent('HandCards').init(params[i][j],true);
-                    a.parent = b;
-                }
+        this.selectfather.active = true;
+        //context.card4.getComponent('operation').setAction(event);
+        for(var i = 0 ; i < params.length;i++ ){
+            var b = cc.instantiate(context.card4);
+            b.getComponent('operation').setAction({'name':event,'params':params[i]});
+            b.parent = context.dan_childrend;
+            for(var j = 0 ; j< params[i].length; j++){
+                var a = cc.instantiate(context.mjUnit);
+                a.getComponent('HandCards').init(params[i][j],true);
+                a.parent = b;
             }
+        }
     },
     exchange_searchlight:function(direction , context){
         cc.sys.localStorage.removeItem('cl');      
@@ -866,7 +850,6 @@ cc.Class({
         }
     },*/
     tingAction: function(dd){
-        cc.log('tingAction-----------函数中的----dd-----',dd)
         let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
         for(let i =0; i<length;i++){
             let cards =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];

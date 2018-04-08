@@ -1,3 +1,6 @@
+/*
+* @游戏初始化
+*/
 var WJFCommon = require("WJFCommon");
 cc.Class({
     extends: WJFCommon,
@@ -87,7 +90,11 @@ cc.Class({
          * 宝牌/财神
          */
         
-        //获取所有玩家信息
+        /*
+        * 获取所有玩家信息
+        * @param data 回调值
+        * @param context 上下文对象
+        */
         players_event:function(data,context){
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
@@ -242,10 +249,6 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
-            console.log(' ---------进入发牌事件-------self')
-
-        /*    cc.log('发牌事件-——---data',typeof data)
-            cc.log('发牌事件-——---context',context)*/
             context = cc.find('Canvas').getComponent('MJDataBind');
             var data = JSON.parse(data);
 
@@ -815,17 +818,17 @@ cc.Class({
              // gameStartInit.topting.active =false;
              // gameStartInit.rightting.active =false;
              // gameStartInit.leftting.active =false;
-         },
-         inintBuHuan: function(){
+        },
+        inintBuHuan: function(){
             cc.weijifen.powerCard = null;  
-         },
-         destroybuhuas:function(fangwei,context){
+        },
+        destroybuhuas:function(fangwei,context){
             let buhua,buhuaList;
             buhuaList = cc.find('Canvas/cards/tesucards/huacard/'+fangwei+'');
             for(let i = 0;i< buhuaList.children.length;i++ ){
                 buhuaList.children[i].destroy(); 
             }
-         },
+        },
          /**
          * 显示 剩余牌
          * @param start
@@ -841,7 +844,6 @@ cc.Class({
                 } , 5) ;
             }
         },
-
         initMjCards:function(group , context , cards , banker){
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             //context = cc.find('Canvas').getComponent('MajiangDataBind');        

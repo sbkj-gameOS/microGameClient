@@ -43,7 +43,7 @@ cc.Class({
          * 如果没有对话数据，则重新使用游客注册接口
          */
         var xySuccess = cc.weijifen.localStorage.get("xySuccess");
-        // this.tourist();  
+        this.tourist();  
 
         if(xySuccess == 1){
             this.successBtn.active = false;
@@ -58,10 +58,6 @@ cc.Class({
         //请求获取当前用户是否已经参加了房间   
         
     },
-    /*场景适应屏幕*/  
-    suitScene: function () {    
-        cc.view.setDesignResolutionSize(1280 , 720, cc.ResolutionPolicy.FIXED_WIDTH);
-    }, 
     //重连后进入重新获得的一些数据
     roomSuccess: function(result,object){
         let data = JSON.parse(result);

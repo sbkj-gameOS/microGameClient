@@ -1,3 +1,6 @@
+/*
+* 出牌
+*/
 cc.Class({
     extends: cc.Component,
 
@@ -27,11 +30,9 @@ cc.Class({
         
     },
     mouseupClick: function(event){
-        // cc.log('getItem(data)#######3',cc.sys.localStorage.getItem('delta'))
         if(cc.sys.localStorage.getItem('delta')>90){
             event.target.x = 0;
             event.target.y = 0;
-            console.log('^^^^^^^^^mouseupClick^^^^^^^^^^',)
             this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true));
         }
         event.target.x = 0;
@@ -39,7 +40,6 @@ cc.Class({
         cc.sys.localStorage.removeItem('delta');
     },
     touchendClick:function(event){
-        // cc.log('touchendClick____-cards',)
         let card = event.target.parent.getComponent('HandCards');
         if(cc.sys.localStorage.getItem('alting')!='true'&&cc.sys.localStorage.getItem('ting')!='true'&&!card.caishen){
             var delta = event.touch.getDelta();
@@ -48,18 +48,13 @@ cc.Class({
             cc.sys.localStorage.setItem('delta',event.target.y);
         }
     },
+    /*
+    * 点击出牌
+    * @param event 事件对象
+    */
     onClick:function(event){
         let context = cc.find('Canvas').getComponent('MJDataBind'); 
         let handCards = this.target.getComponent("HandCards");
-        cc.log('---------------点击——————————————————————————————————')
-      /*  cc.log('handCards///////////////////',handCards)                
-        cc.log('context============',context)                
-        cc.log('click************',cc.weijifen.click) // null               
-        cc.log('handCards.take^^^^^^^^^^^^',handCards.take)  // false              
-        cc.log('context.tings^^^^^^^^^^^^',context.tings)   // undefined             */
-        // /*null*/cc.log('cc.sys.localStorage.getItem^^^^^^^^^^^^',cc.sys.localStorage.getItem('ting'))                
-        
-           
         let self = this;
 
         // null  && 

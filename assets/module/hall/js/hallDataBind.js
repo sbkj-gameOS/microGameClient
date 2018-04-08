@@ -1,3 +1,6 @@
+/*
+* @主菜单页（gameMain场景）
+*/
 var WJFCommon = require("WJFCommon");
 cc.Class({
     extends: WJFCommon,

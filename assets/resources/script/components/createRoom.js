@@ -1,3 +1,6 @@
+/*
+* @创建房间公共方法
+*/
 var WJFCommon = require("WJFCommon");
 cc.Class({
     extends: WJFCommon,

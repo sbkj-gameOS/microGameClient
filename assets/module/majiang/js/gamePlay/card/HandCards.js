@@ -1,3 +1,6 @@
+/*
+* 手牌
+*/
 cc.Class({
     extends: cc.Component,
 
@@ -51,7 +54,6 @@ cc.Class({
     * @param pd
     */
     init:function(cvalue,pd){
-        // cc.log('牌面cvalue-----',cvalue)
         this.cardcolor();        
         this.caishen = false ; 
         this.take = false;

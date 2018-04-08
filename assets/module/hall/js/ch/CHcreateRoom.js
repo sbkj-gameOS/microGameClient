@@ -1,3 +1,6 @@
+/*
+* @房间创建（长春麻将）
+*/
 var creat = require("createRoom");//导入components目录下的createRoom
 var moShi,playerData,userType,garams;
 cc.Class({
