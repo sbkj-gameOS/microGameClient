@@ -1,0 +1,29 @@
+{
+  "appKey": "",
+  "appSecret": "",
+  "excludeScenes": [
+    "a34322be-e3b7-41ed-bd57-ee6afcd67b6f",
+    "283d5593-cff9-4da7-a7c1-cf797c632bb5"
+  ],
+  "includeAnySDK": false,
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "jailbreakPlatform": false,
+  "md5Cache": true,
+  "mergeStartScene": false,
+  "oauthLoginServer": "",
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "com.integral.micro.crazy",
+  "privateKey": "",
+  "renderMode": "2",
+  "startScene": "d8555fec-8eb8-4f07-accc-1222f35c494d",
+  "title": "microGameClient",
+  "webOrientation": "landscape"
+}
