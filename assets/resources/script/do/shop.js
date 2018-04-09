@@ -14,7 +14,7 @@ cc.Class({
     },
 
     onLoad: function () {
-        // cc.weijifen.authorization = "efa908002cdd499688aa205812259365";   测试token
+        cc.weijifen.authorization = "efa908002cdd499688aa205812259365";
         cc.weijifen.http.httpGet('/shop/findShopList?token='+cc.weijifen.authorization,this.shopSuccess,this.shopError,this);
     },
     shopSuccess: function(result,object){
@@ -30,18 +30,23 @@ cc.Class({
             price.string = data.shopList[i].price+"元";
             shopOne.parent = content;
         }
-        var shopBox = cc.find('Canvas/setting/content');
         var shopPay = cc.find('Canvas/setting/content').children;
-        shopPay[1].x = shopPay[0].x - 10;
-        shopPay[2].x = shopPay[1].x + 208 + 50;
-        shopPay[3].x = shopPay[2].x + 208 + 50;
-        shopPay[4].x = shopPay[3].x + 208 + 50;
+        for (let j = 0;j < shopPay.length-1;j++) {
+            j == 0 ? shopPay[1].x = shopPay[0].x - 10
+                   : shopPay[j+1].x = shopPay[j].x + shopPay[j].width + 50; 
+           /* if (j == 0) {
+                shopPay[1].x = shopPay[0].x - 10;
+            } else if (j < 6) {
+                shopPay[j+1].x = shopPay[j].x + shopPay[j].width + 50;
+            }*/
+        }
         content.children[0].active = false;
     },
     shopError: function(object){
         
     },
-    shopOneClick:function(event){
+    shopOneClick(event){
+        console.log(event)
         var idvalue = event.target.getChildByName("idvalue").getComponent(cc.Label).string;
         //模拟调用支付接口,调用后台数据{token:token,shopId:id}
         var self = this ;
@@ -54,6 +59,13 @@ cc.Class({
         //document.location = 'matchList://{"code": "${data}"}';
     },
     error:function(result , object) {
-    }
+    },
+    /*
+    * 阻止弹出层穿透
+    */
+    stopThrough: function (event) {
+        event.bubbles = false
+    },
+
 
 });

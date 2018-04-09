@@ -148,6 +148,7 @@ cc.Class({
         }
     },
     cardClick(event){
+        console.log('cardcolor__click')
         let parent = event.target.parent.parent;
         let mj = cc.find('Canvas/js/settingClick').getComponent('settingClick');      
         for(let i = 0 ; i < parent.children.length; i++ ){
@@ -205,5 +206,10 @@ cc.Class({
             this.Rcard.active = true; 
         }
     },
-   
+    /*
+    * 阻止弹出层穿透
+    */
+    stopThrough: function (event) {
+        event.bubbles = false
+    }
 });
