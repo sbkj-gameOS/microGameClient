@@ -2922,7 +2922,7 @@
     },
     "component": "SettingClide",
     "handler": "cardClick",
-    "customEventData": ""
+    "customEventData": "gameMain_click"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3240,7 +3240,7 @@
     },
     "component": "SettingClide",
     "handler": "cardClick",
-    "customEventData": ""
+    "customEventData": "gameMain_click"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3353,7 +3353,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": null
@@ -3391,7 +3391,7 @@
       }
     ],
     "_N$interactable": true,
-    "_N$enableAutoGrayEffect": false,
+    "_N$enableAutoGrayEffect": true,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 255,
@@ -3421,7 +3421,7 @@
     },
     "component": "SettingClide",
     "handler": "cardClick",
-    "customEventData": ""
+    "customEventData": "gameMain_click"
   },
   {
     "__type__": "cc.PrefabInfo",
