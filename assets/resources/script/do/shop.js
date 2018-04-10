@@ -14,7 +14,7 @@ cc.Class({
     },
 
     onLoad: function () {
-        // cc.weijifen.authorization = "efa908002cdd499688aa205812259365";
+        cc.weijifen.authorization = "efa908002cdd499688aa205812259365";
         cc.weijifen.http.httpGet('/shop/findShopList?token='+cc.weijifen.authorization,this.shopSuccess,this.shopError,this);
     },
     shopSuccess: function(result,object){
@@ -46,20 +46,11 @@ cc.Class({
         
     },
     shopOneClick(event){
-        console.log(event)
         var idvalue = event.target.getChildByName("idvalue").getComponent(cc.Label).string;
         //模拟调用支付接口,调用后台数据{token:token,shopId:id}
-        var self = this ;
-        cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+idvalue, self.signSucess , self.error , self);
+        cc.weijifen.pay(idvalue);
     },
-    signSucess:function(result , object){
-        //object.alert(result);
-        //document.location = 'matchList://${data}';
-        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
-        //document.location = 'matchList://{"code": "${data}"}';
-    },
-    error:function(result , object) {
-    },
+    
     /*
     * 阻止弹出层穿透
     */

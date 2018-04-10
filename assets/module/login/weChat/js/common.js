@@ -57,6 +57,10 @@ cc.Class({
         // cc.weijifen.WXorBlow.init();   
         //请求获取当前用户是否已经参加了房间   
         
+        //支付初始化
+        cc.weijifen.pay = function(shopId) {
+            console.log("微信支付："shopId);
+        };
     },
     //重连后进入重新获得的一些数据
     roomSuccess: function(result,object){

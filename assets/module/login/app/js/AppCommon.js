@@ -58,7 +58,24 @@ cc.Class({
                 return temp ;
             }
         };
+
+        //app支付初始化
+        cc.weijifen.pay = function(shopId) {
+            var self = this ;
+            cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
+        };
     },
+
+    signSucess:function(result , object){
+        //object.alert(result);
+        //document.location = 'matchList://${data}';
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
+        //document.location = 'matchList://{"code": "${data}"}';
+    },
+    error:function(result , object) {
+        
+    },
+
     //游客登录方法
     tourist: function(){
         if(tongyi){
