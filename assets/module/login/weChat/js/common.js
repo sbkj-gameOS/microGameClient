@@ -27,7 +27,7 @@ cc.Class({
         JXLogo:cc.SpriteFrame,
     },
     // 首次加载页面方法
-    onLoad: function () {
+    onLoad: function () { 
         let WXorBlow;
         tongyi = true;
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
@@ -59,7 +59,7 @@ cc.Class({
         
         //支付初始化
         cc.weijifen.pay = function(shopId) {
-            console.log("微信支付："shopId);
+            console.log("微信支付："+shopId);
         };
     },
     //重连后进入重新获得的一些数据
