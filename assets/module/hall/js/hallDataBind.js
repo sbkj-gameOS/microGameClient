@@ -89,14 +89,8 @@ cc.Class({
         }
         var self = this ;
         cc.weijifen.iPayBack = function(result) {
-            //支付成功提示,重新获取用户数据刷新数据。  
-            if ( 'error' == result ) {
-                self.alert("失败!");
-            } else {
-                //验证返回的签名是否正确
-                cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
-                self.alert("充值成功!");
-            }
+            result = encodeURIComponent(result);
+            cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
         // console.log('cc.weijifen---handDataBind',cc.weijifen)
 
@@ -110,6 +104,19 @@ cc.Class({
             object.cards.string = cc.weijifen.user.cards ;
             object.goldcoins.string = cc.weijifen.user.goldcoins;
 
+    },
+    signSucess:function(result,object){
+        //支付成功提示,重新获取用户数据刷新数据。
+        if ( 'error' == result ) {
+            self.alert("失败!");
+        } else {
+            //验证返回的签名是否正确
+            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
+            self.alert("充值成功!");
+        }
+    },
+    signError: function(result,object){
+        object.alert("失败!");
     },
     tzsucess: function(result,object){
 		let data = JSON.parse(result);  
