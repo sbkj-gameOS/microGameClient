@@ -66,10 +66,11 @@ cc.Class({
             var head = this.headimg;
             cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
                 sprite.spriteFrame = new cc.SpriteFrame(texture);
-                head.width = 75;
-                head.height = 75;
+                head.width = 70;
+                head.height = 70;
             });
         }
+
         this.username.string = playerdata.username ;
         this.goldcoins.string = playerdata.goldcoins ;
 

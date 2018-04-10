@@ -1,5 +1,9 @@
+/*
+* @游戏初始化
+*/
 var WJFCommon = require("WJFCommon");
-var GameBase = {gameModel: "ch"}
+// var GameBase = {gameModel: "jx"};
+var GameBase = {gameModel: "ch"};
 cc.Class({
     extends: WJFCommon,
 

@@ -43,10 +43,10 @@ cc.Class({
         this.lastonecard = false ;
         this.take = false ;
         this.node.on('mousedown', function ( event ) {
-            console.log('Hello!');
+            // console.log('Hello!');
         });
         this.node.on('mousemove', function ( event ) {
-            console.log('Hello Mover!');
+            // console.log('Hello Mover!');
         });
     },
     /*

@@ -517,7 +517,6 @@ cc.Class({
         if(cc.weijifen.match =='false'){
             let roomNum = cc.find('Canvas/roomNum').getChildByName('room')._components[0];// roomNum节点
             roomNum.string = cc.weijifen.room;
-            cc.log(roomNum)
         }else if(cc.weijifen.match == 'true'){
             self.setting_coin.children[1].active = false;//解散按钮隐藏
             self.room_num.getComponent(cc.Label).string = '比赛模式';
