@@ -14,7 +14,7 @@ cc.Class({
     },
 
     onLoad: function () {
-        cc.weijifen.authorization = "efa908002cdd499688aa205812259365";
+        // cc.weijifen.authorization = "efa908002cdd499688aa205812259365";
         cc.weijifen.http.httpGet('/shop/findShopList?token='+cc.weijifen.authorization,this.shopSuccess,this.shopError,this);
     },
     shopSuccess: function(result,object){
