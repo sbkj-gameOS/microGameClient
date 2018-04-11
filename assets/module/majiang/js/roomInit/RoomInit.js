@@ -94,7 +94,7 @@ cc.Class({
                     tablepos = "";
                     var inx = cc.sys.localStorage.getItem('count');
                     if(data.id == cc.weijifen.user.id){
-                        player.setPosition(-584 , -269);
+                        player.setPosition(-594 , -269);
                         player.parent = context.root();
                         tablepos = "current" ;
                         cc.sys.localStorage.setItem('current',data.id);
@@ -164,7 +164,8 @@ cc.Class({
                     tablepos = "";
                     var inx = cc.sys.localStorage.getItem('count');
                     if(data.id == cc.weijifen.user.id){
-                        player.setPosition(-584 , -269);
+                        // player.setPosition(-584 , -269);
+                        player.setPosition(-596 , -269);
                         player.parent = context.root();
                         tablepos = "current" ;
                         cc.sys.localStorage.setItem('current',data.id);

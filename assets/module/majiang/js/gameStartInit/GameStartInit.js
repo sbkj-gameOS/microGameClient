@@ -226,7 +226,6 @@ cc.Class({
          * @param context
          */
         banker_event:function(data, context){
-            cc.log('接收庄家信息')
             context = cc.find('Canvas').getComponent('MJDataBind');
             for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                 let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
@@ -305,7 +304,6 @@ cc.Class({
             }else{
                 wanfa.string = data.op;
             }
-                cc.log(data)
             cc.weijifen.wanfa = data.op;
             context.readyNoActive(context);   
             /**
@@ -319,9 +317,9 @@ cc.Class({
             {
             var action = cc.moveTo(0.2,570,80);
             context.right_player.runAction(action);
-            var action = cc.moveTo(0.2,-570,80);
+            var action = cc.moveTo(0.2,-590,80);
             context.left_player.runAction(action);
-            var action = cc.moveTo(0.2,439,324);
+            var action = cc.moveTo(0.2,389,324);
             context.top_player.runAction(action);
             }
             //游戏开始 干掉打牌和听得缓存
@@ -337,9 +335,7 @@ cc.Class({
             var temp_player = data.player ;
             // var cards = context.decode(temp_player.cards);
             var cards = data.player.cards;
-            /*cc.log('手牌值……………………………^^^^^^^^^^^^^^^^',data.cards)
-            cc.log('powerCards……………………………^^^^^^^^^^^^^^^^',temp_player)
-            cc.log('-----------wjfgamebase-------',cc.weijifen.GameBase)*/
+         
             if(cc.weijifen.GameBase.gameModel == 'wz'){
                 if(temp_player.powerCard){
                     // var powerCard = context.decode(temp_player.powerCard);
@@ -493,11 +489,9 @@ cc.Class({
                 var maxvalue  = -100;
                 var maxvalluecard ;
                 //排序 
-                cc.log('--------init时对牌面进行排序-------------')
                 for(var i=0 ; i<context.playercards.length ; i++ ){
                     if(context.playercards[i].children[1].active == false){
                         let temp_script = context.playercards[i].getComponent("HandCards") ;
-                cc.log('gamestartinit------------485行-----',temp_script)
                         if(temp_script.value >= 0){
                             context.playercards[i].zIndex = temp_script.value ;
                         }else{
@@ -561,7 +555,6 @@ cc.Class({
                     context.tingAction(true);                
                 }
                 //如果自己有已经打的牌或者其他人有打牌 或者有action的时候
-                cc.log('//------如果自己有已经打的牌或者其他人有打牌 或者有action----------')
                 if(data.player.played||istake||data.player.actions.length>0){
                     cc.sys.localStorage.setItem('cl','true');
                     //重连判断deskcard
