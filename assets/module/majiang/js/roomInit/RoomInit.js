@@ -70,10 +70,10 @@ cc.Class({
                                 }
                                 if(data.online == false){
                                     on_off_line.active = true;
-                                    headimg.color = new cc.Color(42, 25, 25);
+                                    // headimg.color = new cc.Color(42, 25, 25);
                                 }else{
                                     on_off_line.active = false;
-                                    headimg.color = new cc.Color(255, 255, 255);
+                                    // headimg.color = new cc.Color(255, 255, 255);
                                 }
                                 if(gameStartInitNode.desk_cards.string!='136'){
                                     context.readyNoActive(context);
@@ -141,10 +141,10 @@ cc.Class({
                                 }
                                 if(data.online == false){
                                     on_off_line.active = true;
-                                    headimg.color = new cc.Color(42, 25, 25);
+                                    // headimg.color = new cc.Color(42, 25, 25);
                                 }else{
                                     on_off_line.active = false;
-                                    headimg.color = new cc.Color(255, 255, 255);
+                                    // headimg.color = new cc.Color(255, 255, 255);
                                 }
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){
@@ -217,10 +217,10 @@ cc.Class({
                                 }
                                 if(data.online == false){
                                     on_off_line.active = true;
-                                    headimg.color = new cc.Color(42, 25, 25);
+                                    // headimg.color = new cc.Color(42, 25, 25);
                                 }else{
                                     on_off_line.active = false;
-                                    headimg.color = new cc.Color(255, 255, 255);
+                                    // headimg.color = new cc.Color(255, 255, 255);
                                 }
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){

@@ -50,7 +50,7 @@ cc.Class({
         this.count = count;
         if(!playerdata.online){
             this.on_off_line.active = true;
-            this.headimg.color = new cc.Color(42, 25, 25);
+            // this.headimg.color = new cc.Color(42, 25, 25);
         }else{
             // this.on_off_line.active = false;//是否离线
             // this.headimg.color = new cc.Color(255, 255, 255);
