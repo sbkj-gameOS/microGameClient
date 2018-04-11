@@ -61,7 +61,6 @@ cc.Class({
 
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
-            var self = this ;
             cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
         };
     },
@@ -70,6 +69,7 @@ cc.Class({
         //object.alert(result);
         //document.location = 'matchList://${data}';
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
+        object.alert(res);
         //document.location = 'matchList://{"code": "${data}"}';
     },
     error:function(result , object) {
