@@ -14,7 +14,7 @@ cc.Class({
     },
 
     onLoad: function () {
-        // cc.weijifen.authorization = "efa908002cdd499688aa205812259365";
+        // cc.weijifen.authorization = "6c1bbae39dc64ad7bc06d98959c6fe63";
         cc.weijifen.http.httpGet('/shop/findShopList?token='+cc.weijifen.authorization,this.shopSuccess,this.shopError,this);
     },
     shopSuccess: function(result,object){
@@ -23,11 +23,11 @@ cc.Class({
         for(let i= 0; i<data.shopList.length;i++){
             var shopOne = cc.instantiate(object.shopOne);
             var idvalue = shopOne.getChildByName("idvalue").getComponent(cc.Label);
-            var roomNum = shopOne.getChildByName("roomNum").getComponent(cc.Label);
-            var price = shopOne.getChildByName("shop_btn").getChildByName("price").getComponent(cc.Label);
+            var roomNum = shopOne.getChildByName("roomNum").getComponent(cc.RichText);
+            var price = shopOne.getChildByName("shop_btn").getChildByName("price").getComponent(cc.RichText);
             idvalue.string = data.shopList[i].id;
-            roomNum.string = data.shopList[i].name+data.shopList[i].count+"张";
-            price.string = data.shopList[i].price+"元";
+            roomNum.string = "<b>"+data.shopList[i].name+data.shopList[i].count+"张</b>";
+            price.string = "<b>"+data.shopList[i].price+"元</b>";
             shopOne.parent = content;
         }
         var shopPay = cc.find('Canvas/setting/content').children;
