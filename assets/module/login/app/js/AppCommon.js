@@ -69,7 +69,6 @@ cc.Class({
         //object.alert(result);
         //document.location = 'matchList://${data}';
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
-        object.alert(res);
         //document.location = 'matchList://{"code": "${data}"}';
     },
     error:function(result , object) {
