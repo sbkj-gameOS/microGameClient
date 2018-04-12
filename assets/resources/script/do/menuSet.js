@@ -46,7 +46,7 @@ cc.Class({
             web.setOnJSCallback(jsCallback);
             /**
              * data数组
-             * 0：服务协议内嵌url地址
+             * 0：服务协议内嵌url地址 
              * 1：家长监护工程内嵌url地址
              * 2：活动内嵌url地址
              * 3：通知内嵌url地址
@@ -65,7 +65,7 @@ cc.Class({
             var data = [
             /* 0 */     "/help/serviceXy",
             /* 1 */     "/help/parentJhgc",
-            /* 2 */     "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"&activityId=27",
+            /* 2 */     "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
             /* 3 */     "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase+"",
             /* 4 */     "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
                         // "/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
