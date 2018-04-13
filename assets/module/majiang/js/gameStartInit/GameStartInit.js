@@ -371,7 +371,7 @@ cc.Class({
                         LZH.init(cards[i],'B',true);
                     }
                 }else{
-                    cc.find('Canvas/cards/tesucards/baocard/child').x = -560;                
+                    cc.find('Canvas/cards/tesucards/baocard/child').x = -580;                
                     var laiziFM = cc.instantiate(gameStartInitNode.FM);
                     var LZH = laiziFM.getComponent('DeskCards');
                     LZH.init(-3,'Z',true);
