@@ -373,7 +373,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -4
+      "y": 900
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2149,9 +2149,6 @@
     },
     "createRoom": {
       "__uuid__": "d96419f2-bb31-4bac-bb12-93076d2a992e"
-    },
-    "shopPage": {
-      "__uuid__": "ff70addd-b59e-4810-b165-c6c46893ea26"
     },
     "setting": {
       "__uuid__": "2fc96a5d-da1f-4f6c-83f4-87a7df6bc09f"

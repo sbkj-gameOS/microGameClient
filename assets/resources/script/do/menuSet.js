@@ -13,6 +13,7 @@ cc.Class({
     init:function(name){
         this.clearPerfab();
         let web = this.title.parent.children[2];
+        web.setPosition(0,900);
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
@@ -34,6 +35,7 @@ cc.Class({
             };
             web.active = true;
             web = web.getComponent(cc.WebView);
+            web.node.on('loaded', this.callback, this);//webview加载完成后执行的方法
             var scheme = "matchList";// 这里是与内部页面约定的关键字
             web.setJavascriptInterfaceScheme(scheme);
             function jsCallback (url) {
@@ -90,6 +92,10 @@ cc.Class({
     },
     testCode: function(data,target){
         console.log("data:"+data);
+    },
+    callback:function(){
+        let web = this.title.parent.children[2];
+        web.setPosition(0,0);
     },
     //清除留下的东西
     clearPerfab: function(){
