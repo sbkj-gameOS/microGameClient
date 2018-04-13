@@ -42,8 +42,11 @@ cc.Class({
         if(this.ready()){   
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
+                //获取要更换的图片
                 var object = this.chJoinRoomImg;
-                var sprite = cc.find('Canvas/main/game/10').getComponent(cc.Sprite);
+                //获取更换图片地址
+                var sprite = cc.find("Canvas/main/game/11").getComponent(cc.Sprite);
+                //图片地址内的图片路径 = 要更换的图片路径
                 sprite.spriteFrame = object;
             }
             if (cc.weijifen.GameBase.gameModel == 'jx') {
