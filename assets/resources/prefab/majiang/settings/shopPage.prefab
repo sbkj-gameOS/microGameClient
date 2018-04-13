@@ -1304,8 +1304,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -15
+      "x": 5.684341886080802e-14,
+      "y": -14.999999999999943
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1381,8 +1381,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
-      "height": 46
+      "width": 130,
+      "height": 50
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1435,8 +1435,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 31.12,
-      "height": 40
+      "width": 39.39,
+      "height": 50
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1445,7 +1445,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 4.6
+      "y": 6
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1455,26 +1455,21 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.RichText",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 42
     },
     "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 20,
-    "_fontSize": 20,
-    "_lineHeight": 40,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "2元",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0
+    "_N$string": "<b>2元</b>",
+    "_N$horizontalAlign": 0,
+    "_N$fontSize": 25,
+    "_N$font": null,
+    "_N$maxWidth": 0,
+    "_N$lineHeight": 50,
+    "_N$imageAtlas": null,
+    "_N$handleTouchEvent": true
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1484,7 +1479,7 @@
     "asset": {
       "__uuid__": "ff70addd-b59e-4810-b165-c6c46893ea26"
     },
-    "fileId": "dcqFd+3ddLvp7oOborkFe4",
+    "fileId": "4fMPmao+JMQLG3d1PwgfIS",
     "sync": false
   },
   {
@@ -1496,10 +1491,10 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "f1438c96-ab2c-4179-b757-89241d634353"
+      "__uuid__": "a9605463-3cda-499c-866b-87aebd940d73"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -1511,7 +1506,9 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": null
+    "_atlas": {
+      "__uuid__": "be5982c5-53af-4f60-acaa-f99f65cbb322"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
