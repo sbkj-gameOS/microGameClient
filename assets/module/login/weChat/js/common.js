@@ -45,7 +45,7 @@ cc.Class({
          * 如果没有对话数据，则重新使用游客注册接口
          */
         var xySuccess = cc.weijifen.localStorage.get("xySuccess");
-        // this.tourist();  
+        this.tourist();  
 
         if(xySuccess == 1){
             this.successBtn.active = false;

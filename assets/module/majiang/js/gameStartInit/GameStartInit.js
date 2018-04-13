@@ -294,7 +294,7 @@ cc.Class({
             context.roomInfo.active = true;    
             let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点            
             quanNum.string = (data.round+1) +'/'+context.maxRound;//圈数
-            let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];// quan节点   
+            let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];// wanfa节点   
            
 
             // 游戏规则
@@ -361,7 +361,7 @@ cc.Class({
             }else{
                 // 宝牌显示
                 cc.find('Canvas/cards/tesucards/baocard').active =true;
-                if(data.player.powerCard){
+                if(!data.player.powerCard){
                     let cards = data.player.powerCard;
                     // let cards = context.decode(data.player.powerCard);
                     //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
@@ -382,8 +382,9 @@ cc.Class({
 
             //当前玩家补花 data.player
             var buhua;
-            if(temp_player.buHua){
-                buhua = context.decode(temp_player.buHua);//补花
+            if(temp_player.buHua && temp_player.buHua.length){
+                // buhua = context.decode(temp_player.buHua);//补花
+                buhua = temp_player.buHua;
                 let temp = gameStartInit.player(temp_player.playuser, context);
                 for(var i = 0;i<buhua.length;i++){
                     gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
@@ -393,7 +394,10 @@ cc.Class({
             //其他玩家补花 data.players
             for(var i = 0; i <data.players.length;i++){
                 if(data.players[i].buHua){
-                    buhua = context.decode(data.players[i].buHua);//补花
+                    // buhua = context.decode(data.players[i].buHua);//补花
+                    console.log('players',data.players[i])
+                    console.log(data.players[i].buHua)
+                    buhua = data.players[i].buHua;
                     let temp = gameStartInit.player(data.players[i].playuser, context);
                     //console.log(temp.tablepos);
                     for(var j = 0;j<buhua.length;j++){

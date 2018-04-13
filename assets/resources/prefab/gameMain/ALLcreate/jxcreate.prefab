@@ -7206,7 +7206,7 @@
       "__id__": 1
     },
     "component": "JXcreteRoom",
-    "handler": "clicknum",
+    "handler": "clickPepNum",
     "customEventData": ""
   },
   {
@@ -7623,7 +7623,7 @@
       "__id__": 1
     },
     "component": "JXcreteRoom",
-    "handler": "clicknum",
+    "handler": "clickPepNum",
     "customEventData": ""
   },
   {
@@ -8040,7 +8040,7 @@
       "__id__": 1
     },
     "component": "JXcreteRoom",
-    "handler": "clicknum",
+    "handler": "clickPepNum",
     "customEventData": ""
   },
   {

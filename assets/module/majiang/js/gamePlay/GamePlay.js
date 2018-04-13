@@ -212,13 +212,14 @@ cc.Class({
 	        gamePlay.select_action_searchlight(data, context , player);
 
 	        //摸牌补花
+	        /*//补花值为bet数组时
 	        if(data.bu){
 	            var buhua = context.decode(data.bu);//补花
 	            for(var i = 0;i<buhua.length;i++){
 	                gameStartInit.buhuaModle(buhua[i],player.tablepos,'',player.tablepos,context,"");
 	            }
-	        }
-
+	        }*/
+	      
 	        if(data.userid == cc.weijifen.user.id){
 	            if(cc.sys.localStorage.getItem('altings') != 'true'){
 	                gameStartInit.tingnoaction();

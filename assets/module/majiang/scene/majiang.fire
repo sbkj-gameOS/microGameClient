@@ -7146,7 +7146,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 26,
+      "x": 39,
       "y": -304
     },
     "_skewX": 0,
@@ -7203,7 +7203,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -613,
-      "y": -21
+      "y": -18
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7257,7 +7257,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1.7763568394002505e-15,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -7333,7 +7333,7 @@
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
-    "_N$spacingX": 3.5000000000000018,
+    "_N$spacingX": 4,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
@@ -7383,7 +7383,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -112.5,
+      "x": -114,
       "y": 9
     },
     "_skewX": 0,
@@ -7474,7 +7474,7 @@
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
-    "_N$spacingX": -2,
+    "_N$spacingX": -3.5,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
@@ -7529,7 +7529,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -454,
-      "y": -89
+      "y": -85
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7792,8 +7792,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -40,
-      "y": 148
+      "x": -46,
+      "y": 138
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -7884,7 +7884,7 @@
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 30,
+    "_N$spacingY": 40,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
@@ -7994,7 +7994,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 451,
-      "y": -14
+      "y": -23
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -8174,7 +8174,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1,
+      "x": -7,
       "y": 0
     },
     "_skewX": 0,
@@ -8265,7 +8265,7 @@
     "_N$paddingRight": 10,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
-    "_N$spacingX": 22,
+    "_N$spacingX": 30,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 1
@@ -8584,7 +8584,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 20,
-      "y": -301.5
+      "y": -291.5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -8675,7 +8675,7 @@
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 0,
+    "_N$spacingY": 10,
     "_N$verticalDirection": 0,
     "_N$horizontalDirection": 0
   },
@@ -9187,7 +9187,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 337,
-      "y": 179
+      "y": 167
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -9574,7 +9574,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 336,
+      "x": 333,
       "y": -202
     },
     "_skewX": 0,
