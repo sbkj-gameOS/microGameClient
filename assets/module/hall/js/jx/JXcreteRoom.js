@@ -16,17 +16,42 @@ cc.Class({
     },
     // 模式
     clickmoshi:function(event){
+         if( moShi != this.mosiOrpepleClick(event)){
+            // 1.将当前选中的字体改为红色
+             if(event.isChecked==true){    
+                event.node.children[2].setColor(cc.color(231,62,65,255));
+            }
+
+            //2.上一个选中的字体恢复为默认色
+            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(129,74,17,255));
+        }
+
+        //3.更新moshi的值
         moShi = this.mosiOrpepleClick(event);
         console.log('模式',moShi)
     },
     // 封顶
     clickfanshu:function(event){
+          if(fengdeng != this.mosiOrpepleClick(event) ){
+             //选中改变颜色
+            if(event.isChecked==true){    
+                event.node.children[2].setColor(cc.color(231,62,65,255));
+            }
+            //上一个选中的字体恢复为默认色
+            event.node._parent.getChildByName(fengdeng).children[2].setColor(cc.color(129,74,17,255));
+        }
         fengdeng = this.mosiOrpepleClick(event);
         console.log('封顶',fengdeng)
     },
     // 玩法
     clickPlayway:function(event){
         playerData = this.gameTypeClick(event,playerData);
+         //选中改变颜色
+         if(event.isChecked==true){    
+            event.node.children[2].setColor(cc.color(231,62,65,255));
+        }else{
+            event.node.children[2].setColor(cc.color(129,74,17,255));
+        }
         console.log('玩法',playerData)
     },
     // 选择玩家人数
@@ -34,10 +59,10 @@ cc.Class({
         if(userType != this.mosiOrpepleClick(event) ){
              //选中改变颜色
             if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(184,31,31,255));
+                event.node.children[2].setColor(cc.color(231,62,65,255));
             }
             //上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(172,95,95,255));
+            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
         }
         userType = this.mosiOrpepleClick(event);
         console.log('userType',userType)
