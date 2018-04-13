@@ -562,7 +562,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 21.73,
+      "width": 140,
       "height": 50
     },
     "_rotationX": 0,
@@ -590,8 +590,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 50,
-    "_fontSize": 50,
+    "_actualFontSize": 35,
+    "_fontSize": 35,
     "_lineHeight": 50,
     "_enableWrapText": true,
     "_N$file": {
@@ -599,7 +599,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "k",
+    "_N$string": "长春麻将",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

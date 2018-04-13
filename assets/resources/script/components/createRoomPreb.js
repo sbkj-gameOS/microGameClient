@@ -13,11 +13,11 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         if(cc.weijifen.GameBase.gameModel =='ch'){
-            this.allfunction(['长春'],[this.ch]);
+            this.allfunction(['长春麻将'],[this.ch]);
         }else if(cc.weijifen.GameBase.gameModel =='wz'){
-            this.allfunction(['龙港','台炮'],[this.lg,this.tp]);
+            this.allfunction(['龙港麻将','台炮麻将'],[this.lg,this.tp]);
         }else if(cc.weijifen.GameBase.gameModel =='jx'){
-            this.allfunction(['平湖'],[this.ph]);
+            this.allfunction(['平湖麻将'],[this.ph]);
         }
     },
     allfunction: function(name,value){
