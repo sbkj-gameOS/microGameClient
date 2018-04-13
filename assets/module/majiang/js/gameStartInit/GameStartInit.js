@@ -359,6 +359,7 @@ cc.Class({
                     }
                 }
             }else{
+                // 宝牌显示
                 cc.find('Canvas/cards/tesucards/baocard').active =true;
                 if(data.player.powerCard){
                     let cards = data.player.powerCard;
