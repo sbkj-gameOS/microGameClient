@@ -79,12 +79,10 @@ cc.Class({
             /* 12 */    "",
             /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
                     ];
-            cc.log(web);
             web.url = cc.weijifen.url + data[name];
             if (name == 5) {
                 web.url = data[name]
             };
-            cc.log(web.url)
             /*WebView = function(e){
                 e.preventDefault();
             }*/

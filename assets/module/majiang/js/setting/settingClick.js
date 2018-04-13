@@ -46,8 +46,6 @@ cc.Class({
         },
         // 点击解散房间按钮
         overClick:function(){
-            
-            cc.log('解散按钮')
             this.openAlert('是否解散房间','over');
             let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
             // btn.active = true;
@@ -68,7 +66,6 @@ cc.Class({
          * 一方要求解散时，向其他玩家发送请求信息
          */
         isOver_event:function(){
-            cc.log('isOver_event')
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
             if(mj.alert.size()>0){

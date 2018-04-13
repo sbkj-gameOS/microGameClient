@@ -18,7 +18,6 @@ cc.Class({
             //alert();
             var context = cc.find('Canvas').getComponent('MajiangDataBind'); 
             context.current_ready.active = true ; //当前玩家准备（手）   
-            cc.log(self)
             let socket = self.getSelf().socket();
             //
             // 点击准备，
@@ -80,7 +79,6 @@ cc.Class({
             }))
         });
         this.node.on('overGame',function(event){
-            cc.log('ecent_getUserData',event.getUserData)
             let socket = self.getSelf().socket();
             if(event.getUserData()){
                 socket.emit('overGame',JSON.stringify({

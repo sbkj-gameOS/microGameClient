@@ -67,7 +67,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 400,
-      "y": -200
+      "y": -187
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -158,9 +158,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -171,7 +171,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 90,
       "height": 40
     },
     "_rotationX": 0,
@@ -199,8 +199,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -385,8 +385,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -394,7 +394,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -39,
+      "x": -81,
       "y": 0
     },
     "_skewX": 0,
@@ -476,8 +476,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -485,7 +485,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -39,
+      "x": -82,
       "y": 0
     },
     "_skewX": 0,
@@ -554,9 +554,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 231,
+      "g": 62,
+      "b": 65,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -576,7 +576,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 27,
+      "x": -5,
       "y": 0
     },
     "_skewX": 0,
@@ -812,8 +812,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -903,8 +903,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -981,9 +981,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 129,
+      "g": 74,
+      "b": 16,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1301,8 +1301,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1310,7 +1310,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -68,
+      "x": -108,
       "y": 0
     },
     "_skewX": 0,
@@ -1392,8 +1392,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 38,
+      "height": 36
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1401,7 +1401,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -68,
+      "x": -109,
       "y": 0
     },
     "_skewX": 0,
@@ -1470,9 +1470,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1492,7 +1492,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 33,
+      "x": 6,
       "y": 0
     },
     "_skewX": 0,
@@ -1728,8 +1728,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1819,8 +1819,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1897,9 +1897,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1919,7 +1919,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 39,
+      "x": 44,
       "y": 0
     },
     "_skewX": 0,
@@ -2150,9 +2150,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -2163,7 +2163,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 90,
       "height": 40
     },
     "_rotationX": 0,
@@ -2191,8 +2191,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -2471,8 +2471,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2480,7 +2480,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -32,
+      "x": -37,
       "y": 0
     },
     "_skewX": 0,
@@ -2562,8 +2562,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2571,7 +2571,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -32,
+      "x": -38,
       "y": 0
     },
     "_skewX": 0,
@@ -2640,9 +2640,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 231,
+      "g": 62,
+      "b": 65,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -2898,8 +2898,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2907,7 +2907,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -47,
+      "x": -46,
       "y": 0
     },
     "_skewX": 0,
@@ -2989,8 +2989,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3067,9 +3067,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3089,7 +3089,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 19,
+      "x": 37,
       "y": 0
     },
     "_skewX": 0,
@@ -3315,8 +3315,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3406,8 +3406,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3484,9 +3484,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3506,7 +3506,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 26.3,
+      "x": 29.3,
       "y": 0
     },
     "_skewX": 0,
@@ -3734,9 +3734,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3747,7 +3747,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 90,
       "height": 40
     },
     "_rotationX": 0,
@@ -3775,8 +3775,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -3964,8 +3964,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -3973,7 +3973,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -63,
+      "x": -70,
       "y": 0
     },
     "_skewX": 0,
@@ -4055,8 +4055,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 36,
+      "height": 36
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -4064,7 +4064,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -63,
+      "x": -71,
       "y": 0
     },
     "_skewX": 0,
@@ -4133,9 +4133,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 231,
+      "g": 62,
+      "b": 65,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4146,7 +4146,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 70.63,
+      "width": 52.97,
       "height": 40
     },
     "_rotationX": 0,
@@ -4155,7 +4155,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 16,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -4174,8 +4174,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -4391,8 +4391,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -4482,8 +4482,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -4560,9 +4560,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4573,7 +4573,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 70.63,
+      "width": 52.97,
       "height": 40
     },
     "_rotationX": 0,
@@ -4582,7 +4582,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 36,
+      "x": 28,
       "y": -1
     },
     "_skewX": 0,
@@ -4601,8 +4601,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -4808,8 +4808,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 44
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -4899,8 +4899,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 49,
-      "height": 49
+      "width": 35,
+      "height": 35
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -4977,9 +4977,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 172,
-      "g": 95,
-      "b": 95,
+      "r": 129,
+      "g": 74,
+      "b": 17,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4990,7 +4990,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 70.63,
+      "width": 52.97,
       "height": 40
     },
     "_rotationX": 0,
@@ -4999,7 +4999,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 36,
+      "x": 8,
       "y": 0
     },
     "_skewX": 0,
@@ -5018,8 +5018,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -5287,7 +5287,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 96,
-      "y": -150
+      "y": -157
     },
     "_skewX": 0,
     "_skewY": 0,

@@ -535,8 +535,6 @@ cc.Class({
         // this.totaljs.string = '圈数  '+ this.maxRound;
         self.routes = {};
         quanNum.string = '0/' + self.maxRound;
-        cc.log('MJDataBind-self',self.routes)
-        // cc.log('MJDataBind-self',self)
     },
     /*
     * 初始化对象池

@@ -54,7 +54,6 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
-            cc.log('-----action_event--------------',data)  
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
             context = cc.find('Canvas').getComponent('MJDataBind');     
             cc.sys.localStorage.setItem('altake','true');
