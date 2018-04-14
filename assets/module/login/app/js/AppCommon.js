@@ -28,7 +28,7 @@ cc.Class({
     },
     // 首次加载页面方法
     onLoad: function () {
-        var GameBase = {'gameModel':'ch'} ;
+        var GameBase = {'gameModel':'jx'} ;
         cc.weijifen.GameBase = GameBase ;
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         if(cc.weijifen.GameBase.gameModel =='wz'){
