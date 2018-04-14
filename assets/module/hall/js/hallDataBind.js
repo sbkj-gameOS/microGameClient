@@ -96,16 +96,17 @@ cc.Class({
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
         // console.log('cc.weijifen---handDataBind',cc.weijifen)
-
     },
     carderror: function(result,object){
         // this.alert('充值失败');
     },
     cardsucess:function(result,object){
         var data = JSON.parse(result) ;
-            cc.weijifen.user.cards = data.cards;
-            object.cards.string = cc.weijifen.user.cards ;
-            object.goldcoins.string = cc.weijifen.user.goldcoins;
+        var mainUserCards = cc.find("Canvas/main/head/5/num").getComponent(cc.Label);;
+        mainUserCards.string = data.cards;
+        cc.weijifen.user.cards = data.cards;
+        object.cards.string = cc.weijifen.user.cards ;
+        object.goldcoins.string = cc.weijifen.user.goldcoins;
 
     },
     signSucess:function(result,object){
@@ -130,7 +131,6 @@ cc.Class({
         if(data.tz){
             object.hall(3);
         }// 通知弹框
-
 	},
 	tzerror: function(result,object){	
 
