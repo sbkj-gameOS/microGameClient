@@ -572,7 +572,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -15,
-      "y": 0
+      "y": -2
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -595,7 +595,7 @@
     "_lineHeight": 50,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "50befab0-30f4-4e11-991b-8813b96e126c"
+      "__uuid__": "185e12d2-e6c0-4c11-a01e-a54dcd99a262"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
