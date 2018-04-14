@@ -390,7 +390,7 @@ cc.Class({
          * ActionEvent发射的事件 ， 点击 胡
          */
         self.node.on("hu",function(event){
-            cc.beimi.audio.playSFX('nv/hu.mp3');  
+            cc.weijifen.audio.playSFX('nv/hu.mp3');  
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
