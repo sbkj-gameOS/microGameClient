@@ -43,7 +43,7 @@ cc.Class({
 	        cc.sys.localStorage.removeItem('cb');          
 	        gamePlay.qujuju(data);
 	        let kongcard ; 
-	        // cc.weijifen.audio.playSFX('give.mp3');
+	        cc.weijifen.audio.playSFX('give.mp3');
 	        let playerss = gameStartInit.player(data.userid , context);
 	        if(data.ting){
 	            if(context[playerss.tablepos+'ting'].active ==false){

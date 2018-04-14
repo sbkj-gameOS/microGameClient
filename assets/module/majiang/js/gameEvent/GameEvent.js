@@ -168,7 +168,7 @@ cc.Class({
             var gameStartInit = require('GameStartInit');
             var gameEvent = require('GameEvent');
             //触发音效
-            // cc.weijifen.audio.playSFX('nv/'+data.action+'.mp3');        
+            cc.weijifen.audio.playSFX('nv/'+data.action+'.mp3');        
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;
             let jiantou;
             if(data.target){

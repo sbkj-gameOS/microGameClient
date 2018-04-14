@@ -201,7 +201,7 @@ cc.Class({
         // 监听出牌拿牌
         self.node.on('takecard', function (event) {
             var context = cc.find('Canvas').getComponent('MJDataBind');             
-            // cc.weijifen.audio.playSFX('select.mp3');            
+            cc.weijifen.audio.playSFX('select.mp3');            
 
             if(cc.sys.localStorage.getItem('take') == 'true'){
                 let card = event.target.getComponent("TakeMJCard");
@@ -219,7 +219,7 @@ cc.Class({
                     if (cc.sys.localStorage.getItem('ting') == 'true') {  
                         context.tingting.active = true ;
                         setTimeout(function(){context.tingting.active = false},2000);
-                        // cc.weijifen.audio.playSFX('nv/ting.mp3');                                
+                        cc.weijifen.audio.playSFX('nv/ting.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
                         socket.emit("selectaction" , JSON.stringify({
@@ -390,7 +390,7 @@ cc.Class({
          * ActionEvent发射的事件 ， 点击 胡
          */
         self.node.on("hu",function(event){
-            //cc.beimi.audio.playSFX('nv/hu.mp3');  
+            cc.beimi.audio.playSFX('nv/hu.mp3');  
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -824,9 +824,9 @@ cc.Class({
                     text = "0"+times ;
                 }
                 object.mjtimer.string = text ;
-                // if(times< 5){
-                //     cc.weijifen.audio.playSFX('timeup_alarm.mp3');                    
-                // }
+                if(times< 5){
+                    cc.weijifen.audio.playSFX('timeup_alarm.mp3');                    
+                }
             }
         }
         object.unscheduleAllCallbacks();

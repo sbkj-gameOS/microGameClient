@@ -488,7 +488,7 @@ cc.Class({
                 }
             }
             setTimeout(function(){
-                // cc.weijifen.audio.playSFX('shuffle.mp3');            
+                cc.weijifen.audio.playSFX('shuffle.mp3');            
                 let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
                 // ani.play("majiang_reorder") ;
                 var maxvalue  = -100;
