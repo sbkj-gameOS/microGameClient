@@ -26,6 +26,11 @@ cc.Class({
             setting.parent = cc.find('Canvas');
             return 
         }
+
+        if (event.target.name == 9) {
+            this.alert("敬请期待~");
+            return 
+        }
         this.hall(event.target.name);
     },
 });
