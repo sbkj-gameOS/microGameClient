@@ -21,6 +21,8 @@ cc.Class({
         if(name == 10 || name == 11){
             let gameroom;
             web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
             if(name ==10){
                 gameroom = cc.instantiate(this.joinRoom);
             }else if(name == 11){
