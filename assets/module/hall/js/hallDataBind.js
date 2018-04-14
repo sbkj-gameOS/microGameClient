@@ -90,6 +90,7 @@ cc.Class({
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
 
         }
+
         var self = this ;
         cc.weijifen.iPayBack = function(result) {
             result = encodeURIComponent(result);
@@ -102,7 +103,7 @@ cc.Class({
     },
     cardsucess:function(result,object){
         var data = JSON.parse(result) ;
-        var mainUserCards = cc.find("Canvas/main/head/5/num").getComponent(cc.Label);;
+        var mainUserCards = cc.find("Canvas/main/head/5/num").getComponent(cc.Label);
         mainUserCards.string = data.cards;
         cc.weijifen.user.cards = data.cards;
         object.cards.string = cc.weijifen.user.cards ;
@@ -112,11 +113,11 @@ cc.Class({
     signSucess:function(result,object){
         //支付成功提示,重新获取用户数据刷新数据。
         if ( 'error' == result ) {
-            self.alert("失败!");
+            object.alert("失败!");
         } else {
             //验证返回的签名是否正确
-            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
-            self.alert("充值成功!");
+            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,object.cardsucess,object.carderror,object);
+            object.alert("充值成功!");
         }
     },
     signError: function(result,object){
