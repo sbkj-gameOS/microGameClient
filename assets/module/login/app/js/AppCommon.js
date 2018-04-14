@@ -37,6 +37,10 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
         }else if(cc.weijifen.GameBase.gameModel == 'jx'){
             sprite.spriteFrame = this.JXLogo;
+            let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
+            rightTopLogo.active = false;
+            this.loginLogoNode.width = 480;
+            this.loginLogoNode.height = 120;
         }
         var self = this ;
         cc.weijifen.wxAuth = function(code) {
