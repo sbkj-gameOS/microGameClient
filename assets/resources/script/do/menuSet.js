@@ -13,6 +13,8 @@ cc.Class({
     init:function(name){
         this.clearPerfab();
         let web = this.title.parent.children[2];
+        let loadImage = this.title.parent.children[3];
+        loadImage.active = true;
         web.setPosition(0,900);
         for(let i in this.title.children){
             this.title.children[i].active = false ;
