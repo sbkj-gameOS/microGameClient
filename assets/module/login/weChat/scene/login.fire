@@ -1065,7 +1065,9 @@
     "node": {
       "__id__": 23
     },
-    "_enabled": true
+    "_enabled": true,
+    "gameSettingClick": null,
+    "shopPage": null
   },
   {
     "__type__": "aaf63EFxwFB8qQkVsFSA2Bo",
@@ -1859,7 +1861,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 513.34,
+      "width": 540,
       "height": 80
     },
     "_rotationX": 0,
@@ -1891,8 +1893,10 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "185e12d2-e6c0-4c11-a01e-a54dcd99a262"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "抵制不良游戏  拒绝盗版游戏  注意自我保护  谨防上当受骗\n适度游戏益脑  沉迷游戏伤身  合理安排时间  享受健康生活",
     "_N$horizontalAlign": 1,
