@@ -48,7 +48,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": null
+    "autoReleaseAssets": false
   },
   {
     "__type__": "cc.Node",
@@ -921,6 +921,9 @@
     },
     "shopPage": {
       "__uuid__": "ff70addd-b59e-4810-b165-c6c46893ea26"
+    },
+    "sharing": {
+      "__uuid__": "e8910e71-bce4-4da5-897a-6cf1fa3b1d17"
     }
   },
   {
@@ -1758,7 +1761,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 45
@@ -1940,7 +1943,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 479,
+      "x": 465,
       "y": 23
     },
     "_skewX": 0,
@@ -2086,7 +2089,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 362,
+      "x": 351,
       "y": 22
     },
     "_skewX": 0,
@@ -2697,9 +2700,7 @@
     "_fontSize": 25,
     "_lineHeight": 25,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "50befab0-30f4-4e11-991b-8813b96e126c"
-    },
+    "_N$file": null,
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "999998",
@@ -2923,9 +2924,7 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": {
-      "__uuid__": "50befab0-30f4-4e11-991b-8813b96e126c"
-    },
+    "_N$file": null,
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "0",

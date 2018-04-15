@@ -5,6 +5,7 @@ cc.Class({
     properties: {
         gameSettingClick: cc.Prefab,
         shopPage: cc.Prefab,
+        sharing:cc.Prefab
     },
 
     // use this for initialization
@@ -23,6 +24,12 @@ cc.Class({
         }
         if (event.target.name == 5) {
             let setting = cc.instantiate(this.shopPage);
+            setting.parent = cc.find('Canvas');
+            return 
+        }
+
+        if (event.target.name == 12) {
+            let setting = cc.instantiate(this.sharing);
             setting.parent = cc.find('Canvas');
             return 
         }
