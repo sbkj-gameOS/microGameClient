@@ -28,12 +28,6 @@ cc.Class({
             return 
         }
 
-        if (event.target.name == 12) {
-            let setting = cc.instantiate(this.sharing);
-            setting.parent = cc.find('Canvas');
-            return 
-        }
-
         if (event.target.name == 9) {
             this.alert("敬请期待~");
             return 

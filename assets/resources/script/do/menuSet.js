@@ -64,7 +64,7 @@ cc.Class({
              * 9：比赛大厅url地址
              * 10：
              * 11：
-             * 12：
+             * 12：分享
              * 13：玩家信息
              * @type {Array}
              */
@@ -82,13 +82,14 @@ cc.Class({
             /* 9 */     "/match/goMatchPage?token="+cc.weijifen.authorization+"",
             /* 10 */    "",
             /* 11 */    "",
-            /* 12 */    "",
+            /* 12 */    "/help/share?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
             /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
                     ];
             web.url = cc.weijifen.url + data[name];
             if (name == 5) {
                 web.url = data[name]
             };
+            cc.log(web.url);
             /*WebView = function(e){
                 e.preventDefault();
             }*/
