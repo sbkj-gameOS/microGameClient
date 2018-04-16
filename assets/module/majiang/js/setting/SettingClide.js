@@ -149,9 +149,6 @@ cc.Class({
     },
     cardClick(event){
         var event_string = event.target.getComponent(cc.Button).clickEvents[0].customEventData
-        if (event_string != 'gameMain_click') {
-            let mj = cc.find('Canvas/js/settingClick').getComponent('settingClick');      
-        } 
         let parent = event.target.parent.parent;
         for(let i = 0 ; i < parent.children.length; i++ ){
             parent.children[i].children[0].active = false;
@@ -159,6 +156,7 @@ cc.Class({
         event.target.parent.children[0].active = true;
         cc.sys.localStorage.setItem('cardcolor',event.target.name);
         if(cc.find('Canvas/bg')){
+            let mj = cc.find('Canvas/js/settingClick').getComponent('settingClick');      
             mj.cardsetting();     
         }   
     },
