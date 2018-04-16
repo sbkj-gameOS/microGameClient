@@ -63,7 +63,7 @@ cc.Class({
 	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
 	    	var gameStartInit = require('GameStartInit');
 	        if(playerid){
-	            cc.beimi.audio.playSFX('nv/hu.mp3');                    
+	            cc.weijifen.audio.playSFX('nv/hu.mp3');                    
 	            let hu_hu = gameOverNode.current_hu.getComponent(cc.Animation);
 	            let player = gameStartInit.player(playerid , this);
 	            let action = cc.scaleTo(1.5,1.5);

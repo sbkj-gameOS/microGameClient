@@ -34,7 +34,6 @@ cc.Class({
         }else{
             var self = this ;
             cc.weijifen.testCode = function(data) {
-                        console.log("data:"+data);
                 self.testCode(data,self) ;
             };
             web.active = true;
@@ -43,7 +42,6 @@ cc.Class({
             var scheme = "matchList";// 这里是与内部页面约定的关键字
             web.setJavascriptInterfaceScheme(scheme);
             function jsCallback (url) {
-                console.log("jsCallback");
                 var str = url.replace(scheme + '://', '');
                 var data = JSON.stringify(str);// {a: 0, b: 1}
                 //回掉操作。当webview里操作外部方法时，通过这里调用。例如，支付。

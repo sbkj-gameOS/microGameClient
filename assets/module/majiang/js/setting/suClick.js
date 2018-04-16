@@ -31,7 +31,6 @@ cc.Class({
   
     },
     endclick: function(event){
-        console.log('已经点击返回大厅按钮')
         var a = {};
         a.key = true;
         var oper = new cc.Event.EventCustom('restar', true) ;

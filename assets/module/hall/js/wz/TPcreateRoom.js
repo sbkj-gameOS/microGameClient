@@ -73,7 +73,6 @@ cc.Class({
             event.node._parent.getChildByName(TPQiHu).children[2].setColor(cc.color(129,74,17,255));
         }
         TPQiHu = this.mosiOrpepleClick(event);
-        console.log('TPQiHu',TPQiHu)
     },
     clickTPPayType:function(event){
         if( TPPayType != this.mosiOrpepleClick(event)){

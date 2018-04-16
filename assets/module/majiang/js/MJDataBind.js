@@ -101,9 +101,14 @@ cc.Class({
             default:null,
             type: cc.Node
         },
-        noticeShare: cc.Node
+        noticeShare: cc.Node,
+        menuPrefab: {
+            default: null,
+            type: cc.Prefab
+        }
     },
     onLoad: function () {
+
         let self = this ;
         //let socket = this.socket(self);
         let socket = this.connect() ;
@@ -424,7 +429,9 @@ cc.Class({
 
         self.node.on('restar',function(event){
             var gameStartInit = require('GameStartInit');
-            if(event.getUserData()){                
+            if(event.getUserData()){     
+                    cc.weijifen.menu = new cc.NodePool();
+                    cc.weijifen.menu.put(cc.instantiate(self.menuPrefab));//菜单框
                 if(cc.weijifen.GameBase.gameModel=='wz'){
                     cc.director.loadScene('温州');
                 }else{

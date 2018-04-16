@@ -310,7 +310,6 @@ cc.Class({
                     temp = card.getComponent('DanAction');
                 }else{
                     cardOp = gameStartInit.findCardForKong(parent,cards[0],action) ;
-                    console.log('进入GameEvent中-----313---当前方位是current',cardOp)
                     card = cc.instantiate(gameEventNode.dan_mycurrent);
                     temp = card.getComponent('DanAction');
                 } 

@@ -35,7 +35,6 @@ cc.Class({
                 event.node.children[2].setColor(cc.color(231,62,65,255));
             }
 
-            console.log(userType)
 
             //2.上一个选中的字体恢复为默认色
             userType = userType.toString();

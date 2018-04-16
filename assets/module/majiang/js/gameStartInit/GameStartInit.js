@@ -73,10 +73,12 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        
     },
 
     //
     onLoad: function () {
+       
     },
     statics: {
         /**
@@ -395,8 +397,6 @@ cc.Class({
             for(var i = 0; i <data.players.length;i++){
                 if(data.players[i].buHua){
                     // buhua = context.decode(data.players[i].buHua);//补花
-                    console.log('players',data.players[i])
-                    console.log(data.players[i].buHua)
                     buhua = data.players[i].buHua;
                     let temp = gameStartInit.player(data.players[i].playuser, context);
                     //console.log(temp.tablepos);

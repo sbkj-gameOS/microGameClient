@@ -28,7 +28,6 @@ cc.Class({
 
         //3.更新moshi的值
         moShi = this.mosiOrpepleClick(event);
-        console.log('模式',moShi)
     },
     // 封顶
     clickfanshu:function(event){
@@ -41,7 +40,6 @@ cc.Class({
             event.node._parent.getChildByName(fengdeng).children[2].setColor(cc.color(129,74,17,255));
         }
         fengdeng = this.mosiOrpepleClick(event);
-        console.log('封顶',fengdeng)
     },
     // 玩法
     clickPlayway:function(event){
@@ -52,7 +50,6 @@ cc.Class({
         }else{
             event.node.children[2].setColor(cc.color(129,74,17,255));
         }
-        console.log('玩法',playerData)
     },
     // 选择玩家人数
     clickPepNum:function(event){
@@ -65,7 +62,6 @@ cc.Class({
             event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
         }
         userType = this.mosiOrpepleClick(event);
-        console.log('userType',userType)
     },
     createClick:function(){
         playerData = playerData.split("@@");
@@ -75,7 +71,6 @@ cc.Class({
         garams.pepNums = userType;
         garams.count = moShi;
         garams.player2 = fengdeng;
-        console.log('房间信息',garams)
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
