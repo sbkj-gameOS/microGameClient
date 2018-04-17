@@ -251,13 +251,18 @@ cc.Class({
 	                    cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
 	                }
 	                cc.weijifen.baopai = data.powerCard;
-	                for(let i= 0 ; i<data.powerCard.length;i++){
+	                /*for(let i= 0 ; i<data.powerCard.length;i++){
 	                    var laiziZM = cc.instantiate(gameStartInitNode.ZM);
 	                    laiziZM.parent = gameStartInitNode.godcard.children[1];
 	                    var LZH  = laiziZM.getComponent('DeskCards');
 	                    LZH.init(data.powerCard[i],'B',true);
 	                    // cc.weijifen.baopai = data.powerCard[i];
-	                }
+	                }*/
+	                cc.find('Canvas/cards/tesucards/baocard/child').x = -580;                
+                    var laiziFM = cc.instantiate(gameStartInitNode.FM);
+                    var LZH = laiziFM.getComponent('DeskCards');
+                    LZH.init(-3,'Z',true);
+                    laiziFM.parent = gameStartInitNode.godcard.children[1];
 	            }else{
 	                var laiziFM = cc.instantiate(gameStartInitNode.FM);
 	                var LZH = laiziFM.getComponent('DeskCards');
