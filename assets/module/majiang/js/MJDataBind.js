@@ -831,9 +831,9 @@ cc.Class({
                     text = "0"+times ;
                 }
                 object.mjtimer.string = text ;
-                if(times< 5){
-                    cc.weijifen.audio.playSFX('timeup_alarm.mp3');                    
-                }
+                // if(times< 5){
+                //     cc.weijifen.audio.playSFX('timeup_alarm.mp3');                    
+                // }
             }
         }
         object.unscheduleAllCallbacks();
