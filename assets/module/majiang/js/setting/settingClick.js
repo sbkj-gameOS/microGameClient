@@ -12,7 +12,6 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
     },
 
     //设置
@@ -21,15 +20,24 @@ cc.Class({
         settingBtnClick: function (event) {
             // var action = cc.moveTo(0.5,cc.p(390,265));
             let settting_box = cc.find('Canvas/other/setting');
+            let layer = cc.find('Canvas/layer');
             cc.weijifen.settingflag = !cc.weijifen.settingflag;
-            if(cc.weijifen.settingflag){
-                settting_box.active = true;
-                var action = cc.moveTo(0.5,cc.p(408,306));
-                settting_box.runAction(action);
-            }else{
-                var action = cc.moveTo(0.5,cc.p(850,306));
-                settting_box.runAction(action);
-            }
+            setTimeout(function(){
+                if(cc.weijifen.settingflag){
+                    settting_box.active = true;
+                    var action = cc.moveTo(0.5,cc.p(408,306));
+                    settting_box.runAction(action);
+                    layer.active = true;
+                    if (event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'layer') {
+                        event.stopPropagation();
+                    }
+                }else{
+                    var action = cc.moveTo(0.5,cc.p(850,306));
+                    settting_box.runAction(action);
+                    layer.active = false;
+                }
+            },300)
+          
             // this.node.dispatchEvent( new cc.Event.EventCustom('settingclick', true) );
             // cc.log(settting_box)
         },
@@ -85,9 +93,22 @@ cc.Class({
         },
         // 设置桌面等
         gameSetting:function(){
+            let cardcolor = cc.sys.localStorage.getItem('cardcolor');
+            let j;
             let mjdata = cc.find('Canvas').getComponent('MJDataBind');
             let setting = cc.instantiate(mjdata.gameSettingClick);
             setting.parent = mjdata.node;
+            if (setting) {
+                let cards = cc.find('Canvas/setting/majiang');
+                for (let i = 0;i < cards.children.length;i++) {
+                    if (cardcolor == 'yellow') { j = 0 } else 
+                    if (cardcolor == 'blue') { j = 1 } else 
+                    if (cardcolor == 'purple') { j = 2 };
+                    cards.children[i].getChildByName('select_box').active = false;
+                    cards.children[j].getChildByName('select_box').active = true;
+                }
+                console.log(cards.children[j].getChildByName('select_box'))
+            }
         },
         gameOver_event: function(data,context){
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
