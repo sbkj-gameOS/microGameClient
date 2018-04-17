@@ -19,7 +19,19 @@ cc.Class({
     open: function(event){
         if (event.target.name == 14) {
             let setting = cc.instantiate(this.gameSettingClick);
+            let cardcolor = cc.sys.localStorage.getItem('cardcolor');
+            let j;
             setting.parent = cc.find('Canvas');
+            if (setting) {
+                let cards = cc.find('Canvas/setting/majiang');
+                for (let i = 0;i < cards.children.length;i++) {
+                    if (cardcolor == 'yellow') { j = 0 } else 
+                    if (cardcolor == 'blue') { j = 1 } else 
+                    if (cardcolor == 'purple') { j = 2 };
+                    cards.children[i].getChildByName('select_box').active = false;
+                    cards.children[j].getChildByName('select_box').active = true;
+                }
+            }
             return 
         }
         if (event.target.name == 5) {

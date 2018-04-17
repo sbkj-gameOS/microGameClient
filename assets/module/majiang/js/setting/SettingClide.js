@@ -12,7 +12,7 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        music:{
+        /*music:{
             default: null,
             type: cc.Sprite
         },
@@ -27,7 +27,7 @@ cc.Class({
         soundSlider:{
             default: null,
             type: cc.Slider
-        },
+        },*/
         musicon:{
             default: null,
             type: cc.Node
@@ -88,7 +88,7 @@ cc.Class({
             this.danji.active = false;
             this.shuangji.active = true;
         }
-  
+
     },
     // onMusicSlide:function(slider){
     //     if(cc.sys.localStorage.getItem('nobgm')=='true'){

@@ -106,11 +106,17 @@ cc.Class({
                     ting.x = - 200 + count * 110 ;
                     count++;
                 }
-                if(data.guo) {
+                /*if(data.guo) {
+                    guo.active =true;
+                    guo.x = - 200 + count * 110 ;
+                    count++;
+                }*/
+                if(data.deal) {
                     guo.active =true;
                     guo.x = - 200 + count * 110 ;
                     count++;
                 }
+
                
                 var action = cc.moveTo(0.1,800 - count*285,-100);
                 //context.actionnode_two.active = true;
@@ -150,7 +156,7 @@ cc.Class({
                     chi.x = - 400 + count * 110
                     count++;
                 }
-                if(data.deal == false){
+                if(!data.deal){
                     guo.active = true ;
                     guo.x = - 400 + count * 110
                     count++;

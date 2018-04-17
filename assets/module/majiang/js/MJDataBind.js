@@ -430,8 +430,8 @@ cc.Class({
         self.node.on('restar',function(event){
             var gameStartInit = require('GameStartInit');
             if(event.getUserData()){     
-                    cc.weijifen.menu = new cc.NodePool();
-                    cc.weijifen.menu.put(cc.instantiate(self.menuPrefab));//菜单框
+                cc.weijifen.menu = new cc.NodePool();
+                cc.weijifen.menu.put(cc.instantiate(self.menuPrefab));//菜单框
                 if(cc.weijifen.GameBase.gameModel=='wz'){
                     cc.director.loadScene('温州');
                 }else{
