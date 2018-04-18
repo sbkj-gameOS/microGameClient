@@ -31,11 +31,12 @@ cc.Class({
     restar_receive: function () {
         this.node.on('restar',function(event){
             if(event.getUserData()){                
-                if(cc.weijifen.GameBase.gameModel=='wz'){
+                /*if(cc.weijifen.GameBase.gameModel=='wz'){
                     cc.director.loadScene('温州');
                 }else{
                     cc.director.loadScene('gameMain');                    
-                }
+                }*/
+                cc.director.loadScene('gameMain');                    
             }else{
                 if(cc.sys.localStorage.getItem('clear') != 'true'){
                     var context = cc.find('Canvas').getComponent('MajiangDataBind'); 

@@ -49,7 +49,7 @@ cc.Class({
                 //图片地址内的图片路径 = 要更换的图片路径
                 sprite.spriteFrame = object;
             }
-            if (cc.weijifen.GameBase.gameModel == 'jx') {
+            if (cc.weijifen.GameBase.gameModel != 'ch') {
                 cc.find('Canvas/main/menu/top/logo').active = false
             }
 

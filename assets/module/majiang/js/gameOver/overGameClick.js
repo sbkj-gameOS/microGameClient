@@ -93,11 +93,12 @@ cc.Class({
     leaveGameClick:function(){
         cc.sys.localStorage.setItem('dis','true');        
         this.disconnect();
-        if(cc.weijifen.GameBase.gameModel=='wz'){
+        /*if(cc.weijifen.GameBase.gameModel=='wz'){
             this.scene("温州" , this) ;
         }else{
             this.scene("gameMain" , this);
-        }
+        }*/
+        this.scene("gameMain" , this);
         this.node.dispatchEvent( new cc.Event.EventCustom('leaveGame', true) );
     },
     daojishi: function(){

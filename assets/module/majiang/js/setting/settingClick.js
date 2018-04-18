@@ -140,11 +140,12 @@ cc.Class({
             cc.weijifen.room=null;
             cc.weijifen.cardNum = null;
             cc.sys.localStorage.setItem('dis','true');        
-            if(cc.weijifen.GameBase.gameModel=='wz'){
+            /*if(cc.weijifen.GameBase.gameModel=='wz'){
                 cc.director.loadScene('温州');
             }else{
                 cc.director.loadScene('gameMain');                    
-            }
+            }*/
+            cc.director.loadScene('gameMain');                    
             let mj = cc.find('Canvas').getComponent('MJDataBind');
             clearTimeout(mj.t);  
             // var desk = require("DeskCards");

@@ -432,11 +432,12 @@ cc.Class({
             if(event.getUserData()){     
                 cc.weijifen.menu = new cc.NodePool();
                 cc.weijifen.menu.put(cc.instantiate(self.menuPrefab));//菜单框
-                if(cc.weijifen.GameBase.gameModel=='wz'){
+               /* if(cc.weijifen.GameBase.gameModel=='wz'){
                     cc.director.loadScene('温州');
                 }else{
                     cc.director.loadScene('gameMain');                    
-                }
+                }*/
+                cc.director.loadScene('gameMain');                    
             }else{
                 if(cc.sys.localStorage.getItem('clear') != 'true'){
                     var context = cc.find('Canvas').getComponent('MajiangDataBind'); 

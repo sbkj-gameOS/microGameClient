@@ -61,7 +61,8 @@ cc.Class({
             let baopai ;
             let summary = cc.find('Canvas/summary').getComponent('SummaryClick');
             if(this.data.balance.bu){
-                huaCards = this.decode(this.data.balance.bu);
+                // huaCards = this.decode(this.data.balance.bu);
+                huaCards = this.data.balance.bu;
                 for(let i = 0 ; i< huaCards.length ; i ++){
                     let card = cc.instantiate(this.buhua);
                     card.getComponent('BuHuaAction').init(huaCards[i]);
