@@ -9,7 +9,7 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
-        playerData = "classic";
+        playerData = "classic@@";
         playerData2="3-6-9-12";
         moShi = "8";
         userType = "4";
@@ -85,6 +85,7 @@ cc.Class({
         garams.pepNums = userType;
         //局数
         garams.modeltype = moShi;
+        garams.count = moShi;
         garams.game = 'LG';
         cc.weijifen.playType='LG';
         if(cc.weijifen.authorization){

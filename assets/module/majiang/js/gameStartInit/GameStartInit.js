@@ -374,7 +374,7 @@ cc.Class({
                         LZH.init(cards[i],'B',true);
                     }
                 }else{
-                    cc.find('Canvas/cards/tesucards/baocard/child').x = -580;                
+                    cc.find('Canvas/cards/tesucards/baocard/child').x = -585;                
                     var laiziFM = cc.instantiate(gameStartInitNode.FM);
                     var LZH = laiziFM.getComponent('DeskCards');
                     LZH.init(-3,'Z',true);
@@ -663,9 +663,9 @@ cc.Class({
                     }
                 } 
                     context.closeloadding();
-                    if(cc.weijifen.playType =='LG'){
+                   /* if(cc.weijifen.playType =='LG'){
                         context.lgdong(data);
-                    }
+                    }*/
             },2000)      
         },
 
