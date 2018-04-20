@@ -138,27 +138,28 @@ cc.Class({
                 var count = 0;
                 if(data.hu){
                     hu.active = true ;
-                    hu.x = - 400 + count * 110
+                    hu.x = - 200 + count * 110
+                    // hu.x = - 400 + count * 110
                     count++;
                 }
                 if(data.gang){
                     gang.active = true ;
-                    gang.x = - 400 + count * 110
+                    gang.x = - 200 + count * 110
                     count++;
                 }
                 if(data.peng){
                     peng.active = true ;
-                    peng.x = - 400 + count * 110
+                    peng.x = - 200 + count * 110
                     count++;
                 }
                 if(data.chi){
                     chi.active = true ;
-                    chi.x = - 400 + count * 110
+                    chi.x = - 200 + count * 110
                     count++;
                 }
                 if(!data.deal){
                     guo.active = true ;
-                    guo.x = - 400 + count * 110
+                    guo.x = - 200 + count * 110
                     count++;
                 }  
                 var action = cc.moveTo(0.1,800 - count*285,-100);
