@@ -43,6 +43,8 @@ cc.Class({
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
         }else if(cc.weijifen.GameBase.gameModel == 'nj'){
+            let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
+            rightTopLogo.active = false;
             sprite.spriteFrame = this.NJLogo;
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
