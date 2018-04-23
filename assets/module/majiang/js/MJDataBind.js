@@ -156,7 +156,10 @@ cc.Class({
 
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
-            if (data.replacePowerCard) {
+            console.log(data)
+            data.replacePowerCard = true
+            data.action = 'ting'
+            if (data.replacePowerCard && data.action == 'ting') {
                 cc.find('Canvas/tip').active = true;
                 var timer;
                 timer = setTimeout(function(){
