@@ -116,6 +116,11 @@ cc.Class({
         // //初始化对象池
         this.init_pool();
 
+
+
+        // dealcard、action  
+
+
         var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
         //初始化房间信息
         socket.on('connect', function () {
@@ -151,6 +156,14 @@ cc.Class({
 
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
+            if (data.replacePowerCard) {
+                cc.find('Canvas/tip').active = true;
+                var timer;
+                timer = setTimeout(function(){
+                    cc.find('Canvas/tip').active = false;
+                    clearTimeout(timer);
+                },3000);
+            }
             self.getSelf().route(data.command,self)(data , self);
         });
         socket.on("play",function(result){

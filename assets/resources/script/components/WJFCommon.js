@@ -238,6 +238,10 @@ cc.Class({
     wrong: function(){
         let menu = cc.find("Canvas/menu") ;// 在cocos对象下找到menu节点
         cc.weijifen.menu.put(menu);
+    },
+    /*阻止点击冒泡*/
+    stopBubble: function (event) {
+        event.bubble = false;
     }
 });
 
