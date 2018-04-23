@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -1067,7 +1067,8 @@
     },
     "_enabled": true,
     "gameSettingClick": null,
-    "shopPage": null
+    "shopPage": null,
+    "sharing": null
   },
   {
     "__type__": "aaf63EFxwFB8qQkVsFSA2Bo",
@@ -1094,6 +1095,9 @@
     },
     "JXLogo": {
       "__uuid__": "9a01a1fb-0f0a-4d23-a991-111fa35ce9f5"
+    },
+    "NJLogo": {
+      "__uuid__": "1ea9394f-6d24-41fe-aaa3-c1f303b2c8b3"
     }
   },
   {
@@ -1809,7 +1813,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 553.34,
+      "width": 580,
       "height": 100
     },
     "_rotationX": 0,
@@ -1942,7 +1946,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 553.34,
+      "width": 580,
       "height": 100
     },
     "_resize": 1,
