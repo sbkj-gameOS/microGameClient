@@ -129,6 +129,7 @@ cc.Class({
     },
     //切换大小炮的按钮
     bigClicks: function(bool,num){
+        if (!this.shuang) {return}
         this.shuang.active = bool;
         this.shuang.getComponent(cc.Toggle).isChecked =false;
         TPTwoF = false;

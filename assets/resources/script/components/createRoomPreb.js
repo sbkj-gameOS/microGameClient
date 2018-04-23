@@ -8,6 +8,7 @@ cc.Class({
         lg:cc.Prefab,
         tp:cc.Prefab,
         ph:cc.Prefab,
+        nj:cc.Prefab
     },
 
     // use this for initialization
@@ -18,6 +19,8 @@ cc.Class({
             this.allfunction(['龙港麻将','台炮麻将'],[this.lg,this.tp]);
         }else if(cc.weijifen.GameBase.gameModel =='jx'){
             this.allfunction(['平湖麻将'],[this.ph]);
+        } else if (cc.weijifen.GameBase.gameModel =='nj') {
+            this.allfunction(['南京麻将'],[this.nj]);
         }
     },
     allfunction: function(name,value){
