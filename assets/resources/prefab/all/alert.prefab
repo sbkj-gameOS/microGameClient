@@ -292,7 +292,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 320,
+      "width": 315,
       "height": 32
     },
     "_rotationX": 0,
@@ -324,7 +324,9 @@
     "_fontSize": 32,
     "_lineHeight": 32,
     "_enableWrapText": true,
-    "_N$file": null,
+    "_N$file": {
+      "__uuid__": "185e12d2-e6c0-4c11-a01e-a54dcd99a262"
+    },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "您输入的房间号不存在",
