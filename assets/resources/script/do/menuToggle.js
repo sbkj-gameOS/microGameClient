@@ -44,6 +44,17 @@ cc.Class({
             this.alert("敬请期待~");
             return 
         }
+
+        //分享
+        if(event.target.name == 12){
+            var jsonData = {
+                url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx",
+                title:"心缘竞技",
+                context:"刺激的玩法、真实的体验，微信好友真诚邀请，快快进入房间，一起嗨翻天！"
+            }
+            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "shareEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",JSON.stringify(jsonData));
+            return;
+        }
         this.hall(event.target.name);
     },
 });
