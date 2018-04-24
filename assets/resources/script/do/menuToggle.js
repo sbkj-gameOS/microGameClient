@@ -25,7 +25,7 @@ cc.Class({
             if (setting) {
                 let cards = cc.find('Canvas/setting/majiang');
                 for (let i = 0;i < cards.children.length;i++) {
-                    if (cardcolor == 'yellow' || cardcolor == 'green') { j = 0 } else 
+                    if (cardcolor == 'yellow') { j = 0 } else 
                     if (cardcolor == 'blue') { j = 1 } else 
                     if (cardcolor == 'purple') { j = 2 };
                     cards.children[i].getChildByName('select_box').active = false;
@@ -52,7 +52,7 @@ cc.Class({
                 title:"心缘竞技",
                 context:"刺激的玩法、真实的体验，微信好友真诚邀请，快快进入房间，一起嗨翻天！"
             }
-            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "shareEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",JSON.stringify(jsonData));
+            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
             return;
         }
         this.hall(event.target.name);
