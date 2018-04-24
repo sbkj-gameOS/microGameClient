@@ -120,8 +120,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 960,
-      "height": 640
+      "width": 1334,
+      "height": 750
     },
     "_rotationX": 0,
     "_rotationY": 0,
