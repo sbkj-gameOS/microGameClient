@@ -25,7 +25,7 @@ cc.Class({
             if (setting) {
                 let cards = cc.find('Canvas/setting/majiang');
                 for (let i = 0;i < cards.children.length;i++) {
-                    if (cardcolor == 'yellow') { j = 0 } else 
+                    if (cardcolor == 'yellow' || cardcolor == 'green') { j = 0 } else 
                     if (cardcolor == 'blue') { j = 1 } else 
                     if (cardcolor == 'purple') { j = 2 };
                     cards.children[i].getChildByName('select_box').active = false;
