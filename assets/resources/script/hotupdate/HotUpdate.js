@@ -152,7 +152,7 @@ cc.Class({
         switch (event.getEventCode())
         {
             case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
-                this.panel.info.string = 'No local manifest file found, hot update skipped.';
+                this.panel.info.string = '没有找到本地mainfest文件，跳过更新';
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_PROGRESSION:
@@ -170,25 +170,30 @@ cc.Class({
                 break;
             case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
             case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
-                this.panel.info.string = 'Fail to download manifest file, hot update skipped.';
+                // this.panel.info.string = 'Fail to download manifest file, hot update skipped.';
+                this.panel.info.string = '下载失败！';
                 failed = true;
                 break;
             case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
-                this.panel.info.string = 'Already up to date with the latest remote version.';
+                // this.panel.info.string = 'Already up to date with the latest remote version.';
+                this.panel.info.string = '已经最新版本';
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_FINISHED:
-                this.panel.info.string = 'Update finished. ' + event.getMessage();
+                // this.panel.info.string = 'Update finished. ' + event.getMessage();
+                this.panel.info.string = '更新完成，正在重启游戏！';
                 needRestart = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_FAILED:
-                this.panel.info.string = 'Update failed. ' + event.getMessage();
+                // this.panel.info.string = 'Update failed. ' + event.getMessage();
+                this.panel.info.string = '更新失败';
                 this.panel.retryBtn.active = true;
                 this._updating = false;
                 this._canRetry = true;
                 break;
             case jsb.EventAssetsManager.ERROR_UPDATING:
-                this.panel.info.string = 'Asset update error: ' + event.getAssetId() + ', ' + event.getMessage();
+                // this.panel.info.string = 'Asset update error: ' + event.getAssetId() + ', ' + event.getMessage();
+                this.panel.info.string = '资源加载失败';
                 break;
             case jsb.EventAssetsManager.ERROR_DECOMPRESS:
                 this.panel.info.string = event.getMessage();
@@ -203,6 +208,7 @@ cc.Class({
             this._updating = false;
         }
 
+        // 重新启动游戏
         if (needRestart) {
             cc.eventManager.removeListener(this._updateListener);
             this._updateListener = null;
