@@ -9,7 +9,9 @@ cc.Class({
 
     //初始化相关数据
     onLoad: function () {
-
+    	if (cc.weijifen.shareRoomNum) {
+    		cc.weijifen.shareRoomNum = '';
+    	};
     },
 
     //结束游戏    结算
