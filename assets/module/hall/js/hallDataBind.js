@@ -37,7 +37,19 @@ cc.Class({
         },  
     },
     onLoad: function () {
-        
+        //有值代表用户是通过分享进入的游戏
+        if(cc.weijifen.shareRoomNum){
+            var inputNum = require("inputNum");
+            inputNum = new inputNum();
+            inputNum.click(cc.weijifen.shareRoomNum);
+        }
+        cc.weijifen.shareData = function(roomNum){
+            this.alert("shareData-roomNum:"+res);
+            var inputNum = require("inputNum");
+            inputNum = new inputNum();
+            inputNum.click(roomNum);
+        }
+
         //如果weijifen已经加载好了
         if(this.ready()){   
             // 牌局类型

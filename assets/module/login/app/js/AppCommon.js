@@ -74,6 +74,14 @@ cc.Class({
         cc.weijifen.pay = function(shopId) {
             cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
         };
+        
+        //获取分享进入的时候，是否分享的游戏房间
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam",result);
+        self.alert("shareParam-res:"+res);
+        if(res){
+            //游戏房间
+            cc.weijifen.shareRoomNum = res;
+        }
     },
 
     signSucess:function(result , object){

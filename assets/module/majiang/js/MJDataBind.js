@@ -562,6 +562,7 @@ cc.Class({
     * 初始化对象池
     */
     init_pool: function (context) {
+        cc.weijifen.shareRoomNum = "";
         /**
          * 已初始的玩家对象池 ， 牌局结束 或者 有新玩家加入， 老玩家离开 等事件的时候，需要做对象池回收
          * @type {Array}

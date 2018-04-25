@@ -270,7 +270,15 @@ cc.Class({
     },
     /*分享好友*/
     showActive: function () {
-        let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
+        // let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
+        // 
+        var jsonData = {
+            url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room,
+            title:"心缘竞技",
+            context:"房间号："+cc.weijifen.room+"  好友邀请您进入房间"
+        }
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+        return;
     },
     unactive: function(event){
         event.target.active = false;

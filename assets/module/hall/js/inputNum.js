@@ -74,7 +74,10 @@ cc.Class({
     /*
     * 房间号已经是6位，可以进入
     */
-    click: function(){
+    click: function(roomNum){
+        if(roomNum){
+            array = roomNum;
+        }
         var room={};
         room.room = array;
         
@@ -95,6 +98,7 @@ cc.Class({
     },
     JRsucess: function(result,object){
         var data = JSON.parse(result);
+        cc.weijifen.room =array;
         if(data.playway&&data.room){
             cc.weijifen.playway = data.playway;
             if(data.match){
