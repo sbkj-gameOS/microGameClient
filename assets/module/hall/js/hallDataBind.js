@@ -37,12 +37,7 @@ cc.Class({
         },  
     },
     onLoad: function () {
-        //有值代表用户是通过分享进入的游戏
-        if(cc.weijifen.shareRoomNum){
-            var inputNum = require("inputNum");
-            inputNum = new inputNum();
-            inputNum.click(cc.weijifen.shareRoomNum);
-        }
+        
         cc.weijifen.shareData = function(roomNum){
             this.alert("shareData-roomNum:"+res);
             var inputNum = require("inputNum");
@@ -149,16 +144,21 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
-        // 
 		let data = JSON.parse(result);
         if(data.room){
 			object.getGame(data);
             var sprite = object.backRoom.getComponent(cc.Sprite);
         	sprite.spriteFrame = object.backRoomImg;
         } else {
-			cc.weijifen.room = null;
+            //有值代表用户是通过分享进入的游戏
+            if(cc.weijifen.shareRoomNum){
+                var inputNum = require("inputNum");
+                inputNum = new inputNum();
+                inputNum.click(cc.weijifen.shareRoomNum);
+            }else{
+                cc.weijifen.room = null;
+            }
 		}
-        
     },
     roomError: function(object){
         object.alert("网络异常");
