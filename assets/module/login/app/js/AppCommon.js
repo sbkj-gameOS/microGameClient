@@ -29,7 +29,7 @@ cc.Class({
     },
     // 首次加载页面方法
     onLoad: function () {
-        var GameBase = {'gameModel':'jx'} ;
+        var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         if(cc.weijifen.GameBase.gameModel =='wz'){
@@ -76,12 +76,12 @@ cc.Class({
         };
         
         //获取分享进入的时候，是否分享的游戏房间
-        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-        // self.alert("shareParam-res:"+res);
-        // if(res){
-        //     //游戏房间
-        //     cc.weijifen.shareRoomNum = res;
-        // }
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+        self.alert("shareParam-res:"+res);
+        if(res){
+            //游戏房间
+            cc.weijifen.shareRoomNum = res;
+        }
     },
 
     signSucess:function(result , object){
