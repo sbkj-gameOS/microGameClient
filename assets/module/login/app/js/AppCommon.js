@@ -77,10 +77,9 @@ cc.Class({
         
         //获取分享进入的时候，是否分享的游戏房间
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-        self.alert("shareParam-res:"+res);
         if(res){
-            //游戏房间
-            cc.weijifen.shareRoomNum = res;
+            res = JSON.parse(res);
+            cc.weijifen.shareRoomNum = res.roomNum;
         }
     },
 
