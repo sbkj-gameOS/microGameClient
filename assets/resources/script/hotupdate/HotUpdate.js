@@ -9,16 +9,16 @@ var UpdatePanel = require('./UpdatePanel');
 * remoteVersionUrl   [可选项] 远程版本文件的路径，用来判断服务器端是否有新版本的资源
 * remoteManifestUrl  远程资源 Manifest 文件的路径，包含版本信息以及所有资源信息
 */
-var customManifestStr = JSON.stringify(/*{
+/*var customManifestStr = JSON.stringify({
     "packageUrl": "http://http://game.bizpartner.cn/remote-assets/",
     "remoteManifestUrl": "http://game.bizpartner.cn/remote-assets/project.manifest",
     "remoteVersionUrl": "http://game.bizpartner.cn/remote-assets/version.manifest",
     "version": "1.0.0",
     "assets":{},
     "searchPaths": []
-}*/);
-
-
+});
+*/
+var customManifestStr = ''
 
 cc.Class({
     extends: cc.Component,
@@ -213,7 +213,8 @@ cc.Class({
             cc.eventManager.removeListener(this._updateListener);
             this._updateListener = null;
             // Prepend the manifest's search path
-            var searchPaths = jsb.fileUtils.getSearchPaths();
+            var searchPaths =
+             jsb.fileUtils.getSearchPaths();
             var newPaths = this._am.getLocalManifest().getSearchPaths();
             console.log(JSON.stringify(newPaths));
             Array.prototype.unshift(searchPaths, newPaths);
