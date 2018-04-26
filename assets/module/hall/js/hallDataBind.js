@@ -38,12 +38,11 @@ cc.Class({
     },
     onLoad: function () {
         
-        cc.weijifen.shareData = function(roomNum){
-            this.alert("shareData-roomNum:"+res);
-            var inputNum = require("inputNum");
-            inputNum = new inputNum();
-            inputNum.click(roomNum);
-        }
+        // cc.weijifen.shareData = function(roomNum){
+        //     var inputNum = require("inputNum");
+        //     inputNum = new inputNum();
+        //     inputNum.click(roomNum);
+        // }
 
         //如果weijifen已经加载好了
         if(this.ready()){   
