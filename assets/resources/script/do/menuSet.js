@@ -33,8 +33,8 @@ cc.Class({
             gameroom.parent = this.node
         }else{
             var self = this ;
-            cc.weijifen.testCode = function(data) {
-                self.testCode(data,self) ;
+            cc.weijifen.loginOut = function(data) {
+                self.loginOut(data,self) ;
             };
             web.active = true;
             web = web.getComponent(cc.WebView);
@@ -93,8 +93,8 @@ cc.Class({
             }*/
         }
     },
-    testCode: function(data,target){
-        console.log("data:"+data);
+    loginOut: function(data,target){
+        cc.director.loadScene('appLogin');// 通过场景名加载场景
     },
     callback:function(){
         let web = this.title.parent.children[2];
