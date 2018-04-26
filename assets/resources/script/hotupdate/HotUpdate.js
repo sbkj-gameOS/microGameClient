@@ -152,7 +152,7 @@ cc.Class({
         switch (event.getEventCode())
         {
             case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
-                this.panel.info.string = '没有找到本地mainfest文件，跳过更新';
+                this.panel.info.string = '没有找到mainfest文件，跳过更新';
                 failed = true;
                 break;
             case jsb.EventAssetsManager.UPDATE_PROGRESSION:
