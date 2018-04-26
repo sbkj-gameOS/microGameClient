@@ -79,7 +79,9 @@ cc.Class({
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
         if(res){
             res = JSON.parse(res);
-            cc.weijifen.shareRoomNum = res.roomNum;
+            if(res.code != "10086" && res.roomNum){
+                cc.weijifen.shareRoomNum = res.roomNum;
+            }
         }
     },
 
