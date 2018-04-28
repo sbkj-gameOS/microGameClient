@@ -15,6 +15,8 @@ cc.Class({
         let web = this.title.parent.children[2];
         let loadImage = this.title.parent.children[3];
         loadImage.active = true;
+        var shareWxBtn = this.title.parent.children[4];
+        shareWxBtn.active = false;       
         web.setPosition(0,900);
         for(let i in this.title.children){
             this.title.children[i].active = false ;
@@ -96,9 +98,20 @@ cc.Class({
     loginOut: function(data,target){
         cc.director.loadScene('appLogin');// 通过场景名加载场景
     },
-    callback:function(){
+    callback:function(event){
+        var webview = event.detail.url.indexOf("help/share");
         let web = this.title.parent.children[2];
-        web.setPosition(0,0);
+        if(webview != -1){
+            web.height = 390;
+            web.setPosition(0,-49);
+            var shareWxBtn = this.title.parent.children[4];
+            shareWxBtn.active = true;
+        }else{
+            web.height = 490;
+            web.setPosition(0,0);
+        }
+        
+        
     },
     //清除留下的东西
     clearPerfab: function(){
@@ -111,5 +124,13 @@ cc.Class({
         if(cc.find('Canvas/menu/setting')){
             cc.find('Canvas/menu/setting').destroy();
         }
+    },
+    shareWxClick:function(){
+        var jsonData = {
+            url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode,
+            title:"心缘竞技",
+            context:"刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！"
+        }
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
     }
 });
