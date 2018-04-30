@@ -361,25 +361,28 @@ cc.Class({
                     }
                 }
             }else{
-                // 宝牌显示
-                cc.find('Canvas/cards/tesucards/baocard').active =true;
-                if(!data.player.powerCard){
-                    let cards = data.player.powerCard;
-                    // let cards = context.decode(data.player.powerCard);
-                    //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
-                    for(let i= 0 ; i<cards.length;i++){
-                        var laiziZM = cc.instantiate(gameStartInitNode.ZM);
-                        laiziZM.parent = gameStartInitNode.godcard.children[1];
-                        var LZH  = laiziZM.getComponent('DeskCards');
-                        LZH.init(cards[i],'B',true);
+                if(cc.weijifen.GameBase.gameModel != 'nj'){
+                    // 宝牌显示
+                    cc.find('Canvas/cards/tesucards/baocard').active =true;
+                    if(!data.player.powerCard){
+                        let cards = data.player.powerCard;
+                        // let cards = context.decode(data.player.powerCard);
+                        //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
+                        for(let i= 0 ; i<cards.length;i++){
+                            var laiziZM = cc.instantiate(gameStartInitNode.ZM);
+                            laiziZM.parent = gameStartInitNode.godcard.children[1];
+                            var LZH  = laiziZM.getComponent('DeskCards');
+                            LZH.init(cards[i],'B',true);
+                        }
+                    }else{
+                        cc.find('Canvas/cards/tesucards/baocard/child').x = -585;                
+                        var laiziFM = cc.instantiate(gameStartInitNode.FM);
+                        var LZH = laiziFM.getComponent('DeskCards');
+                        LZH.init(-3,'Z',true);
+                        laiziFM.parent = gameStartInitNode.godcard.children[1];
                     }
-                }else{
-                    cc.find('Canvas/cards/tesucards/baocard/child').x = -585;                
-                    var laiziFM = cc.instantiate(gameStartInitNode.FM);
-                    var LZH = laiziFM.getComponent('DeskCards');
-                    LZH.init(-3,'Z',true);
-                    laiziFM.parent = gameStartInitNode.godcard.children[1];
                 }
+                
             }
 
             //当前玩家补花 data.player

@@ -94,7 +94,15 @@ cc.Class({
                 deskcard = fw+'_winter';//冬
                 cardframe = this.weijifen0.getSpriteFrame(deskcard);
                 this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
-            } 
+            }else if(cvalue <= -8 && cvalue >= -11){//发财
+                deskcard = fw+"_green";
+                cardframe = this.weijifen0.getSpriteFrame(deskcard);
+                this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
+            }else if(cvalue <= -12 && cvalue >= -15){//红中
+                deskcard = fw+"_red";
+                cardframe = this.weijifen0.getSpriteFrame(deskcard);
+                this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
+            }
             if(dd&&(cardcolors == csCardColors1 || (csCardColors2!=null &&cardcolors == csCardColors2)||(this.value>=-39&&this.value<=-36))){
                 this.caishenCards();
             }
@@ -117,6 +125,10 @@ cc.Class({
                 deskcard = fw+'_winter';//冬
             }else if(cvalue <= -4||cvalue >= -7){
                 deskcard = fw+'_white';//白
+            }else if(cvalue <= -8 && cvalue >= -11){//发财
+                deskcard = fw+"_green";
+            }else if(cvalue <= -12 && cvalue >= -15){//红中
+                deskcard = fw+"_red";
             }
             
             cardframe = this.weijifen0.getSpriteFrame(deskcard);

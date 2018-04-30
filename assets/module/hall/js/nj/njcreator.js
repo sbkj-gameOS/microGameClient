@@ -105,8 +105,8 @@ cc.Class({
         garams.modeltype = moShi;*/
 
 
-        garams.game = 'TP';
-        cc.weijifen.playType='TP';
+        garams.game = 'NJ';
+        cc.weijifen.playType='NJ';
         garams.player = "bigGun";
          //台番
         garams.taiFan = "15";
