@@ -286,13 +286,13 @@ cc.Class({
         otherHandCardRemove: function(data,context,tablepos){
             var gameStartInit = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             for(let i = 0 ; i<data.cards.length; i++){
-                if(tablepos =='top'){
+                if(tablepos =='top' && gameStartInit.top_panel.children){
                     gameStartInit.top_panel.children[i].destroy();
                     context.topcards.splice(i,1);
-                }else if(tablepos =='right'){
+                }else if(tablepos =='right' && gameStartInit.right_panel.children){
                     gameStartInit.right_panel.children[i].destroy();
                     context.rightcards.splice(i,1);
-                }else if(tablepos =='left'){
+                }else if(tablepos =='left' && gameStartInit.left_panel.children){
                     gameStartInit.left_panel.children[i].destroy();
                     context.leftcards.splice(i,1);
                 }

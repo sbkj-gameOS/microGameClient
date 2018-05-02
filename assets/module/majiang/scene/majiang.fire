@@ -45,7 +45,7 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0,
-    "autoReleaseAssets": false
+    "autoReleaseAssets": null
   },
   {
     "__type__": "cc.Node",
@@ -4425,6 +4425,9 @@
     },
     "csNode": {
       "__id__": 148
+    },
+    "seziPics": {
+      "__uuid__": "b353e2c9-8a36-4ba1-9120-82ebb95250e3"
     }
   },
   {

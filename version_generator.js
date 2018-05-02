@@ -3,14 +3,14 @@ var path = require('path');
 var crypto = require('crypto');
 
 var manifest = {
-   /* packageUrl: 'http://localhost/tutorial-hot-update/remote-assets/',
-    remoteManifestUrl: 'http://localhost/tutor ial-hot-update/remote-assets/project.manifest',
-    remoteVersionUrl: 'http://localhost/tutorial-hot-update/remote-assets/version.manifest',
-    version: '1.0.0',*/
-    "packageUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/",
+    packageUrl: 'http://localhost/microGameClient/remote-assets/',
+    remoteManifestUrl: 'http://localhost/microGameClient/remote-assets/project.manifest',
+    remoteVersionUrl: 'http://localhost/microGameClient/remote-assets/version.manifest',
+    version: '1.0.0',
+   /* "packageUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/",
     "remoteManifestUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/project.manifest",
     "remoteVersionUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/version.manifest",
-    "version": "0.9.0",
+    "version": "0.9.0",*/
     assets: {},
     searchPaths: []
 };
