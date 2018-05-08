@@ -35,6 +35,7 @@ cc.Class({
             default:null,
             type:cc.SpriteFrame
         },  
+        noticePrefab: cc.Prefab
     },
     onLoad: function () {
         
@@ -43,9 +44,10 @@ cc.Class({
         //     inputNum = new inputNum();
         //     inputNum.click(roomNum);
         // }
-
+        
         //如果weijifen已经加载好了
         if(this.ready()){   
+            cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
                 //获取要更换的图片
@@ -194,7 +196,30 @@ cc.Class({
 			// this.hall(10);
       	}*/
 	},
+    /* 游戏公告
+    * @param 
+    */
+    noticeSuccess: function (res,object) {
+        var webView,noticeNode,menu;
+        var data = JSON.parse(res);
+        var arrUrl = data.url.split('@@@');
+        arrUrl.pop();
+        if (res && res.length) {
+            for (var i = 0;i < arrUrl.length;i++) {
+                cc.weijifen.menu.put(cc.instantiate(object.noticePrefab));
+                object.hall(15,arrUrl[i]);
+                // menu = cc.instantiate(object.noticePrefab);
+                // noticeNode = menu.getChildByName('gameNotice');
+                // noticeNode.active = true;
+                // webView = noticeNode.getComponent(cc.WebView);
+                // webView.url = arrUrl[i];
 
+            }
+        }
+    },
+    noticeError: function (res,object) {
+        object.alert('公告获取失败！');
+    }
 });
 
 
@@ -204,3 +229,4 @@ cc.Class({
 
 
 
+ 

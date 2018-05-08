@@ -10,7 +10,7 @@ cc.Class({
         let h5CallCocos = require('h5CallCocos');
         // cc.weijifen.match = new h5CallCocos();
     },
-    init:function(name){
+    init:function(name,url){
         this.clearPerfab();
         let web = this.title.parent.children[2];
         let loadImage = this.title.parent.children[3];
@@ -21,7 +21,10 @@ cc.Class({
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
-        this.title.children[name].active = true;
+        if(name != 15){
+            this.title.children[name].active = true;
+        }
+        
         if(name == 10 || name == 11){
             let gameroom;
             web.active = false;
@@ -89,6 +92,10 @@ cc.Class({
             if (name == 5) {
                 web.url = data[name]
             };
+
+            if(name == 15){
+                web.url = cc.weijifen.url + url;
+            }
             cc.log(web.url);
             /*WebView = function(e){
                 e.preventDefault();

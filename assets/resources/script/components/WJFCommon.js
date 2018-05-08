@@ -229,11 +229,11 @@ cc.Class({
         } 
     },
     //点击打开弹窗
-    hall:function(num){
+    hall:function(num,url){
 		let menu = cc.weijifen.menu.get();//拿到公用弹框PreFab
         let single = menu.getComponent('menuSet');//获取当前PreFab中名字为menuSet  js文件
         menu.parent = cc.find('Canvas');// 将节点放在Canvas节点下面。
-        single.init(num);//调用js文件中的init方法
+        single.init(num,url);//调用js文件中的init方法
     },
     wrong: function(){
         let menu = cc.find("Canvas/menu") ;// 在cocos对象下找到menu节点

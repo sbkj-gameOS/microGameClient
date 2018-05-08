@@ -9,14 +9,15 @@ cc.Class({
         tp:cc.Prefab,
         ph:cc.Prefab,
         nj:cc.Prefab,
-        hz:cc.Prefab,
-        jd:cc.Prefab
+        gd:cc.Prefab,
+        jy:cc.Prefab
     },
 
     // use this for initialization
     onLoad: function () {
         if(cc.weijifen.GameBase.gameModel =='ch'){
-            this.allfunction(['长春麻将'],[this.ch]);
+            this.allfunction(['广东麻将','缙云麻将'],[this.gd,this.jy]);
+            // this.allfunction(['长春麻将'],[this.ch]);
         }else if(cc.weijifen.GameBase.gameModel =='wz'){
             this.allfunction(['龙港麻将','台炮麻将'],[this.lg,this.tp]);
         }else if(cc.weijifen.GameBase.gameModel =='jx'){
@@ -24,8 +25,8 @@ cc.Class({
         } else if (cc.weijifen.GameBase.gameModel =='nj') {
             // this.allfunction(['南京麻将'],[this.nj]);
         } else if (cc.weijifen.GameBase.gameModel == 'ls') {
-            // this.allfunction(['壶镇麻将','经典麻将'],[this.hz,this.jd]);
-            this.allfunction(['壶镇麻将'],[this.hz]);
+            this.allfunction(['壶镇麻将','经典麻将'],[this.hz,this.jd]);
+            // this.allfunction(['壶镇麻将'],[this.hz]);
         }
     },
     allfunction: function(name,value){

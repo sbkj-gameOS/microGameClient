@@ -6340,6 +6340,9 @@
     },
     "chJoinRoomImg": {
       "__uuid__": "ca04eba4-4e88-415d-b523-d33fa40eda26"
+    },
+    "noticePrefab": {
+      "__uuid__": "a2822c49-f523-4c9c-b6ac-451c8d370b51"
     }
   },
   {
