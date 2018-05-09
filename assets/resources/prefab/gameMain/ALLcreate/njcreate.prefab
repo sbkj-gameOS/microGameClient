@@ -1376,7 +1376,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bigGun",
+    "_name": "jyz",
     "_objFlags": 0,
     "_parent": {
       "__id__": 40
@@ -1414,12 +1414,12 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.2,
+      "x": 0.3,
       "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 330,
+      "width": 250,
       "height": 40
     },
     "_rotationX": 0,
@@ -1440,7 +1440,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bigGun",
+    "_name": "jyz",
     "_objFlags": 0,
     "_parent": {
       "__id__": 41
@@ -1786,8 +1786,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
-    "handler": "clickTPPlayer",
+    "component": "njcreator",
+    "handler": "clickPlayway",
     "customEventData": ""
   },
   {
@@ -1803,7 +1803,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "smallGun",
+    "_name": "ckt",
     "_objFlags": 0,
     "_parent": {
       "__id__": 40
@@ -1867,7 +1867,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "smallGun",
+    "_name": "ckt",
     "_objFlags": 0,
     "_parent": {
       "__id__": 55
@@ -2203,8 +2203,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
-    "handler": "clickTPPlayer",
+    "component": "njcreator",
+    "handler": "clickPlayway",
     "customEventData": ""
   },
   {
@@ -2449,7 +2449,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "bs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 74
@@ -2513,7 +2513,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "bs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 75
@@ -2604,7 +2604,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "bs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 75
@@ -2695,7 +2695,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "bs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 75
@@ -2859,7 +2859,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
+    "component": "njcreator",
     "handler": "clickmoshi",
     "customEventData": ""
   },
@@ -2876,7 +2876,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "qs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 74
@@ -2940,7 +2940,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "qs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 89
@@ -3031,7 +3031,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "qs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 89
@@ -3122,7 +3122,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "qs",
     "_objFlags": 0,
     "_parent": {
       "__id__": 89
@@ -3276,7 +3276,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
+    "component": "njcreator",
     "handler": "clickmoshi",
     "customEventData": ""
   },
@@ -3528,7 +3528,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 108
@@ -3592,7 +3592,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 109
@@ -3683,7 +3683,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 109
@@ -3774,7 +3774,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "8",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 109
@@ -3938,8 +3938,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
-    "handler": "clickmoshi",
+    "component": "njcreator",
+    "handler": "clickquanshu",
     "customEventData": ""
   },
   {
@@ -3955,7 +3955,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "2",
     "_objFlags": 0,
     "_parent": {
       "__id__": 108
@@ -4019,7 +4019,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "2",
     "_objFlags": 0,
     "_parent": {
       "__id__": 123
@@ -4110,7 +4110,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "2",
     "_objFlags": 0,
     "_parent": {
       "__id__": 123
@@ -4201,7 +4201,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "16",
+    "_name": "2",
     "_objFlags": 0,
     "_parent": {
       "__id__": 123
@@ -4355,8 +4355,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
-    "handler": "clickmoshi",
+    "component": "njcreator",
+    "handler": "clickquanshu",
     "customEventData": ""
   },
   {
@@ -4372,7 +4372,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "40",
+    "_name": "3",
     "_objFlags": 0,
     "_parent": {
       "__id__": 108
@@ -4436,7 +4436,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "40",
+    "_name": "3",
     "_objFlags": 0,
     "_parent": {
       "__id__": 136
@@ -4527,7 +4527,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "40",
+    "_name": "3",
     "_objFlags": 0,
     "_parent": {
       "__id__": 136
@@ -4569,7 +4569,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -73,
+      "x": -81,
       "y": 0
     },
     "_skewX": 0,
@@ -4618,7 +4618,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "40",
+    "_name": "3",
     "_objFlags": 0,
     "_parent": {
       "__id__": 136
@@ -4772,8 +4772,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
-    "handler": "clickmoshi",
+    "component": "njcreator",
+    "handler": "clickquanshu",
     "customEventData": ""
   },
   {
@@ -4789,7 +4789,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "0",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 108
@@ -4853,7 +4853,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "0",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 149
@@ -4944,7 +4944,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "0",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 149
@@ -5035,7 +5035,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "0",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 149
@@ -5189,8 +5189,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "TPcreateRoom",
-    "handler": "clickmoshi",
+    "component": "njcreator",
+    "handler": "clickquanshu",
     "customEventData": ""
   },
   {

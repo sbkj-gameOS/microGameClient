@@ -12,11 +12,11 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         fufei = "AAPay";
-        playerData = 'both@@';
-        moShi = '';
+        playerData = 'jyz';
+        moShi = 'bs';
         quanshu = '1';
         userType = '4';
-        garams={};
+        garams = {};
     },
     /*选择付费方式*/
     clickfufei: function (event) {
@@ -32,8 +32,6 @@ cc.Class({
 
         //3.更新moshi的值
         fufei = this.mosiOrpepleClick(event);
-
-
     },
        // 选择玩法
     clickPlayway:function(event){
@@ -107,19 +105,17 @@ cc.Class({
 
         garams.game = 'NJ';
         cc.weijifen.playType='NJ';
-        garams.player = "bigGun";
-         //台番
-        garams.taiFan = "15";
-         //起胡
-        garams.QiHu = "unlimitedHu";
-         //人数
-        garams.pepNums = userType;
          //支付方式
         garams.pay = fufei;
-         //局
-        garams.count = 8;
-         //双翻
-        garams.twoFan = false;
+        // 玩法
+        garams.player = playerData;
+        // 模式
+        garams.modeltype = moShi;
+        // 圈数
+        garams.count = quanshu;
+        // 人数
+        garams.pepNums = userType;
+        console.log('garams',garams)
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
