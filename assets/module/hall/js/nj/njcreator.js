@@ -3,7 +3,7 @@
 */
 var creat = require("createRoom");//导入components目录下的createRoom
 // var moShi,playerData,userType,garams;
-var fufei,playerData,moShi,quanshu,userType,garams;
+var fufei,playerData,moShi,quanshu,userType,count,garams;
 cc.Class({
     extends: creat,
     properties: {
@@ -16,6 +16,7 @@ cc.Class({
         moShi = 'bs';
         quanshu = '1';
         userType = '4';
+        count = 1;
         garams = {};
     },
     /*选择付费方式*/
@@ -78,6 +79,10 @@ cc.Class({
        
         quanshu = this.mosiOrpepleClick(event);
     },
+    // 自定义分值
+    inputChange: function (event) {
+        count = event;
+    },
     // 选择玩家人数
     clickPepNum:function(event){
         if(userType != this.mosiOrpepleClick(event) ){
@@ -92,7 +97,7 @@ cc.Class({
        
         userType = this.mosiOrpepleClick(event);
     },
- 
+    
     // 点击创建按钮
     createClick:function(){
         /*playerData = playerData.split("@@");
@@ -110,9 +115,15 @@ cc.Class({
         // 玩法
         garams.player = playerData;
         // 模式
-        garams.modeltype = quanshu;
+        garams.player2 = moShi;
         // 圈数
-        // garams.count = ;
+        garams.modeltype = quanshu;
+        // 分值
+        let typeC = typeof count;
+        console.log(typeC)
+        if (typeC === "number") {
+            garams.count = count;
+        }
         // 人数
         garams.pepNums = userType;
         console.log('garams',garams)

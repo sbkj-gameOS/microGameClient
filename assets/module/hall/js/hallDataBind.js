@@ -208,12 +208,6 @@ cc.Class({
             for (var i = 0;i < arrUrl.length;i++) {
                 cc.weijifen.menu.put(cc.instantiate(object.noticePrefab));
                 object.hall(15,arrUrl[i]);
-                // menu = cc.instantiate(object.noticePrefab);
-                // noticeNode = menu.getChildByName('gameNotice');
-                // noticeNode.active = true;
-                // webView = noticeNode.getComponent(cc.WebView);
-                // webView.url = arrUrl[i];
-
             }
         }
     },
