@@ -47,7 +47,9 @@ cc.Class({
         
         //如果weijifen已经加载好了
         if(this.ready()){   
-            cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
+            if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
+                cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
+            }
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
                 //获取要更换的图片
@@ -204,6 +206,7 @@ cc.Class({
         var data = JSON.parse(res);
         var arrUrl = data.url.split('@@@');
         arrUrl.pop();
+        cc.weijifen.gongaoAlertNum = arrUrl.length;
         if (res && res.length) {
             for (var i = 0;i < arrUrl.length;i++) {
                 cc.weijifen.menu.put(cc.instantiate(object.noticePrefab));

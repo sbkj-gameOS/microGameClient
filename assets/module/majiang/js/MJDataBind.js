@@ -451,7 +451,8 @@ cc.Class({
                 }else{
                     cc.director.loadScene('gameMain');                    
                 }*/
-                cc.director.loadScene('gameMain');                    
+                cc.weijifen.gongaoAlertNum = undefined;       
+                cc.director.loadScene('gameMain');         
             }else{
                 if(cc.sys.localStorage.getItem('clear') != 'true'){
                     var context = cc.find('Canvas').getComponent('MajiangDataBind'); 

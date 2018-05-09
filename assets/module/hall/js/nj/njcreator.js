@@ -120,7 +120,6 @@ cc.Class({
         garams.modeltype = quanshu;
         // 分值
         let typeC = typeof count;
-        console.log(typeC)
         if (typeC === "number") {
             garams.count = count;
         }
