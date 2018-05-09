@@ -110,9 +110,9 @@ cc.Class({
         // 玩法
         garams.player = playerData;
         // 模式
-        garams.modeltype = moShi;
+        garams.modeltype = quanshu;
         // 圈数
-        garams.count = quanshu;
+        // garams.count = ;
         // 人数
         garams.pepNums = userType;
         console.log('garams',garams)

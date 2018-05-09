@@ -24,6 +24,7 @@ cc.Class({
     },
     // 创建房间按钮点击
     onClick: function(garams){
+        console.log('garams',garams)
         this.loadding();
         cc.weijifen.http.httpPost('/api/room/create',garams,this.sucess,this.error,this);
     },
