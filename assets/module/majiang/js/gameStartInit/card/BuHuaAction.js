@@ -58,7 +58,6 @@ cc.Class({
             }
         }
 
-        
         //确定牌的花色
         var  fw = 'B';
         if(fangwei == 'left'){
@@ -123,7 +122,7 @@ cc.Class({
                 deskcard = fw+'_summer';//夏
             }else if(cvalue == -39){
                 deskcard = fw+'_winter';//冬
-            }else if(cvalue <= -4||cvalue >= -7){
+            }else if(cvalue <= -4 && cvalue >= -7){
                 deskcard = fw+'_white';//白
             }else if(cvalue <= -8 && cvalue >= -11){//发财
                 deskcard = fw+"_green";
