@@ -125,7 +125,6 @@ cc.Class({
         }
         // 人数
         garams.pepNums = userType;
-        console.log('garams',garams)
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }

@@ -321,7 +321,7 @@ cc.Class({
             context.right_player.runAction(action);
             var action = cc.moveTo(0.2,-590,80);
             context.left_player.runAction(action);
-            var action = cc.moveTo(0.2,389,324);
+            var action = cc.moveTo(0.2,389,290);
             context.top_player.runAction(action);
             }
             //游戏开始 干掉打牌和听得缓存

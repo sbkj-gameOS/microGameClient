@@ -40,7 +40,11 @@ cc.Class({
         let hucards = -111;
         let tai = '';
         let hua ;
+        let baoBox = cc.find('Canvas/summary').children[8];
         this.hu.string='';
+        if (cc.weijifen.GameBase.gameModel == 'nj') {
+            baoBox.active = false;
+        }
         if(this.data.point){
             let id = this.data.user;
             let players = cc.find('Canvas').getComponent('MJDataBind').playersarray;
@@ -60,9 +64,11 @@ cc.Class({
             let card;
             let baopai ;
             let summary = cc.find('Canvas/summary').getComponent('SummaryClick');
-            if(this.data.balance.bu){
+            // 补花
+                // huaCards = [-32,-33,-34,-35,-36,-37,-38,-39,-6,-9,-12];
+            if(this.data.balance.buhua){
                 // huaCards = this.decode(this.data.balance.bu);
-                huaCards = this.data.balance.bu;
+                huaCards = this.data.balance.buhua;
                 for(let i = 0 ; i< huaCards.length ; i ++){
                     let card = cc.instantiate(this.buhua);
                     card.getComponent('BuHuaAction').init(huaCards[i]);

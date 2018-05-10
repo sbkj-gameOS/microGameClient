@@ -13,9 +13,9 @@ cc.Class({
         // },
         // ...
         miao: cc.Label,
-        list: cc.Prefab,
-        endlist: cc.Prefab,
-        layout:cc.Node,
+        list: cc.Prefab,// 每把牌结束后，玩家牌列表
+        endlist: cc.Prefab,// 最终结束玩家输赢列表
+        layout:cc.Node,// list节点父元素
         layout2:cc.Node,        
         action:{default :null},
         win:cc.Node,
@@ -33,8 +33,8 @@ cc.Class({
         close1:cc.Node,
         close2:cc.Node,
 
-        goon1:cc.Node,
-        goon2:cc.Node,
+        goon1:cc.Node, // 继续游戏按钮
+        goon2:cc.Node, //返回大厅按钮
         csNode:{
             default:null,
             type:cc.Node
@@ -83,6 +83,9 @@ cc.Class({
             }
         }
     },
+    /*
+    * 一圈游戏结束，点击继续按钮回到游戏中
+    */
     init:function(){
         let he = this;
         this.goon1.active = true;
@@ -142,7 +145,10 @@ cc.Class({
             }
         }
         
-    },   
+    },  
+    /*
+    * 房间游戏结束，可返回大厅
+    */ 
     init2: function(){
         
         this.goon2.active = true;
