@@ -44,14 +44,12 @@ cc.Class({
         
     },
     init:function(playerdata , inx , tablepos,count,seziArr){
+        
         this.creator.active = false ;
         this.data = playerdata ;    //存放玩家数据
         this.tablepos = tablepos ; // 方位
         this.count = count; // 房间内人数 
-        if (count > 0) {
-            cc.find('Canvas/players/head_top').children[0].active = false;
-            cc.find('Canvas/players/head_top').children[1].active = false;
-        }
+      
         if(!playerdata.online){
             this.on_off_line.active = true;
             // this.headimg.color = new cc.Color(42, 25, 25);
@@ -70,8 +68,8 @@ cc.Class({
             var head = this.headimg;
             cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
                 sprite.spriteFrame = new cc.SpriteFrame(texture);
-                head.width = 100;
-                head.height = 70;
+                head.width = 90;
+                head.height = 90;
             });
         }
 
