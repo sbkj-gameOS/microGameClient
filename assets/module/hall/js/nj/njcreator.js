@@ -119,8 +119,9 @@ cc.Class({
         // 圈数
         garams.modeltype = quanshu;
         // 分值
-        let typeC = typeof count;
-        if (typeC === "number") {
+        count = parseInt(count);
+        let typeC = !isNaN(count);
+        if (typeC) {
             garams.count = count;
         }
         // 人数
@@ -128,6 +129,7 @@ cc.Class({
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
+        console.log('garams',garams)
         // 此处的onClick是createRoom中的方法
         this.onClick(garams);
     }

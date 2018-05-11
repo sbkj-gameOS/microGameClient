@@ -5983,7 +5983,7 @@
       "__id__": 1
     },
     "component": "njcreator",
-    "handler": "clickFen",
+    "handler": "inputChange",
     "customEventData": ""
   },
   {
