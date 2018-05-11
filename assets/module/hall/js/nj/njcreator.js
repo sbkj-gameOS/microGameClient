@@ -3,7 +3,7 @@
 */
 var creat = require("createRoom");//导入components目录下的createRoom
 // var moShi,playerData,userType,garams;
-var fufei,playerData,moShi,quanshu,userType,count,garams;
+var fufei,playerData,baseScore,startScore,endScore,moShi,quanshu,userType,count,garams;
 cc.Class({
     extends: creat,
     properties: {
@@ -13,6 +13,9 @@ cc.Class({
     onLoad: function () {
         fufei = "AAPay";
         playerData = 'jyz';
+        baseScore = 100;
+        startScore = 100;
+        endScore = 0;
         moShi = 'bs';
         quanshu = '1';
         userType = '4';
@@ -49,6 +52,14 @@ cc.Class({
         //3.更新moshi的值
         playerData = this.mosiOrpepleClick(event);
     },
+    // 开始分数
+    inputStart: function (event) {
+        startScore = event
+    },
+     // 结束分数
+    inputend: function (event) {
+        endScore = event;
+    },
     // 选择模式
     clickmoshi:function(event){
         if( moShi != this.mosiOrpepleClick(event)){
@@ -79,9 +90,15 @@ cc.Class({
        
         quanshu = this.mosiOrpepleClick(event);
     },
-    // 自定义分值
+    // 获取输入框值
     inputChange: function (event) {
         count = event;
+    },
+    clickInput: function (event) {
+        // event.target.getComponent(cc.EditBox).fontColor = cc.color(231,62,65,255);
+        event.target._parent.children[2].setColor(cc.color(231,62,65,255));
+        event.target._parent._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
+
     },
     // 选择玩家人数
     clickPepNum:function(event){
@@ -107,13 +124,15 @@ cc.Class({
         garams.pepNums = userType;
         garams.modeltype = moShi;*/
 
-
+        var player;
         garams.game = 'NJ';
         cc.weijifen.playType='NJ';
          //支付方式
         garams.pay = fufei;
         // 玩法
-        garams.player = playerData;
+        playerData == 'jyz' ? player = playerData + "@@" + baseScore
+                            : player = playerData + "@@" + startScore + "@@" + endScore;
+        garams.player = player;
         // 模式
         garams.player2 = moShi;
         // 圈数
