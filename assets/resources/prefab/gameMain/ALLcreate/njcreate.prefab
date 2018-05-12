@@ -2264,7 +2264,7 @@
     "node": {
       "__id__": 65
     },
-    "_enabled": true,
+    "_enabled": false,
     "transition": 0,
     "pressedColor": {
       "__type__": "cc.Color",
@@ -2450,7 +2450,7 @@
     "node": {
       "__id__": 71
     },
-    "_enabled": true,
+    "_enabled": false,
     "transition": 0,
     "pressedColor": {
       "__type__": "cc.Color",
