@@ -9,7 +9,7 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
-        playerData = "classic@@";
+        playerData = "classic";
         playerData2="3-6-9-12";
         moShi = "8";
         userType = "4";
@@ -44,12 +44,13 @@ cc.Class({
         userType = this.mosiOrpepleClick(event);
     },
     clickPlayway1:function(event){
+        console.log(event)
         if( playerData != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
                 event.node.children[2].setColor(cc.color(231,62,65,255));
             }
-
+            console.log(    )
             //2.上一个选中的字体恢复为默认色
             event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
         }

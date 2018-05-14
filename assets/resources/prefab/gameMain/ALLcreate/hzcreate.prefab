@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "gdcreate",
+    "_name": "hzcreate",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -153,7 +153,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "人数",
+    "_name": "玩法",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -303,7 +303,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "zm",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -355,7 +355,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -96,
+      "x": -99,
       "y": 7
     },
     "_skewX": 0,
@@ -367,7 +367,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "zm",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -458,7 +458,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "zm",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -549,7 +549,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "zm",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -582,7 +582,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -591,7 +591,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 12,
+      "x": 1,
       "y": 3
     },
     "_skewX": 0,
@@ -619,7 +619,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "自摸：",
+    "_N$string": "自摸",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -713,8 +713,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPepNum",
+    "component": "hzcreate",
+    "handler": "clickPlayway",
     "customEventData": ""
   },
   {
@@ -730,7 +730,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "dp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -794,7 +794,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "dp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 21
@@ -885,7 +885,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "dp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 21
@@ -976,7 +976,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "dp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 21
@@ -1130,8 +1130,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPepNum",
+    "component": "hzcreate",
+    "handler": "clickPlayway",
     "customEventData": ""
   },
   {
@@ -1226,7 +1226,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -213,
+      "x": -212.99999999999997,
       "y": -84
     },
     "_skewX": 0,
@@ -1238,7 +1238,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "玩法",
+    "_name": "规则",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -1327,7 +1327,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "both",
+    "_name": "gp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -1391,7 +1391,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Background",
+    "_name": "genpai",
     "_objFlags": 0,
     "_parent": {
       "__id__": 40
@@ -1725,8 +1725,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPlayway",
+    "component": "hzcreate",
+    "handler": "clickGuize",
     "customEventData": ""
   },
   {
@@ -1742,7 +1742,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "xjmissile",
+    "_name": "hsbp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -1806,7 +1806,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Background",
+    "_name": "housibaopai",
     "_objFlags": 0,
     "_parent": {
       "__id__": 53
@@ -2140,8 +2140,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPlayway",
+    "component": "hzcreate",
+    "handler": "clickGuize",
     "customEventData": ""
   },
   {
@@ -2157,7 +2157,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "sfmissile",
+    "_name": "gskh",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -2555,8 +2555,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPlayway",
+    "component": "hzcreate",
+    "handler": "clickGuize",
     "customEventData": ""
   },
   {
@@ -2572,7 +2572,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "xdszl",
+    "_name": "hdly",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -2970,8 +2970,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPlayway",
+    "component": "hzcreate",
+    "handler": "clickGuize",
     "customEventData": ""
   },
   {
@@ -2987,7 +2987,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bandgap",
+    "_name": "qgh",
     "_objFlags": 0,
     "_parent": {
       "__id__": 36
@@ -3385,8 +3385,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPlayway",
+    "component": "hzcreate",
+    "handler": "clickGuize",
     "customEventData": ""
   },
   {
@@ -3626,7 +3626,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "0",
     "_objFlags": 0,
     "_parent": {
       "__id__": 110
@@ -3690,7 +3690,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "0",
     "_objFlags": 0,
     "_parent": {
       "__id__": 111
@@ -3781,7 +3781,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "0",
     "_objFlags": 0,
     "_parent": {
       "__id__": 111
@@ -3872,7 +3872,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "4",
+    "_name": "0",
     "_objFlags": 0,
     "_parent": {
       "__id__": 111
@@ -4036,8 +4036,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPepNum",
+    "component": "hzcreate",
+    "handler": "clickMaima",
     "customEventData": ""
   },
   {
@@ -4053,7 +4053,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 110
@@ -4117,7 +4117,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 125
@@ -4208,7 +4208,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 125
@@ -4299,7 +4299,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "1",
     "_objFlags": 0,
     "_parent": {
       "__id__": 125
@@ -4453,8 +4453,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPepNum",
+    "component": "hzcreate",
+    "handler": "clickMaima",
     "customEventData": ""
   },
   {
@@ -4870,8 +4870,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPepNum",
+    "component": "hzcreate",
+    "handler": "clickMaima",
     "customEventData": ""
   },
   {
@@ -4887,7 +4887,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 110
@@ -4951,7 +4951,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 151
@@ -5042,7 +5042,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 151
@@ -5133,7 +5133,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "2",
+    "_name": "4",
     "_objFlags": 0,
     "_parent": {
       "__id__": 151
@@ -5287,8 +5287,8 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
-    "handler": "clickPepNum",
+    "component": "hzcreate",
+    "handler": "clickMaima",
     "customEventData": ""
   },
   {
@@ -5946,7 +5946,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "clickmoshi",
     "customEventData": ""
   },
@@ -6363,7 +6363,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "clickmoshi",
     "customEventData": ""
   },
@@ -6780,7 +6780,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "clickmoshi",
     "customEventData": ""
   },
@@ -7439,7 +7439,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "clickPepNum",
     "customEventData": ""
   },
@@ -7856,7 +7856,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "clickPepNum",
     "customEventData": ""
   },
@@ -8273,7 +8273,7 @@
     "target": {
       "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "clickPepNum",
     "customEventData": ""
   },
@@ -8693,7 +8693,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 281
+      "__id__": 276
     },
     "_id": "",
     "_opacity": 255,
@@ -8814,11 +8814,76 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 276
+      "__id__": 1
     },
-    "component": "CHcreateRoom",
+    "component": "hzcreate",
     "handler": "createClick",
     "customEventData": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "18c53a43-fd8b-4c01-86af-23e0fa692368"
+    },
+    "fileId": "3crWkngDFCGakHwWevgkSW",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "js",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 278
+      }
+    ],
+    "_tag": -1,
+    "_active": true,
+    "_components": [],
+    "_prefab": {
+      "__id__": 281
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": -400,
+      "y": 150
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Node",
@@ -8875,76 +8940,11 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Node",
-    "_name": "js",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [
-      {
-        "__id__": 276
-      }
-    ],
-    "_tag": -1,
-    "_active": true,
-    "_components": [],
-    "_prefab": {
-      "__id__": 278
-    },
-    "_id": "",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": -400,
-      "y": 150
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "18c53a43-fd8b-4c01-86af-23e0fa692368"
-    },
-    "fileId": "8ebbKFAiBIpacYM73y+ntI",
-    "sync": false
-  },
-  {
     "__type__": "605e7sCEkRAo6blEnOH259t",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 276
+      "__id__": 278
     },
     "_enabled": true
   },
@@ -8967,11 +8967,11 @@
     "asset": {
       "__uuid__": "18c53a43-fd8b-4c01-86af-23e0fa692368"
     },
-    "fileId": "3crWkngDFCGakHwWevgkSW",
+    "fileId": "8ebbKFAiBIpacYM73y+ntI",
     "sync": false
   },
   {
-    "__type__": "605e7sCEkRAo6blEnOH259t",
+    "__type__": "1e6a5heRpdD7K0dKaksytBE",
     "_name": "",
     "_objFlags": 0,
     "node": {
