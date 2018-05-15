@@ -409,7 +409,9 @@
     "b_zhu": {
       "__uuid__": "5b899056-bedc-4b7a-aea6-aefb94e81bf8"
     },
-    "hua": null
+    "hua": {
+      "__id__": 1
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

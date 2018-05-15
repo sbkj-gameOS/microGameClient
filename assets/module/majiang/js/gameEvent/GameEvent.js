@@ -86,6 +86,7 @@ cc.Class({
                     
                 }
                 var count = 0;
+                // 胡按钮出现
                 if(data.hu){
                     hu.active = true ;
                     hu.x = - 200 + count * 110 ;

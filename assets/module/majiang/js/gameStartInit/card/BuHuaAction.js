@@ -35,7 +35,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-
+        
     },
     init:function(cvalue,fangwei,dd){
         this.cardcolor();                        
@@ -57,7 +57,11 @@ cc.Class({
                 csValue2 = (parseInt((cc.weijifen.powerCard[1]%36)/4)+1);
             }
         }
-
+        if (cc.weijifen.GameBase.gameModel == 'wz' && cc.weijifen.playerNum == 2) {
+            cc.find('Canvas/cards/tesucards/huacard/current').x = -430;
+            cc.find('Canvas/cards/tesucards/huacard/top').x = 445;
+            cc.find('Canvas/cards/tesucards/huacard/top').y = 155;
+        }
         //确定牌的花色
         var  fw = 'B';
         if(fangwei == 'left'){

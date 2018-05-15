@@ -73,7 +73,7 @@ cc.Class({
             default:null,
             type:cc.Node
         },
-        
+        caishenNode: cc.SpriteFrame
     },
 
     //
@@ -345,7 +345,8 @@ cc.Class({
                     cc.weijifen.powerCard = powerCard;
                     gameStartInitNode.csNode.active = true;
                     //切换财神图片
-                    var sprite = gameStartInitNode.csNode.getComponent(cc.Sprite);
+                    var sprite = gameStartInitNode.csNode.children[0].getComponent(cc.Sprite);
+                    sprite.spriteFrame = gameStartInitNode.caishenNode;
                     if(powerCard&&powerCard.length>0){
                         for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/child').children.length;i++){
                             cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
@@ -734,6 +735,9 @@ cc.Class({
                 desk_card.parent = context.deskcards_top_panel ;
             }   
         },
+        /*
+        * 一局结束之后，在结算中点击‘继续’之后，重新初始化游戏
+        */
         reinitGame: function(context){
             context = cc.find('Canvas').getComponent('MJDataBind');
             var gameStartInit = require('GameStartInit');

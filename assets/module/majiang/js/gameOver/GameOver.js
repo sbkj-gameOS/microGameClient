@@ -59,6 +59,9 @@ cc.Class({
 	        }
 	        
 	    },
+	    /*
+	    * 胡牌处理
+	    */
 	    huaction: function(playerid){
 	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
 	    	var gameStartInit = require('GameStartInit');
@@ -67,7 +70,8 @@ cc.Class({
 	            let hu_hu = gameOverNode.current_hu.getComponent(cc.Animation);
 	            let player = gameStartInit.player(playerid , this);
 	            let action = cc.scaleTo(1.5,1.5);
-	            player.target.runAction(action);
+	            player.target.runAction(action);// 胡牌玩家头像，放大
+	            // 
 	            if(player.tablepos == 'top'){
 	                hu_hu.node.children[0].x = 7 ;
 	                hu_hu.node.children[0].y = 142 ;

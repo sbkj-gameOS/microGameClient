@@ -470,7 +470,12 @@ cc.Class({
                     gameStartInit.reinitGame(context);
                 }
                 cc.sys.localStorage.removeItem('clear');
-                self.getSelf().shouOperationMune();
+                if (cc.weijifen.GameBase.gameModel == 'wz') {
+                    self.shouOperationMune();
+                } else {
+                    self.getSelf().shouOperationMune();
+                }
+                // self.getSelf().shouOperationMune();
                 event.target.parent.destroy(); 
             }        
         });
