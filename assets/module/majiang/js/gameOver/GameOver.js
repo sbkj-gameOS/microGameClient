@@ -125,7 +125,8 @@ cc.Class({
 	        gameOverNode.current_hu.active =false;
 	        ani.stop("current_hu") ;
 	        let player = gameStartInit.player(playerid , this);
-	        player.target.scale = 0.91;
+	        // player.target.scale = 0.91;
+	        player.target.scale = 1;
 	    },
     }
 });

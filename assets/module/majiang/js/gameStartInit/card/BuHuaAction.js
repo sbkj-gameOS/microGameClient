@@ -59,8 +59,9 @@ cc.Class({
         }
         if (cc.weijifen.GameBase.gameModel == 'wz' && cc.weijifen.playerNum == 2) {
             cc.find('Canvas/cards/tesucards/huacard/current').x = -430;
+            cc.find('Canvas/cards/tesucards/huacard/current').y = -119;
             cc.find('Canvas/cards/tesucards/huacard/top').x = 445;
-            cc.find('Canvas/cards/tesucards/huacard/top').y = 155;
+            cc.find('Canvas/cards/tesucards/huacard/top').y = 110;
         }
         //确定牌的花色
         var  fw = 'B';
