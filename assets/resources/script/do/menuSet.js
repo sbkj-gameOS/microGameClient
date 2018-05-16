@@ -13,6 +13,7 @@ cc.Class({
     init:function(name,url){
         this.clearPerfab();
         let web = this.title.parent.children[2];
+        console.log('web',web)
         let loadImage = this.title.parent.children[3];
         loadImage.active = true;
         var shareWxBtn = this.title.parent.children[4];
@@ -44,11 +45,14 @@ cc.Class({
             web.active = true;
             web = web.getComponent(cc.WebView);
             web.node.on('loaded', this.callback, this);//webview加载完成后执行的方法
+
             var scheme = "matchList";// 这里是与内部页面约定的关键字
             web.setJavascriptInterfaceScheme(scheme);
             function jsCallback (url) {
+                cc.director.loadScene("majiang");
                 var str = url.replace(scheme + '://', '');
                 var data = JSON.stringify(str);// {a: 0, b: 1}
+                alert('成功拿到值',data)
                 //回掉操作。当webview里操作外部方法时，通过这里调用。例如，支付。
                 var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",url);
             }
