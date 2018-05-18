@@ -25,7 +25,8 @@ cc.Class({
         fangka.getComponent(cc.Label).string = res.weekNo1;
     },
     getRoomErr: function (res,obj) {
-        this.alert(res.msg);
+        let data = JSON.parse(res);
+        alert(data.msg)
     },
     /*
     * 获取比赛列表
@@ -60,7 +61,6 @@ cc.Class({
                 list.getChildByName('jiangjin').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
             }
             obj.countDown(ele.endTime,ele.startTime,list);
-            console.log('type',ele.activiteType)
             if (ele.activiteType == 2) {
                 list.parent = parent_ri.children[1].children[0].children[1].children[0];
             } else if (ele.activiteType == 4){
@@ -69,7 +69,8 @@ cc.Class({
         }
     },
     getListErr: function (res,obj) {
-        alert('列表失败')
+        let data = JSON.parse(res);
+        alert(data.msg)
     },
     /*
     * 加入比赛
@@ -78,16 +79,19 @@ cc.Class({
         let params = {
             token: cc.weijifen.authorization,
             // activityId: 
-            activityId: 20
+            activityId: 22
         }
-        cc.weijifen.http.httpPost('/gameAnnouncement/findAnno',params,this.joinErr,this.joinErr,this) ;            
+        cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this) ;            
     },
     joinSuccess: function (res,obj) {
-        res.gameRoom = JSON.parse(res.gameRoom);
-        parent.cc.weijifen.match.matchListOneClick(res.gameRoom);
-    },
-    joinErr: function (res,obj) {
-        alert('加入失败');
+        var res = JSON.parse(res);
+        if (!res.success) {
+            alert(res.msg)
+            return
+        }
+        let h5CallCo = require('h5CallCocos');
+        let toMjSence = new h5CallCo();  
+        toMjSence.matchListOneClick(res);
     },
     matchType: function (type) {
         if (type == 'risai') {
@@ -100,23 +104,41 @@ cc.Class({
     * 到比赛详情
     * @param data 单个比赛列表的所有数据
     */
-    goDetail: function (event) {
-        let node = cc.instantiate(this.detailMatch);
+ /*   goDetail: function (data1,node) {
+        // let node = cc.instantiate(this.detailMatch);
         let listData = event.currentTarget.getChildByName('data').getComponent(cc.Label).string;
         let data = JSON.parse(listData);
+        let data = data1;
 
         if (data.activiteType == 2) {
             node.parent = cc.weijifen.matchNodeArr[2];
         } else {
             node.parent = cc.weijifen.matchNodeArr[4];
-
         }
 
         // node.parent = cc.weijifen.matchNodeArr[0];
-    },
+    },*/
     closeDetail: function () {
-        let detail_match = cc.find('Canvas/main/matchhall/detail_match');
+        let detail_match = cc.find('Canvas/menu/detail_match');
         detail_match.destroy();
+    },
+    /*
+    * 报名
+    */
+    signUp: function () {
+        let params = {
+            token: cc.weijifen.authorization,
+            // activityId: activityId
+            activityId: 22
+        }
+        cc.weijifen.http.httpPost("/gameNotice/saveUserActivity",params,function(data){
+            let data1 = JSON.parse(data);
+            if (data1.success) {
+                alert('报名成功!');
+            } else {
+                alert(data1.msg);
+            }
+        });
     },
     /*
     * 比赛倒计时

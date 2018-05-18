@@ -13,6 +13,7 @@ cc.Class({
     matchListOneClick:function(data){
         // cc.weijifen.authorization = "61d8be72e66449aa9e0dc93df8a6122c";
         // data = {"room":"a2286aa2e6004dbd9d1d895016217faa","playway":"402888815e6f0177015e71529f3a0001","cardNum":"13","playerNum":"4","maxRound":"4","match":"true"};
+        var data = JSON.parse(data.gameRoom);
         if(data.match){
             cc.weijifen.match = data.match ;
         }

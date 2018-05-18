@@ -5,7 +5,8 @@ cc.Class({
     properties: {
         gameSettingClick: cc.Prefab,
         shopPage: cc.Prefab,
-        sharing:cc.Prefab
+        sharing:cc.Prefab,
+        menu: cc.Prefab
     },
 
     // use this for initialization
@@ -40,11 +41,26 @@ cc.Class({
             return 
         }
 
+
         if (event.target.name == 9) {
             this.alert("敬请期待~");
             return 
         }
 
+     /*   // 进入比赛详情
+        if (event.target.name == 'match_list') {
+            let menu = cc.instantiate(this.menu);
+            menu.parent = cc.find('Canvas/menu');
+            menu.zIndex = 100000;
+            if (menu) {
+                let matchJs = event.target.getComponent('match');
+                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;
+                let data = JSON.parse(listData);
+                matchJs.goDetail(data);
+            }
+            return
+        } 
+*/
         //分享
         // if(event.target.name == 12){
             // var jsonData = {
@@ -57,4 +73,17 @@ cc.Class({
         // }
         this.hall(event.target.name);
     },
+    openMatchDetail: function (event) {
+           // 进入比赛详情
+        if (event.target.name == 'match_list') {
+            let menu = cc.instantiate(this.menu);
+            menu.parent = cc.find('Canvas/menu');
+            menu.zIndex = 100000;
+            if (menu) {
+                let matchJs = event.target.getComponent('match');
+                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;
+                let data = JSON.parse(listData);
+            }
+        } 
+    }
 });
