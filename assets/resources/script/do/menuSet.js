@@ -13,7 +13,6 @@ cc.Class({
     init:function(name,url){
         this.clearPerfab();
         let web = this.title.parent.children[2];
-        console.log('web',web)
         let loadImage = this.title.parent.children[3];
         loadImage.active = true;
         var shareWxBtn = this.title.parent.children[4];
@@ -22,18 +21,18 @@ cc.Class({
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
-        if(name != 15){
+        if(name != 15 || name != 9){
             this.title.children[name].active = true;
         }
-        
-        if(name == 10 || name == 11){
+        if(name == 10 || name == 11 || name == 9) {
             let gameroom;
             web.active = false;
             let loadImage = this.title.parent.children[3];
             loadImage.active = false;
             if(name ==10){
                 gameroom = cc.instantiate(this.joinRoom);
-            }else if(name == 11){
+            }else if(name == 11 || name == 9){
+                if (name == 9) cc.weijifen.matchFlag = true;
                 gameroom = cc.instantiate(this.createRoom);
             }
             gameroom.parent = this.node
@@ -45,8 +44,7 @@ cc.Class({
             web.active = true;
             web = web.getComponent(cc.WebView);
             web.node.on('loaded', this.callback, this);//webview加载完成后执行的方法
-
-            var scheme = "matchList";// 这里是与内部页面约定的关键字
+            var scheme = "aaaabb";// 这里是与内部页面约定的关键字
             web.setJavascriptInterfaceScheme(scheme);
             function jsCallback (url) {
                 cc.director.loadScene("majiang");

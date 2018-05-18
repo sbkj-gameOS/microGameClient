@@ -35,7 +35,11 @@ cc.Class({
             default:null,
             type:cc.SpriteFrame
         },  
-        noticePrefab: cc.Prefab
+        noticePrefab: cc.Prefab,
+        matchNode: {
+            default: null,
+            type: cc.Node
+        },
     },
     onLoad: function () {
         
@@ -216,6 +220,13 @@ cc.Class({
     },
     noticeError: function (res,object) {
         object.alert('公告获取失败！');
+    },
+   /* matchHall: function () {
+        let matchNode = this.matchNode;
+        matchNode.active = true;
+    }*/
+    match: function () {
+        this.hall(9)
     }
 });
 

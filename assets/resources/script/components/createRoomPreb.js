@@ -10,11 +10,16 @@ cc.Class({
         ph:cc.Prefab,
         nj:cc.Prefab,
         gd:cc.Prefab,
-        jy:cc.Prefab
+        jy:cc.Prefab,
+        matchHall: cc.Prefab
     },
 
     // use this for initialization
     onLoad: function () {
+        if (cc.weijifen.matchFlag) {
+            this.allfunction(['日赛','月赛'],[this.matchHall,this.matchHall]);
+            return
+        }
         if(cc.weijifen.GameBase.gameModel =='ch'){
             this.allfunction(['长春麻将'],[this.ch]);
         }else if(cc.weijifen.GameBase.gameModel =='wz'){
@@ -35,9 +40,11 @@ cc.Class({
             he.parent = this.left;
             he.children[2].getComponent(cc.Label).string =name[i];
             let her = cc.instantiate(value[i]);
+            if (name[i] == '月赛') her.y = -98;
             her.parent = he.children[1];
         }
-    }
+    },
+
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
