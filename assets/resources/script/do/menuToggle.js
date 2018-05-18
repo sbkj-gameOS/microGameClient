@@ -40,10 +40,10 @@ cc.Class({
             return 
         }
 
-        // if (event.target.name == 9) {
-        //     this.alert("敬请期待~");
-        //     return 
-        // }
+        if (event.target.name == 9) {
+            this.alert("敬请期待~");
+            return 
+        }
 
         //分享
         // if(event.target.name == 12){
