@@ -1003,7 +1003,8 @@
     },
     "sharing": {
       "__uuid__": "e8910e71-bce4-4da5-897a-6cf1fa3b1d17"
-    }
+    },
+    "menu": null
   },
   {
     "__type__": "cc.Node",
