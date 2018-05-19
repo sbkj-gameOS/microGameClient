@@ -47,20 +47,6 @@ cc.Class({
             return 
         }
 
-     /*   // 进入比赛详情
-        if (event.target.name == 'match_list') {
-            let menu = cc.instantiate(this.menu);
-            menu.parent = cc.find('Canvas/menu');
-            menu.zIndex = 100000;
-            if (menu) {
-                let matchJs = event.target.getComponent('match');
-                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;
-                let data = JSON.parse(listData);
-                matchJs.goDetail(data);
-            }
-            return
-        } 
-*/
         //分享
         // if(event.target.name == 12){
             // var jsonData = {
@@ -82,7 +68,29 @@ cc.Class({
             if (menu) {
                 let matchJs = event.target.getComponent('match');
                 let listData = event.target.getChildByName('data').getComponent(cc.Label).string;
+                let content = menu.getChildByName('main').children[0].children[1].children[0];
                 let data = JSON.parse(listData);
+                cc.sys.localStorage.setItem('activityId',data.id);
+               /* let match = require('match');
+                let matchNode = new matchNode();
+                let node = matchNode.detailMatch;*/
+                // 报名条件 
+                if (data.entryConditions) {
+                    let bmtj;
+                    let conditions = content.children[0];
+                    let entryConditions = JSON.parse(data.entryConditions);
+                    for (let ele of entryConditions) {
+                        if (ele.id == data.bisaiType) {
+                            conditions.children[2].getComponent(cc.Label).string = ele.name;
+                        }
+                    }
+                }
+                // 报名时间
+                let time = content.children[1].children[2].getComponent(cc.Label);
+                time.string = data.bmStartTime + '至' + data.endTime;
+                // 奖品信息
+                let reward = content.children[3].children[0].getComponent(cc.Label);
+                reward.string = '' + data.activiteContent;
             }
         } 
     }

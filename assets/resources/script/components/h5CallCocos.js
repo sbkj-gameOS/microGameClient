@@ -38,5 +38,6 @@ cc.Class({
             cc.weijifen.maxRound = data.maxRound;
         }
         cc.director.loadScene("majiang");
+        cc.sys.localStorage.removeItem('activityId');
     },
 });

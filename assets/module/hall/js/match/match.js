@@ -1,7 +1,8 @@
 /*
-* @主菜单页（gameMain场景）
+* 比赛
 */
 var WJFCommon = require("WJFCommon");
+var wfj = new WJFCommon();
 cc.Class({
     extends: WJFCommon,
 
@@ -40,12 +41,15 @@ cc.Class({
     * activiteType值为2，日赛；4为月赛
     */
     getListSuccess: function (res,obj) {
-        let time,fenNode,miaoNode;
+        let flag;
         let parent_ri = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[1].children[1].children[0]//matchhall
         let parent_yue = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[2].children[1].children[0]//matchhall        
         cc.weijifen.matchNodeArr[2] = parent_ri;
         cc.weijifen.matchNodeArr[4] = parent_yue;
         let data = JSON.parse(res);
+        if (data.matchList.length) flag = false;
+        if (flag) return;
+
         for (let ele of data.matchList) {
        /* let arr = [1,2,3,4,5,6,7,8,9]
         for (let ele of arr) {*/
@@ -56,87 +60,70 @@ cc.Class({
             list.getChildByName('data').getComponent(cc.Label).string = JSON.stringify(ele);
             list.getChildByName('label').children[0].getComponent(cc.Label).string = ele.activiteName;
             list.getChildByName('label').children[1].getComponent(cc.Label).string = entryConditions[0].name;
+            list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.userNum + '人';
             if (prizeData.length) {
-                list.getChildByName('jiangjin').children[0].getComponent(cc.Label).string = prizeData[0].num;
+                list.getChildByName('jiangjin').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
                 list.getChildByName('jiangjin').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
             }
-            obj.countDown(ele.endTime,ele.startTime,list);
             if (ele.activiteType == 2) {
-                list.parent = parent_ri.children[1].children[0].children[1].children[0];
+                let pa = parent_ri.children[1].children[0].children[1].children[0];
+                pa.getChildByName('no_data').active = false;
+                list.parent = pa;
             } else if (ele.activiteType == 4){
-                list.parent = parent_yue.children[1].children[0].children[1].children[0];
+                let pa = parent_yue.children[1].children[0].children[1].children[0];
+                pa.getChildByName('no_data').active = false;
+                list.parent = pa;
             }
         }
     },
     getListErr: function (res,obj) {
         let data = JSON.parse(res);
-        alert(data.msg)
+        wfj.alert(data.msg)
     },
     /*
     * 加入比赛
     */
     joinMatch: function (event) {
+        let matchJs = event.target.parent.getComponent('match');
+        let listData = event.target.parent.getChildByName('data').getComponent(cc.Label).string;
+        let data = JSON.parse(listData);
         let params = {
             token: cc.weijifen.authorization,
-            // activityId: 
-            activityId: 22
+            activityId: data.id
         }
         cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this) ;            
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
         if (!res.success) {
-            alert(res.msg)
+            wfj.alert(res.msg)
             return
         }
         let h5CallCo = require('h5CallCocos');
         let toMjSence = new h5CallCo();  
         toMjSence.matchListOneClick(res);
     },
-    matchType: function (type) {
-        if (type == 'risai') {
-            this.getMatchList();
-        } else if (type == 'yuesai') {
-            alert('p')
-        }
-    },
-    /*
-    * 到比赛详情
-    * @param data 单个比赛列表的所有数据
-    */
- /*   goDetail: function (data1,node) {
-        // let node = cc.instantiate(this.detailMatch);
-        let listData = event.currentTarget.getChildByName('data').getComponent(cc.Label).string;
-        let data = JSON.parse(listData);
-        let data = data1;
-
-        if (data.activiteType == 2) {
-            node.parent = cc.weijifen.matchNodeArr[2];
-        } else {
-            node.parent = cc.weijifen.matchNodeArr[4];
-        }
-
-        // node.parent = cc.weijifen.matchNodeArr[0];
-    },*/
     closeDetail: function () {
         let detail_match = cc.find('Canvas/menu/detail_match');
         detail_match.destroy();
+        cc.sys.localStorage.removeItem('activityId');
     },
     /*
     * 报名
     */
     signUp: function () {
+        let activityId = cc.sys.localStorage.getItem('activityId');
         let params = {
             token: cc.weijifen.authorization,
             // activityId: activityId
-            activityId: 22
+            activityId: activityId
         }
         cc.weijifen.http.httpPost("/gameNotice/saveUserActivity",params,function(data){
             let data1 = JSON.parse(data);
             if (data1.success) {
-                alert('报名成功!');
+                wfj.alert('报名成功!');
             } else {
-                alert(data1.msg);
+                wfj.alert(data1.msg);
             }
         });
     },
