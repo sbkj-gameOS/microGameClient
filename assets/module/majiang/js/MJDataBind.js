@@ -683,9 +683,9 @@ cc.Class({
                 }else{
                     readybtn.active = true ;
                 }
-               /* if(cc.weijifen.room && cc.weijifen.room.length ==6){
+                if(cc.weijifen.room && cc.weijifen.room.length ==6){
                     ready2.active = true ;
-                }*/
+                }
                 // object.actionnode_deal.active =false ;
 
                 /**

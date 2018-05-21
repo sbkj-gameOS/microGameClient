@@ -14,13 +14,13 @@ cc.Class({
         if (menu.children[2].active) {
             cc.weijifen.gongaoAlertNum--;
         }
+        cc.weijifen.matchFlag = false;
         cc.weijifen.menu.put(menu);
     },
     closeSetting: function () {
         let setting = cc.find("Canvas/setting");
         // cc.weijifen.menu.put(setting);
         setting.active = false;
-        
     },
     toHall:function(){
         cc.director.loadScene("gameMain") ;

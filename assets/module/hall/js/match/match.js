@@ -167,8 +167,16 @@ cc.Class({
         for (let ele of lists) {
             ele.destroy();
         }
+    },
+    /*
+    * 比赛详情页tab切换
+    */
+    detail_tab: function (event) {
+        let mainBox = event.node.parent.parent.getChildByName('main').children;//底部切换主体
+        let idx = parseInt(event.node.name);
+        mainBox[idx].active = true;
+        idx ? mainBox[0].active = false : mainBox[1].active = false;
     }
-
 });
 
 
@@ -178,4 +186,4 @@ cc.Class({
 
 
 
- 
+  
