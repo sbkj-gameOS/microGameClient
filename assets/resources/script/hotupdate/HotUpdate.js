@@ -9,15 +9,15 @@ var UpdatePanel = require('./UpdatePanel');
 * remoteVersionUrl   [可选项] 远程版本文件的路径，用来判断服务器端是否有新版本的资源
 * remoteManifestUrl  远程资源 Manifest 文件的路径，包含版本信息以及所有资源信息
 */
-/*var customManifestStr = JSON.stringify({
-    "packageUrl": "http://http://game.bizpartner.cn/remote-assets/",
-    "remoteManifestUrl": "http://game.bizpartner.cn/remote-assets/project.manifest",
-    "remoteVersionUrl": "http://game.bizpartner.cn/remote-assets/version.manifest",
+var customManifestStr = JSON.stringify({
+    "packageUrl": "http://game.bizpartner.cn/ch/remote-assets/",
+    "remoteManifestUrl": "http://game.bizpartner.cn/ch/remote-assets/project.manifest",
+    "remoteVersionUrl": "http://game.bizpartner.cn/ch/remote-assets/version.manifest",
     "version": "1.0.0",
     "assets":{},
     "searchPaths": []
 });
-*/
+
 var customManifestStr = ''
 
 cc.Class({
