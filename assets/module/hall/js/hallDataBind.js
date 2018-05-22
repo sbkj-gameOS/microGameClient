@@ -226,7 +226,9 @@ cc.Class({
         matchNode.active = true;
     }*/
     match: function () {
-        this.hall(9)
+        cc.weijifen.GameBase.gameModel == 'ch' ? this.hall(9)
+                                               : this.hall(90);
+        
     }
 });
 

@@ -9,7 +9,8 @@ cc.Class({
     properties: {
         matchParent: cc.Prefab,
         matchListPrefab: cc.Prefab,
-        detailMatch: cc.Prefab
+        detailMatch: cc.Prefab,
+        jinagli: cc.Node
     },
     onLoad: function () {
         
@@ -33,7 +34,10 @@ cc.Class({
     * 获取比赛列表
     *
     */
-    getMatchList: function () {
+    getMatchList: function (event) {
+        if (event.target.name == 9 && cc.weijifen.GameBase.gameModel != 'ch') {
+            return;
+        }
         let token = {token:cc.weijifen.authorization};
         cc.weijifen.http.httpPost('/match/getMatchList',token,this.getListSuccess,this.getListErr,this) ;            
     },

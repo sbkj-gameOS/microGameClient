@@ -230,6 +230,10 @@ cc.Class({
     },
     //点击打开弹窗
     hall:function(num,url){
+        if (num == 90) {
+            this.alert('敬请期待！');
+            return
+        }
 		let menu = cc.weijifen.menu.get();//拿到公用弹框PreFab
         let single = menu.getComponent('menuSet');//获取当前PreFab中名字为menuSet  js文件
         menu.parent = cc.find('Canvas');// 将节点放在Canvas节点下面。

@@ -21,7 +21,8 @@ cc.Class({
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
-        if(name != 15 || name != 9){
+        if(name != 15){
+        // if(name != 15 || name != 9){
             this.title.children[name].active = true;
         }
         if(name == 10 || name == 11 || name == 9) {

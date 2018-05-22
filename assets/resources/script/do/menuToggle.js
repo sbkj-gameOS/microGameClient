@@ -59,22 +59,20 @@ cc.Class({
         // }
         this.hall(event.target.name);
     },
+    /*到比赛详情*/
     openMatchDetail: function (event) {
         // 进入比赛详情
         if (event.target.name == 'match_list') {
             let menu = cc.instantiate(this.menu);
-            menu.parent = cc.find('Canvas/menu');
-            menu.zIndex = 100000;
             if (menu) {
+                menu.parent = cc.find('Canvas/menu');
+                menu.zIndex = 100000;
                 let matchJs = event.target.getComponent('match');
                 let listData = event.target.getChildByName('data').getComponent(cc.Label).string;
                 let content = menu.getChildByName('main').children[0].children[1].children[0];// 概述后代元素---content
                 let rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
                 let data = JSON.parse(listData);
                 cc.sys.localStorage.setItem('activityId',data.id);
-               /* let match = require('match');
-                let matchNode = new matchNode();
-                let node = matchNode.detailMatch;*/
                 // 场次标题（如：vip用户专场）
                 let title = menu.getChildByName('title').getComponent(cc.Label).string;
                 if (data.bisaiType == 1) {
@@ -102,8 +100,9 @@ cc.Class({
                 let num = content.children[2].children[2].getComponent(cc.Label);
                 num.string = data.userNum + '人';
                 // 奖品信息
-                // let prizeData = JSON.parse(data.prizeData);
-                let prizeData = [
+                let prizeData = JSON.parse(data.prizeData);
+                /*//测试数据
+                    let prizeData = [
                     {
                         "orgi":"ch",
                         "createTime":1525685556000,
@@ -126,16 +125,19 @@ cc.Class({
                         "nameValue":"房卡-1张",
                         "num":"2-30"
                     }
-                ];
-              /*  for (let i = 0;i < prizeData.length;i++) {
-                    let reward = cc.instantiate();
-                    reward.children[0].getComponent(cc.Label).string = prizeData[i].num;
-                    reward.children[1].getComponent(cc.Label).string = prizeData[i].nameValue;
-
-                    if (i > 0) reward.y = reward.y - reward.width - 15;
-                    reward.parent = rewardTxt.children[1];
+                ];*/
+                if (prizeData.length) {
+                    let Match = require('match');
+                    let match = new Match();
+                    for (let i = 0;i < prizeData.length;i++) {
+                        let reward = cc.instantiate(rewardTxt.children[1]);
+                        reward.children[0].getComponent(cc.Label).string = '第' + prizeData[i].num + '名';
+                        reward.children[1].getComponent(cc.Label).string = prizeData[i].nameValue;
+                        if (i > 0) reward.y = reward.y - reward.width - 15;
+                        reward.active = true;
+                        reward.parent = rewardTxt;
+                    }
                 }
-                // reward.string = '' + data.activiteContent;*/
             }
         } 
     }

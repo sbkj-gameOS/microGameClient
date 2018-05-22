@@ -40,6 +40,9 @@ cc.Class({
         this.huCount.string = userInfo.huCount;
         this.dianCount.string = userInfo.dianCount;
         this.touchBao.string = userInfo.touchBao;
+        if (cc.weijifen.GameBase.gameModel == 'nj') {
+            this.touchBao.node._parent.active = false;
+        }
         this.bankerCount.string = userInfo.bankerCount;
         this.totalcount.string = '总分：'+userInfo.pointCount;
         for(let i = 0;i<player.length;i++){
