@@ -50,7 +50,8 @@ cc.Class({
         this.button.active = true;
         this.labei.active =false;
         this.labei2.active =false;
-        this.time = 30;
+        cc.weijifen.GameBase.gameModel == 'ch' ? this.time = 120
+                                               : this.time = 30;
     },
     overGameClick:function(){
         /*

@@ -86,7 +86,9 @@ cc.Class({
                 node.button2.active = true;
                 node.labei.active =false;
                 node.labei2.active = true;
-                node.time =30;
+                node.time = 120;
+                cc.weijifen.GameBase.gameModel == 'ch' ? node.time = 120 
+                                                       : node.time = 30;
                 mj.t = setInterval(function(){node.daojishi()},1000)  ;  
             }
             
@@ -118,10 +120,11 @@ cc.Class({
                 time = 0;
                 cc.sys.localStorage.removeItem('unOver');
             }else{
-                time = 3000;
+                // time = 3000;
+                cc.weijifen.GameBase.gameModel == 'ch' ? node.time = 120000 
+                                                       : node.time = 30000;
             }
             setTimeout(function(){self.endGameOver(data,context)},time)
-            
         },
         endGameOver: function(data,context){
 
