@@ -11,7 +11,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // 一下为默认选中的选项
-        playerData = "jy";
+        playerData = "JY";
         guiZe = 'gp@@';
         moShi = "8";
         userType = "4";
@@ -84,22 +84,22 @@ cc.Class({
     createClick:function(){
         /*playerData = playerData.split("@@");
         playerData.pop();*/
-        garams.game = 'JD';
+        garams.game = playerData;
         garams.waytype = playerData;
 
 
 
-        garams.guiZe = guiZe;
+        garams.player = guiZe;
 
 
 
         garams.modeltype = moShi;
         garams.pepNums = userType;
         console.log(garams)
-        /* if(cc.weijifen.authorization){
+        if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
         // 此处的onClick是createRoom中的方法
-        this.onClick(garams);*/
+        this.onClick(garams);
     }
 });
