@@ -131,6 +131,7 @@ cc.Class({
             self.map("banker" , gameStartInit.banker_event,self);//庄家
             self.map("players" , gameStartInit.players_event,self);//接受玩家列表
             self.map("play" , gameStartInit.play_event,self);//人齐了，接收发牌信息
+            self.map("changeRoom" , self.changeRoom_event,self);// 比赛
             gamePlay = require('GamePlay');
             self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
             self.map("takecards" , gamePlay.takecard_event,self);//我出的牌  
@@ -166,6 +167,10 @@ cc.Class({
                 },3000);
             }
             self.getSelf().route(data.command,self)(data , self);
+           /* if (result.command == 'changeRoom') {
+                cc.weijifen.playerNum = data.playerNum;
+                cc.director.loadScene('majiang');
+            }*/
         });
         socket.on("play",function(result){
             var data = self.getSelf().parse(result);
@@ -492,6 +497,8 @@ cc.Class({
         cc.sys.localStorage.removeItem('unOver');      
         cc.sys.localStorage.removeItem('clear');   
         cc.sys.localStorage.removeItem('cb');   
+
+        self.joinRoom();
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");
@@ -521,8 +528,7 @@ cc.Class({
         }else if(cc.weijifen.browserType != null){
             self.ggButton.node.active = true ;
         }
-         
-        self.joinRoom();
+        
         //设置游戏玩家数量
         if(cc.weijifen.playerNum == 2){
             // cc
@@ -634,8 +640,11 @@ cc.Class({
         }
         this.exchange_state("init" , this);
         // let self = this ;
-        cc.log()
     },
+    /*
+    * 分发joinroom事件（房间初始化时）
+    *
+    */
     joinRoom:function(){
         //开始匹配
         let socket = this.socket();
@@ -894,7 +903,16 @@ cc.Class({
             let socket = this.socket();
             socket.disconnect();
         }
-    }
+    },
+    /*
+    * 比赛模式，进入房间1分钟之后接收
+    */
+    changeRoom_event: function(data,context){
+        console.log('人数',data.playerNum)
+        cc.weijifen.playerNum = data.playerNum;
+        cc.director.loadScene('majiang');
+        
+    },
 });
 
 
