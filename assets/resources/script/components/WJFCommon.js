@@ -72,7 +72,12 @@ cc.Class({
             var animState = this._animCtrl.play("loadding");
         }
     },
-    alert:function(message){
+    /*
+    * 提示框
+    * @param messge 提示文字
+    * @param matchFlag isStop倒计时停止，提示框消失的标志；isMatch“确定按钮消失”
+    */
+    alert:function(message,matchFlag){
         if(cc.weijifen.dialog.size() > 0){
             this.alertdialog = cc.weijifen.dialog.get();
             this.alertdialog.parent = cc.find("Canvas");
@@ -175,6 +180,9 @@ cc.Class({
     map:function(command, callback,self){
         self.routes[command] = callback || function(){};
     },
+    /*
+    * @param self MJDataBind.js节点
+    */
     route:function(command,self){
         return self.routes[command] || function(){};
     },
@@ -246,7 +254,58 @@ cc.Class({
     /*阻止点击冒泡*/
     stopBubble: function (event) {
         event.bubble = false;
-    }
+    },
+      /*
+    * 比赛倒计时
+    */
+    countDown: function (matchStartTime) {
+        let self = this;
+        // matchStartTime = '2018-05-22 17:01:03'
+        let times = (new Date('2018-05-22 17:17:10').getTime() - new Date('2018-05-22 17:17:00').getTime()) / 1000;
+        // let times = new Date(matchStartTime).getTime() - new Date().getTime();
+        let msg,
+            matchFlag = {isStop: null,isMatch: true};
+        var timer=null;
+      /*  var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
+        var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);*/
+        if(times<=0 || timer){
+            clearInterval(timer);
+            this.alertdialog.destroy();
+            return
+        }
+        var day=0,
+            hour=0,
+            minute=0,
+            second=0;//时间默认值
+        // if(cc.weijifen.dialog.size() > 0){
+        this.alertdialog = cc.weijifen.dialog.get();
+        if(this.alertdialog){
+            let node = self.alertdialog.getChildByName("message") ;
+            if(node!=null && node.getComponent(cc.Label)){
+                timer=setInterval(function(){
+                    if(times > 0){
+                        day = Math.floor(times / (60 * 60 * 24));
+                        hour = Math.floor(times / (60 * 60)) - (day * 24);
+                        minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                        second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                    } else {
+                        clearInterval(timer);
+                        self.alertdialog.destroy();
+                    }
+                   /* fenNode.string = minute;
+                    miaoNode.string = second;*/
+                    times--;
+                    if (minute <= 9) minute = '0' + minute;
+                    if (second <= 9) second = '0' + second;
+                    msg = `距比赛开始：${minute}分${second}秒`;
+                    node.getComponent(cc.Label).string = msg;
+                },1000);
+                setTimeout(function(){
+                    self.alertdialog.parent = cc.find("Canvas");
+                },1000)
+            }
+        }
+    }   
 });
 
 

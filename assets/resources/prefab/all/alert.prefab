@@ -292,7 +292,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 315,
+      "width": -5,
       "height": 32
     },
     "_rotationX": 0,
@@ -329,7 +329,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "您输入的房间号不存在",
+    "_N$string": "",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -346,8 +346,8 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 41,
-    "_left": 98.5,
-    "_right": 98.5,
+    "_left": 258.5,
+    "_right": 258.5,
     "_top": 88,
     "_bottom": 171,
     "_verticalCenter": 0,

@@ -90,11 +90,14 @@ cc.Class({
     joinMatch: function (event) {
         let matchJs = event.target.parent.getComponent('match');
         let listData = event.target.parent.getChildByName('data').getComponent(cc.Label).string;
+        // 当前比赛信息存放在缓存中
+        cc.sys.localStorage.setItem('matchData',listData);
         let data = JSON.parse(listData);
         let params = {
             token: cc.weijifen.authorization,
             activityId: data.id
         }
+        // cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
         cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this) ;            
     },
     joinSuccess: function (res,obj) {
@@ -106,6 +109,11 @@ cc.Class({
         let h5CallCo = require('h5CallCocos');
         let toMjSence = new h5CallCo();  
         toMjSence.matchListOneClick(res);
+    },
+    joinErr: function (res) {
+        let data = JSON.parse(res);
+        // wfj.alert(data.msg)
+        alert('报错')
     },
     closeDetail: function () {
         let detail_match = cc.find('Canvas/menu/detail_match');
@@ -130,36 +138,6 @@ cc.Class({
                 wfj.alert(data1.msg);
             }
         });
-    },
-    /*
-    * 比赛倒计时
-    * @param list 比赛列表的父节点
-    */
-    countDown: function (endTime,startTime,list) {
-        let times = new Date(endTime).getTime() - new Date().getTime();
-        var timer=null;
-        var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
-        var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);
-        if(times<=0){
-            clearInterval(timer);
-        }
-        var day=0,
-            hour=0,
-            minute=0,
-            second=0;//时间默认值
-        timer=setInterval(function(){
-            if(times > 0){
-                day = Math.floor(times / (60 * 60 * 24));
-                hour = Math.floor(times / (60 * 60)) - (day * 24);
-                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
-                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
-            }
-            if (minute <= 9) minute = '0' + minute;
-            if (second <= 9) second = '0' + second;
-            times--;
-            fenNode.string = minute;
-            miaoNode.string = second;
-        },1000);
     },
     /*
     * 退出游戏大厅

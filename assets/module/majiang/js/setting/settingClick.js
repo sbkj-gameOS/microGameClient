@@ -121,8 +121,8 @@ cc.Class({
                 cc.sys.localStorage.removeItem('unOver');
             }else{
                 // time = 3000;
-                cc.weijifen.GameBase.gameModel == 'ch' ? node.time = 120000 
-                                                       : node.time = 30000;
+                cc.weijifen.GameBase.gameModel == 'ch' ? time = 120000 
+                                                       : time = 30000;
             }
             setTimeout(function(){self.endGameOver(data,context)},time)
         },
