@@ -338,7 +338,7 @@ cc.Class({
             // var cards = context.decode(temp_player.cards);
             var cards = data.player.cards;
          
-            if(cc.weijifen.GameBase.gameModel == 'wz'){
+            if(cc.weijifen.GameBase.gameModel == 'wz' || cc.weijifen.GameBase.gameModel == 'ls'){
                 if(temp_player.powerCard){
                     // var powerCard = context.decode(temp_player.powerCard);
                     var powerCard = temp_player.powerCard;

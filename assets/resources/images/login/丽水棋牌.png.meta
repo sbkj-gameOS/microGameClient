@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "ce85d20d-53ba-42c1-bdfe-0544398e4bef",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "丽水棋牌": {
+      "ver": "1.0.3",
+      "uuid": "dc5af355-010e-4858-8847-2b2a4022a491",
+      "rawTextureUuid": "ce85d20d-53ba-42c1-bdfe-0544398e4bef",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 493,
+      "height": 127,
+      "rawWidth": 493,
+      "rawHeight": 127,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

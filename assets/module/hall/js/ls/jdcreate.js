@@ -86,13 +86,7 @@ cc.Class({
         playerData.pop();*/
         garams.game = playerData;
         garams.waytype = playerData;
-
-
-
         garams.player = guiZe;
-
-
-
         garams.modeltype = moShi;
         garams.pepNums = userType;
         console.log(garams)
