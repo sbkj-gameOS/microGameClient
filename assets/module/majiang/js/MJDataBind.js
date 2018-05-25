@@ -108,7 +108,6 @@ cc.Class({
         }
     },
     onLoad: function () {
-
         let self = this ;
         //let socket = this.socket(self);
         let socket = this.connect() ;
@@ -167,10 +166,6 @@ cc.Class({
                 },3000);
             }
             self.getSelf().route(data.command,self)(data , self);
-           /* if (result.command == 'changeRoom') {
-                cc.weijifen.playerNum = data.playerNum;
-                cc.director.loadScene('majiang');
-            }*/
         });
         socket.on("play",function(result){
             var data = self.getSelf().parse(result);
@@ -659,6 +654,7 @@ cc.Class({
             param.playway = '402888815e6f0177015e71529f3a0001',
             param.match = 1 ; 
         }
+      
         socket.emit("joinroom" ,JSON.stringify(param)) ;
     },
     /**
@@ -908,7 +904,6 @@ cc.Class({
     * 比赛模式，进入房间1分钟之后接收
     */
     changeRoom_event: function(data,context){
-        console.log('人数',data.playerNum)
         cc.weijifen.playerNum = data.playerNum;
         cc.director.loadScene('majiang');
         

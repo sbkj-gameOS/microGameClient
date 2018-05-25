@@ -469,21 +469,23 @@ cc.Class({
                                     
                                     //通过判断 id 来确定位置上的牌的张数
                                     var arry = context.playersarray;
-                                    for(let j =0 ; j< arry.length;j++){
-                                        var card = arry[j].getComponent('MaJiangPlayer');                            
-                                        if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
-                                            if(card.tablepos=='left'){
-                                                sabi = 2;
+                                    if (arry) {
+                                        for(let j =0 ; j< arry.length;j++){
+                                            var card = arry[j].getComponent('MaJiangPlayer');                            
+                                            if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
+                                                if(card.tablepos=='left'){
+                                                    sabi = 2;
+                                                    break;
+                                                }else if(card.tablepos=='top'){
+                                                    sabi = 1;
+                                                    break;
+                                                }   
+                                                sabi=0;
                                                 break;
-                                            }else if(card.tablepos=='top'){
-                                                sabi = 1;
-                                                break;
-                                            }   
-                                            sabi=0;
-                                            break;
+                                            }
                                         }
+                                        gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
                                     }
-                                    gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
                                 }
                             }
                             groupNums = groupNums + 1 ;
@@ -493,25 +495,27 @@ cc.Class({
             }
             setTimeout(function(){
                 cc.weijifen.audio.playSFX('shuffle.mp3');            
-                let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
+                // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
                 // ani.play("majiang_reorder") ;
                 var maxvalue  = -100;
                 var maxvalluecard ;
                 //排序 
-                for(var i=0 ; i<context.playercards.length ; i++ ){
-                    if(context.playercards[i].children[1].active == false){
-                        let temp_script = context.playercards[i].getComponent("HandCards") ;
-                        if(temp_script.value >= 0){
-                            context.playercards[i].zIndex = temp_script.value ;
-                        }else{
-                            context.playercards[i].zIndex = 200+ temp_script.value ;
+                if (context.playercards) {
+                    for(var i=0 ; i<context.playercards.length ; i++ ){
+                        if(context.playercards[i].children[1].active == false){
+                            let temp_script = context.playercards[i].getComponent("HandCards") ;
+                            if(temp_script.value >= 0){
+                                context.playercards[i].zIndex = temp_script.value ;
+                            }else{
+                                context.playercards[i].zIndex = 200+ temp_script.value ;
+                            }
+                            if(context.playercards[i].zIndex > maxvalue){
+                                maxvalue = context.playercards[i].zIndex ;
+                                maxvalluecard = context.playercards[i] ;
+                            } 
                         }
-                        if(context.playercards[i].zIndex > maxvalue){
-                            maxvalue = context.playercards[i].zIndex ;
-                            maxvalluecard = context.playercards[i] ;
-                        } 
-                    }
 
+                    }
                 }
                 gameStartInit.initcardwidth(); 
                 if(temp_player.banker == true&&!data.player.played){
@@ -842,7 +846,7 @@ cc.Class({
         calcdesc_cards:function(context ,start , end){
             var gameStartInit = require('GameStartInit');
             start = start - 1 ;
-            if(start > end){
+            if(start > end && context.desk_cards){
                 context.desk_cards.string = start ;
                 setTimeout(function(){
                     gameStartInit.calcdesc_cards(context , start , end ) ;
@@ -958,7 +962,9 @@ cc.Class({
                     player = temp ; break ;
                 }
             }
-            return player ;
+            if (player) {
+                return player ;
+            }
         },
         buhuaModle:function(cards,parent,back,fangwei,context,action){
             let opParent = cc.find("Canvas/cards/tesucards/huacard/"+parent+"");
