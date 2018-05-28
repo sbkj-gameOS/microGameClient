@@ -539,7 +539,7 @@ cc.Class({
             self.deskcards_top_panel.width = 650;
             // this.deskcards_top_panel.y =10;
         }else if(cc.weijifen.playerNum == 3){
-            self.right_player.active = false;      
+            self.left_player.active = false;      
            /* self.deskcards_current_panel.width = 600;
             self.deskcards_top_panel.width = 600;  
             self.deskcards_current_panel.x = -154;

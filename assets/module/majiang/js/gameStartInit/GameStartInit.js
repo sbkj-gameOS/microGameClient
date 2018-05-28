@@ -97,7 +97,18 @@ cc.Class({
          *
          * 宝牌/财神
          */
-        
+         /*
+        * 更换方位图标
+        * @param i       center的子元素下标
+        * @param j       center的孙元素下标
+        * @param name    spriteFrame名字
+        */
+        fw: function (i,j,name) {
+            let fangweiNode = cc.find('Canvas/bg/center') ;
+            let context = cc.find('Canvas').getComponent('MJDataBind') ;
+            let fw = fangweiNode.children[i].children[j].getComponent(cc.Sprite).spriteFrame = context.fangweiAltas.getSpriteFrame(name);
+            return fw;
+        },
         /*
         * 获取所有玩家信息
         * @param data 回调值
@@ -148,7 +159,7 @@ cc.Class({
                 }       
             }else if(cc.weijifen.playerNum==3){
 
-                /*  if(mytime==1){
+                if(mytime==1){
                     gameStartInit.dong(0);                
                     gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
                     if(data.players.length==2){          
@@ -157,6 +168,11 @@ cc.Class({
                         gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
                         gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
                     }
+                    gameStartInit.fw(1,1,'东0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'南0');//right
+                    gameStartInit.fw(4,0,'西0');//top
+
                 }else if(mytime==2){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
@@ -164,38 +180,22 @@ cc.Class({
                     if(data.players.length==3){
                         gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);        
                     }
+                    gameStartInit.fw(1,1,'南0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'西0');//right
+                    gameStartInit.fw(4,0,'东0');//top
                 }else if(mytime==3){
                     gameStartInit.dong(2);                
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
-                }*/
-                
-                if(mytime==1){
-                    // 第一个进入房间的玩家位置和其他玩家相对于该玩家的位置
-                    gameStartInit.dong(0);                
-                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
-                    if(data.players.length==2){          
-                        gameStartInit.publicData(1,data,'left',context.left_player,0,1,context);        
-                    }else if(data.players.length==3){
-                        gameStartInit.publicData(1,data,'left',context.left_player,0,1,context);        
-                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
-                    }
-                }else if(mytime==2){
-                    gameStartInit.dong(1);                
-                    gameStartInit.publicData(0,data,'left',context.left_player,1,1,context);
-                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);        
-                    if(data.players.length==3){
-                        gameStartInit.publicData(2,data,'top',context.top_player,0,2,context);
-                    }
-                }else if(mytime==3){
-                    gameStartInit.dong(2);                
-                    gameStartInit.publicData(0,data,'top',context.top_player,0,2,context);
-                    gameStartInit.publicData(1,data,'left',context.left_player,0,1,context);
-                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
+                    gameStartInit.fw(1,1,'西0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'东0');//right
+                    gameStartInit.fw(4,0,'南0');//top
                 }
+                
             }else{
-                    // publicData:function(inx,data,fangwei,OPparent,int,count,context){
                 if(mytime==1){
                     gameStartInit.dong(0);                
                     gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
@@ -209,6 +209,10 @@ cc.Class({
                         gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                
                         gameStartInit.publicData(3,data,'left',context.left_player,2,3,context);                                      
                     }
+                    gameStartInit.fw(1,1,'东0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'南0');//right
+                    gameStartInit.fw(4,0,'西0');//top
                 }else if(mytime == 2){
                     gameStartInit.dong(3);                
                     gameStartInit.publicData(0,data,'left',context.left_player,2,3,context);
@@ -219,6 +223,10 @@ cc.Class({
                         gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);          
                         gameStartInit.publicData(3,data,'top',context.top_player,1,2,context);         
                     }
+                    gameStartInit.fw(1,1,'南0');//current
+                    gameStartInit.fw(2,2,'东0');//left
+                    gameStartInit.fw(3,3,'西0');//right
+                    gameStartInit.fw(4,0,'北0');//top
                 }else if(mytime ==3){
                     gameStartInit.dong(2);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);  
@@ -227,12 +235,20 @@ cc.Class({
                     if(data.players.length ==4){
                         gameStartInit.publicData(3,data,'right',context.right_player,0,1,context);       
                     }
+                    gameStartInit.fw(1,1,'西0');//current
+                    gameStartInit.fw(2,2,'南0');//left
+                    gameStartInit.fw(3,3,'北0');//right
+                    gameStartInit.fw(4,0,'东0');//top
                 }else if(mytime == 4){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'left',context.left_player,2,3,context);               
                     gameStartInit.publicData(3,data,'current',context.current_player,0,0,context);
+                    gameStartInit.fw(1,1,'北0');//current
+                    gameStartInit.fw(2,2,'西0');//left
+                    gameStartInit.fw(3,3,'东0');//right
+                    gameStartInit.fw(4,0,'南0');//top
                 }
             }     
             var peo = context.playersarray;
@@ -751,7 +767,8 @@ cc.Class({
                 player0.parent = OPparent;
                 playerscript0.init(data.players[inx] , int , fangwei,count);                
                 cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
-                cc.sys.localStorage.setItem('count',count);                                  
+                cc.sys.localStorage.setItem('count',count);      
+
             }   
         },
         killPlayers: function(data){

@@ -120,27 +120,16 @@ cc.Class({
                         cc.sys.localStorage.setItem('current',data.id);
                         
                     }else{
-                        /*if(inx == 0||inx ==2){
+                        if(inx == 0||inx ==2){
                             player.parent= context.right_player;
                             tablepos = "right" ;
                             cc.sys.localStorage.setItem('right',data.id);
-                            cc.sys.localStorage.setItem('count','1')
+                            cc.sys.localStorage.setItem('count','1');
                         }else if(inx == 1){
                             player.parent= context.top_player;
                             tablepos = "top" ;
                             cc.sys.localStorage.setItem('top',data.id);
-                            cc.sys.localStorage.setItem('count','2')   
-                        }*/
-                        if(inx == 0||inx ==2){
-                            player.parent= context.right_player;
-                            tablepos = "top" ;
-                            cc.sys.localStorage.setItem('top',data.id);
-                            cc.sys.localStorage.setItem('count','1')
-                        }else if(inx == 1){
-                            player.parent= context.top_player;
-                            tablepos = "left" ;
-                            cc.sys.localStorage.setItem('left',data.id);
-                            cc.sys.localStorage.setItem('count','2')   
+                            cc.sys.localStorage.setItem('count','2');   
                         }
                         player.setPosition(0,0);
                     }
@@ -186,38 +175,12 @@ cc.Class({
                     }
                 }
                 
-                
-                var playersMsg = [];
-                if (cc.weijifen.playersMsg == undefined) {return}
-                playersMsg = cc.weijifen.playersMsg.players;
-                var bankerId = cc.sys.localStorage.getItem('bankerId');
-                var currentId = cc.sys.localStorage.getItem('current');
-                if (bankerId == currentId) {
-                    roomInit.fw(1,1,'东0');//current
+
+                  /*  roomInit.fw(1,1,'东0');//current
                     roomInit.fw(2,2,'南0');//left
                     roomInit.fw(3,3,'北0');//right
-                    roomInit.fw(4,0,'西0');//top
-                    return
-                }
-                for (var i = 0;i < playersMsg.length;i++) {
-                    console.log('arrid',playersMsg[i].id)
-                    console.log('当前id',data)
-                    console.log('‘-------------------’')
-                    if (playersMsg[i].id == data.id) {
-                        console.log('i==========',i)
-                        if (i == 1) {
-                            roomInit.fw(1,1,'南0');//current
-                            roomInit.fw(2,2,'东0');//left
-                            roomInit.fw(3,3,'北0');//right
-                            roomInit.fw(4,0,'西0');//top
-                        } else if (i == 2) {
-                            roomInit.fw(1,1,'西0');
-                            roomInit.fw(2,2,'东0');
-                            roomInit.fw(3,3,'北0');
-                            roomInit.fw(4,0,'南0');
-                        }
-                    }
-                }
+                    roomInit.fw(4,0,'西0');//top*/
+                
 
             }else{
                 // 这是默认的4人模式 
