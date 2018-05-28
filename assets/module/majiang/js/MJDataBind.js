@@ -109,6 +109,10 @@ cc.Class({
         fangweiAltas:{
             default:null,
             type:cc.SpriteAtlas
+        },
+        chatMsg: {
+            default: null,
+            type: cc.Node
         }
     },
     onLoad: function () {
@@ -197,7 +201,6 @@ cc.Class({
         });
 
         socket.on("talkOnSay" , function(result){
-            console.log(99)
             self.talk_event(result,null) ;
         });
 
@@ -921,18 +924,56 @@ cc.Class({
         context.disconnect();
     },
     /*
-    * 文字聊天事件处理
+    * 获取聊天列表，添加到父节点
+    * @param chatStr  玩家名字和所发文字
+    * @param chatShow 聊天列表窗口
+    * @param mj       MJDataBind节点
     */
-    talk_event: function (res,obj) {
-        let chatShow = cc.find('Canvas/chatShow');
+    addChatList: function (chatStr,chatShow,mj) {
+        if (chatShow.children.length > 1) mj.clear(chatShow);
+        let msgMode = cc.instantiate(mj.chatMsg);
+        let label = msgMode.getComponent(cc.Label);
+        label.string = chatStr;
+        label.fontSize = 20;
+        msgMode.parent = chatShow;
+        cc.find('Canvas/chat').active = false;
         chatShow.active = true;
-        chatShow.getChildByName('msg').getComponent(cc.Label).string = cc.weijifen.user.username + ": " + cc.weijifen.msg;
         setTimeout(function(){
             chatShow.active = false;
-        },2000);
-    }   
+            mj.clear(chatShow);
+        },5000);
+    },
+    /*
+    * 文字聊天事件处理
+    */
+    talk_event: function (res1,obj) {
+        let mj = this;
+        let chatShow = cc.find('Canvas/chatShow');
+        let res = JSON.parse(res1);
+        let content = JSON.parse(res.content);
+        let msg = content.username + '：' + content.msg;
+        this.addChatList(msg,chatShow,this)
+    },
+    /*
+    * 常用聊天语
+    */   
+    commonMsg: function (event) {
+        let msg = event.target.name;
+        let chatShow = cc.find('Canvas/chatShow');
+        this.addChatList(msg,chatShow,this)
+    },
+    /*
+    * 清空聊天显示列表
+    * @param chatShow 聊天列表窗口
+    */
+    clear: function (chatShow) {
+        for (let i = 1;i < chatShow.children.length;i++) {
+            chatShow.children[i].destroy();
+        }
+    }
 });
 
 
 
 
+ 

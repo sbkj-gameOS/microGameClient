@@ -115,12 +115,12 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
-            console.log('playersdata',data)
             cc.weijifen.playersMsg = data;// 玩家信息存储在全局变量中
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
             var gameStartInit = require('GameStartInit');
+            // gameStartInit.playersData(data);
             cc.sys.localStorage.setItem(players,data.players.length);
             if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
                 gameStartInit.collect(context) ;    //先回收资源，然后再初始化
@@ -1159,25 +1159,27 @@ cc.Class({
     * 获取聊天文字
     */
     getChatMsg: function (event) {
-        cc.weijifen.msg = event;
+        WJFCommon.chatStr = event;
     },
     /*
     * 发送聊天文字
     * 
     */
     sendChatMsg: function (event) {
-        let gameStartInit = require('GameStartInit');
-        let self = new gameStartInit();
         let socket = this.socket();
         let chat = cc.find('Canvas/chat');
+
+        let content = JSON.stringify({
+            msg: WJFCommon.chatStr,
+            username: cc.weijifen.user.username
+        })
         // type为文字
         let param = {
             type: 1,
-            content: cc.weijifen.msg
+            content: content
         }
         console.log(param)
         socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         chat.active = false;
-      
     }
 });

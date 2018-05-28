@@ -176,10 +176,6 @@ cc.Class({
                 }
                 
 
-                  /*  roomInit.fw(1,1,'东0');//current
-                    roomInit.fw(2,2,'南0');//left
-                    roomInit.fw(3,3,'北0');//right
-                    roomInit.fw(4,0,'西0');//top*/
                 
 
             }else{
@@ -263,18 +259,7 @@ cc.Class({
                 //     context.readybth.runAction(action);
                 }   
         },
-        /*
-        * 更换方位图标
-        * @param i       center的子元素下标
-        * @param j       center的孙元素下标
-        * @param name    spriteFrame名字
-        */
-        fw: function (i,j,name) {
-            let fangweiNode = cc.find('Canvas/bg/center') ;
-            let context = cc.find('Canvas').getComponent('MJDataBind') ;
-            let fw = fangweiNode.children[i].children[j].getComponent(cc.Sprite).spriteFrame = context.fangweiAltas.getSpriteFrame(name);
-            return fw;
-        }
+       
     },
     
     onClick: function (event) {
