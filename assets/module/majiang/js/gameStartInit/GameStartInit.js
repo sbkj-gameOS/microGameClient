@@ -73,12 +73,18 @@ cc.Class({
             default:null,
             type:cc.Node
         },
-        caishenNode: cc.SpriteFrame
+        caishenNode: cc.SpriteFrame,
+        chatShow: cc.Prefab
     },
 
     //
     onLoad: function () {
-       
+        // 比赛倒计时显示
+       /* let dataStr = cc.sys.localStorage.getItem('matchData');
+        if (dataStr && this.countDown) {
+            let data = JSON.parse(dataStr);
+            this.countDown(data.startTime);
+        }*/
     },
     statics: {
         /**
@@ -98,6 +104,8 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
+            console.log('playersdata',data)
+            cc.weijifen.playersMsg = data;// 玩家信息存储在全局变量中
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
@@ -116,6 +124,7 @@ cc.Class({
             context.arry = [];
             var players = context.playersarray; 
             // player 是 配合 joinroom  joinroom 加入房间  立即显示  然后 player 记录数据   下一个玩家 根据 player 来完成之前的渲染 用joinroom 完成之后的   一旦完成joinroom  又发起player 进行存储
+            // mytime：玩家第一次进入房间的时间 
             for(let i=0 ;i<data.players.length;i++){
                 if(data.players[i]!=null){
                     var time = data.players[i].createtime;
@@ -138,7 +147,8 @@ cc.Class({
                     gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
                 }       
             }else if(cc.weijifen.playerNum==3){
-                if(mytime==1){
+
+                /*  if(mytime==1){
                     gameStartInit.dong(0);                
                     gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
                     if(data.players.length==2){          
@@ -159,8 +169,33 @@ cc.Class({
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
+                }*/
+                
+                if(mytime==1){
+                    // 第一个进入房间的玩家位置和其他玩家相对于该玩家的位置
+                    gameStartInit.dong(0);                
+                    gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
+                    if(data.players.length==2){          
+                        gameStartInit.publicData(1,data,'left',context.left_player,0,1,context);        
+                    }else if(data.players.length==3){
+                        gameStartInit.publicData(1,data,'left',context.left_player,0,1,context);        
+                        gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
+                    }
+                }else if(mytime==2){
+                    gameStartInit.dong(1);                
+                    gameStartInit.publicData(0,data,'left',context.left_player,1,1,context);
+                    gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);        
+                    if(data.players.length==3){
+                        gameStartInit.publicData(2,data,'top',context.top_player,0,2,context);
+                    }
+                }else if(mytime==3){
+                    gameStartInit.dong(2);                
+                    gameStartInit.publicData(0,data,'top',context.top_player,0,2,context);
+                    gameStartInit.publicData(1,data,'left',context.left_player,0,1,context);
+                    gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
                 }
             }else{
+                    // publicData:function(inx,data,fangwei,OPparent,int,count,context){
                 if(mytime==1){
                     gameStartInit.dong(0);                
                     gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
@@ -229,6 +264,7 @@ cc.Class({
          */
         banker_event:function(data, context){
             context = cc.find('Canvas').getComponent('MJDataBind');
+            cc.sys.localStorage.setItem('bankerId',data.userid)
             for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                 let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
                 if(data.userid == cc.weijifen.user.id){
@@ -696,7 +732,17 @@ cc.Class({
         dong: function(count){
             cc.weijifen.bankercount = count;         
         },
+        /*
+        * 玩家进入房间后初始玩家方位、名称、头像
+        * @param inx       玩家进入房间的顺序
+        * @param data
+        * @param fangwei   玩家显示位置
+        * @param OPparent 
+        * @param int 
+        * @param count     玩家位置标记(：以当前玩家位置为参照（顺时针）---0,1,2,3)
+        */
         publicData:function(inx,data,fangwei,OPparent,int,count,context){
+
             if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
                 let player0 = context.playerspool.get();
                 let playerscript0 = player0.getComponent("MaJiangPlayer");
@@ -1089,4 +1135,32 @@ cc.Class({
             return {cardNode:resNode,isGang:isGang,cardNum:cardNum} ;
         },
     },
+    chatInputShow: function () {
+        cc.find('Canvas/chat').active = true;
+    },
+    /*
+    * 获取聊天文字
+    */
+    getChatMsg: function (event) {
+        cc.weijifen.msg = event;
+    },
+    /*
+    * 发送聊天文字
+    * 
+    */
+    sendChatMsg: function (event) {
+        let gameStartInit = require('GameStartInit');
+        let self = new gameStartInit();
+        let socket = this.socket();
+        let chat = cc.find('Canvas/chat');
+        // type为文字
+        let param = {
+            type: 1,
+            content: cc.weijifen.msg
+        }
+        console.log(param)
+        socket.emit("sayOnSound" ,JSON.stringify(param)) ;
+        chat.active = false;
+      
+    }
 });

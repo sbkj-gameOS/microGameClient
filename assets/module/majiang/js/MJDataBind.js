@@ -105,6 +105,10 @@ cc.Class({
         menuPrefab: {
             default: null,
             type: cc.Prefab
+        },
+        fangweiAltas:{
+            default:null,
+            type:cc.SpriteAtlas
         }
     },
     onLoad: function () {
@@ -193,6 +197,7 @@ cc.Class({
         });
 
         socket.on("talkOnSay" , function(result){
+            console.log(99)
             self.talk_event(result,null) ;
         });
 
@@ -494,6 +499,7 @@ cc.Class({
         cc.sys.localStorage.removeItem('cb');   
 
         self.joinRoom();
+
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");
@@ -533,7 +539,7 @@ cc.Class({
             self.deskcards_top_panel.width = 650;
             // this.deskcards_top_panel.y =10;
         }else if(cc.weijifen.playerNum == 3){
-            self.left_player.active = false;      
+            self.right_player.active = false;      
            /* self.deskcards_current_panel.width = 600;
             self.deskcards_top_panel.width = 600;  
             self.deskcards_current_panel.x = -154;
@@ -564,6 +570,12 @@ cc.Class({
         // this.totaljs.string = '圈数  '+ this.maxRound;
         self.routes = {};
         quanNum.string = '0/' + self.maxRound;
+
+
+
+
+
+
     },
     /*
     * 初始化对象池
@@ -871,8 +883,8 @@ cc.Class({
     },
     /*exchange_searchlight:function(direction , context){
         cc.sys.localStorage.removeItem('cl');      
-        context = cc.find('Canvas').getComponent('MJDataBind');
-        for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+        context = cc.find('Canvas').getComponent('MJDataBind');n
+        for(var inx = 0 ; inx<context.searchlight.children.length ; ix++){
             if(direction == context.searchlight.children[inx].name){
                 context.searchlight.children[inx].active = true ;
             }else{
@@ -906,8 +918,19 @@ cc.Class({
     changeRoom_event: function(data,context){
         cc.weijifen.playerNum = data.playerNum;
         cc.director.loadScene('majiang');
-        
+        context.disconnect();
     },
+    /*
+    * 文字聊天事件处理
+    */
+    talk_event: function (res,obj) {
+        let chatShow = cc.find('Canvas/chatShow');
+        chatShow.active = true;
+        chatShow.getChildByName('msg').getComponent(cc.Label).string = cc.weijifen.user.username + ": " + cc.weijifen.msg;
+        setTimeout(function(){
+            chatShow.active = false;
+        },2000);
+    }   
 });
 
 
