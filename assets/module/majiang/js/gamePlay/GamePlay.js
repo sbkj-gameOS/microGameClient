@@ -132,52 +132,52 @@ cc.Class({
 	            let temp = gameStartInit.player(data.userid , context) ;
 	            let cardpanel  , cardprefab , deskcardpanel;
 	            if(!data.notSend){
-	            if(temp.tablepos == "right"){
-	                for(var inx = 0 ; inx < gameStartInitNode.right_panel.children.length ; inx++){
-	                    let right_temp = gameStartInitNode.right_panel.children[inx].getComponent("SpecCards");
-	                    right_temp.reinit();
-	                }
-	                cardpanel = gameStartInitNode.right_panel ;
-	                cardprefab = gameStartInitNode.takecards_right ;
-	                deskcardpanel = context.deskcards_right_panel ;
+		            if(temp.tablepos == "right"){
+		                for(var inx = 0 ; inx < gameStartInitNode.right_panel.children.length ; inx++){
+		                    let right_temp = gameStartInitNode.right_panel.children[inx].getComponent("SpecCards");
+		                    right_temp.reinit();
+		                }
+		                cardpanel = gameStartInitNode.right_panel ;
+		                cardprefab = gameStartInitNode.takecards_right ;
+		                deskcardpanel = context.deskcards_right_panel ;
 
-	                let desk_card = cc.instantiate(cardprefab);
-	                let desk_script = desk_card.getComponent("DeskCards");
-	                desk_script.init(data.card,'R');
-	                desk_card.parent = deskcardpanel ;
+		                let desk_card = cc.instantiate(cardprefab);
+		                let desk_script = desk_card.getComponent("DeskCards");
+		                desk_script.init(data.card,'R');
+		                desk_card.parent = deskcardpanel ;
 
-	            }else if(temp.tablepos == "left"){
-	                for(var inx = 0 ; inx < gameStartInitNode.left_panel.children.length ; inx++){
-	                    let left_temp = gameStartInitNode.left_panel.children[inx].getComponent("SpecCards");
-	                    left_temp.reinit();
-	                }
-	                cardpanel = gameStartInitNode.left_panel ;
-	                cardprefab = gameStartInitNode.takecards_left ;
-	                deskcardpanel = context.deskcards_left_panel ;
+		            }else if(temp.tablepos == "left"){
+		                for(var inx = 0 ; inx < gameStartInitNode.left_panel.children.length ; inx++){
+		                    let left_temp = gameStartInitNode.left_panel.children[inx].getComponent("SpecCards");
+		                    left_temp.reinit();
+		                }
+		                cardpanel = gameStartInitNode.left_panel ;
+		                cardprefab = gameStartInitNode.takecards_left ;
+		                deskcardpanel = context.deskcards_left_panel ;
 
-	                let desk_card = cc.instantiate(cardprefab);
-	                let desk_script = desk_card.getComponent("DeskCards");
-	                desk_script.init(data.card,'L');
-	                desk_card.parent = deskcardpanel ;
-	            }else if(temp.tablepos == "top"){
-	                for(var inx = 0 ; inx < gameStartInitNode.top_panel.children.length ; inx++){
-	                    let top_temp = gameStartInitNode.top_panel.children[inx].getComponent("SpecCards");
-	                    top_temp.reinit();
-	                }
-	                cardpanel = gameStartInitNode.top_panel ;
-	                cardprefab = gameStartInitNode.takecards_one ;
-	                deskcardpanel = context.deskcards_top_panel ;
+		                let desk_card = cc.instantiate(cardprefab);
+		                let desk_script = desk_card.getComponent("DeskCards");
+		                desk_script.init(data.card,'L');
+		                desk_card.parent = deskcardpanel ;
+		            }else if(temp.tablepos == "top"){
+		                for(var inx = 0 ; inx < gameStartInitNode.top_panel.children.length ; inx++){
+		                    let top_temp = gameStartInitNode.top_panel.children[inx].getComponent("SpecCards");
+		                    top_temp.reinit();
+		                }
+		                cardpanel = gameStartInitNode.top_panel ;
+		                cardprefab = gameStartInitNode.takecards_one ;
+		                deskcardpanel = context.deskcards_top_panel ;
 
-	                let desk_card = cc.instantiate(cardprefab);
-	                let desk_script = desk_card.getComponent("DeskCards");
-	                desk_script.init(data.card,'B');
-	                desk_card.parent = deskcardpanel ;
-	            }
-	            /**
-	             * 销毁其中一个对象
-	             */
-	            
-	                cardpanel.children[cardpanel.children.length - 1].destroy();                
+		                let desk_card = cc.instantiate(cardprefab);
+		                let desk_script = desk_card.getComponent("DeskCards");
+		                desk_script.init(data.card,'B');
+		                desk_card.parent = deskcardpanel ;
+		            }
+		            /**
+		             * 销毁其中一个对象
+		             */
+		            
+		            if (cardpanel.children[cardpanel.children.length - 1]) cardpanel.children[cardpanel.children.length - 1].destroy();                
 	            }
 	        }
 	    },
@@ -274,15 +274,15 @@ cc.Class({
 	    },
 	    select_action_searchlight:function(data , context , player){
 	    	context=cc.find('Canvas').getComponent('MJDataBind');
-	        context.exchange_searchlight(player.tablepos , context);
+	        if (player) context.exchange_searchlight(player.tablepos , context);
 	        context.exchange_state("nextplayer" , context);
 	    },
 	    initDealHandCards:function(context , data){
 	    	var gameStartInit = require('GameStartInit');
 	    	context=cc.find('Canvas').getComponent('MJDataBind');
 	        gameStartInit.initcardwidth();
-	        if(true){
-	            let temp = context.cardpool.get();
+            let temp = context.cardpool.get();
+	        if(temp){
 	            let temp_script = temp.getComponent("HandCards") ;
 	            context.playercards.push(temp);
 	            temp_script.init(data.card);

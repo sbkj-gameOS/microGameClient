@@ -105,10 +105,17 @@ cc.Class({
         menuPrefab: {
             default: null,
             type: cc.Prefab
+        },
+        fangweiAltas:{
+            default:null,
+            type:cc.SpriteAtlas
+        },
+        chatMsg: {
+            default: null,
+            type: cc.Node
         }
     },
     onLoad: function () {
-
         let self = this ;
         //let socket = this.socket(self);
         let socket = this.connect() ;
@@ -167,10 +174,6 @@ cc.Class({
                 },3000);
             }
             self.getSelf().route(data.command,self)(data , self);
-           /* if (result.command == 'changeRoom') {
-                cc.weijifen.playerNum = data.playerNum;
-                cc.director.loadScene('majiang');
-            }*/
         });
         socket.on("play",function(result){
             var data = self.getSelf().parse(result);
@@ -499,6 +502,7 @@ cc.Class({
         cc.sys.localStorage.removeItem('cb');   
 
         self.joinRoom();
+
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");
@@ -569,6 +573,12 @@ cc.Class({
         // this.totaljs.string = '圈数  '+ this.maxRound;
         self.routes = {};
         quanNum.string = '0/' + self.maxRound;
+
+
+
+
+
+
     },
     /*
     * 初始化对象池
@@ -659,6 +669,7 @@ cc.Class({
             param.playway = '402888815e6f0177015e71529f3a0001',
             param.match = 1 ; 
         }
+      
         socket.emit("joinroom" ,JSON.stringify(param)) ;
     },
     /**
@@ -875,8 +886,8 @@ cc.Class({
     },
     /*exchange_searchlight:function(direction , context){
         cc.sys.localStorage.removeItem('cl');      
-        context = cc.find('Canvas').getComponent('MJDataBind');
-        for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+        context = cc.find('Canvas').getComponent('MJDataBind');n
+        for(var inx = 0 ; inx<context.searchlight.children.length ; ix++){
             if(direction == context.searchlight.children[inx].name){
                 context.searchlight.children[inx].active = true ;
             }else{
@@ -908,13 +919,61 @@ cc.Class({
     * 比赛模式，进入房间1分钟之后接收
     */
     changeRoom_event: function(data,context){
-        console.log('人数',data.playerNum)
         cc.weijifen.playerNum = data.playerNum;
         cc.director.loadScene('majiang');
-        
+        context.disconnect();
     },
+    /*
+    * 获取聊天列表，添加到父节点
+    * @param chatStr  玩家名字和所发文字
+    * @param chatShow 聊天列表窗口
+    * @param mj       MJDataBind节点
+    */
+    addChatList: function (chatStr,chatShow,mj) {
+        if (chatShow.children.length > 1) mj.clear(chatShow);
+        let msgMode = cc.instantiate(mj.chatMsg);
+        let label = msgMode.getComponent(cc.Label);
+        label.string = chatStr;
+        label.fontSize = 20;
+        msgMode.parent = chatShow;
+        cc.find('Canvas/chat').active = false;
+        chatShow.active = true;
+        setTimeout(function(){
+            chatShow.active = false;
+            mj.clear(chatShow);
+        },5000);
+    },
+    /*
+    * 文字聊天事件处理
+    */
+    talk_event: function (res1,obj) {
+        let mj = this;
+        let chatShow = cc.find('Canvas/chatShow');
+        let res = JSON.parse(res1);
+        let content = JSON.parse(res.content);
+        let msg = content.username + '：' + content.msg;
+        this.addChatList(msg,chatShow,this)
+    },
+    /*
+    * 常用聊天语
+    */   
+    commonMsg: function (event) {
+        let msg = event.target.name;
+        let chatShow = cc.find('Canvas/chatShow');
+        this.addChatList(msg,chatShow,this)
+    },
+    /*
+    * 清空聊天显示列表
+    * @param chatShow 聊天列表窗口
+    */
+    clear: function (chatShow) {
+        for (let i = 1;i < chatShow.children.length;i++) {
+            chatShow.children[i].destroy();
+        }
+    }
 });
 
 
 
 
+ 

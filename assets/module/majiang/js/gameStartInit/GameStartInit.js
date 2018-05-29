@@ -73,12 +73,18 @@ cc.Class({
             default:null,
             type:cc.Node
         },
-        caishenNode: cc.SpriteFrame
+        caishenNode: cc.SpriteFrame,
+        chatShow: cc.Prefab
     },
 
     //
     onLoad: function () {
-       
+        // 比赛倒计时显示
+       /* let dataStr = cc.sys.localStorage.getItem('matchData');
+        if (dataStr && this.countDown) {
+            let data = JSON.parse(dataStr);
+            this.countDown(data.startTime);
+        }*/
     },
     statics: {
         /**
@@ -91,17 +97,30 @@ cc.Class({
          *
          * 宝牌/财神
          */
-        
+         /*
+        * 更换方位图标
+        * @param i       center的子元素下标
+        * @param j       center的孙元素下标
+        * @param name    spriteFrame名字
+        */
+        fw: function (i,j,name) {
+            let fangweiNode = cc.find('Canvas/bg/center') ;
+            let context = cc.find('Canvas').getComponent('MJDataBind') ;
+            let fw = fangweiNode.children[i].children[j].getComponent(cc.Sprite).spriteFrame = context.fangweiAltas.getSpriteFrame(name);
+            return fw;
+        },
         /*
         * 获取所有玩家信息
         * @param data 回调值
         * @param context 上下文对象
         */
         players_event:function(data,context){
+            cc.weijifen.playersMsg = data;// 玩家信息存储在全局变量中
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
             var gameStartInit = require('GameStartInit');
+            // gameStartInit.playersData(data);
             cc.sys.localStorage.setItem(players,data.players.length);
             if(cc.weijifen.state =='init' ||cc.weijifen.state == 'ready'){
                 gameStartInit.collect(context) ;    //先回收资源，然后再初始化
@@ -116,6 +135,7 @@ cc.Class({
             context.arry = [];
             var players = context.playersarray; 
             // player 是 配合 joinroom  joinroom 加入房间  立即显示  然后 player 记录数据   下一个玩家 根据 player 来完成之前的渲染 用joinroom 完成之后的   一旦完成joinroom  又发起player 进行存储
+            // mytime：玩家第一次进入房间的时间 
             for(let i=0 ;i<data.players.length;i++){
                 if(data.players[i]!=null){
                     var time = data.players[i].createtime;
@@ -136,8 +156,13 @@ cc.Class({
                     gameStartInit.dong(2);
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
-                }       
+                    gameStartInit.fw(1,1,'南0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'西0');//right
+                    gameStartInit.fw(4,0,'东0');//top     
+                }  
             }else if(cc.weijifen.playerNum==3){
+
                 if(mytime==1){
                     gameStartInit.dong(0);                
                     gameStartInit.publicData(0,data,'current',context.current_player,0,0,context);
@@ -147,6 +172,11 @@ cc.Class({
                         gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
                         gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
                     }
+                    gameStartInit.fw(1,1,'东0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'南0');//right
+                    gameStartInit.fw(4,0,'西0');//top
+
                 }else if(mytime==2){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
@@ -154,12 +184,21 @@ cc.Class({
                     if(data.players.length==3){
                         gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);        
                     }
+                    gameStartInit.fw(1,1,'南0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'西0');//right
+                    gameStartInit.fw(4,0,'东0');//top
                 }else if(mytime==3){
                     gameStartInit.dong(2);                
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
+                    gameStartInit.fw(1,1,'西0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'东0');//right
+                    gameStartInit.fw(4,0,'南0');//top
                 }
+                
             }else{
                 if(mytime==1){
                     gameStartInit.dong(0);                
@@ -174,6 +213,10 @@ cc.Class({
                         gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                
                         gameStartInit.publicData(3,data,'left',context.left_player,2,3,context);                                      
                     }
+                    gameStartInit.fw(1,1,'东0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'南0');//right
+                    gameStartInit.fw(4,0,'西0');//top
                 }else if(mytime == 2){
                     gameStartInit.dong(3);                
                     gameStartInit.publicData(0,data,'left',context.left_player,2,3,context);
@@ -184,6 +227,10 @@ cc.Class({
                         gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);          
                         gameStartInit.publicData(3,data,'top',context.top_player,1,2,context);         
                     }
+                    gameStartInit.fw(1,1,'南0');//current
+                    gameStartInit.fw(2,2,'东0');//left
+                    gameStartInit.fw(3,3,'西0');//right
+                    gameStartInit.fw(4,0,'北0');//top
                 }else if(mytime ==3){
                     gameStartInit.dong(2);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);  
@@ -192,12 +239,20 @@ cc.Class({
                     if(data.players.length ==4){
                         gameStartInit.publicData(3,data,'right',context.right_player,0,1,context);       
                     }
+                    gameStartInit.fw(1,1,'西0');//current
+                    gameStartInit.fw(2,2,'南0');//left
+                    gameStartInit.fw(3,3,'北0');//right
+                    gameStartInit.fw(4,0,'东0');//top
                 }else if(mytime == 4){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'left',context.left_player,2,3,context);               
                     gameStartInit.publicData(3,data,'current',context.current_player,0,0,context);
+                    gameStartInit.fw(1,1,'北0');//current
+                    gameStartInit.fw(2,2,'西0');//left
+                    gameStartInit.fw(3,3,'东0');//right
+                    gameStartInit.fw(4,0,'南0');//top
                 }
             }     
             var peo = context.playersarray;
@@ -229,6 +284,7 @@ cc.Class({
          */
         banker_event:function(data, context){
             context = cc.find('Canvas').getComponent('MJDataBind');
+            cc.sys.localStorage.setItem('bankerId',data.userid)
             for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                 let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
                 if(data.userid == cc.weijifen.user.id){
@@ -469,21 +525,23 @@ cc.Class({
                                     
                                     //通过判断 id 来确定位置上的牌的张数
                                     var arry = context.playersarray;
-                                    for(let j =0 ; j< arry.length;j++){
-                                        var card = arry[j].getComponent('MaJiangPlayer');                            
-                                        if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
-                                            if(card.tablepos=='left'){
-                                                sabi = 2;
+                                    if (arry) {
+                                        for(let j =0 ; j< arry.length;j++){
+                                            var card = arry[j].getComponent('MaJiangPlayer');                            
+                                            if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
+                                                if(card.tablepos=='left'){
+                                                    sabi = 2;
+                                                    break;
+                                                }else if(card.tablepos=='top'){
+                                                    sabi = 1;
+                                                    break;
+                                                }   
+                                                sabi=0;
                                                 break;
-                                            }else if(card.tablepos=='top'){
-                                                sabi = 1;
-                                                break;
-                                            }   
-                                            sabi=0;
-                                            break;
+                                            }
                                         }
+                                        gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
                                     }
-                                    gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
                                 }
                             }
                             groupNums = groupNums + 1 ;
@@ -493,25 +551,27 @@ cc.Class({
             }
             setTimeout(function(){
                 cc.weijifen.audio.playSFX('shuffle.mp3');            
-                let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
+                // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
                 // ani.play("majiang_reorder") ;
                 var maxvalue  = -100;
                 var maxvalluecard ;
                 //排序 
-                for(var i=0 ; i<context.playercards.length ; i++ ){
-                    if(context.playercards[i].children[1].active == false){
-                        let temp_script = context.playercards[i].getComponent("HandCards") ;
-                        if(temp_script.value >= 0){
-                            context.playercards[i].zIndex = temp_script.value ;
-                        }else{
-                            context.playercards[i].zIndex = 200+ temp_script.value ;
+                if (context.playercards) {
+                    for(var i=0 ; i<context.playercards.length ; i++ ){
+                        if(context.playercards[i].children[1].active == false){
+                            let temp_script = context.playercards[i].getComponent("HandCards") ;
+                            if(temp_script.value >= 0){
+                                context.playercards[i].zIndex = temp_script.value ;
+                            }else{
+                                context.playercards[i].zIndex = 200+ temp_script.value ;
+                            }
+                            if(context.playercards[i].zIndex > maxvalue){
+                                maxvalue = context.playercards[i].zIndex ;
+                                maxvalluecard = context.playercards[i] ;
+                            } 
                         }
-                        if(context.playercards[i].zIndex > maxvalue){
-                            maxvalue = context.playercards[i].zIndex ;
-                            maxvalluecard = context.playercards[i] ;
-                        } 
-                    }
 
+                    }
                 }
                 gameStartInit.initcardwidth(); 
                 if(temp_player.banker == true&&!data.player.played){
@@ -692,7 +752,17 @@ cc.Class({
         dong: function(count){
             cc.weijifen.bankercount = count;         
         },
+        /*
+        * 玩家进入房间后初始玩家方位、名称、头像
+        * @param inx       玩家进入房间的顺序
+        * @param data
+        * @param fangwei   玩家显示位置
+        * @param OPparent 
+        * @param int 
+        * @param count     玩家位置标记(：以当前玩家位置为参照（顺时针）---0,1,2,3)
+        */
         publicData:function(inx,data,fangwei,OPparent,int,count,context){
+
             if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
                 let player0 = context.playerspool.get();
                 let playerscript0 = player0.getComponent("MaJiangPlayer");
@@ -701,7 +771,8 @@ cc.Class({
                 player0.parent = OPparent;
                 playerscript0.init(data.players[inx] , int , fangwei,count);                
                 cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
-                cc.sys.localStorage.setItem('count',count);                                  
+                cc.sys.localStorage.setItem('count',count);      
+
             }   
         },
         killPlayers: function(data){
@@ -842,7 +913,7 @@ cc.Class({
         calcdesc_cards:function(context ,start , end){
             var gameStartInit = require('GameStartInit');
             start = start - 1 ;
-            if(start > end){
+            if(start > end && context.desk_cards){
                 context.desk_cards.string = start ;
                 setTimeout(function(){
                     gameStartInit.calcdesc_cards(context , start , end ) ;
@@ -958,7 +1029,9 @@ cc.Class({
                     player = temp ; break ;
                 }
             }
-            return player ;
+            if (player) {
+                return player ;
+            }
         },
         buhuaModle:function(cards,parent,back,fangwei,context,action){
             let opParent = cc.find("Canvas/cards/tesucards/huacard/"+parent+"");
@@ -1083,4 +1156,34 @@ cc.Class({
             return {cardNode:resNode,isGang:isGang,cardNum:cardNum} ;
         },
     },
+    chatInputShow: function () {
+        cc.find('Canvas/chat').active = true;
+    },
+    /*
+    * 获取聊天文字
+    */
+    getChatMsg: function (event) {
+        WJFCommon.chatStr = event;
+    },
+    /*
+    * 发送聊天文字
+    * 
+    */
+    sendChatMsg: function (event) {
+        let socket = this.socket();
+        let chat = cc.find('Canvas/chat');
+
+        let content = JSON.stringify({
+            msg: WJFCommon.chatStr,
+            username: cc.weijifen.user.username
+        })
+        // type为文字
+        let param = {
+            type: 1,
+            content: content
+        }
+        console.log(param)
+        socket.emit("sayOnSound" ,JSON.stringify(param)) ;
+        chat.active = false;
+    }
 });

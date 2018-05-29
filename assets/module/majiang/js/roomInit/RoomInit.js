@@ -23,6 +23,7 @@ cc.Class({
          */
         joinroom_event:function(data , context){
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+            var fangweiNode = cc.find('Canvas/bg/center') ;
             //如果是2人的模式  就只加自己和对家
             context = cc.find('Canvas').getComponent('MJDataBind') ;
             if(cc.weijifen.playerNum == 2){
@@ -36,8 +37,8 @@ cc.Class({
                         player.parent = context.root();
                         tablepos = "current" ;
                         cc.sys.localStorage.setItem('current',data.id);
-                        cc.sys.localStorage.setItem('count','0')
-                        
+                        cc.sys.localStorage.setItem('count','0');
+
                     }else{
                         player.parent= context.top_player;
                         tablepos = "top" ;
@@ -87,6 +88,7 @@ cc.Class({
                 //     context.ready2.active = false;
                 //     context.readybth.x = -13;
                 // }
+
             }else if(cc.weijifen.playerNum == 3){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top')){
                     var player = context.playerspool.get();
@@ -104,12 +106,12 @@ cc.Class({
                             player.parent= context.right_player;
                             tablepos = "right" ;
                             cc.sys.localStorage.setItem('right',data.id);
-                            cc.sys.localStorage.setItem('count','1')
+                            cc.sys.localStorage.setItem('count','1');
                         }else if(inx == 1){
                             player.parent= context.top_player;
                             tablepos = "top" ;
                             cc.sys.localStorage.setItem('top',data.id);
-                            cc.sys.localStorage.setItem('count','2')   
+                            cc.sys.localStorage.setItem('count','2');   
                         }
                         player.setPosition(0,0);
                     }
@@ -154,7 +156,10 @@ cc.Class({
                         }
                     }
                 }
-            
+                
+
+                
+
             }else{
                 // 这是默认的4人模式 
                 // 因为 加入会触发 改变状态也会触发该事件，所以用getitem保存一个数据 如果有了这个数据则 只判断状态的改变  如果没有则表示新玩家加入
@@ -236,6 +241,7 @@ cc.Class({
                 //     context.readybth.runAction(action);
                 }   
         },
+       
     },
     
     onClick: function (event) {

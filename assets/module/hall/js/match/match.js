@@ -98,7 +98,7 @@ cc.Class({
             activityId: data.id
         }
         // cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
-        cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this) ;            
+        cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
