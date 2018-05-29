@@ -24,7 +24,6 @@ cc.Class({
         joinroom_event:function(data , context){
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             var fangweiNode = cc.find('Canvas/bg/center') ;
-            var roomInit = require('RoomInit');
             //如果是2人的模式  就只加自己和对家
             context = cc.find('Canvas').getComponent('MJDataBind') ;
             if(cc.weijifen.playerNum == 2){
@@ -90,23 +89,6 @@ cc.Class({
                 //     context.readybth.x = -13;
                 // }
 
-                // 更换方位图标
-                roomInit.fw(1,1,'东0');
-                roomInit.fw(2,2,'北0');
-                roomInit.fw(3,3,'西0');
-                roomInit.fw(4,0,'南0');
-                if (cc.weijifen.playersMsg == undefined) {return}
-                var playersMsg = cc.weijifen.playersMsg.players;
-                var bankerId = cc.sys.localStorage.getItem('bankerId');
-                for (var i = 0;i < playersMsg.length;i++) {
-                    if (playersMsg[i].id == data.id && data.id != bankerId && i == 1) {
-                        roomInit.fw(1,1,'东0');
-                    } else{
-                        roomInit.fw(4,0,'南0');
-                    }
-                    roomInit.fw(2,2,'北0');
-                    roomInit.fw(3,3,'西0');
-                }
             }else if(cc.weijifen.playerNum == 3){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top')){
                     var player = context.playerspool.get();

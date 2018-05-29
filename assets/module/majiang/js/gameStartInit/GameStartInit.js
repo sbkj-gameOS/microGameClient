@@ -156,7 +156,11 @@ cc.Class({
                     gameStartInit.dong(2);
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
-                }       
+                    gameStartInit.fw(1,1,'南0');//current
+                    gameStartInit.fw(2,2,'北0');//left
+                    gameStartInit.fw(3,3,'西0');//right
+                    gameStartInit.fw(4,0,'东0');//top     
+                }  
             }else if(cc.weijifen.playerNum==3){
 
                 if(mytime==1){
