@@ -1068,7 +1068,8 @@
     "_enabled": true,
     "gameSettingClick": null,
     "shopPage": null,
-    "sharing": null
+    "sharing": null,
+    "menu": null
   },
   {
     "__type__": "aaf63EFxwFB8qQkVsFSA2Bo",
@@ -1098,6 +1099,9 @@
     },
     "NJLogo": {
       "__uuid__": "1ea9394f-6d24-41fe-aaa3-c1f303b2c8b3"
+    },
+    "LSLogo": {
+      "__uuid__": "dc5af355-010e-4858-8847-2b2a4022a491"
     }
   },
   {

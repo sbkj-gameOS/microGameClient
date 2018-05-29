@@ -26,6 +26,7 @@ cc.Class({
         },
         JXLogo:cc.SpriteFrame,
         NJLogo:cc.SpriteFrame,
+        LSLogo:cc.SpriteFrame,
     },
     // 首次加载页面方法
     onLoad: function () { 
@@ -46,6 +47,12 @@ cc.Class({
             let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
             rightTopLogo.active = false;
             sprite.spriteFrame = this.NJLogo;
+            this.loginLogoNode.width = 480;
+            this.loginLogoNode.height = 120;
+        }else if(cc.weijifen.GameBase.gameModel == 'ls'){
+            let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
+            rightTopLogo.active = false;
+            sprite.spriteFrame = this.LSLogo;
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
         }
