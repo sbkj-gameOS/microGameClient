@@ -1203,16 +1203,27 @@ cc.Class({
 
         }   */
         let players = cc.find('Canvas/players');
-        let num = cc.weijifen.playerNum;
-        if (num == 2) {
-            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
-        } else if (num == 3) {
-            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
-        } else if (num == 4) {
-            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
-            players.getChildByName('head_left').children[4].getChildByName('emojiObj').active = true;
+        let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
+        let num = cc.weijifen.playersss;//已进入房间人数
+        if (numRoom == 3) {
+            if (num == 2) {
+                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+            } else if (num == 3) {
+                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+                players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
+            } 
+        }
+        if (numRoom == 4) {
+            if (num == 2) {
+                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+            } else if (num == 3) {
+                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+                players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
+            } else if (num == 4) {
+                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+                players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
+                players.getChildByName('head_left').children[4].getChildByName('emojiObj').active = true;
+            }
         }
     },
     /*

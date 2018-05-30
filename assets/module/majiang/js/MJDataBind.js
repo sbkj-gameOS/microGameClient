@@ -954,54 +954,78 @@ cc.Class({
     * 文字聊天事件处理
     */
     talk_event: function (res1,obj) {
-        let mj = cc.find('Canvas').getComponent('MJDataBind');
         let chatShow = cc.find('Canvas/chatShow');
         let res = JSON.parse(res1);
         // 文字
         if (res.type == 1) {
             let content = JSON.parse(res.content);
             let msg = content.username + '：' + content.msg;
-            mj.addChatList(msg,chatShow,mj);
+            obj.addChatList(msg,chatShow,obj);
             return
         }
         // 表情
         if (res.type == 2) {
+           //获取返回json数据
             let main = JSON.parse(res.content);
-            let name = main.animationName;//动画名
-            let targetId = main.targetId;//目标id
-            let mineId = main.mineId;//发表情人id
-            obj.emojiShow.active = true;
-            let emojiShow = cc.instantiate(obj.emojiShow);
-           
+            debugger
+            let emojiShow = cc.instantiate(obj.emojiShow);//克隆表情
+            let startX,startY;
+            let endUserX = "",endUserY = "";//表情移动的位置
+           //for循环处理用户表情功能
             for (let i = 0;i < obj.playersarray.length;i++) {
-                let playerNodeId = obj.playersarray[i].getChildByName('id').getComponent(cc.Label);// 玩家id
-                // 发表情的人
-                if (playerNodeId.string == mineId) {
-                    emojiShow.parent = obj.playersarray[i].parent;
-                } 
-                if (playerNodeId.string == targetId) {
-                    emojiShow.active = true;
-                    let anim = emojiShow.children[0];
-                    anim.getComponent(cc.Animation).play(name);
-                    // let action = cc.moveTo(0.5,obj.playersarray[i].parent.x,obj.playersarray[i].parent.y);
-                    let action = cc.moveTo(0.5,200,200);
-                    anim.runAction(action);
-                    setTimeout(function(){
-                        anim.destroy()
-                    },3000)
+                let userId = obj.playersarray[i].getChildByName('id').getComponent(cc.Label).string;// 玩家id
+                if(userId == main.mineId && obj.playersarray[i].parent.name != 'Canvas'){//当前用户id是发送表情的用户id
+                    emojiShow.parent = obj.playersarray[i].parent;// 将克隆的emojiGif添加到‘头像框的父节点上’
+                    startX = obj.playersarray[i].parent.x;
+                    startY = obj.playersarray[i].parent.y;
+                    emojiShow.setPosition(startX,startY);
                 }
             }
-           
+            for (let j = 0;j < obj.playersarray.length;j++) {
+                let userId = obj.playersarray[j].getChildByName('id').getComponent(cc.Label).string;// 玩家id
+                if(userId == main.targetId && j != 0){//当前用户id是被打人
+                    console.log(userId)
+                    endUserX = obj.playersarray[i].parent.x;
+                    endUserY = obj.playersarray[i].parent.y;
+                } else {
+                    if (j == 0) {
+
+                    }
+                }
+                emojiShow.active = true;
+                let anim = emojiShow.children[0];
+                anim.getComponent(cc.Animation).play(main.animationName);
+                let action = cc.moveTo(0.5,endUserX,endUserY);
+                anim.runAction(action);
+                setTimeout(function(){
+                    anim.destroy()
+                },3000)
+            }
         }
     },
     /*
     * 常用聊天语
     */   
     commonMsg: function (event) {
-        let mj = cc.find('Canvas').getComponent('MJDataBind');
         let msg = event.target.name;
         let chatShow = cc.find('Canvas/chatShow');
-        mj.addChatList(msg,chatShow,mj);
+        // this.addChatList(msg,chatShow,this);
+        // 
+        let socket = this.socket();
+        let chat = cc.find('Canvas/chat');
+
+        let content = JSON.stringify({
+            msg: msg,
+            username: cc.weijifen.user.username
+        })
+        // type为文字
+        let param = {
+            type: 1,
+            content: content
+        }
+        // console.log(param)
+        socket.emit("sayOnSound" ,JSON.stringify(param)) ;
+        chat.active = false;
     },
     /*
     * 清空聊天显示列表
