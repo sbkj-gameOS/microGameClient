@@ -113,6 +113,11 @@ cc.Class({
         chatMsg: {
             default: null,
             type: cc.Node
+        },
+        // 动画emojiGif
+        emojiShow: {
+            default: null,
+            type: cc.Node
         }
     },
     onLoad: function () {
@@ -122,7 +127,6 @@ cc.Class({
 
         // //初始化对象池
         this.init_pool();
-
 
 
         // dealcard、action  
@@ -201,7 +205,7 @@ cc.Class({
         });
 
         socket.on("talkOnSay" , function(result){
-            self.talk_event(result,null) ;
+            self.talk_event(result,self) ;
         });
 
         self.node.on('overGame',function(event){
@@ -921,7 +925,7 @@ cc.Class({
     changeRoom_event: function(data,context){
         cc.weijifen.playerNum = data.playerNum;
         cc.director.loadScene('majiang');
-        context.disconnect();
+        // context.disconnect();
     },
     /*
     * 获取聊天列表，添加到父节点
@@ -950,9 +954,42 @@ cc.Class({
         let mj = this;
         let chatShow = cc.find('Canvas/chatShow');
         let res = JSON.parse(res1);
-        let content = JSON.parse(res.content);
-        let msg = content.username + '：' + content.msg;
-        this.addChatList(msg,chatShow,this)
+        // 文字
+        if (res.type == 1) {
+            let content = JSON.parse(res.content);
+            let msg = content.username + '：' + content.msg;
+            this.addChatList(msg,chatShow,this);
+            return
+        }
+        // 表情
+        if (res.type == 2) {
+            let main = JSON.parse(res.content);
+            let name = main.animationName;//动画名
+            let targetId = main.targetId;//目标id
+            let mineId = main.mineId;//发表情人id
+            obj.emojiShow.active = true;
+            let emojiShow = cc.instantiate(obj.emojiShow);
+           
+            for (let i = 0;i < obj.playersarray.length;i++) {
+                let playerNodeId = obj.playersarray[i].getChildByName('id').getComponent(cc.Label);// 玩家id
+                // 发表情的人
+                if (playerNodeId.string == mineId) {
+                    emojiShow.parent = obj.playersarray[i].parent;
+                } 
+                if (playerNodeId.string == targetId) {
+                    emojiShow.active = true;
+                    let anim = emojiShow.children[0];
+                    anim.getComponent(cc.Animation).play(name);
+                    // let action = cc.moveTo(0.5,obj.playersarray[i].parent.x,obj.playersarray[i].parent.y);
+                    let action = cc.moveTo(0.5,200,200);
+                    anim.runAction(action);
+                    setTimeout(function(){
+                        anim.destroy()
+                    },3000)
+                }
+            }
+           
+        }
     },
     /*
     * 常用聊天语
@@ -960,7 +997,7 @@ cc.Class({
     commonMsg: function (event) {
         let msg = event.target.name;
         let chatShow = cc.find('Canvas/chatShow');
-        this.addChatList(msg,chatShow,this)
+        this.addChatList(msg,chatShow,this);
     },
     /*
     * 清空聊天显示列表

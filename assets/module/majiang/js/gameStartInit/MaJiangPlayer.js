@@ -8,6 +8,7 @@ cc.Class({
         xi:cc.Node,
         bei:cc.Node,
         headimg:cc.Node,
+        id: cc.Node,
         on_off_line:cc.Node,
         username:{
             default:null ,
@@ -49,7 +50,7 @@ cc.Class({
         this.data = playerdata ;    //存放玩家数据
         this.tablepos = tablepos ; // 方位
         this.count = count; // 房间内人数 
-      
+        
         if(!playerdata.online){
             this.on_off_line.active = true;
             // this.headimg.color = new cc.Color(42, 25, 25);
@@ -62,6 +63,7 @@ cc.Class({
         // }else if(inx == 1){http://docs.cocos.com/creator/api/zh/classes/SpriteAtlas.html#getspriteframes
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
         // }
+        this.id.getComponent(cc.Label).string = playerdata.id;
         if(playerdata.headimgurl){
             var imgurl = playerdata.headimgurl;
             var sprite = this.headimg.getComponent(cc.Sprite);
@@ -126,9 +128,28 @@ cc.Class({
         }else if(num == 3){
             this.winds('bei');
         }
+    },
+    /*
+    * 选择发送表情目标
+    */
+    selecteTarget: function (event) {
+
+        // 目标玩家的信息，挂载到当前玩家的MaJiangPlayer节点上
+        let targetPlayer = event.target.parent.getComponent('MaJiangPlayer');
+        let currentMJplayer = cc.find('Canvas').children[16].getComponent('MaJiangPlayer');
+        currentMJplayer.runPosition = {
+            x: event.target.parent.parent.x,
+            y: event.target.parent.parent.y,
+            targetId: targetPlayer.data.id,
+            mineId: cc.weijifen.user.id
+        }
+        setTimeout(function(){
+            event.target.active = false;
+        },1000)
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 
     // },
 });
+ 

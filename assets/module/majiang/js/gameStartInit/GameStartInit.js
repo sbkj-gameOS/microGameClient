@@ -74,7 +74,6 @@ cc.Class({
             type:cc.Node
         },
         caishenNode: cc.SpriteFrame,
-        chatShow: cc.Prefab
     },
 
     //
@@ -115,7 +114,6 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
-            cc.weijifen.playersMsg = data;// 玩家信息存储在全局变量中
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
@@ -1156,8 +1154,12 @@ cc.Class({
             return {cardNode:resNode,isGang:isGang,cardNum:cardNum} ;
         },
     },
+    /*
+    * 聊天窗口显示
+    */
     chatInputShow: function () {
-        cc.find('Canvas/chat').active = true;
+        let active = cc.find('Canvas/chat').active;
+        cc.find('Canvas/chat').active = !active;
     },
     /*
     * 获取聊天文字
@@ -1167,7 +1169,6 @@ cc.Class({
     },
     /*
     * 发送聊天文字
-    * 
     */
     sendChatMsg: function (event) {
         let socket = this.socket();
@@ -1182,8 +1183,55 @@ cc.Class({
             type: 1,
             content: content
         }
-        console.log(param)
+        // console.log(param)
         socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         chat.active = false;
-    }
-});
+    },
+    /*
+    * 表情列表显示
+    */
+    emoji: function () {
+        let emoji = cc.find('Canvas/emoji').active;
+        cc.find('Canvas/emoji').active = !emoji;
+      /*  if (cc.weijifen.user && cc.find('Canvas').children.length > 16) {
+            // 获取到头像框prefab节点
+            let playersJs = cc.find('Canvas').children[16].getComponent('MaJiangPlayer');
+            let head = playersJs.target;
+            let emojiObj = head.getChildByName('emojiObj');// 代表玩家位置的'+'
+            emojiObj.active = true;
+            // 自己的要消失掉
+
+        }   */
+        let players = cc.find('Canvas/players');
+        let num = cc.weijifen.playerNum;
+        if (num == 2) {
+            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
+        } else if (num == 3) {
+            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
+        } else if (num == 4) {
+            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
+            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
+            players.getChildByName('head_left').children[4].getChildByName('emojiObj').active = true;
+        }
+    },
+    /*
+    * 发送表情信息
+    */
+    sendEmojiMsg: function (event) {
+        let socket = this.socket();
+        let emoji = cc.find('Canvas/emoji');
+
+        let currentMJplayer = cc.find('Canvas').children[16].getComponent('MaJiangPlayer');
+        currentMJplayer.runPosition.animationName = event.target.name;
+        let content = JSON.stringify(currentMJplayer.runPosition);
+        // type为文字
+        let param = {
+            type: 2,
+            content: content
+        }
+        console.log(param)
+        socket.emit("sayOnSound" ,JSON.stringify(param)) ;
+        emoji.active = false;
+    },
+}); 
