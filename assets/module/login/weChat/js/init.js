@@ -2,9 +2,7 @@
 * @游戏初始化
 */
 var WJFCommon = require("WJFCommon");
-// var GameBase = {gameModel: 'ls'};
-// var GameBase = {gameModel: 'wz'};
-// var GameBase = {gameModel: 'ch'};
+
 cc.Class({
     extends: WJFCommon,
 
@@ -54,7 +52,7 @@ cc.Class({
             cc.weijifen.dialog.put(cc.instantiate(this.alertPrefab)); // 创建节点
             cc.weijifen.menu = new cc.NodePool();
             cc.weijifen.menu.put(cc.instantiate(this.menuPrefab));//菜单框
-            cc.weijifen.matchNodeArr = {2:null,4:null};
+            // cc.weijifen.matchNodeArr = {2:null,4:null};
             //单击/双击
             cc.weijifen.click = cc.sys.localStorage.getItem('click');
             //游戏场景的背景

@@ -48,8 +48,8 @@ cc.Class({
         let flag;
         let parent_ri = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[1].children[1].children[0]//matchhall
         let parent_yue = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[2].children[1].children[0]//matchhall        
-        cc.weijifen.matchNodeArr[2] = parent_ri;
-        cc.weijifen.matchNodeArr[4] = parent_yue;
+        /*cc.weijifen.matchNodeArr[2] = parent_ri;
+        cc.weijifen.matchNodeArr[4] = parent_yue;*/
         let data = JSON.parse(res);
         if (data.matchList.length) flag = false;
         if (flag) return;
