@@ -39,10 +39,10 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;
-            //微信登录按钮剧中
-            let wxBtn = cc.find("Canvas/global/button/button1");
-            wxBtn.setPosition(0,-63);
+            // youkeBtn.active = false;
+            // //微信登录按钮剧中
+            // let wxBtn = cc.find("Canvas/global/button/button1");
+            // wxBtn.setPosition(0,-63);
         }else if(cc.weijifen.GameBase.gameModel == 'jx'){
             sprite.spriteFrame = this.JXLogo;
             let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");

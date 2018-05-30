@@ -143,6 +143,8 @@ cc.Class({
             self.map("players" , gameStartInit.players_event,self);//接受玩家列表
             self.map("play" , gameStartInit.play_event,self);//人齐了，接收发牌信息
             self.map("changeRoom" , self.changeRoom_event,self);// 比赛
+            self.map("talkOnSay" , self.talk_event,self);//语音  文字   表情
+
             gamePlay = require('GamePlay');
             self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
             self.map("takecards" , gamePlay.takecard_event,self);//我出的牌  
@@ -205,7 +207,8 @@ cc.Class({
         });
 
         socket.on("talkOnSay" , function(result){
-            self.talk_event(result,self) ;
+            var data = self.getSelf().parse(result) ;
+            self.getSelf().route("talkOnSay",self)(data, self);
         });
 
         self.node.on('overGame',function(event){
@@ -505,7 +508,7 @@ cc.Class({
         cc.sys.localStorage.removeItem('clear');   
         cc.sys.localStorage.removeItem('cb');   
 
-        self.joinRoom();
+        
 
     },
     getSelf: function(){
@@ -581,7 +584,7 @@ cc.Class({
 
 
 
-
+        self.joinRoom();
 
     },
     /*
@@ -951,14 +954,14 @@ cc.Class({
     * 文字聊天事件处理
     */
     talk_event: function (res1,obj) {
-        let mj = this;
+        let mj = cc.find('Canvas').getComponent('MJDataBind');
         let chatShow = cc.find('Canvas/chatShow');
         let res = JSON.parse(res1);
         // 文字
         if (res.type == 1) {
             let content = JSON.parse(res.content);
             let msg = content.username + '：' + content.msg;
-            this.addChatList(msg,chatShow,this);
+            mj.addChatList(msg,chatShow,mj);
             return
         }
         // 表情
@@ -995,9 +998,10 @@ cc.Class({
     * 常用聊天语
     */   
     commonMsg: function (event) {
+        let mj = cc.find('Canvas').getComponent('MJDataBind');
         let msg = event.target.name;
         let chatShow = cc.find('Canvas/chatShow');
-        this.addChatList(msg,chatShow,this);
+        mj.addChatList(msg,chatShow,mj);
     },
     /*
     * 清空聊天显示列表
