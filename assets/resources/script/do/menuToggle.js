@@ -68,20 +68,21 @@ cc.Class({
                 menu.parent = cc.find('Canvas/menu');
                 menu.zIndex = 100000;
                 let matchJs = event.target.getComponent('match');
-                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;
+                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;//存储被点击比赛信息
                 let content = menu.getChildByName('main').children[0].children[1].children[0];// 概述后代元素---content
                 let rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
                 let data = JSON.parse(listData);
                 cc.sys.localStorage.setItem('activityId',data.id);
                 // 场次标题（如：vip用户专场）
-                let title = menu.getChildByName('title').getComponent(cc.Label).string;
-                if (data.bisaiType == 1) {
+                let title = menu.getChildByName('title')/*.getComponent(cc.Label)*/;
+                title.getComponent(cc.Label).string = data.activiteName;
+               /* if (data.bisaiType == 1) {
                     title = 'vip专场'   
                 } else if (data.bisaiType == 2) {
                     title = '房卡专场'   
                 } else if (data.bisaiType == 3) {
                     title = '比赛卡专场'   
-                }
+                }*/
                 // 报名费用
                 if (data.entryConditions) {
                     let bmtj;

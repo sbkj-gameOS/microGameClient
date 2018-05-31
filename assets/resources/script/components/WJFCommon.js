@@ -261,8 +261,8 @@ cc.Class({
     countDown: function (matchStartTime) {
         let self = this;
         // matchStartTime = '2018-05-22 17:01:03'
-        // let times = (new Date('2018-05-22 17:17:10').getTime() - new Date('2018-05-22 17:17:00').getTime()) / 1000;
-        let times = new Date(matchStartTime).getTime() - new Date().getTime();
+        // let times = (new Date('2018-05-22 17:27:00').getTime() - new Date('2018-05-22 17:17:00').getTime()) / 1000;
+        let times = (new Date(matchStartTime).getTime() - new Date().getTime()) / 1000;
         let msg,
             matchFlag = {isStop: null,isMatch: true};
         var timer=null;
@@ -316,6 +316,7 @@ cc.Class({
             } else {
                 clearInterval(timer);
                 cc.sys.localStorage.removeItem('matchFlag'); 
+                wanfa = cc.weijifen.wanfa;
             }
             // fenNode.string = minute;
             // miaoNode.string = second;
