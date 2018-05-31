@@ -1010,8 +1010,6 @@ cc.Class({
                 }
                 
             }
-            gameStartInit.emojiObj(players,numRoom,num,false);
-            gameStartInit.emojiObjFlag = !gameStartInit.emojiObjFlag;
             anim = anim.getComponent(cc.Animation);
             anim.play(main.animationName);
             let action = cc.moveTo(0.5,endUserX,endUserY);

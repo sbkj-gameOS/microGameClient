@@ -307,6 +307,7 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+            console.log(111111111111111111111111111111111111);
             context = cc.find('Canvas').getComponent('MJDataBind');
             var data = JSON.parse(data);
 
@@ -1197,47 +1198,28 @@ cc.Class({
         chat.active = false;
     },
     /*
-    * 表情列表显示
-    * @param players  玩家头像集合节点
-    * @param numRoom  房间可以容纳几人
-    * @param num      已经进入房间人数
-    * @param flag     this.emojiObjFlag(是否显示)
-    */
-    emojiObj: function (players,numRoom,num,flag) {
-        players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = flag;
-        if (numRoom == 3) {
-            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = flag;
-            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = flag;
-            return
-        }
-        if (numRoom == 4) {
-            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = flag;
-            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = flag;
-            players.getChildByName('head_left').children[4].getChildByName('emojiObj').active = flag;
-            return
-        }
-    },
-    /*
     * 发送表情信息
     */
     sendEmojiMsg: function (event) {
-        let socket = this.socket();
         let emoji = cc.find('Canvas/emoji');
-
-        let currentMJplayer = cc.find('Canvas').children[17].getComponent('MaJiangPlayer');
-        var json = {
-            targetId:cc.weijifen.emjioUserId,
-            mineId:cc.weijifen.user.id,
-            animationName:event.target.name
-        };
-        let content = JSON.stringify(json);
-        // type为文字
-        let param = {
-            type: 2,
-            content: content
+        if(cc.weijifen.emjioUserId){
+            let socket = this.socket();
+            let currentMJplayer = cc.find('Canvas').children[17].getComponent('MaJiangPlayer');
+            var json = {
+                targetId:cc.weijifen.emjioUserId,
+                mineId:cc.weijifen.user.id,
+                animationName:event.target.name
+            };
+            let content = JSON.stringify(json);
+            // type为文字
+            let param = {
+                type: 2,
+                content: content
+            }
+            console.log(param)
+            socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         }
-        console.log(param)
-        socket.emit("sayOnSound" ,JSON.stringify(param)) ;
+        
         emoji.active = false;
     },
 }); 
