@@ -140,7 +140,7 @@ cc.Class({
         });
     },
     /*
-    * 退出游戏大厅
+    * 退出比赛大厅
     */
     outMatchHall: function () {
         let matchNode = cc.find('Canvas/main/matchhall');
@@ -158,6 +158,14 @@ cc.Class({
         let idx = parseInt(event.node.name);
         mainBox[idx].active = true;
         idx ? mainBox[0].active = false : mainBox[1].active = false;
+    },
+      /*打开注意事项*/
+    openTips: function () {
+        cc.find('Canvas').getChildByName('matchTip').zIndex = 1000000000;
+        cc.find('Canvas').getChildByName('matchTip').active = true;
+    },
+    closeTips: function () {
+        cc.find('Canvas').getChildByName('matchTip').active = false;
     }
 });
 

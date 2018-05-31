@@ -2278,7 +2278,8 @@
     "matchListPrefab": null,
     "detailMatch": {
       "__uuid__": "a70690ab-c2b2-4a9f-8419-db1677bdda93"
-    }
+    },
+    "jinagli": null
   },
   {
     "__type__": "cc.Button",

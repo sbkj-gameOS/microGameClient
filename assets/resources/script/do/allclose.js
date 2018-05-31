@@ -16,6 +16,9 @@ cc.Class({
         }
         cc.weijifen.matchFlag = false;
         cc.weijifen.menu.put(menu);
+        if (cc.sys.localStorage.getItem('matchData')) {
+            cc.sys.localStorage.removeItem('matchData');
+        }
     },
     closeSetting: function () {
         let setting = cc.find("Canvas/setting");
