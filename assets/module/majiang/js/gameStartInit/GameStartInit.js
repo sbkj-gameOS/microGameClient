@@ -1218,22 +1218,6 @@ cc.Class({
         }
     },
     /*
-    * 笑脸点击
-    */
-    emoji: function () {
-        let mj = cc.find('Canvas').getComponent('MJDataBind');
-        // 游戏开始之后才可以发送表情
-        if (mj.playersarray.length == cc.weijifen.playerNum) {
-            let emoji = cc.find('Canvas/emoji').active;
-            cc.find('Canvas/emoji').active = !emoji;
-            let players = cc.find('Canvas/players');
-            let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
-            let num = cc.weijifen.playersss;//已进入房间人数
-            this.emojiObj(players,numRoom,num,!this.emojiObjFlag);
-            this.emojiObjFlag = !this.emojiObjFlag;
-        } 
-    },
-    /*
     * 发送表情信息
     */
     sendEmojiMsg: function (event) {
@@ -1241,12 +1225,12 @@ cc.Class({
         let emoji = cc.find('Canvas/emoji');
 
         let currentMJplayer = cc.find('Canvas').children[17].getComponent('MaJiangPlayer');
-        if (!currentMJplayer.runPosition) {
-            this.alert('请先选择目标玩家！')
-            return
+        var json = {
+            targetId:cc.weijifen.emjioUserId,
+            mineId:cc.weijifen.user.id,
+            animationName:event.target.name
         };
-        currentMJplayer.runPosition.animationName = event.target.name;
-        let content = JSON.stringify(currentMJplayer.runPosition);
+        let content = JSON.stringify(json);
         // type为文字
         let param = {
             type: 2,

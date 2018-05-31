@@ -130,22 +130,6 @@ cc.Class({
             this.winds('bei');
         }
     },
-    /*
-    * 选择发送表情目标
-    */
-    selecteTarget: function (event) {
-        let targetPlayer = event.target.parent.getComponent('MaJiangPlayer');
-        let currentMJplayer = cc.find('Canvas').children[17].getComponent('MaJiangPlayer');
-        currentMJplayer.runPosition = {
-            x: event.target.parent.parent.x,
-            y: event.target.parent.parent.y,
-            targetId: targetPlayer.data.id,
-            mineId: cc.weijifen.user.id
-        }
-        setTimeout(function(){
-            event.target.active = false;
-        },1000)
-    }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

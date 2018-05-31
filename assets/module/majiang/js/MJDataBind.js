@@ -980,7 +980,7 @@ cc.Class({
             let startX,startY;
             let endUserX = "",endUserY = "";//表情移动的位置
             let gameStartInit = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
-            let anim = cc.find("Canvas/emojiGif/"+main.animationName);
+            var anim = cc.find("Canvas/emojiGif/"+main.animationName);
             let players = cc.find('Canvas/players');
             let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
             let num = cc.weijifen.playersss;//已进入房间人数
@@ -1054,6 +1054,35 @@ cc.Class({
         for (let i = 1;i < chatShow.children.length;i++) {
             chatShow.children[i].destroy();
         }
+    },
+    headImageClick:function(event){
+        let context = cc.find('Canvas').getComponent('MJDataBind') ;
+        var headImgPositionX = cc.find("Canvas/players/"+event.target.name).x;
+        var headImgPositiony = cc.find("Canvas/players/"+event.target.name).y;
+        if(event.target.name == "head_top"){
+            headImgPositionX = headImgPositionX - 182;
+            headImgPositiony = headImgPositiony - 55;
+        }else if(event.target.name == "head_left"){
+            headImgPositionX = headImgPositionX + 190;
+            headImgPositiony = headImgPositiony - 50;
+        }else if(event.target.name == "head_right"){
+            headImgPositionX = headImgPositionX - 171;
+            headImgPositiony = headImgPositiony - 52;
+        }
+        if(event.target.children[4]){
+            cc.weijifen.emjioUserId = event.target.children[4].children[7].getComponent(cc.Label).string;
+        }
+
+        //弹出表情框    移动位置到头像位置
+        var emoji = cc.find("Canvas/emoji");
+        cc.find("Canvas/emoji/emojiBox").setPosition(headImgPositionX,headImgPositiony);
+        if(emoji.active){
+            emoji.active = false;
+        }else{
+            emoji.active = true;    
+        }
+
+
     }
 });
 
