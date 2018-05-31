@@ -980,7 +980,7 @@ cc.Class({
             let startX,startY;
             let endUserX = "",endUserY = "";//表情移动的位置
             let gameStartInit = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
-            let anim = cc.find("Canvas/emojiGif/emoji");
+            let anim = cc.find("Canvas/emojiGif/"+main.animationName);
             let players = cc.find('Canvas/players');
             let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
             let num = cc.weijifen.playersss;//已进入房间人数
@@ -1015,7 +1015,7 @@ cc.Class({
             anim = anim.getComponent(cc.Animation);
             anim.play(main.animationName);
             let action = cc.moveTo(0.5,endUserX,endUserY);
-            cc.find("Canvas/emojiGif/emoji").runAction(action);
+            cc.find("Canvas/emojiGif/"+main.animationName).runAction(action);
             setTimeout(function(){
                 emojiShow.active = false;
             },2000)

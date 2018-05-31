@@ -1,0 +1,85 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "cheers",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.6,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "bfa3a4b9-82d8-4291-a6e0-0c8641bc45c0"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "74cde3cf-f2e2-4f79-bb4d-2fdbc2af122d"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "74cde3cf-f2e2-4f79-bb4d-2fdbc2af122d"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "80c710c1-7a70-4800-bb4a-5ba68384829c"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "536acb5c-3d30-4073-97d3-842bbae1fa4f"
+            }
+          },
+          {
+            "frame": 0.85,
+            "value": {
+              "__uuid__": "71b6abb7-9123-4fee-a163-097aaf328908"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "2798b6b9-7a15-446a-a74d-0e8942741073"
+            }
+          },
+          {
+            "frame": 1.1833333333333333,
+            "value": {
+              "__uuid__": "08929794-b348-4498-ab5b-2e93f11c2fb1"
+            }
+          },
+          {
+            "frame": 1.35,
+            "value": {
+              "__uuid__": "d695e4bf-493c-4e38-b406-03b563359246"
+            }
+          },
+          {
+            "frame": 1.5166666666666666,
+            "value": {
+              "__uuid__": "20679f67-af1d-490e-ac1b-ee672384777c"
+            }
+          },
+          {
+            "frame": 1.5833333333333333,
+            "value": {
+              "__uuid__": "cda762a5-22ce-40e5-b160-5459655f4924"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
