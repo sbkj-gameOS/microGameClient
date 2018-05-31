@@ -789,6 +789,10 @@ cc.Class({
                 }else{
                     object.timer(object , 8) ; 
                 }
+
+                if(cc.weijifen.match == 'true'){
+                    object.timer(object , 10) ;             
+                }
                 break   ;
             case "takecard" :
                 /**
@@ -819,6 +823,11 @@ cc.Class({
                     object.timer(object , 15) ;             
                 }else{
                     object.timer(object , 8) ; 
+                }
+
+
+                if(cc.weijifen.match == 'true'){
+                    object.timer(object , 10) ;             
                 }
                 break   ;
         }
@@ -967,40 +976,50 @@ cc.Class({
         if (res.type == 2) {
            //获取返回json数据
             let main = JSON.parse(res.content);
-            debugger
-            let emojiShow = cc.instantiate(obj.emojiShow);//克隆表情
+            let emojiShow = obj.emojiShow;//克隆表情
             let startX,startY;
             let endUserX = "",endUserY = "";//表情移动的位置
-           //for循环处理用户表情功能
+            let gameStartInit = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+            let anim = cc.find("Canvas/emojiGif/emoji");
+            let players = cc.find('Canvas/players');
+            let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
+            let num = cc.weijifen.playersss;//已进入房间人数
             for (let i = 0;i < obj.playersarray.length;i++) {
                 let userId = obj.playersarray[i].getChildByName('id').getComponent(cc.Label).string;// 玩家id
-                if(userId == main.mineId && obj.playersarray[i].parent.name != 'Canvas'){//当前用户id是发送表情的用户id
-                    emojiShow.parent = obj.playersarray[i].parent;// 将克隆的emojiGif添加到‘头像框的父节点上’
-                    startX = obj.playersarray[i].parent.x;
-                    startY = obj.playersarray[i].parent.y;
-                    emojiShow.setPosition(startX,startY);
+                let name = obj.playersarray[i].parent.name ;
+                if(userId == main.mineId){//当前用户id是发送表情的用户id
+                    if (obj.playersarray[i].parent.name == 'Canvas') {
+                        startX = -580;
+                        startY = -236;
+                    } else {
+                        startX = obj.playersarray[i].parent.x;
+                        startY = obj.playersarray[i].parent.y;
+                    }
+                    anim.setPosition(startX,startY);
+                    emojiShow.active = true;
                 }
-            }
-            for (let j = 0;j < obj.playersarray.length;j++) {
-                let userId = obj.playersarray[j].getChildByName('id').getComponent(cc.Label).string;// 玩家id
-                if(userId == main.targetId && j != 0){//当前用户id是被打人
-                    console.log(userId)
-                    endUserX = obj.playersarray[i].parent.x;
-                    endUserY = obj.playersarray[i].parent.y;
-                } else {
-                    if (j == 0) {
-
+                if(userId == main.targetId){//当前用户id是发送表情的用户id
+                    if (name == 'Canvas') {
+                        endUserX = -580;
+                        endUserY = -236;
+                        emojiShow.zIndex = 100000;
+                    } else {
+                        endUserX = obj.playersarray[i].parent.x;
+                        endUserY = obj.playersarray[i].parent.y;
                     }
                 }
-                emojiShow.active = true;
-                let anim = emojiShow.children[0];
-                anim.getComponent(cc.Animation).play(main.animationName);
-                let action = cc.moveTo(0.5,endUserX,endUserY);
-                anim.runAction(action);
-                setTimeout(function(){
-                    anim.destroy()
-                },3000)
+                
             }
+            gameStartInit.emojiObj(players,numRoom,num,false);
+            gameStartInit.emojiObjFlag = !gameStartInit.emojiObjFlag;
+            anim = anim.getComponent(cc.Animation);
+            anim.play(main.animationName);
+            let action = cc.moveTo(0.5,endUserX,endUserY);
+            cc.find("Canvas/emojiGif/emoji").runAction(action);
+            setTimeout(function(){
+                emojiShow.active = false;
+            },2000)
+            return
         }
     },
     /*

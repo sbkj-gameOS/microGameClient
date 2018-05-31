@@ -34,6 +34,7 @@ cc.Class({
             default:null ,
             type : cc.Node
         },
+        emojiObj: cc.Node
      
     },
 
@@ -77,7 +78,7 @@ cc.Class({
 
         this.username.string = playerdata.username ;
         this.goldcoins.string = playerdata.goldcoins ;
-  
+        this.emojiObj.zIndex = 100000;
 
     },
     banker:function(){
@@ -133,10 +134,8 @@ cc.Class({
     * 选择发送表情目标
     */
     selecteTarget: function (event) {
-
-        // 目标玩家的信息，挂载到当前玩家的MaJiangPlayer节点上
         let targetPlayer = event.target.parent.getComponent('MaJiangPlayer');
-        let currentMJplayer = cc.find('Canvas').children[16].getComponent('MaJiangPlayer');
+        let currentMJplayer = cc.find('Canvas').children[17].getComponent('MaJiangPlayer');
         currentMJplayer.runPosition = {
             x: event.target.parent.parent.x,
             y: event.target.parent.parent.y,

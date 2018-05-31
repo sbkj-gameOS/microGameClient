@@ -1140,8 +1140,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 78,
-      "y": 19
+      "x": -44,
+      "y": 23
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1172,9 +1172,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 233,
+      "g": 15,
+      "b": 15,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1185,7 +1185,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 29.2,
+      "width": 37.56,
       "height": 50
     },
     "_rotationX": 0,
@@ -1213,14 +1213,16 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 50,
-    "_fontSize": 50,
+    "_actualFontSize": 60,
+    "_fontSize": 60,
     "_lineHeight": 50,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "185e12d2-e6c0-4c11-a01e-a54dcd99a262"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "+",
+    "_N$string": "x",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -1246,7 +1248,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 39
@@ -1272,8 +1274,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 128,
-      "height": 50
+      "width": 0,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1544,7 +1546,10 @@
       "__id__": 17
     },
     "selectcards": null,
-    "selectcolor": null
+    "selectcolor": null,
+    "emojiObj": {
+      "__id__": 34
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

@@ -278,6 +278,7 @@ cc.Class({
             minute=0,
             second=0;//时间默认值
         // if(cc.weijifen.dialog.size() > 0){
+       /* // 弹窗模式倒计时
         this.alertdialog = cc.weijifen.dialog.get();
         if(this.alertdialog){
             let node = self.alertdialog.getChildByName("message") ;
@@ -292,8 +293,8 @@ cc.Class({
                         clearInterval(timer);
                         self.alertdialog.destroy();
                     }
-                   /* fenNode.string = minute;
-                    miaoNode.string = second;*/
+                    // fenNode.string = minute;
+                    // miaoNode.string = second;
                     times--;
                     if (minute <= 9) minute = '0' + minute;
                     if (second <= 9) second = '0' + second;
@@ -304,8 +305,28 @@ cc.Class({
                     self.alertdialog.parent = cc.find("Canvas");
                 },1000)
             }
-        }
-    }   
+        }*/
+        // 直接显示在玩法框中
+        let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];
+        timer = setInterval(function(){
+            if(times > 0){
+                day = Math.floor(times / (60 * 60 * 24));
+                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            } else {
+                clearInterval(timer);
+                cc.sys.localStorage.removeItem('matchFlag'); 
+            }
+            // fenNode.string = minute;
+            // miaoNode.string = second;
+            times--;
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            msg = `距比赛开始：${minute}分${second}秒`;
+            wanfa.string = msg;
+        },1000);
+    }
 });
 
 

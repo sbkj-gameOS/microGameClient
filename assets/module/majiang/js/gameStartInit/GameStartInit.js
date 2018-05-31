@@ -79,11 +79,12 @@ cc.Class({
     //
     onLoad: function () {
         // 比赛倒计时显示
-       /* let dataStr = cc.sys.localStorage.getItem('matchData');
+        let dataStr = cc.sys.localStorage.getItem('matchData');
         if (dataStr && this.countDown) {
             let data = JSON.parse(dataStr);
             this.countDown(data.startTime);
-        }*/
+        }
+        this.emojiObjFlag = false;
     },
     statics: {
         /**
@@ -131,6 +132,7 @@ cc.Class({
 
             var inx = 0 ;
             context.arry = [];
+            context.idArry = [];
             var players = context.playersarray; 
             // player 是 配合 joinroom  joinroom 加入房间  立即显示  然后 player 记录数据   下一个玩家 根据 player 来完成之前的渲染 用joinroom 完成之后的   一旦完成joinroom  又发起player 进行存储
             // mytime：玩家第一次进入房间的时间 
@@ -138,6 +140,7 @@ cc.Class({
                 if(data.players[i]!=null){
                     var time = data.players[i].createtime;
                     context.arry.push(time);
+                    context.idArry.push(data.id);
                     if(data.players[i].id == cc.weijifen.user.id ){
                         var mytime = context.arry.length;
                     }
@@ -371,6 +374,12 @@ cc.Class({
             }
             //开局后  头像位移到相应位置
             {
+          /*  var action = cc.moveTo(0.2,570,80);
+            context.right_player.runAction(action);
+            var action = cc.moveTo(0.2,-590,80);
+            context.left_player.runAction(action);
+            var action = cc.moveTo(0.2,389,290);
+            context.top_player.runAction(action);*/
             var action = cc.moveTo(0.2,570,80);
             context.right_player.runAction(action);
             var action = cc.moveTo(0.2,-590,80);
@@ -1189,42 +1198,40 @@ cc.Class({
     },
     /*
     * 表情列表显示
+    * @param players  玩家头像集合节点
+    * @param numRoom  房间可以容纳几人
+    * @param num      已经进入房间人数
+    * @param flag     this.emojiObjFlag(是否显示)
     */
-    emoji: function () {
-        let emoji = cc.find('Canvas/emoji').active;
-        cc.find('Canvas/emoji').active = !emoji;
-      /*  if (cc.weijifen.user && cc.find('Canvas').children.length > 16) {
-            // 获取到头像框prefab节点
-            let playersJs = cc.find('Canvas').children[16].getComponent('MaJiangPlayer');
-            let head = playersJs.target;
-            let emojiObj = head.getChildByName('emojiObj');// 代表玩家位置的'+'
-            emojiObj.active = true;
-            // 自己的要消失掉
-
-        }   */
-        let players = cc.find('Canvas/players');
-        let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
-        let num = cc.weijifen.playersss;//已进入房间人数
+    emojiObj: function (players,numRoom,num,flag) {
+        players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = flag;
         if (numRoom == 3) {
-            if (num == 2) {
-                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-            } else if (num == 3) {
-                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-                players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
-            } 
+            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = flag;
+            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = flag;
+            return
         }
         if (numRoom == 4) {
-            if (num == 2) {
-                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-            } else if (num == 3) {
-                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-                players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
-            } else if (num == 4) {
-                players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = true;
-                players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = true;
-                players.getChildByName('head_left').children[4].getChildByName('emojiObj').active = true;
-            }
+            players.getChildByName('head_right').children[4].getChildByName('emojiObj').active = flag;
+            players.getChildByName('head_top').children[4].getChildByName('emojiObj').active = flag;
+            players.getChildByName('head_left').children[4].getChildByName('emojiObj').active = flag;
+            return
         }
+    },
+    /*
+    * 笑脸点击
+    */
+    emoji: function () {
+        let mj = cc.find('Canvas').getComponent('MJDataBind');
+        // 游戏开始之后才可以发送表情
+        if (mj.playersarray.length == cc.weijifen.playerNum) {
+            let emoji = cc.find('Canvas/emoji').active;
+            cc.find('Canvas/emoji').active = !emoji;
+            let players = cc.find('Canvas/players');
+            let numRoom = cc.weijifen.playerNum;//房间可以容纳几人
+            let num = cc.weijifen.playersss;//已进入房间人数
+            this.emojiObj(players,numRoom,num,!this.emojiObjFlag);
+            this.emojiObjFlag = !this.emojiObjFlag;
+        } 
     },
     /*
     * 发送表情信息
@@ -1233,7 +1240,11 @@ cc.Class({
         let socket = this.socket();
         let emoji = cc.find('Canvas/emoji');
 
-        let currentMJplayer = cc.find('Canvas').children[16].getComponent('MaJiangPlayer');
+        let currentMJplayer = cc.find('Canvas').children[17].getComponent('MaJiangPlayer');
+        if (!currentMJplayer.runPosition) {
+            this.alert('请先选择目标玩家！')
+            return
+        };
         currentMJplayer.runPosition.animationName = event.target.name;
         let content = JSON.stringify(currentMJplayer.runPosition);
         // type为文字

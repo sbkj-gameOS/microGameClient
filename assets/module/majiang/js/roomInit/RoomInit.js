@@ -161,10 +161,6 @@ cc.Class({
                         }
                     }
                 }
-                
-
-                
-
             }else{
                 // 这是默认的4人模式 
                 // 因为 加入会触发 改变状态也会触发该事件，所以用getitem保存一个数据 如果有了这个数据则 只判断状态的改变  如果没有则表示新玩家加入
@@ -246,7 +242,6 @@ cc.Class({
                 //     context.readybth.runAction(action);
                 }   
         },
-       
     },
     
     onClick: function (event) {
