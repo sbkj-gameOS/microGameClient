@@ -56,18 +56,19 @@ cc.Class({
         for (let ele of data.matchList) {
        /* let arr = [1,2,3,4,5,6,7,8,9]
         for (let ele of arr) {*/
-
             let list = cc.instantiate(obj.matchListPrefab);
             let entryConditions = JSON.parse(ele.entryConditions);
             let prizeData = JSON.parse(ele.prizeData);// 名次
             list.getChildByName('data').getComponent(cc.Label).string = JSON.stringify(ele);
-            list.getChildByName('label').children[0].getComponent(cc.Label).string = ele.activiteName;
-            list.getChildByName('label').children[1].getComponent(cc.Label).string = entryConditions[0].name;
-            list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.userNum + '人';
-            if (prizeData.length) {
+            list.getChildByName('label').children[0].getComponent(cc.Label).string = ele.activiteName;// 活动名称
+            // list.getChildByName('label').children[1].getComponent(cc.Label).string = entryConditions[0].name;
+            list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.userNum + '人';// 参赛人数
+            if (prizeData.length) {//比赛奖励
                 list.getChildByName('jiangjin').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
                 list.getChildByName('jiangjin').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
             }
+            list.getChildByName('baomingfei').children[0].getComponent(cc.Label).string = entryConditions[0].name;//报名条件
+            // 判断是日赛还好是月赛
             if (ele.activiteType == 2) {
                 let pa = parent_ri.children[1].children[0].children[1].children[0];
                 pa.getChildByName('no_data').active = false;

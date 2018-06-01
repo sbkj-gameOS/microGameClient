@@ -105,10 +105,10 @@ cc.Class({
         garams.modeltype = moShi;
         garams.pepNums = userType;
         console.log(garams)
-        /* if(cc.weijifen.authorization){
+         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
         // 此处的onClick是createRoom中的方法
-        this.onClick(garams);*/
+        this.onClick(garams);
     }
 });
