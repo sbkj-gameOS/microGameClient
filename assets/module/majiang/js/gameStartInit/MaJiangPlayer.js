@@ -34,7 +34,8 @@ cc.Class({
             default:null ,
             type : cc.Node
         },
-        emojiObj: cc.Node
+        emojiObj: cc.Node,
+        headBorder: cc.SpriteAtlas
      
     },
 
@@ -65,6 +66,7 @@ cc.Class({
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
         // }
         this.id.getComponent(cc.Label).string = playerdata.id;
+        cc.find('Canvas/players/head_'+tablepos).children[1].active = false; 
         if(playerdata.headimgurl){
             var imgurl = playerdata.headimgurl;
             var sprite = this.headimg.getComponent(cc.Sprite);
@@ -79,6 +81,20 @@ cc.Class({
         this.username.string = playerdata.username ;
         this.goldcoins.string = playerdata.goldcoins ;
         this.emojiObj.zIndex = 100000;
+        // 头像框
+        var headBorder = this.target.children[2].getComponent(cc.Sprite);
+        if (cc.weijifen.level == 0) {
+            headBorder.spriteFrame = this.headBorder.getSpriteFrame('333333333');
+            return
+        } 
+        if (cc.weijifen.level == 1) {
+            headBorder.spriteFrame = this.headBorder.getSpriteFrame('111111111');
+            return
+        } 
+        if (cc.weijifen.level == 2) {
+            headBorder.spriteFrame = this.headBorder.getSpriteFrame('222222');
+            return
+        } 
 
     },
     banker:function(){
