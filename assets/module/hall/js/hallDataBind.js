@@ -40,6 +40,7 @@ cc.Class({
             default: null,
             type: cc.Node
         },
+        headBorder: cc.SpriteAtlas
     },
     onLoad: function () {
         
@@ -92,6 +93,10 @@ cc.Class({
             this.username.string = cc.weijifen.user.nickname;
             //玩家头像
 			this.headImg(this.headimg,cc.weijifen.user.headimgurl,true);
+
+            // 玩家头像边框
+            cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
+
             // this.cards.string = cc.weijifen.user.cards + "张" ;
             // this.goldcoins.string = cc.weijifen.user.goldcoins + '个';
             //请求获取当前用户是否已经参加了房间
@@ -111,6 +116,35 @@ cc.Class({
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
         // console.log('cc.weijifen---handDataBind',cc.weijifen)
+    },
+    /*
+    * 玩家等级判定，根据等级显示不同的头像框
+    */
+    headBorderSuccess: function (res,obj) {
+        var data = JSON.parse(res);
+        if (data.vip == undefined) {return};
+        var headBorder = cc.find("Canvas/main/head").children[1].getComponent(cc.Sprite);//头像框节点Sprite组件
+        // vip是玩家等级，0-普通vip（充值177元）
+                      // 1、下级有1777人
+                      // 2、下级有17777人
+        cc.weijifen.level = data.vip;
+        // cc.weijifen.level = 0;
+
+        if (data.vip == 0) {
+            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('333333333');
+            return
+        } 
+        if (data.vip == 1) {
+            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('111111111');
+            return
+        } 
+        if (data.vip == 2) {
+            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('222222');
+            return
+        } 
+    },
+    headBorderErr: function (res,obj) {
+
     },
     carderror: function(result,object){
         // this.alert('充值失败');

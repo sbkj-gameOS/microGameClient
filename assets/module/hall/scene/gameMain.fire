@@ -7216,7 +7216,10 @@
     "noticePrefab": {
       "__uuid__": "a2822c49-f523-4c9c-b6ac-451c8d370b51"
     },
-    "matchNode": null
+    "matchNode": null,
+    "headBorder": {
+      "__uuid__": "fbe7732e-95e9-4c8e-b250-57af5348c951"
+    }
   },
   {
     "__type__": "f34bbo75EVN2J4yJmU9mH+y",
