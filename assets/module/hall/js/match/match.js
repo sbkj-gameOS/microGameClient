@@ -2,7 +2,6 @@
 * 比赛
 */
 var WJFCommon = require("WJFCommon");
-var wfj = new WJFCommon();
 cc.Class({
     extends: WJFCommon,
 
@@ -82,7 +81,7 @@ cc.Class({
     },
     getListErr: function (res,obj) {
         let data = JSON.parse(res);
-        wfj.alert(data.msg)
+        obj.alert(data.msg)
     },
     /*
     * 加入比赛
@@ -103,7 +102,7 @@ cc.Class({
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
         if (!res.success) {
-            wfj.alert(res.msg)
+            obj.alert(res.msg)
             return
         }
         let h5CallCo = require('h5CallCocos');
@@ -112,8 +111,7 @@ cc.Class({
     },
     joinErr: function (res) {
         let data = JSON.parse(res);
-        // wfj.alert(data.msg)
-        alert('报错')
+        obj.alert(data.msg)
     },
     closeDetail: function () {
         let detail_match = cc.find('Canvas/menu/detail_match');
@@ -124,6 +122,7 @@ cc.Class({
     * 报名
     */
     signUp: function () {
+        var obj = this;
         let activityId = cc.sys.localStorage.getItem('activityId');
         let params = {
             token: cc.weijifen.authorization,
@@ -133,9 +132,9 @@ cc.Class({
         cc.weijifen.http.httpPost("/gameNotice/saveUserActivity",params,function(data){
             let data1 = JSON.parse(data);
             if (data1.success) {
-                wfj.alert('报名成功!');
+                obj.alert('报名成功!');
             } else {
-                wfj.alert(data1.msg);
+                obj.alert(data1.msg);
             }
         });
     },

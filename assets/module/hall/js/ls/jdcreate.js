@@ -84,8 +84,8 @@ cc.Class({
     createClick:function(){
         /*playerData = playerData.split("@@");
         playerData.pop();*/
-        garams.game = playerData;
-        garams.waytype = playerData;
+        garams.game = "JY";
+        garams.waytype = "JY";
         garams.player = guiZe;
         garams.modeltype = moShi;
         garams.pepNums = userType;
