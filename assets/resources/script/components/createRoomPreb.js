@@ -29,8 +29,8 @@ cc.Class({
         } else if (cc.weijifen.GameBase.gameModel =='nj') {
             this.allfunction(['南京麻将'],[this.nj]);
         } else if (cc.weijifen.GameBase.gameModel == 'ls') {
-            this.allfunction(['壶镇麻将','经典麻将'],[this.gd,this.jy]);
-            // this.allfunction(['壶镇麻将'],[this.hz]);
+            // this.allfunction(['壶镇麻将','经典麻将'],[this.gd,this.jy]);
+            this.allfunction(['经典麻将'],[this.jy]);
         }
     },
     allfunction: function(name,value){

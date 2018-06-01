@@ -104,7 +104,8 @@ cc.Class({
                     this.hu.string += (units[i].tip+' '+ point +' ');
                 } 
             }  
-            if(cc.weijifen.GameBase.gameModel != 'wz' && cc.weijifen.GameBase.gameModel != 'nj' ){
+            // if(cc.weijifen.GameBase.gameModel != 'wz' && cc.weijifen.GameBase.gameModel != 'nj' &&  cc.weijifen.GameBase.gameModel != 'ls'){
+            if(cc.weijifen.GameBase.gameModel == 'ch'){
                 this.jifan.string = fan +'番'+'   '+gang +'杠   ';
                 if(this.data.balance.noTing == true){
                     noTing = '未上听';
