@@ -81,8 +81,8 @@ cc.Class({
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
         if (dataStr && this.countDown) {
-            let data = JSON.parse(dataStr);
-            this.countDown(data.startTime);
+            let time = cc.sys.localStorage.getItem('matchTime');
+            this.countDown(time);//statrtSec距离比赛开始的毫秒数
         }
         this.emojiObjFlag = false;
     },
@@ -307,7 +307,6 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
-            console.log(111111111111111111111111111111111111);
             context = cc.find('Canvas').getComponent('MJDataBind');
             var data = JSON.parse(data);
 

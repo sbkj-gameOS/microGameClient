@@ -124,22 +124,22 @@ cc.Class({
         var data = JSON.parse(res);
         if (data.vip == undefined) {return};
         var headBorder = cc.find("Canvas/main/head").children[1].getComponent(cc.Sprite);//头像框节点Sprite组件
-        // vip是玩家等级，0-普通vip（充值177元）
+        // vip是玩家等级，2-普通vip（充值177元）
                       // 1、下级有1777人
-                      // 2、下级有17777人
+                      // 0、下级有17777人
         cc.weijifen.level = data.vip;
         // cc.weijifen.level = 0;
 
-        if (data.vip == 0) {
-            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('333333333');
+        if (data.vip == 2) {
+            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('333333333');//充值
             return
         } 
         if (data.vip == 1) {
-            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('111111111');
+            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('111111111');//前人
             return
         } 
-        if (data.vip == 2) {
-            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('222222');
+        if (data.vip == 0) {
+            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('222222');//万人
             return
         } 
     },

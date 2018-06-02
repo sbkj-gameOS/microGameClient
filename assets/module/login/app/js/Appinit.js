@@ -36,7 +36,7 @@ cc.Class({
             cc.weijifen.http = require("HTTP");
             cc.weijifen.localStorage = require('IOUtils');
             cc.weijifen.seckey = "weijifen";
-            cc.weijifen.dialog = null ;
+            // cc.weijifen.dialog = null ;
             cc.weijifen.dialogtwo = null;
             cc.weijifen.paystatus = null ;
             cc.weijifen.starttime ='';
@@ -45,6 +45,7 @@ cc.Class({
             cc.weijifen.loadding.put(cc.instantiate(this.loaddingPrefab)); // 创建节点
             cc.weijifen.dialog = new cc.NodePool();
             cc.weijifen.dialog.put(cc.instantiate(this.alertPrefab)); // 创建节点
+            cc.weijifen.dialog.put(cc.instantiate(this.alertPrefab)); 
             cc.weijifen.menu = new cc.NodePool();
             cc.weijifen.menu.put(cc.instantiate(this.menuPrefab));//菜单框
             //单击/双击

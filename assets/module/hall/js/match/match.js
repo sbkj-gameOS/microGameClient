@@ -67,7 +67,8 @@ cc.Class({
                 list.getChildByName('jiangjin').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
                 list.getChildByName('jiangjin').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
             }
-            list.getChildByName('baomingfei').children[0].getComponent(cc.Label).string = entryConditions[0].name;//报名条件
+            // list.getChildByName('baomingfei').children[0].getComponent(cc.Label).string = entryConditions[0].name;//报名条件
+            list.getChildByName('baomingfei').children[0].getComponent(cc.Label).string = '详情>>';//报名条件
             // 判断是日赛还好是月赛
             if (ele.activiteType == 2) {
                 let pa = parent_ri.children[1].children[0].children[1].children[0];
@@ -102,6 +103,7 @@ cc.Class({
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
+        cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
         if (!res.success) {
             obj.alert(res.msg)
             return
@@ -134,10 +136,10 @@ cc.Class({
             let data1 = JSON.parse(data);
             if (data1.success) {
                 obj.alert('报名成功!');
-            } else {
-                obj.alert(data1.msg);
-            }
-        });
+            } 
+        },function(data){
+            obj.alert(data1.msg);
+        },obj);
     },
     /*
     * 退出比赛大厅

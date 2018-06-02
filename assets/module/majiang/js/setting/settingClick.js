@@ -136,7 +136,11 @@ cc.Class({
         /**
         */
         over_event: function(){
-                  
+            if (cc.weijifen.match == "true") {
+                var self = this;
+                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在通知中查看中奖信息';
+                self.alert(msg);
+            }
             cc.weijifen.maxRound =null;
             cc.weijifen.op =null;
             cc.weijifen.playerNum = null;

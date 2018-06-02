@@ -83,7 +83,7 @@ cc.Class({
         this.emojiObj.zIndex = 100000;
         // 头像框
         var headBorder = this.target.children[2].getComponent(cc.Sprite);
-        if (cc.weijifen.level == 0) {
+        if (cc.weijifen.level == 2) {
             headBorder.spriteFrame = this.headBorder.getSpriteFrame('333333333');
             return
         } 
@@ -91,7 +91,7 @@ cc.Class({
             headBorder.spriteFrame = this.headBorder.getSpriteFrame('111111111');
             return
         } 
-        if (cc.weijifen.level == 2) {
+        if (cc.weijifen.level == 0) {
             headBorder.spriteFrame = this.headBorder.getSpriteFrame('222222');
             return
         } 

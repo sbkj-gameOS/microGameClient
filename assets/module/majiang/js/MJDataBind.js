@@ -527,7 +527,6 @@ cc.Class({
     * 初始化房间信息
     */
     playerIsReady:function (self) {
-
         cc.weijifen.playersss = 0;  
         if(cc.weijifen.browserType=="wechat"){
             self.wxButton.node.active = true ;
@@ -1068,7 +1067,7 @@ cc.Class({
             headImgPositiony = headImgPositiony - 52;
         }
         if(event.target.children[4]){
-            cc.weijifen.emjioUserId = event.target.children[4].children[7].getComponent(cc.Label).string;
+            cc.weijifen.emjioUserId = event.target.children[4].getChildByName('id').getComponent(cc.Label).string;
         }
 
         //弹出表情框    移动位置到头像位置
