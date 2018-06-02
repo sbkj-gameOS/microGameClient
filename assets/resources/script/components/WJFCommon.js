@@ -77,7 +77,7 @@ cc.Class({
     * @param messge 提示文字
     * @param matchFlag isStop倒计时停止，提示框消失的标志；isMatch“确定按钮消失”
     */
-    alert:function(message,matchFlag){
+    alert:function(message){
         if(cc.weijifen.dialog.size() > 0){
             this.alertdialog = cc.weijifen.dialog.get();
             this.alertdialog.parent = cc.find("Canvas");
@@ -257,15 +257,17 @@ cc.Class({
     },
       /*
     * 比赛倒计时
+    * @param matchStartTime 距离比赛开始的毫秒数
     */
     countDown: function (matchStartTime) {
         let self = this;
         // matchStartTime = '2018-05-22 17:01:03'
         // let times = (new Date('2018-05-22 17:27:00').getTime() - new Date('2018-05-22 17:17:00').getTime()) / 1000;
-        let times = (new Date(matchStartTime).getTime() - new Date().getTime()) / 1000;
+        // let times = (new Date(matchStartTime).getTime() - new Date().getTime()) / 1000;
+        let times = matchStartTime / 1000;
         let msg,
             matchFlag = {isStop: null,isMatch: true};
-        var timer=null;
+        var timer = null;
       /*  var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
         var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);*/
         if(times<=0 || timer){
@@ -306,7 +308,7 @@ cc.Class({
             }
         }*/
         // 直接显示在玩法框中
-        let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];
+        let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label);
         timer = setInterval(function(){
             if(times > 0){
                 day = Math.floor(times / (60 * 60 * 24));
@@ -325,10 +327,9 @@ cc.Class({
             if (second <= 9) second = '0' + second;
             msg = `距比赛开始：${minute}分${second}秒`;
             wanfa.string = msg;
+            cc.log('-------------times--------',time)
+        cc.log('wanfa',wanfa.string)
         },1000);
     }
 });
-
-
-
 
