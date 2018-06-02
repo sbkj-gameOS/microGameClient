@@ -39,6 +39,7 @@ cc.Class({
             // cc.weijifen.dialog = null ;
             cc.weijifen.dialogtwo = null;
             cc.weijifen.paystatus = null ;
+            cc.weijifen.matchTime = null;
             cc.weijifen.starttime ='';
             cc.weijifen.room = null;
             cc.weijifen.loadding = new cc.NodePool();

@@ -103,7 +103,8 @@ cc.Class({
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
-        cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
+        // cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
+        cc.weijifen.matchTime = res.statrtSec;
         if (!res.success) {
             obj.alert(res.msg)
             return
@@ -114,7 +115,7 @@ cc.Class({
     },
     joinErr: function (res) {
         let data = JSON.parse(res);
-        obj.alert(data.msg)
+        obj.alert(data.msg);
     },
     closeDetail: function () {
         let detail_match = cc.find('Canvas/menu/detail_match');

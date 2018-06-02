@@ -124,7 +124,14 @@ cc.Class({
                 cc.weijifen.GameBase.gameModel == 'ch' ? time = 120000 
                                                        : time = 30000;
             }
-            setTimeout(function(){self.endGameOver(data,context)},time)
+            setTimeout(function(){self.endGameOver(data,context)},time);
+
+            // 比赛结束后弹出提示
+            if (cc.weijifen.match == "true") {
+                cc.weijifen.matchTime = null;
+                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在通知中查看中奖信息';
+                context.alert(msg);
+            }
         },
         endGameOver: function(data,context){
 
@@ -136,11 +143,6 @@ cc.Class({
         /**
         */
         over_event: function(){
-            if (cc.weijifen.match == "true") {
-                var self = this;
-                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在通知中查看中奖信息';
-                self.alert(msg);
-            }
             cc.weijifen.maxRound =null;
             cc.weijifen.op =null;
             cc.weijifen.playerNum = null;

@@ -80,8 +80,8 @@ cc.Class({
     onLoad: function () {
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
-        if (dataStr && this.countDown) {
-            let time = cc.sys.localStorage.getItem('matchTime');
+        if (dataStr && this.countDown && cc.weijifen.matchTime) {
+            let time = cc.weijifen.matchTime;
             this.countDown(time);//statrtSec距离比赛开始的毫秒数
         }
         this.emojiObjFlag = false;
@@ -1215,7 +1215,6 @@ cc.Class({
                 type: 2,
                 content: content
             }
-            console.log(param)
             socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         }
         
