@@ -14,6 +14,7 @@ cc.Class({
         moShi = "8";
         userType = "4";
         garams={};
+        
     },
     clickmoshi:function(event){
         if( moShi != this.mosiOrpepleClick(event)){
