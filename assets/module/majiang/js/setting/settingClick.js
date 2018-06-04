@@ -125,19 +125,19 @@ cc.Class({
             }
             setTimeout(function(){self.endGameOver(data,context)},time);
 
-            // 比赛结束后弹出提示
-            if (cc.weijifen.match == "true") {
-                cc.weijifen.matchTime = null;
-                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在通知中查看中奖信息';
-                context.alert(msg);
-            }
         },
         endGameOver: function(data,context){
 
             let temp = cc.instantiate(this.summary) ;
             temp.parent = context.root() ;
             temp.getComponent('SummaryClick').setDataEnd(data); 
-            
+            // 比赛结束后弹出提示
+            cc.log('cc.weijifen.match',cc.weijifen.match);
+            if (cc.weijifen.match == "true") {
+                cc.weijifen.matchTime = null;
+                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在通知中查看中奖信息';
+                context.alert(msg);
+            }
         },
         /**
         */
