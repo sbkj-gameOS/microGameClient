@@ -57,7 +57,6 @@ cc.Class({
             this.openAlert('是否解散房间','over');
             let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
             // btn.active = true;
-            
         },
 
         // 弹框弹出
@@ -109,7 +108,7 @@ cc.Class({
                     cards.children[i].getChildByName('select_box').active = false;
                     cards.children[j].getChildByName('select_box').active = true;
                 }
-                console.log(cards.children[j].getChildByName('select_box'))
+                // console.log(cards.children[j].getChildByName('select_box'))
             }
         },
         gameOver_event: function(data,context){
@@ -120,9 +119,9 @@ cc.Class({
                 time = 0;
                 cc.sys.localStorage.removeItem('unOver');
             }else{
-                // time = 3000;
-                cc.weijifen.GameBase.gameModel == 'ch' ? time = 120000 
-                                                       : time = 30000;
+                time = 3000;
+              /*  cc.weijifen.GameBase.gameModel == 'ch' ? time = 120000 
+                                                       : time = 30000;*/
             }
             setTimeout(function(){self.endGameOver(data,context)},time);
 

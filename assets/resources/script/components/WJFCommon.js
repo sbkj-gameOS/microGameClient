@@ -316,9 +316,9 @@ cc.Class({
                 minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
                 second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
             } else {
+                wanfa.string = cc.weijifen.wanfa;
                 clearInterval(timer);
                 cc.sys.localStorage.removeItem('matchFlag'); 
-                wanfa.string = cc.weijifen.wanfa;
                 cc.weijifen.matchTime = null;
             }
             // fenNode.string = minute;
