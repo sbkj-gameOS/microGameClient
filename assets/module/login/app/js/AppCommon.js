@@ -39,7 +39,7 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;
+            // youkeBtn.active = false;
             //微信登录按钮剧中
             let wxBtn = cc.find("Canvas/global/button/button1");
             wxBtn.setPosition(0,-63);
@@ -171,6 +171,8 @@ cc.Class({
         }
     },
     login:function(code,target){
+       	cc.log('token',cc.weijifen.authorization)
+
         this.io = require("IOUtils");
         this.loadding();
         // if(this.getUrlParam("invitationcode")){
