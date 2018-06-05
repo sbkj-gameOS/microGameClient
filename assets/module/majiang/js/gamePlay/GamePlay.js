@@ -47,6 +47,13 @@ cc.Class({
 	        let playerss = gameStartInit.player(data.userid , context);
 	        if(data.ting){
 	            if(context[playerss.tablepos+'ting'].active ==false){
+	            	cc.find('Canvas/ting').active = true;
+                    var anim = cc.find("Canvas/ting/ting_action");
+                    anim = anim.getComponent(cc.Animation);
+                    anim.play('ting');
+                    setTimeout(function(){
+                        cc.find('Canvas/ting').active = false;
+                    },4000);
 	                // context.tingting.active = true ;
 	                // setTimeout(function(){context.tingting.active = false ;},2000);
 	                context[playerss.tablepos+'ting'].active = true ; 
