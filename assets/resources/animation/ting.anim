@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "ting",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.7333333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "77387ba4-2052-4b02-87ef-2ee1842b40e3"
+            }
+          },
+          {
+            "frame": 0.38333333333333336,
+            "value": {
+              "__uuid__": "62c56c5f-1231-46c2-8768-b4ae9096489b"
+            }
+          },
+          {
+            "frame": 0.7166666666666667,
+            "value": {
+              "__uuid__": "dcfde2e9-4a63-4f0d-9c1b-a3a67fdcbd23"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

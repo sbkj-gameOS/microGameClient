@@ -47,8 +47,8 @@ cc.Class({
 	        let playerss = gameStartInit.player(data.userid , context);
 	        if(data.ting){
 	            if(context[playerss.tablepos+'ting'].active ==false){
-	                context.tingting.active = true ;
-	                setTimeout(function(){context.tingting.active = false ;},2000);
+	                // context.tingting.active = true ;
+	                // setTimeout(function(){context.tingting.active = false ;},2000);
 	                context[playerss.tablepos+'ting'].active = true ; 
 	            }
 	        }

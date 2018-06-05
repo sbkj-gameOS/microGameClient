@@ -230,6 +230,11 @@ cc.Class({
             let socket = self.getSelf().socket();
             socket.emit('readyGame',JSON.stringify({
             }))
+            // 反作弊提示
+            setTimeout(function(){
+                let userIp = cc.find("Canvas/userIp");
+                if (userIp) userIp.active = false;
+            },10000)
         });
 
         // 监听出牌拿牌
@@ -251,8 +256,13 @@ cc.Class({
                     let socket = self.getSelf().socket();
                     
                     if (cc.sys.localStorage.getItem('ting') == 'true') {  
-                        context.tingting.active = true ;
-                        setTimeout(function(){context.tingting.active = false},2000);
+                        cc.find('Canvas/ting').active = true;
+                        var anim = cc.find("Canvas/ting/ting_action");
+                        anim = anim.getComponent(cc.Animation);
+                        anim.play('ting');
+                        setTimeout(function(){
+                            cc.find('Canvas/ting').active = false;
+                        },4000);
                         cc.weijifen.audio.playSFX('nv/ting.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;

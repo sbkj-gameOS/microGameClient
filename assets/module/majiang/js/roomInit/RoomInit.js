@@ -26,10 +26,11 @@ cc.Class({
             var fangweiNode = cc.find('Canvas/bg/center') ;
             //如果是2人的模式  就只加自己和对家
             context = cc.find('Canvas').getComponent('MJDataBind') ;
+            // 反作弊提示
             if(data.msg){
-            	cc.find("Canvas/userIp").active = true;
-            	cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
-            	setTimeout(function(){cc.find("Canvas/userIp").active = false;},3000)
+                cc.find("Canvas/userIp").active = true;
+                // cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
+            	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
             if(cc.weijifen.playerNum == 2){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
@@ -241,6 +242,7 @@ cc.Class({
                 //     var action = cc.moveTo(0.2,-21,-151);
                 //     context.readybth.runAction(action);
                 }   
+
         },
     },
     

@@ -114,7 +114,8 @@ cc.Class({
                 }*/
                 if(data.deal) {
                     guo.active =true;
-                    guo.x = - 200 + count * 110 ;
+                    // guo.x = - 200 + count * 110 ;
+                    guo.x = - 140 + count * 110 ;
                     count++;
                 }
 
@@ -160,7 +161,8 @@ cc.Class({
                 }
                 if(!data.deal){
                     guo.active = true ;
-                    guo.x = - 200 + count * 110
+                    guo.x = - 140 + count * 110
+                    // guo.x = - 200 + count * 110
                     count++;
                 }  
                 var action = cc.moveTo(0.1,800 - count*285,-100);
