@@ -89,22 +89,23 @@ cc.Class({
                 // 胡按钮出现
                 if(data.hu){
                     hu.active = true ;
-                    hu.x = - 200 + count * 110 ;
+                    // hu.x = - 200 + count * 110 ;
+                    hu.x = -140 + count * 110 ;
                     count++;
                 }
                 if(data.gang){
                     gang.active = true ;
-                    gang.x = - 200 + count * 110 ;
+                    gang.x = -140 + count * 110 ;
                     count++;
                 }
                 if(data.dan){
                     dan.active = true ;
-                    dan.x = - 200 + count * 110 ;
+                    dan.x = - 140 + count * 110 ;
                     count++;
                 }
                 if(data.ting){
                     ting.active = true ;
-                    ting.x = - 200 + count * 110 ;
+                    ting.x = - 140 + count * 110 ;
                     count++;
                 }
                 /*if(data.guo) {
@@ -140,23 +141,23 @@ cc.Class({
                 var count = 0;
                 if(data.hu){
                     hu.active = true ;
-                    hu.x = - 200 + count * 110
+                    hu.x = - 140 + count * 110
                     // hu.x = - 400 + count * 110
                     count++;
                 }
                 if(data.gang){
                     gang.active = true ;
-                    gang.x = - 200 + count * 110
+                    gang.x = - 140 + count * 110
                     count++;
                 }
                 if(data.peng){
                     peng.active = true ;
-                    peng.x = - 200 + count * 110
+                    peng.x = - 140 + count * 110
                     count++;
                 }
                 if(data.chi){
                     chi.active = true ;
-                    chi.x = - 200 + count * 110
+                    chi.x = - 140 + count * 110
                     count++;
                 }
                 if(!data.deal){
@@ -174,6 +175,7 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
+            console.log(data.action)
             context = cc.find('Canvas').getComponent('MJDataBind');     
             var gameStartInit = require('GameStartInit');
             var gameEvent = require('GameEvent');
@@ -230,6 +232,7 @@ cc.Class({
                     data.cards.push(data.card);
                 }
                 if ( data.actype == 'an' ){
+                    alert('暗杠');
                     back = true ;
                 }
                 opCards = data.cards;
@@ -257,8 +260,6 @@ cc.Class({
         },
         select_action_searchlight:function(data , context , player){
             context.exchange_searchlight(player.tablepos , context);
-            /**
-             */
             context.exchange_state("nextplayer" , context);
         },
         handCardRemove: function(data,context){
@@ -464,18 +465,4 @@ cc.Class({
             return {cardNode:resNode,isGang:isGang,cardNum:cardNum} ;
         },
     },
-
-    //吃
-
-
-	//碰    
-    
-
-    //杠
-
-
-    //胡
-
-
-    //听
 });

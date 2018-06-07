@@ -59,88 +59,69 @@ cc.Class({
         // }
         this.hall(event.target.name);
     },
-    /*到比赛详情*/
+    /*
+    * 到比赛详情
+    * @param event  1、当前mach_list节点
+    *               2、事件对象
+    * 
+    */
     openMatchDetail: function (event) {
-        // 进入比赛详情
-        if (event.target.name == 'match_list') {
-            let menu = cc.instantiate(this.menu);
-            if (menu) {
-                menu.parent = cc.find('Canvas/menu');
-                menu.zIndex = 100000;
-                let matchJs = event.target.getComponent('match');
-                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;//存储被点击比赛信息
-                let content = menu.getChildByName('main').children[0].children[1].children[0];// 概述后代元素---content
-                let rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
-                let data = JSON.parse(listData);
-                cc.sys.localStorage.setItem('activityId',data.id);
-                // 场次标题（如：vip用户专场）
-                let title = menu.getChildByName('title')/*.getComponent(cc.Label)*/;
-                title.getComponent(cc.Label).string = data.activiteName;
-               /* if (data.bisaiType == 1) {
-                    title = 'vip专场'   
-                } else if (data.bisaiType == 2) {
-                    title = '房卡专场'   
-                } else if (data.bisaiType == 3) {
-                    title = '比赛卡专场'   
-                }*/
-                // 报名费用
-                if (data.entryConditions) {
-                    let bmtj;
-                    let conditions = content.children[0];
-                    let entryConditions = JSON.parse(data.entryConditions);
-                    for (let ele of entryConditions) {
-                        if (ele.id == data.bisaiType) {
-                            conditions.children[2].getComponent(cc.Label).string = ele.name;
-                        }
-                    }
-                }
-                // 报名时间
-                let time = content.children[1].children[2].getComponent(cc.Label);
-                time.string = data.bmStartTime + '至' + data.endTime;
-                 // 参赛人数
-                let num = content.children[2].children[2].getComponent(cc.Label);
-                num.string = data.userNum + '人';
-                // 奖品信息
-                let prizeData = JSON.parse(data.prizeData);
-                /*//测试数据
-                    let prizeData = [
-                    {
-                        "orgi":"ch",
-                        "createTime":1525685556000,
-                        "count":"1",
-                        "dname":"月赛排位赛卡",
-                        "id":21,
-                        "isDel":0,
-                        "did":2,
-                        "nameValue":"月赛排位赛卡-1张",
-                        "num":"1"
-                    },
-                    {
-                        "orgi":"ch",
-                        "createTime":1525685580000,
-                        "count":"1",
-                        "dname":"房卡",
-                        "id":22,
-                        "isDel":0,
-                        "did":1,
-                        "nameValue":"房卡-1张",
-                        "num":"2-30"
-                    }
-                ];*/
-                if (prizeData.length) {
-                    let Match = require('match');
-                    let match = new Match();
-                    for (let i = 0;i < prizeData.length;i++) {
-                        let reward = cc.instantiate(rewardTxt.children[1]);
-                        reward.children[0].getComponent(cc.Label).string = '第' + prizeData[i].num + '名';
-                        reward.children[1].getComponent(cc.Label).string = prizeData[i].nameValue;
-                        if (i > 0) reward.y = reward.y - reward.width - 15;
-                        reward.active = true;
-                        reward.parent = rewardTxt;
+        let data1;
+        let menu = cc.instantiate(this.menu);
+        function showDetail (dataStr) {
+            data1 = JSON.parse(dataStr);
+            menu.parent = cc.find('Canvas/menu');
+            menu.zIndex = 100000;
+            var content = menu.getChildByName('main').children[0].children[1].children[0];// 概述后代元素---content
+            var rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
+            cc.sys.localStorage.setItem('activityId',data1.id);
+            // 场次标题（如：vip用户专场）
+            var title = menu.getChildByName('title')/*.getComponent(cc.Label)*/;
+            title.getComponent(cc.Label).string = data1.activiteName;
+            // 报名费用
+            if (data1.entryConditions) {
+                var bmtj;
+                var conditions = content.children[0];
+                var entryConditions = JSON.parse(data1.entryConditions);
+                for (var ele of entryConditions) {
+                    if (ele.id == data1.bisaiType) {
+                        conditions.children[2].getComponent(cc.Label).string = ele.name;
                     }
                 }
             }
+            // 报名时间
+            var time = content.children[1].children[2].getComponent(cc.Label);
+            time.string = data1.bmStartTime + '至' + data1.endTime;
+             // 参赛人数
+            var num = content.children[2].children[2].getComponent(cc.Label);
+            num.string = data1.userNum + '人';
+            // 奖品信息
+            var prizeData = JSON.parse(data1.prizeData);
+            if (prizeData.length) {
+                var Match = require('match');
+                var match = new Match();
+                for (var i = 0;i < prizeData.length;i++) {
+                    var reward = cc.instantiate(rewardTxt.children[1]);
+                    reward.children[0].getComponent(cc.Label).string = '第' + prizeData[i].num + '名';
+                    reward.children[1].getComponent(cc.Label).string = prizeData[i].nameValue;
+                    if (i > 0) reward.y = reward.y - reward.width - 15;
+                    reward.active = true;
+                    reward.parent = rewardTxt;
+                }
+            }
+        }
+
+        // 点击列表进入
+        if (event.target && event.target.name == 'match_list') {
+            if (menu) {
+                let listData = event.target.getChildByName('data').getComponent(cc.Label).string;//存储被点击比赛信息
+                showDetail(listData);                
+            }
+            return
         } 
+        // 点击参赛进入
+        let dataStr = event.node.getChildByName('data').getComponent(cc.Label).string;
+        showDetail(dataStr);
     },
   
 });

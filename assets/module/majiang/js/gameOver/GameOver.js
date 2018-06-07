@@ -15,6 +15,16 @@ cc.Class({
     //结束游戏    结算
     statics: {
     	allcards_event:function(data , context){
+		    // 胡动画
+            var hu = cc.find("Canvas/huAnimation");
+            hu.active = true;
+            let anim = hu.getChildByName('hu_action').getComponent(cc.Animation);
+            anim.play('huAnimation');
+            setTimeout(function(){
+                hu.active = false;
+                anim.stop('huAnimation');
+            },2000);
+
     		context = cc.find('Canvas').getComponent('MJDataBind');
     		var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
     		var gameOver = require('GameOver');

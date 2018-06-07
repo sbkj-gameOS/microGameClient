@@ -299,6 +299,11 @@ cc.Class({
                     break ;
                 }
             }
+            let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+            if (cc.weijifen.bankers && currenthandcards.length) {
+                // currenthandcards.children[length-1].x = 300;
+                currenthandcards.getComponent(cc.Layout).paddingRight = 20;
+            }
         },
 
         /**
@@ -579,8 +584,10 @@ cc.Class({
                         }
 
                     }
+               
                 }
                 gameStartInit.initcardwidth(); 
+
                 if(temp_player.banker == true&&!data.player.played){
                     //maxvalluecard.getComponent("HandCards").lastone() ;
                 }         
@@ -737,7 +744,7 @@ cc.Class({
                    /* if(cc.weijifen.playType =='LG'){
                         context.lgdong(data);
                     }*/
-            },2000)      
+            },2000)   
         },
 
         /**
@@ -927,9 +934,16 @@ cc.Class({
                 } , 5) ;
             }
         },
+        /**
+         * 初始化庄家手牌
+         * @param  group   
+         * @param  context 
+         * @param  cards   
+         * @param  banker  
+         */
         initMjCards:function(group , context , cards , banker){
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
-            //context = cc.find('Canvas').getComponent('MajiangDataBind');        
+            //context = cc.find('Canvas').getComponent('MajiangDataBind');       
             for(var i=group*4 ; i< cards.length && i<(group+1)*4 ; i++){
                 if(context.cardpool){
                     let temp = context.cardpool.get();
@@ -949,6 +963,7 @@ cc.Class({
                     } , 200) ;
                 }   
             }
+
         },
 
         /**
@@ -1009,6 +1024,7 @@ cc.Class({
         initcardwidth: function(ting){
             let length  = cc.find('Canvas/cards/handcards/current/currenthandcards').children.length; 
             for(let i =0; i<length;i++){
+                console.log(length)
                 let target =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
                 let card = target.getComponent('HandCards');
                 card.take=false;
@@ -1026,6 +1042,10 @@ cc.Class({
                 }
             }
             cc.find('Canvas/cards/handcards/current/currenthandcards').sortAllChildren();
+            if (cc.weijifen.bankers) {
+                let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+                currenthandcards.children[length-1].width = 100;
+            }
         },
         player:function(pid , context){
             let player ;

@@ -1004,7 +1004,9 @@
     "sharing": {
       "__uuid__": "e8910e71-bce4-4da5-897a-6cf1fa3b1d17"
     },
-    "menu": null
+    "menu": {
+      "__uuid__": "a70690ab-c2b2-4a9f-8419-db1677bdda93"
+    }
   },
   {
     "__type__": "cc.Node",

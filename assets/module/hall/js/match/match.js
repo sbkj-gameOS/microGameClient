@@ -47,22 +47,20 @@ cc.Class({
         let flag;
         let parent_ri = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[1].children[1].children[0]//matchhall
         let parent_yue = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[2].children[1].children[0]//matchhall        
-        /*cc.weijifen.matchNodeArr[2] = parent_ri;
-        cc.weijifen.matchNodeArr[4] = parent_yue;*/
         let data = JSON.parse(res);
         if (data.matchList.length) flag = false;
         if (flag) return;
-
         for (let ele of data.matchList) {
        /* let arr = [1,2,3,4,5,6,7,8,9]
         for (let ele of arr) {*/
             let list = cc.instantiate(obj.matchListPrefab);
             let entryConditions = JSON.parse(ele.entryConditions);
             let prizeData = JSON.parse(ele.prizeData);// 名次
-            list.getChildByName('data').getComponent(cc.Label).string = JSON.stringify(ele);
+            list.getChildByName('data').getComponent(cc.Label).string = JSON.stringify(ele);// 每个比赛信息
             list.getChildByName('label').children[0].getComponent(cc.Label).string = ele.activiteName;// 活动名称
             // list.getChildByName('label').children[1].getComponent(cc.Label).string = entryConditions[0].name;
-            list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.userNum + '人';// 参赛人数
+            // list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.userNum + '人';// 参赛人数
+            list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.startTime;// 开赛时间
             if (prizeData.length) {//比赛奖励
                 list.getChildByName('jiangjin').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
                 list.getChildByName('jiangjin').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
@@ -98,15 +96,22 @@ cc.Class({
             token: cc.weijifen.authorization,
             activityId: data.id
         }
-        // cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
         cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
         // cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
         cc.weijifen.matchTime = res.statrtSec;
+        // 玩家没有报名，跳转到详情页报名
         if (!res.success) {
-            obj.alert(res.msg)
+            obj.alert(res.msg);
+
+            let menuToggle = cc.find('Canvas/js/menuToggle');
+            let me = menuToggle.getComponent('menuToggle');
+            me.openMatchDetail(obj.node.getComponent('match'));
+            setTimeout(function () {
+                obj.closealert();
+            },2000)
             return
         }
         let h5CallCo = require('h5CallCocos');

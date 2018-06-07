@@ -29,7 +29,7 @@ cc.Class({
             // 反作弊提示
             if(data.msg){
                 cc.find("Canvas/userIp").active = true;
-                // cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
+                cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
             	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
             if(cc.weijifen.playerNum == 2){
@@ -68,7 +68,7 @@ cc.Class({
                     if(playerarray){
                         for(let i =0 ; i< playerarray.length;i++){
                             var playerinfo = playerarray[i].getComponent('MaJiangPlayer');
-                            var tablepos = playerinfo.tablepos;      
+                            var tablepos = playerinfo.tablepos;   
                             var on_off_line = playerinfo.on_off_line;     
                             var headimg = playerinfo.headimg;
                             if(data.id == playerinfo.data.id) {
@@ -77,10 +77,11 @@ cc.Class({
                                 }
                                 if(data.online == false){
                                     on_off_line.active = true;
-                                    // headimg.color = new cc.Color(42, 25, 25);
+                                    headimg.color = new cc.Color(42, 25, 25);
+                                    headimg.color = new cc.Color(100,100,100);
                                 }else{
                                     on_off_line.active = false;
-                                    // headimg.color = new cc.Color(255, 255, 255);
+                                    headimg.color = new cc.Color(255, 255, 255);
                                 }
                                 if(gameStartInitNode.desk_cards.string!='136'){
                                     context.readyNoActive(context);
@@ -149,10 +150,10 @@ cc.Class({
                                 }
                                 if(data.online == false){
                                     on_off_line.active = true;
-                                    // headimg.color = new cc.Color(42, 25, 25);
+                                    headimg.color = new cc.Color(100, 100, 100);
                                 }else{
                                     on_off_line.active = false;
-                                    // headimg.color = new cc.Color(255, 255, 255);
+                                    headimg.color = new cc.Color(255, 255, 255);
                                 }
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){
@@ -224,10 +225,10 @@ cc.Class({
                                 }
                                 if(data.online == false){
                                     on_off_line.active = true;
-                                    // headimg.color = new cc.Color(42, 25, 25);
+                                    headimg.color = new cc.Color(100, 100, 100);
                                 }else{
                                     on_off_line.active = false;
-                                    // headimg.color = new cc.Color(255, 255, 255);
+                                    headimg.color = new cc.Color(255, 255, 255);
                                 }
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){

@@ -47,7 +47,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.times = 60;
+        this.times = 10;
         if(cc.weijifen.wanfa){
             this.op.string = cc.weijifen.wanfa;
         }

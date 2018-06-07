@@ -51,14 +51,14 @@ cc.Class({
         this.creator.active = false ;
         this.data = playerdata ;    //存放玩家数据
         this.tablepos = tablepos ; // 方位
-        this.count = count; // 房间内人数 
-        
-        if(!playerdata.online){
+        this.count = count; // 房间内人数    
+     
+        if(!playerdata.online){ 
             this.on_off_line.active = true;
-            // this.headimg.color = new cc.Color(42, 25, 25);
+            this.headimg.color = new cc.Color(100,100,100);
         }else{
-            // this.on_off_line.active = false;//是否离线
-            // this.headimg.color = new cc.Color(255, 255, 255);
+            this.on_off_line.active = false;//是否离线
+            this.headimg.color = new cc.Color(255, 255, 255);
         }
         // if(inx == 0){
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
@@ -95,7 +95,6 @@ cc.Class({
             headBorder.spriteFrame = this.headBorder.getSpriteFrame('222222');
             return
         } 
-
     },
     banker:function(){
         this.creator.active = true;

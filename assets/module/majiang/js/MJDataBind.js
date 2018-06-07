@@ -148,7 +148,7 @@ cc.Class({
             gamePlay = require('GamePlay');
             self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
             self.map("takecards" , gamePlay.takecard_event,self);//我出的牌  
-            self.map("dealcard" , gamePlay.dealcard_event,self) ;                //我出的牌
+            self.map("dealcard" , gamePlay.dealcard_event,self) ;                //我拿的牌
             gameEvent = require('GameEvent');
             self.map("action" , gameEvent.action_event,self);//服务端发送的 动作事件，有杠碰吃胡过可以选择
             self.map("selectaction" , gameEvent.selectaction_event,self) ;        //我选择的动作， 杠碰吃胡 
@@ -441,9 +441,9 @@ cc.Class({
                 action:"hu",
                 actionCard:[]
             }));
-            //cc.find("");
             self.getSelf().shouOperationMune();
             event.stopPropagation();
+        
         });
         /**
          * ActionEvent发射的事件 ， 点击 过
@@ -529,7 +529,7 @@ cc.Class({
         var action = cc.moveTo(0.5,1122,-100);
         this.actionnode_two.x=1122;
         cc.sys.localStorage.removeItem('altake');
-        //this.actionnode_two.runAction(action);
+       //this.actionnode_two.runAction(action);
         //this.actionnode_two.active = false;
         
     },
