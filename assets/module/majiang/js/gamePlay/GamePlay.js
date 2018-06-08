@@ -118,17 +118,19 @@ cc.Class({
 		                    desk_card.x = 0;
 		                    desk_card.y = -100;
 	               			cc.find('Canvas/mask').active = true;
-		                    let move = cc.moveTo(0.5,cc.p(-10,0));
+		                    let move = cc.moveTo(0.2,cc.p(-10,0));
 		                    desk_card.runAction(move);
 		                    // gamePlay.listenAction(context,desk_card);
 		                    // cc.weijifen.clock = setTimeout(function(){
 		                    context.clock = setTimeout(function(){
 	               				cc.find('Canvas/mask').active = false;
-		  						desk_card.children[0].children[0].width = 90;
-			                    desk_card.children[0].children[0].height = 128;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = context.deskcards_current_panel
-		                    },3000);
+	               				if (desk_card.children) {
+			  						desk_card.children[0].children[0].width = 90;
+				                    desk_card.children[0].children[0].height = 128;
+			                    	context.deskcards.push(desk_card);
+			                    	desk_card.parent = context.deskcards_current_panel
+	               				}
+		                    },1500);
 	                    }
 /*
 	                    context.deskcards.push(desk_card);
@@ -177,18 +179,20 @@ cc.Class({
 		                    desk_card.y = 0;
 	           				cc.find('Canvas/mask').active = true;
 		                    desk_card.parent = cc.find('Canvas');
-		                    let move = cc.moveTo(0.5,cc.p(0,0));
+		                    let move = cc.moveTo(0.2,cc.p(0,0));
 		                    desk_card.runAction(move);
 		                    // gamePlay.listenAction(context,desk_card);
 
 		                    
 		                    context.clock = setTimeout(function(){
 	               				cc.find('Canvas/mask').active = false;
-		  						desk_card.children[0].children[0].width = 128;
-			                    desk_card.children[0].children[0].height = 100;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = deskcardpanel;
-		                    },3000);
+	               				if (desk_card.children) {
+			  						desk_card.children[0].children[0].width = 128;
+				                    desk_card.children[0].children[0].height = 100;
+			                    	context.deskcards.push(desk_card);
+			                    	desk_card.parent = deskcardpanel;
+			                    }
+		                    },1500);
 		                }
 		                // desk_card.parent = deskcardpanel ;
 
@@ -211,18 +215,20 @@ cc.Class({
 		                    desk_card.y = 0;
 	           				cc.find('Canvas/mask').active = true;
 		                    desk_card.parent = cc.find('Canvas');
-		                    let move = cc.moveTo(0.5,cc.p(0,0));
+		                    let move = cc.moveTo(0.2,cc.p(0,0));
 		                    desk_card.runAction(move);
 		                    // gamePlay.listenAction(context,desk_card);
 
 		                    
 		                    context.clock = setTimeout(function(){
 	               				cc.find('Canvas/mask').active = false;
-		  						desk_card.children[0].children[0].width = 128;
-			                    desk_card.children[0].children[0].height = 100;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = deskcardpanel;
-		                    },3000);
+	               				if (desk_card.children) {
+			  						desk_card.children[0].children[0].width = 128;
+				                    desk_card.children[0].children[0].height = 100;
+			                    	context.deskcards.push(desk_card);
+			                    	desk_card.parent = deskcardpanel;
+			                    }
+		                    },1500);
 		                }
 		                // desk_card.parent = deskcardpanel ;
 		            }else if(temp.tablepos == "top"){
@@ -240,25 +246,28 @@ cc.Class({
 						let desk_card = cc.instantiate(cardprefab);
 		                let desk_script = desk_card.getComponent("DeskCards");
 		                desk_script.init(data.card,'B');
-	                    if (desk_card.children && desk_card.children[0]) {
+	                    if (desk_card.children && desk_card.children[0] && desk_card.children[0].children[0]) {
 			                desk_card.children[0].children[0].width = 160;
 		                    desk_card.children[0].children[0].height = 224;
 		                    desk_card.x = 0;
 		                    desk_card.y = 200;
 	           				cc.find('Canvas/mask').active = true;
 		                    desk_card.parent = cc.find('Canvas');
-		                    let move = cc.moveTo(0.5,cc.p(-10,0));
+		                    let move = cc.moveTo(0.2,cc.p(-10,0));
 		                    desk_card.runAction(move);
 		                    // gamePlay.listenAction(context,desk_card);
 
 		                    
 		                    context.clock = setTimeout(function(){
 	               				cc.find('Canvas/mask').active = false;
-		  						desk_card.children[0].children[0].width = 90;
-			                    desk_card.children[0].children[0].height = 128;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = deskcardpanel;
-		                    },3000);
+	               				if (desk_card.children) {
+
+			  						desk_card.children[0].children[0].width = 90;
+				                    desk_card.children[0].children[0].height = 128;
+			                    	context.deskcards.push(desk_card);
+			                    	desk_card.parent = deskcardpanel;
+			                    }
+		                    },1500);
 		                }
 		            }
 		            /**

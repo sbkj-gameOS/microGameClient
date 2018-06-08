@@ -303,7 +303,6 @@ cc.Class({
             let length = currenthandcards.children.length;
 
             if (cc.weijifen.bankers && cc.sys.localStorage.getItem('chupai') && currenthandcards.children[length-1]) {
-                console.log('cc.weijifen.bankers',cc.weijifen.bankers)
                 if (cc.sys.localStorage.getItem('chupai')) {
                     currenthandcards.children[length-1].width = 73;
                     return
@@ -1058,8 +1057,10 @@ cc.Class({
             }
             cc.find('Canvas/cards/handcards/current/currenthandcards').sortAllChildren();
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+
             if (cc.weijifen.bankers) {
                 if (cc.sys.localStorage.getItem('chupai')) {
+                    console.log(cc.sys.localStorage.getItem('chupai'))
                     currenthandcards.children[length-1].width = 73;
                     return
                 }

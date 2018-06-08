@@ -11,7 +11,6 @@ cc.Class({
 
     },
     onLoad: function () {
-        // 建立scoket连接
      
 
     },
