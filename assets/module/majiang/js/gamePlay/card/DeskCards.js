@@ -153,7 +153,7 @@ cc.Class({
                     } 
                 }
             }
-    
+            // 桌面麻将desk_card中spriteFrame更换
             if(!buhuaTrue){
                 cardframe = this.atlas.getSpriteFrame(deskcard);
                 this.cardvalue.getComponent(cc.Sprite).spriteFrame = cardframe;
@@ -165,6 +165,10 @@ cc.Class({
             }
         }  
     },
+    /**
+     * 牌面上的箭头指示
+     * @param   cards 桌面牌容器（desk_cards节点下的current、这类节点left）
+     */
     initjiantou: function(cards){
         if(cards.children){
             for(let i =0; i< cards.children.length;i++){

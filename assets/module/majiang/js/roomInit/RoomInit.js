@@ -284,7 +284,8 @@ cc.Class({
         var jsonData = {
             url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room,
             title:"心缘竞技",
-            context:"房间号："+cc.weijifen.room+"  好友邀请您进入房间"
+            context:"房间号："+cc.weijifen.room+"  好友邀请您进入房间",
+            imgUrl: 'http://game.bizpartner.cn/images/gamemain/' + cc.weijifen.GameBase.gameModel +'Logo.png'
         }
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
         return;

@@ -31,7 +31,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 19
+      "__id__": 22
     },
     "_id": "",
     "_opacity": 255,
@@ -157,7 +157,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
     "fileId": "4exXqUDuNOt54XFnfeit9Q",
     "sync": false
@@ -250,7 +250,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
     "fileId": "10TmpQRnxAYJ28/7TDaeBQ",
     "sync": false
@@ -299,7 +299,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -17,
+      "x": -16.5,
       "y": -62
     },
     "_skewX": 0,
@@ -343,9 +343,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
-    "fileId": "41a/HPUOFFtIS1G7lqOWm+",
+    "fileId": "6dSKj1HDhL2phDpb/0Y+dI",
     "sync": false
   },
   {
@@ -358,13 +358,16 @@
     "_children": [
       {
         "__id__": 12
+      },
+      {
+        "__id__": 18
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 18
+      "__id__": 21
     },
     "_id": "",
     "_opacity": 255,
@@ -415,7 +418,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 16
@@ -505,7 +508,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 4,
-      "y": 7.3
+      "y": 7.300000000000011
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -548,7 +551,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
     "fileId": "8cS+Yy0h5PULaWYDXjYK73",
     "sync": false
@@ -587,9 +590,102 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
     "fileId": "91j3NcppFLw6w8Lrh7BdfO",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "麻将牌-侧家杠牌",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 11
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 19
+      }
+    ],
+    "_prefab": {
+      "__id__": 20
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 52,
+      "height": 47
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 1,
+      "y": -1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 18
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "8574487a-3d1e-4b98-96a7-889bbbbf447b"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": {
+      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
+    }
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
+    },
+    "fileId": "ffRFeDGfhBzIINKPefn1F5",
     "sync": false
   },
   {
@@ -598,7 +694,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
     "fileId": "17kxlfqJ9IDLI7gX0HnpIG",
     "sync": false
@@ -609,7 +705,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "a4ce90ea-493a-4898-a23c-99cc9b1521ce"
     },
     "fileId": "aagdZkfpxC6pZ4prQcwsyp",
     "sync": false

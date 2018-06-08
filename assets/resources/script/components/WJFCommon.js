@@ -10,7 +10,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        
+        this.clock = null;
     },
     //判断是否有初始化创建wjf全局变量
     ready:function(){

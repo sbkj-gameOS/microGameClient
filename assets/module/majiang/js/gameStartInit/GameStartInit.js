@@ -300,9 +300,15 @@ cc.Class({
                 }
             }
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
-            if (cc.weijifen.bankers && currenthandcards.length) {
-                // currenthandcards.children[length-1].x = 300;
-                currenthandcards.getComponent(cc.Layout).paddingRight = 20;
+            let length = currenthandcards.children.length;
+
+            if (cc.weijifen.bankers && cc.sys.localStorage.getItem('chupai') && currenthandcards.children[length-1]) {
+                console.log('cc.weijifen.bankers',cc.weijifen.bankers)
+                if (cc.sys.localStorage.getItem('chupai')) {
+                    currenthandcards.children[length-1].width = 73;
+                    return
+                }
+                currenthandcards.children[length-1].width = 100;
             }
         },
 
@@ -963,7 +969,17 @@ cc.Class({
                     } , 200) ;
                 }   
             }
-
+            let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+            let length = currenthandcards.children.length;
+            if (cc.weijifen.bankers) {
+                if (cc.sys.localStorage.getItem('chupai')) {
+                    currenthandcards.children[length-1].width = 73;
+                    return
+                }
+                currenthandcards.children[length-1].width = 100;
+            } else {
+                currenthandcards.children[length-1].width = 73;
+            }
         },
 
         /**
@@ -1024,7 +1040,6 @@ cc.Class({
         initcardwidth: function(ting){
             let length  = cc.find('Canvas/cards/handcards/current/currenthandcards').children.length; 
             for(let i =0; i<length;i++){
-                console.log(length)
                 let target =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
                 let card = target.getComponent('HandCards');
                 card.take=false;
@@ -1042,9 +1057,15 @@ cc.Class({
                 }
             }
             cc.find('Canvas/cards/handcards/current/currenthandcards').sortAllChildren();
+            let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             if (cc.weijifen.bankers) {
-                let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+                if (cc.sys.localStorage.getItem('chupai')) {
+                    currenthandcards.children[length-1].width = 73;
+                    return
+                }
                 currenthandcards.children[length-1].width = 100;
+            } else {
+                currenthandcards.children[length-1].width = 73;
             }
         },
         player:function(pid , context){

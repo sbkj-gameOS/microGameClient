@@ -41,8 +41,8 @@ cc.Class({
        
     },
     onClick:function(event , data){     
-                              
         this.node.dispatchEvent( new cc.Event.EventCustom(data, true) );
+        cc.find('Canvas/mask').active = false;
     },
     click: function(event){
         event.target.active = false;
@@ -54,6 +54,10 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
+         /*   if (data.gang || data.chi || data.peng) {
+                cc.find('Canvas/mask').active = true;
+                clearTimeout(context.clock);
+            }*/
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
             context = cc.find('Canvas').getComponent('MJDataBind');     
             cc.sys.localStorage.setItem('altake','true');
@@ -175,17 +179,30 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
-            console.log(data.action)
+
             context = cc.find('Canvas').getComponent('MJDataBind');     
             var gameStartInit = require('GameStartInit');
             var gameEvent = require('GameEvent');
             //触发音效
             cc.weijifen.audio.playSFX('nv/'+data.action+'.mp3');        
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;
+               // 将大牌放回到桌面牌中
+            let bigNode = cc.find('Canvas/current');
+            if (bigNode && !data.dan && !data.ting) {
+                bigNode.children[0].children[0].width = 90;
+                bigNode.children[0].children[0].height = 128;
+                context.deskcards.push(bigNode);
+                cc.find('Canvas/mask').active = false;
+                bigNode.parent = cc.find('Canvas/cards/deskcards').getChildByName(player.tablepos);
+                bigNode.parent.children[bigNode.parent.children.length-1].destroy();
+            }
+
+
             let jiantou;
             if(data.target){
                 jiantou = gameStartInit.player(data.target , context).tablepos;
             }
+            
             context.exchange_searchlight(player.tablepos , context);
             /**
              * 杠碰吃，胡都需要将牌从 触发玩家的 桌牌 里 移除，然后放入当前玩家 桌牌列表里，如果是胡牌，则放到 胡牌 列表里，首先
@@ -232,7 +249,7 @@ cc.Class({
                     data.cards.push(data.card);
                 }
                 if ( data.actype == 'an' ){
-                    alert('暗杠');
+                    // alert('暗杠');
                     back = true ;
                 }
                 opCards = data.cards;
@@ -302,9 +319,20 @@ cc.Class({
                 }
             }      
         },
+        /**
+         * 点击事件按钮之后，蛋牌
+         * @param  {Array}   cards   操作的牌值
+         * @param  {cc.Node} parent  挂载的节点
+         * @param  {Boolean} back    
+         * @param  {String}  fangwei 
+         * @param  {cc.Node} context
+         * @param  {String}  action  
+         * @param  {String}  target  
+         */
         cardModle: function(cards,parent,back,fangwei,context,action,target){
             var gameStartInit = require('GameStartInit');
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
+            // 蛋
             if(cards.length == 1){
                 var cardOp,card,temp;
                 if(fangwei == 'top'){

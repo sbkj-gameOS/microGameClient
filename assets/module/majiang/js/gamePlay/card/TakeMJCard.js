@@ -56,14 +56,19 @@ cc.Class({
         let context = cc.find('Canvas').getComponent('MJDataBind'); 
         let handCards = this.target.getComponent("HandCards");
         let self = this;
-
+        let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+        let length = cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
+        if (cc.sys.localStorage.getItem('chupai')) {
+            currenthandcards.children[length-1].width = 73;
+        } 
+        cc.sys.localStorage.setItem('chupai','true');
         // null  && 
         if(cc.weijifen.click == 1 &&cc.sys.localStorage.getItem('alting') !='true'){
             this.huifu();            
             this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true) );
         }else{
+            // 出牌
             if( handCards.take == true){
-                //出牌
                 if (context.tings&&cc.sys.localStorage.getItem('ting')=='true'){
                     context.tingSelect.active = false;
                     let tinglength = context.tingSelect.children[0].children.length;
@@ -76,6 +81,7 @@ cc.Class({
                 
                 this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true) );
             }else{
+                // 点击出的牌，y值变高突出于手牌
                 this.huifu();
                 if(cc.sys.localStorage.getItem('alting')=='true'){
                     cc.sys.localStorage.setItem('take','true');                    
