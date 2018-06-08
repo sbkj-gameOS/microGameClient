@@ -146,10 +146,9 @@ cc.Class({
                 }// }
                 
             }
-            /*
-            // 暗杠中间明的一张牌 
+            
             cardframe = this.beimi0.getSpriteFrame(deskcard);
-            this.target.getComponent(cc.Sprite).spriteFrame = cardframe;*/
+            this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
             
             }
             if(this.count.string==undefined){
