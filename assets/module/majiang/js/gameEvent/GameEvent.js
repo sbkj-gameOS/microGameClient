@@ -385,9 +385,10 @@ cc.Class({
                         var card = cc.instantiate(gameEventNode.dan_mycurrent);             
                     }          
                     var temp = card.getComponent('DanAction');
-                    if ( i == 2 && back == true ) {
+                   /* // 暗杠第三张牌显示花色
+                   if ( i == 2 && back == true ) {
                         temp.init(cards[i],false,fangwei,'1');
-                    }else if(action!='dan'&& i == 1&&back != true){
+                    }else */if(action!='dan'&& i == 1&&back != true){
                         temp.init(cards[i],false,fangwei,'1',target);                    
                     }else {
                         temp.init(cards[i],back,fangwei,'1');
