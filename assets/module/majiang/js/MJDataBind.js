@@ -127,7 +127,7 @@ cc.Class({
 
         // //初始化对象池
         this.init_pool();
-
+        self.play_flag = null;
 
         // dealcard、action  
 

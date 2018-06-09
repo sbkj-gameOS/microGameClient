@@ -301,12 +301,7 @@ cc.Class({
             }
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
-
-            if (cc.weijifen.bankers && cc.sys.localStorage.getItem('chupai') && currenthandcards.children[length-1]) {
-                if (cc.sys.localStorage.getItem('chupai')) {
-                    currenthandcards.children[length-1].width = 73;
-                    return
-                }
+            if (cc.weijifen.bankers && context.play_flag) {
                 currenthandcards.children[length-1].width = 100;
             }
         },
@@ -318,6 +313,7 @@ cc.Class({
          */
         play_event:function(data , context, self){
             context = cc.find('Canvas').getComponent('MJDataBind');
+            context.play_flag = true;
             var data = JSON.parse(data);
 
             var gameEvent = require('GameEvent');
@@ -971,10 +967,6 @@ cc.Class({
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
             if (cc.weijifen.bankers) {
-                if (cc.sys.localStorage.getItem('chupai')) {
-                    currenthandcards.children[length-1].width = 73;
-                    return
-                }
                 currenthandcards.children[length-1].width = 100;
             } else {
                 currenthandcards.children[length-1].width = 73;
@@ -1054,19 +1046,6 @@ cc.Class({
                 if(!ting&&!card.caishen&&cc.sys.localStorage.getItem('ting')!='true'){
                     card.cardvalue.color = new cc.Color(255, 255, 255); 
                 }
-            }
-            cc.find('Canvas/cards/handcards/current/currenthandcards').sortAllChildren();
-            let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
-
-            if (cc.weijifen.bankers) {
-                if (cc.sys.localStorage.getItem('chupai')) {
-                    console.log(cc.sys.localStorage.getItem('chupai'))
-                    currenthandcards.children[length-1].width = 73;
-                    return
-                }
-                currenthandcards.children[length-1].width = 100;
-            } else {
-                currenthandcards.children[length-1].width = 73;
             }
         },
         player:function(pid , context){
