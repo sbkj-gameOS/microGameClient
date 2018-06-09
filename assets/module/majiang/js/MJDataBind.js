@@ -118,7 +118,9 @@ cc.Class({
         emojiShow: {
             default: null,
             type: cc.Node
-        }
+        },
+        // 显示在出牌玩家所展示的大牌
+        bigModel: cc.Prefab
     },
     onLoad: function () {
         let self = this ;
@@ -127,7 +129,6 @@ cc.Class({
 
         // //初始化对象池
         this.init_pool();
-        self.play_flag = null;
 
         // dealcard、action  
 

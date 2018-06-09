@@ -301,11 +301,10 @@ cc.Class({
             }
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
-            if (cc.weijifen.bankers && context.play_flag) {
+            if (cc.weijifen.bankers && currenthandcards.children && currenthandcards.children.length == 14) {
                 currenthandcards.children[length-1].width = 100;
             }
         },
-
         /**
          * 接收发牌信息，需要根据玩家位置确定是哪家的牌
          * @param data  事件返回信息。包括牌、用户、
@@ -966,7 +965,7 @@ cc.Class({
             }
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
-            if (cc.weijifen.bankers) {
+            if (cc.weijifen.bankers && currenthandcards.children.length == 14) {
                 currenthandcards.children[length-1].width = 100;
             } else {
                 currenthandcards.children[length-1].width = 73;

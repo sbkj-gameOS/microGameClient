@@ -16,7 +16,6 @@ cc.Class({
     statics: {
     	allcards_event:function(data , context){
 		    // 胡动画
-		    console.log('data.hu',data.hu)
 		    if (!data.unHu) {
 	            var hu = cc.find("Canvas/huAnimation");
 	            hu.active = true;

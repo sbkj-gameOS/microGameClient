@@ -58,10 +58,7 @@ cc.Class({
         let self = this;
         let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
         let length = cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
-        if (cc.sys.localStorage.getItem('chupai')) {
-            currenthandcards.children[length-1].width = 73;
-        } 
-        cc.sys.localStorage.setItem('chupai','true');
+      
         // null  && 
         if(cc.weijifen.click == 1 &&cc.sys.localStorage.getItem('alting') !='true'){
             this.huifu();            
