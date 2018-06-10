@@ -44,11 +44,24 @@ cc.Class({
 	        gamePlay.qujuju(data);
 	        let kongcard ; 
 	        cc.weijifen.audio.playSFX('give.mp3');
-	        let playerss = gameStartInit.player(data.userid , context);
+         	let playerss = gameStartInit.player(data.userid , context);
 	        if(data.ting){
 	            if(context[playerss.tablepos+'ting'].active ==false){
 	            	cc.find('Canvas/ting').active = true;
                     var anim = cc.find("Canvas/ting/ting_action");
+                    if (playerss.tablepos == 'top') {
+		                anim.x = 280;
+		                anim.y = 200;
+		            } else if (playerss.tablepos == 'left') {
+		                anim.x = -400;
+		                anim.y = 80;
+		            } else if (playerss.tablepos == 'right') {
+		                anim.x = 400;
+		                anim.y = 80;
+		            } else {
+		                anim.x = -450;
+		                anim.y = -200;
+		            }
                     anim = anim.getComponent(cc.Animation);
                     anim.play('ting');
                     setTimeout(function(){
@@ -112,30 +125,29 @@ cc.Class({
 	                    temp.init(handcards.value,'B');
 
 	                    if (desk_card.children) {
-		                    desk_card.children[0].children[0].width = 160;
-		                    desk_card.children[0].children[0].height = 224;
-		                    desk_card.parent = cc.find('Canvas');
-		                    desk_card.x = 0;
-		                    desk_card.y = -100;
-	               			cc.find('Canvas/mask').active = true;
-		                    let move = cc.moveTo(0.2,cc.p(-10,0));
-		                    desk_card.runAction(move);
-		                    // gamePlay.listenAction(context,desk_card);
-		                    // cc.weijifen.clock = setTimeout(function(){
-		                    context.clock = setTimeout(function(){
-	               				cc.find('Canvas/mask').active = false;
-	               				if (desk_card.children) {
-			  						desk_card.children[0].children[0].width = 90;
-				                    desk_card.children[0].children[0].height = 128;
-			                    	context.deskcards.push(desk_card);
-			                    	desk_card.parent = context.deskcards_current_panel
-	               				}
-		                    },1500);
+	                    	// 大牌显示
+	                    	let big_card = cc.instantiate(context.bigModel);
+	                    	let big_handcards = big_card.getComponent("HandCards");
+	                    	big_handcards.init(handcards.value,'B');
+	                    	big_card.x = 460;
+	                    	big_card.y = -280;
+	                    	big_card.parent = cc.find('Canvas');
+	                    	
+	               			// cc.find('Canvas/mask').active = true;
+	                    	let move = cc.moveTo(0.2,cc.p(0,-160));
+		                    big_card.runAction(move);
+
+	                    	context.clock = setTimeout(function(){
+	                    		// 大牌消失
+	                    		big_card.destroy();
+	                    		// 桌面小牌
+			                    desk_card.children[0].children[0].width = 90;//122
+			                    desk_card.children[0].children[0].height = 128;//150
+			                    context.deskcards.push(desk_card);
+		                    	desk_card.parent = context.deskcards_current_panel;
+		                    	clearTimeout(context.clock);
+	                    	},2000);
 	                    }
-/*
-	                    context.deskcards.push(desk_card);
-	                    desk_card.parent = context.deskcards_current_panel;*/
-	                    
 	                }else{
 	                    handcards.reinit();
 	                    if(handcards.selectcolor == true){
@@ -169,31 +181,44 @@ cc.Class({
 		                cardprefab = gameStartInitNode.takecards_right ;
 		                deskcardpanel = context.deskcards_right_panel ;
 
-		                let desk_card = cc.instantiate(cardprefab);
-		                let desk_script = desk_card.getComponent("DeskCards");
-		                desk_script.init(data.card,'R');
-		                if (desk_card.children && desk_card.children[0]) {
-			                desk_card.children[0].children[0].width = 200;
-		                    desk_card.children[0].children[0].height = 160;
-		                    desk_card.x = 500;
-		                    desk_card.y = 0;
-	           				cc.find('Canvas/mask').active = true;
-		                    desk_card.parent = cc.find('Canvas');
-		                    let move = cc.moveTo(0.2,cc.p(0,0));
-		                    desk_card.runAction(move);
-		                    // gamePlay.listenAction(context,desk_card);
 
-		                    
-		                    context.clock = setTimeout(function(){
-	               				cc.find('Canvas/mask').active = false;
-	               				if (desk_card.children) {
-			  						desk_card.children[0].children[0].width = 128;
-				                    desk_card.children[0].children[0].height = 100;
-			                    	context.deskcards.push(desk_card);
-			                    	desk_card.parent = deskcardpanel;
-			                    }
-		                    },1500);
-		                }
+	                 	let desk_card = cc.instantiate(cardprefab);
+	                    let temp = desk_card.getComponent("DeskCards");
+	                    temp.init(data.card,'R');
+		                let big_card = cc.instantiate(context.bigModel);
+                    	let big_handcards = big_card.getComponent("HandCards");
+                    	big_handcards.init(data.card,'R');
+                    	big_card.x = 470;
+                    	big_card.y = -160;
+                    	big_card.parent = cc.find('Canvas');
+
+                    	// cc.find('Canvas/mask').active = true;
+                    	let move = cc.moveTo(0.2,cc.p(320,0));
+	                    big_card.runAction(move);
+
+                    	context.clock = setTimeout(function(){
+                    		// 大牌消失
+                    		big_card.destroy();
+                    		// 桌面小牌
+                    		// cc.find('Canvas/mask').active = false;
+               				if (desk_card.children) {
+		  						desk_card.children[0].children[0].width = 128;
+			                    desk_card.children[0].children[0].height = 100;
+		                    	context.deskcards.push(desk_card);
+		                    	desk_card.parent = deskcardpanel;
+		                    }
+	                    	// clearTimeout(context.clock);
+                    	},2000);
+
+
+
+
+    	if(cc.sys.localStorage.getItem('cb')!='true'){
+                    cc.sys.localStorage.setItem('take','true');             
+                    
+                }
+
+
 		                // desk_card.parent = deskcardpanel ;
 
 		            }else if(temp.tablepos == "left"){
@@ -205,31 +230,44 @@ cc.Class({
 		                cardprefab = gameStartInitNode.takecards_left ;
 		                deskcardpanel = context.deskcards_left_panel ;
 
-		                let desk_card = cc.instantiate(cardprefab);
-		                let desk_script = desk_card.getComponent("DeskCards");
-		                desk_script.init(data.card,'L');
-		                if (desk_card.children && desk_card.children[0]) {
-			                desk_card.children[0].children[0].width = 200;
-		                    desk_card.children[0].children[0].height = 160;
-		                    desk_card.x = -500;
-		                    desk_card.y = 0;
-	           				cc.find('Canvas/mask').active = true;
-		                    desk_card.parent = cc.find('Canvas');
-		                    let move = cc.moveTo(0.2,cc.p(0,0));
-		                    desk_card.runAction(move);
-		                    // gamePlay.listenAction(context,desk_card);
+		                
+	                 	let desk_card = cc.instantiate(cardprefab);
+	                    let temp = desk_card.getComponent("DeskCards");
+	                    temp.init(data.card,'L');
+		                let big_card = cc.instantiate(context.bigModel);
+                    	let big_handcards = big_card.getComponent("HandCards");
+                    	big_handcards.init(data.card,'L');
+                    	big_card.x = -420;
+                    	big_card.y = 160;
+                    	big_card.parent = cc.find('Canvas');
 
-		                    
-		                    context.clock = setTimeout(function(){
-	               				cc.find('Canvas/mask').active = false;
-	               				if (desk_card.children) {
-			  						desk_card.children[0].children[0].width = 128;
-				                    desk_card.children[0].children[0].height = 100;
-			                    	context.deskcards.push(desk_card);
-			                    	desk_card.parent = deskcardpanel;
-			                    }
-		                    },1500);
-		                }
+                    	// cc.find('Canvas/mask').active = true;
+                    	let move = cc.moveTo(0.2,cc.p(-320,0));
+	                    big_card.runAction(move);
+
+                    	context.clock = setTimeout(function(){
+                    		// 大牌消失
+                    		big_card.destroy();
+                    		// 桌面小牌
+                    		// cc.find('Canvas/mask').active = false;
+               				if (desk_card.children) {
+		  						desk_card.children[0].children[0].width = 128;
+			                    desk_card.children[0].children[0].height = 100;
+		                    	context.deskcards.push(desk_card);
+		                    	desk_card.parent = deskcardpanel;
+		                    }
+	                    	// clearTimeout(context.clock);
+                    	},2000);
+
+
+
+
+    	if(cc.sys.localStorage.getItem('cb')!='true'){
+                    cc.sys.localStorage.setItem('take','true');             
+                    
+                }
+
+
 		                // desk_card.parent = deskcardpanel ;
 		            }else if(temp.tablepos == "top"){
 		                for(var inx = 0 ; inx < gameStartInitNode.top_panel.children.length ; inx++){
@@ -239,36 +277,45 @@ cc.Class({
 		                cardpanel = gameStartInitNode.top_panel ;
 		                cardprefab = gameStartInitNode.takecards_one ;
 		                deskcardpanel = context.deskcards_top_panel ;
-		            /*    desk_script.init(data.card,'B');
+		              /*   desk_script.init(data.card,'B');
 		                desk_card.parent = deskcardpanel ;*/
 
+		                let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
+	                    let temp = desk_card.getComponent("DeskCards");
+	                    temp.init(data.card,'B');
+		                let big_card = cc.instantiate(context.bigModel);
+                    	let big_handcards = big_card.getComponent("HandCards");
+                    	big_handcards.init(data.card,'B');
+                    	big_card.x = -300;
+                    	big_card.y = 280;
+                    	big_card.parent = cc.find('Canvas');
 
-						let desk_card = cc.instantiate(cardprefab);
-		                let desk_script = desk_card.getComponent("DeskCards");
-		                desk_script.init(data.card,'B');
-	                    if (desk_card.children && desk_card.children[0] && desk_card.children[0].children[0]) {
-			                desk_card.children[0].children[0].width = 160;
-		                    desk_card.children[0].children[0].height = 224;
-		                    desk_card.x = 0;
-		                    desk_card.y = 200;
-	           				cc.find('Canvas/mask').active = true;
-		                    desk_card.parent = cc.find('Canvas');
-		                    let move = cc.moveTo(0.2,cc.p(-10,0));
-		                    desk_card.runAction(move);
-		                    // gamePlay.listenAction(context,desk_card);
+                    	// cc.find('Canvas/mask').active = true;
+                    	let move = cc.moveTo(0.2,cc.p(0,160));
+	                    big_card.runAction(move);
 
-		                    
-		                    context.clock = setTimeout(function(){
-	               				cc.find('Canvas/mask').active = false;
-	               				if (desk_card.children) {
+                    	context.clock = setTimeout(function(){
+                    		// 大牌消失
+                    		big_card.destroy();
+                    		// 桌面小牌
+                    		// cc.find('Canvas/mask').active = false;
+               				if (desk_card.children) {
+		  						desk_card.children[0].children[0].width = 90;
+			                    desk_card.children[0].children[0].height = 128;
+		                    	context.deskcards.push(desk_card);
+		                    	desk_card.parent = deskcardpanel;
+		                    }
+	                    	// clearTimeout(context.clock);
+                    	},2000);
 
-			  						desk_card.children[0].children[0].width = 90;
-				                    desk_card.children[0].children[0].height = 128;
-			                    	context.deskcards.push(desk_card);
-			                    	desk_card.parent = deskcardpanel;
-			                    }
-		                    },1500);
-		                }
+
+
+                    	if(cc.sys.localStorage.getItem('cb')!='true'){
+                    cc.sys.localStorage.setItem('take','true');             
+                    
+                }
+
+
 		            }
 		            /**
 		             * 销毁其中一个对象
@@ -368,7 +415,7 @@ cc.Class({
 	    select_action_searchlight:function(data , context , player){
 	    	context=cc.find('Canvas').getComponent('MJDataBind');
 	        if (player) context.exchange_searchlight(player.tablepos , context);
-	        context.exchange_state("nextplayer" , context);
+	        context.exchange_state("nextplayer" , context); 
 	    },
 	    initDealHandCards:function(context , data){
 	    	var gameStartInit = require('GameStartInit');

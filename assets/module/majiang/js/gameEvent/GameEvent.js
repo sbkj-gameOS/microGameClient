@@ -34,15 +34,22 @@ cc.Class({
             default:null ,
             type : cc.Node
         },
+        action_imgs: cc.SpriteAtlas,
     },
 
     //初始化
     onLoad: function () {
        
     },
-    onClick:function(event , data){     
+    onClick:function(event , data){  
+
+       
+
+        if (cc.find('Canvas/handcards')) {
+            cc.find('Canvas/handcards').destroy();
+            // cc.find('Canvas/mask').active = false;
+        }
         this.node.dispatchEvent( new cc.Event.EventCustom(data, true) );
-        cc.find('Canvas/mask').active = false;
     },
     click: function(event){
         event.target.active = false;
@@ -54,10 +61,11 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
-         /*   if (data.gang || data.chi || data.peng) {
-                cc.find('Canvas/mask').active = true;
+            // cc.find('Canvas/mask').active = true;
+            if (!data.dan) {
                 clearTimeout(context.clock);
-            }*/
+            }
+           
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
             context = cc.find('Canvas').getComponent('MJDataBind');     
             cc.sys.localStorage.setItem('altake','true');
@@ -164,7 +172,7 @@ cc.Class({
                     chi.x = - 140 + count * 110
                     count++;
                 }
-                if(!data.deal){
+                if(!data.deal && !data.action){
                     guo.active = true ;
                     guo.x = - 140 + count * 110
                     // guo.x = - 200 + count * 110
@@ -179,24 +187,16 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
-
+            if (cc.find('Canvas/handcards')) {
+                cc.find('Canvas/handcards').destroy();
+                // cc.find('Canvas/mask').active = false;
+            }
             context = cc.find('Canvas').getComponent('MJDataBind');     
             var gameStartInit = require('GameStartInit');
             var gameEvent = require('GameEvent');
             //触发音效
             cc.weijifen.audio.playSFX('nv/'+data.action+'.mp3');        
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;
-               // 将大牌放回到桌面牌中
-            let bigNode = cc.find('Canvas/current');
-            if (bigNode && !data.dan && !data.ting) {
-                bigNode.children[0].children[0].width = 90;
-                bigNode.children[0].children[0].height = 128;
-                context.deskcards.push(bigNode);
-                cc.find('Canvas/mask').active = false;
-                bigNode.parent = cc.find('Canvas/cards/deskcards').getChildByName(player.tablepos);
-                bigNode.parent.children[bigNode.parent.children.length-1].destroy();
-            }
-
 
             let jiantou;
             if(data.target){
@@ -231,8 +231,37 @@ cc.Class({
                     gameEvent.select_action_searchlight(data, context , player) ;
                 }
                 gameEvent.handCardRemove(data,context);//碰、点杠等情况只有data.card的情况需要处理。
-            }
 
+            }
+             // 显示杠、吃、碰图标
+            let self = cc.find('Canvas/js/GameEvent').getComponent('GameEvent'); 
+            let img = cc.find('Canvas/action_img');
+            img.active = true;
+            if (data.action == 'gang' || data.action == 'dan') {
+                img.getComponent(cc.Sprite).spriteFrame = self.action_imgs.getSpriteFrame('吃碰杠-提示_杠');
+            } else if (data.action == 'chi') {
+                img.getComponent(cc.Sprite).spriteFrame = self.action_imgs.getSpriteFrame('吃碰杠-提示_吃');
+            } else if (data.action == 'peng') {
+                img.getComponent(cc.Sprite).spriteFrame = self.action_imgs.getSpriteFrame('吃碰杠-提示_碰');
+            }
+            if (player.tablepos == 'top') {
+                img.x = 0;
+                img.y = 160;
+            } else if (player.tablepos == 'left') {
+                img.x = -320;
+                img.y = 0;
+            } else if (player.tablepos == 'right') {
+                img.x = 320;
+                img.y = 0;
+            } else {
+                img.x = 0;
+                img.y = -160;
+            }
+            img.width = 128;
+            img.height = 128;
+            setTimeout(function(){
+                img.active = false;
+            },1000)
             opParent = cc.find("Canvas/cards/handcards/"+player.tablepos+"/kongcards") ;
             gameEvent.otherHandCardRemove(data,context,player.tablepos);
             let opCards , back = false , fangwei = player.tablepos ;
@@ -273,7 +302,9 @@ cc.Class({
                 if (deskcardpanel.children.length > 0) {
                     deskcardpanel.children[deskcardpanel.children.length - 1].destroy();
                 }
+               
             }
+           
         },
         select_action_searchlight:function(data , context , player){
             context.exchange_searchlight(player.tablepos , context);

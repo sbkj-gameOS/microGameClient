@@ -1,9 +1,9 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "huAnimation",
+  "_name": "hu",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.5166666666666667,
+  "_duration": 0.3333333333333333,
   "sample": 60,
   "speed": 1,
   "wrapMode": 1,
@@ -18,17 +18,17 @@
             }
           },
           {
-            "frame": 0.4,
+            "frame": 0.11666666666666667,
             "value": {
               "__uuid__": "7112cbdb-8f27-4f92-8ad3-514af9532d61"
             }
           },
           {
-            "frame": 0.5,
+            "frame": 0.31666666666666665,
             "value": null
           },
           {
-            "frame": 0.5,
+            "frame": 0.31666666666666665,
             "value": {
               "__uuid__": "9ca87411-8983-47a1-9d43-39a04a8decd6"
             }

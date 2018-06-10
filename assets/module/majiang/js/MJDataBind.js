@@ -120,7 +120,10 @@ cc.Class({
             type: cc.Node
         },
         // 显示在出牌玩家所展示的大牌
-        bigModel: cc.Prefab
+        bigModel: {
+            default: null,
+            type: cc.Prefab
+        }
     },
     onLoad: function () {
         let self = this ;
@@ -1026,6 +1029,7 @@ cc.Class({
             cc.find("Canvas/emojiGif/"+main.animationName).runAction(action);
             setTimeout(function(){
                 emojiShow.active = false;
+                anim.stop('ting');
             },2000)
             return
         }

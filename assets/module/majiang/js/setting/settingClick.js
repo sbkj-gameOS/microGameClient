@@ -126,7 +126,6 @@ cc.Class({
             setTimeout(function(){self.endGameOver(data,context)},time);
         },
         endGameOver: function(data,context){
-            cc.sys.localStorage.removeItem('chupai');
             let temp = cc.instantiate(this.summary) ;
             temp.parent = context.root() ;
             temp.getComponent('SummaryClick').setDataEnd(data); 

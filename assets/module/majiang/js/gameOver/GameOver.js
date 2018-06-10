@@ -17,13 +17,32 @@ cc.Class({
     	allcards_event:function(data , context){
 		    // 胡动画
 		    if (!data.unHu) {
-	            var hu = cc.find("Canvas/huAnimation");
-	            hu.active = true;
-	            let anim = hu.getChildByName('hu_action').getComponent(cc.Animation);
-	            anim.play('huAnimation');
+	       		var gameStartInit = require('GameStartInit');
+	       		let player = gameStartInit.player(cc.weijifen.user.id , context);
+	            cc.find('Canvas/huAnimation').active = true;
+	            var hu = cc.find("Canvas/huAnimation/hu_action");
+	            if (player.tablepos == 'top') {
+	                hu.x = 280;
+	                hu.y = 200;
+	            } else if (player.tablepos == 'left') {
+	                hu.x = -400;
+	                hu.y = 80;
+	            } else if (player.tablepos == 'right') {
+	                hu.x = 400;
+	                hu.y = 80;
+	            } else {
+	                hu.x = -450;
+	                hu.y = -200;
+	            }
+	            // let anim = hu.getChildByName('ting_action').getComponent(cc.Animation);
+	            let anim = hu.getComponent(cc.Animation);
+	            // anim.play('ting');
+	            anim.play('hu');
 	            setTimeout(function(){
 	                hu.active = false;
-	                anim.stop('huAnimation');
+	                if (cc.find('Canvas/handcards')) {
+	                	cc.find('Canvas/handcards').destroy();
+	                }
 	            },2000);
 		    }
 
