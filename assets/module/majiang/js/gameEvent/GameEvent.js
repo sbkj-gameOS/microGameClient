@@ -193,10 +193,11 @@ cc.Class({
                 cc.find('Canvas/handcards').destroy();
                 // cc.find('Canvas/mask').active = false;
             }*/
-            if (cc.find('Canvas/big_cards').children) {
+            if (cc.find('Canvas/big_cards').children || data.action == 'guo' || data.action == 'ting') {
                 for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
                     cc.find('Canvas/big_cards').children[i].destroy();
                 }
+                let time = context.clock;
                 // cc.find('Canvas/mask').active = false;
             }
             context = cc.find('Canvas').getComponent('MJDataBind');     
@@ -307,9 +308,10 @@ cc.Class({
                 }else{
                     deskcardpanel = context.deskcards_current_panel;
                 }
-                if (deskcardpanel.children.length > 0) {
-                    deskcardpanel.children[deskcardpanel.children.length - 1].destroy();
-                }
+                // if (deskcardpanel.children.length > 0 && ) {
+                    // deskcardpanel.children[deskcardpanel.children.length - 1].destroy();
+                    // deskcardpanel.children[deskcardpanel.children.length - 2].destroy();
+                // }
                
             }
            

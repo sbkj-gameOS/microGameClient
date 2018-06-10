@@ -17,8 +17,14 @@ cc.Class({
     	allcards_event:function(data , context){
 		    // 胡动画
 		    if (!data.unHu) {
+	       		let id;
 	       		var gameStartInit = require('GameStartInit');
-	       		let player = gameStartInit.player(cc.weijifen.user.id , context);
+	       		for(let i = 0;i<data.playOvers.length;i++){
+	       			if (data.playOvers[i].win) {
+	       				id = data.playOvers[i].user;
+	       			}
+	       		}
+	       		let player = gameStartInit.player(id , context);
 	            cc.find('Canvas/huAnimation').active = true;
 	            var hu = cc.find("Canvas/huAnimation/hu_action");
 	            if (player.tablepos == 'top') {

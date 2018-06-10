@@ -139,14 +139,20 @@ cc.Class({
 
 	                    	context.clock = setTimeout(function(){
 	                    		// 大牌消失
-	                    		big_card.destroy();
+	                    		// big_card.destroy();
+	                    		if (cc.find('Canvas/big_cards').children) {
+						            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+						                cc.find('Canvas/big_cards').children[i].destroy();
+						            }
+						            // cc.find('Canvas/mask').active = false;
+						        }
 	                    		// 桌面小牌
 			                    desk_card.children[0].children[0].width = 90;//122
 			                    desk_card.children[0].children[0].height = 128;//150
 			                    context.deskcards.push(desk_card);
 		                    	desk_card.parent = context.deskcards_current_panel;
 		                    	clearTimeout(context.clock);
-	                    	},2000);
+	                    	},1500);
 	                    }
 	                }else{
 	                    handcards.reinit();
@@ -190,7 +196,7 @@ cc.Class({
                     	big_handcards.init(data.card,'R');
                     	big_card.x = 470;
                     	big_card.y = -160;
-                    	big_card.parent = cc.find('Canvas/big_card');
+                    	big_card.parent = cc.find('Canvas/big_cards');
 
                     	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(320,0));
@@ -198,26 +204,27 @@ cc.Class({
 
                     	context.clock = setTimeout(function(){
                     		// 大牌消失
-                    		big_card.destroy();
+                    		if (cc.find('Canvas/big_cards').children) {
+					            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+					                cc.find('Canvas/big_cards').children[i].destroy();
+					            }
+					            // cc.find('Canvas/mask').active = false;
+					        }
                     		// 桌面小牌
                     		// cc.find('Canvas/mask').active = false;
-               				if (desk_card.children) {
+               				// if (desk_card.children) {
 		  						desk_card.children[0].children[0].width = 128;
 			                    desk_card.children[0].children[0].height = 100;
 		                    	context.deskcards.push(desk_card);
 		                    	desk_card.parent = deskcardpanel;
-		                    }
+		                    // }
 	                    	// clearTimeout(context.clock);
-                    	},2000);
+                    	},1500);
 
-
-
-
-    	if(cc.sys.localStorage.getItem('cb')!='true'){
-                    cc.sys.localStorage.setItem('take','true');             
-                    
-                }
-
+		    			if(cc.sys.localStorage.getItem('cb')!='true'){
+		                    cc.sys.localStorage.setItem('take','true');             
+		                    
+		                }
 
 		                // desk_card.parent = deskcardpanel ;
 
@@ -239,7 +246,7 @@ cc.Class({
                     	big_handcards.init(data.card,'L');
                     	big_card.x = -420;
                     	big_card.y = 160;
-                    	big_card.parent = cc.find('Canvas/big_card');
+                    	big_card.parent = cc.find('Canvas/big_cards');
 
                     	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(-320,0));
@@ -247,27 +254,28 @@ cc.Class({
 
                     	context.clock = setTimeout(function(){
                     		// 大牌消失
-                    		big_card.destroy();
+                    		// big_card.destroy();
+                    		if (cc.find('Canvas/big_cards').children) {
+					            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+						                cc.find('Canvas/big_cards').children[i].destroy();
+						            }
+						            // cc.find('Canvas/mask').active = false;
+						        }
                     		// 桌面小牌
                     		// cc.find('Canvas/mask').active = false;
-               				if (desk_card.children) {
+               				// if (desk_card.children) {
 		  						desk_card.children[0].children[0].width = 128;
 			                    desk_card.children[0].children[0].height = 100;
 		                    	context.deskcards.push(desk_card);
 		                    	desk_card.parent = deskcardpanel;
-		                    }
+		                    // }
 	                    	// clearTimeout(context.clock);
-                    	},2000);
+                    	},1500);
 
-
-
-
-    	if(cc.sys.localStorage.getItem('cb')!='true'){
-                    cc.sys.localStorage.setItem('take','true');             
-                    
-                }
-
-
+		    			if(cc.sys.localStorage.getItem('cb')!='true'){
+		                    cc.sys.localStorage.setItem('take','true');             
+		                    
+		                }
 		                // desk_card.parent = deskcardpanel ;
 		            }else if(temp.tablepos == "top"){
 		                for(var inx = 0 ; inx < gameStartInitNode.top_panel.children.length ; inx++){
@@ -288,7 +296,7 @@ cc.Class({
                     	big_handcards.init(data.card,'B');
                     	big_card.x = -300;
                     	big_card.y = 280;
-                    	big_card.parent = cc.find('Canvas/big_card');
+                    	big_card.parent = cc.find('Canvas/big_cards');
 
                     	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(0,160));
@@ -296,26 +304,28 @@ cc.Class({
 
                     	context.clock = setTimeout(function(){
                     		// 大牌消失
-                    		big_card.destroy();
+                    		// big_card.destroy();
+                    		if (cc.find('Canvas/big_cards').children) {
+					            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+					                cc.find('Canvas/big_cards').children[i].destroy();
+					            }
+					            // cc.find('Canvas/mask').active = false;
+					        }
                     		// 桌面小牌
                     		// cc.find('Canvas/mask').active = false;
-               				if (desk_card.children) {
+               				// if (desk_card.children) {
 		  						desk_card.children[0].children[0].width = 90;
 			                    desk_card.children[0].children[0].height = 128;
 		                    	context.deskcards.push(desk_card);
 		                    	desk_card.parent = deskcardpanel;
-		                    }
+		                    // }
 	                    	// clearTimeout(context.clock);
-                    	},2000);
-
-
+                    	},1500);
 
                     	if(cc.sys.localStorage.getItem('cb')!='true'){
-                    cc.sys.localStorage.setItem('take','true');             
-                    
-                }
-
-
+		                    cc.sys.localStorage.setItem('take','true');             
+		                    
+		                }
 		            }
 		            /**
 		             * 销毁其中一个对象
@@ -331,6 +341,15 @@ cc.Class({
 	     * @param context
 	     */
 	    dealcard_event:function(data , context){
+	    	if (cc.find('Canvas/big_cards').children || !data.action) {
+		    	let deal_time =setTimeout(function(){
+	                for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+	                    cc.find('Canvas/big_cards').children[i].destroy();
+	                }
+	                clearTimeout(deal_time);
+		    	},1000)
+                // cc.find('Canvas/mask').active = false;
+            }
 	      	var gamePlay = require('GamePlay');
 	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){
 	            setTimeout(function(){gamePlay.dealcards(data,context)},2100);
