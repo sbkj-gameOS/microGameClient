@@ -131,7 +131,7 @@ cc.Class({
 	                    	big_handcards.init(handcards.value,'B');
 	                    	big_card.x = 460;
 	                    	big_card.y = -280;
-	                    	big_card.parent = cc.find('Canvas');
+	                    	big_card.parent = cc.find('Canvas/big_cards');
 	                    	
 	               			// cc.find('Canvas/mask').active = true;
 	                    	let move = cc.moveTo(0.2,cc.p(0,-160));
@@ -190,7 +190,7 @@ cc.Class({
                     	big_handcards.init(data.card,'R');
                     	big_card.x = 470;
                     	big_card.y = -160;
-                    	big_card.parent = cc.find('Canvas');
+                    	big_card.parent = cc.find('Canvas/big_card');
 
                     	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(320,0));
@@ -239,7 +239,7 @@ cc.Class({
                     	big_handcards.init(data.card,'L');
                     	big_card.x = -420;
                     	big_card.y = 160;
-                    	big_card.parent = cc.find('Canvas');
+                    	big_card.parent = cc.find('Canvas/big_card');
 
                     	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(-320,0));
@@ -288,7 +288,7 @@ cc.Class({
                     	big_handcards.init(data.card,'B');
                     	big_card.x = -300;
                     	big_card.y = 280;
-                    	big_card.parent = cc.find('Canvas');
+                    	big_card.parent = cc.find('Canvas/big_card');
 
                     	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(0,160));
