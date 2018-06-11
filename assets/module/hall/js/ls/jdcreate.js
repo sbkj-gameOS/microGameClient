@@ -25,7 +25,7 @@ cc.Class({
                 event.node.children[2].setColor(cc.color(231,62,65,255));
             }
             //上一个选中的字体恢复为默认色
-             event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
+             // event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
         
         }
        
@@ -82,10 +82,10 @@ cc.Class({
  
     // 点击创建按钮
     createClick:function(){
-        /*playerData = playerData.split("@@");
-        playerData.pop();*/
+        // playerData = playerData.split("@@");
+        // playerData.pop();
         garams.game = "JY";
-        garams.waytype = "JY";
+        garams.waytype = playerData;
         garams.player = guiZe;
         garams.modeltype = moShi;
         garams.pepNums = userType;
