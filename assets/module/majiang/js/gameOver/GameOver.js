@@ -44,14 +44,13 @@ cc.Class({
 	            let anim = hu.getComponent(cc.Animation);
 	            // anim.play('ting');
 	            anim.play('hu');
-	            setTimeout(function(){
+	            let huTime = setTimeout(function(){
 	                cc.find('Canvas/huAnimation').active = false;
-	                if (cc.find('Canvas/big_cards').children) {
-			            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-			                cc.find('Canvas/big_cards').children[i].destroy();
-			            }
-			            // cc.find('Canvas/mask').active = false;
+	                if (cc.find('Canvas/handcards')) {
+		                cc.find('Canvas/handcards').destroy();
+			            cc.find('Canvas/mask').active = false;
 			        }
+			        clearTimeout(huTime);
 	            },2000);
 		    }
 

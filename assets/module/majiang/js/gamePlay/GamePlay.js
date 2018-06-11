@@ -35,6 +35,9 @@ cc.Class({
 	     * @param {cc.Component} context
 	     */
 	    takecard_event:function(data , context){
+	    	if (cc.find('Canvas/handcards')) {
+	    		cc.find('Canvas/handcards').destroy();
+	    	}
 	    	cc.weijifen.clock = null;
 	        context = cc.find('Canvas').getComponent('MJDataBind');
 	        var gameStartInit = require('GameStartInit');
@@ -89,7 +92,10 @@ cc.Class({
 	                cc.sys.localStorage.setItem('alting','true'); 
 	                cc.sys.localStorage.setItem('altings','true');  
 	                cc.sys.localStorage.setItem('take','true');   
-
+	                if (cc.find('Canvas/handcards')) {
+	                	cc.find('Canvas/handcards').destroy();
+	                }
+	                cc.find('Canvas/mask').active = false;
 	            }else{
 	                cc.sys.localStorage.removeItem('alting');
 	            }
@@ -124,36 +130,24 @@ cc.Class({
 	                    let temp = desk_card.getComponent("DeskCards");
 	                    temp.init(handcards.value,'B');
 
-	                    if (desk_card.children) {
+	                    // if (desk_card.children) {
 	                    	// 大牌显示
 	                    	let big_card = cc.instantiate(context.bigModel);
 	                    	let big_handcards = big_card.getComponent("HandCards");
 	                    	big_handcards.init(handcards.value,'B');
 	                    	big_card.x = 460;
 	                    	big_card.y = -280;
-	                    	big_card.parent = cc.find('Canvas/big_cards');
+	                    	big_card.parent = cc.find('Canvas');
 	                    	
-	               			// cc.find('Canvas/mask').active = true;
+	               			cc.find('Canvas/mask').active = true;
 	                    	let move = cc.moveTo(0.2,cc.p(0,-160));
 		                    big_card.runAction(move);
-
-	                    	context.clock = setTimeout(function(){
-	                    		// 大牌消失
-	                    		// big_card.destroy();
-	                    		if (cc.find('Canvas/big_cards').children) {
-						            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-						                cc.find('Canvas/big_cards').children[i].destroy();
-						            }
-						            // cc.find('Canvas/mask').active = false;
-						        }
-	                    		// 桌面小牌
-			                    desk_card.children[0].children[0].width = 90;//122
-			                    desk_card.children[0].children[0].height = 128;//150
-			                    context.deskcards.push(desk_card);
-		                    	desk_card.parent = context.deskcards_current_panel;
-		                    	clearTimeout(context.clock);
-	                    	},1500);
-	                    }
+           					desk_card.active = false;
+		                    desk_card.children[0].children[0].width = 90;//122
+		                    desk_card.children[0].children[0].height = 128;//150
+		                    context.deskcards.push(desk_card);
+	                    	desk_card.parent = context.deskcards_current_panel;
+	                    // }
 	                }else{
 	                    handcards.reinit();
 	                    if(handcards.selectcolor == true){
@@ -196,30 +190,19 @@ cc.Class({
                     	big_handcards.init(data.card,'R');
                     	big_card.x = 470;
                     	big_card.y = -160;
-                    	big_card.parent = cc.find('Canvas/big_cards');
+                    	big_card.parent = cc.find('Canvas');
 
-                    	// cc.find('Canvas/mask').active = true;
+                    	cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(320,0));
 	                    big_card.runAction(move);
 
-                    	context.clock = setTimeout(function(){
-                    		// 大牌消失
-                    		if (cc.find('Canvas/big_cards').children) {
-					            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-					                cc.find('Canvas/big_cards').children[i].destroy();
-					            }
-					            // cc.find('Canvas/mask').active = false;
-					        }
-                    		// 桌面小牌
-                    		// cc.find('Canvas/mask').active = false;
-               				// if (desk_card.children) {
-		  						desk_card.children[0].children[0].width = 128;
-			                    desk_card.children[0].children[0].height = 100;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = deskcardpanel;
-		                    // }
-	                    	// clearTimeout(context.clock);
-                    	},1500);
+           				// if (desk_card.children) {
+           					desk_card.active = false;
+	  						desk_card.children[0].children[0].width = 128;
+		                    desk_card.children[0].children[0].height = 118;
+	                    	context.deskcards.push(desk_card);
+	                    	desk_card.parent = deskcardpanel;
+	                    // }
 
 		    			if(cc.sys.localStorage.getItem('cb')!='true'){
 		                    cc.sys.localStorage.setItem('take','true');             
@@ -246,31 +229,19 @@ cc.Class({
                     	big_handcards.init(data.card,'L');
                     	big_card.x = -420;
                     	big_card.y = 160;
-                    	big_card.parent = cc.find('Canvas/big_cards');
+                    	big_card.parent = cc.find('Canvas');
 
-                    	// cc.find('Canvas/mask').active = true;
+                    	cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(-320,0));
 	                    big_card.runAction(move);
 
-                    	context.clock = setTimeout(function(){
-                    		// 大牌消失
-                    		// big_card.destroy();
-                    		if (cc.find('Canvas/big_cards').children) {
-					            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-						                cc.find('Canvas/big_cards').children[i].destroy();
-						            }
-						            // cc.find('Canvas/mask').active = false;
-						        }
-                    		// 桌面小牌
-                    		// cc.find('Canvas/mask').active = false;
-               				// if (desk_card.children) {
-		  						desk_card.children[0].children[0].width = 128;
-			                    desk_card.children[0].children[0].height = 100;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = deskcardpanel;
-		                    // }
-	                    	// clearTimeout(context.clock);
-                    	},1500);
+           				// if (desk_card.children) {
+           					desk_card.active = false;
+	  						desk_card.children[0].children[0].width = 128;
+		                    desk_card.children[0].children[0].height = 118;
+	                    	context.deskcards.push(desk_card);
+	                    	desk_card.parent = deskcardpanel;
+	                    // }
 
 		    			if(cc.sys.localStorage.getItem('cb')!='true'){
 		                    cc.sys.localStorage.setItem('take','true');             
@@ -296,32 +267,19 @@ cc.Class({
                     	big_handcards.init(data.card,'B');
                     	big_card.x = -300;
                     	big_card.y = 280;
-                    	big_card.parent = cc.find('Canvas/big_cards');
+                    	big_card.parent = cc.find('Canvas');
 
-                    	// cc.find('Canvas/mask').active = true;
+                    	cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(0,160));
 	                    big_card.runAction(move);
 
-                    	context.clock = setTimeout(function(){
-                    		// 大牌消失
-                    		// big_card.destroy();
-                    		if (cc.find('Canvas/big_cards').children) {
-					            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-					                cc.find('Canvas/big_cards').children[i].destroy();
-					            }
-					            // cc.find('Canvas/mask').active = false;
-					        }
-                    		// 桌面小牌
-                    		// cc.find('Canvas/mask').active = false;
-               				// if (desk_card.children) {
-		  						desk_card.children[0].children[0].width = 90;
-			                    desk_card.children[0].children[0].height = 128;
-		                    	context.deskcards.push(desk_card);
-		                    	desk_card.parent = deskcardpanel;
-		                    // }
-	                    	// clearTimeout(context.clock);
-                    	},1500);
-
+           				// if (desk_card.children) {
+           					desk_card.active = false;
+	  						desk_card.children[0].children[0].width = 90;
+		                    desk_card.children[0].children[0].height = 128;
+	                    	context.deskcards.push(desk_card);
+	                    	desk_card.parent = deskcardpanel;
+	                    // }
                     	if(cc.sys.localStorage.getItem('cb')!='true'){
 		                    cc.sys.localStorage.setItem('take','true');             
 		                    
@@ -341,15 +299,26 @@ cc.Class({
 	     * @param context
 	     */
 	    dealcard_event:function(data , context){
-	    	if (cc.find('Canvas/big_cards').children || !data.action) {
-		    	let deal_time =setTimeout(function(){
-	                for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-	                    cc.find('Canvas/big_cards').children[i].destroy();
-	                }
-	                clearTimeout(deal_time);
-		    	},1000)
-                // cc.find('Canvas/mask').active = false;
-            }
+    		context.clock = setTimeout(function(){
+    			console.log('进入定时器')
+    			if (cc.find('Canvas/handcards')) {
+    				console.log('有hancards')
+		    		cc.find('Canvas/handcards').destroy();
+        		}
+        		console.log('-----------^^^^^^--------')
+        		cc.find('Canvas/mask').active = false;
+	            let desk_c = cc.find('Canvas/cards/deskcards/current');
+	            let desk_r = cc.find('Canvas/cards/deskcards/right');
+	            let desk_t = cc.find('Canvas/cards/deskcards/top');
+	            let desk_l = cc.find('Canvas/cards/deskcards/left');
+	            if (desk_c.children.length > 0) desk_c.children[desk_c.children.length-1].active = true;
+	            if (desk_r.children.length > 0) desk_r.children[desk_r.children.length-1].active = true;
+	            if (desk_t.children.length > 0) desk_t.children[desk_t.children.length-1].active = true;
+	            if (desk_l.children.length > 0) desk_l.children[desk_l.children.length-1].active = true;
+	           
+    			clearTimeout(context.clock);
+    		},1000)
+
 	      	var gamePlay = require('GamePlay');
 	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){
 	            setTimeout(function(){gamePlay.dealcards(data,context)},2100);
@@ -435,6 +404,7 @@ cc.Class({
 	    	context=cc.find('Canvas').getComponent('MJDataBind');
 	        if (player) context.exchange_searchlight(player.tablepos , context);
 	        context.exchange_state("nextplayer" , context); 
+
 	    },
 	    initDealHandCards:function(context , data){
 	    	var gameStartInit = require('GameStartInit');

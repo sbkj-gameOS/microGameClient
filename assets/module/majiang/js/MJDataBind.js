@@ -266,7 +266,7 @@ cc.Class({
                         anim.play('ting');
                         setTimeout(function(){
                             cc.find('Canvas/ting').active = false;
-                        },4000);
+                        },3000);
                         cc.weijifen.audio.playSFX('nv/ting.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
