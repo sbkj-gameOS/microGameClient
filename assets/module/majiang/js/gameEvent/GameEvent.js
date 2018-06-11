@@ -42,14 +42,9 @@ cc.Class({
        
     },
     onClick:function(event , data){  
-
-       
-
-        if (cc.find('Canvas/big_cards').children) {
-            for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-                cc.find('Canvas/big_cards').children[i].destroy();
-            }
-            // cc.find('Canvas/mask').active = false;
+        cc.find('Canvas/mask').active = false;
+        if (cc.find('Canvas/handcards')) {
+            cc.find('Canvas/handcards').destroy();
         }
         this.node.dispatchEvent( new cc.Event.EventCustom(data, true) );
     },
@@ -133,7 +128,6 @@ cc.Class({
                     guo.x = - 140 + count * 110 ;
                     count++;
                 }
-
                
                 var action = cc.moveTo(0.1,800 - count*285,-100);
                 //context.actionnode_two.active = true;
@@ -189,17 +183,11 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
-           /* if (cc.find('Canvas/handcards')) {
+            cc.find('Canvas/mask').active = false;
+            if (cc.find('Canvas/handcards')) {
                 cc.find('Canvas/handcards').destroy();
-                // cc.find('Canvas/mask').active = false;
-            }*/
-            if (cc.find('Canvas/big_cards').children || data.action == 'guo' || data.action == 'ting') {
-                for (let i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-                    cc.find('Canvas/big_cards').children[i].destroy();
-                }
-                let time = context.clock;
-                // cc.find('Canvas/mask').active = false;
             }
+          
             context = cc.find('Canvas').getComponent('MJDataBind');     
             var gameStartInit = require('GameStartInit');
             var gameEvent = require('GameEvent');
@@ -308,10 +296,9 @@ cc.Class({
                 }else{
                     deskcardpanel = context.deskcards_current_panel;
                 }
-                // if (deskcardpanel.children.length > 0 && ) {
-                    // deskcardpanel.children[deskcardpanel.children.length - 1].destroy();
-                    // deskcardpanel.children[deskcardpanel.children.length - 2].destroy();
-                // }
+                if (deskcardpanel.children.length > 0) {
+                    deskcardpanel.children[deskcardpanel.children.length - 1].destroy();
+                }
                
             }
            
