@@ -292,7 +292,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": -5,
+      "width": 445,
       "height": 32
     },
     "_rotationX": 0,
@@ -302,7 +302,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 35.5
+      "y": 44.5
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -333,7 +333,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0
+    "_N$overflow": 3
   },
   {
     "__type__": "cc.Widget",
@@ -346,9 +346,9 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 41,
-    "_left": 258.5,
-    "_right": 258.5,
-    "_top": 88,
+    "_left": 33.5,
+    "_right": 33.5,
+    "_top": 79,
     "_bottom": 171,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -480,8 +480,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 15
@@ -504,6 +502,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 12

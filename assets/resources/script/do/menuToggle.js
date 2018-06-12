@@ -8,6 +8,7 @@ cc.Class({
         sharing:cc.Prefab,
         menu: cc.Prefab,
         match: cc.Prefab,
+        alts: cc.SpriteAtlas
     },
 
     // use this for initialization
@@ -76,15 +77,13 @@ cc.Class({
         let data1;
         let menu = cc.instantiate(this.menu);
         function showDetail (dataStr) {
+            var self = cc.find('Canvas/js/menuToggle').getComponent('menuToggle');
             data1 = JSON.parse(dataStr);
-            menu.parent = cc.find('Canvas/menu');
+            menu.parent = cc.find('Canvas');
             menu.zIndex = 100000;
             var content = menu.getChildByName('main').children[0].children[1].children[0];// 概述后代元素---content
             var rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
             cc.sys.localStorage.setItem('activityId',data1.id);
-            // 场次标题（如：vip用户专场）
-            var title = menu.getChildByName('title')/*.getComponent(cc.Label)*/;
-            title.getComponent(cc.Label).string = data1.activiteName;
             // 报名费用
             if (data1.entryConditions) {
                 var bmtj;
@@ -114,8 +113,13 @@ cc.Class({
                     if (i > 0) reward.y = reward.y - reward.width - 15;
                     reward.active = true;
                     reward.parent = rewardTxt;
+                    reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-2');
                 }
             }
+            // 比赛内容
+            var match_content = content.children[4].children[1].getComponent(cc.Label);
+            match_content.string = data1.activiteContent;
+
         }
 
         // 点击列表进入

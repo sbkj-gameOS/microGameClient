@@ -2,6 +2,7 @@
 * 比赛
 */
 var WJFCommon = require("WJFCommon");
+var match_timer;
 cc.Class({
     extends: WJFCommon,
 
@@ -11,7 +12,7 @@ cc.Class({
         detailMatch: cc.Prefab,
         jinagli: cc.Node,
         timeNode:cc.Label,
-        roomCard:cc.Label
+        roomCard:cc.Label,
     },
     onLoad: function () {
         this.btnSelectData = 2;
@@ -41,7 +42,7 @@ cc.Class({
             return;
         }
         //定时器每秒更新下时间
-        setInterval(function(){
+        match_timer = setInterval(function(){
             var date=new Date();
             var hour = date.getHours();
             var minutes = date.getMinutes();
@@ -93,6 +94,8 @@ cc.Class({
         this.getListData();
     },
     getListData:function(){
+        var parent = cc.find("Canvas/match/count/right/background-right/lists/view/content");
+        parent.removeAllChildren();
         let token = {token:cc.weijifen.authorization};
         cc.weijifen.http.httpPost('/match/getMatchList',token,this.getListSuccess,this.getListErr,this) ;
     },
@@ -122,7 +125,7 @@ cc.Class({
             }
             var parent = cc.find("Canvas/match/count/right/background-right/lists/view/content");
             list.parent = parent;
-            parent.getChildByName('no_data').active = false;
+            cc.find("Canvas/match/count/right/no_data").active = false;
         }
     },
     getListErr: function (res,obj) {
@@ -133,7 +136,7 @@ cc.Class({
     * 加入比赛
     */
     joinMatch: function (event) {
-        let matchJs = event.target.parent.parent.parent.children[1].getComponent('match');
+        let matchJs = cc.find('Canvas/js/match').getComponent('match');
         let listData = event.target.parent.parent.getChildByName('data').getComponent(cc.Label).string;
         // 当前比赛信息存放在缓存中
         cc.sys.localStorage.setItem('matchData',listData);
@@ -169,7 +172,7 @@ cc.Class({
         obj.alert(data.msg);
     },
     closeDetail: function () {
-        let detail_match = cc.find('Canvas/menu/detail_match');
+        let detail_match = cc.find('Canvas/detail_match');
         detail_match.destroy();
         cc.sys.localStorage.removeItem('activityId');
     },
@@ -211,6 +214,16 @@ cc.Class({
         let mainBox = event.node.parent.parent.getChildByName('main').children;//底部切换主体
         let idx = parseInt(event.node.name);
         mainBox[idx].active = true;
+        event.node.children[3].setColor(cc.color(255,255,255,255));
+        if (idx == 1) {
+            event.node.parent.getChildByName('1').children[0].active = true;
+            event.node.parent.getChildByName('0').children[0].active = false;
+            event.node.parent.getChildByName('0').children[3].setColor(cc.color(108,83,55,255));
+        } else {
+            event.node.parent.getChildByName('1').children[3].setColor(cc.color(108,83,55,255));
+            event.node.parent.getChildByName('1').children[0].active = false;
+            event.node.parent.getChildByName('0').children[0].active = true;
+        }
         idx ? mainBox[0].active = false : mainBox[1].active = false;
     },
       /*打开注意事项*/
@@ -222,6 +235,7 @@ cc.Class({
         cc.find('Canvas').getChildByName('matchTip').active = false;
     },
     closeBtn:function(){
+        clearTimeout(match_timer);
         cc.find('Canvas/match').destroy();
     }
 });

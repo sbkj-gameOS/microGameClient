@@ -86,6 +86,7 @@ cc.Class({
                 node.getComponent(cc.Label).string = message ;
             }
         }
+        this.alertdialog.zIndex = 999999999;
         return this.alertdialog;
     },
     closeloadding:function(){
