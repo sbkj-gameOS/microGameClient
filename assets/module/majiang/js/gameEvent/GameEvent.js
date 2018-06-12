@@ -236,15 +236,14 @@ cc.Class({
             }
              // 显示杠、吃、碰图标
             let self = cc.find('Canvas/js/GameEvent').getComponent('GameEvent'); 
-            let img = cc.find('Canvas/action_img');
-            img.active = true;
-            if (data.action == 'gang' || data.action == 'dan') {
-                img.getComponent(cc.Sprite).spriteFrame = self.action_imgs.getSpriteFrame('吃碰杠-提示_杠');
-            } else if (data.action == 'chi') {
-                img.getComponent(cc.Sprite).spriteFrame = self.action_imgs.getSpriteFrame('吃碰杠-提示_吃');
-            } else if (data.action == 'peng') {
-                img.getComponent(cc.Sprite).spriteFrame = self.action_imgs.getSpriteFrame('吃碰杠-提示_碰');
+            let actionName = data.action;
+            if(actionName == "dan"){
+                actionName = "gang";
             }
+            let img = cc.find("Canvas/"+actionName);
+            img.active = true;
+            var imgAnim = img.getComponent(cc.Animation);
+            imgAnim.play(actionName);
             if (player.tablepos == 'top') {
                 img.x = 0;
                 img.y = 160;
