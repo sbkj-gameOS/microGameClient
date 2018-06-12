@@ -23,6 +23,11 @@ cc.Class({
         //var myAction = event.target.getComponent('SummartClick').action ;
        // oper.setUserData(myAction) ;
        // console.log('已经点击返回大厅按钮')
+        if (cc.find('Canvas/big_cards').children.length) {
+            for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+                cc.find('Canvas/big_cards').children[i].destroy();
+            } 
+        }
        if(cc.weijifen.match == 'true'){
         this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));
         
