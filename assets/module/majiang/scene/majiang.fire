@@ -117,16 +117,19 @@
       },
       {
         "__id__": 589
+      },
+      {
+        "__id__": 591
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 591
+        "__id__": 592
       },
       {
-        "__id__": 592
+        "__id__": 593
       }
     ],
     "_prefab": null,
@@ -14344,9 +14347,7 @@
       "__id__": 357
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "dc8aaac9-73a5-48aa-b04c-6679debab83f"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -14360,9 +14361,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "4201ef1f-4abc-4af0-8e84-e9e776943900"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.Layout",
@@ -15610,9 +15609,7 @@
       "__id__": 389
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "dc8aaac9-73a5-48aa-b04c-6679debab83f"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -15626,9 +15623,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "4201ef1f-4abc-4af0-8e84-e9e776943900"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.Animation",
@@ -23127,6 +23122,54 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": null
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "big_cards",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [],
+    "_prefab": null,
+    "_id": "f9CA3FADZJxoMEHoqBSLxo",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
   },
   {
     "__type__": "cc.Canvas",

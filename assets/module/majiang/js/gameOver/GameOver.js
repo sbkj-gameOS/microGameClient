@@ -46,10 +46,11 @@ cc.Class({
 	            anim.play('hu');
 	            let huTime = setTimeout(function(){
 	                cc.find('Canvas/huAnimation').active = false;
-	                if (cc.find('Canvas/handcards')) {
-		                cc.find('Canvas/handcards').destroy();
-			            cc.find('Canvas/mask').active = false;
-			        }
+	               	if (cc.find('Canvas/big_cards').children.length) {
+	    				for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
+	    					cc.find('Canvas/big_cards').children[i].destroy();
+	    				} 
+	        		}
 			        clearTimeout(huTime);
 	            },2000);
 		    }
