@@ -7,6 +7,7 @@ cc.Class({
         shopPage: cc.Prefab,
         sharing:cc.Prefab,
         menu: cc.Prefab,
+        match: cc.Prefab,
     },
 
     // use this for initialization
@@ -43,8 +44,14 @@ cc.Class({
 
 
         if (event.target.name == 9) {
-            this.alert("敬请期待~");
-            return 
+            if(cc.weijifen.GameBase.gameModel = "ch"){
+                let match = cc.instantiate(this.match);
+                match.parent = cc.find('Canvas');
+                return 
+            }else{
+                this.alert("敬请期待~");
+                return 
+            }
         }
 
         //分享

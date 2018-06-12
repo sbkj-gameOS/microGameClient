@@ -9,10 +9,13 @@ cc.Class({
         matchParent: cc.Prefab,
         matchListPrefab: cc.Prefab,
         detailMatch: cc.Prefab,
-        jinagli: cc.Node
+        jinagli: cc.Node,
+        timeNode:cc.Label,
+        roomCard:cc.Label
     },
     onLoad: function () {
-        
+        this.btnSelectData = 2;
+
     },
     /*
     * 获取房卡
@@ -33,50 +36,93 @@ cc.Class({
     * 获取比赛列表
     *
     */
-    getMatchList: function (event) {
+    getMatchList: function (event,data) {
         if (event.target.name == 9 && cc.weijifen.GameBase.gameModel != 'ch') {
             return;
         }
+        //定时器每秒更新下时间
+        setInterval(function(){
+            var date=new Date();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            if(hour >= 0 && hour <= 9){
+                hour = "0"+hour;
+            }
+            if(minutes >= 0 && minutes <= 9){
+                minutes = "0"+minutes;
+            }
+            if(seconds>= 0 && seconds <= 9){
+                seconds = "0"+seconds;
+            }
+            cc.find("Canvas/match/title/left/time").getComponent(cc.Label).string = hour+":"+minutes+":"+seconds;
+            cc.find("Canvas/match/title/right/card/roomCard").getComponent(cc.Label).string = cc.weijifen.roomCard;
+        },1000);
+
+        var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"}];
+        for(var i = 0; i < json.length; i++){
+            var leftBtnList = cc.find("Canvas/match/count/leftbtn");
+            let list = cc.instantiate(leftBtnList);
+            if(i == 0){
+                list.children[0].active = true;
+                list.setPosition(0,-60);
+            }else{
+                list.children[1].active = true;
+                var y = -60 -(i*114);
+                list.setPosition(0,y);
+            }
+            list.getChildByName("text").getComponent(cc.Label).string = json[i].value;
+            list.getChildByName("type").getComponent(cc.Label).string = json[i].type;
+            var parent = cc.find("Canvas/match/count/left/background-left/btnList/view/content");
+            list.parent = parent;
+        }
+        this.listdata = cc.find("Canvas/match/count/right/background-right/lists/view/content");
+        this.getListData();  
+    },
+    leftBtnListOne:function(event){
+        var btnlist = event.target.parent.children;
+        for(var i = 0; i < btnlist.length;i++){
+            if(btnlist[i].getChildByName("type").getComponent(cc.Label).string == this.btnSelectData){
+                btnlist[i].children[0].active = false;
+                btnlist[i].children[1].active = true;
+            }
+        }
+        event.target.children[1].active = false;
+        event.target.children[0].active = true;
+        this.btnSelectData = event.target.getChildByName("type").getComponent(cc.Label).string;
+        this.getListData();
+    },
+    getListData:function(){
         let token = {token:cc.weijifen.authorization};
-        cc.weijifen.http.httpPost('/match/getMatchList',token,this.getListSuccess,this.getListErr,this) ;            
+        cc.weijifen.http.httpPost('/match/getMatchList',token,this.getListSuccess,this.getListErr,this) ;
     },
     /*
     * activiteType值为2，日赛；4为月赛
     */
-    getListSuccess: function (res,obj) {
-        let flag;
-        let parent_ri = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[1].children[1].children[0]//matchhall
-        let parent_yue = cc.find('Canvas/menu/createroom/background1/toggleGroup').children[2].children[1].children[0]//matchhall        
+    getListSuccess: function (res,object) {
+        let flag;   
         let data = JSON.parse(res);
         if (data.matchList.length) flag = false;
         if (flag) return;
         for (let ele of data.matchList) {
-       /* let arr = [1,2,3,4,5,6,7,8,9]
-        for (let ele of arr) {*/
-            let list = cc.instantiate(obj.matchListPrefab);
+            let list = cc.instantiate(object.matchListPrefab);
             let entryConditions = JSON.parse(ele.entryConditions);
             let prizeData = JSON.parse(ele.prizeData);// 名次
             list.getChildByName('data').getComponent(cc.Label).string = JSON.stringify(ele);// 每个比赛信息
-            list.getChildByName('label').children[0].getComponent(cc.Label).string = ele.activiteName;// 活动名称
-            // list.getChildByName('label').children[1].getComponent(cc.Label).string = entryConditions[0].name;
-            // list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.userNum + '人';// 参赛人数
-            list.getChildByName('kaijurenshu').children[0].getComponent(cc.Label).string = ele.startTime;// 开赛时间
+            var listOne = list.getChildByName('background-join');
+            // 活动名称
+            listOne.getChildByName('leftName').children[0].getComponent(cc.Label).string = ele.activiteName;
+            // 开赛时间
+            listOne.getChildByName('leftName').children[1].getComponent(cc.Label).string = ele.startTime;
+            //开赛人数
+            listOne.getChildByName('people').children[1].getComponent(cc.Label).string = ele.userNum + '人';
             if (prizeData.length) {//比赛奖励
-                list.getChildByName('jiangjin').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
-                list.getChildByName('jiangjin').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
+                listOne.getChildByName('prize').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
+                listOne.getChildByName('prize').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
             }
-            // list.getChildByName('baomingfei').children[0].getComponent(cc.Label).string = entryConditions[0].name;//报名条件
-            list.getChildByName('baomingfei').children[0].getComponent(cc.Label).string = '详情>>';//报名条件
-            // 判断是日赛还好是月赛
-            if (ele.activiteType == 2) {
-                let pa = parent_ri.children[1].children[0].children[1].children[0];
-                pa.getChildByName('no_data').active = false;
-                list.parent = pa;
-            } else if (ele.activiteType == 4){
-                let pa = parent_yue.children[1].children[0].children[1].children[0];
-                pa.getChildByName('no_data').active = false;
-                list.parent = pa;
-            }
+            var parent = cc.find("Canvas/match/count/right/background-right/lists/view/content");
+            list.parent = parent;
+            parent.getChildByName('no_data').active = false;
         }
     },
     getListErr: function (res,obj) {
@@ -87,8 +133,8 @@ cc.Class({
     * 加入比赛
     */
     joinMatch: function (event) {
-        let matchJs = event.target.parent.getComponent('match');
-        let listData = event.target.parent.getChildByName('data').getComponent(cc.Label).string;
+        let matchJs = event.target.parent.parent.parent.children[1].getComponent('match');
+        let listData = event.target.parent.parent.getChildByName('data').getComponent(cc.Label).string;
         // 当前比赛信息存放在缓存中
         cc.sys.localStorage.setItem('matchData',listData);
         let data = JSON.parse(listData);
@@ -174,6 +220,9 @@ cc.Class({
     },
     closeTips: function () {
         cc.find('Canvas').getChildByName('matchTip').active = false;
+    },
+    closeBtn:function(){
+        cc.find('Canvas/match').destroy();
     }
 });
 
