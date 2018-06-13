@@ -195,8 +195,12 @@ cc.Class({
             context = cc.find('Canvas').getComponent('MJDataBind');     
             var gameStartInit = require('GameStartInit');
             var gameEvent = require('GameEvent');
+            var gameModelMp3 = "";//播放声音
+            if(cc.weijifen.GameBase.gameModel == "wz"){
+                gameModelMp3 = "wz";
+            }
             //触发音效
-            cc.weijifen.audio.playSFX('nv/'+data.action+'.mp3');        
+            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+data.action+'.mp3');        
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;
 
             let jiantou;

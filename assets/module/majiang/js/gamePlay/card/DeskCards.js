@@ -56,6 +56,10 @@ cc.Class({
         //this.jiantou.active  = true;
         this.cardcolor();
         this.xiaochu();
+        var gameModelMp3 = "";//播放声音
+        if(cc.weijifen.GameBase.gameModel == "wz"){
+            gameModelMp3 = "wz";
+        }
         // let ani = this.jiantou.getComponent(cc.Animation);
         // let c = fangwei;
         // if(fangwei =='B'){
@@ -95,7 +99,7 @@ cc.Class({
                         time = 1000;
                     }
                     setTimeout(function(){
-                        cc.weijifen.audio.playSFX('nv/wind_'+(cardcolors+8)+'.mp3');                
+                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');                
                     },time);
                 }
                 //东南西北风 ， 中发白
@@ -104,17 +108,17 @@ cc.Class({
                 if(cardtype == 0){ //万
                     deskcard = fangwei+"_character_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
-                        cc.weijifen.audio.playSFX('nv/wan_'+(parseInt((this.value%36)/4)+1)+'.mp3');
+                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wan_'+(parseInt((this.value%36)/4)+1)+'.mp3');
                     }
                 }else if(cardtype == 1){ //筒
                     deskcard = fangwei+"_dot_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
-                        cc.weijifen.audio.playSFX('nv/tong_'+(parseInt((this.value%36)/4)+1)+'.mp3');
+                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'tong_'+(parseInt((this.value%36)/4)+1)+'.mp3');
                     }
                 }else if(cardtype == 2){  //条
                     deskcard = fangwei+"_bamboo_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
-                    cc.weijifen.audio.playSFX('nv/suo_'+(parseInt((this.value%36)/4)+1)+'.mp3');
+                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+'.mp3');
                     }
                 }
             }

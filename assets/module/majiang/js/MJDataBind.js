@@ -132,6 +132,10 @@ cc.Class({
 
         // //初始化对象池
         this.init_pool();
+        this.gameModelMp3 = "";//播放声音
+        if(cc.weijifen.GameBase.gameModel == "wz"){
+            this.gameModelMp3 = "wz";
+        }
 
         // dealcard、action  
 
@@ -243,6 +247,7 @@ cc.Class({
 
         // 监听出牌拿牌
         self.node.on('takecard', function (event) {
+            
             var context = cc.find('Canvas').getComponent('MJDataBind');             
             cc.weijifen.audio.playSFX('select.mp3');            
 
@@ -267,7 +272,7 @@ cc.Class({
                         setTimeout(function(){
                             cc.find('Canvas/ting').active = false;
                         },3000);
-                        cc.weijifen.audio.playSFX('nv/ting.mp3');                                
+                        cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
                         socket.emit("selectaction" , JSON.stringify({
@@ -438,7 +443,7 @@ cc.Class({
          * ActionEvent发射的事件 ， 点击 胡
          */
         self.node.on("hu",function(event){
-            cc.weijifen.audio.playSFX('nv/hu.mp3');  
+            cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'hu.mp3');  
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
