@@ -46,11 +46,9 @@ cc.Class({
 	            anim.play('hu');
 	            let huTime = setTimeout(function(){
 	                cc.find('Canvas/huAnimation').active = false;
-	               	if (cc.find('Canvas/big_cards').children.length) {
-	    				for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-	    					cc.find('Canvas/big_cards').children[i].destroy();
-	    				} 
-	        		}
+	              	if (cc.find('Canvas/big_cards').children) {
+	    				cc.find('Canvas/big_cards').removeAllChildren();
+        			}
 			        clearTimeout(huTime);
 	            },2000);
 		    }

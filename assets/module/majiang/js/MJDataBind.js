@@ -140,6 +140,7 @@ cc.Class({
         if(cc.weijifen.GameBase.gameModel == "wz"){
             this.gameModelMp3 = "wz";
         }
+      
         // dealcard、action  
 
 
@@ -275,7 +276,8 @@ cc.Class({
                         setTimeout(function(){
                             cc.find('Canvas/ting').active = false;
                         },1500);
-                        c.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                
+                        console.log(self.gameModelMp3)
+                        cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
                         socket.emit("selectaction" , JSON.stringify({
@@ -881,15 +883,18 @@ cc.Class({
     exchange_searchlight:function(direction , context){
         cc.sys.localStorage.removeItem('cl');      
         context = cc.find('Canvas').getComponent('MJDataBind');
+        let time = setTimeout(function(){
         for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
             if(direction == context.searchlight.children[inx].name){
-                context.searchlight.children[inx].active = true ;
-                cc.sys.localStorage.setItem('take','true');
+                    context.searchlight.children[inx].active = true ;
+                    cc.sys.localStorage.setItem('take','true');
             }else{
-                context.searchlight.children[inx].active = false ;
-                cc.sys.localStorage.removeItem('take');
+                    context.searchlight.children[inx].active = false ;
+                    cc.sys.localStorage.removeItem('take');
             }
         }
+            clearTimeout(time); 
+        },400);
     },
     readyNoActive: function(context){
         context.right_ready.active = false;

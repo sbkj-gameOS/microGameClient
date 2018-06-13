@@ -70,7 +70,7 @@ cc.Class({
                     anim.play('ting');
                     setTimeout(function(){
                         cc.find('Canvas/ting').active = false;
-                    },4000);
+                    },2000);
 	                // context.tingting.active = true ;
 	                // setTimeout(function(){context.tingting.active = false ;},2000);
 	                context[playerss.tablepos+'ting'].active = true ; 
@@ -92,11 +92,9 @@ cc.Class({
 	            if(data.ting){
 	                cc.sys.localStorage.setItem('alting','true'); 
 	                cc.sys.localStorage.setItem('altings','true');  
-	                cc.sys.localStorage.setItem('take','true');   
-	                if (cc.find('Canvas/big_cards').children.length) {
-	    				for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-	    					cc.find('Canvas/big_cards').children[i].destroy();
-	    				} 
+	                cc.sys.localStorage.setItem('take','true');  
+        			if (cc.find('Canvas/big_cards').children) {
+	    				cc.find('Canvas/big_cards').removeAllChildren();
         			}
 	                // cc.find('Canvas/mask').active = false;
 	            }else{
@@ -298,10 +296,8 @@ cc.Class({
 	     */
 	    dealcard_event:function(data , context){
     		context.clock = setTimeout(function(){
-    			if (cc.find('Canvas/big_cards').children.length) {
-    				for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-    					cc.find('Canvas/big_cards').children[i].destroy();
-    				} 
+    			if (cc.find('Canvas/big_cards').children) {
+    				cc.find('Canvas/big_cards').removeAllChildren();
         		}
         		// cc.find('Canvas/mask').active = false;
 	            let desk_c = cc.find('Canvas/cards/deskcards/current');
@@ -312,8 +308,8 @@ cc.Class({
 	            if (desk_r.children.length > 0) desk_r.children[desk_r.children.length-1].active = true;
 	            if (desk_t.children.length > 0) desk_t.children[desk_t.children.length-1].active = true;
 	            if (desk_l.children.length > 0) desk_l.children[desk_l.children.length-1].active = true;
-    				clearTimeout(context.clock);
-    		},1500)
+    				// clearTimeout(context.clock);
+    		},500)
 
 	      	var gamePlay = require('GamePlay');
 	        if(cc.sys.localStorage.getItem('cb') == 'true'&&cc.sys.localStorage.getItem('altings') != 'true'){

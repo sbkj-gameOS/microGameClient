@@ -42,11 +42,8 @@ cc.Class({
        
     },
     onClick:function(event , data){  
-        // cc.find('Canvas/mask').active = false;
-        if (cc.find('Canvas/big_cards').children.length) {
-            for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-                cc.find('Canvas/big_cards').children[i].destroy();
-            } 
+        if (cc.find('Canvas/big_cards').children) {
+           cc.find('Canvas/big_cards').removeAllChildren();
         }
         this.node.dispatchEvent( new cc.Event.EventCustom(data, true) );
     },
@@ -185,11 +182,8 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
-            // cc.find('Canvas/mask').active = false;
-            if (cc.find('Canvas/big_cards').children.length) {
-                for(var i = 0;i < cc.find('Canvas/big_cards').children.length;i++) {
-                    cc.find('Canvas/big_cards').children[i].destroy();
-                } 
+            if (cc.find('Canvas/big_cards').children) {
+               cc.find('Canvas/big_cards').removeAllChildren();
             }
           
             context = cc.find('Canvas').getComponent('MJDataBind');     
