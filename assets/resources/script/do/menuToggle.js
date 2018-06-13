@@ -113,7 +113,8 @@ cc.Class({
                     if (i > 0) reward.y = reward.y - reward.width - 15;
                     reward.active = true;
                     reward.parent = rewardTxt;
-                    reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-2');
+                    reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-1');
+                    reward.children[3].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-2');
                 }
             }
             // 比赛内容

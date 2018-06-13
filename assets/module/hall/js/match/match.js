@@ -31,7 +31,7 @@ cc.Class({
     },
     getRoomErr: function (res,obj) {
         let data = JSON.parse(res);
-        alert(data.msg)
+        alert(data.msg);
     },
     /*
     * 获取比赛列表
@@ -191,7 +191,9 @@ cc.Class({
             let data1 = JSON.parse(data);
             if (data1.success) {
                 obj.alert('报名成功!');
-            } 
+            } else {
+                obj.alert(data1.msg);
+            }
         },function(data){
             obj.alert(data1.msg);
         },obj);
