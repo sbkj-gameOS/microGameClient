@@ -123,6 +123,10 @@ cc.Class({
         bigModel: {
             default: null,
             type: cc.Prefab
+        },
+        callingSign: {
+            default: null,
+            type: cc.Node
         }
     },
     onLoad: function () {
@@ -130,13 +134,12 @@ cc.Class({
         //let socket = this.socket(self);
         let socket = this.connect() ;
 
-        // //初始化对象池
+        // 初始化对象池
         this.init_pool();
         this.gameModelMp3 = "";//播放声音
         if(cc.weijifen.GameBase.gameModel == "wz"){
             this.gameModelMp3 = "wz";
         }
-
         // dealcard、action  
 
 
@@ -170,6 +173,7 @@ cc.Class({
             self.map("over" , settingClick.over_event,self);
             self.map("unOver" , settingClick.unOver_event,self);
         });
+      
         // if(this.ready()){
         //     let socket = this.socket();
         //     *
@@ -247,7 +251,6 @@ cc.Class({
 
         // 监听出牌拿牌
         self.node.on('takecard', function (event) {
-            
             var context = cc.find('Canvas').getComponent('MJDataBind');             
             cc.weijifen.audio.playSFX('select.mp3');            
 
@@ -271,8 +274,8 @@ cc.Class({
                         anim.play('ting');
                         setTimeout(function(){
                             cc.find('Canvas/ting').active = false;
-                        },3000);
-                        cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                
+                        },1500);
+                        c.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
                         socket.emit("selectaction" , JSON.stringify({
@@ -514,7 +517,18 @@ cc.Class({
             }        
         });
 
-
+          // 查看玩家是否离线
+        cc.weijifen.offline = function(status){
+            //status    0:在线   1：离线  2：电话中
+            let param = {
+                // userId: cc.weijifen.user.id,
+                userId: 'b4e332201dee4d47903db9ed7732baaf',
+                type: 4,
+                status: status
+            };
+            socket.emit("sayOnSound" ,JSON.stringify(param));
+        }
+        // cc.weijifen.offline(2);
         cc.sys.localStorage.setItem('count','0');
         cc.sys.localStorage.removeItem('current');
         cc.sys.localStorage.removeItem('right');
@@ -922,7 +936,7 @@ cc.Class({
     },
     /*exchange_searchlight:function(direction , context){
         cc.sys.localStorage.removeItem('cl');      
-        context = cc.find('Canvas').getComponent('MJDataBind');n
+        context = cc.find('Canvas').getComponent('MJDataBind');
         for(var inx = 0 ; inx<context.searchlight.children.length ; ix++){
             if(direction == context.searchlight.children[inx].name){
                 context.searchlight.children[inx].active = true ;
@@ -981,6 +995,12 @@ cc.Class({
     },
     /*
     * 文字聊天事件处理
+    * { type:
+    *      1：文字
+    *      2：表情
+    *      3：语音
+    *      4：是否离线（0：离线；1：在线；2:电话中）
+    * }
     */
     talk_event: function (res1,obj) {
         let chatShow = cc.find('Canvas/chatShow');
@@ -1040,6 +1060,71 @@ cc.Class({
             },2000)
             return
         }
+        // 语音
+        
+        
+        // 是否离线
+        if (res.type == 4) {
+            function stateFn (userId,status) {
+                if (num == 2) {
+                    let callingSign = cc.instantiate(obj.callingSign);
+                    let id = obj.top_player.children[4].getChildByName('id').getComponent(cc.Label).string;
+                    if(status == 1) callingSign.active = false;
+                    if(status == 2) callingSign.active = true;
+                    id == userId ? callingSign.parent = obj.top_player : console.log(0);
+                    return
+                }
+                if (num == 3) {
+                    let id_r ,id_t;
+                    if (obj.right_player.children[4]) {id_r = obj.right_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
+                    if (obj.top_player.children[4]) {id_r = obj.top_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
+                    if (id_r == userId && obj.right_player.children[4]) {
+                        let callingSign = cc.instantiate(obj.callingSign);
+                        if(status == 1) callingSign.active = false;
+                        if(status == 2) callingSign.active = true;
+                        callingSign.parent = obj.right_player;
+                    };
+                    if (id_t == userId && obj.top_player.children[4]) {
+                        let callingSign = cc.instantiate(obj.callingSign);
+                        if(status == 1) callingSign.active = false;
+                        if(status == 2) callingSign.active = true;
+                        callingSign.parent = obj.top_player;
+                    };
+                    return
+                }
+                if (num == 4) {
+                    let id_r ,id_t,id_l;
+                    if (obj.right_player.children[4]) {id_r = obj.right_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
+                    if (obj.top_player.children[4]) {id_t = obj.top_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
+                    if (obj.left_player.children[4]) {id_l = obj.left_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
+                    if (id_r == userId && obj.right_player.children[4]) {
+                        let callingSign = cc.instantiate(obj.callingSign);
+                        if(status == 1) callingSign.active = false;
+                        if(status == 2) callingSign.active = true;
+                        callingSign.parent = obj.right_player;
+                    };
+                    if (id_t == userId && obj.top_player.children[4]) {
+                        let callingSign = cc.instantiate(obj.callingSign);
+                        if(status == 1) callingSign.active = false;
+                        if(status == 2) callingSign.active = true;
+                        callingSign.parent = obj.top_player;
+                    };
+                    if (id_t == userId && obj.left_player.children[4]) {
+                        let callingSign = cc.instantiate(obj.callingSign);
+                        if(status == 1) callingSign.active = false;
+                        if(status == 2) callingSign.active = true;
+                        callingSign.parent = obj.top_player;
+                    };
+                    return
+                }
+            }
+            let num = cc.weijifen.playerNum;
+     
+            let time = setTimeout(function(){
+                stateFn(res.userId,res.status);
+                clearTimeout(time);
+            },500);
+        } 
     },
     /*
     * 常用聊天语
@@ -1100,8 +1185,6 @@ cc.Class({
         }else{
             emoji.active = true;    
         }
-
-
     }
 });
 

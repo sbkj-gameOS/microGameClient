@@ -2491,7 +2491,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 88,
-      "height": 40
+      "height": 22
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2520,7 +2520,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 22,
     "_fontSize": 22,
-    "_lineHeight": 40,
+    "_lineHeight": 22,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
@@ -2580,7 +2580,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 88,
-      "height": 40
+      "height": 22
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2609,7 +2609,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 22,
     "_fontSize": 22,
-    "_lineHeight": 40,
+    "_lineHeight": 22,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
@@ -2669,7 +2669,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 88,
-      "height": 40
+      "height": 22
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2698,7 +2698,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 22,
     "_fontSize": 22,
-    "_lineHeight": 40,
+    "_lineHeight": 22,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
@@ -2758,7 +2758,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 88,
-      "height": 40
+      "height": 22
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2787,7 +2787,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 22,
     "_fontSize": 22,
-    "_lineHeight": 40,
+    "_lineHeight": 22,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
@@ -3532,7 +3532,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -32,
-      "y": 133
+      "y": 4
     },
     "_skewX": 0,
     "_skewY": 0,

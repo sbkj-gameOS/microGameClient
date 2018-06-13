@@ -21,7 +21,7 @@ cc.Class({
     /*
     * 获取房卡
     */
-    getRoomCards: function () {
+    /*getRoomCards: function () {
         let token = {token:cc.weijifen.authorization};
         cc.weijifen.http.httpPost('/match/matchNum',token,this.getListSuccess,this.getListErr,this) ;            
     },
@@ -32,7 +32,7 @@ cc.Class({
     getRoomErr: function (res,obj) {
         let data = JSON.parse(res);
         alert(data.msg);
-    },
+    },*/
     /*
     * 获取比赛列表
     *
@@ -57,7 +57,7 @@ cc.Class({
                 seconds = "0"+seconds;
             }
             cc.find("Canvas/match/title/left/time").getComponent(cc.Label).string = hour+":"+minutes+":"+seconds;
-            cc.find("Canvas/match/title/right/card/roomCard").getComponent(cc.Label).string = cc.weijifen.roomCard;
+            cc.find("Canvas/match/title/right/card/roomCard").getComponent(cc.Label).string = cc.weijifen.user.cards;
         },1000);
 
         var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"}];
@@ -78,7 +78,7 @@ cc.Class({
             list.parent = parent;
         }
         this.listdata = cc.find("Canvas/match/count/right/background-right/lists/view/content");
-        this.getListData();  
+        this.getListData(data);  
     },
     leftBtnListOne:function(event){
         var btnlist = event.target.parent.children;
@@ -91,13 +91,14 @@ cc.Class({
         event.target.children[1].active = false;
         event.target.children[0].active = true;
         this.btnSelectData = event.target.getChildByName("type").getComponent(cc.Label).string;
-        this.getListData();
+        this.getListData(this.btnSelectData);
     },
-    getListData:function(){
+    getListData:function(type){
         var parent = cc.find("Canvas/match/count/right/background-right/lists/view/content");
         parent.removeAllChildren();
         let token = {token:cc.weijifen.authorization};
-        cc.weijifen.http.httpPost('/match/getMatchList',token,this.getListSuccess,this.getListErr,this) ;
+        // cc.weijifen.http.httpPost('/match/getMatchList',token,this.getListSuccess,this.getListErr,this) ;//获取所有列表
+        cc.weijifen.http.httpPost('/match/query/list/'+type,token,this.getListSuccess,this.getListErr,this) ;
     },
     /*
     * activiteType值为2，日赛；4为月赛
@@ -129,8 +130,9 @@ cc.Class({
         }
     },
     getListErr: function (res,obj) {
-        let data = JSON.parse(res);
-        obj.alert(data.msg)
+        /*let data = JSON.parse(res);
+        obj.alert(data.msg)*/
+        
     },
     /*
     * 加入比赛
@@ -241,10 +243,6 @@ cc.Class({
         cc.find('Canvas/match').destroy();
     }
 });
-
-
-
-
 
 
 
