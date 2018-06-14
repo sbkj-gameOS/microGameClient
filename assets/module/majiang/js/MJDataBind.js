@@ -133,7 +133,7 @@ cc.Class({
         let self = this ;
         //let socket = this.socket(self);
         let socket = this.connect() ;
-
+        self.msg = null;//反作弊提示信息
         // 初始化对象池
         this.init_pool();
         this.gameModelMp3 = "";//播放声音
@@ -523,15 +523,20 @@ cc.Class({
         cc.weijifen.offline = function(status){
             //status    0:在线   1：离线  2：电话中
             let param = {
-                // userId: cc.weijifen.user.id,
-                userId: '37a538a553bf4e88820893274669992f',
+                userId: cc.weijifen.user.id,
+                // userId: '37a538a553bf4e88820893274669992f',
                 type: 4,
                 status: status
             };
             socket.emit("sayOnSound" ,JSON.stringify(param));
         }
         // cc.weijifen.offline(2);
-        
+
+        // 
+        cc.weijifen.player_recording = function(param){
+            socket.emit("sayOnSound" ,JSON.stringify(param));
+        }
+
         cc.sys.localStorage.setItem('count','0');
         cc.sys.localStorage.removeItem('current');
         cc.sys.localStorage.removeItem('right');
@@ -697,6 +702,21 @@ cc.Class({
     joinRoom:function(){
         //开始匹配
         let socket = this.socket();
+        // 地理位置
+        if (cc.sys.localStorage.getItem('tips') == 'false') {
+            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", getLocation,'');
+            if (result) {
+                console.log('res',res)
+                let res = JSON.parse(result);
+                let params = {
+                    token:cc.weijifen.authorization,
+                    lng: res.lo,//j
+                    lat: res.la//w
+                }
+                cc.sys.localStorage.setItem('tips','true');
+                cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
+            }
+        } 
         var param = {
             token:cc.weijifen.authorization,
             playway:cc.weijifen.playway,
@@ -708,7 +728,7 @@ cc.Class({
             param.playway = '402888815e6f0177015e71529f3a0001',
             param.match = 1 ; 
         }
-      
+
         socket.emit("joinroom" ,JSON.stringify(param)) ;
     },
     /**
@@ -1064,7 +1084,13 @@ cc.Class({
             return
         }
         // 语音
-        
+        if (res.type == 3) {
+            let params = {
+                
+            }
+            // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',params);
+            return
+        }
         
         // 是否离线
         if (res.type == 4) {
@@ -1173,6 +1199,30 @@ cc.Class({
         }else{
             emoji.active = true;    
         }
+    },
+    /**
+     * 录音功能
+     * 逻辑：1、在录音按钮上按下、抬起，都要向后端；
+     *      2、
+     */
+    /*recording_no: function () {
+        this.alert('即将开放，敬请期待！');
+    },*/
+    recording: function (event) {
+        let self = this;
+        function callAndroid (way,param) {
+            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
+        }
+        event.target.on('mousedown',function(e){callAndroid(way,param)});
+        event.target.on('mouseup',function(e){callAndroid(way,param)});
+    },
+     /**
+     * 获取玩家地理位置成功
+     */
+    getPosition: function (result,obj) {
+        // lo经度；la，alt，t
+        let res = JSON.parse(result);
+        obj.positionMsg = res.msg;
     }
 });
 

@@ -26,11 +26,12 @@ cc.Class({
             //如果是2人的模式  就只加自己和对家
             context = cc.find('Canvas').getComponent('MJDataBind') ;
             // 反作弊提示
-            if(data.msg){
+            if(context.msg){
                 cc.find("Canvas/userIp").active = true;
-                cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
+                cc.find("Canvas/userIp/label").getComponent(cc.Label).string = context.msg;
             	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
+          
             if(cc.weijifen.playerNum == 2){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
 
