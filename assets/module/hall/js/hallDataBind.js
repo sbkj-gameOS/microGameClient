@@ -2,6 +2,7 @@
 * @主菜单页（gameMain场景）
 */
 var WJFCommon = require("WJFCommon");
+
 cc.Class({
     extends: WJFCommon,
 
@@ -43,13 +44,6 @@ cc.Class({
         headBorder: cc.SpriteAtlas
     },
     onLoad: function () {
-        
-        // cc.weijifen.shareData = function(roomNum){
-        //     var inputNum = require("inputNum");
-        //     inputNum = new inputNum();
-        //     inputNum.click(roomNum);
-        // }
-        
         //如果weijifen已经加载好了
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
@@ -115,7 +109,13 @@ cc.Class({
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
-        // console.log('cc.weijifen---handDataBind',cc.weijifen)
+        // 点击分享卡片进入房间
+        cc.weijifen.shareData = function(roomNum){
+            let inputNumJs = require("inputNum");
+            let input = new inputNumJs();
+            roomNum.length == 6 ? input.click(roomNum)
+                                : self.alert('进入房间失败！');
+        }
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
@@ -266,8 +266,6 @@ cc.Class({
         
     }
 });
-
-
 
 
 

@@ -120,7 +120,10 @@ cc.Class({
                 cc.director.loadScene('majiang');
             });
         }else if(data.error){
-        //   
+            if (!object.notice) {
+                object.alert(data.msg);
+                return
+            }
             object.notice.string = data.msg;
             object.inputNum1.string = "";
             object.inputNum2.string = "";
