@@ -703,8 +703,10 @@ cc.Class({
         //开始匹配
         let socket = this.socket();
         // 地理位置
+        // 调用android方法名：getLocation
+        // 返回地址位置：lo经度；alt，海拔；t时间
         if (cc.sys.localStorage.getItem('tips') == 'false') {
-            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", getLocation,'');
+            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
             if (result) {
                 console.log('res',res)
                 let res = JSON.parse(result);
@@ -1204,6 +1206,12 @@ cc.Class({
      * 录音功能
      * 逻辑：1、在录音按钮上按下、抬起，都要向后端；
      *      2、
+     *  方法名：recorderApi
+     *  返回数据（json）： 
+                        {"act":"1", //1: 开始录音, 2: 结束录音, 3: 取消录音, 4: 播放录音
+                        "token":"zxfdgdrherhtr", //当前的token
+                        "url":"xxxxx" //获取到的文件url
+                        }
      */
     recording_no: function (event) {
         let wjf = new WJFCommon();
@@ -1221,7 +1229,6 @@ cc.Class({
      * 获取玩家地理位置成功
      */
     getPosition: function (result,obj) {
-        // lo经度；la，alt，t
         let res = JSON.parse(result);
         obj.positionMsg = res.msg;
     }
