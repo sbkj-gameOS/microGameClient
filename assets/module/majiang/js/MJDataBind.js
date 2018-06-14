@@ -1086,7 +1086,7 @@ cc.Class({
         // 语音
         if (res.type == 3) {
             let params = {
-                
+
             }
             // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',params);
             return
@@ -1205,9 +1205,10 @@ cc.Class({
      * 逻辑：1、在录音按钮上按下、抬起，都要向后端；
      *      2、
      */
-    /*recording_no: function () {
-        this.alert('即将开放，敬请期待！');
-    },*/
+    recording_no: function (event) {
+        let wjf = new WJFCommon();
+        wjf.alert('即将开放，敬请期待！');
+    },
     recording: function (event) {
         let self = this;
         function callAndroid (way,param) {
