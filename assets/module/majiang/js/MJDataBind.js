@@ -524,13 +524,14 @@ cc.Class({
             //status    0:在线   1：离线  2：电话中
             let param = {
                 // userId: cc.weijifen.user.id,
-                userId: 'b4e332201dee4d47903db9ed7732baaf',
+                userId: '37a538a553bf4e88820893274669992f',
                 type: 4,
                 status: status
             };
             socket.emit("sayOnSound" ,JSON.stringify(param));
         }
         // cc.weijifen.offline(2);
+        
         cc.sys.localStorage.setItem('count','0');
         cc.sys.localStorage.removeItem('current');
         cc.sys.localStorage.removeItem('right');
@@ -542,9 +543,6 @@ cc.Class({
         cc.sys.localStorage.removeItem('unOver');      
         cc.sys.localStorage.removeItem('clear');   
         cc.sys.localStorage.removeItem('cb');   
-
-        
-
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");
@@ -1070,61 +1068,46 @@ cc.Class({
         
         // 是否离线
         if (res.type == 4) {
+            // player  头像框父节点;
+            // userId  状态发生改变的用户id
+            // status  用户状态
+            function playerId (player,userId,status) {
+                let id;
+                if (player.children[4]) {
+                    id = player.children[4].getChildByName('id').getComponent(cc.Label).string;
+                    if (status == 0 && id == userId) {
+                        player.children[4].getChildByName('off_line_sign').active = true;
+                        player.children[4].getChildByName('callingSign').active = false;
+                        player.children[4].children[1].color = new cc.Color(100,100,100);
+                    } else if(status == 1 && id == userId) {
+                        player.children[4].getChildByName('off_line_sign').active = false;
+                        player.children[4].getChildByName('callingSign').active = false;
+                        player.children[4].children[1].color = new cc.Color(255,255,255);
+                    } else if(status == 2 && id == userId) {
+                        player.children[4].getChildByName('off_line_sign').active = false;
+                        player.children[4].getChildByName('callingSign').active = true;
+                        player.children[4].children[1].color = new cc.Color(100,100,100);
+                    }
+                }
+            }
             function stateFn (userId,status) {
                 if (num == 2) {
-                    let callingSign = cc.instantiate(obj.callingSign);
-                    let id = obj.top_player.children[4].getChildByName('id').getComponent(cc.Label).string;
-                    if(status == 1) callingSign.active = false;
-                    if(status == 2) callingSign.active = true;
-                    id == userId ? callingSign.parent = obj.top_player : console.log(0);
+                    playerId(obj.top_player,userId,status);
                     return
                 }
                 if (num == 3) {
-                    let id_r ,id_t;
-                    if (obj.right_player.children[4]) {id_r = obj.right_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
-                    if (obj.top_player.children[4]) {id_r = obj.top_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
-                    if (id_r == userId && obj.right_player.children[4]) {
-                        let callingSign = cc.instantiate(obj.callingSign);
-                        if(status == 1) callingSign.active = false;
-                        if(status == 2) callingSign.active = true;
-                        callingSign.parent = obj.right_player;
-                    };
-                    if (id_t == userId && obj.top_player.children[4]) {
-                        let callingSign = cc.instantiate(obj.callingSign);
-                        if(status == 1) callingSign.active = false;
-                        if(status == 2) callingSign.active = true;
-                        callingSign.parent = obj.top_player;
-                    };
+                    playerId(obj.right_player,userId,status);
+                    playerId(obj.top_player,userId,status);
                     return
                 }
                 if (num == 4) {
-                    let id_r ,id_t,id_l;
-                    if (obj.right_player.children[4]) {id_r = obj.right_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
-                    if (obj.top_player.children[4]) {id_t = obj.top_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
-                    if (obj.left_player.children[4]) {id_l = obj.left_player.children[4].getChildByName('id').getComponent(cc.Label).string;}
-                    if (id_r == userId && obj.right_player.children[4]) {
-                        let callingSign = cc.instantiate(obj.callingSign);
-                        if(status == 1) callingSign.active = false;
-                        if(status == 2) callingSign.active = true;
-                        callingSign.parent = obj.right_player;
-                    };
-                    if (id_t == userId && obj.top_player.children[4]) {
-                        let callingSign = cc.instantiate(obj.callingSign);
-                        if(status == 1) callingSign.active = false;
-                        if(status == 2) callingSign.active = true;
-                        callingSign.parent = obj.top_player;
-                    };
-                    if (id_t == userId && obj.left_player.children[4]) {
-                        let callingSign = cc.instantiate(obj.callingSign);
-                        if(status == 1) callingSign.active = false;
-                        if(status == 2) callingSign.active = true;
-                        callingSign.parent = obj.top_player;
-                    };
+                    playerId(obj.right_player,userId,status);
+                    playerId(obj.top_player,userId,status);
+                    playerId(obj.left_player,userId,status);
                     return
                 }
             }
             let num = cc.weijifen.playerNum;
-     
             let time = setTimeout(function(){
                 stateFn(res.userId,res.status);
                 clearTimeout(time);
