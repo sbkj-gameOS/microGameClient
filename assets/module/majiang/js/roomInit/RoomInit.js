@@ -28,7 +28,7 @@ cc.Class({
             // 反作弊提示
             if(data.msg){
                 cc.find("Canvas/userIp").active = true;
-                cc.find("Canvas/userIp/label").getComponent(cc.Label).string = context.msg;
+                cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
             	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
           
