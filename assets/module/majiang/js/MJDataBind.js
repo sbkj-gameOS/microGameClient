@@ -519,7 +519,7 @@ cc.Class({
             }        
         });
 
-          // 查看玩家是否离线
+          // 查看玩家是否离线（主监测电话中）
         cc.weijifen.offline = function(status){
             //status    0:在线   1：离线  2：电话中
             let param = {
@@ -531,8 +531,19 @@ cc.Class({
             socket.emit("sayOnSound" ,JSON.stringify(param));
         }
         // cc.weijifen.offline(2);
-
-        // 
+        // 主监测游戏进入后台
+        // 监听到该事件说明玩家已经离线，此时status为1
+        cc.game.on(cc.game.EVENT_HIDE, function () {
+            console.log('监听到hide事件，游戏进入后台运行！');
+            let param = {
+                userId: cc.weijifen.user.id,
+                // userId: '37a538a553bf4e88820893274669992f',
+                type: 4,
+                status: 1
+            };
+            socket.emit("sayOnSound" ,JSON.stringify(param));
+        });
+        // 录音
         cc.weijifen.player_recording = function(param){
             socket.emit("sayOnSound" ,JSON.stringify(param));
         }
@@ -1024,7 +1035,7 @@ cc.Class({
     *      1：文字
     *      2：表情
     *      3：语音
-    *      4：是否离线（0：离线；1：在线；2:电话中）
+    *      4：是否离线（0:在线   1：离线  2：电话中）
     * }
     */
     talk_event: function (res1,obj) {
@@ -1104,13 +1115,13 @@ cc.Class({
                 if (player.children[4]) {
                     id = player.children[4].getChildByName('id').getComponent(cc.Label).string;
                     if (status == 0 && id == userId) {
-                        player.children[4].getChildByName('off_line_sign').active = true;
-                        player.children[4].getChildByName('callingSign').active = false;
-                        player.children[4].children[1].color = new cc.Color(100,100,100);
-                    } else if(status == 1 && id == userId) {
                         player.children[4].getChildByName('off_line_sign').active = false;
                         player.children[4].getChildByName('callingSign').active = false;
                         player.children[4].children[1].color = new cc.Color(255,255,255);
+                    } else if(status == 1 && id == userId) {
+                        player.children[4].getChildByName('off_line_sign').active = true;
+                        player.children[4].getChildByName('callingSign').active = false;
+                        player.children[4].children[1].color = new cc.Color(100,100,100);
                     } else if(status == 2 && id == userId) {
                         player.children[4].getChildByName('off_line_sign').active = false;
                         player.children[4].getChildByName('callingSign').active = true;
