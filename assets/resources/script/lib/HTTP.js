@@ -17,12 +17,6 @@ var HTTP = cc.Class({
         // baseURL:"http://tssb.bizpartner.cn:8011",
         // wsURL : "http://tssb.bizpartner.cn:9081",
 
-        /*baseURL:"http://192.168.1.67",
-        wsURL : "http://192.168.1.67:9081",*/
-
-        // 培杰
-        /*baseURL:"http://192.168.1.76",
-        wsURL : "http://192.168.1.76:9081",*/
 
         authorization: null,
         httpGet: function (url , success , error , object) {
