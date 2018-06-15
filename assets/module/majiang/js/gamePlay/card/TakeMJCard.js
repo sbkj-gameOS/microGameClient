@@ -30,11 +30,12 @@ cc.Class({
         
     },
     mouseupClick: function(event){
-        debugger
         //获取当前节点在canvas对应的坐标位置
         var newVec2 = event.target.convertToNodeSpaceAR(cc.v2(667,375));
-        //将当前节点复制一份，添加到canvas下的一个空节点上，当前这个空节点的x,y值，就是newVec2
-        //获取出牌所在中间的位置，移动空节点到此位置
+        cc.weijifen.cardPostion = {
+            x: -newVec2.x,
+            y: -newVec2.y
+        }
         if(cc.sys.localStorage.getItem('delta')>90){
             event.target.x = 0;
             event.target.y = 0;

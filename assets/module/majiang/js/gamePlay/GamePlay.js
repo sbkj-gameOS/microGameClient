@@ -138,12 +138,18 @@ cc.Class({
 	                    	big_handcards.init(handcards.value,'B');
 	                    	/*big_card.x = 410;
 	                    	big_card.y = -240;*/
-	                    	big_card.x = 0;
-	                    	big_card.y = -250;
-	                    	big_card.parent = cc.find('Canvas/big_cards');
-	                    	
+	                    	/*big_card.x = 0;
+	                    	big_card.y = -200;
 	               			// cc.find('Canvas/mask').active = true;
 	                    	let move = cc.moveTo(0.2,cc.p(0,-160));
+		                    big_card.runAction(move);*/
+	                    	big_card.x = cc.weijifen.cardPostion.x;
+	                    	big_card.y = cc.weijifen.cardPostion.y;
+	                    	big_card.parent = cc.find('Canvas/big_cards');
+	                    	
+
+		                    // cc.find('Canvas/mask').active = true;
+	                    	let move = cc.moveTo(0.2,cc.p(0,-200));
 		                    big_card.runAction(move);
 
            					desk_card.active = false;
