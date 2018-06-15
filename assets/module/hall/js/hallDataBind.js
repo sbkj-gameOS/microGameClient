@@ -109,6 +109,13 @@ cc.Class({
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
+        // 点击分享卡片进入房间
+        cc.weijifen.shareData = function(roomNum){
+            let inputNumJs = require("inputNum");
+            let input = new inputNumJs();
+            roomNum.length == 6 ? input.click(roomNum)
+                                : self.alert('进入房间失败！');
+        }
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
