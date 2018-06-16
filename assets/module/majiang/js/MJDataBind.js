@@ -558,7 +558,7 @@ cc.Class({
         cc.weijifen.player_recording = function(param){
         	var param1 = {
         		type:3,
-        		content:JSON.stringify(param)
+        		content:param
         	};
             socket.emit("sayOnSound" ,JSON.stringify(param1));
         }
@@ -720,6 +720,30 @@ cc.Class({
         }
         this.exchange_state("init" , this);
         // let self = this ;
+        let t_Start = cc.find("Canvas/bg/right_menu/语音") ;
+        t_Start.on('touchstart',function(e){
+            var json = {
+                act:1,
+                token:cc.weijifen.authorization
+            };
+            cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
+            cc.find('Canvas/luyin').active = true;
+            console.log("1248");
+            //this.callAndroid("recorderApi",JSON.stringify(json));
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+                    ,"recorderApi",JSON.stringify(json));
+        });
+        t_Start.on('touchend',function(e){
+            var json = {
+                act:2,
+                token:cc.weijifen.authorization
+            };
+            console.log("1249");
+            //this.callAndroid("recorderApi",JSON.stringify(json))
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+                    ,"recorderApi",JSON.stringify(json));
+            cc.find('Canvas/luyin').active = false;
+        });
     },
     /*
     * 分发joinroom事件（房间初始化时）
@@ -1113,11 +1137,10 @@ cc.Class({
         }
         // 语音
         if (res.type == 3) {
-        	let main = JSON.parse(res.content);
+        	//let main = JSON.parse(res.content);
         	var params = {
         		act:4,
-        		token:main.token,
-        		url:main.url
+        		url:res.content
         	};
             var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
             return
@@ -1246,30 +1269,30 @@ cc.Class({
         let wjf = new WJFCommon();
         wjf.alert('即将开放，敬请期待！');
     },
+    callAndroid: function (way,param) {
+            let wjf = new WJFCommon();
+            console.log("1235") ;
+            //var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
+            // wjf.alert(res);
+    },
     recording1: function (event) {
-        let self = this;
-        function callAndroid (way,param) {
-        	let wjf = new WJFCommon();
-            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
-        	// wjf.alert(res);
-        }
-        event.target.on('mousedown',function(e){
-            var json = {
-                act:1,
-                token:cc.weijifen.authorization
-            };
-            cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
-            cc.find('Canvas/luyin').active = true;
-            callAndroid("recorderApi",JSON.stringify(json));
-        });
-        event.target.on('mouseup',function(e){
-            var json = {
-                act:2,
-                token:cc.weijifen.authorization
-            };
-            callAndroid("recorderApi",JSON.stringify(json))
-            cc.find('Canvas/luyin').active = false;
-        });
+        // event.target.on('touchstart',function(e){
+        //     var json = {
+        //         act:1,
+        //         token:cc.weijifen.authorization
+        //     };
+        //     cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
+        //     cc.find('Canvas/luyin').active = true;
+        //     callAndroid("recorderApi",JSON.stringify(json));
+        // });
+        // event.target.on('touchend',function(e){
+        //     var json = {
+        //         act:2,
+        //         token:cc.weijifen.authorization
+        //     };
+        //     callAndroid("recorderApi",JSON.stringify(json))
+        //     cc.find('Canvas/luyin').active = false;
+        // });
     },
      /**
      * 获取玩家地理位置成功
