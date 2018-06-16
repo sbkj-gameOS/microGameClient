@@ -127,7 +127,8 @@ cc.Class({
         callingSign: {
             default: null,
             type: cc.Node
-        }
+        },
+        recording: cc.Prefab
     },
     onLoad: function () {
         let self = this ;
@@ -1245,26 +1246,29 @@ cc.Class({
         let wjf = new WJFCommon();
         wjf.alert('即将开放，敬请期待！');
     },
-    recording: function (event) {
+    recording1: function (event) {
         let self = this;
         function callAndroid (way,param) {
         	let wjf = new WJFCommon();
-            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
+            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
         	// wjf.alert(res);
         }
         event.target.on('mousedown',function(e){
-        	var json = {
-        		act:1,
-        		token:cc.weijifen.authorization
-        	};
-        	callAndroid("recorderApi",JSON.stringify(json))
+            var json = {
+                act:1,
+                token:cc.weijifen.authorization
+            };
+            cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
+            cc.find('Canvas/luyin').active = true;
+            callAndroid("recorderApi",JSON.stringify(json));
         });
         event.target.on('mouseup',function(e){
-        	var json = {
-        		act:2,
-        		token:cc.weijifen.authorization
-        	};
-        	callAndroid("recorderApi",JSON.stringify(json))
+            var json = {
+                act:2,
+                token:cc.weijifen.authorization
+            };
+            callAndroid("recorderApi",JSON.stringify(json))
+            cc.find('Canvas/luyin').active = false;
         });
     },
      /**
