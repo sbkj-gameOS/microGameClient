@@ -543,6 +543,16 @@ cc.Class({
             };
             socket.emit("sayOnSound" ,JSON.stringify(param));
         });
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            console.log('监听到SHOW事件，游戏进入后台运行！');
+            let param = {
+                userId: cc.weijifen.user.id,
+                // userId: '37a538a553bf4e88820893274669992f',
+                type: 4,
+                status: 0
+            };
+            socket.emit("sayOnSound" ,JSON.stringify(param));
+        });
         // 录音
         cc.weijifen.player_recording = function(param){
         	var param1 = {
@@ -1238,7 +1248,9 @@ cc.Class({
     recording: function (event) {
         let self = this;
         function callAndroid (way,param) {
+        	let wjf = new WJFCommon();
             var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
+        	// wjf.alert(res);
         }
         event.target.on('mousedown',function(e){
         	var json = {
