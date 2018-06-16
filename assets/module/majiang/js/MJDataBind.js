@@ -545,7 +545,11 @@ cc.Class({
         });
         // 录音
         cc.weijifen.player_recording = function(param){
-            socket.emit("sayOnSound" ,JSON.stringify(param));
+        	var param1 = {
+        		type:3,
+        		content:JSON.stringify(param)
+        	};
+            socket.emit("sayOnSound" ,JSON.stringify(param1));
         }
 
         cc.sys.localStorage.setItem('count','0');
@@ -1098,10 +1102,13 @@ cc.Class({
         }
         // 语音
         if (res.type == 3) {
-            let params = {
-
-            }
-            // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',params);
+        	let main = JSON.parse(res.content);
+        	var params = {
+        		act:4,
+        		token:main.token,
+        		url:main.url
+        	};
+            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
             return
         }
         
@@ -1231,10 +1238,22 @@ cc.Class({
     recording: function (event) {
         let self = this;
         function callAndroid (way,param) {
-            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
+            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
         }
-        event.target.on('mousedown',function(e){callAndroid(way,param)});
-        event.target.on('mouseup',function(e){callAndroid(way,param)});
+        event.target.on('mousedown',function(e){
+        	var json = {
+        		act:1,
+        		token:cc.weijifen.authorization
+        	};
+        	callAndroid("recorderApi",JSON.stringify(json))
+        });
+        event.target.on('mouseup',function(e){
+        	var json = {
+        		act:2,
+        		token:cc.weijifen.authorization
+        	};
+        	callAndroid("recorderApi",JSON.stringify(json))
+        });
     },
      /**
      * 获取玩家地理位置成功
