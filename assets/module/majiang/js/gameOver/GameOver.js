@@ -78,39 +78,39 @@ cc.Class({
 	        for(let i = 0;i<data.playOvers.length;i++){
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
-	        		anim.active = true;
 					weizhi(player,anim);
+	        		anim.active = true;
 					anim = anim.getComponent(cc.Animation);
 					anim.play('dianpao');
 					cc.log('dianpao')
 					let time = setTimeout(function(){
 	        			cc.find('Canvas/dianpao').active = false;
 	        			clearTimeout(time);
-					},2000)
+					},4000)
 	            }
 	            if (data.playOvers[i].balance.zimo && !data.playOvers[i].balance.chongBao) {// 自摸
 	        		let anim = cc.find('Canvas/zimo');
-					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
         			anim.active = true;
+					anim = anim.getComponent(cc.Animation);
 					anim.play('zimo');
 					cc.log('zimo')
 					let time = setTimeout(function(){
 	        			cc.find('Canvas/zimo').active = false;
 	        			clearTimeout(time);
-					},2000);
+					},4000);
 	            }
 	            if (data.playOvers[i].balance.chongBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
-					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
         			anim.active = true;
+					anim = anim.getComponent(cc.Animation);
 					anim.play('chongbao');
 					cc.log('chongbao')
 					let time = setTimeout(function(){
 	        			clearTimeout(time);
 	        			cc.find('Canvas/chongbao').active = false;
-					},2000)
+					},4000)
 	            }
 	            if(data.playOvers[i].win==true){
                 	playerid = data.playOvers[i].user;
