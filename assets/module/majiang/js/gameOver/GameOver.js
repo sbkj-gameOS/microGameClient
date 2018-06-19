@@ -24,7 +24,7 @@ cc.Class({
 	       				id = data.playOvers[i].user;
 	       			}
 	       		}
-	       		let player = gameStartInit.player(id , context);
+	       		var player = gameStartInit.player(id , context);
 	            cc.find('Canvas/huAnimation').active = true;
 	            var hu = cc.find("Canvas/huAnimation/hu_action");
 	            if (player.tablepos == 'top') {
@@ -54,20 +54,18 @@ cc.Class({
 		    }
 		    function weizhi (player,img) {
 		    	if (player.tablepos == 'top') {
-	                img.x = 0;
-	                img.y = 160;
+	                img.x = 280;
+	                img.y = 200;
 	            } else if (player.tablepos == 'left') {
-	                img.x = -320;
-	                img.y = 0;
+	                img.x = -400;
+	                img.y = 80;
 	            } else if (player.tablepos == 'right') {
-	                img.x = 320;
-	                img.y = 0;
+	                img.x = 400;
+	                img.y = 80;
 	            } else {
-	                img.x = 0;
-	                img.y = -160;
+	                img.x = -450;
+	                img.y = -200;
 	            }
-	            img.width = 128;
-	            img.height = 128;
 		    }
     		context = cc.find('Canvas').getComponent('MJDataBind');
     		var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
@@ -75,25 +73,27 @@ cc.Class({
 	        //结算界面，
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
-	        let player = gameStartInit.player(data.userid , context)
 	        for(let i = 0;i<data.playOvers.length;i++){
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
 					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
 					anim.play('diaopao');
+					console.log('dianpao')
 	            }
 	            if (data.playOvers[i].balance.chongBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
 					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
 					anim.play('chongbao');
+					console.log('chongbao')
 	            }
 	            if (data.playOvers[i].balance.zimo) {// 自摸
 	        		let anim = cc.find('Canvas/zimo');
 					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
 					anim.play('zimo');
+					console.log('zimo')
 	            }
 	            if(data.playOvers[i].win==true){
                 	playerid = data.playOvers[i].user;
