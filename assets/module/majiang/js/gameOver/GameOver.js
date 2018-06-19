@@ -88,7 +88,7 @@ cc.Class({
 	        			clearTimeout(time);
 					},4000)
 	            }
-	            if (data.playOvers[i].balance.zimo && !data.playOvers[i].balance.chongBao) {// 自摸
+	            if (data.playOvers[i].balance.zimo) {// 自摸
 	        		let anim = cc.find('Canvas/zimo');
 					weizhi(player,anim);
         			anim.active = true;
@@ -100,7 +100,7 @@ cc.Class({
 	        			clearTimeout(time);
 					},4000);
 	            }
-	            if (data.playOvers[i].balance.chongBao) {// 冲宝
+	            if (data.playOvers[i].balance.chongBao && !data.playOvers[i].balance.zimo) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
 					weizhi(player,anim);
         			anim.active = true;
