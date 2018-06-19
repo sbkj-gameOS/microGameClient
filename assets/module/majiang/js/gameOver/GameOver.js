@@ -78,22 +78,22 @@ cc.Class({
 	        		let anim = cc.find('Canvas/dianpao');
 					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
-					anim.play('diaopao');
-					console.log('dianpao')
+					anim.play('dianpao');
+					cc.log('dianpao')
 	            }
 	            if (data.playOvers[i].balance.chongBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
 					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
 					anim.play('chongbao');
-					console.log('chongbao')
+					cc.log('chongbao')
 	            }
 	            if (data.playOvers[i].balance.zimo) {// 自摸
 	        		let anim = cc.find('Canvas/zimo');
 					anim = anim.getComponent(cc.Animation);
 					weizhi(player,anim);
 					anim.play('zimo');
-					console.log('zimo')
+					cc.log('zimo')
 	            }
 	            if(data.playOvers[i].win==true){
                 	playerid = data.playOvers[i].user;
