@@ -141,7 +141,9 @@ cc.Class({
         if(cc.weijifen.GameBase.gameModel == "wz"){
             this.gameModelMp3 = "wz";
         }
-      
+        if(cc.weijifen.GameBase.gameModel == "ch"){
+            cc.find('Canvas/other/setting').children[0].active = false;
+        }
         // dealcard、action  
 
 
@@ -458,7 +460,6 @@ cc.Class({
             }));
             self.getSelf().shouOperationMune();
             event.stopPropagation();
-        
         });
         /**
          * ActionEvent发射的事件 ， 点击 过
@@ -719,7 +720,6 @@ cc.Class({
             }
         }
         this.exchange_state("init" , this);
-        // let self = this ;
         let t_Start = cc.find("Canvas/bg/right_menu/语音") ;
         t_Start.on('touchstart',function(e){
             var json = {
@@ -729,7 +729,6 @@ cc.Class({
             cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
             cc.find('Canvas/luyin').active = true;
             console.log("1248");
-            //this.callAndroid("recorderApi",JSON.stringify(json));
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));
         });
@@ -739,7 +738,6 @@ cc.Class({
                 token:cc.weijifen.authorization
             };
             console.log("1249");
-            //this.callAndroid("recorderApi",JSON.stringify(json))
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));
             cc.find('Canvas/luyin').active = false;
@@ -765,7 +763,7 @@ cc.Class({
                     lng: res.lo,//j
                     lat: res.la//w
                 }
-                cc.sys.localStorage.setItem('tips','true');
+                // cc.sys.localStorage.setItem('tips','true');
                 cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
             }
         } 
@@ -1268,31 +1266,6 @@ cc.Class({
     recording_no: function (event) {
         let wjf = new WJFCommon();
         wjf.alert('即将开放，敬请期待！');
-    },
-    callAndroid: function (way,param) {
-            let wjf = new WJFCommon();
-            console.log("1235") ;
-            //var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",way,param);
-            // wjf.alert(res);
-    },
-    recording1: function (event) {
-        // event.target.on('touchstart',function(e){
-        //     var json = {
-        //         act:1,
-        //         token:cc.weijifen.authorization
-        //     };
-        //     cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
-        //     cc.find('Canvas/luyin').active = true;
-        //     callAndroid("recorderApi",JSON.stringify(json));
-        // });
-        // event.target.on('touchend',function(e){
-        //     var json = {
-        //         act:2,
-        //         token:cc.weijifen.authorization
-        //     };
-        //     callAndroid("recorderApi",JSON.stringify(json))
-        //     cc.find('Canvas/luyin').active = false;
-        // });
     },
      /**
      * 获取玩家地理位置成功

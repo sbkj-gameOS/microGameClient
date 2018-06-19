@@ -311,6 +311,7 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+            cc.sys.localStorage.removeItem('waitting');
             context = cc.find('Canvas').getComponent('MJDataBind');
             context.play_flag = true;
             var data = JSON.parse(data);

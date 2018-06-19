@@ -232,7 +232,7 @@ cc.Class({
                 gameEvent.handCardRemove(data,context);//碰、点杠等情况只有data.card的情况需要处理。
 
             }
-             // 显示杠、吃、碰图标
+             // 显示杠、吃、碰动画
             let self = cc.find('Canvas/js/GameEvent').getComponent('GameEvent'); 
             let actionName = data.action;
             if(actionName == "dan"){
