@@ -55,9 +55,9 @@ cc.Class({
         // 点击解散房间按钮
         overClick:function(){
             // 房主解散房间
-            console.log(cc.sys.localStorage.getItem('waitting'))
-            console.log(cc.weijifen.user.id)
-            console.log(cc.sys.localStorage.getItem('bankerId'))
+            cc.log(cc.sys.localStorage.getItem('waitting'))
+            cc.log(cc.weijifen.user.id)
+            cc.log(cc.sys.localStorage.getItem('bankerId'))
             if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
                 this.alert('游戏未开始只有房主可以解散房间！');
                 return
