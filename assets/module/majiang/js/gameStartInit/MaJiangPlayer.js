@@ -47,7 +47,7 @@ cc.Class({
         
     },
     init:function(playerdata , inx , tablepos,count,seziArr){
-        let self = this;
+        let self = cc.find('Canvas').getComponent('MJDataBind');
         this.creator.active = false ;
         this.data = playerdata ;    //存放玩家数据
         this.tablepos = tablepos ; // 方位

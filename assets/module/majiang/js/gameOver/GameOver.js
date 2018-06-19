@@ -52,30 +52,47 @@ cc.Class({
 			        clearTimeout(huTime);
 	            },2000);
 		    }
-
+		    function weizhi (player,img) {
+		    	if (player.tablepos == 'top') {
+	                img.x = 0;
+	                img.y = 160;
+	            } else if (player.tablepos == 'left') {
+	                img.x = -320;
+	                img.y = 0;
+	            } else if (player.tablepos == 'right') {
+	                img.x = 320;
+	                img.y = 0;
+	            } else {
+	                img.x = 0;
+	                img.y = -160;
+	            }
+	            img.width = 128;
+	            img.height = 128;
+		    }
     		context = cc.find('Canvas').getComponent('MJDataBind');
     		var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
     		var gameOver = require('GameOver');
 	        //结算界面，
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
+	        let player = gameStartInit.player(data.userid , context)
 	        for(let i = 0;i<data.playOvers.length;i++){
 	        	if (data.playOvers[i].balance.drop) {// 点炮
-	        		console.log('点炮')
-	        		let anim = cc.find('Canvas/diaopao');
+	        		let anim = cc.find('Canvas/dianpao');
 					anim = anim.getComponent(cc.Animation);
+					weizhi(player,anim);
 					anim.play('diaopao');
 	            }
 	            if (data.playOvers[i].balance.chongBao) {// 冲宝
-	        		console.log('冲宝')
 	        		let anim = cc.find('Canvas/chongbao');
 					anim = anim.getComponent(cc.Animation);
+					weizhi(player,anim);
 					anim.play('chongbao');
 	            }
 	            if (data.playOvers[i].balance.zimo) {// 自摸
-	        		console.log('自摸')
 	        		let anim = cc.find('Canvas/zimo');
 					anim = anim.getComponent(cc.Animation);
+					weizhi(player,anim);
 					anim.play('zimo');
 	            }
 	            if(data.playOvers[i].win==true){
