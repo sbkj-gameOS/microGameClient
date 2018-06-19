@@ -84,9 +84,21 @@ cc.Class({
 					anim.play('dianpao');
 					cc.log('dianpao')
 					let time = setTimeout(function(){
+	        			cc.find('Canvas/dianpao').active = false;
 	        			clearTimeout(time);
-	        			anim.active = false;
 					},2000)
+	            }
+	            if (data.playOvers[i].balance.zimo && !data.playOvers[i].balance.chongBao) {// 自摸
+	        		let anim = cc.find('Canvas/zimo');
+					anim = anim.getComponent(cc.Animation);
+					weizhi(player,anim);
+        			anim.active = true;
+					anim.play('zimo');
+					cc.log('zimo')
+					let time = setTimeout(function(){
+	        			cc.find('Canvas/zimo').active = false;
+	        			clearTimeout(time);
+					},2000);
 	            }
 	            if (data.playOvers[i].balance.chongBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
@@ -97,19 +109,7 @@ cc.Class({
 					cc.log('chongbao')
 					let time = setTimeout(function(){
 	        			clearTimeout(time);
-	        			anim.active = false;
-					},2000)
-	            }
-	            if (data.playOvers[i].balance.zimo) {// 自摸
-	        		let anim = cc.find('Canvas/zimo');
-					anim = anim.getComponent(cc.Animation);
-					weizhi(player,anim);
-        			anim.active = true;
-					anim.play('zimo');
-					cc.log('zimo')
-					let time = setTimeout(function(){
-	        			anim.active = false;
-	        			clearTimeout(time);
+	        			cc.find('Canvas/chongbao').active = false;
 					},2000)
 	            }
 	            if(data.playOvers[i].win==true){

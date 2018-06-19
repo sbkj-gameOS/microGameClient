@@ -53,20 +53,21 @@ cc.Class({
         this.tablepos = tablepos ; // 方位
         this.count = count; // 房间内人数    
      
-        /*if(!playerdata.online){ 
+        if(!playerdata.online){ 
             this.on_off_line.active = true;
             this.headimg.color = new cc.Color(100,100,100);
         }else{
             this.on_off_line.active = false;//是否离线
             this.headimg.color = new cc.Color(255, 255, 255);
-        }*/
-        cc.game.on(cc.game.EVENT_HIDE, function () {
+        }
+        /*cc.game.on(cc.game.EVENT_HIDE, function () {
             let param = {
                 userId: cc.weijifen.user.id,
                 // userId: '37a538a553bf4e88820893274669992f',
                 type: 4,
                 status: 1
             };
+            
                                     cc.log('----进入后台----')
 
             self.socket().emit("sayOnSound" ,JSON.stringify(param));
@@ -81,7 +82,7 @@ cc.Class({
                                     cc.log('++++进入前台++++')
 
             self.socket().emit("sayOnSound" ,JSON.stringify(param));
-        });
+        });*/
         // if(inx == 0){
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
         // }else if(inx == 1){http://docs.cocos.com/creator/api/zh/classes/SpriteAtlas.html#getspriteframes

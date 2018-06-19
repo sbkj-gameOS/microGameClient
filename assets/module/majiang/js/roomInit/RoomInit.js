@@ -79,15 +79,15 @@ cc.Class({
                                 if(data.status == 'READY'){    
                                     cc.find('Canvas/players/ok_'+tablepos+'').active =true;
                                 }
-                               /* if(data.online == false){
+                                if(data.online == false){
                                     on_off_line.active = true;
                                     headimg.color = new cc.Color(42, 25, 25);
                                     headimg.color = new cc.Color(100,100,100);
                                 }else{
                                     on_off_line.active = false;
                                     headimg.color = new cc.Color(255, 255, 255);
-                                }*/
-                                cc.game.on(cc.game.EVENT_HIDE, function () {
+                                }
+                               /* cc.game.on(cc.game.EVENT_HIDE, function () {
                                     let param = {
                                         userId: cc.weijifen.user.id,
                                         // userId: '37a538a553bf4e88820893274669992f',
@@ -106,7 +106,7 @@ cc.Class({
                                     };
                                     cc.log('++++进入前台++++')
                                     self.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });
+                                });*/
                                 if(gameStartInitNode.desk_cards.string!='136'){
                                     context.readyNoActive(context);
                                 }
@@ -172,14 +172,14 @@ cc.Class({
                                         context.ready2.active = false ;
                                     }  
                                 }
-                                /*if(data.online == false){
+                                if(data.online == false){
                                     on_off_line.active = true;
                                     headimg.color = new cc.Color(100, 100, 100);
                                 }else{
                                     on_off_line.active = false;
                                     headimg.color = new cc.Color(255, 255, 255);
-                                }*/
-                                cc.game.on(cc.game.EVENT_HIDE, function () {
+                                }
+                               /* cc.game.on(cc.game.EVENT_HIDE, function () {
                                     let param = {
                                         userId: cc.weijifen.user.id,
                                         // userId: '37a538a553bf4e88820893274669992f',
@@ -200,7 +200,7 @@ cc.Class({
                                     cc.log('++++进入前台++++')
 
                                     this.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });
+                                });*/
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){
                                     context.readyNoActive(context);
@@ -269,14 +269,14 @@ cc.Class({
                                         //context.ready2.active = false ;
                                     }  
                                 }
-                                /*if(data.online == false){
+                                if(data.online == false){
                                     on_off_line.active = true;
                                     headimg.color = new cc.Color(100, 100, 100);
                                 }else{
                                     on_off_line.active = false;
                                     headimg.color = new cc.Color(255, 255, 255);
-                                }*/
-                                cc.game.on(cc.game.EVENT_HIDE, function () {
+                                }
+                                /*cc.game.on(cc.game.EVENT_HIDE, function () {
                                     let param = {
                                         userId: cc.weijifen.user.id,
                                         // userId: '37a538a553bf4e88820893274669992f',
@@ -297,7 +297,7 @@ cc.Class({
                                     cc.log('++++进入前台++++')
 
                                     this.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });
+                                });*/
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){
                                     context.readyNoActive(context);
