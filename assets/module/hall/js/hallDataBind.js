@@ -179,17 +179,18 @@ cc.Class({
     },
     roomSuccess: function(result,object){
 
-        cc.game.on(cc.game.EVENT_SHOW, function () {
-            //获取分享进入的时候，是否分享的游戏房间
-            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-            if(res){
-                res = JSON.parse(res);
-                if(res.code != "10086" && res.roomNum){
-                    cc.weijifen.shareRoomNum = res.roomNum;
-                }
-            }
+        // cc.game.on(cc.game.EVENT_SHOW, function () {
+        //     //获取分享进入的时候，是否分享的游戏房间
+        //     var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+        //     object.alert("res:"+res);
+        //     if(res){
+        //         res = JSON.parse(res);
+        //         if(res.code != "10086" && res.roomNum){
+        //             cc.weijifen.shareRoomNum = res.roomNum;
+        //         }
+        //     }
             
-        });
+        // });
 
 		let data = JSON.parse(result);
         if(data.message){
