@@ -87,20 +87,7 @@ cc.Class({
 	        			cc.find('Canvas/dianpao').active = false;
 	        			clearTimeout(time);
 					},4000)
-	            }
-	            if (data.playOvers[i].balance.zimo) {// 自摸
-	        		let anim = cc.find('Canvas/zimo');
-					weizhi(player,anim);
-        			anim.active = true;
-					anim = anim.getComponent(cc.Animation);
-					anim.play('zimo');
-					cc.log('zimo')
-					let time = setTimeout(function(){
-	        			cc.find('Canvas/zimo').active = false;
-	        			clearTimeout(time);
-					},4000);
-	            }
-	            if (data.playOvers[i].balance.chongBao && !data.playOvers[i].balance.zimo) {// 冲宝
+	            }else if (data.playOvers[i].balance.chongBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
 					weizhi(player,anim);
         			anim.active = true;
@@ -111,19 +98,30 @@ cc.Class({
 	        			clearTimeout(time);
 	        			cc.find('Canvas/chongbao').active = false;
 					},4000)
+	            }else{
+	            	if (data.playOvers[i].balance.zimo) {// 自摸
+		        		let anim = cc.find('Canvas/zimo');
+						weizhi(player,anim);
+	        			anim.active = true;
+						anim = anim.getComponent(cc.Animation);
+						anim.play('zimo');
+						cc.log('zimo')
+						let time = setTimeout(function(){
+		        			cc.find('Canvas/zimo').active = false;
+		        			clearTimeout(time);
+						},4000);
+		            }
 	            }
 	            if(data.playOvers[i].win==true){
                 	playerid = data.playOvers[i].user;
 	                if(data.playOvers[i].balance.huCard>-32){
 	                    var dan = gameOverNode.current_hu.children[1].getComponent('DanAction');
 	                    dan.init(data.playOvers[i].balance.huCard,false,'current','1');                
-	                    break;
 	                }else{
 	                    gameOverNode.current_hu.children[1].active = false;
 	                    gameOverNode.top_hua.active = true;
 	                    var dan = gameOverNode.top_hua.getComponent('BuHuaAction');
 	                    dan.init(data.playOvers[i].balance.huCard,'',false);
-	                    break;
 	                }
 	            }
 	        }
