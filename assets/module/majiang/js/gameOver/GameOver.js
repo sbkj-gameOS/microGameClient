@@ -76,6 +76,8 @@ cc.Class({
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
 	        for(let i = 0;i<data.playOvers.length;i++){
+	        	console.log("data.playOvers[i].balance.chongBao:"+data.playOvers[i].balance.chongBao);
+	        	console.log("data.playOvers[i].balance.drop:"+data.playOvers[i].balance.drop);
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
 					weizhi(player,anim);
@@ -87,7 +89,7 @@ cc.Class({
 	        			cc.find('Canvas/dianpao').active = false;
 	        			clearTimeout(time);
 					},4000)
-	            }else if (data.playOvers[i].balance.chongBao) {// 冲宝
+	            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
 					weizhi(player,anim);
         			anim.active = true;
