@@ -191,8 +191,10 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
-        debugger
 		let data = JSON.parse(result);
+        if(data.msg){
+            object.alert(data.msg);
+        }
         if(data.room){
 			object.getGame(data);
             var sprite = object.backRoom.getComponent(cc.Sprite);
