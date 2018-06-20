@@ -63,6 +63,7 @@ cc.Class({
                 var df=(time2.getTime()-time.getTime()); 
                 if(df>30000){//大于两分钟
                     jiesaiCode = true;
+                    cc.sys.localStorage.removeItem("jiesanTime");
                 }
             }
 

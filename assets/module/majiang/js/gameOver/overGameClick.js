@@ -75,6 +75,7 @@ cc.Class({
             let mj = cc.find('Canvas').getComponent('MJDataBind')
             let dialog = cc.find("Canvas/alert") ;
             mj.alert.put(dialog);
+            cc.sys.localStorage.removeItem("jiesanTime");
         },2000);
     },
     //继续游戏 发送一个不退出请求

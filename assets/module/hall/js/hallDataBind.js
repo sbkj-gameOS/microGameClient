@@ -44,6 +44,17 @@ cc.Class({
         headBorder: cc.SpriteAtlas
     },
     onLoad: function () {
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            //获取分享进入的时候，是否分享的游戏房间
+            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+            if(res){
+                res = JSON.parse(res);
+                if(res.code != "10086" && res.roomNum){
+                    cc.weijifen.shareRoomNum = res.roomNum;
+                }
+            }
+            
+        });
         //如果weijifen已经加载好了
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
@@ -90,22 +101,8 @@ cc.Class({
 
             // 玩家头像边框
             cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
-
-            // this.cards.string = cc.weijifen.user.cards + "张" ;
-            // this.goldcoins.string = cc.weijifen.user.goldcoins + '个';
-
-            cc.game.on(cc.game.EVENT_SHOW, function () {
-                //获取分享进入的时候，是否分享的游戏房间
-                var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-                if(res){
-                    res = JSON.parse(res);
-                    if(res.code != "10086" && res.roomNum){
-                        cc.weijifen.shareRoomNum = res.roomNum;
-                    }
-                }
-                //请求获取当前用户是否已经参加了房间
-                cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);
-            });
+            //请求获取当前用户是否已经参加了房间
+            cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
             
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
