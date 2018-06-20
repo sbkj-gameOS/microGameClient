@@ -70,11 +70,17 @@ cc.Class({
         this.labei2.string = '还有'+this.time +'自动解散'
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
         
+        //两秒内消失
+        setTimeout(function(){
+            let mj = cc.find('Canvas').getComponent('MJDataBind')
+            let dialog = cc.find("Canvas/alert") ;
+            mj.alert.put(dialog);
+        },2000);
     },
     //继续游戏 发送一个不退出请求
     goonGameClick: function(){
         let REFUSE = true;
-        var oper = new cc.Event.EventCustom('overGame', false) ;
+        var oper = new cc.Event.EventCustom('overGame', true) ;
         // var oper = new cc.Event.EventCustom('overGame', true) ;
         oper.setUserData(REFUSE) ;
         this.node.dispatchEvent( oper );

@@ -54,16 +54,36 @@ cc.Class({
         },
         // 点击解散房间按钮
         overClick:function(){
-            // 房主解散房间
-            cc.log(cc.sys.localStorage.getItem('waitting'))
-            cc.log(cc.weijifen.user.id)
-            cc.log(cc.sys.localStorage.getItem('bankerId'))
-            if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
-                this.alert('游戏未开始只有房主可以解散房间！');
-                return
+            var jiesaiCode = false;
+            if(!cc.sys.localStorage.getItem("jiesanTime")){
+                jiesaiCode = true;
+            }else{
+                var time = new Date(cc.sys.localStorage.getItem("jiesanTime"));
+                var time2 = new Date();
+                var df=(time2.getTime()-time.getTime()); 
+                if(df>30000){//大于两分钟
+                    jiesaiCode = true;
+                }
             }
-            this.openAlert('是否解散房间','over');
-            let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+
+            if(jiesaiCode){
+                // 房主解散房间
+                cc.log(cc.sys.localStorage.getItem('waitting'))
+                cc.log(cc.weijifen.user.id)
+                cc.log(cc.sys.localStorage.getItem('bankerId'))
+                if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
+                    this.alert('游戏未开始只有房主可以解散房间！');
+                    return
+                }
+                cc.sys.localStorage.setItem("userOverBtn",1);
+                cc.sys.localStorage.setItem("jiesanTime",new Date());
+                this.openAlert('是否解散房间','over');
+                let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+            }else{
+                var WJFCommon = require("WJFCommon");
+                let wjf = new WJFCommon();
+                wjf.alert('请30秒后再进行操作！');
+            }
             // btn.active = true;
         },
 
@@ -81,6 +101,10 @@ cc.Class({
          * 一方要求解散时，向其他玩家发送请求信息
          */
         isOver_event:function(){
+            if(cc.sys.localStorage.getItem("userOverBtn") == 1){
+                cc.sys.localStorage.removeItem("userOverBtn");
+                return;
+            }
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
             if(mj.alert.size()>0){
@@ -169,9 +193,9 @@ cc.Class({
         unOver_event: function(){
             let mj = cc.find('Canvas').getComponent('MJDataBind')
             cc.sys.localStorage.removeItem('unOver');
-           /* let dialog = cc.find("Canvas/alert") ;
+            let dialog = cc.find("Canvas/alert") ;
             clearTimeout(mj.t);
-            mj.alert.put(dialog);*/
+            mj.alert.put(dialog);
         },
           // 设置背景有颜色    
         bgsetting: function(){
