@@ -44,17 +44,7 @@ cc.Class({
         headBorder: cc.SpriteAtlas
     },
     onLoad: function () {
-        cc.game.on(cc.game.EVENT_SHOW, function () {
-            //获取分享进入的时候，是否分享的游戏房间
-            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-            if(res){
-                res = JSON.parse(res);
-                if(res.code != "10086" && res.roomNum){
-                    cc.weijifen.shareRoomNum = res.roomNum;
-                }
-            }
-            
-        });
+
         //如果weijifen已经加载好了
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
@@ -188,6 +178,19 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
+
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            //获取分享进入的时候，是否分享的游戏房间
+            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+            if(res){
+                res = JSON.parse(res);
+                if(res.code != "10086" && res.roomNum){
+                    cc.weijifen.shareRoomNum = res.roomNum;
+                }
+            }
+            
+        });
+
 		let data = JSON.parse(result);
         if(data.message){
             object.alert(data.message);//如果当前玩家离线状态下，房间解散掉了，登录后给予提示信息
