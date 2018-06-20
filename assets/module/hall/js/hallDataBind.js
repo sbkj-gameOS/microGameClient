@@ -93,8 +93,20 @@ cc.Class({
 
             // this.cards.string = cc.weijifen.user.cards + "张" ;
             // this.goldcoins.string = cc.weijifen.user.goldcoins + '个';
-            //请求获取当前用户是否已经参加了房间
-            cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,this.roomSuccess,this.roomError,this);
+
+            cc.game.on(cc.game.EVENT_SHOW, function () {
+                //获取分享进入的时候，是否分享的游戏房间
+                var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+                if(res){
+                    res = JSON.parse(res);
+                    if(res.code != "10086" && res.roomNum){
+                        cc.weijifen.shareRoomNum = res.roomNum;
+                    }
+                }
+                //请求获取当前用户是否已经参加了房间
+                cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);
+            });
+            
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
             this.gundongText();
@@ -109,6 +121,7 @@ cc.Class({
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
+        
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
@@ -178,6 +191,7 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
+        debugger
 		let data = JSON.parse(result);
         if(data.room){
 			object.getGame(data);
