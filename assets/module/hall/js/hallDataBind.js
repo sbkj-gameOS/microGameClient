@@ -192,8 +192,8 @@ cc.Class({
     },
     roomSuccess: function(result,object){
 		let data = JSON.parse(result);
-        if(data.msg){
-            object.alert(data.msg);
+        if(data.message){
+            object.alert(data.message);//如果当前玩家离线状态下，房间解散掉了，登录后给予提示信息
         }
         if(data.room){
 			object.getGame(data);
