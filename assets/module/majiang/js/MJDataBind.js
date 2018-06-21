@@ -749,14 +749,22 @@ cc.Class({
     * 分发joinroom事件（房间初始化时）
     *
     */
-    joinRoom:function(){
+    joinRoom:function(context){
         //开始匹配
         let socket = this.socket();
+        let params = {
+            token:cc.weijifen.authorization,
+            lng: '',//j
+            lat: ''//w
+        }
+        cc.weijifen.http.httpPost('/userInfo/position/save',params,getPosition,getErr,this) ;  
+        function getPosition () {}
+        function getErr () {context.alert('获取位置失败！')}
         // 地理位置
         // 调用android方法名：getLocation
         // 返回地址位置：lo经度；alt，海拔；t时间
         // if (cc.sys.localStorage.getItem('tips') == 'false') {
-            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
+           /* var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
             if (result) {
                 console.log('res',res)
                 let res = JSON.parse(result);
@@ -767,7 +775,7 @@ cc.Class({
                 }
                 // cc.sys.localStorage.setItem('tips','true');
                 cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
-            }
+            }*/
         // } 
         var param = {
             token:cc.weijifen.authorization,
@@ -1329,7 +1337,7 @@ cc.Class({
         obj.positionMsg = res.msg;
     },
     getErr: function (result,obj) {
-        obj.alert('获取位置信息失败！')
+        obj.alert('获取位置')
     }
 });
 
