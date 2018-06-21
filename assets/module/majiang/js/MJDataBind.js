@@ -756,18 +756,18 @@ cc.Class({
         // 调用android方法名：getLocation
         // 返回地址位置：lo经度；alt，海拔；t时间
         // if (cc.sys.localStorage.getItem('tips') == 'false') {
-            // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
-            // if (result) {
-            //     console.log('res',res)
-            //     let res = JSON.parse(result);
-            //     let params = {
-            //         token:cc.weijifen.authorization,
-            //         lng: res.lo,//j
-            //         lat: res.la//w
-            //     }
-            //     // cc.sys.localStorage.setItem('tips','true');
-            //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
-            // }
+            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
+            if (result) {
+                console.log('res',res)
+                let res = JSON.parse(result);
+                let params = {
+                    token:cc.weijifen.authorization,
+                    lng: res.lo,//j
+                    lat: res.la//w
+                }
+                // cc.sys.localStorage.setItem('tips','true');
+                cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
+            }
         // } 
         var param = {
             token:cc.weijifen.authorization,
@@ -1327,6 +1327,9 @@ cc.Class({
     getPosition: function (result,obj) {
         let res = JSON.parse(result);
         obj.positionMsg = res.msg;
+    },
+    getErr: function (result,obj) {
+        obj.alert('获取位置信息失败！')
     }
 });
 
