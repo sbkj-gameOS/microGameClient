@@ -83,6 +83,10 @@ cc.Class({
 	        			player.tablepos = "current";
 	        		}else if(player.tablepos == 'current'){
 	        			player.tablepos = "top";
+	        		}else if(player.tablepos == 'left'){
+	        			player.tablepos = "right";
+	        		}else if(player.tablepos == 'right'){
+	        			player.tablepos = "left";
 	        		}
 					weizhi(player,anim);
 	        		anim.active = true;
