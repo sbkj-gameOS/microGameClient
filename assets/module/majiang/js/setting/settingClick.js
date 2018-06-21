@@ -63,13 +63,18 @@ cc.Class({
             if(!cc.sys.localStorage.getItem("jiesanTime")){
                 jiesaiCode = true;
             }else{
-                var time = new Date(cc.sys.localStorage.getItem("jiesanTime"));
-                var time2 = new Date();
-                var df=(time2.getTime()-time.getTime()); 
-                if(df>30000){//大于30秒
+                if(cc.sys.localStorage.getItem("jiesanTime")){
+                    var time = new Date(cc.sys.localStorage.getItem("jiesanTime"));
+                    var time2 = new Date();
+                    var df=(time2.getTime()-time.getTime()); 
+                    if(df>30000){//大于30秒
+                        jiesaiCode = true;
+                        cc.sys.localStorage.removeItem("jiesanTime");
+                    }
+                }else{
                     jiesaiCode = true;
-                    cc.sys.localStorage.removeItem("jiesanTime");
                 }
+                
             }
 
             if(jiesaiCode){

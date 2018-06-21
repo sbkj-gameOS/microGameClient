@@ -131,6 +131,7 @@ cc.Class({
         recording: cc.Prefab
     },
     onLoad: function () {
+        cc.sys.localStorage.removeItem("jiesanTime");
         let self = this ;
         //let socket = this.socket(self);
         let socket = this.connect() ;
