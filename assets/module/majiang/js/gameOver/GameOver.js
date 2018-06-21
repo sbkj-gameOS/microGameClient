@@ -81,7 +81,7 @@ cc.Class({
 	        		let anim = cc.find('Canvas/dianpao');
 	        		if(player.tablepos == 'top'){
 	        			player.tablepos = "current";
-	        		}else if(player.tablepos = "current"){
+	        		}else if(player.tablepos == 'current'){
 	        			player.tablepos = "top";
 	        		}
 					weizhi(player,anim);
