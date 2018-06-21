@@ -53,6 +53,7 @@ cc.Class({
 	            },2000);
 		    }
 		    function weizhi (player,img) {
+		    	debugger
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
 	                img.y = 160;
@@ -76,10 +77,13 @@ cc.Class({
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
 	        for(let i = 0;i<data.playOvers.length;i++){
-	        	console.log("data.playOvers[i].balance.chongBao:"+data.playOvers[i].balance.chongBao);
-	        	console.log("data.playOvers[i].balance.drop:"+data.playOvers[i].balance.drop);
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
+	        		if(player.tablepos == 'top'){
+	        			player.tablepos = "current";
+	        		}else if(player.tablepos = "current"){
+	        			player.tablepos = "top";
+	        		}
 					weizhi(player,anim);
 	        		anim.active = true;
 					anim = anim.getComponent(cc.Animation);
