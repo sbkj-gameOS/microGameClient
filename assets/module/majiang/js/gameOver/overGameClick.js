@@ -80,11 +80,14 @@ cc.Class({
     },
     //继续游戏 发送一个不退出请求
     goonGameClick: function(){
-        let REFUSE = true;
-        var oper = new cc.Event.EventCustom('overGame', true) ;
-        // var oper = new cc.Event.EventCustom('overGame', true) ;
-        oper.setUserData(REFUSE) ;
-        this.node.dispatchEvent( oper );
+        if(cc.sys.localStorage.getItem("userOverBtn") != 1){
+            let REFUSE = true;
+            var oper = new cc.Event.EventCustom('overGame', true) ;
+            // var oper = new cc.Event.EventCustom('overGame', true) ;
+            oper.setUserData(REFUSE) ;
+            this.node.dispatchEvent( oper );
+        }
+        cc.sys.localStorage.removeItem("userOverBtn");
         let mj = cc.find('Canvas').getComponent('MJDataBind')
         let dialog = cc.find("Canvas/alert") ;
         mj.alert.put(dialog);
