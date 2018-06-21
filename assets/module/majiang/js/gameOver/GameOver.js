@@ -56,16 +56,16 @@ cc.Class({
 		    	debugger
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
-	                img.y = 160;
+	                img.y = -160;
 	            } else if (player.tablepos == 'left') {
-	                img.x = -320;
+	                img.x = 320;
 	                img.y = 0;
 	            } else if (player.tablepos == 'right') {
-	                img.x = 320;
+	                img.x = -320;
 	                img.y = 0;
 	            } else {
 	                img.x = 0;
-	                img.y = -160;
+	                img.y = 160;
 	            }
 	            img.width = 128;
 	            img.height = 128;
@@ -79,15 +79,6 @@ cc.Class({
 	        for(let i = 0;i<data.playOvers.length;i++){
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
-	        		if(player.tablepos == 'top'){
-	        			player.tablepos = "current";
-	        		}else if(player.tablepos == 'current'){
-	        			player.tablepos = "top";
-	        		}else if(player.tablepos == 'left'){
-	        			player.tablepos = "right";
-	        		}else if(player.tablepos == 'right'){
-	        			player.tablepos = "left";
-	        		}
 					weizhi(player,anim);
 	        		anim.active = true;
 					anim = anim.getComponent(cc.Animation);
