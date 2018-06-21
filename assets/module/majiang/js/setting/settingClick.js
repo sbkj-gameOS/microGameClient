@@ -54,6 +54,11 @@ cc.Class({
         },
         // 点击解散房间按钮
         overClick:function(){
+            // 房主解散房间
+            if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem("roomNo1")) {
+                this.alert('游戏未开始只有房主可以解散房间！');
+                return
+            }
             var jiesaiCode = false;
             if(!cc.sys.localStorage.getItem("jiesanTime")){
                 jiesaiCode = true;
@@ -61,21 +66,13 @@ cc.Class({
                 var time = new Date(cc.sys.localStorage.getItem("jiesanTime"));
                 var time2 = new Date();
                 var df=(time2.getTime()-time.getTime()); 
-                if(df>30000){//大于两分钟
+                if(df>30000){//大于30秒
                     jiesaiCode = true;
                     cc.sys.localStorage.removeItem("jiesanTime");
                 }
             }
 
             if(jiesaiCode){
-                // 房主解散房间
-                cc.log(cc.sys.localStorage.getItem('waitting'))
-                cc.log(cc.weijifen.user.id)
-                cc.log(cc.sys.localStorage.getItem('bankerId'))
-                if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
-                    this.alert('游戏未开始只有房主可以解散房间！');
-                    return
-                }
                 cc.sys.localStorage.setItem("userOverBtn",1);
                 cc.sys.localStorage.setItem("jiesanTime",new Date());
                 this.openAlert('是否解散房间','over');

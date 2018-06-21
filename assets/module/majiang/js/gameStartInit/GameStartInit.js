@@ -115,6 +115,11 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
+            console.log(data.players);
+            //第一个进入房间的人是房主，其他玩家再次进入data.players会增加
+            if(data.players.length == 1){
+                cc.sys.localStorage.setItem("roomNo1",cc.weijifen.user.id);
+            }
            /* console.log('palyer_event进入')
             cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
@@ -285,7 +290,6 @@ cc.Class({
          */
         banker_event:function(data, context){
             context = cc.find('Canvas').getComponent('MJDataBind');
-            cc.sys.localStorage.setItem('bankerId',data.userid)
             for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                 let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
                 if(data.userid == cc.weijifen.user.id){
