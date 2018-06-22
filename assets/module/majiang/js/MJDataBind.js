@@ -723,7 +723,11 @@ cc.Class({
         }
         this.exchange_state("init" , this);
         let t_Start = cc.find("Canvas/bg/right_menu/语音") ;
+        let luyin_anim = cc.find('Canvas/luyin/luyin_anim');
+        let luyin_com = luyin_anim.getComponent(cc.Animation);
+        let m = 1,timer;
         t_Start.on('touchstart',function(e){
+            m++;
             var json = {
                 act:1,
                 token:cc.weijifen.authorization
@@ -731,18 +735,40 @@ cc.Class({
             cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
             cc.find('Canvas/luyin').active = true;
             console.log("1248");
+            luyin_com.play('luyin_anim');
+            if (m) {
+                timer = setInterval(function(){
+                    m++;
+                    console.log(m++,m)
+                    if (m > 16) {
+                        var json = {
+                            act:2,
+                            token:cc.weijifen.authorization
+                        };
+                        luyin_com.stop('luyin_anim');
+                        jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+                                ,"recorderApi",JSON.stringify(json));
+                        cc.find('Canvas/luyin').active = false;
+                        m = 0;
+                        clearInterval(timer);
+                    }
+                },1000);
+            }
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));
         });
         t_Start.on('touchend',function(e){
+            if (timer) clearInterval(timer);
             var json = {
                 act:2,
                 token:cc.weijifen.authorization
             };
+            luyin_com.stop('luyin_anim');
             console.log("1249");
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));
             cc.find('Canvas/luyin').active = false;
+            m = 0;
         });
     },
     /*
@@ -759,7 +785,7 @@ cc.Class({
         }
         cc.weijifen.http.httpPost('/userInfo/position/save',params,getPosition,getErr,this) ;  
         function getPosition () {}
-        function getErr () {context.alert('获取位置失败！')}
+        function getErr () {}
         // 地理位置
         // 调用android方法名：getLocation
         // 返回地址位置：lo经度；alt，海拔；t时间
@@ -1141,6 +1167,7 @@ cc.Class({
                 emojiShow.active = false;
                 anim.stop('ting');
             },2000)
+         
             return
         }
         // 语音
@@ -1154,52 +1181,54 @@ cc.Class({
             let id_c,id_t,id_r,id_l; 
             if (cc.weijifen.playerNum == 2 && cc.weijifen.playersss == 2) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
-                let id_t = cc.find('Canvas/player/head_top').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                let id_t = cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                console.log(id_c,id_t)
                 if (res.userId == id_c) {
-                    cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
                 if (res.userId == id_t) {
-                    cc.find('Canvas/player/head_top').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
+                    // cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').x = ;
                     return
                 }
             }
             if (cc.weijifen.playerNum == 3 && cc.weijifen.playersss == 3) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
-                let id_t = cc.find('Canvas/player/head_top').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
-                let id_l = cc.find('Canvas/player/head_right').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                let id_t = cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                let id_r = cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
                 if (res.userId == id_c) {
-                    cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
                 if (res.userId == id_t) {
-                    cc.find('Canvas/player/head_top').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
                 if (res.userId == id_r) {
-                    cc.find('Canvas/player/head_right').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
             }
             if (cc.weijifen.playerNum == 4 && cc.weijifen.playersss == 4) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
-                let id_t = cc.find('Canvas/player/head_top').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
-                let id_l = cc.find('Canvas/player/head_left').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
-                let id_r = cc.find('Canvas/player/head_right').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                let id_t = cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                let id_l = cc.find('Canvas/players/head_left').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
+                let id_r = cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
                 if (res.userId == id_c) {
-                    cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
                 if (res.userId == id_t) {
-                    cc.find('Canvas/player/head_top').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
                 if (res.userId == id_r) {
-                    cc.find('Canvas/player/head_right').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
                 if (res.userId == id_l) {
-                    cc.find('Canvas/player/head_right').getChildByName('player_head').getChildByName('yuyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('yuyin_flag').active;
+                    cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
                     return
                 }
             }

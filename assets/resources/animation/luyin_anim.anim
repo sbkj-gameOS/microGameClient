@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "luyin_anim",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.0166666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "4993cdab-d0b4-42ac-81c7-572aad1d2460"
+            }
+          },
+          {
+            "frame": 0.18333333333333332,
+            "value": {
+              "__uuid__": "ff1f4d7a-5aa8-4e6a-ad09-5859b2cf349e"
+            }
+          },
+          {
+            "frame": 0.38333333333333336,
+            "value": {
+              "__uuid__": "1bf20b00-d69c-4419-b5e5-dcc64134e7a9"
+            }
+          },
+          {
+            "frame": 0.5333333333333333,
+            "value": {
+              "__uuid__": "ca961faf-1cdd-4b3a-bc32-ac0eb5e25941"
+            }
+          },
+          {
+            "frame": 0.7333333333333333,
+            "value": {
+              "__uuid__": "b124c76b-a8fd-44a4-8cb5-9cda4aafd830"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "5fde04ab-1e0a-464a-a63c-30f87b00351f"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

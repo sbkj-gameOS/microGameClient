@@ -428,9 +428,8 @@ cc.Class({
                         card.zIndex =0;
                     }
                     card.parent = cardParent;
-                    //马上进行排序如果不这个方法 会在所有方法执行完后再排序。
+                    //马上进行排序如果不这个方法 会在所有方法执行完后再排序---官方排序方法
                     cardParent.sortAllChildren();               
-                    //cardParent.sortAllChildren ( )         
                 }
                 cardParent.getComponent('Kongcards').init(action);
                 cardParent.parent = parent ;

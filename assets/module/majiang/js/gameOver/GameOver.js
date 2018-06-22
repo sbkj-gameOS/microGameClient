@@ -53,7 +53,6 @@ cc.Class({
 	            },2000);
 		    }
 		    function weizhi (player,img) {
-		    	debugger
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
 	                img.y = -160;

@@ -573,7 +573,7 @@ cc.Class({
                 // ani.play("majiang_reorder") ;
                 var maxvalue  = -100;
                 var maxvalluecard ;
-                //排序 
+                //排序 ---设置牌的zIndex（官方排序方法要用到）
                 if (context.playercards) {
                     for(var i=0 ; i<context.playercards.length ; i++ ){
                         if(context.playercards[i].children[1].active == false){
@@ -1239,7 +1239,9 @@ cc.Class({
             // type为文字
             let param = {
                 type: 2,
-                content: content
+                content: content,
+            userId:cc.weijifen.user.id
+                
             }
             socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         }
