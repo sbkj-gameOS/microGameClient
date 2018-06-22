@@ -723,8 +723,8 @@ cc.Class({
         }
         this.exchange_state("init" , this);
         let t_Start = cc.find("Canvas/bg/right_menu/语音") ;
-        let luyin_anim = cc.find('Canvas/luyin/luyin_anim');
-        let luyin_com = luyin_anim.getComponent(cc.Animation);
+        // let luyin_anim = cc.find('Canvas/luyin/luyin_anim');
+        // let luyin_com = luyin_anim.getComponent(cc.Animation);
         let m = 1,timer;
         t_Start.on('touchstart',function(e){
             m++;
@@ -733,9 +733,9 @@ cc.Class({
                 token:cc.weijifen.authorization
             };
             cc.find('Canvas/bg/right_menu').children[2].zIndex = 100000;
-            cc.find('Canvas/luyin').active = true;
+            // cc.find('Canvas/luyin').active = true;
             console.log("1248");
-            luyin_com.play('luyin_anim');
+            // luyin_com.play('luyin_anim');
             if (m) {
                 timer = setInterval(function(){
                     m++;
@@ -745,7 +745,7 @@ cc.Class({
                             act:2,
                             token:cc.weijifen.authorization
                         };
-                        luyin_com.stop('luyin_anim');
+                        // luyin_com.stop('luyin_anim');
                         jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                                 ,"recorderApi",JSON.stringify(json));
                         cc.find('Canvas/luyin').active = false;
@@ -763,7 +763,7 @@ cc.Class({
                 act:2,
                 token:cc.weijifen.authorization
             };
-            luyin_com.stop('luyin_anim');
+            // luyin_com.stop('luyin_anim');
             console.log("1249");
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));

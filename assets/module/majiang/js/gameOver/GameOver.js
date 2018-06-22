@@ -55,16 +55,16 @@ cc.Class({
 		    function weizhi (player,img) {
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
-	                img.y = -160;
+	                img.y = 160;
 	            } else if (player.tablepos == 'left') {
-	                img.x = 320;
+	                img.x = -320;
 	                img.y = 0;
 	            } else if (player.tablepos == 'right') {
-	                img.x = -320;
+	                img.x = 320;
 	                img.y = 0;
 	            } else {
 	                img.x = 0;
-	                img.y = 160;
+	                img.y = -160;
 	            }
 	            img.width = 128;
 	            img.height = 128;
@@ -78,7 +78,21 @@ cc.Class({
 	        for(let i = 0;i<data.playOvers.length;i++){
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
-					weizhi(player,anim);
+					if (player.tablepos == 'top') {
+		                anim.x = 0;
+		                anim.y = -160;
+		            } else if (player.tablepos == 'left') {
+		                anim.x = 320;
+		                anim.y = 0;
+		            } else if (player.tablepos == 'right') {
+		                anim.x = -320;
+		                anim.y = 0;
+		            } else {
+		                anim.x = 0;
+		                anim.y = 160;
+		            }
+		            anim.width = 128;
+		            anim.height = 128;
 	        		anim.active = true;
 					anim = anim.getComponent(cc.Animation);
 					anim.play('dianpao');
