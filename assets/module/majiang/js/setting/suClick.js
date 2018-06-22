@@ -12,7 +12,9 @@ cc.Class({
         //    readonly: false,    // optional, default is false
         // },
         // ...
-        time: cc.Label
+        time: cc.Label,
+        // 显示截图的精灵
+        show: cc.Sprite,
     },
 
     // use this for initialization
@@ -39,9 +41,31 @@ cc.Class({
         var oper = new cc.Event.EventCustom('restar', true) ;
         oper.setUserData(a) ;
         this.node.dispatchEvent( oper );
-    }
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
+    },
+    //分享结算图片image
+    shareImage:function(event){
+        // 创建 renderTexture
+        var renderTexture = cc.RenderTexture.create(1280, 720);
+        //实际截屏的代码
+        renderTexture.begin();
+        //this.richText.node 是我们要截图的节点，如果要截整个屏幕，可以把 this.richText 换成 Canvas 切点即可
+        var canvas= cc.find("Canvas").getComponent(cc.Canvas);
+        canvas.node._sgNode.visit();
+        renderTexture.end();
 
-    // },
+        // 获取SpriteFrame
+        var nowFrame = renderTexture.getSprite().getSpriteFrame();
+
+        // 赋值给需要截图的精灵
+        this.show.spriteFrame = nowFrame;
+
+        // 翻转得到的纹理
+        var action = cc.flipY(true);
+        this.show.node.runAction(action);
+
+        // 保存截图到本地
+        renderTexture.saveToFile("demo.png", cc.IMAGE_FORMAT_PNG, true, function () {});
+        // 打印本地的地址   
+        cc.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii:"+jsb.fileUtils.getWritablePath())
+    }
 });
