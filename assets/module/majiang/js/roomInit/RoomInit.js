@@ -349,7 +349,7 @@ cc.Class({
         // let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
         // 
         var jsonData = {
-            url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room,
+            url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room+"&invitationcode="+cc.weijifen.user.invitationcode,
             title:"心缘竞技",
             context:"房间号："+cc.weijifen.room+"  好友邀请您进入房间"
         }
