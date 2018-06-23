@@ -318,7 +318,7 @@ cc.Class({
         play_event:function(data , context, self){
             cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
-            cc.sys.localStorage.removeItem('waitting');
+            cc.sys.localStorage.setItem('waitting',1);
             context = cc.find('Canvas').getComponent('MJDataBind');
             context.play_flag = true;
             var data = JSON.parse(data);

@@ -21,10 +21,9 @@ cc.Class({
          * @param context
          */
         joinroom_event:function(data , context){
-
-            cc.sys.localStorage.setItem('waitting','true');// (在游戏未开始时只有房主可以解散房间) 玩家等待中
-
-
+            if(cc.sys.localStorage.getItem('waitting') != 1){
+                cc.sys.localStorage.setItem('waitting','true');// (在游戏未开始时只有房主可以解散房间) 玩家等待中
+            }
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             var fangweiNode = cc.find('Canvas/bg/center') ;
             //如果是2人的模式  就只加自己和对家
