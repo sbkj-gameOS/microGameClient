@@ -292,6 +292,7 @@ cc.Class({
         cc.director.loadScene('appLogin'); 
         cc.sys.localStorage.clear();
         cc.weijifen = null;
+        cc.audioEngine.stopAll();
     }
 });
 
