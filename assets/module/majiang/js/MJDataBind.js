@@ -747,8 +747,8 @@ cc.Class({
                             token:cc.weijifen.authorization
                         };
                         luyin_com.stop('luyin_anim');
-                        /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-                                ,"recorderApi",JSON.stringify(json));*/
+                        jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+                                ,"recorderApi",JSON.stringify(json));
                         cc.find('Canvas/luyin').active = false;
                         m = 0;
                         clearInterval(timer);
