@@ -56,11 +56,11 @@ cc.Class({
         // 点击解散房间按钮
         overClick:function(){
             // 房主解散房间
-            if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
+            // if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
             // if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem("roomNo1")) {
-                this.alert('游戏未开始只有房主可以解散房间！');
-                return
-            }
+            //     this.alert('游戏未开始只有房主可以解散房间！');
+            //     return
+            // }
             if(!cc.sys.localStorage.getItem("jiesanTime")){
                 jiesaiCode = true;
             }else{
