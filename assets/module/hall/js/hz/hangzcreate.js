@@ -8,7 +8,7 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
-        playerData = "0@@2@@5@@7";
+        playerData = "0@@2@@5@@7@@";
         moShi = "0";
         endPoint = '1';
         userType = "4";

@@ -1199,15 +1199,10 @@ cc.Class({
                 let id_r = cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
                 if (res.userId == id_c) {
                     cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
-                }
-                if (res.userId == id_t) {
+                } else if (res.userId == id_t) {
                     cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
-                }
-                if (res.userId == id_r) {
+                } else if (res.userId == id_r) {
                     cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
                 }
             }
             if (cc.weijifen.playerNum == 4 && cc.weijifen.playersss == 4) {
@@ -1217,19 +1212,12 @@ cc.Class({
                 let id_r = cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
                 if (res.userId == id_c) {
                     cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
-                }
-                if (res.userId == id_t) {
+                } else if (res.userId == id_t) {
                     cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
-                }
-                if (res.userId == id_r) {
+                } else if (res.userId == id_r) {
                     cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
-                }
-                if (res.userId == id_l) {
+                } else if (res.userId == id_l) {
                     cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = !cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active;
-                    return
                 }
             }
             return
