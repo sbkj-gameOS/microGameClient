@@ -67,5 +67,13 @@ cc.Class({
         renderTexture.saveToFile("demo.png", cc.IMAGE_FORMAT_PNG, true, function () {});
         // 打印本地的地址   
         cc.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii:"+jsb.fileUtils.getWritablePath())
+        var jsonData = {
+            title:"心缘竞技",
+            imgUrl:jsb.fileUtils.getWritablePath(),
+            conType:2,
+            msgType:1
+        }
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+        return;
     }
 });
