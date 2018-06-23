@@ -72,7 +72,8 @@ cc.Class({
         
         //两秒内消失
         setTimeout(function(){
-            let mj = cc.find('Canvas').getComponent('MJDataBind')
+            let mj = cc.find('Canvas').getComponent('MJDataBind');
+            if (!mj) {return};
             let dialog = cc.find("Canvas/alert") ;
             mj.alert.put(dialog);
             cc.sys.localStorage.removeItem("jiesanTime");

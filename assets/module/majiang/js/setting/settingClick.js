@@ -1,4 +1,5 @@
 var MJDataBind = require("MJDataBind");
+var jiesaiCode = false,df = 0;
 cc.Class({
     extends: MJDataBind,
 
@@ -55,22 +56,27 @@ cc.Class({
         // 点击解散房间按钮
         overClick:function(){
             // 房主解散房间
-            if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem("roomNo1")) {
+            if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem('bankerId')) {
+            // if (cc.sys.localStorage.getItem('waitting') == 'true' && cc.weijifen.user.id != cc.sys.localStorage.getItem("roomNo1")) {
                 this.alert('游戏未开始只有房主可以解散房间！');
                 return
             }
-            var jiesaiCode = false;
             if(!cc.sys.localStorage.getItem("jiesanTime")){
                 jiesaiCode = true;
             }else{
                 if(cc.sys.localStorage.getItem("jiesanTime")){
-                    var time = new Date(cc.sys.localStorage.getItem("jiesanTime"));
+                   /* var time = new Date(cc.sys.localStorage.getItem("jiesanTime"));
                     var time2 = new Date();
-                    var df=(time2.getTime()-time.getTime()); 
-                    if(df>30000){//大于30秒
-                        jiesaiCode = true;
-                        cc.sys.localStorage.removeItem("jiesanTime");
-                    }
+                    var df=(time2.getTime()-time.getTime()); */
+                    var timer = setInterval(function(){
+                        df++;
+                        if(df>30){//大于30秒
+                            jiesaiCode = true;
+                            cc.sys.localStorage.removeItem("jiesanTime");
+                            df = 0;
+                            clearInterval(timer);
+                        }
+                    },1000);
                 }else{
                     jiesaiCode = true;
                 }
@@ -82,12 +88,16 @@ cc.Class({
                 cc.sys.localStorage.setItem("jiesanTime",new Date());
                 this.openAlert('是否解散房间','over');
                 let btn = cc.find('Canvas').getChildByName('alert').getChildByName('button');
+                jiesaiCode = false;
             }else{
                 var WJFCommon = require("WJFCommon");
                 let wjf = new WJFCommon();
                 wjf.alert('请30秒后再进行操作！');
+                let timer = setTimeout(function(){
+                    jiesaiCode = true;
+                    clearTimeout(timer);
+                },30000)
             }
-            // btn.active = true;
         },
 
         // 弹框弹出

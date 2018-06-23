@@ -308,6 +308,7 @@ cc.Class({
             if (cc.weijifen.bankers && currenthandcards.children && currenthandcards.children.length == 14) {
                 currenthandcards.children[length-1].width = 100;
             }
+            cc.sys.localStorage.setItem('bankerId',cc.weijifen.banker);
         },
         /**
          * 接收发牌信息，需要根据玩家位置确定是哪家的牌
@@ -315,6 +316,7 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+            cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
             cc.sys.localStorage.removeItem('waitting');
             context = cc.find('Canvas').getComponent('MJDataBind');

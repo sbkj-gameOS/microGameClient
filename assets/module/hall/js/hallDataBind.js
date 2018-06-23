@@ -285,7 +285,6 @@ cc.Class({
         // 长春麻将打开比赛大厅，其他弹出‘敬请期待’
         cc.weijifen.GameBase.gameModel == 'ch' ? this.hall(9)
                                                : this.hall(90);
-        
     },
      /*退出登录*/
     changeAccount: function () {
