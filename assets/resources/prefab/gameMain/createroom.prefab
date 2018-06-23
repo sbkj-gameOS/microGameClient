@@ -641,8 +641,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
@@ -661,6 +659,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 8
@@ -809,8 +811,9 @@
     "jy": {
       "__uuid__": "4b41f943-ff55-4ae6-ad05-a0ae33eaa548"
     },
-    "matchHall": {
-      "__uuid__": "3b0ac2ce-c5e2-4a89-b5dc-e060e433e57d"
+    "matchHall": null,
+    "hangz": {
+      "__uuid__": "f226c9f2-c13f-45eb-a530-2356112d990a"
     }
   },
   {
