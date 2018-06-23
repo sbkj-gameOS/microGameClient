@@ -188,7 +188,7 @@ cc.Class({
                 if(res.code != "10086" && res.roomNum){
                     cc.weijifen.shareRoomNum = res.roomNum;
                     if(cc.weijifen.shareRoomNum){
-                        cc.weijifen.http.httpGet('/userInfo/query/token?userId'+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
+                        cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
                     }
                 }
             }
