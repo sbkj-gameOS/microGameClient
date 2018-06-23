@@ -62,14 +62,15 @@ cc.Class({
         // 翻转得到的纹理
         var action = cc.flipY(true);
         this.show.node.runAction(action);
-
         // 保存截图到本地
-        renderTexture.saveToFile("demo.png", cc.IMAGE_FORMAT_PNG, true, function () {});
-        // 打印本地的地址   
+        renderTexture.saveToFile("demo.png", cc.IMAGE_FORMAT_PNG, true, function (data) {
+        	
+        });
+        //打印本地的地址   
         cc.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii:"+jsb.fileUtils.getWritablePath())
         var jsonData = {
             title:"心缘竞技",
-            imgUrl:jsb.fileUtils.getWritablePath(),
+            imgUrl:jsb.fileUtils.getWritablePath()+"demo.png",
             conType:2,
             msgType:1
         }
