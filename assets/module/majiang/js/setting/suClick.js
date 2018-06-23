@@ -65,11 +65,16 @@ cc.Class({
         // 保存截图到本地
         
         renderTexture.saveToFile("demo.png", cc.ImageFormat.PNG, true, function (event) {
+
+        	let windowSize=cc.view.getVisibleSize();  
+			cc.log("width="+windowSize.width+",height="+windowSize.height);
         	//打印本地的地址   
 	        cc.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii:"+jsb.fileUtils.getWritablePath())
 	        var jsonData = {
 	            title:"心缘竞技",
 	            imgUrl:jsb.fileUtils.getWritablePath()+"demo.png",
+	            width:windowSize.width,
+	            height:windowSize.height,
 	            conType:2,
 	            msgType:1
 	        }
