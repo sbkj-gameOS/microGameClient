@@ -286,6 +286,12 @@ cc.Class({
         cc.weijifen.GameBase.gameModel == 'ch' ? this.hall(9)
                                                : this.hall(90);
         
+    },
+     /*退出登录*/
+    changeAccount: function () {
+        cc.director.loadScene('appLogin'); 
+        cc.sys.localStorage.clear();
+        cc.weijifen = null;
     }
 });
 
