@@ -11,7 +11,8 @@ cc.Class({
         nj:cc.Prefab,
         gd:cc.Prefab,
         jy:cc.Prefab,
-        matchHall: cc.Prefab
+        matchHall: cc.Prefab,
+        hangz: cc.Prefab
     },
 
     // use this for initialization
@@ -31,6 +32,8 @@ cc.Class({
         } else if (cc.weijifen.GameBase.gameModel == 'ls') {
             // this.allfunction(['壶镇麻将','经典麻将'],[this.gd,this.jy]);
             this.allfunction(['经典麻将'],[this.jy]);
+        } else if (cc.weijifen.GameBase.gameModel == 'hangz') {
+            this.allfunction(['杭州麻将'],[this.hangz]);
         }
     },
     allfunction: function(name,value){
