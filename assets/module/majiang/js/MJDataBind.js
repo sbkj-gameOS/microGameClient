@@ -571,7 +571,7 @@ cc.Class({
         cc.weijifen.playVideo = function () {
             for (let ele of videoList) {
                 videoList = videoList.slice(1);
-                if (videoList.length) { break };
+                if (!videoList.length) { return };
                 var params = {
                     act: 4,
                     url: ele// 语音播放地址
