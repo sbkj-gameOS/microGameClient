@@ -105,7 +105,8 @@ cc.Class({
     	result = JSON.parse(result);
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
-            cc.sys.localStorage.setItem('appUrl',result.url);
+            // cc.sys.localStorage.setItem('appUrl',result.url);
+            cc.weijifen.http.httpGet("/gameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel, err, err , this);
         }
     },
     signSucess:function(result , object){
@@ -114,7 +115,7 @@ cc.Class({
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
         //document.location = 'matchList://{"code": "${data}"}';
     },
-    error:function(result , object) {
+    err:function(result , object) {
         
     },
 
