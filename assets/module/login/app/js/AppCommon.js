@@ -98,11 +98,12 @@ cc.Class({
             }
         }
         // 检测是否重新下载app 
-        // cc.weijifen.http.httpPost('/match/matchNum?token='+cc.weijifen.authorization,self.downSuccess,self.error,self) ;  
+        cc.weijifen.http.httpPost('/gameVersion/findVersionNum?orgi='+cc.weijifen.GameBase.gameModel,self.downSuccess,self.error,self) ;  
     },
     downSuccess: function (result,object) {
-        if (result > cc.sys.localStorage.getItem('version')) {
+        if (result.sucess && result.version > cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
+            cc.sys.localStorage.setItem('appUrl',result.url);
         }
     },
     signSucess:function(result , object){
