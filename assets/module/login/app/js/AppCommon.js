@@ -67,6 +67,8 @@ cc.Class({
         cc.weijifen.wxAuth = function(code) {
             self.login(code,self) ;
         };
+        // 检测是否重新下载app 
+        cc.weijifen.http.httpGet('/gameVersion/findVersionNum?orgi='+cc.weijifen.GameBase.gameModel,self.updateSuccess,self.error,self) ;  
         cc.weijifen.game = {
             model : null ,
             playway : null,
@@ -97,11 +99,11 @@ cc.Class({
                 cc.weijifen.shareRoomNum = res.roomNum;
             }
         }
-        // 检测是否重新下载app 
-        cc.weijifen.http.httpPost('/gameVersion/findVersionNum?orgi='+cc.weijifen.GameBase.gameModel,self.downSuccess,self.error,self) ;  
+        
     },
-    downSuccess: function (result,object) {
-        if (result.sucess && result.version > cc.sys.localStorage.getItem('version')) {
+    updateSuccess:function (result,object) {
+    	result = JSON.parse(result);
+        if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
             cc.sys.localStorage.setItem('appUrl',result.url);
         }
