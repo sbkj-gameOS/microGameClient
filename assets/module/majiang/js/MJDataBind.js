@@ -569,7 +569,6 @@ cc.Class({
         }
         // 播放语音队列
         cc.weijifen.playVideo = function () {
-            videoList = videoList.slice(1);
             if (!videoList.length) { return };
             var params = {
                 act: 4,
@@ -1191,7 +1190,7 @@ cc.Class({
                 url:videoList[0]// 语音播放地址
             };
             var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-            
+            videoList = videoList.slice(1);
             let id_c,id_t,id_r,id_l; 
             if (cc.weijifen.playerNum == 2) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
