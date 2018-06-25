@@ -73,11 +73,15 @@ cc.Class({
         }
     },
     downApp: function () {
+        cc.weijifen.http.httpGet("/ameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel, function(){} , function(){} , this);
+    },
+   /* downApp: function () {
         // 参数“_system”就是表示使用系统浏览器打开这个url地址！
         window.open(cc.sys.localStorage.getItem('appUrl'),'_system');
         cc.find('Canvas/downloadapp').active = false;
-    },
+    },*/
     hideDownTips: function () {
         cc.find('Canvas/downloadapp').active = false;
-    }
+    },
+  
 });
