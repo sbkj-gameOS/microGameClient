@@ -72,6 +72,11 @@ cc.Class({
             }
         }
     },
+    downApp: function () {
+        cc.find('Canvas/downloadapp').active = false;
+        let url = cc.sys.localStorage.getItem('appUrl');
+        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "openView",url);
+    },
     hideDownTips: function () {
         cc.find('Canvas/downloadapp').active = false;
     },
