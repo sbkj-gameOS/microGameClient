@@ -574,6 +574,7 @@ cc.Class({
                 act: 4,
                 url: videoList[0]// 语音播放地址
             }; 
+            videoList = videoList.shift();
             var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
         }
 
@@ -1185,12 +1186,6 @@ cc.Class({
         // 语音
         if (res.type == 3) {
         	videoList.push(res.content);
-            var params = {
-                act:4,
-                url:videoList[0]// 语音播放地址
-            };
-            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-            videoList = videoList.slice(1);
             let id_c,id_t,id_r,id_l; 
             if (cc.weijifen.playerNum == 2) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
