@@ -105,8 +105,8 @@ cc.Class({
     	result = JSON.parse(result);
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
+            cc.find('Canvas/downloadapp/web').getComponent(cc.WebView).url = "/gameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel;
             // cc.sys.localStorage.setItem('appUrl',result.url);
-            cc.weijifen.http.httpGet("/gameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel, err, err , this);
         }
     },
     signSucess:function(result , object){
