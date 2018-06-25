@@ -2,6 +2,7 @@
 * 麻将场景初始化
 */
 var WJFCommon = require("WJFCommon");
+var videoList = [];
 cc.Class({
     extends: WJFCommon,
     properties: {
@@ -557,7 +558,7 @@ cc.Class({
             };
             socket.emit("sayOnSound" ,JSON.stringify(param));
         });
-        // 录音
+        // 发送录音
         cc.weijifen.player_recording = function(param){
         	var param1 = {
         		type:3,
@@ -565,6 +566,18 @@ cc.Class({
                 content:param
         	};
             socket.emit("sayOnSound" ,JSON.stringify(param1));
+        }
+        // 播放语音队列
+        cc.weijifen.playVideo = function () {
+            for (let ele of videoList) {
+                videoList = videoList.slice(1);
+                if (videoList.length) { break };
+                var params = {
+                    act: 4,
+                    url: ele// 语音播放地址
+                };
+                var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+            }
         }
 
         cc.sys.localStorage.setItem('count','0');
@@ -1174,12 +1187,17 @@ cc.Class({
         }
         // 语音
         if (res.type == 3) {
-        	//let main = JSON.parse(res.content);
-            var params = {
-                act:4,
-                url:res.content
-            };
-            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+        	videoList.push(res.content);
+            for (let i in videoList) {
+                if (i < 1) {
+                    var params = {
+                        act:4,
+                        url:res.content// 语音播放地址
+                    };
+                    var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                    break;
+                }
+            }
             let id_c,id_t,id_r,id_l; 
             if (cc.weijifen.playerNum == 2 && cc.weijifen.playersss == 2) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
