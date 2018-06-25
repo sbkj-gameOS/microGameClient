@@ -132,6 +132,7 @@ cc.Class({
         recording: cc.Prefab
     },
     onLoad: function () {
+        cc.weijifen.room.isPLayVideo = false;
         this.yuyin_flag;
         cc.sys.localStorage.removeItem("jiesanTime");
         let self = this ;
@@ -569,13 +570,17 @@ cc.Class({
         }
         // 播放语音队列
         cc.weijifen.playVideo = function () {
-            if (!videoList.length) { return };
-            var params = {
-                act: 4,
-                url: videoList[0]// 语音播放地址
-            }; 
-            videoList = videoList.shift();
-            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+            if(videoList.length == 0){
+                cc.weijifen.room.isPLayVideo = false;
+            }else{
+                var params = {
+                    act: 4,
+                    url: videoList[0]// 语音播放地址
+                }; 
+                videoList.shift();
+                var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+            }
+            
         }
 
         cc.sys.localStorage.setItem('count','0');
@@ -1186,6 +1191,16 @@ cc.Class({
         // 语音
         if (res.type == 3) {
         	videoList.push(res.content);
+            if(cc.weijifen.room.isPLayVideo == false){
+                var params = {
+                    act:4,
+                    url:videoList[0]// 语音播放地址
+                };
+                cc.weijifen.room.isPLayVideo = true;
+                videoList.shift();
+                var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+            }
+            
             let id_c,id_t,id_r,id_l; 
             if (cc.weijifen.playerNum == 2) {
                 let id_c = cc.find('Canvas').getChildByName('player_head').getChildByName('id').getComponent(cc.Label).string;
