@@ -32,6 +32,7 @@ cc.Class({
     onLoad: function () {
         var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
+        cc.sys.localStorage.setItem('version',"1.0.0");
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         if(cc.weijifen.GameBase.gameModel =='wz'){
             sprite.spriteFrame = this.WZLogo;
@@ -39,7 +40,7 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;
+            // youkeBtn.active = false;
             //微信登录按钮剧中
             let wxBtn = cc.find("Canvas/global/button/button1");
             wxBtn.setPosition(0,-63);
@@ -96,8 +97,14 @@ cc.Class({
                 cc.weijifen.shareRoomNum = res.roomNum;
             }
         }
+        // 检测是否重新下载app 
+        // cc.weijifen.http.httpPost('/match/matchNum?token='+cc.weijifen.authorization,self.downSuccess,self.error,self) ;  
     },
-
+    downSuccess: function (result,object) {
+        if (result > cc.sys.localStorage.getItem('version')) {
+            cc.find('Canvas/downloadapp').active = true;
+        }
+    },
     signSucess:function(result , object){
         //object.alert(result);
         //document.location = 'matchList://${data}';

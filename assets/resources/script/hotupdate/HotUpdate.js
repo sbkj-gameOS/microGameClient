@@ -18,8 +18,7 @@ var customManifestStr = JSON.stringify({
     "searchPaths": []
 });
 
-var customManifestStr = ''
-
+// var customManifestStr = ''
 cc.Class({
     extends: cc.Component,
 
@@ -49,6 +48,8 @@ cc.Class({
         // if the return value smaller than 0, versionA is smaller than B.
         // 本地版本A，远程版本       
         this.versionCompareHandle = function (versionA, versionB) {
+            cc.log('本地版本',versionA);
+            cc.log('远程版本',versionB);
             var vA = versionA.split('.');
             var vB = versionB.split('.');
             for (var i = 0; i < vA.length; ++i) {
