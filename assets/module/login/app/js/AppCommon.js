@@ -104,9 +104,10 @@ cc.Class({
     updateSuccess:function (result,object) {
     	result = JSON.parse(result);
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
-            cc.find('Canvas/downloadapp').active = true;
-            cc.find('Canvas/downloadapp/web').getComponent(cc.WebView).url = cc.weijifen.url + "/gameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel;
+            // cc.find('Canvas/downloadapp').active = true;
+            // cc.find('Canvas/downloadapp/web').getComponent(cc.WebView).url = cc.weijifen.url + "/gameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel;
             // cc.sys.localStorage.setItem('appUrl',result.url);
+            object.hall(14);
         }
     },
     signSucess:function(result , object){

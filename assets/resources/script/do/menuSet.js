@@ -89,7 +89,8 @@ cc.Class({
             /* 10 */    "",
             /* 11 */    "",
             /* 12 */    "/help/share?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
-            /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
+            /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
+            /* 14 */    "/gameVersion/updateAppPage?orgi="+cc.weijifen.GameBase.gameModel
                     ];
             web.url = cc.weijifen.url + data[name];
             if (name == 5) {
@@ -99,6 +100,7 @@ cc.Class({
             if(name == 15){
                 web.url = cc.weijifen.url + url;
             }
+            
             cc.log(web.url);
             /*WebView = function(e){
                 e.preventDefault();
