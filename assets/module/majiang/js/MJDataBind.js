@@ -132,7 +132,7 @@ cc.Class({
         recording: cc.Prefab
     },
     onLoad: function () {
-        cc.weijifen.room.isPLayVideo = false;
+        cc.weijifen.isPLayVideo = false;
         this.yuyin_flag;
         cc.sys.localStorage.removeItem("jiesanTime");
         let self = this ;
@@ -571,7 +571,7 @@ cc.Class({
         // 播放语音队列
         cc.weijifen.playVideo = function () {
             if(videoList.length == 0){
-                cc.weijifen.room.isPLayVideo = false;
+                cc.weijifen.isPLayVideo = false;
             }else{
                 var params = {
                     act: 4,
@@ -1191,12 +1191,12 @@ cc.Class({
         // 语音
         if (res.type == 3) {
         	videoList.push(res.content);
-            if(cc.weijifen.room.isPLayVideo == false){
+            if(cc.weijifen.isPLayVideo == false){
                 var params = {
                     act:4,
                     url:videoList[0]// 语音播放地址
                 };
-                cc.weijifen.room.isPLayVideo = true;
+                cc.weijifen.isPLayVideo = true;
                 videoList.shift();
                 var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
             }
