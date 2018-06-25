@@ -4326,7 +4326,9 @@
     "panel": {
       "__id__": 120
     },
-    "updateUI": null,
+    "updateUI": {
+      "__id__": 54
+    },
     "_updating": false,
     "_canRetry": false,
     "_storagePath": ""
