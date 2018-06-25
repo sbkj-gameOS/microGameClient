@@ -569,15 +569,13 @@ cc.Class({
         }
         // 播放语音队列
         cc.weijifen.playVideo = function () {
-            for (let ele of videoList) {
-                videoList = videoList.slice(1);
-                if (!videoList.length) { return };
-                var params = {
-                    act: 4,
-                    url: ele// 语音播放地址
-                }; 
-                var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-            }
+            videoList = videoList.slice(1);
+            if (!videoList.length) { return };
+            var params = {
+                act: 4,
+                url: videoList[0]// 语音播放地址
+            }; 
+            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
         }
 
         cc.sys.localStorage.setItem('count','0');
