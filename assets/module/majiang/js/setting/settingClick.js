@@ -169,6 +169,7 @@ cc.Class({
                                                        : time = 30000;*/
             }
             setTimeout(function(){self.endGameOver(data,context)},time);
+            cc.sys.localStorage.removeItem('subModel');
         },
         endGameOver: function(data,context){
             let temp = cc.instantiate(this.summary) ;

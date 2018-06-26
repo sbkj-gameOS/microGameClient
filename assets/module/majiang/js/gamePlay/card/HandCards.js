@@ -54,6 +54,7 @@ cc.Class({
     * @param pd
     */
     init:function(cvalue,pd){
+        if (this.csImageTop) this.csImageTop.active = false;
         this.cardcolor();        
         this.caishen = false ; 
         this.take = false;
@@ -175,7 +176,7 @@ cc.Class({
     caishenCards: function(){
         this.csImageTop.active = true;
         this.target.zIndex = -999+this.value;
-        if (cc.weijifen.subModel == "HAZ" || cc.weijifen.playType == 'HAZ') {
+        if (cc.sys.localStorage.getItem('subModel') == 'HAZ') {
             this.target.children[0].getComponent(cc.Button).enabled = true;//杭州麻将---财神可以出
             this.cardvalue.color = new cc.Color(255,255,255);
         } else {

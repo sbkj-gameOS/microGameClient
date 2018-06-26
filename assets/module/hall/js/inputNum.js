@@ -106,6 +106,7 @@ cc.Class({
             }
             if(data.game){
                 cc.weijifen.playType = data.game;
+                cc.sys.localStorage.setItem('subModel',data.game);
             }
             if(data.playerNum){
                 cc.weijifen.playerNum = data.playerNum;

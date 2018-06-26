@@ -194,7 +194,7 @@ cc.Class({
                    : garams.endPoint = dairu; 
         garams.count = moShi;
         garams.player2 = fengdeng;
-        cc.weijifen.subModel = 'HAZ';
+        cc.sys.localStorage.setItem('subModel','HAZ');
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }

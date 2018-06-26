@@ -115,7 +115,6 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
-            console.log(data.players);
             //第一个进入房间的人是房主，其他玩家再次进入data.players会增加
             if(data.players.length == 1){
                 cc.sys.localStorage.setItem("roomNo1",cc.weijifen.user.id);
@@ -414,7 +413,7 @@ cc.Class({
             // var cards = context.decode(temp_player.cards);
             var cards = data.player.cards;
          
-            if(cc.weijifen.GameBase.gameModel == 'wz' || cc.weijifen.GameBase.gameModel == 'ls'){
+            if(cc.weijifen.GameBase.gameModel == 'wz' || cc.weijifen.GameBase.gameModel == 'ls' || cc.weijifen.GameBase.gameModel == 'jx'){
                 if(temp_player.powerCard){
                     // var powerCard = context.decode(temp_player.powerCard);
                     var powerCard = temp_player.powerCard;
