@@ -69,6 +69,8 @@ cc.Class({
         garams.player = playerData;
         garams.game = 'JX';
         garams.pepNums = userType;
+        // 圈数
+        garams.modeltype = moShi;
         garams.count = moShi;
         garams.player2 = fengdeng;
         if(cc.weijifen.authorization){
