@@ -27,7 +27,6 @@ cc.Class({
             }
             //上一个选中的字体恢复为默认色
              event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
-        
         }
        
         playerData = this.mosiOrpepleClick(event);
@@ -92,16 +91,13 @@ cc.Class({
     createClick:function(){
         /*playerData = playerData.split("@@");
         playerData.pop();*/
-        garams.game = 'HZ';
-        garams.waytype = playerData;
-
-
-
+        garams.game = 'LSGD';
+        /*garams.waytype = playerData;
         garams.guiZe = guiZe;
-        garams.maiMa = maiMa;
-
-
-
+        garams.maiMa = maiMa;*/
+        garams.player2 = playerData;
+        garams.player = guiZe;
+        garams.count = maiMa;
         garams.modeltype = moShi;
         garams.pepNums = userType;
         console.log(garams)
