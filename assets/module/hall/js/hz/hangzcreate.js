@@ -194,7 +194,7 @@ cc.Class({
                    : garams.endPoint = dairu; 
         garams.count = moShi;
         garams.player2 = fengdeng;
-        console.log(garams)
+        cc.weijifen.subModel = 'HAZ';
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }

@@ -171,11 +171,17 @@ cc.Class({
             this.mj.getComponent(cc.Button).interactable = true;
         }
     },
+    /*财神牌初始*/
     caishenCards: function(){
         this.csImageTop.active = true;
         this.target.zIndex = -999+this.value;
-        this.target.children[0].getComponent(cc.Button).enabled = false;
-        this.cardvalue.color = new cc.Color(118, 118, 118);
+        if (cc.weijifen.subModel == "HAZ" || cc.weijifen.playType == 'HAZ') {
+            this.target.children[0].getComponent(cc.Button).enabled = true;//杭州麻将---财神可以出
+            this.cardvalue.color = new cc.Color(255,255,255);
+        } else {
+            this.target.children[0].getComponent(cc.Button).enabled = false;
+            this.cardvalue.color = new cc.Color(118, 118, 118);
+        }
         this.caishen = true;
     },
     lastone:function(){
