@@ -31,10 +31,8 @@ cc.Class({
             this.allfunction(['南京麻将'],[this.nj]);
         } else if (cc.weijifen.GameBase.gameModel == 'ls') {
             // this.allfunction(['壶镇麻将','经典麻将'],[this.gd,this.jy]);
-            this.allfunction(['经典麻将'],[this.jy]);
-        } else if (cc.weijifen.GameBase.gameModel == 'haz') {
-            this.allfunction(['杭州麻将'],[this.hangz]);
-        }
+            this.allfunction(['经典麻将','广式麻将','杭州麻将'],[this.jy,this.gd,this.hangz]);
+        } 
     },
     allfunction: function(name,value){
         for(let i in name){

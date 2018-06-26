@@ -40,7 +40,8 @@ cc.Class({
             event.node.parent.parent.parent.getChildByName('daju').active = true;
             event.node.parent.parent.parent.getChildByName('dapian').active = false;
         } else {
-            event.node.parent.parent.parent.y = -10;
+            // event.node.parent.parent.parent.y = -10;
+            event.node.parent.parent.parent.y = 160;
             event.node.parent.parent.parent.getChildByName('dapian').active = true;
             event.node.parent.parent.parent.getChildByName('daju').active = false;
         }
@@ -193,7 +194,7 @@ cc.Class({
                    : garams.endPoint = dairu; 
         garams.count = moShi;
         garams.player2 = fengdeng;
-        console.log(garams)
+        cc.weijifen.subModel = 'HAZ';
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
