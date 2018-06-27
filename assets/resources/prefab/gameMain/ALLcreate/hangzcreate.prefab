@@ -16503,7 +16503,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 515
@@ -16736,7 +16736,7 @@
         "__id__": 521
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -17426,7 +17426,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 544
@@ -17659,7 +17659,7 @@
         "__id__": 550
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -17845,7 +17845,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 557
@@ -18078,7 +18078,7 @@
         "__id__": 563
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -18765,7 +18765,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 586
@@ -18998,7 +18998,7 @@
         "__id__": 592
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
