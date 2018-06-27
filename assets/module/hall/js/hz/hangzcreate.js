@@ -1,5 +1,6 @@
 var creat = require("createRoom");
 var moShi,endPoint,playerData,userType,fengdeng,jushu,dairu,garams,player1,player2,player3,player4;
+var player11,player22,player33,player44;
 cc.Class({
     extends: creat,
 
@@ -20,9 +21,27 @@ cc.Class({
         player2 = '2';
         player3 = '5';
         player4 = '7@@';
+        player11 = '0';
+        player22 = '2';
+        player33 = '5';
+        player44 = '7@@';
         garams = {};
     },
     // 模式
+    moshiChange: function (event,data) {
+        moShi = data;
+        if (data == 0) {
+            event.target.parent.parent.parent.parent.getChildByName('daju').active = true;
+            event.target.parent.parent.parent.parent.getChildByName('dapian').active = false;
+        } else {
+            event.target.parent.parent.parent.parent.getChildByName('daju').active = false;
+            event.target.parent.parent.parent.parent.getChildByName('dapian').active = true;
+        }
+        /*player1 = '0';
+        player2 = '2';
+        player3 = '5';
+        player4 = '7@@';*/
+    },
     clickmoshi:function(event,data){
         if( moShi != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
@@ -35,17 +54,6 @@ cc.Class({
         }
         //3.更新moshi的值
         moShi = this.mosiOrpepleClick(event);
-        if (data == 0) {
-            event.node.parent.parent.parent.y = 33;
-            event.node.parent.parent.parent.getChildByName('daju').active = true;
-            event.node.parent.parent.parent.getChildByName('dapian').active = false;
-        } else {
-            // event.node.parent.parent.parent.y = -10;
-            event.node.parent.parent.parent.y = 160;
-            event.node.parent.parent.parent.getChildByName('dapian').active = true;
-            event.node.parent.parent.parent.getChildByName('daju').active = false;
-        }
-        playerData = '';
     },
      // 底分
     clickendpoint:function(event){
@@ -126,48 +134,77 @@ cc.Class({
         }
     },
     clickPlayer1:function(event,data){
-        if(player1 != this.mosiOrpepleClick(event) ){
-             //选中改变颜色
-            if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+        var self = this;
+        function change (player3) {
+            if(player3 != self.mosiOrpepleClick(event) ){
+                 //选中改变颜色
+                if(event.isChecked==true){    
+                    event.node.children[2].setColor(cc.color(231,62,65,255));
+                }
+                //上一个选中的字体恢复为默认色
+                event.node._parent.getChildByName(player3).children[2].setColor(cc.color(129,74,17,255));
             }
-            //上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(player1).children[2].setColor(cc.color(129,74,17,255));
         }
-        player1 = this.mosiOrpepleClick(event);
+        change(player1);
+        change(player11);
+        if (moShi == 0) {
+            player1 = this.mosiOrpepleClick(event);
+            return
+        }
+        player11 = this.mosiOrpepleClick(event);
     },   
     clickPlayer2:function(event,data){
-        if(player2 != this.mosiOrpepleClick(event) ){
-             //选中改变颜色
-            if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+        var self = this;
+        function change (player3) {
+            if(player3 != self.mosiOrpepleClick(event) ){
+                 //选中改变颜色
+                if(event.isChecked==true){    
+                    event.node.children[2].setColor(cc.color(231,62,65,255));
+                }
+                //上一个选中的字体恢复为默认色
+                event.node._parent.getChildByName(player3).children[2].setColor(cc.color(129,74,17,255));
             }
-            //上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(player2).children[2].setColor(cc.color(129,74,17,255));
         }
-        player2 = this.mosiOrpepleClick(event);
+        change(player2);
+        change(player22);
+        if (moShi == 0) {
+            player2 = this.mosiOrpepleClick(event);
+            return
+        }
+        player22 = this.mosiOrpepleClick(event);
     },    
      clickPlayer3:function(event,data){
-        if(player3 != this.mosiOrpepleClick(event) ){
-             //选中改变颜色
-            if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+        var self = this;
+        function change (player3) {
+            if(player3 != self.mosiOrpepleClick(event) ){
+                 //选中改变颜色
+                if(event.isChecked==true){    
+                    event.node.children[2].setColor(cc.color(231,62,65,255));
+                }
+                //上一个选中的字体恢复为默认色
+                event.node._parent.getChildByName(player3).children[2].setColor(cc.color(129,74,17,255));
             }
-            //上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(player3).children[2].setColor(cc.color(129,74,17,255));
         }
-        player3 = this.mosiOrpepleClick(event);
+        change(player3);
+        change(player33);
+        if (moShi == 0) {
+            player3 = this.mosiOrpepleClick(event);
+            return
+        }
+        player33 = this.mosiOrpepleClick(event);
     },    
      clickPlayer4:function(event,data){
-        player4 = this.gameTypeClick(event,player4);
          //选中改变颜色
-         if(event.isChecked==true){    
+        if(event.isChecked==true){    
             event.node.children[2].setColor(cc.color(231,62,65,255));
         }else{
             event.node.children[2].setColor(cc.color(129,74,17,255));
         }
-       
-
+        if (moShi == 0) {
+            player4 = this.gameTypeClick(event,player4);
+            return
+        }
+        player44 = this.gameTypeClick(event,player4);
     },    
     // 选择玩家人数
     clickPepNum:function(event){
@@ -184,7 +221,8 @@ cc.Class({
     createClick:function(){
        /* playerData = playerData.split("@@");
         playerData.pop();*/
-        playerData = player1 + '@@' + player2 + '@@' + player3 + '@@' + player4;
+        moShi == 0 ? playerData = player1 + '@@' + player2 + '@@' + player3 + '@@' + player4
+                   : playerData = player11 + '@@' + player22 + '@@' + player33 + '@@' + player44;
         garams.player = playerData;
         garams.game = 'HAZ';
         garams.pepNums = userType;
@@ -194,6 +232,7 @@ cc.Class({
                    : garams.endPoint = dairu; 
         garams.count = moShi;
         garams.player2 = fengdeng;
+        console.log(garams)
         cc.sys.localStorage.setItem('subModel','HAZ');
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
