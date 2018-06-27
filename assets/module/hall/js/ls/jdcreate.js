@@ -25,18 +25,10 @@ cc.Class({
                 event.node.children[2].setColor(cc.color(231,62,65,255));
             }
             //上一个选中的字体恢复为默认色
-             // event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
-        
+            event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
         }
-       
+            
         playerData = this.mosiOrpepleClick(event);
-        if (playerData === 'gs') {
-            event.node._parent._parent._parent.children[1].getChildByName(playerData).active = true;
-            event.node._parent._parent._parent.children[1].getChildByName('jyandhz').active = false;
-        } else {
-            event.node._parent._parent._parent.children[1].getChildByName('jyandhz').active = true;
-            event.node._parent._parent._parent.children[1].getChildByName('gs').active = false;
-        }
     },
     // 选择规则
     clickGuize:function(event){
