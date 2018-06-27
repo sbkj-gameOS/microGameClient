@@ -118,6 +118,8 @@ cc.Class({
             listOne.getChildByName('leftName').children[0].getComponent(cc.Label).string = ele.activiteName;
             // 开赛时间
             listOne.getChildByName('leftName').children[1].getComponent(cc.Label).string = ele.startTime;
+            // 已报名人数
+            listOne.getChildByName('signUpNum').getComponent(cc.Label).string = ele.signUpNum;
             //开赛人数
             listOne.getChildByName('people').children[1].getComponent(cc.Label).string = ele.userNum + '人';
             if (prizeData.length) {//比赛奖励
