@@ -134,6 +134,7 @@ cc.Class({
         // 点击参赛进入
         let dataStr = event.node.getChildByName('data').getComponent(cc.Label).string;
         showDetail(dataStr);
+        cc.sys.localStorage.setItem('matchData',dataStr);
     },
   
 });

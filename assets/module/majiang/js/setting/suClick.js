@@ -82,5 +82,9 @@ cc.Class({
         });
         
         return;
+    },
+     /*关闭中奖提示*/
+    closePrizeBox: function () {
+        cc.find('Canvas/prizeBox').destroy();
     }
 });

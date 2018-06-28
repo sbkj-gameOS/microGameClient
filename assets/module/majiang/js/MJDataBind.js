@@ -129,11 +129,13 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-        recording: cc.Prefab
+        recording: cc.Prefab,
+        prizeBox: cc.Prefab
     },
     onLoad: function () {
         cc.weijifen.isPLayVideo = false;
         this.yuyin_flag;
+        cc.sys.localStorage.removeItem('matchOver');
         cc.sys.localStorage.removeItem("jiesanTime");
         let self = this ;
         //let socket = this.socket(self);
@@ -163,6 +165,7 @@ cc.Class({
             self.map("play" , gameStartInit.play_event,self);//人齐了，接收发牌信息
             self.map("changeRoom" , self.changeRoom_event,self);// 比赛
             self.map("talkOnSay" , self.talk_event,self);//语音  文字   表情
+           
 
             gamePlay = require('GamePlay');
             self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
@@ -190,7 +193,6 @@ cc.Class({
 
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
-           
             if (data.replacePowerCard && data.action == 'ting') {
                 cc.find('Canvas/tip').active = true;
                 var timer;
@@ -199,8 +201,43 @@ cc.Class({
                     clearTimeout(timer);
                 },3000);
             }
+
+            if (data.command == 'ComingToAnEnd') {
+                 /**
+                 * 比赛模式中，距离比赛结束30s时收到，并显示倒计时
+                 */
+                let seconds = 30;
+                let str = cc.find('Canvas/rules/label').getComponent(cc.Label);
+                let time = setInterval(function(){
+                    seconds--;
+                    str.string = '距离比赛结束还有' + seconds + '秒';
+                    if (seconds < 1) clearInterval(time);
+                },1000);
+            }
             self.getSelf().route(data.command,self)(data , self);
         });
+        socket.on("OverPosition",function(result){
+            // debugger
+            // if (cc.sys.localStorage.getItem('matchOver') && result) {
+            if (result) {
+               /* let data = JSON.parse(result);
+                let box = cc.instantiate(self.prizeBox);
+                let timer2 = setTimeout(function() {
+                    cc.sys.localStorage.removeItem('matchOver');
+                    clearTimeout(timer2);
+                },2000);
+                let timer1 = setTimeout(function() {
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('name').children[1].getComponent(cc.Label).string = data.name;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = data.activityTime;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                    box.parent = cc.find('Canvas');
+                    box.zIndex = 1000000000;
+                    clearTimeout(timer1);
+                },2000);*/
+            }
+        })
+       
         socket.on("play",function(result){
             var data = self.getSelf().parse(result);
             self.getSelf().route('play',self)(data , self);
@@ -1006,15 +1043,15 @@ cc.Class({
         cc.sys.localStorage.removeItem('cl');      
         context = cc.find('Canvas').getComponent('MJDataBind');
         let time = setTimeout(function(){
-        for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
-            if(direction == context.searchlight.children[inx].name){
-                    context.searchlight.children[inx].active = true ;
-                    cc.sys.localStorage.setItem('take','true');
-            }else{
-                    context.searchlight.children[inx].active = false ;
-                    cc.sys.localStorage.removeItem('take');
+            for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+                if(direction == context.searchlight.children[inx].name){
+                        context.searchlight.children[inx].active = true ;
+                        cc.sys.localStorage.setItem('take','true');
+                }else{
+                        context.searchlight.children[inx].active = false ;
+                        cc.sys.localStorage.removeItem('take');
+                }
             }
-        }
             clearTimeout(time); 
         },400);
     },

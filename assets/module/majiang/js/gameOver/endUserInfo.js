@@ -1,6 +1,7 @@
-
+var WJFCommon = require("WJFCommon");
 cc.Class({
-    extends: cc.Component,
+    // extends: cc.Component,
+    extends: WJFCommon,
 
     properties: {
         // foo: {
@@ -26,12 +27,15 @@ cc.Class({
         bk:cc.Node,
         yinse: cc.SpriteFrame,
         yintiao: cc.SpriteFrame,
-        headimgs:cc.Node,
+        headimgs:cc.Node
     },
 
     // use this for initialization
     onLoad: function () {
     },
+    /**
+     * 游戏结束
+     */
     init:function(){
         
         let player = cc.find('Canvas').getComponent('MJDataBind').playersarray;
@@ -83,6 +87,22 @@ cc.Class({
                 head.height = 90;
             });
         }
+        let self = this;
+        // 比赛结束弹出中奖信息
+        
+
+        
+        // 比赛结束后弹出提示
+        if (cc.weijifen.match == "true") {
+            let timer = setTimeout(function() {
+                // cc.weijifen.matchTime = null;
+                cc.sys.localStorage.removeItem('matchTime');
+                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在【通知】中查看中奖信息';
+                self.alert(msg);
+                clearTimeout(timer);
+            },1000);
+            cc.sys.localStorage.removeItem('signUp');
+        }
     //     this.username.string = userInfo.userName;
     //     if(userInfo.cur != 'true' ){
     //         this.myself.active = false;
@@ -125,7 +145,7 @@ cc.Class({
         this.dyj = dayingjia;
         this.dp = dianpao;
         this.init();
-    }
+    },
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
 

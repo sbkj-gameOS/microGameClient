@@ -30,6 +30,9 @@ cc.Class({
     onLoad: function () {
       
     },
+    /**
+     * 小局结束，结算页
+     */
     init: function(){
         let headimg;
         let gang=0; 

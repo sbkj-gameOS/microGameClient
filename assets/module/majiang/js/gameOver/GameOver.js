@@ -139,9 +139,8 @@ cc.Class({
 	                }
 	            }
 	        }
-
 	        gameOver.huaction(playerid);
-	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000)
+	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000);
 	    },
 	    endList:function(data,context,playerid,a){
 	    	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');

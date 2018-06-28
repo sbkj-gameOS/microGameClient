@@ -316,20 +316,25 @@ cc.Class({
                 hour = Math.floor(times / (60 * 60)) - (day * 24);
                 minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
                 second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                times--;
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                msg = `距比赛开始：${minute}分${second}秒`;
+                // cc.weijifen.matchTime = times * 1000;//再次进入房间倒计时正常显示
+                cc.sys.localStorage.setItem('matchTime',msg)
+                wanfa.string = msg;
             } else {
+                // debugger
                 wanfa.string = cc.weijifen.wanfa;
-                clearInterval(timer);
+                console.log('times',times)
                 cc.sys.localStorage.removeItem('matchFlag'); 
-                cc.weijifen.matchTime = null;
+                // cc.weijifen.matchTime = null;
+                cc.sys.localStorage.removeItem('matchTime'); 
+                clearInterval(timer);
+                return
             }
             // fenNode.string = minute;
             // miaoNode.string = second;
-            times--;
-            if (minute <= 9) minute = '0' + minute;
-            if (second <= 9) second = '0' + second;
-            msg = `距比赛开始：${minute}分${second}秒`;
-            cc.weijifen.matchTime = times * 1000;//再次进入房间倒计时正常显示
-            wanfa.string = msg;
         },1000);
     }
 });

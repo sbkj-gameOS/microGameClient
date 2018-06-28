@@ -106,6 +106,7 @@ cc.Class({
     getListSuccess: function (res,object) {
         let flag;   
         let data = JSON.parse(res);
+        if (!data.success) return;
         if (data.matchList.length) flag = false;
         if (flag) return;
         for (let ele of data.matchList) {
@@ -153,23 +154,23 @@ cc.Class({
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
-        // cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
-        cc.weijifen.matchTime = res.statrtSec;
+        cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
+        // cc.weijifen.matchTime = res.statrtSec;
         // 玩家没有报名，跳转到详情页报名
         if (!res.success) {
+            if (cc.sys.localStorage.getItem('signUp') == 'true') {
+                obj.alert('比赛已经开始，中途不允许进入！');
+            }
             obj.alert(res.msg);
 
             let menuToggle = cc.find('Canvas/js/menuToggle');
             let me = menuToggle.getComponent('menuToggle');
             me.openMatchDetail(obj.node.getComponent('match'));
-            setTimeout(function () {
-                obj.closealert();
-            },2000)
-            return
         }
         let h5CallCo = require('h5CallCocos');
         let toMjSence = new h5CallCo();  
         toMjSence.matchListOneClick(res);
+        clearTimeout(match_timer);
     },
     joinErr: function (res) {
         let data = JSON.parse(res);
@@ -188,18 +189,19 @@ cc.Class({
         let activityId = cc.sys.localStorage.getItem('activityId');
         let params = {
             token: cc.weijifen.authorization,
-            // activityId: activityId
             activityId: activityId
         }
         cc.weijifen.http.httpPost("/gameNotice/saveUserActivity",params,function(data){
-            let data1 = JSON.parse(data);
+            var data1 = JSON.parse(data);
             if (data1.success) {
-                obj.alert('报名成功!');
+                // obj.alert('报名成功!');
+                obj.alert(data1.msg);
+                cc.sys.localStorage.setItem('signUp','true');
             } else {
                 obj.alert(data1.msg);
             }
-        },function(data){
-            obj.alert(data1.msg);
+        },function(data1){
+            // obj.alert(data1.msg);
         },obj);
     },
     /*
@@ -243,6 +245,9 @@ cc.Class({
     closeBtn:function(){
         clearTimeout(match_timer);
         cc.find('Canvas/match').destroy();
+        if (cc.sys.localStorage.getItem('matchData')) {
+            cc.sys.localStorage.removeItem('matchData');
+        }
     }
 });
 

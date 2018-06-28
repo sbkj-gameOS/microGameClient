@@ -80,8 +80,10 @@ cc.Class({
     onLoad: function () {
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
-        if (dataStr && this.countDown && cc.weijifen.matchTime) {
-            let time = cc.weijifen.matchTime;
+        // if (dataStr && this.countDown && cc.weijifen.matchTime) {
+        if (dataStr && this.countDown && cc.sys.localStorage.getItem('matchTime')) {
+            // let time = cc.weijifen.matchTime;
+            let time = cc.sys.localStorage.getItem('matchTime');
             this.countDown(time);//statrtSec距离比赛开始的毫秒数
         }
         this.emojiObjFlag = false;
@@ -974,7 +976,7 @@ cc.Class({
             let length = currenthandcards.children.length;
             if (cc.weijifen.bankers && currenthandcards.children.length == 14) {
                 currenthandcards.children[length-1].width = 100;
-            } else {
+            } else if (currenthandcards.children[length-1]) {
                 currenthandcards.children[length-1].width = 73;
             }
         },
