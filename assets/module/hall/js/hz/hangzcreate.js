@@ -226,13 +226,12 @@ cc.Class({
         garams.player = playerData;
         garams.game = 'HAZ';
         garams.pepNums = userType;
-        garams.jushu = jushu;
-        garams.endPoint = endPoint;
+        garams.modeltype = jushu;
         moShi == 0 ? garams.endPoint = endPoint 
                    : garams.endPoint = dairu; 
         garams.count = moShi;
         garams.player2 = fengdeng;
-        console.log(garams)
+        // console.log(garams)
         cc.sys.localStorage.setItem('subModel','HAZ');
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
