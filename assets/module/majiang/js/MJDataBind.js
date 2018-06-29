@@ -219,8 +219,10 @@ cc.Class({
         socket.on("OverPosition",function(result){
             // debugger
             // if (cc.sys.localStorage.getItem('matchOver') && result) {
-            if (result) {
-               /* let data = JSON.parse(result);
+            cc.sys.localStorage.setItem('matchOver','true');
+            cc.sys.localStorage.setItem('matchPrize',result);
+           /* if (result) {
+                let data = JSON.parse(result);
                 let box = cc.instantiate(self.prizeBox);
                 let timer2 = setTimeout(function() {
                     cc.sys.localStorage.removeItem('matchOver');
@@ -234,8 +236,8 @@ cc.Class({
                     box.parent = cc.find('Canvas');
                     box.zIndex = 1000000000;
                     clearTimeout(timer1);
-                },2000);*/
-            }
+                },2000);
+            }*/
         })
        
         socket.on("play",function(result){

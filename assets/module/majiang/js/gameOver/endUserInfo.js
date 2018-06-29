@@ -27,7 +27,8 @@ cc.Class({
         bk:cc.Node,
         yinse: cc.SpriteFrame,
         yintiao: cc.SpriteFrame,
-        headimgs:cc.Node
+        headimgs:cc.Node,
+        prizeBox: cc.Prefab
     },
 
     // use this for initialization
@@ -101,6 +102,20 @@ cc.Class({
                 self.alert(msg);
                 clearTimeout(timer);
             },1000);
+            if (cc.sys.localStorage.getItem('matchOver') && cc.sys.localStorage.getItem('matchPrize')) {
+                let data = JSON.parse(cc.sys.localStorage.getItem('matchPrize'));
+                let box = cc.instantiate(self.prizeBox);
+                let timer1 = setTimeout(function() {
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('name').children[1].getComponent(cc.Label).string = data.name;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = data.activityTime;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                    box.parent = cc.find('Canvas');
+                    box.zIndex = 1000000000;
+                    cc.sys.localStorage.removeItem('matchOver');
+                    clearTimeout(timer1);
+                },2000);
+            }
             cc.sys.localStorage.removeItem('signUp');
         }
     //     this.username.string = userInfo.userName;
