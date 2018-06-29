@@ -321,6 +321,7 @@ cc.Class({
                         anim.play('ting');
                         setTimeout(function(){
                             cc.find('Canvas/ting').active = false;
+                            anim.stop('ting');
                         },1500);
                         console.log(self.gameModelMp3)
                         cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                

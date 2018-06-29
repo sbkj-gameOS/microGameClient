@@ -326,7 +326,6 @@ cc.Class({
             } else {
                 // debugger
                 wanfa.string = cc.weijifen.wanfa;
-                console.log('times',times)
                 cc.sys.localStorage.removeItem('matchFlag'); 
                 // cc.weijifen.matchTime = null;
                 cc.sys.localStorage.removeItem('matchTime'); 
