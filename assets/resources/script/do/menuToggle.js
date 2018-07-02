@@ -45,7 +45,7 @@ cc.Class({
 
 
         if (event.target.name == 9) {
-            if(cc.weijifen.GameBase.gameModel = "ch"){
+            if(cc.weijifen.GameBase.gameModel == "ch"){
                 let match = cc.instantiate(this.match);
                 match.parent = cc.find('Canvas');
                 return 
