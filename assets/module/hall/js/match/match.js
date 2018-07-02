@@ -245,6 +245,7 @@ cc.Class({
     closeBtn:function(){
         clearTimeout(match_timer);
         cc.find('Canvas/match').destroy();
+        cc.find('Canvas/matchTip').active = false;
         if (cc.sys.localStorage.getItem('matchData')) {
             cc.sys.localStorage.removeItem('matchData');
         }

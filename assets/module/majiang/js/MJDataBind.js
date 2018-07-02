@@ -217,27 +217,8 @@ cc.Class({
             self.getSelf().route(data.command,self)(data , self);
         });
         socket.on("OverPosition",function(result){
-            // debugger
-            // if (cc.sys.localStorage.getItem('matchOver') && result) {
             cc.sys.localStorage.setItem('matchOver','true');
             cc.sys.localStorage.setItem('matchPrize',result);
-           /* if (result) {
-                let data = JSON.parse(result);
-                let box = cc.instantiate(self.prizeBox);
-                let timer2 = setTimeout(function() {
-                    cc.sys.localStorage.removeItem('matchOver');
-                    clearTimeout(timer2);
-                },2000);
-                let timer1 = setTimeout(function() {
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('name').children[1].getComponent(cc.Label).string = data.name;
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = data.activityTime;
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
-                    box.parent = cc.find('Canvas');
-                    box.zIndex = 1000000000;
-                    clearTimeout(timer1);
-                },2000);
-            }*/
         })
        
         socket.on("play",function(result){
