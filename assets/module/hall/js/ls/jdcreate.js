@@ -11,7 +11,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // 一下为默认选中的选项
-        playerData = "JY";
+        playerData = "jy";
         guiZe = 'gp@@';
         moShi = "8";
         userType = "4";
@@ -27,8 +27,14 @@ cc.Class({
             //上一个选中的字体恢复为默认色
             event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
         }
-            
         playerData = this.mosiOrpepleClick(event);
+        if (playerData == 'gs') {
+            event.node._parent._parent._parent.children[2].children[1].active = false;
+            event.node._parent._parent._parent.children[2].children[2].active = true;
+        } else {
+            event.node._parent._parent._parent.children[2].children[2].active = false;
+            event.node._parent._parent._parent.children[2].children[1].active = true;
+        }  
     },
     // 选择规则
     clickGuize:function(event){
@@ -65,8 +71,7 @@ cc.Class({
                 event.node.children[2].setColor(cc.color(231,62,65,255));
             }
             //上一个选中的字体恢复为默认色
-             event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
-        
+            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
         }
        
         userType = this.mosiOrpepleClick(event);
@@ -76,7 +81,7 @@ cc.Class({
     createClick:function(){
         // playerData = playerData.split("@@");
         // playerData.pop();
-        garams.game = "JY";
+        garams.game = "jy";
         garams.waytype = playerData;
         garams.player = guiZe;
         garams.modeltype = moShi;
