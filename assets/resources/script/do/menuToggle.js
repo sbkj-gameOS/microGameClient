@@ -72,6 +72,7 @@ cc.Class({
     * @param event  1、当前mach_list节点
     *               2、事件对象
     * 
+    * 
     */
     openMatchDetail: function (event) {
         let data1;
@@ -90,17 +91,19 @@ cc.Class({
                 var conditions = content.children[0];
                 var entryConditions = JSON.parse(data1.entryConditions);
                 for (var ele of entryConditions) {
-                    if (ele.id == data1.bisaiType) {
+                    if (ele.num) {
+                        conditions.children[2].getComponent(cc.Label).string = ele.name + ele.num;
+                    } else {
                         conditions.children[2].getComponent(cc.Label).string = ele.name;
                     }
                 }
             }
             // 报名时间
             var time = content.children[1].children[2].getComponent(cc.Label);
-            time.string = data1.bmStartTime + '至' + data1.endTime;
-             // 参赛人数
+            time.string = data1.bmStartTime + '至' + data1.bmEndTime;
+             // 开赛时间
             var num = content.children[2].children[2].getComponent(cc.Label);
-            num.string = data1.userNum + '人';
+            num.string = data1.startTime + '至' + data1.endTime;
             // 奖品信息
             var prizeData = JSON.parse(data1.prizeData);
             if (prizeData.length) {
@@ -110,11 +113,16 @@ cc.Class({
                     var reward = cc.instantiate(rewardTxt.children[1]);
                     reward.children[0].getComponent(cc.Label).string = '第' + prizeData[i].num + '名';
                     reward.children[1].getComponent(cc.Label).string = prizeData[i].nameValue;
-                    if (i > 0) reward.y = reward.y - reward.width - 15;
-                    reward.active = true;
+                    if (i > 0) {
+                        reward.y = rewardTxt.children[i+1].y - 70;
+                    }
+                    if (i == 0) {
+                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-1');
+                    } else if (i == 1) {
+                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-2');
+                    }
                     reward.parent = rewardTxt;
-                    reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-1');
-                    reward.children[3].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-2');
+                    reward.active = true;
                 }
             }
             // 比赛内容

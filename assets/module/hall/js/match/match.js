@@ -120,9 +120,9 @@ cc.Class({
             // 开赛时间
             listOne.getChildByName('leftName').children[1].getComponent(cc.Label).string = ele.startTime;
             // 已报名人数
-            listOne.getChildByName('signUpNum').getComponent(cc.Label).string = ele.signUpNum;
+            // listOne.getChildByName('signUpNum').getComponent(cc.Label).string = ele.signUpNum;
             //开赛人数
-            listOne.getChildByName('people').children[1].getComponent(cc.Label).string = ele.userNum + '人';
+            listOne.getChildByName('people').children[1].getComponent(cc.Label).string = ele.signUpNum + '/' +ele.userNum + '人';
             if (prizeData.length) {//比赛奖励
                 listOne.getChildByName('prize').children[0].getComponent(cc.Label).string = '第' + prizeData[0].num + '名';
                 listOne.getChildByName('prize').children[1].getComponent(cc.Label).string = prizeData[0].nameValue;
@@ -135,7 +135,6 @@ cc.Class({
     getListErr: function (res,obj) {
         /*let data = JSON.parse(res);
         obj.alert(data.msg)*/
-        
     },
     /*
     * 加入比赛
