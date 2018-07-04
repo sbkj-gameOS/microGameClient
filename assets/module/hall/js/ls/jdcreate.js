@@ -82,7 +82,6 @@ cc.Class({
     createClick:function(){
         // playerData = playerData.split("@@");
         // playerData.pop();
-        console.log(playerData);
         if (playerData == 'gs') {
             garams.game = 'jygs';
             garams.waytype = 'jygs';
@@ -93,7 +92,6 @@ cc.Class({
         garams.player = guiZe;
         garams.modeltype = moShi;
         garams.pepNums = userType;
-        console.log(garams)
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }
