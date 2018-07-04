@@ -31,6 +31,7 @@ cc.Class({
         if (playerData == 'gs') {
             event.node._parent._parent._parent.children[2].children[1].active = false;
             event.node._parent._parent._parent.children[2].children[2].active = true;
+            guiZe = 'tsfb@@';
         } else {
             event.node._parent._parent._parent.children[2].children[2].active = false;
             event.node._parent._parent._parent.children[2].children[1].active = true;
@@ -81,8 +82,14 @@ cc.Class({
     createClick:function(){
         // playerData = playerData.split("@@");
         // playerData.pop();
-        garams.game = "jy";
-        garams.waytype = playerData;
+        console.log(playerData);
+        if (playerData == 'gs') {
+            garams.game = 'jygs';
+            garams.waytype = 'jygs';
+        } else {
+            garams.game = "jy";
+            garams.waytype = playerData;
+        }  
         garams.player = guiZe;
         garams.modeltype = moShi;
         garams.pepNums = userType;
