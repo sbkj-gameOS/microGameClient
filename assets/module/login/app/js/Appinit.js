@@ -54,6 +54,7 @@ cc.Class({
             //游戏场景的背景
             cc.weijifen.bgcolor = cc.sys.localStorage.getItem('bgcolor');
             //唱戏场景的麻将牌花色
+            cc.sys.localStorage.setItem('cardcolor','yellow');
             cc.weijifen.cardcolor = cc.sys.localStorage.getItem('cardcolor');
             //声音的
             var Audios = require("Audios");
