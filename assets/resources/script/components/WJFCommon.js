@@ -222,7 +222,12 @@ cc.Class({
             cc.weijifen.maxRound = data.maxRound;
         }
     },
-    //加载玩家头像
+    /**
+     * 加载玩家头像
+     * @param  {[cc.Node]} img 头像精灵图
+     * @param  {[String]}  pic 图片路径
+     * @param  {[Boolean]} bol 图片是否显示圆角
+     */
     headImg: function(img,pic,bol){
         if(pic){
             let imgurl = pic;

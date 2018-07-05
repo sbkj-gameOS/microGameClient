@@ -196,6 +196,12 @@ cc.Class({
                 // obj.alert('报名成功!');
                 obj.alert(data1.msg);
                 cc.sys.localStorage.setItem('signUp','true');
+                let prizeNum = cc.sys.localStorage.getItem('prizeNum');
+                if (prizeNum) {
+                    prizeNum = Number(prizeNum);
+                    let oldNum = Number(cc.find('Canvas/title/card/roomCard').getComponent(cc.Label).string);
+                    cc.find('Canvas/title/card/roomCard').getComponent(cc.Label).string = oldNum - prizeNum;
+                }
             } else {
                 obj.alert(data1.msg);
             }
@@ -248,6 +254,7 @@ cc.Class({
         if (cc.sys.localStorage.getItem('matchData')) {
             cc.sys.localStorage.removeItem('matchData');
         }
+        cc.sys.localStorage.removeItem('prizeNum');
     }
 });
 

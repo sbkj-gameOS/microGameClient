@@ -93,6 +93,7 @@ cc.Class({
                 for (var ele of entryConditions) {
                     if (ele.num) {
                         conditions.children[2].getComponent(cc.Label).string = ele.name + ele.num;
+                        cc.sys.localStorage.setItem('prizeNum',ele.num);// 支付房卡的数量
                     } else {
                         conditions.children[2].getComponent(cc.Label).string = ele.name;
                     }

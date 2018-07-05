@@ -92,9 +92,17 @@ cc.Class({
         // 比赛结束弹出中奖信息
         
 
-        
         // 比赛结束后弹出提示
         if (cc.weijifen.match == "true") {
+        /* 例子数据：
+        * {
+                "name": "Guest_0ZVI5N",
+                "activityName": "房卡赛",
+                "activityTime": "2018-07-05 19:08:00 到 2018-07-05 19:08:40",
+                "prizeName": "房卡", // 比赛奖励
+                "url": "http://game.bizpartner.cn/registerPlayer/getEWMImage?token=2022e1ec72434c05b840f17c8ba2eb67",
+                "position": "7"
+            }*/
             let timer = setTimeout(function() {
                 // cc.weijifen.matchTime = null;
                 cc.sys.localStorage.removeItem('matchTime');
@@ -106,10 +114,33 @@ cc.Class({
                 let data = JSON.parse(cc.sys.localStorage.getItem('matchPrize'));
                 let box = cc.instantiate(self.prizeBox);
                 let timer1 = setTimeout(function() {
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('name').children[1].getComponent(cc.Label).string = data.name;
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = data.activityTime;
+                    console.log(data.activityTime)
+                    console.log(data.activityTime.toString())
+                    let time = data.activityTime;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = '(' + time.toString().substring(0,10) + '场)';
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                    if (data.prizeName) {
+                        box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').active = true;
+                        box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').children[2].getComponent(cc.Label).string = data.prizeName;
+                    } else {
+                        box.getChildByName('base').getChildByName('msg_box').getChildByName('num').active = true;
+                        box.getChildByName('base').getChildByName('msg_box').getChildByName('num').children[0].getComponent(cc.Label).string = '第' + data.position + '名';
+                    }
+                    
+                    // 二维码
+                    let img = box.getChildByName('base').getChildByName('msg_box').getChildByName('erweima');
+                    if(data.url){
+                        var imgurl = data.url;
+                        // 测试数据
+                        // var imgurl = 'http://game.bizpartner.cn/registerPlayer/getEWMImage?token=5399d111b3f940c8843dd75fd6c27690';
+                        var sprite = img.getComponent(cc.Sprite);
+                        cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
+                            sprite.spriteFrame = new cc.SpriteFrame(texture);
+                            img.width = 294;
+                            img.height = 266;
+                        });
+                    }
                     box.parent = cc.find('Canvas');
                     box.zIndex = 1000000000;
                     cc.sys.localStorage.removeItem('matchOver');
