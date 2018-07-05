@@ -9,8 +9,9 @@ cc.Class({
         let dialog = cc.find("Canvas/alert") ;
         cc.weijifen.dialog.put(dialog);
     },
-    closeMenu: function(){
-        let menu = cc.find("Canvas/menu");
+    closeMenu: function(event){
+        // let menu = cc.find("Canvas/menu");
+        let menu = event.target.parent;
         if (menu.children[2].active) {
             cc.weijifen.gongaoAlertNum--;
         }

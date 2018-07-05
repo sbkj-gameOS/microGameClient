@@ -199,8 +199,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 5
@@ -223,6 +221,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 2
@@ -786,7 +788,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 52.56,
+      "width": 53,
       "height": 40
     },
     "_rotationX": 0,
@@ -863,8 +865,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 27
@@ -887,6 +887,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 16
@@ -2492,8 +2496,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 79
@@ -2516,6 +2518,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 76
@@ -2736,8 +2742,7 @@
     },
     "setting": {
       "__uuid__": "2fc96a5d-da1f-4f6c-83f4-87a7df6bc09f"
-    },
-    "gameNotice": null
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
