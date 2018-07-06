@@ -86,6 +86,7 @@ cc.Class({
                 box.parent = cc.find('Canvas');
                 box.zIndex = 1;
                 cc.sys.localStorage.removeItem('matchOver');
+                cc.sys.localStorage.removeItem('prizeBoxData');
             }
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {

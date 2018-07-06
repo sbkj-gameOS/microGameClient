@@ -107,8 +107,7 @@ cc.Class({
             cc.sys.localStorage.removeItem('signUp');
             if (cc.sys.localStorage.getItem('matchOver') && cc.sys.localStorage.getItem('matchPrize')) {
                 cc.weijifen.endMatchFlag++;
-                cc.log('cc.weijifen.endMatchFlag',cc.weijifen.endMatchFlag)
-                if (cc.weijifen.endMatchFlag > 2) return;
+                if (cc.weijifen.endMatchFlag > 1) return;
                 let data = JSON.parse(cc.sys.localStorage.getItem('matchPrize'));
                 let box = cc.instantiate(self.prizeBox);
                 let timer1 = setTimeout(function() {

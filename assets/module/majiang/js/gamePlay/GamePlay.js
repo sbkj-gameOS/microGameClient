@@ -146,6 +146,7 @@ cc.Class({
 		                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
 					       
 		                    if (cc.weijifen.match == 'true') {
+		                    	// cc.log('h_cards',h_cards)
 		                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
 		                    	big_card.x = -newVec2.x;
 		                    	big_card.y = -newVec2.y;
@@ -429,6 +430,9 @@ cc.Class({
     	qujuju: function(data){
     		var gameStartInit = require('GameStartInit');
 	        let player = gameStartInit.player(data.userid , this);
+	        if (!player.tablepos) {
+	        	return
+	        }
 	        let opParent;
 	        if(player.tablepos == 'current'){
 	            opParent = cc.find("Canvas/cards/handcards/current/kongcards") ;
