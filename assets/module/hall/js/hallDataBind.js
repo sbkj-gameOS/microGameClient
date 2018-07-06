@@ -53,14 +53,12 @@ cc.Class({
             }
             // 牌局结束比赛未结束，玩家退出游戏。再次进入时，弹出上次比赛结果
             let prizeBoxData = cc.sys.localStorage.getItem('matchPrize');
-            // cc.sys.localStorage.removeItem('matchPrize');
+            cc.sys.localStorage.removeItem('matchPrize');
 
             if (prizeBoxData) {
                 let data = JSON.parse(prizeBoxData);
                 let box = cc.instantiate(this.prizeBox);
                 box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
-                console.log(data.activityTime)
-                console.log(data.activityTime.toString())
                 let time = data.activityTime;
                 box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = '(' + time.toString().substring(0,10) + '场)';
                 box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
