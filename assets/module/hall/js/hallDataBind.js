@@ -204,7 +204,6 @@ cc.Class({
         object.alert("失败!");
     },
     tzsucess: function(result,object){
-        debugger
 		let data = JSON.parse(result);  
         let message = cc.find('Canvas').getComponent('hallDataBind').message;
         // if (data.context) {}

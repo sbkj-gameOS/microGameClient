@@ -106,12 +106,13 @@ cc.Class({
             }*/
             cc.sys.localStorage.removeItem('signUp');
             if (cc.sys.localStorage.getItem('matchOver') && cc.sys.localStorage.getItem('matchPrize')) {
+                cc.weijifen.endMatchFlag++;
+                cc.log('cc.weijifen.endMatchFlag',cc.weijifen.endMatchFlag)
+                if (cc.weijifen.endMatchFlag > 2) return;
                 let data = JSON.parse(cc.sys.localStorage.getItem('matchPrize'));
                 let box = cc.instantiate(self.prizeBox);
                 let timer1 = setTimeout(function() {
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
-                    console.log(data.activityTime)
-                    console.log(data.activityTime.toString())
                     let time = data.activityTime;
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = '(' + time.toString().substring(0,10) + '场)';
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;

@@ -86,16 +86,29 @@ cc.Class({
             var rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
             cc.sys.localStorage.setItem('activityId',data1.id);
             // 报名费用
+            // data1.entryConditions = JSON.stringify([{"id":"2","name":"用户","num":'卡2张'},{"id":"2","name":"VIP用户"}]);
             if (data1.entryConditions) {
                 var bmtj;
                 var conditions = content.children[0];
                 var entryConditions = JSON.parse(data1.entryConditions);
+                var name =  '';
+                let m = -1;
                 for (var ele of entryConditions) {
+                    num++;
                     if (ele.num) {
                         conditions.children[2].getComponent(cc.Label).string = ele.name + ele.num;
                         cc.sys.localStorage.setItem('prizeNum',ele.num);// 支付房卡的数量
+                        name += ' ' + ele.name + ele.num;
                     } else {
-                        conditions.children[2].getComponent(cc.Label).string = ele.name;
+                        name += ' ' + ele.name;
+                        conditions.children[2].getComponent(cc.Label).string = name;
+                    }
+                    //约局指定时间段胜场
+                    //"[{"id":"4","name":"约局指定时间段胜场数","data":{"yjStartTime":"2018-07-01","yjEndTime":"2018-07-11","yjWin":"0"}}]"
+                    if (ele.id == 4) {
+                        var data2 = ele.data;
+                        data2 = ':' + data2.yjStartTime + '至' + data2.yjEndTime + '      胜:' + data2.yjWin;
+                        name += data2;
                     }
                 }
             }

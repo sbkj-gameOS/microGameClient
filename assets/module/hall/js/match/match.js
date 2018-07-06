@@ -140,6 +140,8 @@ cc.Class({
     * 加入比赛
     */
     joinMatch: function (event) {
+        // debugger
+        // 判断是否是VIP，若不是VIP则提示用户充值升级为VIP
         let matchJs = cc.find('Canvas/js/match').getComponent('match');
         let listData = event.target.parent.parent.getChildByName('data').getComponent(cc.Label).string;
         // 当前比赛信息存放在缓存中
@@ -149,7 +151,16 @@ cc.Class({
             token: cc.weijifen.authorization,
             activityId: data.id
         }
+        // 判断是否时VIP，是否是VIP场
+        cc.weijifen.http.httpPost('/gameNotice/check_activity_vip',params,function(res,obj){
+            let data = JSON.parse(res);
+            if (!data.success) {
+                obj.alert(data.msg);
+                return
+            }
+        },this.joinErr,this);
         cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
+        
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
@@ -157,16 +168,14 @@ cc.Class({
         // cc.weijifen.matchTime = res.statrtSec;
         // 玩家没有报名，跳转到详情页报名
         if (!res.success) {
-            if (cc.sys.localStorage.getItem('signUp') == 'true') {
-                obj.alert('比赛已经开始，中途不允许进入！');
-            }
+            clearTimeout(match_timer);
             obj.alert(res.msg);
 
             let menuToggle = cc.find('Canvas/js/menuToggle');
             let me = menuToggle.getComponent('menuToggle');
             me.openMatchDetail(obj.node.getComponent('match'));
-            clearTimeout(match_timer);
         } else {
+            clearTimeout(match_timer);
             let h5CallCo = require('h5CallCocos');
             let toMjSence = new h5CallCo();  
             toMjSence.matchListOneClick(res);
@@ -195,13 +204,13 @@ cc.Class({
             var data1 = JSON.parse(data);
             if (data1.success) {
                 // obj.alert('报名成功!');
-                obj.alert(data1.msg);
                 cc.sys.localStorage.setItem('signUp','true');
+                obj.alert(data1.msg);
                 let prizeNum = cc.sys.localStorage.getItem('prizeNum');
                 if (prizeNum) {
                     prizeNum = Number(prizeNum);
-                    let oldNum = Number(cc.find('Canvas/title/card/roomCard').getComponent(cc.Label).string);
-                    cc.find('Canvas/title/card/roomCard').getComponent(cc.Label).string = oldNum - prizeNum;
+                    let oldNum = Number(cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string);
+                    cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string = oldNum - prizeNum;
                 }
             } else {
                 obj.alert(data1.msg);
@@ -251,7 +260,9 @@ cc.Class({
     closeBtn:function(){
         clearTimeout(match_timer);
         cc.find('Canvas/match').destroy();
-        cc.find('Canvas/matchTip').active = false;
+        cc.find('Canvas/matchTip').active = false; 
+        cc.weijifen.endMatchFlag = 0;
+        cc.sys.localStorage.removeItem('signUp');
         cc.sys.localStorage.removeItem('prizeNum');
         cc.sys.localStorage.removeItem('matchPrize');
         if (cc.sys.localStorage.getItem('matchData')) {
