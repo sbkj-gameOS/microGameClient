@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "prizeShare",
+    "_name": "prizeBox",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -1167,8 +1167,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 64,
-      "y": -10
+      "x": -10,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,

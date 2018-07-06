@@ -41,7 +41,8 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-        headBorder: cc.SpriteAtlas
+        headBorder: cc.SpriteAtlas,
+        prizeBox: cc.Prefab
     },
     onLoad: function () {
 
@@ -49,6 +50,44 @@ cc.Class({
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
                 cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
+            }
+            // 牌局结束比赛未结束，玩家退出游戏。再次进入时，弹出上次比赛结果
+            let prizeBoxData = cc.sys.localStorage.getItem('matchPrize');
+            // cc.sys.localStorage.removeItem('matchPrize');
+
+            if (prizeBoxData) {
+                let data = JSON.parse(prizeBoxData);
+                let box = cc.instantiate(this.prizeBox);
+                box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
+                console.log(data.activityTime)
+                console.log(data.activityTime.toString())
+                let time = data.activityTime;
+                box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = '(' + time.toString().substring(0,10) + '场)';
+                box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                if (data.prizeName) {
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').active = true;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').children[2].getComponent(cc.Label).string = data.prizeName;
+                } else {
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('num').active = true;
+                    box.getChildByName('base').getChildByName('msg_box').getChildByName('num').children[0].getComponent(cc.Label).string = '第' + data.position + '名';
+                }
+                
+                // 二维码
+                let img = box.getChildByName('base').getChildByName('msg_box').getChildByName('erweima');
+                if(data.url){
+                    var imgurl = data.url;
+                    // 测试数据
+                    // var imgurl = 'http://game.bizpartner.cn/registerPlayer/getEWMImage?token=5399d111b3f940c8843dd75fd6c27690';
+                    var sprite = img.getComponent(cc.Sprite);
+                    cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
+                        sprite.spriteFrame = new cc.SpriteFrame(texture);
+                        img.width = 294;
+                        img.height = 266;
+                    });
+                }
+                box.parent = cc.find('Canvas');
+                box.zIndex = 1;
+                cc.sys.localStorage.removeItem('matchOver');
             }
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
@@ -165,6 +204,7 @@ cc.Class({
         object.alert("失败!");
     },
     tzsucess: function(result,object){
+        debugger
 		let data = JSON.parse(result);  
         let message = cc.find('Canvas').getComponent('hallDataBind').message;
         // if (data.context) {}
@@ -247,7 +287,7 @@ cc.Class({
 			// this.hall(10);
       	}*/
 	},
-    /* 游戏公告
+    /* 游戏公告弹窗
     * @param 
     */
     noticeSuccess: function (res,object) {

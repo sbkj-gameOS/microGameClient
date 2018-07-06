@@ -5505,6 +5505,9 @@
     "matchNode": null,
     "headBorder": {
       "__uuid__": "fbe7732e-95e9-4c8e-b250-57af5348c951"
+    },
+    "prizeBox": {
+      "__uuid__": "093c4c2f-d19b-4d10-b492-4330b10db748"
     }
   },
   {

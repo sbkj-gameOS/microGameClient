@@ -1,4 +1,5 @@
 var WJFCommon = require("WJFCommon");
+let m = 0;
 cc.Class({
     // extends: cc.Component,
     extends: WJFCommon,
@@ -103,13 +104,7 @@ cc.Class({
                 "url": "http://game.bizpartner.cn/registerPlayer/getEWMImage?token=2022e1ec72434c05b840f17c8ba2eb67",
                 "position": "7"
             }*/
-            let timer = setTimeout(function() {
-                // cc.weijifen.matchTime = null;
-                cc.sys.localStorage.removeItem('matchTime');
-                var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在【通知】中查看中奖信息';
-                self.alert(msg);
-                clearTimeout(timer);
-            },1000);
+            cc.sys.localStorage.removeItem('signUp');
             if (cc.sys.localStorage.getItem('matchOver') && cc.sys.localStorage.getItem('matchPrize')) {
                 let data = JSON.parse(cc.sys.localStorage.getItem('matchPrize'));
                 let box = cc.instantiate(self.prizeBox);
@@ -145,9 +140,16 @@ cc.Class({
                     box.zIndex = 1000000000;
                     cc.sys.localStorage.removeItem('matchOver');
                     clearTimeout(timer1);
-                },2000);
+                },1000);
+            } else {
+                let timer = setTimeout(function() {
+                    // cc.weijifen.matchTime = null;
+                    cc.sys.localStorage.removeItem('matchTime');
+                    var msg = '比赛结束后，系统会对数据进行统计，获奖玩家可在【通知】中查看中奖信息';
+                    self.alert(msg);
+                    clearTimeout(timer);
+                },1000);
             }
-            cc.sys.localStorage.removeItem('signUp');
         }
     //     this.username.string = userInfo.userName;
     //     if(userInfo.cur != 'true' ){

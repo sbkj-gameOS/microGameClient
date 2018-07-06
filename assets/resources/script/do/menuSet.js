@@ -91,6 +91,7 @@ cc.Class({
             /* 12 */    "/help/share?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
             /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
                     ];
+                    // http://game.bizpartner.cn/userInfo/goUserInfoPage?token=46de26af98fd47f88e9d595eef8155d6
             web.url = cc.weijifen.url + data[name];
             if (name == 5) {
                 web.url = data[name]
@@ -99,7 +100,6 @@ cc.Class({
             if(name == 15){
                 web.url = cc.weijifen.url + url;
             }
-            cc.log(web.url);
             /*WebView = function(e){
                 e.preventDefault();
             }*/

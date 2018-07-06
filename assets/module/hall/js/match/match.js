@@ -165,11 +165,12 @@ cc.Class({
             let menuToggle = cc.find('Canvas/js/menuToggle');
             let me = menuToggle.getComponent('menuToggle');
             me.openMatchDetail(obj.node.getComponent('match'));
+            clearTimeout(match_timer);
+        } else {
+            let h5CallCo = require('h5CallCocos');
+            let toMjSence = new h5CallCo();  
+            toMjSence.matchListOneClick(res);
         }
-        let h5CallCo = require('h5CallCocos');
-        let toMjSence = new h5CallCo();  
-        toMjSence.matchListOneClick(res);
-        clearTimeout(match_timer);
     },
     joinErr: function (res) {
         let data = JSON.parse(res);
@@ -251,10 +252,11 @@ cc.Class({
         clearTimeout(match_timer);
         cc.find('Canvas/match').destroy();
         cc.find('Canvas/matchTip').active = false;
+        cc.sys.localStorage.removeItem('prizeNum');
+        cc.sys.localStorage.removeItem('matchPrize');
         if (cc.sys.localStorage.getItem('matchData')) {
             cc.sys.localStorage.removeItem('matchData');
         }
-        cc.sys.localStorage.removeItem('prizeNum');
     }
 });
 
