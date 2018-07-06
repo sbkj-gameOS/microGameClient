@@ -213,8 +213,10 @@ cc.Class({
                     str.string = '距离比赛结束还有' + seconds + '秒';
                     if (seconds < 1) clearInterval(time);
                 },1000);
+            }else{
+                self.getSelf().route(data.command,self)(data , self);
             }
-            // self.getSelf().route(data.command,self)(data , self);
+            
         });
         socket.on("OverPosition",function(result){
             cc.sys.localStorage.setItem('matchOver','true');
