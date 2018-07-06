@@ -2,21 +2,18 @@ var fs = require('fs');
 var path = require('path');
 var crypto = require('crypto');
 
-var manifest = {
-    packageUrl: 'http://localhost/microGameClient/remote-assets/',
-    remoteManifestUrl: 'http://localhost/microGameClient/remote-assets/project.manifest',
-    remoteVersionUrl: 'http://localhost/microGameClient/remote-assets/version.manifest',
-    version: '1.0.0',
-   /* "packageUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/",
-    "remoteManifestUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/project.manifest",
-    "remoteVersionUrl": "http://192.168.54.39:5555/tutorial-hot-update/remote-assets/version.manifest",
-    "version": "0.9.0",*/
-    assets: {},
+var customManifestStr = JSON.stringify({
+    packageUrl: "http://game.bizpartner.cn/ch/remote-assets/",
+    remoteManifestUrl: "http://game.bizpartner.cn/ch/remote-assets/project.manifest",
+    remoteVersionUrl: "http://game.bizpartner.cn/ch/remote-assets/version.manifest",
+    version: "1.0.0",
+    assets:{},
     searchPaths: []
-};
+});
 
 var dest = './remote-assets/';
 var src = './jsb/';
+
 
 // Parse arguments
 var i = 2;
