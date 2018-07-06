@@ -214,7 +214,7 @@ cc.Class({
                     if (seconds < 1) clearInterval(time);
                 },1000);
             }
-            self.getSelf().route(data.command,self)(data , self);
+            // self.getSelf().route(data.command,self)(data , self);
         });
         socket.on("OverPosition",function(result){
             cc.sys.localStorage.setItem('matchOver','true');
