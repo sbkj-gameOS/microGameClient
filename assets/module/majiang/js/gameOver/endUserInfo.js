@@ -124,7 +124,7 @@ cc.Class({
                     }
                     
                     // 二维码
-                    let img = box.getChildByName('base').getChildByName('msg_box').getChildByName('erweima');
+                    /*let img = box.getChildByName('base').getChildByName('msg_box').getChildByName('erweima');
                     if(data.url){
                         var imgurl = data.url;
                         // 测试数据
@@ -135,7 +135,7 @@ cc.Class({
                             img.width = 294;
                             img.height = 266;
                         });
-                    }
+                    }*/
                     box.parent = cc.find('Canvas');
                     box.zIndex = 1000000000;
                     cc.sys.localStorage.removeItem('matchOver');
