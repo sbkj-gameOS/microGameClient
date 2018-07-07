@@ -158,8 +158,8 @@ cc.Class({
                 obj.alert(data.msg);
                 return
             }
+            cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
         },this.joinErr,this);
-        cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
         
     },
     joinSuccess: function (res,obj) {
