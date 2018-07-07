@@ -32,7 +32,7 @@ cc.Class({
     onLoad: function () {
         var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
-        cc.sys.localStorage.setItem('version',"1.0.0");
+        cc.sys.localStorage.setItem('version',"1.0.1");
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         if(cc.weijifen.GameBase.gameModel =='wz'){
             sprite.spriteFrame = this.WZLogo;
