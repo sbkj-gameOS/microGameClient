@@ -94,14 +94,12 @@ cc.Class({
                 var name =  '';
                 let m = -1;
                 for (var ele of entryConditions) {
-                    num++;
+                    m++;
                     if (ele.num) {
-                        conditions.children[2].getComponent(cc.Label).string = ele.name + ele.num;
                         cc.sys.localStorage.setItem('prizeNum',ele.num);// 支付房卡的数量
                         name += ' ' + ele.name + ele.num;
                     } else {
                         name += ' ' + ele.name;
-                        conditions.children[2].getComponent(cc.Label).string = name;
                     }
                     //约局指定时间段胜场
                     //"[{"id":"4","name":"约局指定时间段胜场数","data":{"yjStartTime":"2018-07-01","yjEndTime":"2018-07-11","yjWin":"0"}}]"
@@ -110,7 +108,9 @@ cc.Class({
                         data2 = ':' + data2.yjStartTime + '至' + data2.yjEndTime + '      胜:' + data2.yjWin;
                         name += data2;
                     }
+                    conditions.children[2].getComponent(cc.Label).string = name;
                 }
+
             }
             // 报名时间
             var time = content.children[1].children[2].getComponent(cc.Label);
