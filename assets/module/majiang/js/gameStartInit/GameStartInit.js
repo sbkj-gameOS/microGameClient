@@ -318,6 +318,11 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+             // 反作弊提示
+            setTimeout(function(){
+                let userIp = cc.find("Canvas/userIp");
+                if (userIp) userIp.active = false;
+            },10000)
             cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
             cc.sys.localStorage.setItem('waitting',1);

@@ -272,11 +272,6 @@ cc.Class({
             let socket = self.getSelf().socket();
             socket.emit('readyGame',JSON.stringify({
             }))
-            // 反作弊提示
-            setTimeout(function(){
-                let userIp = cc.find("Canvas/userIp");
-                if (userIp) userIp.active = false;
-            },10000)
         });
 
         // 监听出牌拿牌
