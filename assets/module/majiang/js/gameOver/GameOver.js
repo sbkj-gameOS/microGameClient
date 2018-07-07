@@ -15,16 +15,19 @@ cc.Class({
     //结束游戏    结算
     statics: {
     	allcards_event:function(data , context){
+       		var gameStartInit = require('GameStartInit');
+       		let id,id1;
 		    // 胡动画
 		    if (!data.unHu) {
-	       		let id;
-	       		var gameStartInit = require('GameStartInit');
 	       		for(let i = 0;i<data.playOvers.length;i++){
 	       			if (data.playOvers[i].win) {
 	       				id = data.playOvers[i].user;
+	       			} else {
+	       				id1 = data.playOvers[i].user;
 	       			}
 	       		}
 	       		var player = gameStartInit.player(id , context);
+	       		var player1 = gameStartInit.player(id1 , context);
 	            cc.find('Canvas/huAnimation').active = true;
 	            var hu = cc.find("Canvas/huAnimation/hu_action");
 	            if (player.tablepos == 'top') {
@@ -53,6 +56,7 @@ cc.Class({
 	            },2000);
 		    }
 		    function weizhi (player,img) {
+		    	debugger
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
 	                img.y = 160;
@@ -78,13 +82,13 @@ cc.Class({
 	        for(let i = 0;i<data.playOvers.length;i++){
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
-					if (player.tablepos == 'top') {
+					/*if (player1.tablepos == 'top') {
 		                anim.x = 0;
 		                anim.y = -160;
-		            } else if (player.tablepos == 'left') {
+		            } else if (player1.tablepos == 'left') {
 		                anim.x = 320;
 		                anim.y = 0;
-		            } else if (player.tablepos == 'right') {
+		            } else if (player1.tablepos == 'right') {
 		                anim.x = -320;
 		                anim.y = 0;
 		            } else {
@@ -92,7 +96,8 @@ cc.Class({
 		                anim.y = 160;
 		            }
 		            anim.width = 128;
-		            anim.height = 128;
+		            anim.height = 128;*/
+		            weizhi(player1,anim);
 	        		anim.active = true;
 					anim = anim.getComponent(cc.Animation);
 					anim.play('dianpao');
@@ -103,7 +108,7 @@ cc.Class({
 					},4000)
 	            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
-					weizhi(player,anim);
+					weizhi(player1,anim);
         			anim.active = true;
 					anim = anim.getComponent(cc.Animation);
 					anim.play('chongbao');
@@ -115,7 +120,7 @@ cc.Class({
 	            }else{
 	            	if (data.playOvers[i].balance.zimo) {// 自摸
 		        		let anim = cc.find('Canvas/zimo');
-						weizhi(player,anim);
+						weizhi(player1,anim);
 	        			anim.active = true;
 						anim = anim.getComponent(cc.Animation);
 						anim.play('zimo');
@@ -137,7 +142,7 @@ cc.Class({
 	                    var dan = gameOverNode.top_hua.getComponent('BuHuaAction');
 	                    dan.init(data.playOvers[i].balance.huCard,'',false);
 	                }
-	            }
+	            } 
 	        }
 	        gameOver.huaction(playerid);
 	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000);
