@@ -142,6 +142,7 @@ cc.Class({
     joinMatch: function (event) {
         // debugger
         // 判断是否是VIP，若不是VIP则提示用户充值升级为VIP
+        let self = this;
         let matchJs = cc.find('Canvas/js/match').getComponent('match');
         let listData = event.target.parent.parent.getChildByName('data').getComponent(cc.Label).string;
         // 当前比赛信息存放在缓存中
@@ -158,7 +159,7 @@ cc.Class({
                 obj.alert(data.msg);
                 return
             }
-            cc.weijifen.http.httpPost('/match/codeMatch',params,this.joinSuccess,this.joinErr,this) ;            
+            cc.weijifen.http.httpPost('/match/codeMatch',params,self.joinSuccess,self.joinErr,self) ;            
         },this.joinErr,this);
         
     },
