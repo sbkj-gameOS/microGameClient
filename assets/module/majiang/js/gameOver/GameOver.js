@@ -56,7 +56,6 @@ cc.Class({
 	            },2000);
 		    }
 		    function weizhi (player,img) {
-		    	debugger
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
 	                img.y = 160;
@@ -80,6 +79,7 @@ cc.Class({
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
 	        for(let i = 0;i<data.playOvers.length;i++){
+	        	cc.log('player',player)
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
 					/*if (player1.tablepos == 'top') {
@@ -108,7 +108,7 @@ cc.Class({
 					},4000)
 	            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
 	        		let anim = cc.find('Canvas/chongbao');
-					weizhi(player1,anim);
+					weizhi(player,anim);
         			anim.active = true;
 					anim = anim.getComponent(cc.Animation);
 					anim.play('chongbao');
@@ -120,7 +120,7 @@ cc.Class({
 	            }else{
 	            	if (data.playOvers[i].balance.zimo) {// 自摸
 		        		let anim = cc.find('Canvas/zimo');
-						weizhi(player1,anim);
+						weizhi(player,anim);
 	        			anim.active = true;
 						anim = anim.getComponent(cc.Animation);
 						anim.play('zimo');
