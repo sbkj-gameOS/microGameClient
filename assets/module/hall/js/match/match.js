@@ -212,6 +212,7 @@ cc.Class({
                     prizeNum = Number(prizeNum);
                     let oldNum = Number(cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string);
                     cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string = oldNum - prizeNum;
+                    cc.find('Canvas/main/head/5/num').getComponent(cc.Label).string = oldNum - prizeNum;
                     cc.weijifen.user.cards = oldNum - prizeNum;
                 }
             } else {

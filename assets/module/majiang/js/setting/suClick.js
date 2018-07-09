@@ -94,5 +94,6 @@ cc.Class({
         var wjf = require('WJFCommon');
         var w = new wjf();
         w.hall(data);
+        cc.find('Canvas/menu').zIndex = 2000000000000;
     }
 });
