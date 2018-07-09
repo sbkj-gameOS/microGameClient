@@ -145,15 +145,19 @@ cc.Class({
 		                    big_card.runAction(move);*/
 		                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
 					       
-		                    if (cc.weijifen.match == 'true') {
-		                    	// cc.log('h_cards',h_cards)
+		                   /* if (cc.weijifen.match == 'true') {
 		                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
 		                    	big_card.x = -newVec2.x;
 		                    	big_card.y = -newVec2.y;
 		                    } else {
 		                    	big_card.x = cc.weijifen.cardPostion.x;
 		                    	big_card.y = cc.weijifen.cardPostion.y;
+		                    }*/
+		                    if (cc.weijifen.cardPostion) {
+			                    big_card.x = cc.weijifen.cardPostion.x;
+		                    	big_card.y = cc.weijifen.cardPostion.y;
 		                    }
+
 	                    	big_card.parent = cc.find('Canvas/big_cards');
 	                    	
 
