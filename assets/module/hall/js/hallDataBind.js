@@ -2,7 +2,6 @@
 * @主菜单页（gameMain场景）
 */
 var WJFCommon = require("WJFCommon");
-
 cc.Class({
     extends: WJFCommon,
 
@@ -45,7 +44,7 @@ cc.Class({
         prizeBox: cc.Prefab
     },
     onLoad: function () {
-
+        
         //如果weijifen已经加载好了
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
@@ -73,7 +72,7 @@ cc.Class({
                 if (data.prizeName == '谢谢参与') {
                     box.getChildByName('base').getChildByName('getprize').active = false;   
                 }
-                
+
                /* // 二维码
                 let img = box.getChildByName('base').getChildByName('msg_box').getChildByName('erweima');
                 if(data.url){
@@ -162,7 +161,6 @@ cc.Class({
         // vip是玩家等级，2-普通vip（充值177元）
                       // 1、下级有1777人
                       // 0、下级有17777人
-        cc.weijifen.level = data.vip;
         if (data.vip == 2) {
             headBorder.spriteFrame = obj.headBorder.getSpriteFrame('333333333');//充值
             return

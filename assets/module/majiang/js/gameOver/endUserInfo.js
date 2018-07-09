@@ -114,7 +114,9 @@ cc.Class({
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('match_name').children[1].getComponent(cc.Label).string = data.activityName;
                     let time = data.activityTime;
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = '(' + time.toString().substring(0,10) + '场)';
-                    box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                    if (data.position != null) {
+                        box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                    }
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('palyer_name').getComponent(cc.Label).string = '恭喜' + data.name + '在';
                     if (data.prizeName) {
                         box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').active = true;

@@ -46,7 +46,7 @@ cc.Class({
         this.creator.active = false ;
         
     },
-    init:function(playerdata , inx , tablepos,count,seziArr){
+    init:function(playerdata , inx , tablepos,count){
         let self = cc.find('Canvas').getComponent('MJDataBind');
         this.creator.active = false ;
         this.data = playerdata ;    //存放玩家数据
@@ -105,20 +105,23 @@ cc.Class({
         this.goldcoins.string = playerdata.goldcoins ;
         this.emojiObj.zIndex = 100000;
         // 头像框
-        cc.log('level',cc.weijifen.level)
+        var _this = this;
         var headBorder = this.target.children[3].getComponent(cc.Sprite);
-        if (cc.weijifen.level == 2) {
-            headBorder.spriteFrame = this.headBorder.getSpriteFrame('333333333');
+        if (playerdata.playerlevel == 2) {
+            headBorder.spriteFrame = _this.headBorder.getSpriteFrame('333333333');
             return
         } 
-        if (cc.weijifen.level == 1) {
-            headBorder.spriteFrame = this.headBorder.getSpriteFrame('111111111');
+        if (playerdata.playerlevel == 1) {
+            headBorder.spriteFrame = _this.headBorder.getSpriteFrame('111111111');
             return
         } 
-        if (cc.weijifen.level == 0) {
-            headBorder.spriteFrame = this.headBorder.getSpriteFrame('222222');
+        if (playerdata.playerlevel == 0) {
+            headBorder.spriteFrame = _this.headBorder.getSpriteFrame('222222');
             return
         } 
+        function headBorderSuccess () {
+        }
+        function headBorderErr () {};
     },
     banker:function(){
         this.creator.active = true;
