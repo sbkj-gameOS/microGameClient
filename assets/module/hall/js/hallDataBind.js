@@ -160,8 +160,6 @@ cc.Class({
                       // 1、下级有1777人
                       // 0、下级有17777人
         cc.weijifen.level = data.vip;
-        // cc.weijifen.level = 0;
-
         if (data.vip == 2) {
             headBorder.spriteFrame = obj.headBorder.getSpriteFrame('333333333');//充值
             return

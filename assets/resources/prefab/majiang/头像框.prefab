@@ -1616,7 +1616,9 @@
     "emojiObj": {
       "__id__": 40
     },
-    "headBorder": null
+    "headBorder": {
+      "__uuid__": "fbe7732e-95e9-4c8e-b250-57af5348c951"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

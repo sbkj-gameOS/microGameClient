@@ -24,6 +24,7 @@ cc.Class({
         buhua: cc.Prefab,
         huaParent: cc.Node,
         banker: cc.Node,
+        headBorder: cc.SpriteAtlas
     },
     
     // use this for initialization
@@ -148,6 +149,16 @@ cc.Class({
                 head.width = 52;
                 head.height = 47;
             });
+            var headBorder = this.headimgs.children[0].getComponent(cc.Sprite);
+            this.headimgs.children[0].width = 70;
+            this.headimgs.children[0].height = 65;
+            if (cc.weijifen.level == 2) {
+                headBorder.spriteFrame = this.headBorder.getSpriteFrame('333333333');
+            } else if (cc.weijifen.level == 1) {
+                headBorder.spriteFrame = this.headBorder.getSpriteFrame('111111111');
+            } if (cc.weijifen.level == 0) {
+                headBorder.spriteFrame = this.headBorder.getSpriteFrame('222222');
+            } 
         }
         this.count.string= this.data.count;
         if(this.data.win ==true){

@@ -29,9 +29,8 @@ cc.Class({
             cc.find('Canvas/big_cards').removeAllChildren();
         }
        if(cc.weijifen.match == 'true'){
-        this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));
-        
-       }
+            this.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));
+        }
         this.node.dispatchEvent(new cc.Event.EventCustom('restar', true));
   
     },

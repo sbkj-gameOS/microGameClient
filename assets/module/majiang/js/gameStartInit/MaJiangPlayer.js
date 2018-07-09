@@ -105,7 +105,8 @@ cc.Class({
         this.goldcoins.string = playerdata.goldcoins ;
         this.emojiObj.zIndex = 100000;
         // 头像框
-        var headBorder = this.target.children[2].getComponent(cc.Sprite);
+        cc.log('level',cc.weijifen.level)
+        var headBorder = this.target.children[3].getComponent(cc.Sprite);
         if (cc.weijifen.level == 2) {
             headBorder.spriteFrame = this.headBorder.getSpriteFrame('333333333');
             return

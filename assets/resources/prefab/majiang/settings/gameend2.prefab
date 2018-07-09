@@ -341,8 +341,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 56,
-      "height": 52
+      "width": 70,
+      "height": 65
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2229,6 +2229,9 @@
     },
     "banker": {
       "__id__": 58
+    },
+    "headBorder": {
+      "__uuid__": "fbe7732e-95e9-4c8e-b250-57af5348c951"
     }
   },
   {
