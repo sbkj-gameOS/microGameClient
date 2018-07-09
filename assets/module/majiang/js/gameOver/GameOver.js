@@ -84,7 +84,7 @@ cc.Class({
 	        		let anim = cc.find('Canvas/dianpao');
 					if (player1.tablepos == 'top') {
 		                anim.x = 0;
-		                anim.y = -160;
+		                anim.y = 160;
 		            } else if (player1.tablepos == 'left') {
 		                anim.x = -320;
 		                anim.y = 0;
@@ -93,7 +93,7 @@ cc.Class({
 		                anim.y = 0;
 		            } else {
 		                anim.x = 0;
-		                anim.y = 160;
+		                anim.y = -160;
 		            }
 		            anim.width = 128;
 		            anim.height = 128;
