@@ -22,7 +22,8 @@ cc.Class({
 	       		for(let i = 0;i<data.playOvers.length;i++){
 	       			if (data.playOvers[i].win) {
 	       				id = data.playOvers[i].user;
-	       			} else {
+	       			} 
+	       			if (data.playOvers[i].balance.drop) {
 	       				id1 = data.playOvers[i].user;
 	       			}
 	       		}
@@ -92,6 +93,7 @@ cc.Class({
 		                anim.x = 320;
 		                anim.y = 0;
 		            } else {
+		            	// 右
 		                anim.x = 0;
 		                anim.y = -160;
 		            }
