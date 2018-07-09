@@ -105,7 +105,7 @@ cc.Class({
                     //"[{"id":"4","name":"约局指定时间段胜场数","data":{"yjStartTime":"2018-07-01","yjEndTime":"2018-07-11","yjWin":"0"}}]"
                     if (ele.id == 4) {
                         var data2 = ele.data;
-                        data2 = ':' + data2.yjStartTime + '至' + data2.yjEndTime + '      胜:' + data2.yjWin;
+                        data2 = ':' + data2.yjStartTime + '至' + data2.yjEndTime + ' 胜:' + data2.yjWin;
                         name += data2;
                     }
                     conditions.children[2].getComponent(cc.Label).string = name;

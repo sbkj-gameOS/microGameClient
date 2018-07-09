@@ -86,5 +86,13 @@ cc.Class({
     closePrizeBox: function () {
         cc.find('Canvas/prizeBox').destroy();
         cc.sys.localStorage.removeItem('matchPrize');
+    },
+     /**
+     * 点击领取奖品
+     */
+    getPrize: function (event,data) {
+        var wjf = require('WJFCommon');
+        var w = new wjf();
+        w.hall(data);
     }
 });

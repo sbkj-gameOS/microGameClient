@@ -100,7 +100,7 @@ cc.Class({
                 "name": "Guest_0ZVI5N",
                 "activityName": "房卡赛",
                 "activityTime": "2018-07-05 19:08:00 到 2018-07-05 19:08:40",
-                "prizeName": "房卡", // 比赛奖励
+                "prizeName": "谢谢参与", // 比赛奖励(如果值为‘谢谢参与’则没有中奖，领取奖品按钮不会显示)
                 "url": "http://game.bizpartner.cn/registerPlayer/getEWMImage?token=2022e1ec72434c05b840f17c8ba2eb67",
                 "position": "7"
             }*/
@@ -122,6 +122,9 @@ cc.Class({
                     } else {
                         box.getChildByName('base').getChildByName('msg_box').getChildByName('num').active = true;
                         box.getChildByName('base').getChildByName('msg_box').getChildByName('num').children[0].getComponent(cc.Label).string = '第' + data.position + '名';
+                    }
+                    if (data.prizeName == '谢谢参与') {
+                        box.getChildByName('base').getChildByName('getprize').active = false;   
                     }
                                         // 二维码
                     /*let img = box.getChildByName('base').getChildByName('msg_box').getChildByName('erweima');
