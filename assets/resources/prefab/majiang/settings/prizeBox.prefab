@@ -1223,7 +1223,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Label",
+    "_name": "palyer_name",
     "_objFlags": 0,
     "_parent": {
       "__id__": 12
@@ -1256,7 +1256,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 146,
       "height": 40
     },
     "_rotationX": 0,
@@ -1293,7 +1293,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "恭喜您在",
+    "_N$string": "恭喜''在",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -2471,8 +2471,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 117,
-      "y": 49
+      "x": 135,
+      "y": 110
     },
     "_skewX": 0,
     "_skewY": 0,

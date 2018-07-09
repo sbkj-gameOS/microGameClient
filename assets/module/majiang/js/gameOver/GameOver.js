@@ -79,7 +79,6 @@ cc.Class({
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
 	        for(let i = 0;i<data.playOvers.length;i++){
-	        	cc.log('player',player)
 	        	if (data.playOvers[i].balance.drop) {// 点炮
 	        		let anim = cc.find('Canvas/dianpao');
 					/*if (player1.tablepos == 'top') {

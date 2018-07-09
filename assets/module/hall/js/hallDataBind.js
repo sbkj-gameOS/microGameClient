@@ -62,6 +62,7 @@ cc.Class({
                 let time = data.activityTime;
                 box.getChildByName('base').getChildByName('msg_box').getChildByName('match_time').children[1].getComponent(cc.Label).string = '(' + time.toString().substring(0,10) + '场)';
                 box.getChildByName('base').getChildByName('msg_box').getChildByName('position').children[1].getComponent(cc.Label).string = data.position;
+                box.getChildByName('base').getChildByName('msg_box').getChildByName('palyer_name').children.getComponent(cc.Label).string = '恭喜' + data.name + '在';
                 if (data.prizeName) {
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').active = true;
                     box.getChildByName('base').getChildByName('msg_box').getChildByName('prize').children[2].getComponent(cc.Label).string = data.prizeName;
