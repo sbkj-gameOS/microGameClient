@@ -191,6 +191,7 @@ cc.Class({
 	            }
 	            context.exchange_state("takecard" , context);  //隐藏 提示状态
 	        }else{
+	        	cc.sys.localStorage.removeItem('take');
 	            //其他玩家出牌   
 	            let temp = gameStartInit.player(data.userid , context) ;
 	            let cardpanel  , cardprefab , deskcardpanel;

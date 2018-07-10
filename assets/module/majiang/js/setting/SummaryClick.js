@@ -77,7 +77,9 @@ cc.Class({
         if(this.miao){
             this.miao.string = this.times;
             //console.log(this.time);
-            if (cc.find('Canvas/big_cards')) {cc.find('Canvas/big_cards').destroy()};
+            if (cc.find('Canvas/big_cards').children) {
+                cc.find('Canvas/big_cards').removeAllChildren();
+            }
             if(this.times==0){
                 clearTimeout(this.t);  
                 cc.find('Canvas/summary').destroy();
