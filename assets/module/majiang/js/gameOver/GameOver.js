@@ -81,57 +81,59 @@ cc.Class({
 	        let playerid;
 	        cc.sys.localStorage.removeItem('clear');
 	        for(let i = 0;i<data.playOvers.length;i++){
-	        	if (data.playOvers[i].balance.drop) {// 点炮
-	        		let anim = cc.find('Canvas/dianpao');
-					if (player1.tablepos == 'top') {
-		                anim.x = 0;
-		                anim.y = 160;
-		            } else if (player1.tablepos == 'left') {
-		                anim.x = -320;
-		                anim.y = 0;
-		            } else if (player1.tablepos == 'right') {
-		                anim.x = 320;
-		                anim.y = 0;
-		            } else {
-		            	// 右
-		                anim.x = 0;
-		                anim.y = -160;
-		            }
-		            anim.width = 128;
-		            anim.height = 128;
-		            // weizhi(player1,anim);
-	        		anim.active = true;
-					anim = anim.getComponent(cc.Animation);
-					anim.play('dianpao');
-					let time = setTimeout(function(){
-	        			cc.find('Canvas/dianpao').active = false;
-	        			clearTimeout(time);
-					},4000)
-	            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
-	        		let anim = cc.find('Canvas/chongbao');
-					weizhi(player,anim);
-        			anim.active = true;
-					anim = anim.getComponent(cc.Animation);
-					anim.play('chongbao');
-					cc.log('chongbao')
-					let time = setTimeout(function(){
-	        			clearTimeout(time);
-	        			cc.find('Canvas/chongbao').active = false;
-					},4000)
-	            }else{
-	            	if (data.playOvers[i].balance.zimo) {// 自摸
-		        		let anim = cc.find('Canvas/zimo');
+	        	if (data.playOvers[i].balance) {
+		        	if (data.playOvers[i].balance.drop) {// 点炮
+		        		let anim = cc.find('Canvas/dianpao');
+						if (player1.tablepos == 'top') {
+			                anim.x = 0;
+			                anim.y = 160;
+			            } else if (player1.tablepos == 'left') {
+			                anim.x = -320;
+			                anim.y = 0;
+			            } else if (player1.tablepos == 'right') {
+			                anim.x = 320;
+			                anim.y = 0;
+			            } else {
+			            	// 右
+			                anim.x = 0;
+			                anim.y = -160;
+			            }
+			            anim.width = 128;
+			            anim.height = 128;
+			            // weizhi(player1,anim);
+		        		anim.active = true;
+						anim = anim.getComponent(cc.Animation);
+						anim.play('dianpao');
+						let time = setTimeout(function(){
+		        			cc.find('Canvas/dianpao').active = false;
+		        			clearTimeout(time);
+						},4000)
+		            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
+		        		let anim = cc.find('Canvas/chongbao');
 						weizhi(player,anim);
 	        			anim.active = true;
 						anim = anim.getComponent(cc.Animation);
-						anim.play('zimo');
-						cc.log('zimo')
+						anim.play('chongbao');
+						cc.log('chongbao')
 						let time = setTimeout(function(){
-		        			cc.find('Canvas/zimo').active = false;
 		        			clearTimeout(time);
-						},4000);
+		        			cc.find('Canvas/chongbao').active = false;
+						},4000)
+		            }else{
+		            	if (data.playOvers[i].balance.zimo) {// 自摸
+			        		let anim = cc.find('Canvas/zimo');
+							weizhi(player,anim);
+		        			anim.active = true;
+							anim = anim.getComponent(cc.Animation);
+							anim.play('zimo');
+							cc.log('zimo')
+							let time = setTimeout(function(){
+			        			cc.find('Canvas/zimo').active = false;
+			        			clearTimeout(time);
+							},4000);
+			            }
 		            }
-	            }
+	        	}
 	            if(data.playOvers[i].win==true){
                 	playerid = data.playOvers[i].user;
 	                if(data.playOvers[i].balance.huCard>-32){
