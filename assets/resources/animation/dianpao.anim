@@ -3,7 +3,7 @@
   "_name": "dianpao",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.4,
+  "_duration": 0.11666666666666667,
   "sample": 60,
   "speed": 1,
   "wrapMode": 1,
@@ -18,7 +18,7 @@
             }
           },
           {
-            "frame": 0.38333333333333336,
+            "frame": 0.1,
             "value": {
               "__uuid__": "0238c311-e63c-4d81-b3b1-3b06514ee1df"
             }
