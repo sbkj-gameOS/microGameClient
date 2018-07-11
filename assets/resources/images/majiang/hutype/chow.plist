@@ -4,88 +4,127 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>chi_glow.png</key>
+            <key>chow_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{742,512},{256,238}}</string>
+                <string>{{490,2},{1,1}}</string>
                 <key>offset</key>
-                <string>{0,9}</string>
+                <string>{-127.5,127.5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{256,238}}</string>
+                <string>{{0,0},{1,1}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>chi_glow2.png</key>
+            <key>chow_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{260,464},{246,220}}</string>
+                <string>{{2,914},{124,108}}</string>
                 <key>offset</key>
-                <string>{-2,11}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{3,7},{246,220}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>chi_txt.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{240,840},{128,126}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,1},{128,126}}</string>
-                <key>sourceSize</key>
-                <string>{128,128}</string>
-            </dict>
-            <key>gang_glow.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,518},{256,228}}</string>
-                <key>offset</key>
-                <string>{0,14}</string>
+                <string>{-1,9}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{256,228}}</string>
+                <string>{{65,65},{124,108}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>gang_glow2.png</key>
+            <key>chow_10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{482,518},{256,234}}</string>
+                <string>{{242,434},{206,226}}</string>
                 <key>offset</key>
-                <string>{0,11}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{256,234}}</string>
-                <key>sourceSize</key>
-                <string>{256,256}</string>
-            </dict>
-            <key>gang_txt.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{496,754},{126,124}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
+                <string>{2,6}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{1,2},{126,124}}</string>
+                <string>{{27,9},{206,226}}</string>
                 <key>sourceSize</key>
-                <string>{128,128}</string>
+                <string>{256,256}</string>
             </dict>
-            <key>hu_glow.png</key>
+            <key>chow_11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{484,260},{256,256}}</string>
+                <string>{{260,222},{210,234}}</string>
+                <key>offset</key>
+                <string>{1,6}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{24,5},{210,234}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>chow_12.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,260},{196,238}}</string>
+                <key>offset</key>
+                <string>{1,7}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{31,2},{196,238}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>chow_13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{260,834},{132,122}}</string>
+                <key>offset</key>
+                <string>{3,1}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{65,66},{132,122}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>chow_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{384,834},{132,114}}</string>
+                <key>offset</key>
+                <string>{3,5}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{65,66},{132,114}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>chow_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{136,834},{132,122}}</string>
+                <key>offset</key>
+                <string>{3,2}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{65,65},{132,122}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>chow_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,790},{132,122}}</string>
+                <key>offset</key>
+                <string>{3,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{65,66},{132,122}}</string>
+                <key>sourceSize</key>
+                <string>{256,256}</string>
+            </dict>
+            <key>chow_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{256,256}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -95,96 +134,57 @@
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>hu_glow3.png</key>
+            <key>chow_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{480,460}}</string>
+                <string>{{260,2},{228,218}}</string>
                 <key>offset</key>
-                <string>{-16,4}</string>
+                <string>{1,-4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,22},{480,460}}</string>
-                <key>sourceSize</key>
-                <string>{512,512}</string>
-            </dict>
-            <key>peng_glow.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{742,2},{256,256}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{256,256}}</string>
+                <string>{{15,23},{228,218}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>peng_glow2.png</key>
+            <key>chow_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{742,260},{256,250}}</string>
+                <string>{{2,656},{140,132}}</string>
                 <key>offset</key>
-                <string>{0,3}</string>
+                <string>{3,2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{256,250}}</string>
+                <string>{{61,60},{140,132}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>peng_txt.png</key>
+            <key>chow_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{260,712},{128,126}}</string>
+                <string>{{212,642},{190,210}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{2,7}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,1},{128,126}}</string>
-                <key>sourceSize</key>
-                <string>{128,128}</string>
-            </dict>
-            <key>ting_glow.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{484,2},{256,256}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{256,256}}</string>
+                <string>{{35,16},{190,210}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
-            <key>ting_glow2.png</key>
+            <key>chow_9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,752},{236,256}}</string>
+                <string>{{2,458},{196,208}}</string>
                 <key>offset</key>
-                <string>{-8,0}</string>
+                <string>{4,2}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{2,0},{236,256}}</string>
+                <string>{{34,22},{196,208}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
-            </dict>
-            <key>ting_txt.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{368,840},{126,126}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,1},{126,126}}</string>
-                <key>sourceSize</key>
-                <string>{128,128}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -192,13 +192,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>majiang-active.png</string>
+            <string>chow.png</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9dfe117611e3dcf4e8413c992a320aba:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:d4fcb215853b4c7d207768d049b609eb$</string>
             <key>textureFileName</key>
-            <string>majiang-active.png</string>
+            <string>chow.png</string>
         </dict>
     </dict>
 </plist>

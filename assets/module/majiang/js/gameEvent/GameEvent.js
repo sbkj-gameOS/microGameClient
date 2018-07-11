@@ -259,7 +259,7 @@ cc.Class({
             img.height = 128;
             setTimeout(function(){
                 img.active = false;
-            },1000)
+            },2200)
             opParent = cc.find("Canvas/cards/handcards/"+player.tablepos+"/kongcards") ;
             gameEvent.otherHandCardRemove(data,context,player.tablepos);
             let opCards , back = false , fangwei = player.tablepos ;

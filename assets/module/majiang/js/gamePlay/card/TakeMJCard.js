@@ -136,7 +136,7 @@ cc.Class({
                 card.cardvalue.height = 102.5;
                 cards.width=65.5; 
             }else{
-                cards.width=73;    
+                cards.width=93;    
             }
             handCards.target.y = 0;
             if(button.getComponent(cc.Button).interactable&&!card.caishen){

@@ -3,7 +3,7 @@
   "_name": "gang",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.5166666666666667,
+  "_duration": 2.0166666666666666,
   "sample": 60,
   "speed": 1,
   "wrapMode": 1,
@@ -14,19 +14,79 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "8fad3cb1-72d3-4ab8-8948-04b072e9d1b4"
+              "__uuid__": "eed714ce-5068-4e71-bf94-ccb15e955c92"
             }
           },
           {
-            "frame": 0.25,
+            "frame": 0.16666666666666666,
             "value": {
-              "__uuid__": "7b5f4259-3c26-4615-872b-07540791eb76"
+              "__uuid__": "116fecc5-ec2e-4b50-a52c-e943ae443ea1"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "d33d32de-8dbf-4681-b58b-31e9215f7de3"
             }
           },
           {
             "frame": 0.5,
             "value": {
-              "__uuid__": "13fb78c4-1768-4b66-91d9-36b74b24caaf"
+              "__uuid__": "4f5decc2-082a-41d1-aec7-92ead8357871"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "1c557a4d-33f8-4371-8ec9-bd7d0a7a061b"
+            }
+          },
+          {
+            "frame": 0.8333333333333334,
+            "value": {
+              "__uuid__": "ff925361-62e7-4fc7-9da5-256e8bd5a37f"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "67c45fd1-ff9f-4b47-a3fe-178cf1d45f5c"
+            }
+          },
+          {
+            "frame": 1.1666666666666667,
+            "value": {
+              "__uuid__": "ca7e358f-9c18-421c-95a4-30304f79ff8b"
+            }
+          },
+          {
+            "frame": 1.3333333333333333,
+            "value": {
+              "__uuid__": "d6bfad26-b7d6-4a0c-bc80-f61010a7050c"
+            }
+          },
+          {
+            "frame": 1.5,
+            "value": {
+              "__uuid__": "eca5e799-c97f-4105-8d0c-928f8a6df4d1"
+            }
+          },
+          {
+            "frame": 1.6666666666666667,
+            "value": {
+              "__uuid__": "358f0f0f-c291-4de5-94c6-9707af90a2c2"
+            }
+          },
+          {
+            "frame": 1.8333333333333333,
+            "value": {
+              "__uuid__": "2373c54f-ce20-494a-b5ef-351538e35f57"
+            }
+          },
+          {
+            "frame": 2,
+            "value": {
+              "__uuid__": "67533715-5be8-4b3e-a402-8dd2561d73d8"
             }
           }
         ]

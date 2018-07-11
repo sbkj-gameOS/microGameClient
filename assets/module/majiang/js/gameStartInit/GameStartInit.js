@@ -308,8 +308,9 @@ cc.Class({
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
             if (cc.weijifen.bankers && currenthandcards.children && currenthandcards.children.length == 14) {
-                currenthandcards.children[length-1].width = 100;
+                currenthandcards.children[length-1].width = 130;
             }
+            currenthandcards.x = -583;
             cc.sys.localStorage.setItem('bankerId',cc.weijifen.banker);
         },
         /**
@@ -580,7 +581,7 @@ cc.Class({
                 cc.weijifen.audio.playSFX('shuffle.mp3');            
                 // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
                 // ani.play("majiang_reorder") ;
-                var maxvalue  = -100;
+                var maxvalue  = -130;
                 var maxvalluecard ;
                 //排序 ---设置牌的zIndex（官方排序方法要用到）
                 if (context.playercards) {
@@ -981,9 +982,9 @@ cc.Class({
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
             if (cc.weijifen.bankers && currenthandcards.children.length == 14) {
-                currenthandcards.children[length-1].width = 100;
+                currenthandcards.children[length-1].width = 130;
             } else if (currenthandcards.children[length-1]) {
-                currenthandcards.children[length-1].width = 73;
+                currenthandcards.children[length-1].width = 93;
             }
         },
 
@@ -1054,7 +1055,7 @@ cc.Class({
                     card.cardvalue.height = 102.5;
                     target.width=65.5;
                 }else{
-                    target.width=73;    
+                    target.width=93;    
                 }
                 card.target.y = 0; 
                 //ting牌的时候 和 财神的牌是灰色的   听牌听完恢复 财神为持续状态

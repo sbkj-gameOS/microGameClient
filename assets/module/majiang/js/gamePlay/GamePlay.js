@@ -162,7 +162,7 @@ cc.Class({
 	                    	
 
 		                    // cc.find('Canvas/mask').active = true;
-	                    	let move = cc.moveTo(0.2,cc.p(0,-200));
+	                    	let move = cc.moveTo(0.2,cc.p(0,-150));
 		                    big_card.runAction(move);
 
            					desk_card.active = false;

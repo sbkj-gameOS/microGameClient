@@ -159,7 +159,7 @@ cc.Class({
             this.target.width=63;
             cc.find('Canvas/cards/handcards/current/currenthandcards').y =5;
         }else if(!pd){
-            this.target.width = 73;
+            this.target.width = 93;
         }
         //this.cardvalue.color = new cc.Color(255, 255, 255);
         if(pd == null){
@@ -191,7 +191,7 @@ cc.Class({
             if(cc.weijifen.cardNum > 14){ 
                 this.target.width=80;   
             }else{
-                this.target.width=100;    
+                this.target.width=130;    
             }
             this.target.y = 0;
             if(cc.sys.localStorage.getItem('alting')=='true'){
@@ -210,7 +210,7 @@ cc.Class({
                 this.cardvalue.height = 100;
                 this.target.width=63;
             }else{
-                this.target.width = 73;
+                this.target.width = 93;
             }
             this.target.y=0;
         }
