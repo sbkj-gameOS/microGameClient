@@ -7,41 +7,41 @@
             <key>摸宝.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,156},{225,75}}</string>
+                <string>{{2,342},{444,153}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{3,7}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{225,75}}</string>
+                <string>{{6,0},{444,153}}</string>
                 <key>sourceSize</key>
-                <string>{225,75}</string>
+                <string>{450,167}</string>
             </dict>
             <key>点炮.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,79},{225,75}}</string>
+                <string>{{2,172},{448,168}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{225,75}}</string>
+                <string>{{2,0},{448,168}}</string>
                 <key>sourceSize</key>
-                <string>{225,75}</string>
+                <string>{450,168}</string>
             </dict>
             <key>自摸.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{225,75}}</string>
+                <string>{{2,2},{450,168}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{225,75}}</string>
+                <string>{{0,0},{450,168}}</string>
                 <key>sourceSize</key>
-                <string>{225,75}</string>
+                <string>{450,168}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -51,9 +51,9 @@
             <key>realTextureFileName</key>
             <string>game-order.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ca48557a31167358e94d463489f9c812:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:1141979d8f63f858e71216c52c93e2b1:1/1$</string>
             <key>textureFileName</key>
             <string>game-order.png</string>
         </dict>
