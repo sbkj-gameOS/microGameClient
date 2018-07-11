@@ -130,9 +130,12 @@ cc.Class({
             type: cc.Node
         },
         recording: cc.Prefab,
-        prizeBox: cc.Prefab
+        prizeBox: cc.Prefab,// 比赛结束后弹出比赛结果事件
+        actionBox: cc.Node,// 事件按钮父元素
+        cards_play_flag: cc.Node
     },
     onLoad: function () {
+        this.actionBox.zIndex = 1000;
         cc.weijifen.isPLayVideo = false;
         this.yuyin_flag;
         cc.sys.localStorage.removeItem('matchOver');
@@ -284,6 +287,7 @@ cc.Class({
                 if(card != null){
                     let cardValue = card.target.getComponent('HandCards');
                     gamePlay.takecard_event({userid:cc.weijifen.user.id,card:cardValue.value},self);
+                    self.cards_play_flag.active = false;
                     let card_script = card.target.getComponent("HandCards") ;
                     /**
                      * 提交数据，等待服务器返回
@@ -557,7 +561,11 @@ cc.Class({
         // cc.weijifen.offline(2);
         // 主监测游戏进入后台
         // 监听到该事件说明玩家已经离线，此时status为1
+        let startTime,endTime;
         cc.game.on(cc.game.EVENT_HIDE, function () {
+            if (cc.weijifen.match) {
+                startTime = new Date();
+            }
             console.log('监听到hide事件，游戏进入后台运行！');
             let param = {
                 userId: cc.weijifen.user.id,
@@ -568,6 +576,19 @@ cc.Class({
             socket.emit("sayOnSound" ,JSON.stringify(param));
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
+            if (cc.weijifen.match) {
+                endTime = new Date();
+                let time_val = cc.weijifen.matchTime - (endTime - startTime);
+                cc.log(cc.weijifen.matchTime,time_val)
+                if (time_val > 1000) {
+                    let day = Math.floor(time_val / (60 * 60 * 24));
+                    let hour = Math.floor(time_val / (60 * 60)) - (day * 24);
+                    let minute = Math.floor(time_val / 60) - (day * 24 * 60) - (hour * 60);
+                    let second = Math.floor(time_val) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                    cc.sys.localStorage.setItem('matchTime',`距比赛开始：${minute}分${second}秒`)
+                }
+                // cc.sys.localStorage.setItem('matchTime',time_val);
+            }
             console.log('监听到SHOW事件，游戏进入后台运行！');
             let param = {
                 userId: cc.weijifen.user.id,

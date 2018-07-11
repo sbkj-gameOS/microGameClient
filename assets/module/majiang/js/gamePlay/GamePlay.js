@@ -315,6 +315,7 @@ cc.Class({
 	     * @param context
 	     */
 	    dealcard_event:function(data , context){
+            cc.find('Canvas/card_play_flag').active = false;
     		context.clock = setTimeout(function(){
     			if (cc.find('Canvas/big_cards').children) {
     				cc.find('Canvas/big_cards').removeAllChildren();

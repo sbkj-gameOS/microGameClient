@@ -68,10 +68,12 @@ cc.Class({
         // null  && 
         if(cc.weijifen.click == 1 &&cc.sys.localStorage.getItem('alting') !='true'){
             this.huifu();            
+
             this.node.dispatchEvent( new cc.Event.EventCustom('takecard', true) );
         }else{
             // 出牌
             if( handCards.take == true){
+                cc.find('Canvas/card_play_flag').active = true;
                 if (context.tings&&cc.sys.localStorage.getItem('ting')=='true'){
                     context.tingSelect.active = false;
                     let tinglength = context.tingSelect.children[0].children.length;
