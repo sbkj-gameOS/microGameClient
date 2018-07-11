@@ -330,6 +330,17 @@ cc.Class({
         cc.sys.localStorage.clear();
         cc.weijifen = null;
         cc.audioEngine.stopAll();
+    },
+    /*获取房卡*/
+    getRoomCards: function () {
+        let token = {token:cc.weijifen.authorization};
+        cc.weijifen.http.httpPost('/api/room/queryRoomCard',token,this.getRoomSuccess,this.tzerror,this) ;            
+    },
+    getRoomSuccess: function (res,obj) {
+        let result = JSON.parse(res);
+        let fangka = cc.find('Canvas/main/head/5/num');
+        fangka.getComponent(cc.Label).string = result.cards;
+        cc.weijifen.user.cards = result.cards;
     }
 });
 

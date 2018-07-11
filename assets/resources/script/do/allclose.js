@@ -15,11 +15,16 @@ cc.Class({
         if (menu.children[2].active) {
             cc.weijifen.gongaoAlertNum--;
         }
+        // 房卡回显
+        if (cc.weijifen.menuNum == 3) {
+            let hall = cc.find('Canvas').getComponent('hallDataBind');
+            hall.getRoomCards();
+        }
         cc.weijifen.matchFlag = false;
         cc.weijifen.menu.put(menu);
         if (cc.sys.localStorage.getItem('matchData')) {
             cc.sys.localStorage.removeItem('matchData');
-        }
+        };
     },
     closeSetting: function () {
         let setting = cc.find("Canvas/setting");

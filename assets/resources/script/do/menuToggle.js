@@ -65,6 +65,7 @@ cc.Class({
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
         //     return;
         // }
+        cc.weijifen.menuNum = event.target.name;
         this.hall(event.target.name);
     },
     /*
