@@ -563,9 +563,6 @@ cc.Class({
         // 监听到该事件说明玩家已经离线，此时status为1
         let startTime,endTime;
         cc.game.on(cc.game.EVENT_HIDE, function () {
-            if (cc.weijifen.match) {
-                startTime = new Date();
-            }
             console.log('监听到hide事件，游戏进入后台运行！');
             let param = {
                 userId: cc.weijifen.user.id,
@@ -576,19 +573,10 @@ cc.Class({
             socket.emit("sayOnSound" ,JSON.stringify(param));
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            if (cc.weijifen.match) {
-                endTime = new Date();
-                let time_val = cc.weijifen.matchTime - (endTime - startTime);
-                cc.log(cc.weijifen.matchTime,time_val)
-                if (time_val > 1000) {
-                    let day = Math.floor(time_val / (60 * 60 * 24));
-                    let hour = Math.floor(time_val / (60 * 60)) - (day * 24);
-                    let minute = Math.floor(time_val / 60) - (day * 24 * 60) - (hour * 60);
-                    let second = Math.floor(time_val) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
-                    cc.sys.localStorage.setItem('matchTime',`距比赛开始：${minute}分${second}秒`)
-                }
-                // cc.sys.localStorage.setItem('matchTime',time_val);
-            }
+            let t = new Date();// 当前时间
+            let d = new Date(Number(cc.sys.localStorage.getItem('appTime')));// 比赛开始的本地时间
+            let a = d - t;
+            cc.sys.localStorage.setItem('matchTime',a);
             console.log('监听到SHOW事件，游戏进入后台运行！');
             let param = {
                 userId: cc.weijifen.user.id,

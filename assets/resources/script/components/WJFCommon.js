@@ -1,6 +1,7 @@
 /*
 * @全局方法
 */
+var timer = null;
 cc.Class({
     extends: cc.Component,
 
@@ -266,7 +267,7 @@ cc.Class({
     * 比赛倒计时
     * @param matchStartTime 距离比赛开始的毫秒数
     */
-    countDown: function (matchStartTime) {
+    countDown: function (matchStartTime,flag) {
         let self = this;
         // matchStartTime = '2018-05-22 17:01:03'
         // let times = (new Date('2018-05-22 17:27:00').getTime() - new Date('2018-05-22 17:17:00').getTime()) / 1000;
@@ -274,12 +275,14 @@ cc.Class({
         let times = matchStartTime / 1000;
         let msg,
             matchFlag = {isStop: null,isMatch: true};
-        var timer = null;
       /*  var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
         var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);*/
-        if(times<=0 || timer){
+        if(times<=0){
             clearInterval(timer);
             return
+        }
+        if (flag == 'hide') {
+            clearInterval(timer);
         }
         var day=0,
             hour=0,
@@ -328,7 +331,8 @@ cc.Class({
                 if (second <= 9) second = '0' + second;
                 msg = `距比赛开始：${minute}分${second}秒`;
                 // cc.weijifen.matchTime = times * 1000;//再次进入房间倒计时正常显示
-                cc.sys.localStorage.setItem('matchTime',msg)
+                cc.sys.localStorage.setItem('matchTime2',msg)
+                cc.sys.localStorage.setItem('matchTime',times*1000)
                 wanfa.string = msg;
             } else {
                 // debugger
@@ -336,6 +340,7 @@ cc.Class({
                 cc.sys.localStorage.removeItem('matchFlag'); 
                 // cc.weijifen.matchTime = null;
                 cc.sys.localStorage.removeItem('matchTime'); 
+                cc.sys.localStorage.removeItem('matchTime2'); 
                 clearInterval(timer);
                 return
             }

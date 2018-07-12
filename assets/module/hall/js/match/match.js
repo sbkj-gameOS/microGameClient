@@ -166,6 +166,10 @@ cc.Class({
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
         cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
+        // 比赛开始的本地时间
+        let appTimeStr = new Date().getTime();
+        let appTime = new Date(appTimeStr + parseInt(res.statrtSec)).getTime();
+        cc.sys.localStorage.setItem('appTime',appTime);
         // cc.weijifen.matchTime = res.statrtSec;
         // 玩家没有报名，跳转到详情页报名
         if (!res.success) {

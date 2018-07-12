@@ -323,9 +323,10 @@ cc.Class({
             setTimeout(function(){
                 let userIp = cc.find("Canvas/userIp");
                 if (userIp) userIp.active = false;
-            },10000)
+            },10000);
             cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
+            cc.sys.localStorage.removeItem("matchTime");
             cc.sys.localStorage.setItem('waitting',1);
             context = cc.find('Canvas').getComponent('MJDataBind');
             context.play_flag = true;
