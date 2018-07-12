@@ -576,7 +576,6 @@ cc.Class({
             socket.emit("sayOnSound" ,JSON.stringify(param));
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            cc.director.loadScene('majiang');
             if (cc.weijifen.match) {
                 endTime = new Date();
                 let time_val = cc.weijifen.matchTime - (endTime - startTime);
@@ -598,6 +597,7 @@ cc.Class({
                 status: 0
             };
             socket.emit("sayOnSound" ,JSON.stringify(param));
+            cc.director.loadScene('majiang');
         });
         // 发送录音
         cc.weijifen.player_recording = function(param){
