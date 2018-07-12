@@ -10413,7 +10413,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 276,
+      "width": 370,
       "height": 200
     },
     "_rotationX": 0,
@@ -10422,7 +10422,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 860,
+      "x": 880,
       "y": -120
     },
     "_skewX": 0,
@@ -10477,7 +10477,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -45,
+      "x": -92,
       "y": 0
     },
     "_skewX": 0,
@@ -10625,7 +10625,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 163,
+      "x": 116,
       "y": 0
     },
     "_skewX": 0,
@@ -10773,7 +10773,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 352,
+      "x": 305,
       "y": 0
     },
     "_skewX": 0,
@@ -10921,7 +10921,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 538,
+      "x": 491,
       "y": 0
     },
     "_skewX": 0,
@@ -11069,7 +11069,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 728,
+      "x": 681,
       "y": 0
     },
     "_skewX": 0,
@@ -11217,7 +11217,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 917.5,
+      "x": 870.5,
       "y": 0
     },
     "_skewX": 0,
@@ -11365,7 +11365,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1084.5,
+      "x": 1037.5,
       "y": 7
     },
     "_skewX": 0,
@@ -11478,7 +11478,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 276,
+      "width": 370,
       "height": 200
     },
     "_resize": 0,
@@ -24046,7 +24046,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1334,
-      "height": 750
+      "height": 130
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -24054,8 +24054,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -4,
+      "y": -313
     },
     "_skewX": 0,
     "_skewY": 0,
