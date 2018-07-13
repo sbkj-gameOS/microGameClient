@@ -79,9 +79,13 @@ cc.Class({
     //
     onLoad: function () {
         // 比赛倒计时显示
+        if (cc.weijifen.wanfa) {
+            let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label).string = cc.weijifen.wanfa;
+        }
         let dataStr = cc.sys.localStorage.getItem('matchData');
         // if (dataStr && this.countDown && cc.weijifen.matchTime) {
         if (dataStr && this.countDown && cc.sys.localStorage.getItem('matchTime')) {
+            cc.log('matchTime',cc.sys.localStorage.getItem('matchTime'))
             // let time = cc.weijifen.matchTime;
             let time = cc.sys.localStorage.getItem('matchTime');
             this.countDown(time);//statrtSec距离比赛开始的毫秒数

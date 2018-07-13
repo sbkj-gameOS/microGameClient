@@ -521,6 +521,7 @@ cc.Class({
                 cc.weijifen.gongaoAlertNum = undefined;       
                 cc.director.loadScene('gameMain');         
             }else{
+                // 初始化
                 if(cc.sys.localStorage.getItem('clear') != 'true'){
                     var context = cc.find('Canvas').getComponent('MajiangDataBind'); 
                     var bth = cc.find('Canvas/bg/center/button/readybtn');

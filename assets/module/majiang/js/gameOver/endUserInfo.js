@@ -156,9 +156,6 @@ cc.Class({
                 },1000);
             }
 
-
-            cc.find('Canvas/summary/base').children[0].active = false;
-            cc.find('Canvas/summary/base').children[3].active = true;
         }
     //     this.username.string = userInfo.userName;
     //     if(userInfo.cur != 'true' ){

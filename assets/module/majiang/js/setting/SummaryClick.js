@@ -82,7 +82,7 @@ cc.Class({
             }
             if(this.times==0){
                 clearTimeout(this.t);  
-                cc.find('Canvas/summary').destroy();
+                cc.find('Canvas/summary').zIndex = 20000;
             }
         }
     },

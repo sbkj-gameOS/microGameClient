@@ -277,7 +277,7 @@ cc.Class({
             matchFlag = {isStop: null,isMatch: true};
       /*  var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
         var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);*/
-        if(times<=0){
+        if(times<=0 || !cc.sys.localStorage.getItem('matchTime')){
             clearInterval(timer);
             return
         }
@@ -335,13 +335,12 @@ cc.Class({
                 cc.sys.localStorage.setItem('matchTime',times*1000)
                 wanfa.string = msg;
             } else {
-                // debugger
                 wanfa.string = cc.weijifen.wanfa;
                 cc.sys.localStorage.removeItem('matchFlag'); 
-                // cc.weijifen.matchTime = null;
                 cc.sys.localStorage.removeItem('matchTime'); 
                 cc.sys.localStorage.removeItem('matchTime2'); 
                 clearInterval(timer);
+                timer = null;
                 return
             }
             // fenNode.string = minute;
