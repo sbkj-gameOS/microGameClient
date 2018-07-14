@@ -316,6 +316,12 @@ cc.Class({
 	     */
 	    dealcard_event:function(data , context){
             cc.find('Canvas/card_play_flag').active = false;
+            if (data.replacePowerCard) {
+            	cc.find('Canvas/bg/ReplacePowerCard').active = true;
+            	let timer_flag = setTimeout(function(){
+            		cc.find('Canvas/bg/ReplacePowerCard').active = false;
+            	},1500);
+            }
     		context.clock = setTimeout(function(){
     			if (cc.find('Canvas/big_cards').children) {
     				cc.find('Canvas/big_cards').removeAllChildren();
