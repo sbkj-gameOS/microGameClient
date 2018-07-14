@@ -80,7 +80,7 @@ cc.Class({
             if (cc.find('Canvas/big_cards').children) {
                 cc.find('Canvas/big_cards').removeAllChildren();
             }
-            if(this.times < 0 && cc.weijifen.matchOver){
+            if(this.times < 0){
                 clearInterval(this.t);  
                 if (cc.weijifen.matchOver) {
                     cc.weijifen.matchOver = null;
