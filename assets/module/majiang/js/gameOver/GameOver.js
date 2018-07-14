@@ -178,7 +178,7 @@ cc.Class({
 		        if(cc.weijifen.GameBase.gameModel == "wz"){
 		            gameModelMp3 = "wz";
 		        }
-	            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'hu.mp3');                    
+	            // cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'hu.mp3');                    
 	            let hu_hu = gameOverNode.current_hu.getComponent(cc.Animation);
 	            let player = gameStartInit.player(playerid , this);
 	            let action = cc.scaleTo(1.5,1.5);

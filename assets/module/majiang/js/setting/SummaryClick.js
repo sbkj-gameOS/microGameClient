@@ -80,9 +80,14 @@ cc.Class({
             if (cc.find('Canvas/big_cards').children) {
                 cc.find('Canvas/big_cards').removeAllChildren();
             }
-            if(this.times==0){
-                clearTimeout(this.t);  
-                cc.find('Canvas/summary').zIndex = 20000;
+            if(this.times < 0 && cc.weijifen.matchOver){
+                clearInterval(this.t);  
+                if (cc.weijifen.matchOver) {
+                    cc.weijifen.matchOver = null;
+                    this.miao.string = '';
+                    return
+                }
+                cc.find('Canvas/summary').destroy();
             }
         }
     },

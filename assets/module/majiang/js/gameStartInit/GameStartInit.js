@@ -79,9 +79,6 @@ cc.Class({
     //
     onLoad: function () {
         // 比赛倒计时显示
-        if (cc.weijifen.wanfa) {
-            let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label).string = cc.weijifen.wanfa;
-        }
         let dataStr = cc.sys.localStorage.getItem('matchData');
         // if (dataStr && this.countDown && cc.weijifen.matchTime) {
         if (dataStr && this.countDown && cc.sys.localStorage.getItem('matchTime')) {
@@ -323,6 +320,9 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+            if (cc.weijifen.wanfa) {
+                let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label).string = cc.weijifen.wanfa;
+            }
              // 反作弊提示
             setTimeout(function(){
                 let userIp = cc.find("Canvas/userIp");

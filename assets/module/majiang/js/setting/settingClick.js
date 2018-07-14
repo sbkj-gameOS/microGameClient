@@ -157,6 +157,7 @@ cc.Class({
             }
         },
         gameOver_event: function(data,context){
+            cc.weijifen.matchOver = true;
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
             cc.sys.localStorage.removeItem('waitting');
             let time;
