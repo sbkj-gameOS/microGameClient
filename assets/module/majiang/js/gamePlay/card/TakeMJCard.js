@@ -59,6 +59,7 @@ cc.Class({
     * @param event 事件对象
     */
     onClick:function(event){
+        cc.weijifen.audio.setSFXVolume(cc.weijifen.mp3Music);
         let context = cc.find('Canvas').getComponent('MJDataBind'); 
         let handCards = this.target.getComponent("HandCards");
         let self = this;

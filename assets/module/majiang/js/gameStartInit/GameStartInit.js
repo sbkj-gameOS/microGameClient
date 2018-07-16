@@ -583,7 +583,8 @@ cc.Class({
                 }
             }
             setTimeout(function(){
-                cc.weijifen.audio.playSFX('shuffle.mp3');            
+                cc.weijifen.audio.playSFX('shuffle.mp3');         
+                var mp3Music = cc.weijifen.audio.getSFXVolume();
                 // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
                 // ani.play("majiang_reorder") ;
                 var maxvalue  = -130;
@@ -632,6 +633,8 @@ cc.Class({
                 
             
             setTimeout(function(){
+                cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
+                cc.weijifen.audio.setSFXVolume(0);
                 //重连判断action
                 var istake =false;
                 for(let i=0;i<data.players.length;i++){
