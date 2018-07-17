@@ -633,7 +633,6 @@ cc.Class({
                 
             
             setTimeout(function(){
-                cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
                 cc.weijifen.audio.setSFXVolume(0);
                 //重连判断action
                 var istake =false;

@@ -35,7 +35,7 @@ cc.Class({
 	     * @param {cc.Component} context
 	     */
 	    takecard_event:function(data , context){
-	    	cc.weijifen.audio.setSFXVolume(cc.weijifen.mp3Music);
+	    	cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
 	    	clearTimeout(context.clock);
 	    	if (cc.find('Canvas/handcards')) {
 	    		// cc.find('Canvas/handcards').destroy();
@@ -316,7 +316,7 @@ cc.Class({
 	     * @param context
 	     */
 	    dealcard_event:function(data , context){
-	    	cc.weijifen.audio.setSFXVolume(cc.weijifen.mp3Music);
+	    	cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
             cc.find('Canvas/card_play_flag').active = false;
             if (data.replacePowerCard) {
             	cc.find('Canvas/bg/ReplacePowerCard').active = true;

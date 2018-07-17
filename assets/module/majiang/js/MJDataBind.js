@@ -135,6 +135,7 @@ cc.Class({
         cards_play_flag: cc.Node
     },
     onLoad: function () {
+        cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         this.actionBox.zIndex = 1000;
         cc.weijifen.isPLayVideo = false;
         this.yuyin_flag;
