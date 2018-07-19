@@ -176,7 +176,7 @@ cc.Class({
     caishenCards: function(){
         this.csImageTop.active = true;
         this.target.zIndex = -999+this.value;
-        if (cc.sys.localStorage.getItem('subModel') == 'HAZ') {
+        if (cc.sys.localStorage.getItem('subModel') == 'HAZ' || cc.weijifen.GameBase.gameModel == 'jx') {
             this.target.children[0].getComponent(cc.Button).enabled = true;//杭州麻将---财神可以出
             this.cardvalue.color = new cc.Color(255,255,255);
         } else {
