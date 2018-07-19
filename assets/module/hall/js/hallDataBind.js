@@ -255,16 +255,23 @@ cc.Class({
     },
 	//滚动公告字幕
 	gundongText:function(){
-        //
-		var self = this;
+        var offset_x = 0,action;
+        var self = this;
         var text = self.message;
         var width = self.message.node.parent.width;
-        text.node.runAction(cc.repeatForever(cc.sequence(
-            cc.moveTo(text.node.width/width*10,cc.p(-text.node.width-width/5,text.node.y)),
-            cc.callFunc(function(){
-                text.node.x = width;
-            })
-        )),1000);	
+        var timer = setInterval(function(){
+            if (!text.node) {
+                clearInterval(timer);
+                return
+            }
+            offset_x -= 5;
+            if (-offset_x > text.node.width) {
+                offset_x = 0;
+                text.node.x = 0;
+            } else {
+                text.node.x = offset_x;
+            }
+        },30);
 	},
 	//创建包厢
 	createRoom:function(){
