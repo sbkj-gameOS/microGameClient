@@ -80,10 +80,7 @@ cc.Class({
     onLoad: function () {
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
-        // if (dataStr && this.countDown && cc.weijifen.matchTime) {
         if (dataStr && this.countDown && cc.sys.localStorage.getItem('matchTime')) {
-            cc.log('matchTime',cc.sys.localStorage.getItem('matchTime'))
-            // let time = cc.weijifen.matchTime;
             let time = cc.sys.localStorage.getItem('matchTime');
             this.countDown(time);//statrtSec距离比赛开始的毫秒数
         }
@@ -123,8 +120,6 @@ cc.Class({
             if(data.players.length == 1){
                 cc.sys.localStorage.setItem("roomNo1",cc.weijifen.user.id);
             }
-           /* console.log('palyer_event进入')
-            cc.log('players_event的data，',JSON.stringify(data))*/
             context = cc.find("Canvas").getComponent("MJDataBind");
             var gameStartInit = require('GameStartInit');
             // gameStartInit.playersData(data);

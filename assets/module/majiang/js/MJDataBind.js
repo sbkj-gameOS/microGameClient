@@ -233,7 +233,32 @@ cc.Class({
         })
         socket.on("takecards",function(result){
             var data = self.getSelf().parse(result);
-            self.getSelf().route('takecards',self)(JSON.parse(data) , self);
+            data = JSON.parse(data);
+            self.getSelf().route('takecards',self)(data , self);
+            // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
+            if (data.userid == cc.weijifen.user.id && data.cards.length) {
+                let card_val,arr;
+                // data.cards.push(36);// 测试数据
+                let h_cards2 = cc.find('Canvas/cards/handcards/current/currenthandcards');
+                arr = data.cards;
+                for (let n = 0;n < h_cards2.children.length;n++) {
+                    card_val = h_cards2.children[n].getComponent('HandCards').value;
+                    cc.log('card_val',card_val)
+                    if (arr.indexOf(card_val) > -1) {
+                        arr.splice(arr.indexOf(card_val),1);
+                    }
+                }
+                if (arr.length) {
+                    for (let ele of data.cards) {
+                        let card_ = cc.instantiate(h_cards2.children[0]);
+                        card_.getComponent('HandCards').value = ele;
+                        ele > -1 ? card_.zIndex = ele : card_.zIndex = ele + 200;
+                        card_.getComponent('HandCards').init(ele);
+                        card_.parent = h_cards2;
+                    }
+                    h_cards2.sortAllChildren();
+                }
+            }
         })
 
         socket.on("action",function(result){
