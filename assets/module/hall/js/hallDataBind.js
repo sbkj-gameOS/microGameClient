@@ -54,6 +54,7 @@ cc.Class({
             let prizeBoxData = cc.sys.localStorage.getItem('matchPrize');
             cc.sys.localStorage.removeItem('matchPrize');
 
+            // 比赛结束后消息提示
             if (prizeBoxData) {
                 let data = JSON.parse(prizeBoxData);
                 let box = cc.instantiate(this.prizeBox);
@@ -149,7 +150,9 @@ cc.Class({
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
-        
+        var time = setInterval(function(){
+            cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
+        },10000);
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
