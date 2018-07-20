@@ -19,15 +19,18 @@ cc.Class({
             default:null ,
             type : cc.Node
         },
-        tape:cc.Button,
+        // tape:cc.Button,
+        tape: cc.Node,
         
     },
 
     // use this for initialization
     onLoad: function () {
-        this.tape.node.on('touchmove',this.touchendClick, this);
-        this.tape.node.on('touchend',this.mouseupClick, this);
-        
+       /* this.tape.node.on('touchmove',this.touchendClick, this);
+        this.tape.node.on('touchend',this.mouseupClick, this);*/
+
+        this.tape.on('touchmove',this.touchendClick, this);
+        this.tape.on('touchend',this.mouseupClick, this);        
     },
     mouseupClick: function(event){
         //获取当前节点在canvas对应的坐标位置
