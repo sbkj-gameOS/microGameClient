@@ -117,6 +117,7 @@ cc.Class({
             this.soundoff.active =false;
             cc.weijifen.audio.setSFXVolume(1); 
         }
+        cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
     },
     onMusiceBtnClick:function(){
         if(cc.weijifen.audio.getState() == cc.audioEngine.AudioState.PLAYING){

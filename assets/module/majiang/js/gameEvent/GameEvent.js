@@ -57,6 +57,7 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
+            cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
             // cc.find('Canvas/mask').active = true;
             if (!data.dan) {
                 clearTimeout(context.clock);
