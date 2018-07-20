@@ -183,6 +183,7 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
+            cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
             if (cc.find('Canvas/big_cards').children) {
                cc.find('Canvas/big_cards').removeAllChildren();
             }
