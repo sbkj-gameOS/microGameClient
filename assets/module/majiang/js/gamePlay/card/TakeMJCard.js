@@ -27,7 +27,6 @@ cc.Class({
     onLoad: function () {
         this.tape.node.on('touchmove',this.touchendClick, this);
         this.tape.node.on('touchend',this.mouseupClick, this);
-
     },
     mouseupClick: function(event){
         //获取当前节点在canvas对应的坐标位置
@@ -47,11 +46,19 @@ cc.Class({
     },
     touchendClick:function(event){
         let card = event.target.parent.getComponent('HandCards');
-        if(cc.sys.localStorage.getItem('alting')!='true'&&cc.sys.localStorage.getItem('ting')!='true'&&!card.caishen){
+        /*if(cc.sys.localStorage.getItem('alting')!='true'&&cc.sys.localStorage.getItem('ting')!='true'&&!card.caishen){
             var delta = event.touch.getDelta();
             event.target.x += delta.x;
             event.target.y += delta.y;
             cc.sys.localStorage.setItem('delta',event.target.y);
+            cc.log('delta',delta); 
+        }*/
+        var delta = event.touch.getDelta();
+        event.target.x += delta.x;
+        event.target.y += delta.y;
+        cc.sys.localStorage.setItem('delta',event.target.y);
+        if (cc.find('Canvas/other/tingselect')) {
+            cc.find('Canvas/other/tingselect').active = false;
         }
     },
     /*
