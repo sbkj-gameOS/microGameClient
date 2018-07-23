@@ -223,11 +223,12 @@ cc.Class({
         cc.game.on(cc.game.EVENT_SHOW, function () {
             //获取分享进入的时候，是否分享的游戏房间
             var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-            // object.alert("res:"+res);
+            object.alert("res:"+res);
             if(res){
                 res = JSON.parse(res);
                 if(res.code != "10086" && res.roomNum){
                     cc.weijifen.shareRoomNum = res.roomNum;
+                    object.alert("res:"+cc.weijifen.shareRoomNum);
                     cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
                 }
             }
