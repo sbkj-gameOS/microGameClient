@@ -110,6 +110,10 @@ cc.Class({
 						},4000)
 		            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
 		        		let anim = cc.find('Canvas/chongbao');
+		        		if(cc.weijifen.GameBase.gameModel == "wz"){
+				            context.gameModelMp3 = "wz";
+				        }
+			            cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu.mp3'); 
 						weizhi(player,anim);
 	        			anim.active = true;
 						anim = anim.getComponent(cc.Animation);
@@ -121,6 +125,10 @@ cc.Class({
 						},4000)
 		            }else{
 		            	if (data.playOvers[i].balance.zimo) {// 自摸
+		            		if(cc.weijifen.GameBase.gameModel == "wz"){
+					            context.gameModelMp3 = "wz";
+					        }
+				            cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu.mp3'); 
 			        		let anim = cc.find('Canvas/zimo');
 							weizhi(player,anim);
 		        			anim.active = true;
