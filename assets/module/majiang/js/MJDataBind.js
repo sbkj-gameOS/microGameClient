@@ -1137,8 +1137,8 @@ cc.Class({
                 handCards.cardvalue.color = new cc.Color(255, 255, 255); 
             }else{
                 handCards.cardvalue.color = new cc.Color(118, 118, 118);                
-                button.getComponent(cc.Button).interactable= false;
             }
+            button.getComponent(cc.Button).interactable= false;
         }
     },
     onDestroy:function(){
