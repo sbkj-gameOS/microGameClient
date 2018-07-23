@@ -175,7 +175,7 @@ cc.Class({
                     count++;
                 }  
                 var action = cc.moveTo(0.1,800 - count*285,-100);
-                gameEventNode.actionnode_two.x=(-250 - count*100);                
+                gameEventNode.actionnode_two.x=(-350 - count*100);                
                 //context.actionnode_two.runAction(action);
                 // let ani = context.actionnode_two.getComponent(cc.Animation);
                 // ani.play("majiang_action") ;

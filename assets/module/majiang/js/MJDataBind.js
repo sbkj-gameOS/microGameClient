@@ -236,10 +236,10 @@ cc.Class({
             data = JSON.parse(data);
             self.getSelf().route('takecards',self)(data , self);
             // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
-            if (data.userid == cc.weijifen.user.id && data.cards.length) {
+            let h_cards2 = cc.find('Canvas/cards/handcards/current/currenthandcards');
+            if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
                 let card_val,arr;
                 // data.cards.push(36);// 测试数据
-                let h_cards2 = cc.find('Canvas/cards/handcards/current/currenthandcards');
                 arr = data.cards;
                 for (let n = 0;n < h_cards2.children.length;n++) {
                     card_val = h_cards2.children[n].getComponent('HandCards').value;
@@ -1137,8 +1137,8 @@ cc.Class({
                 handCards.cardvalue.color = new cc.Color(255, 255, 255); 
             }else{
                 handCards.cardvalue.color = new cc.Color(118, 118, 118);                
+                button.getComponent(cc.Button).interactable= false;
             }
-            button.getComponent(cc.Button).interactable= false;
         }
     },
     onDestroy:function(){
