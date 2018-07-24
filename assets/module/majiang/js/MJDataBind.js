@@ -612,7 +612,9 @@ cc.Class({
                 status: 0
             };
             socket.emit("sayOnSound" ,JSON.stringify(param));
-            cc.director.loadScene('majiang');
+            if (cc.weijifen.room) {
+                cc.director.loadScene('majiang');
+            }
         });
         // 发送录音
         cc.weijifen.player_recording = function(param){
