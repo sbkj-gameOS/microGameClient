@@ -58,6 +58,8 @@ cc.Class({
 		    }
 		    function weizhi (player,img) {
 					cc.log(player.tablepos)
+	            img.width = 448;
+	            img.height = 168;
 		    	if (player.tablepos == 'top') {
 	                img.x = 0;
 	                img.y = 160;
@@ -71,8 +73,6 @@ cc.Class({
 	                img.x = 0;
 	                img.y = -160;
 	            }
-	            img.width = 128;
-	            img.height = 128;
 		    }
     		context = cc.find('Canvas').getComponent('MJDataBind');
     		var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
@@ -84,6 +84,8 @@ cc.Class({
 	        	if (data.playOvers[i].balance) {
 		        	if (data.playOvers[i].balance.drop) {// 点炮
 		        		let anim = cc.find('Canvas/dianpao');
+			            anim.width = 448;
+			            anim.height = 168;
 						if (player1.tablepos == 'top') {
 			                anim.x = 0;
 			                anim.y = 160;
@@ -94,13 +96,9 @@ cc.Class({
 			                anim.x = 320;
 			                anim.y = 0;
 			            } else {
-			            	// 右
 			                anim.x = 0;
 			                anim.y = -160;
 			            }
-			            anim.width = 128;
-			            anim.height = 128;
-			            // weizhi(player1,anim);
 		        		anim.active = true;
 						anim = anim.getComponent(cc.Animation);
 						anim.play('dianpao');
@@ -118,7 +116,7 @@ cc.Class({
 	        			anim.active = true;
 						anim = anim.getComponent(cc.Animation);
 						anim.play('chongbao');
-						cc.log('chongbao')
+						cc.log('chongbao');
 						let time = setTimeout(function(){
 		        			clearTimeout(time);
 		        			cc.find('Canvas/chongbao').active = false;
