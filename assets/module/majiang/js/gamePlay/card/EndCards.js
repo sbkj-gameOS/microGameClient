@@ -162,11 +162,7 @@ cc.Class({
         }
         this.count.string= this.data.count;
         if(this.data.win ==true){
-            var gameModelMp3 = "";//播放声音
-           /* if(cc.weijifen.GameBase.gameModel == "wz"){
-                gameModelMp3 = "wz";
-            }
-            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'hu.mp3');*/
+            var gameModelMp3 = "";
             this.target.getComponent(cc.Sprite).spriteFrame = this.redwin;
             this.win.active = true;
         }

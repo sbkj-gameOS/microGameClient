@@ -238,16 +238,29 @@ cc.Class({
             // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
             let h_cards2 = cc.find('Canvas/cards/handcards/current/currenthandcards');
             if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
-                let card_val,arr;
                 // data.cards.push(36);// 测试数据
-                arr = data.cards;
+                // data.cards.splice(2,1);// 测试数据
+                let card_val,arr,card_arr = [],cards_val;
+                arr = data.cards;// 服务端返回值
+                cards_val = [];// 当前手牌值
                 for (let n = 0;n < h_cards2.children.length;n++) {
                     card_val = h_cards2.children[n].getComponent('HandCards').value;
+                    card_arr.push(h_cards2.children[n]); // 手牌节点
+                    cards_val.push(card_val);
                     if (arr.indexOf(card_val) > -1) {
                         arr.splice(arr.indexOf(card_val),1);
+                        card_arr.shift();
                     }
                 }
-                if (arr.length && h_cards2.children[0]) {
+                if (card_arr.length && arr.length == 0) {
+                    // 多牌处理
+                    for (let m = 0;m < card_arr.length;m++) {
+                        let val = card_arr[m].getComponent('HandCards').value;
+                        let i = cards_val.indexOf(val);
+                        h_cards2.children[i].destroy();
+                    }
+                } else if (arr.length && h_cards2.children[0]) {
+                    // 少牌处理
                     for (let ele of data.cards) {
                         let card_ = cc.instantiate(h_cards2.children[0]);
                         card_.getComponent('HandCards').value = ele;
@@ -502,11 +515,6 @@ cc.Class({
          * ActionEvent发射的事件 ， 点击 胡
          */
         self.node.on("hu",function(event){
-            cc.log('胡音效---',self.gameModel);
-            if(cc.weijifen.GameBase.gameModel == "wz"){
-                context.gameModelMp3 = "wz";
-            }
-            cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'hu.mp3');  
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
             socket.emit("selectaction" , JSON.stringify({
@@ -621,11 +629,11 @@ cc.Class({
         });
         // 发送录音
         cc.weijifen.player_recording = function(param){
-        	var param1 = {
-        		type:3,
+            var param1 = {
+                type:3,
                 userId: cc.weijifen.user.id,
                 content:param
-        	};
+            };
             socket.emit("sayOnSound" ,JSON.stringify(param1));
         }
         // 播放语音队列
@@ -1250,7 +1258,7 @@ cc.Class({
         }
         // 语音
         if (res.type == 3) {
-        	videoList.push(res.content);
+            videoList.push(res.content);
             if(cc.weijifen.isPLayVideo == false){
                 var params = {
                     act:4,

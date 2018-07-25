@@ -19,6 +19,10 @@ cc.Class({
        		let id,id1;
 		    // 胡动画
 		    if (!data.unHu) {
+	            if(cc.weijifen.GameBase.gameModel == "wz"){
+	                context.gameModelMp3 = "wz";
+	            }
+            	cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu.mp3');  
 	       		for(let i = 0;i<data.playOvers.length;i++){
 	       			if (data.playOvers[i].win) {
 	       				id = data.playOvers[i].user;
@@ -108,10 +112,6 @@ cc.Class({
 						},4000)
 		            }else if (data.playOvers[i].balance.chongBao || data.playOvers[i].balance.moBao) {// 冲宝
 		        		let anim = cc.find('Canvas/chongbao');
-		        		if(cc.weijifen.GameBase.gameModel == "wz"){
-				            context.gameModelMp3 = "wz";
-				        }
-			            cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu.mp3'); 
 						weizhi(player,anim);
 	        			anim.active = true;
 						anim = anim.getComponent(cc.Animation);
@@ -123,10 +123,6 @@ cc.Class({
 						},4000)
 		            }else{
 		            	if (data.playOvers[i].balance.zimo) {// 自摸
-		            		if(cc.weijifen.GameBase.gameModel == "wz"){
-					            context.gameModelMp3 = "wz";
-					        }
-				            cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu.mp3'); 
 			        		let anim = cc.find('Canvas/zimo');
 							weizhi(player,anim);
 		        			anim.active = true;
@@ -180,11 +176,6 @@ cc.Class({
 	    	var gameOverNode = cc.find('Canvas/js/GameOver').getComponent('GameOver');
 	    	var gameStartInit = require('GameStartInit');
 	        if(playerid){
-	        	var gameModelMp3 = "";//播放声音
-		        if(cc.weijifen.GameBase.gameModel == "wz"){
-		            gameModelMp3 = "wz";
-		        }
-	            // cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'hu.mp3');                    
 	            let hu_hu = gameOverNode.current_hu.getComponent(cc.Animation);
 	            let player = gameStartInit.player(playerid , this);
 	            let action = cc.scaleTo(1.5,1.5);
