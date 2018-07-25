@@ -196,7 +196,7 @@ cc.Class({
 	            //其他玩家出牌   
 	            let temp = gameStartInit.player(data.userid , context) ;
 	            let cardpanel  , cardprefab , deskcardpanel;
-	            if(!data.notSend){
+	            if(!data.notSend && temp){
 		            if(temp.tablepos == "right"){
 		                for(var inx = 0 ; inx < gameStartInitNode.right_panel.children.length ; inx++){
 		                    let right_temp = gameStartInitNode.right_panel.children[inx].getComponent("SpecCards");
@@ -384,15 +384,16 @@ cc.Class({
 	                context.shouOperationMune();                                    
 	            }
 	        }else{
-	            context.shouOperationMune();                    
-	            let inx = 0 ;
-	            if(player.tablepos == "top"){
-	                //context.right_panel ;
-	                inx = 1 ;
-	            }else if(player.tablepos == "left"){
-	                inx = 2 ;
-	            }
-	            gameStartInit.initPlayerHandCards(0 , 1 , inx , context , true,peoNum);
+	        	if (player) {
+		            context.shouOperationMune();                    
+		            let inx = 0 ;
+		            if(player.tablepos == "top"){
+		                inx = 1 ;
+		            }else if(player.tablepos == "left"){
+		                inx = 2 ;
+		            }
+		            gameStartInit.initPlayerHandCards(0 , 1 , inx , context , true,peoNum);
+	        	}
 	        }
 	        gameStartInitNode.desk_cards.string = data.deskcards ;
 	        if(data.power){
@@ -444,7 +445,7 @@ cc.Class({
     	qujuju: function(data){
     		var gameStartInit = require('GameStartInit');
 	        let player = gameStartInit.player(data.userid , this);
-	        if (!player.tablepos) {
+	        if (!player) {
 	        	return
 	        }
 	        let opParent;

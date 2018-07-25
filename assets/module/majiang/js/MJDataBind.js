@@ -243,12 +243,11 @@ cc.Class({
                 arr = data.cards;
                 for (let n = 0;n < h_cards2.children.length;n++) {
                     card_val = h_cards2.children[n].getComponent('HandCards').value;
-                    cc.log('card_val',card_val)
                     if (arr.indexOf(card_val) > -1) {
                         arr.splice(arr.indexOf(card_val),1);
                     }
                 }
-                if (arr.length) {
+                if (arr.length && h_cards2.children[0]) {
                     for (let ele of data.cards) {
                         let card_ = cc.instantiate(h_cards2.children[0]);
                         card_.getComponent('HandCards').value = ele;
@@ -503,6 +502,10 @@ cc.Class({
          * ActionEvent发射的事件 ， 点击 胡
          */
         self.node.on("hu",function(event){
+            cc.log('胡音效---',self.gameModel);
+            if(cc.weijifen.GameBase.gameModel == "wz"){
+                context.gameModelMp3 = "wz";
+            }
             cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'hu.mp3');  
             cc.sys.localStorage.removeItem('guo');            
             let socket = self.getSelf().socket();
@@ -779,7 +782,7 @@ cc.Class({
          *
          * 初始化玩家 的 对象池
          */
-        for(var i=0 ; i<4 ; i++){
+        for(var i=0 ; i<5 ; i++){
             this.playerspool.put(cc.instantiate(this.playerprefab));
         }
         /**
@@ -1154,8 +1157,8 @@ cc.Class({
     */
     changeRoom_event: function(data,context){
         cc.weijifen.playerNum = data.playerNum;
+        cc.weijifen.room  = data.roomId;
         cc.director.loadScene('majiang');
-        // context.disconnect();
     },
     /*
     * 获取聊天列表，添加到父节点
