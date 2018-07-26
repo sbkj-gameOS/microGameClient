@@ -132,7 +132,8 @@ cc.Class({
         recording: cc.Prefab,
         prizeBox: cc.Prefab,// 比赛结束后弹出比赛结果事件
         actionBox: cc.Node,// 事件按钮父元素
-        cards_play_flag: cc.Node
+        cards_play_flag: cc.Node,
+        handCards: cc.Node
     },
     onLoad: function () {
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
@@ -236,8 +237,11 @@ cc.Class({
             data = JSON.parse(data);
             self.getSelf().route('takecards',self)(data , self);
             // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
-            let h_cards2 = cc.find('Canvas/cards/handcards/current/currenthandcards');
+            let h_cards2 = self.handCards;
+            //cc.log('h_cards2手牌---',h_cards2.length);
             if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
+                //cc.log('手牌有误，开始更正！！！！！！');
+                //cc.log('h_cards2手牌---',h_cards2.length);
                 // data.cards.push(36);// 测试数据
                 // data.cards.splice(2,1);// 测试数据
                 let card_val,arr,card_arr = [],cards_val;
@@ -252,6 +256,9 @@ cc.Class({
                         card_arr.shift();
                     }
                 }
+                //cc.log('cards_val---牌值---',cards_val);
+                //cc.log('card_arr---节点---',cards_arr);
+                //cc.log('arr---正确值，剩下---',arr);
                 if (card_arr.length && arr.length == 0) {
                     // 多牌处理
                     for (let m = 0;m < card_arr.length;m++) {
@@ -268,8 +275,8 @@ cc.Class({
                         card_.getComponent('HandCards').init(ele);
                         card_.parent = h_cards2;
                     }
-                    h_cards2.sortAllChildren();
                 }
+                h_cards2.sortAllChildren();
             }
         })
 
@@ -1166,6 +1173,8 @@ cc.Class({
     changeRoom_event: function(data,context){
         cc.weijifen.playerNum = data.playerNum;
         cc.weijifen.room  = data.roomId;
+        //cc.log('changeRoom_event--data',data);
+        //cc.log('玩家数量---changeRoom',data.playerNum,cc.weijifen.playerNum);
         cc.director.loadScene('majiang');
     },
     /*
