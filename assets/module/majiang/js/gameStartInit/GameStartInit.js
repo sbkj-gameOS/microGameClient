@@ -316,7 +316,7 @@ cc.Class({
          */
         play_event:function(data , context, self){
             if (cc.weijifen.wanfa) {
-                let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label).string = cc.weijifen.wanfa;
+                self.wanfa.getComponent(cc.Label).string = cc.weijifen.wanfa;
             }
              // 反作弊提示
             setTimeout(function(){
@@ -797,14 +797,15 @@ cc.Class({
 
             if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
                 let player0 = context.playerspool.get();
-                let playerscript0 = player0.getComponent("MaJiangPlayer");
-                player0.setPosition(0,0);
-                context.playersarray.push(player0) ;
-                player0.parent = OPparent;
-                playerscript0.init(data.players[inx] , int , fangwei,count);                
-                cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
-                cc.sys.localStorage.setItem('count',count);      
-
+                if (player0) {
+                    let playerscript0 = player0.getComponent("MaJiangPlayer");
+                    player0.setPosition(0,0);
+                    context.playersarray.push(player0) ;
+                    player0.parent = OPparent;
+                    playerscript0.init(data.players[inx] , int , fangwei,count);                
+                    cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
+                    cc.sys.localStorage.setItem('count',count);      
+                }
             }   
         },
         killPlayers: function(data){

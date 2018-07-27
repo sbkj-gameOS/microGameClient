@@ -106,89 +106,91 @@ cc.Class({
 	            }
 	            cc.sys.localStorage.removeItem('altake');
 	            cc.sys.localStorage.removeItem('take');
-	            for (var inx = 0; inx < context.playercards.length;i++ ) {
-	                let handcards = context.playercards[inx].getComponent("HandCards");
-	                handcards.reinit();
-	                if (data.card == handcards.value) {
-	                    context.playercards[inx].zIndex = 0 ;
-	                    /**
-	                     * 从数组中移除
-	                     */
-	                    context.playercards[inx].parent = null;
+	            for (var inx = 0; inx < context.playercards.length;inx++ ) {
+	            	if (context.playercards[inx]) {
+		                let handcards = context.playercards[inx].getComponent("HandCards");
+		                handcards.reinit();
+		                if (data.card == handcards.value) {
+		                    context.playercards[inx].zIndex = 0 ;
+		                    /**
+		                     * 从数组中移除
+		                     */
+		                    context.playercards[inx].parent = null;
 
-	                    handcards.reinit();
-	                    /**
-	                     * 还回 对象池
-	                     */
-	                    context.cardpool.put(context.playercards[inx]);
-	                    /**
-	                     * 从数组中移除
-	                     */
-	                    context.playercards.splice(inx, 1);
-	                    /**
-	                     * 放到桌面 ， 需要重构
-	                     */
-	                    let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
-	                    let temp = desk_card.getComponent("DeskCards");
-	                    temp.init(handcards.value,'B');
+		                    handcards.reinit();
+		                    /**
+		                     * 还回 对象池
+		                     */
+		                    context.cardpool.put(context.playercards[inx]);
+		                    /**
+		                     * 从数组中移除
+		                     */
+		                    context.playercards.splice(inx, 1);
+		                    /**
+		                     * 放到桌面 ， 需要重构
+		                     */
+		                    let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
+		                    let temp = desk_card.getComponent("DeskCards");
+		                    temp.init(handcards.value,'B');
 
-	                    // if (desk_card.children) {
-	                    	// 大牌显示
-	                    	let big_card = cc.instantiate(context.bigModel);
-	                    	let big_handcards = big_card.getComponent("HandCards");
-	                    	big_handcards.init(handcards.value,'B');
-	                    	/*big_card.x = 410;
-	                    	big_card.y = -240;*/
-	                    	/*big_card.x = 0;
-	                    	big_card.y = -200;
-	               			// cc.find('Canvas/mask').active = true;
-	                    	let move = cc.moveTo(0.2,cc.p(0,-160));
-		                    big_card.runAction(move);*/
-		                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
-					       
-		                   /* if (cc.weijifen.match == 'true') {
-		                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
-		                    	big_card.x = -newVec2.x;
-		                    	big_card.y = -newVec2.y;
-		                    } else {
-		                    	big_card.x = cc.weijifen.cardPostion.x;
-		                    	big_card.y = cc.weijifen.cardPostion.y;
-		                    }*/
-		                    if (cc.weijifen.cardPostion) {
-			                    big_card.x = cc.weijifen.cardPostion.x;
-		                    	big_card.y = cc.weijifen.cardPostion.y;
+		                    // if (desk_card.children) {
+		                    	// 大牌显示
+		                    	let big_card = cc.instantiate(context.bigModel);
+		                    	let big_handcards = big_card.getComponent("HandCards");
+		                    	big_handcards.init(handcards.value,'B');
+		                    	/*big_card.x = 410;
+		                    	big_card.y = -240;*/
+		                    	/*big_card.x = 0;
+		                    	big_card.y = -200;
+		               			// cc.find('Canvas/mask').active = true;
+		                    	let move = cc.moveTo(0.2,cc.p(0,-160));
+			                    big_card.runAction(move);*/
+			                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
+						       
+			                   /* if (cc.weijifen.match == 'true') {
+			                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
+			                    	big_card.x = -newVec2.x;
+			                    	big_card.y = -newVec2.y;
+			                    } else {
+			                    	big_card.x = cc.weijifen.cardPostion.x;
+			                    	big_card.y = cc.weijifen.cardPostion.y;
+			                    }*/
+			                    if (cc.weijifen.cardPostion) {
+				                    big_card.x = cc.weijifen.cardPostion.x;
+			                    	big_card.y = cc.weijifen.cardPostion.y;
+			                    }
+
+		                    	big_card.parent = cc.find('Canvas/big_cards');
+		                    	
+
+			                    // cc.find('Canvas/mask').active = true;
+		                    	let move = cc.moveTo(0.2,cc.p(0,-150));
+			                    big_card.runAction(move);
+
+	           					desk_card.active = false;
+			                    desk_card.children[0].children[0].width = 90;//122
+			                    desk_card.children[0].children[0].height = 128;//150
+			                    context.deskcards.push(desk_card);
+		                    	desk_card.parent = context.deskcards_current_panel;
+		                    // }
+		                }else{
+		                    handcards.reinit();
+		                    if(handcards.selectcolor == true){
+		                        context.playercards[inx].zIndex = 1000 + handcards.value ;
+		                    }else{
+		                        if(handcards.value >= 0){
+		                            context.playercards[inx].zIndex = handcards.value ;
+		                        }else{
+		                            context.playercards[inx].zIndex = 200 + handcards.value ;
+		                        }
+
+		                        if(context.playercards[inx].children[1].active){
+		                            context.playercards[inx].zIndex = -1;
+		                        }
 		                    }
-
-	                    	big_card.parent = cc.find('Canvas/big_cards');
-	                    	
-
-		                    // cc.find('Canvas/mask').active = true;
-	                    	let move = cc.moveTo(0.2,cc.p(0,-150));
-		                    big_card.runAction(move);
-
-           					desk_card.active = false;
-		                    desk_card.children[0].children[0].width = 90;//122
-		                    desk_card.children[0].children[0].height = 128;//150
-		                    context.deskcards.push(desk_card);
-	                    	desk_card.parent = context.deskcards_current_panel;
-	                    // }
-	                }else{
-	                    handcards.reinit();
-	                    if(handcards.selectcolor == true){
-	                        context.playercards[inx].zIndex = 1000 + handcards.value ;
-	                    }else{
-	                        if(handcards.value >= 0){
-	                            context.playercards[inx].zIndex = handcards.value ;
-	                        }else{
-	                            context.playercards[inx].zIndex = 200 + handcards.value ;
-	                        }
-
-	                        if(context.playercards[inx].children[1].active){
-	                            context.playercards[inx].zIndex = -1;
-	                        }
-	                    }
-	                    inx = inx + 1 ;     //遍历 ++,不处理移除的 牌
-	                }
+		                    inx = inx + 1 ;     //遍历 ++,不处理移除的 牌
+		                }
+	            	}
 	            }
 	            context.exchange_state("takecard" , context);  //隐藏 提示状态
 	        }else{

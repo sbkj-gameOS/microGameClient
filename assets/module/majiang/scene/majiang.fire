@@ -4343,6 +4343,7 @@
     "actionBox": null,
     "cards_play_flag": null,
     "handCards": null,
+    "wanfa": null,
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
@@ -24420,6 +24421,9 @@
     },
     "handCards": {
       "__id__": 176
+    },
+    "wanfa": {
+      "__id__": 427
     }
   }
 ]

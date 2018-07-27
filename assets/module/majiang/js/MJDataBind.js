@@ -133,7 +133,8 @@ cc.Class({
         prizeBox: cc.Prefab,// 比赛结束后弹出比赛结果事件
         actionBox: cc.Node,// 事件按钮父元素
         cards_play_flag: cc.Node,
-        handCards: cc.Node
+        handCards: cc.Node,
+        wanfa: cc.Node
     },
     onLoad: function () {
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
