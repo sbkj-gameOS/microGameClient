@@ -996,7 +996,6 @@ cc.Class({
          * @param spec          是否特殊的牌，即刚抓起来的牌
          */
         initPlayerHandCards:function(groupNums , deskcards , inx , context , spec,banker,peoNum){
-            // console.log(groupNums , deskcards , inx, context , spec,banker,peoNum)
             var gameStartInit = require('GameStartInit');
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             let parent = gameStartInitNode.right_panel;
@@ -1020,6 +1019,12 @@ cc.Class({
                     cardarray = context.leftcards;
                     prefab = gameStartInitNode.cards_left ;
                 }
+            }
+            // console.log(context.rightcards.length,cc.weijifen.bankers);
+            if (context.rightcards.length == 13 && !cc.weijifen.bankers || context.rightcards.length == 14 && cc.weijifen.bankers) {
+                parent = gameStartInitNode.top_panel;
+                cardarray = context.topcards;
+                prefab = gameStartInitNode.cards_top ;
             }
             gameStartInit.initOtherCards(groupNums , context , deskcards , prefab , cardarray , parent , spec , inx,banker);    //左侧，
         },

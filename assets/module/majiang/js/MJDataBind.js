@@ -246,36 +246,7 @@ cc.Class({
                 //cc.log('h_cards2手牌---',h_cards2.length);
                 // data.cards.push(36);// 测试数据
                 // data.cards.splice(2,1);// 测试数据
-                let card_val,arr,card_arr = [],cards_val;
-                arr = data.cards;// 服务端返回值
-                cards_val = [];// 当前手牌值
-                for (let n = 0;n < h_cards2.children.length;n++) {
-                    card_val = h_cards2.children[n].getComponent('HandCards').value;
-                    card_arr.push(h_cards2.children[n]); // 手牌节点
-                    cards_val.push(card_val);
-                    if (arr.indexOf(card_val) > -1) {
-                        arr.splice(arr.indexOf(card_val),1);
-                        card_arr.shift();
-                    }
-                }
-              /*  cc.log('cards_val---牌值---',cards_val);
-                cc.log('card_arr---节点---',cards_arr);
-                cc.log('arr---正确值，剩下---',arr);*/
-                if (arr.length && h_cards2.children[0]) {
-                    // 少牌处理
-                    cc.log('少拍----')
-                    for (let ele of data.cards) {
-                        let card_ = cc.instantiate(h_cards2.children[0]);
-                        card_.getComponent('HandCards').value = ele;
-                        ele > -1 ? card_.zIndex = ele : card_.zIndex = ele + 200;
-                        card_.getComponent('HandCards').init(ele);
-                        card_.parent = h_cards2;
-                    }
-                }
-                if (self.current_kong.children.length + self.handCards.children.length > 16) {
-                    cc.director.loadScene('gameMain');
-                }
-                h_cards2.sortAllChildren();
+                cc.director.loadScene('majiang');
             }
         })
 
