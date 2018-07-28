@@ -106,8 +106,8 @@ cc.Class({
 	            }
 	            cc.sys.localStorage.removeItem('altake');
 	            cc.sys.localStorage.removeItem('take');
-	            for (var inx = 0; inx < context.playercards.length;inx++ ) {
-	            	if (context.playercards[inx]) {
+	            for (var inx = 0; inx < context.playercards.length;i++ ) {
+	            	// if (context.playercards[inx]) {
 		                let handcards = context.playercards[inx].getComponent("HandCards");
 		                handcards.reinit();
 		                if (data.card == handcards.value) {
@@ -190,7 +190,7 @@ cc.Class({
 		                    }
 		                    inx = inx + 1 ;     //遍历 ++,不处理移除的 牌
 		                }
-	            	}
+	            	// }
 	            }
 	            context.exchange_state("takecard" , context);  //隐藏 提示状态
 	        }else{

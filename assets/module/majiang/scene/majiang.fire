@@ -4344,6 +4344,7 @@
     "cards_play_flag": null,
     "handCards": null,
     "wanfa": null,
+    "current_kong": null,
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
@@ -24424,6 +24425,9 @@
     },
     "wanfa": {
       "__id__": 427
+    },
+    "current_kong": {
+      "__id__": 171
     }
   }
 ]

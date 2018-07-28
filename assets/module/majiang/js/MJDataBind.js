@@ -134,7 +134,9 @@ cc.Class({
         actionBox: cc.Node,// 事件按钮父元素
         cards_play_flag: cc.Node,
         handCards: cc.Node,
-        wanfa: cc.Node
+        wanfa: cc.Node,
+        current_kong: cc.Node,
+
     },
     onLoad: function () {
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
@@ -196,7 +198,6 @@ cc.Class({
         //     *
         //      * 接受指令
         // }
-
         socket.on("command" , function(result){
             var data = self.getSelf().parse(result);
             if (data.replacePowerCard && data.action == 'ting') {
@@ -241,7 +242,7 @@ cc.Class({
             let h_cards2 = self.handCards;
             //cc.log('h_cards2手牌---',h_cards2.length);
             if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
-                //cc.log('手牌有误，开始更正！！！！！！');
+                cc.log('手牌有误，开始更正！！！！！！');
                 //cc.log('h_cards2手牌---',h_cards2.length);
                 // data.cards.push(36);// 测试数据
                 // data.cards.splice(2,1);// 测试数据
@@ -257,18 +258,12 @@ cc.Class({
                         card_arr.shift();
                     }
                 }
-                //cc.log('cards_val---牌值---',cards_val);
-                //cc.log('card_arr---节点---',cards_arr);
-                //cc.log('arr---正确值，剩下---',arr);
-                if (card_arr.length && arr.length == 0) {
-                    // 多牌处理
-                    for (let m = 0;m < card_arr.length;m++) {
-                        let val = card_arr[m].getComponent('HandCards').value;
-                        let i = cards_val.indexOf(val);
-                        h_cards2.children[i].destroy();
-                    }
-                } else if (arr.length && h_cards2.children[0]) {
+              /*  cc.log('cards_val---牌值---',cards_val);
+                cc.log('card_arr---节点---',cards_arr);
+                cc.log('arr---正确值，剩下---',arr);*/
+                if (arr.length && h_cards2.children[0]) {
                     // 少牌处理
+                    cc.log('少拍----')
                     for (let ele of data.cards) {
                         let card_ = cc.instantiate(h_cards2.children[0]);
                         card_.getComponent('HandCards').value = ele;
@@ -276,6 +271,9 @@ cc.Class({
                         card_.getComponent('HandCards').init(ele);
                         card_.parent = h_cards2;
                     }
+                }
+                if (self.current_kong.children.length + self.handCards.children.length > 16) {
+                    cc.director.loadScene('gameMain');
                 }
                 h_cards2.sortAllChildren();
             }

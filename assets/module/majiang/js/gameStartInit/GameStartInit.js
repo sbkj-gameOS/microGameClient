@@ -316,7 +316,7 @@ cc.Class({
          */
         play_event:function(data , context, self){
             if (cc.weijifen.wanfa) {
-                self.wanfa.getComponent(cc.Label).string = cc.weijifen.wanfa;
+                context.wanfa.getComponent(cc.Label).string = cc.weijifen.wanfa;
             }
              // 反作弊提示
             setTimeout(function(){
@@ -519,7 +519,7 @@ cc.Class({
                         var inx = 0 ;
                         var sabi = 0;
                         for(var i=0 ; i<data.players.length ; i++){
-                            if(data.players[i].playuser != cc.weijifen.user.id){               
+                            if(data.players[i].playuser != cc.weijifen.user.id){           
                                 //通过判断 id 来确定位置上的牌的张数
                                 var arry = context.playersarray;
                                 for(let j =0 ; j< arry.length;j++){
@@ -550,7 +550,6 @@ cc.Class({
                             var sabi = 0;
                             for(var i=0 ; i<data.players.length ; i++){
                                 if(data.players[i].playuser != cc.weijifen.user.id){
-                                    
                                     //通过判断 id 来确定位置上的牌的张数
                                     var arry = context.playersarray;
                                     if (arry) {
@@ -794,18 +793,15 @@ cc.Class({
         * @param count     玩家位置标记(：以当前玩家位置为参照（顺时针）---0,1,2,3)
         */
         publicData:function(inx,data,fangwei,OPparent,int,count,context){
-
             if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
                 let player0 = context.playerspool.get();
-                if (player0) {
-                    let playerscript0 = player0.getComponent("MaJiangPlayer");
-                    player0.setPosition(0,0);
-                    context.playersarray.push(player0) ;
-                    player0.parent = OPparent;
-                    playerscript0.init(data.players[inx] , int , fangwei,count);                
-                    cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
-                    cc.sys.localStorage.setItem('count',count);      
-                }
+                let playerscript0 = player0.getComponent("MaJiangPlayer");
+                player0.setPosition(0,0);
+                context.playersarray.push(player0) ;
+                player0.parent = OPparent;
+                playerscript0.init(data.players[inx] , int , fangwei,count);                
+                cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
+                cc.sys.localStorage.setItem('count',count);      
             }   
         },
         killPlayers: function(data){
@@ -995,12 +991,12 @@ cc.Class({
          * 初始化其他玩家手牌，
          * @param groupNums
          * @param deskcards
-         * @param inx
+         * @param inx           玩家方位（0：右家；1：top；2：left。）
          * @param context
-         * @param spec 是否特殊的牌，即刚抓起来的牌
+         * @param spec          是否特殊的牌，即刚抓起来的牌
          */
         initPlayerHandCards:function(groupNums , deskcards , inx , context , spec,banker,peoNum){
-            // console.log(groupNums , deskcards , inx , context , spec,banker,peoNum)
+            // console.log(groupNums , deskcards , inx, context , spec,banker,peoNum)
             var gameStartInit = require('GameStartInit');
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             let parent = gameStartInitNode.right_panel;
@@ -1025,7 +1021,6 @@ cc.Class({
                     prefab = gameStartInitNode.cards_left ;
                 }
             }
-          
             gameStartInit.initOtherCards(groupNums , context , deskcards , prefab , cardarray , parent , spec , inx,banker);    //左侧，
         },
         initOtherCards:function(group , context , cards , prefab , cardsarray, parent , spec , inx,banker){

@@ -47,6 +47,7 @@ cc.Class({
         
     },
     init:function(playerdata , inx , tablepos,count){
+        cc.log('mjplayer---方位',tablepos,inx);
         let self = cc.find('Canvas').getComponent('MJDataBind');
         this.creator.active = false ;
         this.data = playerdata ;    //存放玩家数据
@@ -89,7 +90,9 @@ cc.Class({
         //     this.selectcards.parent.x = this.selectcards.parent.x * -1 ;
         // }
         this.id.getComponent(cc.Label).string = playerdata.id;
-        cc.find('Canvas/players/head_'+tablepos).children[1].active = false; 
+        if (tablepos) {
+            cc.find('Canvas/players/head_'+tablepos).children[1].active = false; 
+        }
         if(playerdata.headimgurl){
             var imgurl = playerdata.headimgurl;
             var sprite = this.headimg.getComponent(cc.Sprite);
