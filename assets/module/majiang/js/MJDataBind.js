@@ -302,6 +302,7 @@ cc.Class({
                 if(card != null){
                     let cardValue = card.target.getComponent('HandCards');
                     gamePlay.takecard_event({userid:cc.weijifen.user.id,card:cardValue.value},self);
+
                     self.cards_play_flag.active = false;
                     let card_script = card.target.getComponent("HandCards") ;
                     /**
@@ -1095,6 +1096,13 @@ cc.Class({
                 let text = times ;
                 if(times < 10){
                     text = "0"+times ;
+                    if (cc.weijifen.match == 'true' && times < 1) {
+                        let current_cards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+                        cc.weijifen.cardPostion = {
+                            x: current_cards.x + current_cards.width - current_cards.children[0].width,
+                            y: -(current_cards.y + current_cards.height)
+                        };
+                    }
                 }
                 object.mjtimer.string = text ;
                 // if(times< 5){
