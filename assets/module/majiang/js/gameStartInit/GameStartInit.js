@@ -536,7 +536,7 @@ cc.Class({
                                         break;
                                     }
                                 }
-                                gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
+                                gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
                             }
                         }
                         groupNums = groupNums + 1 ;
@@ -567,7 +567,7 @@ cc.Class({
                                                 break;
                                             }
                                         }
-                                        gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum);
+                                        gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
                                     }
                                 }
                             }
@@ -995,7 +995,7 @@ cc.Class({
          * @param context
          * @param spec          是否特殊的牌，即刚抓起来的牌
          */
-        initPlayerHandCards:function(groupNums , deskcards , inx , context , spec,banker,peoNum){
+        initPlayerHandCards:function(groupNums , deskcards , inx , context , spec,banker,peoNum,playerId){
             var gameStartInit = require('GameStartInit');
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             let parent = gameStartInitNode.right_panel;
@@ -1020,12 +1020,20 @@ cc.Class({
                     prefab = gameStartInitNode.cards_left ;
                 }
             }
-            // console.log(context.rightcards.length,cc.weijifen.bankers);
-            if (context.rightcards.length == 13 && !cc.weijifen.bankers || context.rightcards.length == 14 && cc.weijifen.bankers) {
-                parent = gameStartInitNode.top_panel;
-                cardarray = context.topcards;
-                prefab = gameStartInitNode.cards_top ;
+            // cc.log(playerId,cc.sys.localStorage.getItem('top'),cc.sys.localStorage.getItem('right'))
+            if (peoNum == 3 && cc.weijifen.match == 'true') {
+                if (playerId == cc.sys.localStorage.getItem('top')) {
+                    parent = gameStartInitNode.top_panel;
+                    cardarray = context.topcards;
+                    prefab = gameStartInitNode.cards_top ;
+                }
+                if (playerId == cc.sys.localStorage.getItem('right')) {
+                    parent = gameStartInitNode.right_panel;
+                    cardarray = context.rightcards;
+                    prefab = gameStartInitNode.cards_right ;
+                }
             }
+           
             gameStartInit.initOtherCards(groupNums , context , deskcards , prefab , cardarray , parent , spec , inx,banker);    //左侧，
         },
         initOtherCards:function(group , context , cards , prefab , cardsarray, parent , spec , inx,banker){
