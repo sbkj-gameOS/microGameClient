@@ -145,7 +145,7 @@ cc.Class({
                         }
                         player.setPosition(0,0);
                     }
-                    cc.log('count-------roomInit---count---tablepos',cc.sys.localStorage.getItem('count'),tablepos);
+                    // cc.log('count-------roomInit---count---tablepos',cc.sys.localStorage.getItem('count'),tablepos);
                     playerscript.init(data , context.inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                     context.playersarray.push(player) ;
                     //这里是用来判定自己重连的时候 如果已经准备了 则准备按钮消失

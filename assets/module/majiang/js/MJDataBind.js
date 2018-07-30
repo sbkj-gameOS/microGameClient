@@ -1051,13 +1051,15 @@ cc.Class({
         cc.sys.localStorage.removeItem('cl');      
         context = cc.find('Canvas').getComponent('MJDataBind');
         let time = setTimeout(function(){
-            for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
-                if(direction == context.searchlight.children[inx].name){
-                        context.searchlight.children[inx].active = true ;
-                        cc.sys.localStorage.setItem('take','true');
-                }else{
-                        context.searchlight.children[inx].active = false ;
-                        cc.sys.localStorage.removeItem('take');
+            if (context) {
+                for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
+                    if(direction == context.searchlight.children[inx].name){
+                            context.searchlight.children[inx].active = true ;
+                            cc.sys.localStorage.setItem('take','true');
+                    }else{
+                            context.searchlight.children[inx].active = false ;
+                            cc.sys.localStorage.removeItem('take');
+                    }
                 }
             }
             clearTimeout(time); 
