@@ -37,9 +37,6 @@ cc.Class({
 	    takecard_event:function(data , context){
 	    	cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
 	    	clearTimeout(context.clock);
-	    	if (cc.find('Canvas/handcards')) {
-	    		// cc.find('Canvas/handcards').destroy();
-	    	}
 	    	cc.weijifen.clock = null;
 	        context = cc.find('Canvas').getComponent('MJDataBind');
 	        var gameStartInit = require('GameStartInit');
@@ -158,12 +155,17 @@ cc.Class({
 			                    if (cc.weijifen.cardPostion) {
 				                    big_card.x = cc.weijifen.cardPostion.x;
 			                    	big_card.y = cc.weijifen.cardPostion.y;
+			                    	cc.weijifen.cardPostion = {x:null,y:null};
 			                    }
 
+			                    if (data.ting) {
+			                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
+			                    	big_card.x = -newVec2.x;
+			                    	big_card.y = -newVec2.y;
+			                    }
 		                    	big_card.parent = cc.find('Canvas/big_cards');
 		                    	
 
-			                    // cc.find('Canvas/mask').active = true;
 		                    	let move = cc.moveTo(0.2,cc.p(0,-150));
 			                    big_card.runAction(move);
 
@@ -330,7 +332,6 @@ cc.Class({
     			if (cc.find('Canvas/big_cards').children) {
     				cc.find('Canvas/big_cards').removeAllChildren();
         		}
-        		// cc.find('Canvas/mask').active = false;
 	            let desk_c = cc.find('Canvas/cards/deskcards/current');
 	            let desk_r = cc.find('Canvas/cards/deskcards/right');
 	            let desk_t = cc.find('Canvas/cards/deskcards/top');
