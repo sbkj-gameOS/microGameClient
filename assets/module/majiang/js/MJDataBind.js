@@ -136,7 +136,7 @@ cc.Class({
         handCards: cc.Node,
         wanfa: cc.Node,
         current_kong: cc.Node,
-
+        mask: cc.Node
     },
     onLoad: function () {
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
@@ -247,6 +247,10 @@ cc.Class({
                 // data.cards.push(36);// 测试数据
                 // data.cards.splice(2,1);// 测试数据
                 cc.director.loadScene('majiang');
+                self.mask.active = true;
+                let time = setTimeout(function(){
+                    self.mask.active = false;
+                },3000);
             }
         })
 
