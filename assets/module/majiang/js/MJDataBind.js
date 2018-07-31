@@ -1052,7 +1052,7 @@ cc.Class({
         cc.sys.localStorage.removeItem('cl');      
         context = cc.find('Canvas').getComponent('MJDataBind');
         let time = setTimeout(function(){
-            if (context) {
+            if (context.searchlight) {
                 for(var inx = 0 ; inx<context.searchlight.children.length ; inx++){
                     if(direction == context.searchlight.children[inx].name){
                             context.searchlight.children[inx].active = true ;

@@ -29,12 +29,12 @@ cc.Class({
         this.tape.node.on('touchend',this.mouseupClick, this);
     },
     mouseupClick: function(event){
-       /* //获取当前节点在canvas对应的坐标位置
+        //获取当前节点在canvas对应的坐标位置
         var newVec2 = event.target.convertToNodeSpaceAR(cc.v2(667,375));
         cc.weijifen.cardPostion = {
             x: -newVec2.x,
             y: -newVec2.y
-        }*/
+        }
         if(cc.sys.localStorage.getItem('delta')>90){
             event.target.x = 0;
             event.target.y = 0;
@@ -81,12 +81,6 @@ cc.Class({
         }else{
             // 出牌
             if( handCards.take == true){
-                 //获取当前节点在canvas对应的坐标位置
-                var newVec2 = event.target.convertToNodeSpaceAR(cc.v2(667,375));
-                cc.weijifen.cardPostion = {
-                    x: -newVec2.x,
-                    y: -newVec2.y
-                }
                 cc.find('Canvas/card_play_flag').active = true;
                 if (context.tings&&cc.sys.localStorage.getItem('ting')=='true'){
                     context.tingSelect.active = false;

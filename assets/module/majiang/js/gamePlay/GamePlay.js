@@ -94,7 +94,6 @@ cc.Class({
         			if (cc.find('Canvas/big_cards').children) {
 	    				cc.find('Canvas/big_cards').removeAllChildren();
         			}
-	                // cc.find('Canvas/mask').active = false;
 	            }else{
 	                cc.sys.localStorage.removeItem('alting');
 	            }
@@ -143,7 +142,6 @@ cc.Class({
 		                    	let move = cc.moveTo(0.2,cc.p(0,-160));
 			                    big_card.runAction(move);*/
 			                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
-						       
 			                   /* if (cc.weijifen.match == 'true') {
 			                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
 			                    	big_card.x = -newVec2.x;
@@ -156,8 +154,7 @@ cc.Class({
 				                    big_card.x = cc.weijifen.cardPostion.x;
 			                    	big_card.y = cc.weijifen.cardPostion.y;
 			                    	cc.weijifen.cardPostion = {x:null,y:null};
-			                    }
-
+			                    } 
 			                    if (data.ting) {
 			                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
 			                    	big_card.x = -newVec2.x;

@@ -74,6 +74,8 @@ cc.Class({
             type:cc.Node
         },
         caishenNode: cc.SpriteFrame,
+        head_top_parent: cc.Node,
+        head_right_parent: cc.Node
     },
 
     //
@@ -762,6 +764,9 @@ cc.Class({
                         context.lgdong(data);
                     }*/
             },2000)   
+            if (gameStartInitNode.head_right_parent.children.length > 5) {
+                cc.director.loadScene('majiang');
+            }
         },
 
         /**
@@ -795,13 +800,15 @@ cc.Class({
         publicData:function(inx,data,fangwei,OPparent,int,count,context){
             if(cc.sys.localStorage.getItem(fangwei)!=data.players[inx].id){
                 let player0 = context.playerspool.get();
-                let playerscript0 = player0.getComponent("MaJiangPlayer");
-                player0.setPosition(0,0);
-                context.playersarray.push(player0) ;
-                player0.parent = OPparent;
-                playerscript0.init(data.players[inx] , int , fangwei,count);                
-                cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
-                cc.sys.localStorage.setItem('count',count);      
+                if (player0) {
+                    let playerscript0 = player0.getComponent("MaJiangPlayer");
+                    player0.setPosition(0,0);
+                    context.playersarray.push(player0) ;
+                    player0.parent = OPparent;
+                    playerscript0.init(data.players[inx] , int , fangwei,count);                
+                    cc.sys.localStorage.setItem(fangwei,data.players[inx].id);
+                    cc.sys.localStorage.setItem('count',count);      
+                }
             }   
         },
         killPlayers: function(data){
@@ -1020,8 +1027,7 @@ cc.Class({
                     prefab = gameStartInitNode.cards_left ;
                 }
             }
-            // cc.log(playerId,cc.sys.localStorage.getItem('top'),cc.sys.localStorage.getItem('right'))
-            if (peoNum == 3 && cc.weijifen.match == 'true') {
+            /*if (peoNum == 3 && cc.weijifen.match == 'true') {
                 if (playerId == cc.sys.localStorage.getItem('top')) {
                     parent = gameStartInitNode.top_panel;
                     cardarray = context.topcards;
@@ -1032,7 +1038,7 @@ cc.Class({
                     cardarray = context.rightcards;
                     prefab = gameStartInitNode.cards_right ;
                 }
-            }
+            }*/
            
             gameStartInit.initOtherCards(groupNums , context , deskcards , prefab , cardarray , parent , spec , inx,banker);    //左侧，
         },
