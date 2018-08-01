@@ -218,7 +218,6 @@ cc.Class({
                 let seconds = 30;
                 let str = self.wanfa.getComponent(cc.Label);
                 str.string = '距离比赛结束还有30秒';
-                cc.log(str.stirng)
                 let time = setInterval(function(){
                     seconds--;
                     str.string = '距离比赛结束还有' + seconds + '秒';
