@@ -76,7 +76,6 @@ cc.Class({
         caishenNode: cc.SpriteFrame,
         head_top_parent: cc.Node,
         head_right_parent: cc.Node,
-        mask: cc.Node
     },
 
     //
