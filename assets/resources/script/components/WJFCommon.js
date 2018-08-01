@@ -277,13 +277,13 @@ cc.Class({
             matchFlag = {isStop: null,isMatch: true};
       /*  var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
         var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);*/
-        if(times<=0 || !cc.sys.localStorage.getItem('matchTime')){
+        /*if(times<=0 || !cc.sys.localStorage.getItem('matchTime')){
             clearInterval(timer);
             return
         }
         if (flag == 'hide') {
             clearInterval(timer);
-        }
+        }*/
         var day=0,
             hour=0,
             minute=0,
@@ -319,7 +319,8 @@ cc.Class({
         }*/
         // 直接显示在玩法框中
         let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label);
-        timer = setInterval(function(){
+        // timer = setInterval(function(){
+        setInterval(function(){
             if(times > 0){
                 day = Math.floor(times / (60 * 60 * 24));
                 hour = Math.floor(times / (60 * 60)) - (day * 24);
@@ -339,8 +340,9 @@ cc.Class({
                 cc.sys.localStorage.removeItem('matchFlag'); 
                 cc.sys.localStorage.removeItem('matchTime'); 
                 cc.sys.localStorage.removeItem('matchTime2'); 
-                clearInterval(timer);
-                timer = null;
+                for (let j = 0;j < 1000;j++) {
+                    clearInterval(j);
+                }
                 return
             }
             // fenNode.string = minute;

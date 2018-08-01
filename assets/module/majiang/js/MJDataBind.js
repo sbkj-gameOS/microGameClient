@@ -136,7 +136,8 @@ cc.Class({
         handCards: cc.Node,
         wanfa: cc.Node,
         current_kong: cc.Node,
-        mask: cc.Node
+        mask: cc.Node,// 比赛开牌时，手牌初始慢给出的提示
+        prohibit_mask: cc.Node,// 比赛倒计时结束时，禁止玩家任何操作
     },
     onLoad: function () {
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
@@ -151,6 +152,7 @@ cc.Class({
         self.msg = null;//反作弊提示信息
         // 初始化对象池
         this.init_pool();
+        self.prohibit_mask.active = false;
         this.gameModelMp3 = "";//播放声音
         if(cc.weijifen.GameBase.gameModel == "wz"){
             this.gameModelMp3 = "wz";
@@ -214,12 +216,21 @@ cc.Class({
                  * 比赛模式中，距离比赛结束30s时收到，并显示倒计时
                  */
                 let seconds = 30;
-                let str = cc.find('Canvas/rules/label').getComponent(cc.Label);
+                let str = self.wanfa.getComponent(cc.Label);
+                str.string = '距离比赛结束还有30秒';
+                cc.log(str.stirng)
                 let time = setInterval(function(){
                     seconds--;
                     str.string = '距离比赛结束还有' + seconds + '秒';
-                    if (seconds < 1) clearInterval(time);
+                    if (seconds < 1) {
+                        self.prohibit_mask.active = true;
+                        clearInterval(time);
+                    }
                 },1000);
+                let mask_time = setTimeout(function(){
+                    self.prohibit_mask.active = false;
+                    clearTimeout(mask_time);
+                },5000);
             }else{
                 self.getSelf().route(data.command,self)(data , self);
             }
@@ -249,7 +260,10 @@ cc.Class({
                 cc.director.loadScene('majiang');
                 self.mask.active = true;
                 let time = setTimeout(function(){
-                    self.mask.active = false;
+                    if (self.mask) {
+                        self.mask.active = false;
+                    }
+                    clearTimeout(time);
                 },3000);
             }
         })
@@ -1102,10 +1116,12 @@ cc.Class({
                     text = "0"+times ;
                     if (cc.weijifen.match == 'true' && times < 1) {
                         let current_cards = cc.find('Canvas/cards/handcards/current/currenthandcards');
-                        cc.weijifen.cardPostion = {
-                            x: current_cards.x + current_cards.width - current_cards.children[0].width,
-                            y: -(current_cards.y + current_cards.height)
-                        };
+                        if (current_cards.children[0]) {// 改条件：手牌未初始化，防止重新加载majiang场景时报错。
+                            cc.weijifen.cardPostion = {
+                                x: current_cards.x + current_cards.width - current_cards.children[0].width,
+                                y: -(current_cards.y + current_cards.height)
+                            };
+                        }
                     }
                 }
                 object.mjtimer.string = text ;
