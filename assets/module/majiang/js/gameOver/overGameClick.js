@@ -67,7 +67,7 @@ cc.Class({
         this.labei.active = true;
         this.labei2.active = false;
         this.daojishi();
-        this.labei2.string = '还有'+this.time +'自动解散'
+        this.labei2.string = '还有'+this.time +'自动解散';
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
         
         //两秒内消失
@@ -118,6 +118,10 @@ cc.Class({
         if(this.labei2 && this.time > -1){
             this.labei2.getComponent(cc.Label).string = this.time;
             return
+        }
+        if (this.time < 0) {
+            let mj = cc.find('Canvas').getComponent('MJDataBind');
+            mj.alert.put(this.txt.node.parent);
         }
         /*let alert = cc.find('Canvas/alert');
         alert.active = false;*/

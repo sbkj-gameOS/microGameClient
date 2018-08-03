@@ -3829,7 +3829,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 4205,
+      "width": 308,
       "height": 30
     },
     "_rotationX": 0,
@@ -3864,7 +3864,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "------------!!!!!!!!!!!!!!!!!第1名\"Guest_1o8INY\"第1名第1名第1名 第2名\"Guest_0M4ohY\"第2名第2名第2名 第3名Guest_0RQVxQ第3名第3名第3名  第4名Guest_1Fh0c4第4名第4名第4名\"  第5名Guest_1Fh0c4第5名第5名第5名  第6名Guest_1Fh0c4第6名第6名第6名  第7名Guest_1Fh0c4第7名第7名第7名           +++++++=`;",
+    "_N$string": "                   暂无公告！",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

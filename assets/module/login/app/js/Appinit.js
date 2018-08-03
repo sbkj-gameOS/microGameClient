@@ -53,9 +53,13 @@ cc.Class({
             cc.weijifen.click = cc.sys.localStorage.getItem('click');
             //游戏场景的背景
             cc.weijifen.bgcolor = cc.sys.localStorage.getItem('bgcolor');
+            cc.weijifen.cardPostion = {
+                x: 540,
+                y: -300
+            };
+            cc.weijifen.cardcolor = cc.sys.localStorage.getItem('cardcolor');
             //唱戏场景的麻将牌花色
             cc.sys.localStorage.setItem('cardcolor','yellow');
-            cc.weijifen.cardcolor = cc.sys.localStorage.getItem('cardcolor');
             //声音的
             var Audios = require("Audios");
             cc.weijifen.audio = new Audios();
@@ -66,7 +70,6 @@ cc.Class({
             }else{
                 window.io = require("socket.io");
             }
-
             //播放背景音乐
             if(cc.sys.localStorage.getItem('nobgm') != 'true'){
                 cc.weijifen.audio.playBGM("bgFight.mp3");
