@@ -50,8 +50,8 @@ cc.Class({
         this.button.active = true;
         this.labei.active =false;
         this.labei2.active =false;
-        cc.weijifen.GameBase.gameModel == 'ch' ? this.time = 120
-                                               : this.time = 30;
+       /* cc.weijifen.GameBase.gameModel == 'ch' ? this.time = 120
+                                               : this.time = 30;*/
     },
     overGameClick:function(){
         /*
@@ -60,7 +60,9 @@ cc.Class({
         * labei：等待玩家显示字
         */
         //this.scene("gameMain" , this);
+        let date = new Date();
         cc.sys.localStorage.setItem('unOver','true');
+        cc.sys.localStorage.setItem('overClickTime',date);
         this.button.active = false;
         this.button2.active = false;
         
@@ -71,12 +73,13 @@ cc.Class({
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
         
         //两秒内消失
-        setTimeout(function(){
+        let timer = setTimeout(function(){
             let mj = cc.find('Canvas').getComponent('MJDataBind');
             if (!mj) {return};
             let dialog = cc.find("Canvas/alert") ;
             mj.alert.put(dialog);
             cc.sys.localStorage.removeItem("jiesanTime");
+            clearTimeout(timer);
         },2000);
     },
     //继续游戏 发送一个不退出请求
@@ -92,10 +95,6 @@ cc.Class({
         let mj = cc.find('Canvas').getComponent('MJDataBind')
         let dialog = cc.find("Canvas/alert") ;
         mj.alert.put(dialog);
-        // dailog.destroy();
-
-        //alert();
-        
     },
     dontLeaveGameClick: function(){
         let mj = cc.find('Canvas').getComponent('MJDataBind')        
@@ -119,12 +118,12 @@ cc.Class({
             this.labei2.getComponent(cc.Label).string = this.time;
             return
         }
-        if (this.time < 0) {
+        if (this.time < 0 && this.txt) {
             let mj = cc.find('Canvas').getComponent('MJDataBind');
             mj.alert.put(this.txt.node.parent);
+            cc.sys.localStorage.removeItem('overGameTime');
+            clearInterval(mj.t);
         }
-        /*let alert = cc.find('Canvas/alert');
-        alert.active = false;*/
     }
     
        

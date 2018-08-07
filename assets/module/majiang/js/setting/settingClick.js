@@ -120,6 +120,7 @@ cc.Class({
             }
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
+
             if(mj.alert.size()>0){
                 var alert = mj.alert.get();
                 alert.parent = cc.find("Canvas");
@@ -131,8 +132,28 @@ cc.Class({
                 node.labei.active =false;
                 node.labei2.active = true;
                 node.time = 120;
-                cc.weijifen.GameBase.gameModel == 'ch' ? node.time = 120 
-                                                       : node.time = 30;
+                /*cc.weijifen.GameBase.gameModel == 'ch' ? node.time = 120 
+                                                       : node.time = 30;*/
+                if (cc.weijifen.GameBase.gameModel == 'ch') {
+                   if (cc.sys.localStorage.getItem('overClickTime')) {
+                        var date2 = new Date();
+                        var date1 = new Date(cc.sys.localStorage.getItem('overClickTime'));
+                        var tim = date2 - date1;
+                    } else {
+                        // 第一次收到isOver
+                        let date = new Date();
+                        cc.sys.localStorage.setItem('overClickTime',date);
+                    }
+                    if (tim < (node.time * 1000)) {
+                        node.time = parseInt((node.time * 1000 - tim) / 1000);
+                    } else {
+                        // 第一次收到isOver
+                        let date = new Date();
+                        cc.sys.localStorage.setItem('overClickTime',date);
+                    }
+                } else {
+                    node.time = 30;
+                }
                 mj.t = setInterval(function(){node.daojishi()},1000)  ;  
             }
             
@@ -172,6 +193,7 @@ cc.Class({
             }
             setTimeout(function(){self.endGameOver(data,context)},time);
             cc.sys.localStorage.removeItem('subModel');
+            cc.sys.localStorage.removeItem('overClickTime');
         },
         endGameOver: function(data,context){
             let temp = cc.instantiate(this.summary) ;
