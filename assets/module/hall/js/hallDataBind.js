@@ -96,11 +96,12 @@ cc.Class({
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
                 //获取要更换的图片
-                var object = this.chJoinRoomImg;
+                /*var object = this.chJoinRoomImg;
                 //获取更换图片地址
                 var sprite = cc.find("Canvas/main/game/11").getComponent(cc.Sprite);
                 //图片地址内的图片路径 = 要更换的图片路径
-                sprite.spriteFrame = object;
+                sprite.spriteFrame = object;*/
+                this.backRoomTxt.getComponent(cc.Label).string = '麻友圈';
             }
             if (cc.weijifen.GameBase.gameModel != 'ch') {
                 cc.find('Canvas/main/menu/top/logo').active = false
