@@ -26,10 +26,11 @@ cc.Class({
 			default: null,
             type: cc.Label
 		},
-		backRoomImg:{
+		/*backRoomImg:{
 			default:null,
 			type:cc.SpriteFrame
-        },  
+        },  */
+        backRoomTxt: cc.Label,
         backRoom: cc.Node,
         chJoinRoomImg:{
             default:null,
@@ -240,8 +241,9 @@ cc.Class({
         }
         if(data.room){
 			object.getGame(data);
-            var sprite = object.backRoom.getComponent(cc.Sprite);
-        	sprite.spriteFrame = object.backRoomImg;
+          /*  var sprite = object.backRoom.getComponent(cc.Sprite);
+        	sprite.spriteFrame = object.backRoomImg;*/
+            object.backRoomTxt.getComponent(cc.Label).string = '返回房间';
         } else {
             //有值代表用户是通过分享进入的游戏
             if(cc.weijifen.shareRoomNum){
