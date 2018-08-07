@@ -148,6 +148,7 @@ cc.Class({
     
         if(data.data){
             cc.weijifen.user = data.data ;
+            data.data.gender == 2 ? cc.weijifen.user.genderFlag = 'w' : cc.weijifen.user.genderFlag = 'm';
         }
         if(data.playUser){
             cc.weijifen.user = data.playUser;
