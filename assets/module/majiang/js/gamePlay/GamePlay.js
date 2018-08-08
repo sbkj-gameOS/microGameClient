@@ -127,7 +127,7 @@ cc.Class({
 		                     */
 		                    let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
 		                    let temp = desk_card.getComponent("DeskCards");
-		                    temp.init(handcards.value,'B');
+		                    temp.init(handcards.value,'B',undefined,'current');
 
 		                    // if (desk_card.children) {
 		                    	// 大牌显示
@@ -210,7 +210,7 @@ cc.Class({
 
 	                 	let desk_card = cc.instantiate(cardprefab);
 	                    let temp = desk_card.getComponent("DeskCards");
-	                    temp.init(data.card,'R');
+	                    temp.init(data.card,'R',undefined,'right');
 		                let big_card = cc.instantiate(context.bigModel);
                     	let big_handcards = big_card.getComponent("HandCards");
                     	big_handcards.init(data.card,'R');
@@ -242,7 +242,7 @@ cc.Class({
 		                
 	                 	let desk_card = cc.instantiate(cardprefab);
 	                    let temp = desk_card.getComponent("DeskCards");
-	                    temp.init(data.card,'L');
+	                    temp.init(data.card,'L',undefined,'left');
 		                let big_card = cc.instantiate(context.bigModel);
                     	let big_handcards = big_card.getComponent("HandCards");
                     	big_handcards.init(data.card,'L');
@@ -272,7 +272,7 @@ cc.Class({
 		           
 		                let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
 	                    let temp = desk_card.getComponent("DeskCards");
-	                    temp.init(data.card,'B');
+	                    temp.init(data.card,'B',undefined,'top');
 		                let big_card = cc.instantiate(context.bigModel);
                     	let big_handcards = big_card.getComponent("HandCards");
                     	big_handcards.init(data.card,'B');

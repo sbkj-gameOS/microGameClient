@@ -57,8 +57,7 @@ cc.Class({
      * @param  {[String]}  fangwei {B:current、top;L:left;R:right}
      * @param  {[type]}    bol    
      */
-    init:function(cvalue,fangwei,bol){
-        cc.log(fangwei,bol)
+    init:function(cvalue,fangwei,bol,direction){
         //this.jiantou.active  = true;
         this.cardcolor();
         this.xiaochu();
@@ -80,14 +79,8 @@ cc.Class({
         let cardframe ;
         let cardcolors = parseInt(this.value/4 ) ;
         let cardtype  = parseInt(cardcolors / 9);
-        let deskcard ,direction;
-        if (fangwei == 'B') {
-            cc.sys.localStorage.getItem('take') == 'true' ? direction = 'current' : direction = 'top';
-        } else if (fangwei == 'R') {
-            direction = 'right';
-        } else if (fangwei == 'L') {
-            direction = 'left';
-        }
+        let deskcard ;
+        
         if(fangwei !='Z'){
             if(cardcolors < 0){
                 
@@ -116,7 +109,7 @@ cc.Class({
                         if (cardcolors+8 == 6) {
                             cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');    
                         } else {
-                            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+cc.weijifen.user.genderFlag +'.mp3');    
+                            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+ cc.weijifen.genders[direction] +'.mp3');    
                         }           
                     },time);
                 }
@@ -139,7 +132,6 @@ cc.Class({
                     cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+'.mp3');
                     }
                 }*/
-                cc.log('玩家性别',cc.weijifen.genders[direction])
                 if(cardtype == 0){ //万
                     deskcard = fangwei+"_character_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
@@ -156,7 +148,6 @@ cc.Class({
                     cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
                     }
                 }
-                cc.log('parseInt((this.value%36)/4)+1-----',parseInt((this.value%36)/4)+1)
             }
             var buhuaTrue = false;
             if(deskcard == null){
