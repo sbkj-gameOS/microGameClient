@@ -51,8 +51,14 @@ cc.Class({
             type: cc.SpriteFrame
         },
     },
-
+    /**
+     * 桌面牌初始化
+     * @param  {[Number]}  cvalue  
+     * @param  {[String]}  fangwei {B:current、top;L:left;R:right}
+     * @param  {[type]}    bol    
+     */
     init:function(cvalue,fangwei,bol){
+        cc.log(fangwei,bol)
         //this.jiantou.active  = true;
         this.cardcolor();
         this.xiaochu();
@@ -74,7 +80,14 @@ cc.Class({
         let cardframe ;
         let cardcolors = parseInt(this.value/4 ) ;
         let cardtype  = parseInt(cardcolors / 9);
-        let deskcard ;
+        let deskcard ,direction;
+        if (fangwei == 'B') {
+            cc.sys.localStorage.getItem('take') == 'true' ? direction = 'current' : direction = 'top';
+        } else if (fangwei == 'R') {
+            direction = 'right';
+        } else if (fangwei == 'L') {
+            direction = 'left';
+        }
         if(fangwei !='Z'){
             if(cardcolors < 0){
                 
@@ -126,22 +139,24 @@ cc.Class({
                     cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+'.mp3');
                     }
                 }*/
+                cc.log('玩家性别',cc.weijifen.genders[direction])
                 if(cardtype == 0){ //万
                     deskcard = fangwei+"_character_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
-                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wan_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.user.genderFlag +'.mp3');
+                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wan_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
                     }
                 }else if(cardtype == 1){ //筒
                     deskcard = fangwei+"_dot_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
-                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'tong_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.user.genderFlag +'.mp3');
+                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'tong_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
                     }
                 }else if(cardtype == 2){  //条
                     deskcard = fangwei+"_bamboo_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true){
-                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.user.genderFlag +'.mp3');
+                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
                     }
                 }
+                cc.log('parseInt((this.value%36)/4)+1-----',parseInt((this.value%36)/4)+1)
             }
             var buhuaTrue = false;
             if(deskcard == null){

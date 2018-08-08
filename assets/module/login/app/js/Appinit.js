@@ -57,6 +57,12 @@ cc.Class({
                 x: 540,
                 y: -300
             };
+            cc.weijifen.genders = {
+                current: null,
+                right: null,
+                top: null,
+                left: null
+            }
             cc.weijifen.cardcolor = cc.sys.localStorage.getItem('cardcolor');
             //唱戏场景的麻将牌花色
             cc.sys.localStorage.setItem('cardcolor','yellow');

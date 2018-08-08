@@ -520,13 +520,16 @@ cc.Class({
                          */
                         var inx = 0 ;
                         var sabi = 0;
+                        var gender_fw;
                         for(var i=0 ; i<data.players.length ; i++){
                             if(data.players[i].playuser != cc.weijifen.user.id){           
                                 //通过判断 id 来确定位置上的牌的张数
                                 var arry = context.playersarray;
                                 for(let j =0 ; j< arry.length;j++){
-                                    var card = arry[j].getComponent('MaJiangPlayer');                            
+                                    var card = arry[j].getComponent('MaJiangPlayer');     
+                                    data.players[i].gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
                                     if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
+                                        cc.weijifen.genders[card.tablepos] = gender_fw;
                                         if(card.tablepos=='left'){
                                             sabi = 2;
                                             break;
@@ -536,6 +539,8 @@ cc.Class({
                                         }   
                                         sabi=0;
                                         break;
+                                    } else {
+                                        cc.weijifen.genders[card.tablepos] = cc.weijifen.user.genderFlag;
                                     }
                                 }
                                 gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
@@ -550,14 +555,17 @@ cc.Class({
                              */
                             var inx = 0 ;
                             var sabi = 0;
+                            var gender_fw;
                             for(var i=0 ; i<data.players.length ; i++){
                                 if(data.players[i].playuser != cc.weijifen.user.id){
                                     //通过判断 id 来确定位置上的牌的张数
                                     var arry = context.playersarray;
                                     if (arry) {
                                         for(let j =0 ; j< arry.length;j++){
+                                            data.players[i].gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
                                             var card = arry[j].getComponent('MaJiangPlayer');                            
                                             if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
+                                                cc.weijifen.genders[card.tablepos] = gender_fw;
                                                 if(card.tablepos=='left'){
                                                     sabi = 2;
                                                     break;
@@ -567,6 +575,8 @@ cc.Class({
                                                 }   
                                                 sabi=0;
                                                 break;
+                                            } else {
+                                                cc.weijifen.genders[card.tablepos] = cc.weijifen.user.genderFlag;
                                             }
                                         }
                                         gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);

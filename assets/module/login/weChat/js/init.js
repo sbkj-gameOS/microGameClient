@@ -2,6 +2,10 @@
 * @游戏初始化
 */
 var WJFCommon = require("WJFCommon");
+var GameBase = {'gameModel':'ch'}
+// var GameBase = {'gameModel':'haz'}
+// var GameBase = {'gameModel':'ls'}
+// var GameBase = {'gameModel':'jx'}
 
 
 cc.Class({
@@ -54,6 +58,17 @@ cc.Class({
             cc.weijifen.dialog.put(cc.instantiate(this.alertPrefab)); // 创建节点
             cc.weijifen.menu = new cc.NodePool();
             cc.weijifen.menu.put(cc.instantiate(this.menuPrefab));//菜单框
+            cc.weijifen.cardPostion = {
+                x: 540,
+                y: -300
+            };
+            cc.weijifen.genders = {
+            }
+               /* current: null,
+                right: null,
+                top: null,
+                left: null*/
+
             // cc.weijifen.matchNodeArr = {2:null,4:null};
             //单击/双击
             cc.weijifen.click = cc.sys.localStorage.getItem('click');
