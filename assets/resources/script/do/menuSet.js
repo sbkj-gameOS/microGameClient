@@ -135,14 +135,26 @@ cc.Class({
             cc.find('Canvas/menu/setting').destroy();
         }
     },
-    shareWxClick:function(){
-        var jsonData = {
-            url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode,
+    /* 分享到微信后，微信内容显示 */
+    shareWxClick:function(e){
+        var customEventData,jsonData,shareUrl,shareText;
+        var customEventData = event.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
+        if (customEventData == 'app') {
+            shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+            shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
+        } else if (customEventData == 'redBox') {
+            shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+            shareText = '测试红包文字！';
+        }
+        jsonData = {
+            // url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode,
+            url: shareUrl,
             title:"心缘竞技",
-            context:"刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！",
-            conType:1,
-            msgType:1
+            context: shareText,
+            conType: 1,
+            msgType: 1
         }
         var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
-    }
+    },
 });
+ 
