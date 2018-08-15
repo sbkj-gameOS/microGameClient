@@ -250,7 +250,6 @@ cc.Class({
             self.getSelf().route('takecards',self)(data , self);
             // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
             let h_cards2 = self.handCards;
-            //cc.log('h_cards2手牌---',h_cards2.length);
             if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
                 cc.log('手牌有误，开始更正！！！！！！');
                 //cc.log('h_cards2手牌---',h_cards2.length);
@@ -641,7 +640,8 @@ cc.Class({
                     url: videoList[0]// 语音播放地址
                 }; 
                 videoList.shift();
-                var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                var result = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], 'recorderApi',JSON.stringify(params));
             }
             
         }
@@ -826,16 +826,17 @@ cc.Class({
                             token:cc.weijifen.authorization
                         };
                         luyin_com.stop('luyin_anim');
-                        jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-                                ,"recorderApi",JSON.stringify(json));
+                        // jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;","recorderApi",JSON.stringify(json));
+                        jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2],"recorderApi",JSON.stringify(json));
                         cc.find('Canvas/luyin').active = false;
                         m = 0;
                         clearInterval(timer);
                     }
                 },1000);
             }
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-                    ,"recorderApi",JSON.stringify(json));
+            /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+                    ,"recorderApi",JSON.stringify(json));*/
+            jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2] ,"recorderApi",JSON.stringify(json));
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
@@ -846,8 +847,9 @@ cc.Class({
             luyin_com.stop('luyin_anim');
             this.yuyin_flag = false;
             console.log("1249");
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-                    ,"recorderApi",JSON.stringify(json));
+            /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+                    ,"recorderApi",JSON.stringify(json));*/
+            jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2],"recorderApi",JSON.stringify(json));
             cc.find('Canvas/luyin').active = false;
             m = 0;
         });
@@ -1274,7 +1276,8 @@ cc.Class({
                 };
                 cc.weijifen.isPLayVideo = true;
                 videoList.shift();
-                var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                var result = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], 'recorderApi',JSON.stringify(params));
             }
             
             let id_c,id_t,id_r,id_l; 

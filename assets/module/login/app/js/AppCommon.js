@@ -90,9 +90,10 @@ cc.Class({
         cc.weijifen.pay = function(shopId) {
             cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
         };
-        
         //获取分享进入的时候，是否分享的游戏房间
-        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+        
+        var res = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], "shareParam","");
         if(res){
             res = JSON.parse(res);
             if(res.code != "10086" && res.roomNum){
@@ -109,7 +110,8 @@ cc.Class({
         }
     },
     signSucess:function(result , object){
-        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
+        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
+        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "iPayHandler",result);
        
     },
     err:function(result , object) {
@@ -151,17 +153,17 @@ cc.Class({
         }
     },
 
-    wxlogin: function(){
+    wxlogin: function(event){
         if(tongyi){
-            var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "WXLoginOK","1");
+            let object = cc.find('Canvas/js/AppCommon').getComponent('AppCommon');
+            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "WXLoginOK","1");
+            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "WXLoginOK","1");
             
         }else{
             this.alert('请同意用户使用协议');
         }
     },
     login:function(code,target){
-       	cc.log('token',cc.weijifen.authorization)
-
         this.io = require("IOUtils");
         this.loadding();
         cc.weijifen.http.httpGet('/android/appLogin?code='+code+'&gameModel='+cc.weijifen.GameBase.gameModel,target.sucess,target.error,target);

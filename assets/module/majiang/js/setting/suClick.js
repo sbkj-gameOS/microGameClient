@@ -43,6 +43,7 @@ cc.Class({
     },
     //分享结算图片image
     shareImage:function(event){
+        var object = cc.find('Canvas')._components[1];
         // 创建 renderTexture
         var renderTexture = cc.RenderTexture.create(1280, 720);
         //实际截屏的代码
@@ -77,7 +78,8 @@ cc.Class({
 	            conType:2,
 	            msgType:1
 	        }
-	        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+	        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
         });
         
         return;

@@ -137,24 +137,36 @@ cc.Class({
     },
     /* 分享到微信后，微信内容显示 */
     shareWxClick:function(e){
-        var customEventData,jsonData,shareUrl,shareText;
-        var customEventData = event.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
+        var customEventData,jsonData,shareUrl,shareTitle,shareText;
+        var object = cc.find('Canvas')._components[1];
+        var customEventData = e.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
         if (customEventData == 'app') {
             shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+            shareTitle = "心缘竞技";
             shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
         } else if (customEventData == 'redBox') {
-            shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+            // 以下是测试数据
+          /*  cc.weijifen.http.httpGet('/coupon/gain/share?token=' + cc.weijifen.authorization,function(){
+                if (true) {
+                    shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+                    shareTitle = "红包分享";
+                    shareText = '测试红包文字！';
+                }
+            },function(){}) ;  */
+            shareUrl = "http://game.bizpartner.cn/coupon/gain/share?token=" + cc.weijifen.authorization;
+            shareTitle = "红包分享";
             shareText = '测试红包文字！';
         }
         jsonData = {
             // url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode,
             url: shareUrl,
-            title:"心缘竞技",
+            title: shareTitle,
             context: shareText,
             conType: 1,
             msgType: 1
         }
-        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
     },
 });
  

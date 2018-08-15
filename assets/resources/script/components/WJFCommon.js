@@ -12,6 +12,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.clock = null;
+       
     },
     //判断是否有初始化创建wjf全局变量
     ready:function(){
@@ -349,6 +350,42 @@ cc.Class({
             // fenNode.string = minute;
             // miaoNode.string = second;
         },1000);
+    },
+    /*
+    * 判断手机机型
+    * return [Boolean] true    android终端
+    *                  false   ios
+    */
+    getAppType: function() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isAndroid) return true;
+        if (isIos) return false;
+    },
+    /* 
+    * 调用android方法的参数 
+    * 【
+    *   index          description
+    *   0              java类名
+    *   1              java方法名
+    *   2              方法签名
+    * 】
+    * 详情参考：http://docs.cocos.com/creator/manual/zh/advanced-topics/java-reflection.html
+    */
+    anMethodParam: function () {
+        let anMethod;
+        if (this.getAppType()) {
+            this.alert('android');
+            anMethod = [
+                "org/cocos2dx/javascript/event/EventManager",
+                "raiseEvent",
+                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+            ];
+        } else {
+            this.alert('ios');
+        }
+        return anMethod;
     }
 });
 

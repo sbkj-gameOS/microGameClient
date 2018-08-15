@@ -86,26 +86,6 @@ cc.Class({
                                     on_off_line.active = false;
                                     headimg.color = new cc.Color(255, 255, 255);
                                 }
-                               /* cc.game.on(cc.game.EVENT_HIDE, function () {
-                                    let param = {
-                                        userId: cc.weijifen.user.id,
-                                        // userId: '37a538a553bf4e88820893274669992f',
-                                        type: 4,
-                                        status: 1
-                                    };
-                                    cc.log('----进入后台----')
-                                    self.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });
-                                cc.game.on(cc.game.EVENT_SHOW, function () {
-                                    let param = {
-                                        userId: cc.weijifen.user.id,
-                                        // userId: '37a538a553bf4e88820893274669992f',
-                                        type: 4,
-                                        status: 0
-                                    };
-                                    cc.log('++++进入前台++++')
-                                    self.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });*/
                                 if(gameStartInitNode.desk_cards.string!='136'){
                                     context.readyNoActive(context);
                                 }
@@ -179,28 +159,6 @@ cc.Class({
                                     on_off_line.active = false;
                                     headimg.color = new cc.Color(255, 255, 255);
                                 }
-                               /* cc.game.on(cc.game.EVENT_HIDE, function () {
-                                    let param = {
-                                        userId: cc.weijifen.user.id,
-                                        // userId: '37a538a553bf4e88820893274669992f',
-                                        type: 4,
-                                        status: 1
-                                    };
-                                    cc.log('------进入后台----')
-
-                                    this.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });
-                                cc.game.on(cc.game.EVENT_SHOW, function () {
-                                    let param = {
-                                        userId: cc.weijifen.user.id,
-                                        // userId: '37a538a553bf4e88820893274669992f',
-                                        type: 4,
-                                        status: 0
-                                    };
-                                    cc.log('++++进入前台++++')
-
-                                    this.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });*/
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){
                                     context.readyNoActive(context);
@@ -276,28 +234,6 @@ cc.Class({
                                     on_off_line.active = false;
                                     headimg.color = new cc.Color(255, 255, 255);
                                 }
-                                /*cc.game.on(cc.game.EVENT_HIDE, function () {
-                                    let param = {
-                                        userId: cc.weijifen.user.id,
-                                        // userId: '37a538a553bf4e88820893274669992f',
-                                        type: 4,
-                                        status: 1
-                                    };
-                                    cc.log('-----进入后台----')
-
-                                    this.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });
-                                cc.game.on(cc.game.EVENT_SHOW, function () {
-                                    let param = {
-                                        userId: cc.weijifen.user.id,
-                                        // userId: '37a538a553bf4e88820893274669992f',
-                                        type: 4,
-                                        status: 0
-                                    };
-                                    cc.log('++++进入前台++++')
-
-                                    this.socket().emit("sayOnSound" ,JSON.stringify(param));
-                                });*/
                                 //如果已经过了发牌阶段  则隐藏所有的准备状态
                                 if(gameStartInitNode.desk_cards.string !='136'){
                                     context.readyNoActive(context);
@@ -347,7 +283,7 @@ cc.Class({
     /*分享好友*/
     showActive: function () {
         // let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
-        // 
+        let object = cc.find('Canvas').getComponent('MJDataBind');
         var jsonData = {
             url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room+"&invitationcode="+cc.weijifen.user.invitationcode,
             title:"心缘竞技",
@@ -355,7 +291,7 @@ cc.Class({
             conType:1,
             msgType:1
         }
-        var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
         return;
     },
     unactive: function(event){
