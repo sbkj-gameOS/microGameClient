@@ -135,7 +135,17 @@ cc.Class({
             cc.find('Canvas/menu/setting').destroy();
         }
     },
-    /* 分享到微信后，微信内容显示 */
+    /* 
+    * 分享到微信后，微信内容显示 
+    * url     多媒体方式下的点击跳转连接
+    * imgUrl  图片连接
+    * width   图片宽度
+    * height  图片高度
+    * title   多媒体标题
+    * context 多媒体或者文字类型的内容
+    * conType 内容类型: 1 多媒体 2 图片 3 文字
+    * msgType 分享类型: 1 好友 2 朋友圈
+    */
     shareWxClick:function(e){
         var customEventData,jsonData,shareUrl,shareTitle,shareText;
         var object = cc.find('Canvas')._components[1];

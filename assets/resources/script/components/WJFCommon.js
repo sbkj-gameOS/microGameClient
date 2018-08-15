@@ -351,18 +351,6 @@ cc.Class({
             // miaoNode.string = second;
         },1000);
     },
-    /*
-    * 判断手机机型
-    * return [Boolean] true    android终端
-    *                  false   ios
-    */
-    getAppType: function() {
-        var u = navigator.userAgent;
-        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-        var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-        if (isAndroid) return true;
-        if (isIos) return false;
-    },
     /* 
     * 调用android方法的参数 
     * 【
@@ -375,16 +363,11 @@ cc.Class({
     */
     anMethodParam: function () {
         let anMethod;
-        if (this.getAppType()) {
-            this.alert('android');
-            anMethod = [
-                "org/cocos2dx/javascript/event/EventManager",
-                "raiseEvent",
-                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-            ];
-        } else {
-            this.alert('ios');
-        }
+        anMethod = [
+            "org/cocos2dx/javascript/event/EventManager",
+            "raiseEvent",
+            "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+        ];
         return anMethod;
     }
 });
