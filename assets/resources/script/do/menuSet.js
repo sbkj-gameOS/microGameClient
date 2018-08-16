@@ -163,7 +163,7 @@ cc.Class({
                     shareText = '测试红包文字！';
                 }
             },function(){}) ;  */
-            shareUrl = "http://game.bizpartner.cn/coupon/gain/share?token=" + cc.weijifen.authorization;
+            shareUrl = "http://game.bizpartner.cn/coupon/gain/share?userId=" + cc.weijifen.user.id;
             shareTitle = "红包分享";
             shareText = '测试红包文字！';
         }

@@ -51,7 +51,7 @@ cc.Class({
                 this.ani.play("juju_"+fangwei) ;   
                 
             }
-            if(target == 'current'){
+            /*if(target == 'current'){
                 this.current.active = true ;
             }else if(target == 'right'){
                 this.right.active = true ; 
@@ -59,7 +59,7 @@ cc.Class({
                 this.left.active = true ; 
             }else if(target == 'top'){
                 this.top.active = true ; 
-            }
+            }*/
         }
         this.count.string = count;
         this.value = cvalue ;
