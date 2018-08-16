@@ -22,7 +22,6 @@ cc.Class({
 	            if(cc.weijifen.GameBase.gameModel == "wz"){
 	                context.gameModelMp3 = "wz";
 	            }
-            	cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu.mp3');  
 	       		for(let i = 0;i<data.playOvers.length;i++){
 	       			if (data.playOvers[i].win) {
 	       				id = data.playOvers[i].user;
@@ -33,6 +32,7 @@ cc.Class({
 	       		}
 	       		var player = gameStartInit.player(id , context);
 	       		var player1 = gameStartInit.player(id1 , context);
+        		cc.weijifen.audio.playSFX('nv/'+context.gameModelMp3+'hu_' + cc.weijifen.genders[player.tablepos] + '.mp3');  
 	            cc.find('Canvas/huAnimation').active = true;
 	            var hu = cc.find("Canvas/huAnimation/hu_action");
 	            if (player.tablepos == 'top') {

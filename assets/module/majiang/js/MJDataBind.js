@@ -338,7 +338,7 @@ cc.Class({
                             anim.stop('ting');
                         },1500);
                         console.log(self.gameModelMp3)
-                        cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting.mp3');                                
+                        cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting' + '_' +cc.weijifen.genders['current'] + '.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
                         socket.emit("selectaction" , JSON.stringify({

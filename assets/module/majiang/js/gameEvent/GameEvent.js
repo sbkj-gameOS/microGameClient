@@ -196,8 +196,13 @@ cc.Class({
                 gameModelMp3 = "wz";
             }
             //触发音效
-            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+data.action+'.mp3');        
+            /*cc.weijifen.audio.playSFX('nv/'+gameModelMp3+data.action+'.mp3');        
+            let player = gameStartInit.player(data.userid , context), opParent, count = 0;*/
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;
+            if (data.action == 'dan') {
+                data.action = 'gang';
+            }
+            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+data.action + '_' + cc.weijifen.genders[player.tablepos] +'.mp3');        
 
             let jiantou;
             if(data.target){

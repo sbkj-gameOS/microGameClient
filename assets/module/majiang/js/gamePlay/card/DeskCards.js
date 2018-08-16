@@ -107,15 +107,7 @@ cc.Class({
                     setTimeout(function(){
                         if (direction != undefined) {
                             // cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');                
-                            if (cardcolors+8 == 6) {
-                                cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');    
-                            } else {
-                                /*if (direction == 'current') {
-                                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+ cc.weijifen.user.genderFlag +'.mp3');    
-                                } else {*/
-                                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+ cc.weijifen.genders[direction] +'.mp3');    
-                                // }
-                            }           
+                            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+ cc.weijifen.genders[direction] +'.mp3');    
                         }
                     },time);
                 }

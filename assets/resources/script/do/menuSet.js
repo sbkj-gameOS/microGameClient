@@ -9,6 +9,11 @@ cc.Class({
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
         // cc.weijifen.match = new h5CallCocos();
+         cc.weijifen.http.httpGet('/coupon/gain/coupon/id?userId=' + cc.weijifen.user.id,function(res){
+                alert(cc.weijifen.user.id+'请求成功'+res);
+                var shareUrl = "http://192.168.1.124/coupon/gain/share?sn_id=" + res;
+                var shareTitle = "红包分享";
+            },function(){return alert('红包分享失败');}) ;  
     },
     init:function(name,url){
         this.clearPerfab();
@@ -147,36 +152,34 @@ cc.Class({
     * msgType 分享类型: 1 好友 2 朋友圈
     */
     shareWxClick:function(e){
-        var customEventData,jsonData,shareUrl,shareTitle,shareText;
+        var customEventData,jsonData,shareUrl,shareTitle,shareText,boxId;
         var object = cc.find('Canvas')._components[1];
         var customEventData = e.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
-        if (customEventData == 'app') {
-            shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
-            shareTitle = "心缘竞技";
-            shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
-        } else if (customEventData == 'redBox') {
-            // 以下是测试数据
-          /*  cc.weijifen.http.httpGet('/coupon/gain/share?token=' + cc.weijifen.authorization,function(){
-                if (true) {
-                    shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
-                    shareTitle = "红包分享";
-                    shareText = '测试红包文字！';
-                }
-            },function(){}) ;  */
-            shareUrl = "http://game.bizpartner.cn/coupon/gain/share?userId=" + cc.weijifen.user.id;
-            shareTitle = "红包分享";
-            shareText = '测试红包文字！';
-        }
-        jsonData = {
-            // url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode,
-            url: shareUrl,
-            title: shareTitle,
-            context: shareText,
-            conType: 1,
-            msgType: 1
-        }
-        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
-        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
+        var wjf = require('WJFCommon');
+        var _wjf = new wjf(); 
+        cc.weijifen.http.httpGet('/coupon/gain/coupon/id?userId=' + cc.weijifen.user.id,function(data){
+           boxId = data;
+        },function(data){boxId=data}) ;  
+        let time = setTimeout(function(){
+            if (customEventData == 'app') {
+                shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+                shareTitle = "心缘竞技";
+                shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
+            } else if (customEventData == 'redBox') {
+                shareUrl = "http://game.bizpartner.cn/coupon/gain/share?sn_id=" + boxId;
+                shareTitle = "红包分享";
+                shareText = '发大红包了，快来抢啊！';
+            }
+            jsonData = {
+                url: shareUrl,
+                title: shareTitle,
+                context: shareText,
+                conType: 1,
+                msgType: 1
+            }
+            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
+            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
+        },2000);
     },
 });
  
