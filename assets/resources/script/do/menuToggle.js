@@ -8,8 +8,9 @@ cc.Class({
         sharing:cc.Prefab,
         menu: cc.Prefab,
         match: cc.Prefab,
-        alts: cc.SpriteAtlas
-    },
+        alts: cc.SpriteAtlas,
+        packgeMenu: cc.Prefab,
+     },
 
     // use this for initialization
     onLoad: function () {
@@ -20,6 +21,10 @@ cc.Class({
         cc.weijifen.menu.put(menu);
     },
     open: function(event){
+        if (event.target.name == 20) {
+            this.packageMenu();
+            return
+        }
         if (event.target.name == 14) {
             let setting = cc.instantiate(this.gameSettingClick);
             let cardcolor = cc.sys.localStorage.getItem('cardcolor');
@@ -159,5 +164,102 @@ cc.Class({
         showDetail(dataStr);
         cc.sys.localStorage.setItem('matchData',dataStr);
     },
-  
+    /*
+    * 背包功能
+    */
+    packageMenu: function(){
+        let self = this;
+        function packageSucces (res) {
+            let data = JSON.parse(res);
+            data = {
+                "packageGoods": [
+                {
+                  "linkedId": null,//2（满100减2）；若值为-1、null，没有该优惠
+                  "useStartTime": null,//使用开始时间
+                  "num": 0,//该优惠券数量
+                  "description": "连胜10场增加",
+                  "sort": "CARD",
+                  "type": "MONTHRACINGCARD",// MONTHRACINGCARD(1, "月赛卡"),COUPON(2,"优惠券");
+                  "userId": "c464bebe43c74a6fbd7b4581357016e1",
+                  "division": "PERMANENT",//是否是有过期时间
+                  "useEndTime": null,
+                  "orgi": "ch",
+                  "createTime": 1534411927000,//领取时间
+                  "faceValue": null,//100（满100减2）
+                  "id": 83
+                },
+                {
+                  "linkedId": 9,
+                  "useStartTime": 1534312130000,
+                  "num": 195,
+                  "description": "系统赠送的优惠券",
+                  "sort": "OTHER",
+                  "type": "COUPON",
+                  "userId": "c464bebe43c74a6fbd7b4581357016e1",
+                  "division": "DISPOSABLE",
+                  "useEndTime": 1536040131000,
+                  "orgi": "ch",
+                  "createTime": 1534388077000,
+                  "faceValue": 10,
+                  "id": 70
+                },
+                {
+                  "linkedId": 17,
+                  "useStartTime": 1534312130000,
+                  "num": 39,
+                  "description": "系统赠送的优惠券",
+                  "sort": "OTHER",
+                  "type": "COUPON",
+                  "userId": "c464bebe43c74a6fbd7b4581357016e1",
+                  "division": "DISPOSABLE",
+                  "useEndTime": 1536040131000,
+                  "orgi": "ch",
+                  "createTime": 1534312131000,
+                  "faceValue": 50,
+                  "id": 71
+                },
+                {
+                  "linkedId": 50,
+                  "useStartTime": 1534312130000,
+                  "num": 39,
+                  "description": "系统赠送的优惠券",
+                  "sort": "OTHER",
+                  "type": "COUPON",
+                  "userId": "c464bebe43c74a6fbd7b4581357016e1",
+                  "division": "DISPOSABLE",
+                  "useEndTime": 1536040131000,
+                  "orgi": "ch",
+                  "createTime": 1534312131000,
+                  "faceValue": 177,
+                  "id": 72
+                }
+              ]
+            };
+            let menu = cc.instantiate(self.packgeMenu);
+            let listModel = menu.getChildByName('main').children[0].children[0].getChildByName('listModel');
+            for (let ele of data.packageGoods) {
+                let model = cc.instantiate(listModel);
+                if (ele.type == 'COUPON') {
+                    // 优惠券
+                    model.children[0].getChildByName('linkedNum').getComponent(cc.Label).string = ele.linkedId;
+                    model.children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
+                    model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
+                } else {
+                    model.children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '月赛卡';
+                    model.children[0].getChildByName('linkedNum').active = false;
+                    model.children[0].getChildByName('img3').active = false;
+                    model.children[0].getChildByName('useEndTime').active = false;
+                    model.children[0].getChildByName('$').active = false;
+                }
+                model.children[1].getComponent(cc.Label).string = 'x' + ele.num;
+                model.active = true;
+                model.parent = listModel.parent;
+            }
+            menu.parent = cc.find('Canvas');
+        };
+        function packgeError () {
+            alert('失败');
+        };
+        cc.weijifen.http.httpGet('/package_goods/gain/' + cc.weijifen.authorization,packageSucces,packageSucces)
+    }
 });

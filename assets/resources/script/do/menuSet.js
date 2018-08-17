@@ -9,11 +9,6 @@ cc.Class({
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
         // cc.weijifen.match = new h5CallCocos();
-         cc.weijifen.http.httpGet('/coupon/gain/coupon/id?userId=' + cc.weijifen.user.id,function(res){
-                alert(cc.weijifen.user.id+'请求成功'+res);
-                var shareUrl = "http://192.168.1.124/coupon/gain/share?sn_id=" + res;
-                var shareTitle = "红包分享";
-            },function(){return alert('红包分享失败');}) ;  
     },
     init:function(name,url){
         this.clearPerfab();
@@ -181,5 +176,6 @@ cc.Class({
             var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
         },2000);
     },
+    
 });
  

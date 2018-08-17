@@ -369,6 +369,31 @@ cc.Class({
             "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
         ];
         return anMethod;
+    },
+    /*
+    * 时间转换（时间戳->xxxx-xx-xx xx:xx:xx）
+    * @param  [Number]  timestamp   时间戳
+    * @param  [Number]  type        返回格式(1：年月日时分秒；2：月日)
+    * return  [String]  eg:2018-01-01 01:01:01
+    */
+    timestampToTime: function (timestamp,type) {
+        var Y,M,D,h,m,s;
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-';
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        D = date.getDate() + ' ';
+        h = date.getHours();
+        m = date.getMinutes();
+        s = date.getSeconds();
+        if (D < 10) {D = '0' + D};
+        if (h < 10) {h = '0' + h};
+        if (m < 10) {m = '0' + m};
+        if (s < 10) {s = '0' + s};
+        if (type == 1 || type == undefined) {
+            return Y+M+D+h+':'+m+':'+s;
+        } else if (type == 2) {
+            return M+D;
+        }
     }
 });
 
