@@ -140,6 +140,7 @@ cc.Class({
         prohibit_mask: cc.Node,// 比赛倒计时结束时，禁止玩家任何操作
     },
     onLoad: function () {
+        var listenFlag = true;
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         this.actionBox.zIndex = 1000;
         cc.weijifen.isPLayVideo = false;
@@ -233,7 +234,16 @@ cc.Class({
             }else{
                 self.getSelf().route(data.command,self)(data , self);
             }
-            
+            // 网络心跳包
+            if (result == 'well') {
+                if (listenFlag) {
+                    socket.emit("healthListen" ,'');
+                    var ti = setTimeout(function(){
+                        listenFlag = false;
+                        clearTimeout(ti);
+                    },7000);
+                }
+            }
         });
         socket.on("OverPosition",function(result){
             cc.sys.localStorage.setItem('matchOver','true');

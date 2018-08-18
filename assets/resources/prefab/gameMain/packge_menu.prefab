@@ -2350,7 +2350,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1020,
-      "height": 260
+      "height": 0
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -2387,7 +2387,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 114
@@ -3731,7 +3731,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 1020,
-      "height": 260
+      "height": 0
     },
     "_resize": 1,
     "_N$layoutType": 3,
