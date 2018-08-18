@@ -243,7 +243,7 @@ cc.Class({
                         listenFlag = !listenFlag;
                         // 若为false则为网络正常,true为网络出现正常
                         if (listenFlag && cc.weijifen.dialog.size() > 0 ) {
-                            self.__proto__.alert('当前网络环境较差！');
+                            self.__proto__.__proto__.alert('当前网络环境较差！');
                             hasAlert = true;
                             clearInterval(listenTime);
                         } else if (listenFlag == false && cc.find('Canvas/alert')) {
@@ -258,7 +258,7 @@ cc.Class({
             listenFlag = !listenFlag;
             // 若为false则为网络正常,true为网络出现正常
             if (listenFlag && cc.weijifen.dialog.size() > 0 ) {
-                self.__proto__.alert('当前网络环境较差！');
+                self.__proto__.__proto__.alert('当前网络环境较差！');
                 hasAlert = true;
                 clearInterval(listenTime);
             } else if (listenFlag == false && cc.find('Canvas/alert')) {
