@@ -631,7 +631,7 @@ cc.Class({
                 type: 4,
                 status: 1
             };
-            // socket.emit("sayOnSound" ,JSON.stringify(param));
+            socket.emit("sayOnSound" ,JSON.stringify(param));
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
             let t = new Date();// 当前时间
@@ -645,10 +645,10 @@ cc.Class({
                 type: 4,
                 status: 0
             };
-           /* socket.emit("sayOnSound" ,JSON.stringify(param));
+            socket.emit("sayOnSound" ,JSON.stringify(param));
             if (cc.weijifen.room) {
                 cc.director.loadScene('majiang');
-            }*/
+            }
         });
         // 发送录音
         cc.weijifen.player_recording = function(param){
