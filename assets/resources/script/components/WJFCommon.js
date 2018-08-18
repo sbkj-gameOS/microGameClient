@@ -29,7 +29,6 @@ cc.Class({
          * 登录成功后，创建 Socket链接，
          */
         var self = this;
-        var net_flag = true;
         this.disconnect();
         //cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL + '/bm/game');
         cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL,{'reconnect': true});
@@ -51,19 +50,8 @@ cc.Class({
         });
         cc.weijifen.socket.on('reconnecting', function (data) {
             console.log("reconnecting");
-            if (net_flag) {
-                // var time_ = setTimeout(function(){
-                    self.__proto__.alert('当前网络环境较差！');
-                    net_flag = false;
-                    // clearTimeout(time_);
-                // },2000);
-            }
         });
         cc.weijifen.socket.on('reconnect', function (data) {
-            if (net_flag == false || cc.find('Canvas/alert')) {
-                net_flag = true;
-                cc.weijifen.dialog.put(cc.find('Canvas/alert'));
-            }
             console.log("reconnect");
         });
         return cc.weijifen.socket ;

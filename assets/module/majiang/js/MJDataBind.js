@@ -140,7 +140,7 @@ cc.Class({
         prohibit_mask: cc.Node,// 比赛倒计时结束时，禁止玩家任何操作
     },
     onLoad: function () {
-        var listenFlag = true;
+        var listenFlag,hasAlert;// 网络情况，是否有网络提示
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         this.actionBox.zIndex = 1000;
         cc.weijifen.isPLayVideo = false;
@@ -235,21 +235,40 @@ cc.Class({
                 self.getSelf().route(data.command,self)(data , self);
             }
             // 网络心跳包
-            if (result == 'well') {
-                if (listenFlag) {
-                    socket.emit("healthListen" ,'');
-                    var ti = setTimeout(function(){
-                        listenFlag = false;
-                        clearTimeout(ti);
-                    },7000);
+            if (data == 'well') {
+                listenFlag = true;
+                socket.emit("healthListen" ,'');
+                if (hasAlert) {
+                    var listenTime = setInterval(function(){
+                        listenFlag = !listenFlag;
+                        // 若为false则为网络正常,true为网络出现正常
+                        if (listenFlag && cc.weijifen.dialog.size() > 0 ) {
+                            self.__proto__.alert('当前网络环境较差！');
+                            hasAlert = true;
+                            clearInterval(listenTime);
+                        } else if (listenFlag == false && cc.find('Canvas/alert')) {
+                            cc.weijifen.dialog.put(cc.find('Canvas/alert'));
+                            hasAlert = false;
+                        }
+                    },4000);
                 }
             }
         });
+        var listenTime = setInterval(function(){
+            listenFlag = !listenFlag;
+            // 若为false则为网络正常,true为网络出现正常
+            if (listenFlag && cc.weijifen.dialog.size() > 0 ) {
+                self.__proto__.alert('当前网络环境较差！');
+                hasAlert = true;
+                clearInterval(listenTime);
+            } else if (listenFlag == false && cc.find('Canvas/alert')) {
+                cc.weijifen.dialog.put(cc.find('Canvas/alert'));
+            }
+        },4000);
         socket.on("OverPosition",function(result){
             cc.sys.localStorage.setItem('matchOver','true');
             cc.sys.localStorage.setItem('matchPrize',result);
         })
-       
         socket.on("play",function(result){
             var data = self.getSelf().parse(result);
             self.getSelf().route('play',self)(data , self);
@@ -612,7 +631,7 @@ cc.Class({
                 type: 4,
                 status: 1
             };
-            socket.emit("sayOnSound" ,JSON.stringify(param));
+            // socket.emit("sayOnSound" ,JSON.stringify(param));
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
             let t = new Date();// 当前时间
@@ -626,10 +645,10 @@ cc.Class({
                 type: 4,
                 status: 0
             };
-            socket.emit("sayOnSound" ,JSON.stringify(param));
+           /* socket.emit("sayOnSound" ,JSON.stringify(param));
             if (cc.weijifen.room) {
                 cc.director.loadScene('majiang');
-            }
+            }*/
         });
         // 发送录音
         cc.weijifen.player_recording = function(param){
