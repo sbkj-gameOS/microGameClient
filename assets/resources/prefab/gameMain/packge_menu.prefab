@@ -2106,7 +2106,7 @@
     },
     "component": "close",
     "handler": "closeMenu",
-    "customEventData": ""
+    "customEventData": "packge_menu"
   },
   {
     "__type__": "cc.Node",
@@ -3838,7 +3838,8 @@
     "alts": null,
     "packgeMenu": {
       "__uuid__": "f01022d9-2fa4-4460-b780-c42ba57f46fd"
-    }
+    },
+    "activityMenu": null
   },
   {
     "__type__": "cc.PrefabInfo",
