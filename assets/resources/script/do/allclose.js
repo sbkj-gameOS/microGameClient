@@ -10,6 +10,10 @@ cc.Class({
         cc.weijifen.dialog.put(dialog);
     },
     closeMenu: function(event){
+        if (event.target.getComponent(cc.Button).clickEvents.length > 1 && event.target.getComponent(cc.Button).clickEvents[1].customEventData == 'packge_menu') {
+            event.target.parent.destroy();
+            return
+        }
         // let menu = cc.find("Canvas/menu");
         let menu = event.target.parent;
         if (menu.children[2].active) {

@@ -10,6 +10,7 @@ cc.Class({
         match: cc.Prefab,
         alts: cc.SpriteAtlas,
         packgeMenu: cc.Prefab,
+        activityMenu: cc.Prefab
      },
 
     // use this for initialization
@@ -21,6 +22,12 @@ cc.Class({
         cc.weijifen.menu.put(menu);
     },
     open: function(event){
+        // 活动（抽奖）
+        if (event.target.name == 666) {
+            var activityMenu = cc.instantiate(this.activityMenu);
+            activityMenu.parent = cc.find('Canvas');
+            return
+        }
         if (event.target.name == 20) {
             this.packageMenu();
             return
@@ -235,8 +242,8 @@ cc.Class({
                 }
               ]
             };
-            let menu = cc.instantiate(self.packgeMenu);
-            let listModel = menu.getChildByName('main').children[0].children[0].getChildByName('listModel');
+            let menu1 = cc.instantiate(self.packgeMenu);
+            let listModel = menu1.getChildByName('main').children[0].children[0].getChildByName('listModel');
             for (let ele of data.packageGoods) {
                 let model = cc.instantiate(listModel);
                 if (ele.type == 'COUPON') {
@@ -255,7 +262,7 @@ cc.Class({
                 model.active = true;
                 model.parent = listModel.parent;
             }
-            menu.parent = cc.find('Canvas');
+            menu1.parent = cc.find('Canvas');
         };
         function packgeError () {
             alert('失败');

@@ -236,32 +236,24 @@ cc.Class({
             }
             // 网络心跳包
             if (data == 'well') {
-                listenFlag = true;
+                listenFlag = false;
+                hasAlert = false;
                 socket.emit("healthListen" ,'');
-                if (hasAlert) {
-                    var listenTime = setInterval(function(){
-                        listenFlag = !listenFlag;
-                        // 若为false则为网络正常,true为网络出现正常
-                        if (listenFlag && cc.weijifen.dialog.size() > 0 ) {
-                            self.__proto__.__proto__.alert('当前网络环境较差！');
-                            hasAlert = true;
-                            clearInterval(listenTime);
-                        } else if (listenFlag == false && cc.find('Canvas/alert')) {
-                            cc.weijifen.dialog.put(cc.find('Canvas/alert'));
-                            hasAlert = false;
-                        }
-                    },4000);
-                }
             }
         });
         var listenTime = setInterval(function(){
-            listenFlag = !listenFlag;
+            if (cc.director.getScene().name == 'gameMain') {
+                clearInterval(listenTime);
+                return
+            }
+            if (hasAlert) {return };
+            listenFlag == false ? listenFlag = true : listenFlag = false;
             // 若为false则为网络正常,true为网络出现正常
-            if (listenFlag && cc.weijifen.dialog.size() > 0 ) {
+            if (listenFlag == false && cc.weijifen.dialog.size() > 0) {
+                if (hasAlert) {return};
                 self.__proto__.__proto__.alert('当前网络环境较差！');
                 hasAlert = true;
-                clearInterval(listenTime);
-            } else if (listenFlag == false && cc.find('Canvas/alert')) {
+            } else if (listenFlag == true && cc.find('Canvas/alert') && cc.find('Canvas/alert').length < 6) {
                 cc.weijifen.dialog.put(cc.find('Canvas/alert'));
             }
         },4000);

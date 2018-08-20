@@ -162,8 +162,8 @@ cc.Class({
                 shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
             } else if (customEventData == 'redBox') {
                 shareUrl = "http://game.bizpartner.cn/coupon/gain/share?sn_id=" + boxId;
-                shareTitle = "红包分享";
-                shareText = '发大红包了，快来抢啊！';
+                shareTitle = "心缘竞技-770元大礼包";
+                shareText = '好友分享，10份价值77元现金大礼包，点击即可领取！';
             }
             jsonData = {
                 url: shareUrl,
