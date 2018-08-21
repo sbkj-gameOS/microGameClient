@@ -1157,6 +1157,7 @@ cc.Class({
                 var cardcolors = parseInt(card/4 ) ;
                 var cardtype  = parseInt(cardcolors / 9);
                 var dans = cards.children ;
+
                 //当这个牌是妖姬时
                 if(cardtype==2&& parseInt((card%36)/4)==0&&cards.children.length>0&&type!='yao'&&action=='dan'&&kaction =='dan'){
                     resNode = cards ;
@@ -1166,7 +1167,7 @@ cc.Class({
                 //当这个牌不是妖姬时
                 }else{
                     //cards是peng   action 为gang时
-                    if(action == 'gang'&&dans.length>0&kaction == 'peng'){
+                    if(action == 'gang'&&dans.length>0&&kaction == 'peng'){
                         for(let j = 0 ; j<dans.length; j++){
                             var cardUnit = dans[j] ;
                             if ((parseInt((card%36)/4 ) == cardUnit.getComponent("DanAction").mjvalue &&parseInt(card / 36)==cardUnit.getComponent("DanAction").cardtype)||(card<0&&parseInt(card/4 )==cardUnit.getComponent("DanAction").cardcolors)){

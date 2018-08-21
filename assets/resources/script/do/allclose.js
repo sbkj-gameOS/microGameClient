@@ -10,7 +10,7 @@ cc.Class({
         cc.weijifen.dialog.put(dialog);
     },
     closeMenu: function(event){
-        if (event.target.getComponent(cc.Button).clickEvents.length > 1 && event.target.getComponent(cc.Button).clickEvents[1].customEventData == 'packge_menu') {
+        if (event.target.getComponent(cc.Button).clickEvents.length && event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'packge_menu') {
             event.target.parent.destroy();
             return
         }

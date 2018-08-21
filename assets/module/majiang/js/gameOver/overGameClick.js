@@ -118,7 +118,7 @@ cc.Class({
             this.labei2.getComponent(cc.Label).string = this.time;
             return
         }
-        if (this.time < 0 && this.txt) {
+        if (this.time < 0 && this.txt && cc.director.getScene().name == 'majiang') {
             let mj = cc.find('Canvas').getComponent('MJDataBind');
             mj.alert.put(this.txt.node.parent);
             cc.sys.localStorage.removeItem('overGameTime');

@@ -81,7 +81,7 @@ cc.Class({
         }else{
             // 出牌
             if( handCards.take == true){
-                cc.find('Canvas/card_play_flag').active = true;
+                // cc.find('Canvas/card_play_flag').active = true;
                 if (context.tings&&cc.sys.localStorage.getItem('ting')=='true'){
                     context.tingSelect.active = false;
                     let tinglength = context.tingSelect.children[0].children.length;

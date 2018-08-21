@@ -61,7 +61,6 @@ cc.Class({
 	            },2000);
 		    }
 		    function weizhi (player,img) {
-					cc.log(player.tablepos)
 	            img.width = 448;
 	            img.height = 168;
 		    	if (player.tablepos == 'top') {

@@ -120,8 +120,6 @@ cc.Class({
             web.height = 490;
             web.setPosition(0,0);
         }
-        
-        
     },
     //清除留下的东西
     clearPerfab: function(){

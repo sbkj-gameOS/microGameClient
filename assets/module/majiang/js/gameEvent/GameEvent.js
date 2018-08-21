@@ -183,6 +183,7 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
+            cc.find('Canvas/card_play_flag').active = false;
             cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
             if (cc.find('Canvas/big_cards').children) {
                cc.find('Canvas/big_cards').removeAllChildren();
@@ -199,9 +200,7 @@ cc.Class({
             /*cc.weijifen.audio.playSFX('nv/'+gameModelMp3+data.action+'.mp3');        
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;*/
             let player = gameStartInit.player(data.userid , context), opParent, count = 0;
-            if (data.action == 'dan') {
-                data.action = 'gang';
-            }
+            
             cc.weijifen.audio.playSFX('nv/'+gameModelMp3+data.action + '_' + cc.weijifen.genders[player.tablepos] +'.mp3');        
 
             let jiantou;

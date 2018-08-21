@@ -318,7 +318,6 @@ cc.Class({
 	     */
 	    dealcard_event:function(data , context){
 	    	cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
-            cc.find('Canvas/card_play_flag').active = false;
             if (data.replacePowerCard) {
             	cc.find('Canvas/bg/ReplacePowerCard').active = true;
             	let timer_flag = setTimeout(function(){
