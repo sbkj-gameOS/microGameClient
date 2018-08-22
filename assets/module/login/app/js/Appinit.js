@@ -18,6 +18,7 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
+        this.clientPlatForm();
         this.initMgr();        
         let he = this;
         if(!cc.sys.isNative && cc.sys.isMobile){

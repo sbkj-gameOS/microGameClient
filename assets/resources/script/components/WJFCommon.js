@@ -12,7 +12,7 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.clock = null;
-       
+        
     },
     //判断是否有初始化创建wjf全局变量
     ready:function(){
@@ -352,6 +352,11 @@ cc.Class({
             // miaoNode.string = second;
         },1000);
     },
+    /* 运行平台判断 */
+    clientPlatForm: function () {
+        if (cc.sys.os == cc.sys.OS_IOS) {return 'IOS'}
+        if (cc.sys.os == cc.sys.OS_ANDROID) {return 'ANDROID'}
+    },
     /* 
     * 调用android方法的参数 
     * 【
@@ -363,12 +368,17 @@ cc.Class({
     * 详情参考：http://docs.cocos.com/creator/manual/zh/advanced-topics/java-reflection.html
     */
     anMethodParam: function () {
-        let anMethod;
-        anMethod = [
-            "org/cocos2dx/javascript/event/EventManager",
-            "raiseEvent",
-            "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-        ];
+        let anMethod,platForm;
+        platForm = this.clientPlatForm();
+        if (platForm == 'IOS') {
+            this.alert('IOS平台');
+        } else if (platForm == 'ANDROID') {
+            anMethod = [
+                "org/cocos2dx/javascript/event/EventManager",
+                "raiseEvent",
+                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+            ];
+        }
         return anMethod;
     },
     /*
