@@ -5,6 +5,7 @@ cc.Class({
         joinRoom: cc.Prefab,
         createRoom: cc.Prefab,
         setting:cc.Prefab,
+        shareStep: cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
@@ -133,6 +134,18 @@ cc.Class({
             cc.find('Canvas/menu/setting').destroy();
         }
     },
+     /* 分享现金红包流程引导 */
+    shareStepFn: function (event) {
+        var data = event.target.getComponent(cc.Button).clickEvents[0].customEventData;
+        if (data == 'true') {
+            var shareStep = cc.instantiate(this.shareStep);
+            shareStep.parent = cc.find('Canvas');
+            cc.weijifen.menu.put(event.target.parent.parent);
+        } else {
+            cc.find('Canvas/share_step').destroy();
+
+        }
+    },
     /* 
     * 分享到微信后，微信内容显示 
     * url     多媒体方式下的点击跳转连接
@@ -155,10 +168,12 @@ cc.Class({
         },function(data){boxId=data}) ;  
         let time = setTimeout(function(){
             if (customEventData == 'app') {
+                cc.log('app')
                 shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
                 shareTitle = "心缘竞技";
                 shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
             } else if (customEventData == 'redBox') {
+                cc.log('redBox')
                 shareUrl = "http://game.bizpartner.cn/coupon/gain/share?sn_id=" + boxId;
                 shareTitle = "心缘竞技-770元大礼包";
                 shareText = '好友分享，10份价值77元现金大礼包，点击即可领取！';
@@ -174,6 +189,8 @@ cc.Class({
             var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
         },2000);
     },
-    
+   
+
+
 });
  
