@@ -180,6 +180,7 @@ cc.Class({
             let data = JSON.parse(res);
             let menu1 = cc.instantiate(self.packgeMenu);
             let listModel = menu1.getChildByName('main').children[0].children[0].getChildByName('listModel');
+            let isNullData = false;
             for (let ele of data.packageGoods) {
                 let model = cc.instantiate(listModel);
                 if (ele.type == 'COUPON') {
@@ -197,9 +198,12 @@ cc.Class({
                 model.children[1].getComponent(cc.Label).string = 'x' + ele.num;
                 model.active = true;
                 model.parent = listModel.parent;
-                cc.find("Canvas/packge_menu/no_data").active = false;
+                isNullData = true;
             }
             menu1.parent = cc.find('Canvas');
+            if(isNullData){
+                cc.find("Canvas/packge_menu/no_data").active = false;
+            }
         };
         function packgeError () {
             alert('失败');
