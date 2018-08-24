@@ -197,6 +197,7 @@ cc.Class({
                 model.children[1].getComponent(cc.Label).string = 'x' + ele.num;
                 model.active = true;
                 model.parent = listModel.parent;
+                cc.find("Canvas/packge_menu/no_data").active = false;
             }
             menu1.parent = cc.find('Canvas');
         };
