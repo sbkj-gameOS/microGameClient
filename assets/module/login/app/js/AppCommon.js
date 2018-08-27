@@ -70,7 +70,7 @@ cc.Class({
 
 
 
-            self.alert('调到test方法！');
+            self.alert('调到wxAuth方法！');
 
 
 
@@ -97,19 +97,19 @@ cc.Class({
         };
 
         //app支付初始化
-       /* cc.weijifen.pay = function(shopId) {
+        cc.weijifen.pay = function(shopId) {
             cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
-        };*/
+        };
         //获取分享进入的时候，是否分享的游戏房间
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
         
-        /*var res = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], "shareParam","");
+        var res = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], "shareParam","");
         if(res){
             res = JSON.parse(res);
             if(res.code != "10086" && res.roomNum){
                 cc.weijifen.shareRoomNum = res.roomNum;
             }
-        }*/
+        }
         
     },
     updateSuccess:function (result,object) {
@@ -167,8 +167,7 @@ cc.Class({
         if(tongyi){
             let object = cc.find('Canvas/js/AppCommon').getComponent('AppCommon');
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "WXLoginOK","1");
-            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1], "WXLoginOK","1");
-            // var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "WXLoginOK","1");
+            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "WXLoginOK","1");
             
         }else{
             this.alert('请同意用户使用协议');
