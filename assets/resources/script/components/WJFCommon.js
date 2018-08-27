@@ -358,7 +358,7 @@ cc.Class({
         if (cc.sys.os == cc.sys.OS_ANDROID) {return 'ANDROID'}
     },
     /* 
-    * 调用android方法的参数 
+    * 一、调用android方法的参数 
     * 【
     *   index          description
     *   0              java类名
@@ -373,6 +373,12 @@ cc.Class({
         if (platForm == 'IOS') {
             this.alert('IOS平台');
         } else if (platForm == 'ANDROID') {
+            anMethod = [
+                "org/cocos2dx/javascript/event/EventManager",
+                "raiseEvent",
+                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+            ];
+        } else {// 测试平台
             anMethod = [
                 "org/cocos2dx/javascript/event/EventManager",
                 "raiseEvent",

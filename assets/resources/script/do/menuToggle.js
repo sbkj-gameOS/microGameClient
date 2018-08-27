@@ -189,6 +189,7 @@ cc.Class({
                     model.children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
                     model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
                 } else {
+                    if (ele.num < 1) {break}
                     model.children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '月赛卡';
                     model.children[0].getChildByName('linkedNum').active = false;
                     model.children[0].getChildByName('img3').active = false;

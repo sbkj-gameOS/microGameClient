@@ -82,7 +82,11 @@ cc.Class({
         room.room = array;
         
         if(cc.weijifen.authorization){
-            cc.weijifen.room =array;
+            if (cc.weijifen.room) {
+                room.room = cc.weijifen.room;
+            } else {
+                cc.weijifen.room = array;
+            }
             room.token = cc.weijifen.authorization;
             cc.weijifen.http.httpPost('/api/room/query',room,this.JRsucess,this.JRerror,this);
         }else{
@@ -98,7 +102,7 @@ cc.Class({
     },
     JRsucess: function(result,object){
         var data = JSON.parse(result);
-        cc.weijifen.room =array;
+        if (cc.weijifen.room == null) cc.weijifen.room = array;
         if(data.playway&&data.room){
             cc.weijifen.playway = data.playway;
             if(data.match){
