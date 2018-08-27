@@ -372,6 +372,10 @@ cc.Class({
         platForm = this.clientPlatForm();
         if (platForm == 'IOS') {
             this.alert('IOS平台');
+            anMethod = [
+                "",
+                "+(void)wxLogin:(NSString *)"
+            ];
         } else if (platForm == 'ANDROID') {
             anMethod = [
                 "org/cocos2dx/javascript/event/EventManager",
