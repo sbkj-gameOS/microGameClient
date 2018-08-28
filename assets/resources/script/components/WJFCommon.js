@@ -371,7 +371,6 @@ cc.Class({
         let anMethod,platForm;
         platForm = this.clientPlatForm();
         if (platForm == 'IOS') {
-            this.alert('IOS平台');
             anMethod = [
                 "AppController",
                 "wxLogin",
