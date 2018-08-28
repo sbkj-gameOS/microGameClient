@@ -66,15 +66,6 @@ cc.Class({
         }
         var self = this ;
         cc.weijifen.wxAuth = function(code) {
-            
-
-
-
-            self.alert('调到wxAuth方法！');
-
-
-
-
             self.login(code,self) ;
         };
         // 检测是否重新下载app 
@@ -167,8 +158,11 @@ cc.Class({
         if(tongyi){
             let object = cc.find('Canvas/js/AppCommon').getComponent('AppCommon');
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "WXLoginOK","1");
-            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "WXLoginOK","1");
-            
+            if (object.clientPlatForm() == 'IOS') {
+                var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2]);
+            } else {
+                var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "WXLoginOK","1");
+            }
         }else{
             this.alert('请同意用户使用协议');
         }
