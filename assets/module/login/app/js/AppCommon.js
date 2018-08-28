@@ -112,8 +112,11 @@ cc.Class({
     },
     signSucess:function(result , object){
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
-        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "iPayHandler",result);
-       
+        if (object.clientPlatForm == 'IOS') {
+            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],"iPayHandler",object.anMethodParam()[2], result);
+        } else {
+            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "iPayHandler",result);
+        }
     },
     err:function(result , object) {
         
