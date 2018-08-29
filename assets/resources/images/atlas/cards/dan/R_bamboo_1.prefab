@@ -40,14 +40,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 38
+        "__id__": 36
       },
       {
-        "__id__": 39
+        "__id__": 37
       }
     ],
     "_prefab": {
-      "__id__": 40
+      "__id__": 38
     },
     "_id": "",
     "_opacity": 255,
@@ -643,23 +643,23 @@
         "__id__": 21
       },
       {
-        "__id__": 25
+        "__id__": 24
       },
       {
-        "__id__": 28
+        "__id__": 26
       },
       {
-        "__id__": 31
+        "__id__": 29
       },
       {
-        "__id__": 34
+        "__id__": 32
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 37
+      "__id__": 35
     },
     "_id": "",
     "_opacity": 255,
@@ -710,13 +710,10 @@
     "_components": [
       {
         "__id__": 22
-      },
-      {
-        "__id__": 23
       }
     ],
     "_prefab": {
-      "__id__": 24
+      "__id__": 23
     },
     "_id": "",
     "_opacity": 255,
@@ -755,34 +752,6 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 21
-    },
-    "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "b3daa091-3e8e-4358-8255-7543c401efd7"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "4201ef1f-4abc-4af0-8e84-e9e776943900"
-    }
-  },
-  {
     "__type__": "cc.Animation",
     "_name": "",
     "_objFlags": 0,
@@ -815,13 +784,9 @@
     "_children": [],
     "_tag": -1,
     "_active": false,
-    "_components": [
-      {
-        "__id__": 26
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 27
+      "__id__": 25
     },
     "_id": "",
     "_opacity": 255,
@@ -860,30 +825,6 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 25
-    },
-    "_enabled": true,
-    "_spriteFrame": null,
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -906,11 +847,11 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 29
+        "__id__": 27
       }
     ],
     "_prefab": {
-      "__id__": 30
+      "__id__": 28
     },
     "_id": "",
     "_opacity": 255,
@@ -953,7 +894,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 28
+      "__id__": 26
     },
     "_enabled": true,
     "_spriteFrame": null,
@@ -995,11 +936,11 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 32
+        "__id__": 30
       }
     ],
     "_prefab": {
-      "__id__": 33
+      "__id__": 31
     },
     "_id": "",
     "_opacity": 255,
@@ -1042,7 +983,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 31
+      "__id__": 29
     },
     "_enabled": true,
     "_spriteFrame": null,
@@ -1084,11 +1025,11 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 35
+        "__id__": 33
       }
     ],
     "_prefab": {
-      "__id__": 36
+      "__id__": 34
     },
     "_id": "",
     "_opacity": 255,
@@ -1131,7 +1072,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 34
+      "__id__": 32
     },
     "_enabled": true,
     "_spriteFrame": null,
@@ -1227,16 +1168,16 @@
       "__id__": 17
     },
     "current": {
-      "__id__": 34
+      "__id__": 32
     },
     "right": {
-      "__id__": 28
+      "__id__": 26
     },
     "left": {
-      "__id__": 31
+      "__id__": 29
     },
     "top": {
-      "__id__": 25
+      "__id__": 24
     },
     "hua": null,
     "juju": {
