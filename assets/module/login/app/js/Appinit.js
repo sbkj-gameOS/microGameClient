@@ -88,7 +88,8 @@ cc.Class({
         let url = cc.sys.localStorage.getItem('appUrl');
         cc.find('Canvas/downloadapp').active = false;
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "openView",url);
-        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "openView",url);
+        var res = jsb.reflection.callStaticMethod(...object.anMethodParam().openView,url);
+        // var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "openView",url);
     },
     hideDownTips: function () {
         cc.find('Canvas/downloadapp').active = false;

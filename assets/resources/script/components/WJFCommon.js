@@ -371,23 +371,41 @@ cc.Class({
         let anMethod,platForm;
         platForm = this.clientPlatForm();
         if (platForm == 'IOS') {
-            anMethod = [
-                "AppController",
-                "wxLogin",
-                "cocos2d-js"
-            ];
+            if (cc.weijifen.GameBase.gameModel == 'ch') {
+                anMethod = {
+                    wxLogin:     ["AppController","wxLogin","cocos2d-js"],// 登录
+                    shareEvent:  ["AppController","shareEvent","cocos2d-js"],// 去分享房间号、app、红包  
+                    shareParam:  ["AppController","shareParam","cocos2d-js"],// 点击分享房间号 
+                    iPayHandler: ["AppController","iPayHandler","cocos2d-js"],// 支付 
+                    openView:    ["AppController","openView","cocos2d-js"],  // 下载app 
+                    recorderApi: ["AppController","recorderApi","cocos2d-js"],  // 下载app 
+                                                                               // 语音
+                }
+            }
         } else if (platForm == 'ANDROID') {
-            anMethod = [
-                "org/cocos2dx/javascript/event/EventManager",
-                "raiseEvent",
-                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-            ];
+            if (cc.weijifen.GameBase.gameModel == 'ch') {
+                var com = ["org/cocos2dx/javascript/event/EventManager","raiseEvent","(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"];
+                anMethod = {
+                    wxLogin:     [...com,"WXLoginOK","1"],// 登录
+                    shareEvent:  [...com,"shareEvent"],// 去分享房间号、app、红包  
+                    shareParam:  [...com,"shareParam"],// 点击分享房间号 
+                    iPayHandler: [...com,"iPayHandler"],// 支付 
+                    openView:    [...com,"openView"],// 下载app 
+                    recorderApi: [...com,"recorderApi"],// 录音 
+
+                }
+            }
         } else {// 测试平台
-            anMethod = [
-                "org/cocos2dx/javascript/event/EventManager",
-                "raiseEvent",
-                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-            ];
+            var com = ["org/cocos2dx/javascript/event/EventManager","raiseEvent","(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"];
+            anMethod = {
+                wxLogin:     [...com,"WXLoginOK","1"],// 登录
+                shareEvent:  [...com,"shareEvent"],// 去分享房间号、app、红包  
+                shareParam:  [...com,"shareParam"],// 点击分享房间号 
+                iPayHandler: [...com,"iPayHandler"],// 支付 
+                openView:    [...com,"openView"],// 下载app 
+                recorderApi: [...com,"recorderApi"],// 录音 
+
+            }
         }
         return anMethod;
     },

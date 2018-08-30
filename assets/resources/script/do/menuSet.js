@@ -163,6 +163,7 @@ cc.Class({
         var customEventData = e.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
         var wjf = require('WJFCommon');
         var _wjf = new wjf(); 
+        _wjf.alert(customEventData);
         cc.weijifen.http.httpGet('/coupon/gain/coupon/id?userId=' + cc.weijifen.user.id,function(data){
            boxId = data;
         },function(data){boxId=data}) ;  
@@ -186,7 +187,7 @@ cc.Class({
                 msgType: 1
             }
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
-            var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
+            var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
         },2000);
     },
    

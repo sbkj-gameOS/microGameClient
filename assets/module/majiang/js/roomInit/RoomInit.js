@@ -291,7 +291,7 @@ cc.Class({
             conType:1,
             msgType:1
         }
-        var res = jsb.reflection.callStaticMethod(object.anMethodParam()[0],object.anMethodParam()[1],object.anMethodParam()[2], "shareEvent",JSON.stringify(jsonData));
+        var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
         return;
     },
     unactive: function(event){

@@ -662,7 +662,7 @@ cc.Class({
                 }; 
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-                var result = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], 'recorderApi',JSON.stringify(params));
+                var result = jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(params));
             }
             
         }
@@ -848,7 +848,7 @@ cc.Class({
                         };
                         luyin_com.stop('luyin_anim');
                         // jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;","recorderApi",JSON.stringify(json));
-                        jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2],"recorderApi",JSON.stringify(json));
+                        jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
                         cc.find('Canvas/luyin').active = false;
                         m = 0;
                         clearInterval(timer);
@@ -857,7 +857,7 @@ cc.Class({
             }
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
-            jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2] ,"recorderApi",JSON.stringify(json));
+            jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
@@ -870,7 +870,7 @@ cc.Class({
             console.log("1249");
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
-            jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2],"recorderApi",JSON.stringify(json));
+            jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
             cc.find('Canvas/luyin').active = false;
             m = 0;
         });
@@ -1298,7 +1298,7 @@ cc.Class({
                 cc.weijifen.isPLayVideo = true;
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-                var result = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], 'recorderApi',JSON.stringify(params));
+                var result = jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(params));
             }
             
             let id_c,id_t,id_r,id_l; 
