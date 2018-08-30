@@ -44,7 +44,7 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;
+            // youkeBtn.active = false;
             //微信登录按钮剧中
             let wxBtn = cc.find("Canvas/global/button/button1");
             wxBtn.setPosition(0,-63);
@@ -104,9 +104,13 @@ cc.Class({
         // var res = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], "shareParam","");
         var res = jsb.reflection.callStaticMethod(...self.anMethodParam().shareParam,"");
         if(res){
-            res = JSON.parse(res);
-            if(res.code != "10086" && res.roomNum){
-                cc.weijifen.shareRoomNum = res.roomNum;
+            var result1 = JSON.parse(res);
+            if (result1.code != "10086") {
+                if (self.clientPlatForm() == 'IOS') {
+                    cc.weijifen.shareRoomNum = res;
+                } else if (self.clientPlatForm() == 'ANDROID' && result1.roomNum) {
+                    cc.weijifen.shareRoomNum = result1.roomNum;
+                }
             }
         }
         
@@ -150,7 +154,6 @@ cc.Class({
         tongyi = toggle.isChecked;
     },
     guestSucess:function(result , object){
-        object.alert(result);
         var data = JSON.parse(result) ;
         if(data!=null && data.token!=null && data.data!=null){
             //放在全局变量

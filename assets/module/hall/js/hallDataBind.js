@@ -153,7 +153,7 @@ cc.Class({
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
         var time = setInterval(function(){
-            cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
+            cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;            
         },10000);
     },
     /*
@@ -227,11 +227,20 @@ cc.Class({
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
             // object.alert("res:"+res);
             if(res){
-                res = JSON.parse(res);
+                var result1 = JSON.parse(res);
+                if (result1.code != "10086" && result1.roomNum) {
+                    if (self.clientPlatForm() == 'IOS') {
+                        cc.weijifen.shareRoomNum = res;
+                    } else if (self.clientPlatForm() == 'ANDROID') {
+                        cc.weijifen.shareRoomNum = result1.roomNum;
+                        cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
+                    }
+                }
+             /*   res = JSON.parse(res);
                 if(res.code != "10086" && res.roomNum){
                     cc.weijifen.shareRoomNum = res.roomNum;
                     cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
-                }
+                }*/
             }
             
         });
