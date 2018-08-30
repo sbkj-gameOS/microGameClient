@@ -373,13 +373,13 @@ cc.Class({
         if (platForm == 'IOS') {
             if (cc.weijifen.GameBase.gameModel == 'ch') {
                 anMethod = {
-                    wxLogin:     ["AppController","wxLogin","cocos2d-js"],// 登录
-                    shareEvent:  ["AppController","shareEvent","cocos2d-js"],// 去分享房间号、app、红包  
-                    shareParam:  ["AppController","shareParam","cocos2d-js"],// 点击分享房间号 
-                    iPayHandler: ["AppController","iPayHandler","cocos2d-js"],// 支付 
-                    openView:    ["AppController","openView","cocos2d-js"],  // 下载app 
-                    recorderApi: ["AppController","recorderApi","cocos2d-js"],  // 下载app 
-                                                                               // 语音
+                    wxLogin:     ["AppController","wxLogin:","cocos2d-js"],// 登录
+                    shareEvent:  ["AppController","shareEvent:","cocos2d-js"],// 去分享房间号、app、红包  
+                    shareParam:  ["AppController","shareParam:","cocos2d-js"],// 点击分享房间号 
+                    iPayHandler: ["AppController","iPayHandler:","cocos2d-js"],// 支付 
+                    openView:    ["AppController","openView:","cocos2d-js"],  // 下载app 
+                    recorderApi: ["AppController","recorderApi:","cocos2d-js"],  // 语音 
+                                                                               
                 }
             }
         } else if (platForm == 'ANDROID') {

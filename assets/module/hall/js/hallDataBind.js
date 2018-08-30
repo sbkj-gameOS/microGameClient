@@ -224,7 +224,7 @@ cc.Class({
         cc.game.on(cc.game.EVENT_SHOW, function () {
             //获取分享进入的时候，是否分享的游戏房间
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-            var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
+            var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam);
             // object.alert("res:"+res);
             if(res){
                 var result1 = JSON.parse(res);
@@ -232,13 +232,8 @@ cc.Class({
                     cc.weijifen.shareRoomNum = res;
                 } else if (self.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {
                     cc.weijifen.shareRoomNum = result1.roomNum;
-                    cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
                 }
-             /*   res = JSON.parse(res);
-                if(res.code != "10086" && res.roomNum){
-                    cc.weijifen.shareRoomNum = res.roomNum;
-                    cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
-                }*/
+                cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
             }
             
         });

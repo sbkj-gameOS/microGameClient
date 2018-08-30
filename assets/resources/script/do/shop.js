@@ -46,7 +46,8 @@ cc.Class({
         
     },
     shopOneClick(event){
-        var idvalue = event.target.getChildByName("idvalue").getComponent(cc.Label).string;
+        var idvalue = event.currentTarget.getChildByName("idvalue").getComponent(cc.Label).string;
+        // var idvalue = event.target.getComponent(cc.Label).string;
         //模拟调用支付接口,调用后台数据{token:token,shopId:id}
         cc.weijifen.pay(idvalue);
     },
