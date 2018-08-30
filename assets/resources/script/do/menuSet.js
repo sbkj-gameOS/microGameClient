@@ -163,7 +163,6 @@ cc.Class({
         var customEventData = e.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
         var wjf = require('WJFCommon');
         var _wjf = new wjf(); 
-        _wjf.alert(customEventData);
         cc.weijifen.http.httpGet('/coupon/gain/coupon/id?userId=' + cc.weijifen.user.id,function(data){
            boxId = data;
         },function(data){boxId=data}) ;  
