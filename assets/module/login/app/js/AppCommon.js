@@ -105,12 +105,11 @@ cc.Class({
         var res = jsb.reflection.callStaticMethod(...self.anMethodParam().shareParam,"");
         if(res){
             var result1 = JSON.parse(res);
-            if (result1.code != "10086") {
-                if (self.clientPlatForm() == 'IOS') {
-                    cc.weijifen.shareRoomNum = res;
-                } else if (self.clientPlatForm() == 'ANDROID' && result1.roomNum) {
-                    cc.weijifen.shareRoomNum = result1.roomNum;
-                }
+            if (self.clientPlatForm() == 'IOS') {
+                cc.weijifen.shareRoomNum = res;
+            } else if (self.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {
+                cc.weijifen.shareRoomNum = result1.roomNum;
+                cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
             }
         }
         
