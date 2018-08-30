@@ -140,7 +140,7 @@ cc.Class({
         if (data == 'true') {
             var shareStep = cc.instantiate(this.shareStep);
             shareStep.parent = cc.find('Canvas');
-            cc.weijifen.menu.put(event.target.parent.parent);
+            cc.weijifen.menu.put(event.target.parent);
         } else {
             cc.find('Canvas/share_step').destroy();
 
