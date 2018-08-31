@@ -388,7 +388,7 @@ cc.Class({
                 anMethod = {
                     wxLogin:     [...com,"WXLoginOK","1"],// 登录
                     shareEvent:  [...com,"shareEvent"],// 去分享房间号、app、红包  
-                    shareParam:  [...com,"shareParam"],// 点击分享房间号 
+                    shareParam:  [...com,"shareParam",""],// 点击分享房间号 
                     iPayHandler: [...com,"iPayHandler"],// 支付 
                     openView:    [...com,"openView"],// 下载app 
                     recorderApi: [...com,"recorderApi"],// 录音 

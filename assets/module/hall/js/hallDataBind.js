@@ -136,7 +136,10 @@ cc.Class({
             // 玩家头像边框
             cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
             //请求获取当前用户是否已经参加了房间
-            cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,this.roomSuccess,this.roomError,this);       
+            var roomTime = setTimeout(function(){
+                cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
+                clearTimeout(roomTime);
+            },2000);
             
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
