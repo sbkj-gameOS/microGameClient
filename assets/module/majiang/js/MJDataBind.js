@@ -308,6 +308,9 @@ cc.Class({
             self.getSelf().route("talkOnSay",self)(data, self);
         });
 
+        socket.on("StrongGameOver" , function(result){
+            self.__proto__.__proto__.alert(result.gameOverReason);
+        }); 
         self.node.on('overGame',function(event){
             let socket = self.getSelf().socket();
             if(event.getUserData()){
@@ -662,8 +665,8 @@ cc.Class({
                 }; 
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                console.log('参数--recorderApi--播放---',...object.anMethodParam().recorderApi);
                 var result = jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(params));
-                console.log('参数--recorderApi--播放',...object.anMethodParam().recorderApi);
             }
             
         }
@@ -759,6 +762,7 @@ cc.Class({
     * 初始化对象池
     */
     init_pool: function (context) {
+        var self = this;
         cc.weijifen.shareRoomNum = "";     //1111
         /**
          * 已初始的玩家对象池 ， 牌局结束 或者 有新玩家加入， 老玩家离开 等事件的时候，需要做对象池回收
@@ -849,8 +853,8 @@ cc.Class({
                         };
                         luyin_com.stop('luyin_anim');
                         // jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;","recorderApi",JSON.stringify(json));
-                        jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
-                        console.log('参数--recorderApi--按下',...object.anMethodParam().recorderApi);
+                        jsb.reflection.callStaticMethod(context.anMethodParam().recorderApi,JSON.stringify(json));
+                        console.log(...object.anMethodParam().recorderApi);
                         cc.find('Canvas/luyin').active = false;
                         m = 0;
                         clearInterval(timer);
@@ -860,7 +864,7 @@ cc.Class({
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
             jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
-            console.log('参数--recorderApi--按下',...object.anMethodParam().recorderApi);
+            console.log(...object.anMethodParam().recorderApi);
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
@@ -874,7 +878,7 @@ cc.Class({
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
             jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
-            console.log('参数--recorderApi--结束',...object.anMethodParam().recorderApi);
+            console.log('参数--recorderApi--结束---',...object.anMethodParam().recorderApi);
             cc.find('Canvas/luyin').active = false;
             m = 0;
         });
@@ -1303,7 +1307,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var result = jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(params));
-                console.log('参数--recorderApi--服务端返回',...object.anMethodParam().recorderApi);
+                console.log('参数--recorderApi--服务端返回---',...object.anMethodParam().recorderApi);
             }
             
             let id_c,id_t,id_r,id_l; 

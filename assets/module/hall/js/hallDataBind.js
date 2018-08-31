@@ -138,9 +138,9 @@ cc.Class({
             cc.game.on(cc.game.EVENT_SHOW, function () {
                 //获取分享进入的时候，是否分享的游戏房间
                 // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-                var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam);
+                console.log('参数--shareParam---', ...object.anMethodParam().shareParam);
+                var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
                 console.log('主动调用了geme.on方法--res',res);
-                console.log('参数--shareParam',...object.anMethodParam().shareParam);
                 // object.alert("res:"+res);
                 if(res && !cc.weijifen.shareParam){
                     var result1 = JSON.parse(res);
@@ -228,7 +228,7 @@ cc.Class({
     },
     tzsucess: function(result,object){
 		let data = JSON.parse(result);  
-        let message = cc.find('Canvas').getComponent('hallDataBind').message;
+        let message = object.message.getComponent(cc.Label);
         // if (data.context) {}
             // message = 
         data.context ? message.string = data.context : message.string = '暂无公告！';
@@ -240,10 +240,11 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
-        /*cc.game.on(cc.game.EVENT_SHOW, function () {
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            console.log('game.on---进入---roomsuccess')
             //获取分享进入的时候，是否分享的游戏房间
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-            var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam);
+            var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
             // object.alert("res:"+res);
             if(res){
                 var result1 = JSON.parse(res);
@@ -254,7 +255,7 @@ cc.Class({
                 }
                 cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
             }
-        });*/
+        });
 
 		let data = JSON.parse(result);
         if(data.message){

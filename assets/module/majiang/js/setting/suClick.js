@@ -80,7 +80,7 @@ cc.Class({
 	        }
 	        // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
-            console.log('参数--shareEvent---分享截图',...object.anMethodParam().shareEvent + '+++' +res);
+            console.log('参数--shareEvent---分享截图---',...object.anMethodParam().shareEvent + '+++' +res);
         });
         
         return;
