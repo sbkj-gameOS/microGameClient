@@ -135,8 +135,26 @@ cc.Class({
 
             // 玩家头像边框
             cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
+           
+            if (self.clientPlatForm() == 'ANDROID') {
+                var res = jsb.reflection.callStaticMethod(...self.anMethodParam().shareParam,"");
+                if(res){
+                    var result1 = JSON.parse(res);
+                    if (result1.code != "10086" && result1.roomNum) {
+                        cc.weijifen.shareRoomNum = result1.roomNum;
+                    }
+                    cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
+                }
+            } else if (self.clientPlatForm() == 'IOS') {
+                cc.weijifen.shareParamNum = function (res) {
+                    if (res) {
+                        cc.weijifen.shareRoomNum = res;
+                        cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
+                    }
+                }
+            }
             //请求获取当前用户是否已经参加了房间
-            var timeOu = setTimeout(function(){
+           /* var timeOu = setTimeout(function(){
                 if (!cc.weijifen.shareRoomNum) {
                     //获取分享进入的时候，是否分享的游戏房间
                     // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
@@ -156,7 +174,7 @@ cc.Class({
                 }
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
             },3000);
-            
+            */
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
             this.gundongText();
@@ -243,24 +261,22 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
-        if (!cc.weijifen.shareRoomNum) {
-            cc.game.on(cc.game.EVENT_SHOW, function () {
-                console.log('game.on---进入---roomsuccess')
-                //获取分享进入的时候，是否分享的游戏房间
-                // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
-                var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
-                // object.alert("res:"+res);
-                if(res){
-                    var result1 = JSON.parse(res);
-                    if (object.clientPlatForm() == 'IOS') {
-                        cc.weijifen.shareRoomNum = res;
-                    } else if (object.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {
-                        cc.weijifen.shareRoomNum = result1.roomNum;
-                    }
-                    cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
+        cc.game.on(cc.game.EVENT_SHOW, function () {
+            console.log('game.on---进入---roomsuccess')
+            //获取分享进入的时候，是否分享的游戏房间
+            // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+            var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
+            // object.alert("res:"+res);
+            if(res){
+                var result1 = JSON.parse(res);
+                if (object.clientPlatForm() == 'IOS') {
+                    cc.weijifen.shareRoomNum = res;
+                } else if (object.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {
+                    cc.weijifen.shareRoomNum = result1.roomNum;
                 }
-            });
-        }
+                cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
+            }
+        });
 
 		let data = JSON.parse(result);
         if(data.message){
