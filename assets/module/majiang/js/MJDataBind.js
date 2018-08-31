@@ -866,9 +866,9 @@ cc.Class({
             }
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
-                    var jsonRes = JSON.stringify(json);
+          /*          var jsonRes = JSON.stringify(json);
             jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-            console.log(...self.anMethodParam().recorderApi);
+            console.log(...self.anMethodParam().recorderApi);*/
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
