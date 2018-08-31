@@ -136,7 +136,7 @@ cc.Class({
             // 玩家头像边框
             cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
             //请求获取当前用户是否已经参加了房间
-            if (!cc.weijifen.shareParam) {
+            if (!cc.weijifen.shareRoomNum) {
                 //获取分享进入的时候，是否分享的游戏房间
                 // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
                 console.log('参数--shareParam---', ...self.anMethodParam().shareParam);
