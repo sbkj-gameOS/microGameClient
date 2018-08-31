@@ -374,11 +374,11 @@ cc.Class({
             if (cc.weijifen.GameBase.gameModel == 'ch') {
                 anMethod = {
                     wxLogin:     ["AppController","wxLogin:","cocos2d-js"],// 登录
-                    shareEvent:  ["AppController","shareEvent:","cocos2d-js"],// 去分享房间号、app、红包  
-                    shareParam:  ["AppController","shareParam:","cocos2d-js"],// 点击分享房间号 
-                    iPayHandler: ["AppController","iPayHandler:","cocos2d-js"],// 支付 
-                    openView:    ["AppController","openView:","cocos2d-js"],  // 下载app 
-                    recorderApi: ["AppController","recorderApi:","cocos2d-js"],  // 语音 
+                    shareEvent:  ["AppController","shareEvent:"],// 去分享房间号、app、红包  
+                    shareParam:  ["AppController","shareParam:",""],// 点击分享房间号 
+                    iPayHandler: ["AppController","iPayHandler:"],// 支付 
+                    openView:    ["AppController","openView:"],  // 下载app 
+                    recorderApi: ["AppController","recorderApi:"],  // 语音 
                                                                                
                 }
             }
@@ -400,7 +400,7 @@ cc.Class({
             anMethod = {
                 wxLogin:     [...com,"WXLoginOK","1"],// 登录
                 shareEvent:  [...com,"shareEvent"],// 去分享房间号、app、红包  
-                shareParam:  [...com,"shareParam"],// 点击分享房间号 
+                shareParam:  [...com,"shareParam",""],// 点击分享房间号 
                 iPayHandler: [...com,"iPayHandler"],// 支付 
                 openView:    [...com,"openView"],// 下载app 
                 recorderApi: [...com,"recorderApi"],// 录音 

@@ -45,7 +45,7 @@ cc.Class({
         prizeBox: cc.Prefab
     },
     onLoad: function () {
-        
+        var self = this ;
         //如果weijifen已经加载好了
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
@@ -135,6 +135,23 @@ cc.Class({
 
             // 玩家头像边框
             cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
+            cc.game.on(cc.game.EVENT_SHOW, function () {
+                //获取分享进入的时候，是否分享的游戏房间
+                // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
+                var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam);
+                console.log('主动调用了geme.on方法--res',res);
+                console.log('参数--shareParam',...object.anMethodParam().shareParam);
+                // object.alert("res:"+res);
+                if(res && !cc.weijifen.shareParam){
+                    var result1 = JSON.parse(res);
+                    if (object.clientPlatForm() == 'IOS') {
+                        cc.weijifen.shareRoomNum = res;
+                    } else if (self.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {
+                        cc.weijifen.shareRoomNum = result1.roomNum;
+                    }
+                    cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
+                }
+            });
             //请求获取当前用户是否已经参加了房间
             var roomTime = setTimeout(function(){
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
@@ -150,7 +167,6 @@ cc.Class({
 
         }
 
-        var self = this ;
         cc.weijifen.iPayBack = function(result) {
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
@@ -224,7 +240,7 @@ cc.Class({
 
     },
     roomSuccess: function(result,object){
-        cc.game.on(cc.game.EVENT_SHOW, function () {
+        /*cc.game.on(cc.game.EVENT_SHOW, function () {
             //获取分享进入的时候，是否分享的游戏房间
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam);
@@ -238,8 +254,7 @@ cc.Class({
                 }
                 cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
             }
-            
-        });
+        });*/
 
 		let data = JSON.parse(result);
         if(data.message){

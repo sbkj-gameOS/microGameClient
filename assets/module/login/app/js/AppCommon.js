@@ -102,7 +102,7 @@ cc.Class({
         //获取分享进入的时候，是否分享的游戏房间
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
         // var res = jsb.reflection.callStaticMethod(self.anMethodParam()[0],self.anMethodParam()[1],self.anMethodParam()[2], "shareParam","");
-        var res = jsb.reflection.callStaticMethod(...self.anMethodParam().shareParam);
+        /*var res = jsb.reflection.callStaticMethod(...self.anMethodParam().shareParam);
         if(res){
             var result1 = JSON.parse(res);
             if (self.clientPlatForm() == 'IOS') {
@@ -111,7 +111,7 @@ cc.Class({
                 cc.weijifen.shareRoomNum = result1.roomNum;
             }
             cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
-        }
+        }*/
         
     },
     updateSuccess:function (result,object) {
@@ -124,6 +124,7 @@ cc.Class({
     signSucess:function(result , object){
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
         var res = jsb.reflection.callStaticMethod(...object.anMethodParam().iPayHandler,result);
+         console.log('参数--iPayHandler',...object.anMethodParam().iPayHandler);
     },
     err:function(result , object) {
         

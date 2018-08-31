@@ -663,6 +663,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var result = jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(params));
+                console.log('参数--recorderApi--播放',...object.anMethodParam().recorderApi);
             }
             
         }
@@ -849,6 +850,7 @@ cc.Class({
                         luyin_com.stop('luyin_anim');
                         // jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;","recorderApi",JSON.stringify(json));
                         jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
+                        console.log('参数--recorderApi--按下',...object.anMethodParam().recorderApi);
                         cc.find('Canvas/luyin').active = false;
                         m = 0;
                         clearInterval(timer);
@@ -858,6 +860,7 @@ cc.Class({
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
             jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
+            console.log('参数--recorderApi--按下',...object.anMethodParam().recorderApi);
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
@@ -871,6 +874,7 @@ cc.Class({
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
             jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(json));
+            console.log('参数--recorderApi--结束',...object.anMethodParam().recorderApi);
             cc.find('Canvas/luyin').active = false;
             m = 0;
         });
@@ -1299,6 +1303,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var result = jsb.reflection.callStaticMethod(self.anMethodParam().recorderApi,JSON.stringify(params));
+                console.log('参数--recorderApi--服务端返回',...object.anMethodParam().recorderApi);
             }
             
             let id_c,id_t,id_r,id_l; 
