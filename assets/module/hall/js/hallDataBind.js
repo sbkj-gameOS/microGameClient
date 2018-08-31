@@ -144,7 +144,7 @@ cc.Class({
                 // object.alert("res:"+res);
                 if(res && !cc.weijifen.shareParam){
                     var result1 = JSON.parse(res);
-                    if (object.clientPlatForm() == 'IOS') {
+                    if (self.clientPlatForm() == 'IOS') {
                         cc.weijifen.shareRoomNum = res;
                     } else if (self.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {
                         cc.weijifen.shareRoomNum = result1.roomNum;
