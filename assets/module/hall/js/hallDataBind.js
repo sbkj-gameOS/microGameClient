@@ -136,6 +136,7 @@ cc.Class({
             // 玩家头像边框
             cc.weijifen.http.httpGet('/userInfo/query/vip/level/'+cc.weijifen.authorization,this.headBorderSuccess,this.headBorderErr,this);
             cc.game.on(cc.game.EVENT_SHOW, function () {
+                
                 //获取分享进入的时候，是否分享的游戏房间
                 // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
                 console.log('参数--shareParam---', ...self.anMethodParam().shareParam);
@@ -172,7 +173,11 @@ cc.Class({
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
         var time = setInterval(function(){
-            cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;            
+            if (cc.director.getScene().name != 'gameMain') {
+                clearInterval(time);
+                return  
+            }    
+            cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
     },
     /*
