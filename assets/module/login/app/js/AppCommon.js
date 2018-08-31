@@ -92,9 +92,9 @@ cc.Class({
 
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
-            if (object.clientPlatForm() == 'IOS') {
+            if (self.clientPlatForm() == 'IOS') {
                 cc.weijifen.http.httpGet("/ipay/IOSsign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
-            } else if (object.clientPlatForm() == 'ANDROID') {// 安卓
+            } else if (self.clientPlatForm() == 'ANDROID') {// 安卓
                 cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
 
             }
