@@ -647,7 +647,6 @@ cc.Class({
         });
         // 发送录音
         cc.weijifen.player_recording = function(param){
-            console.log('oc端返回的语音地址------',param)
             var param1 = {
                 type:3,
                 userId: cc.weijifen.user.id,
@@ -666,7 +665,7 @@ cc.Class({
                 }; 
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-                console.log('参数--recorderApi--播放---队列---',JSON.stringify(videoList));
+                console.log('参数--recorderApi--播放---队列',videoList);
                 var jsonRes = JSON.stringify(params);
                 var result = jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
             }
@@ -1313,7 +1312,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var jsonRes = JSON.stringify(params);
-                console.log('服务端返回的语音列表-----',res.content);
+                console.log('服务端返回的语音列表-----',JSON.stringify(videoList))
                 var result = jsb.reflection.callStaticMethod(...obj.anMethodParam().recorderApi,jsonRes);  
                 console.log('参数--recorderApi--服务端返回---',...obj.anMethodParam().recorderApi);
             }

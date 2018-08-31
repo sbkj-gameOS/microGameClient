@@ -146,11 +146,16 @@ cc.Class({
                     cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
                 }
             } else if (self.clientPlatForm() == 'IOS') {
-                cc.weijifen.shareParamNum = function (res) {
+                /*cc.weijifen.shareParamNum = function (res) {
                     if (res) {
                         cc.weijifen.shareRoomNum = res;
                         cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
                     }
+                }*/
+                var res = jsb.reflection.callStaticMethod("AppController","shareParam:","");
+                if(res){
+                    cc.weijifen.shareRoomNum = res;
+                    cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
                 }
             }
             //请求获取当前用户是否已经参加了房间
