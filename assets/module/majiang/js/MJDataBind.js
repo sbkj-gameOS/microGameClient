@@ -883,7 +883,7 @@ cc.Class({
                     ,"recorderApi",JSON.stringify(json));*/
                     var jsonRes = JSON.stringify(json);
             jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-            console.log('参数--recorderApi--结束---',...object.anMethodParam().recorderApi);
+            console.log('参数--recorderApi--结束---',...self.anMethodParam().recorderApi);
             cc.find('Canvas/luyin').active = false;
             m = 0;
         });
