@@ -1313,7 +1313,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var jsonRes = JSON.stringify(params);
-                console.log('服务端返回的语音列表-----',JSON.stringify(videoList))
+                console.log('服务端返回的语音列表-----',res.content);
                 var result = jsb.reflection.callStaticMethod(...obj.anMethodParam().recorderApi,jsonRes);  
                 console.log('参数--recorderApi--服务端返回---',...obj.anMethodParam().recorderApi);
             }
