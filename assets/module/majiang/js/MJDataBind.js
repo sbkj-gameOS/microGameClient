@@ -847,11 +847,7 @@ cc.Class({
             if (m) {
                 timer = setInterval(function(){
                     m++;
-                    if (m < 16) {
-                        var jsonRes = JSON.stringify(json);
-                        jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-                        console.log(...self.anMethodParam().recorderApi);
-                    } else if (m > 16) {
+                    if (m > 16) {
                         var json = {
                             act:2,
                             token:cc.weijifen.authorization
@@ -867,10 +863,13 @@ cc.Class({
                         clearInterval(timer);
                     }
                 },1000);
-
             }
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
+            var jsonRes = JSON.stringify(json);
+            jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
+            console.log(...self.anMethodParam().recorderApi);
+            console.log('开始录音-----',JOSN.stringify(json));
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
