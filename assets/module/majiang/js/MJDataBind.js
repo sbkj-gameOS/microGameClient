@@ -847,7 +847,11 @@ cc.Class({
             if (m) {
                 timer = setInterval(function(){
                     m++;
-                    if (m > 16) {
+                    if (m < 16) {
+                        var jsonRes = JSON.stringify(json);
+                        jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
+                        console.log(...self.anMethodParam().recorderApi);
+                    } else if (m > 16) {
                         var json = {
                             act:2,
                             token:cc.weijifen.authorization
@@ -863,12 +867,10 @@ cc.Class({
                         clearInterval(timer);
                     }
                 },1000);
+
             }
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
-          /*          var jsonRes = JSON.stringify(json);
-            jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-            console.log(...self.anMethodParam().recorderApi);*/
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
@@ -1312,7 +1314,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var jsonRes = JSON.stringify(params);
-                console.log('服务端返回的语音列表-----',JSON.stringify(videoList))
+                console.log('服务端返回的语音列表-----',JSON.stringify(res.content))
                 var result = jsb.reflection.callStaticMethod(...obj.anMethodParam().recorderApi,jsonRes);  
                 console.log('参数--recorderApi--服务端返回---',...obj.anMethodParam().recorderApi);
             }
