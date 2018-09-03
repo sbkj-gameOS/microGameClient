@@ -10,12 +10,17 @@ cc.Class({
         cc.weijifen.dialog.put(dialog);
     },
     closeMenu: function(event){
+        let menu = event.target.parent;
+        if (cc.find('Canvas/menu/share')) {
+            cc.find('Canvas/menu/share').active = false;
+            cc.weijifen.menu.put(menu);
+            return
+        }
         if (event.target.getComponent(cc.Button).clickEvents.length && event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'packge_menu') {
             event.target.parent.destroy();
             return
         }
         // let menu = cc.find("Canvas/menu");
-        let menu = event.target.parent;
         if (menu.children[2].active) {
             cc.weijifen.gongaoAlertNum--;
         }

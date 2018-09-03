@@ -19,6 +19,10 @@ cc.Class({
         var shareWxBtn = this.title.parent.children[4];
         shareWxBtn.active = false;       
         web.setPosition(0,900);
+        if (name == 12) {
+            cc.find('Canvas/menu/share').active = true;
+            return
+        }
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
@@ -132,18 +136,6 @@ cc.Class({
         }
         if(cc.find('Canvas/menu/setting')){
             cc.find('Canvas/menu/setting').destroy();
-        }
-    },
-     /* 分享现金红包流程引导 */
-    shareStepFn: function (event) {
-        var data = event.target.getComponent(cc.Button).clickEvents[0].customEventData;
-        if (data == 'true') {
-            var shareStep = cc.instantiate(this.shareStep);
-            shareStep.parent = cc.find('Canvas');
-            cc.weijifen.menu.put(event.target.parent);
-        } else {
-            cc.find('Canvas/share_step').destroy();
-
         }
     },
     /* 
