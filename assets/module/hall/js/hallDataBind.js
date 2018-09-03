@@ -245,7 +245,6 @@ cc.Class({
     },
     roomSuccess: function(result,object){
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            console.log('game.on---进入---roomsuccess')
             //获取分享进入的时候，是否分享的游戏房间
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
@@ -260,7 +259,7 @@ cc.Class({
                 cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
             }
         });
-
+        console.log('房间成功访问---',result)
 		let data = JSON.parse(result);
         if(data.message){
             object.alert(data.message);//如果当前玩家离线状态下，房间解散掉了，登录后给予提示信息
