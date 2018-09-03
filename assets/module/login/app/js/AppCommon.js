@@ -33,7 +33,7 @@ cc.Class({
         var self = this;
         self.jsbParams = null;// type: ,jsb所需参数
         var platForm = self.clientPlatForm();
-        var GameBase = {'gameModel':'ch'} ;
+        var GameBase = {'gameModel':'nj'} ;
         cc.weijifen.GameBase = GameBase ;
         cc.sys.localStorage.setItem('version',"1.0.1");
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
