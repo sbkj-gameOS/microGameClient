@@ -148,9 +148,7 @@ cc.Class({
                 }
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
             } else if (self.clientPlatForm() == 'IOS') {
-                console.log('ios-----分享房间---')
                 cc.weijifen.shareParamNum = function (res){ 
-                console.log('ios返回的数据为------',res)
                     if (res) {
                         cc.weijifen.shareRoomNum = res;
                         cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
@@ -259,7 +257,6 @@ cc.Class({
                 cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,object.tokenSuccess,object.carderror,object);
             }
         });
-        console.log('房间成功访问---',result);
 		let data = JSON.parse(result);
         if(data.message){
             object.alert(data.message);//如果当前玩家离线状态下，房间解散掉了，登录后给予提示信息

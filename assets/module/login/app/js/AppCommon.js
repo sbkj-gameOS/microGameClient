@@ -123,9 +123,6 @@ cc.Class({
     },
     signSucess:function(result , object){
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
-         console.log('参数--iPayHandler---',...object.anMethodParam().iPayHandler);
-            console.log('支付返回的网址---',result)
-
         var res = jsb.reflection.callStaticMethod(...object.anMethodParam().iPayHandler,result);
     },
     err:function(result , object) {

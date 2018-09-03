@@ -361,7 +361,6 @@ cc.Class({
                             cc.find('Canvas/ting').active = false;
                             anim.stop('ting');
                         },1500);
-                        console.log(self.gameModelMp3)
                         cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting' + '_' +cc.weijifen.genders['current'] + '.mp3');                                
                         let socket = self.getSelf().socket();
                         cc.sys.localStorage.removeItem('ting') ;
@@ -665,7 +664,6 @@ cc.Class({
                 }; 
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-                console.log('参数--recorderApi--播放---队列',videoList);
                 var jsonRes = JSON.stringify(params);
                 var result = jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
             }
@@ -867,9 +865,7 @@ cc.Class({
             /*jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
                     ,"recorderApi",JSON.stringify(json));*/
             var jsonRes = JSON.stringify(json);
-            console.log('开始录音-----',jsonRes);
             jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-            console.log(...self.anMethodParam().recorderApi);
         });
         t_Start.on('touchend',function(e){
             if (timer) clearInterval(timer);
@@ -884,7 +880,6 @@ cc.Class({
                     ,"recorderApi",JSON.stringify(json));*/
                     var jsonRes = JSON.stringify(json);
             jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-            console.log('参数--recorderApi--结束---',...self.anMethodParam().recorderApi);
             cc.find('Canvas/luyin').active = false;
             m = 0;
         });
