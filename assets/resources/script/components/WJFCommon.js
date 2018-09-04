@@ -371,7 +371,7 @@ cc.Class({
         let anMethod,platForm;
         platForm = this.clientPlatForm();
         if (platForm == 'IOS') {
-            if (cc.weijifen.GameBase.gameModel == 'ch') {
+            // if (cc.weijifen.GameBase.gameModel == 'ch') {
                 anMethod = {
                     wxLogin:     ["AppController","wxLogin:","cocos2d-js"],// 登录
                     shareEvent:  ["AppController","shareEvent:"],// 去分享房间号、app、红包  
@@ -381,9 +381,9 @@ cc.Class({
                     recorderApi: ["AppController","recorderApi:"],  // 语音 
                                                                                
                 }
-            }
+            // }s
         } else if (platForm == 'ANDROID') {
-            if (cc.weijifen.GameBase.gameModel == 'ch') {
+            // if (cc.weijifen.GameBase.gameModel == 'ch') {
                 var com = ["org/cocos2dx/javascript/event/EventManager","raiseEvent","(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"];
                 anMethod = {
                     wxLogin:     [...com,"WXLoginOK","1"],// 登录
@@ -394,7 +394,7 @@ cc.Class({
                     recorderApi: [...com,"recorderApi"],// 录音 
 
                 }
-            }
+            // }
         } else {// 测试平台
             var com = ["org/cocos2dx/javascript/event/EventManager","raiseEvent","(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"];
             anMethod = {

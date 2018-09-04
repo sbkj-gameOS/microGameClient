@@ -33,7 +33,7 @@ cc.Class({
         var self = this;
         self.jsbParams = null;// type: ,jsb所需参数
         var platForm = self.clientPlatForm();
-        var GameBase = {'gameModel':'ch'} ;
+        var GameBase = {'gameModel':'nj'} ;
         cc.weijifen.GameBase = GameBase ;
         cc.sys.localStorage.setItem('version',"1.0.1");
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
@@ -57,12 +57,14 @@ cc.Class({
         }else if(cc.weijifen.GameBase.gameModel == 'nj'){
             let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
             rightTopLogo.active = false;
-            sprite.spriteFrame = this.NJLogo;
+            let youkeBtn = cc.find("Canvas/global/button/button2");
+            youkeBtn.active = false;sprite.spriteFrame = this.NJLogo;
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
         }else if(cc.weijifen.GameBase.gameModel == 'ls'){
+            let youkeBtn = cc.find("Canvas/global/button/button2");
+            youkeBtn.active = false;rightTopLogo.active = false;
             let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
-            rightTopLogo.active = false;
             sprite.spriteFrame = this.LSLogo;
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
