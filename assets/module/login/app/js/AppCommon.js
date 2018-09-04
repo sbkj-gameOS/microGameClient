@@ -58,13 +58,15 @@ cc.Class({
             let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
             rightTopLogo.active = false;
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;sprite.spriteFrame = this.NJLogo;
+            youkeBtn.active = false;
+            sprite.spriteFrame = this.NJLogo;
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
         }else if(cc.weijifen.GameBase.gameModel == 'ls'){
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;rightTopLogo.active = false;
+            youkeBtn.active = false;
             let rightTopLogo = cc.find("Canvas/global/image/xuntianyou");
+            rightTopLogo.active = false;
             sprite.spriteFrame = this.LSLogo;
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
