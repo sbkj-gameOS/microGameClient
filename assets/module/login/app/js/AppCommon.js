@@ -69,6 +69,8 @@ cc.Class({
             this.loginLogoNode.width = 480;
             this.loginLogoNode.height = 120;
         }
+        let wxBtn = cc.find("Canvas/global/button/button1");
+        wxBtn.setPosition(0,-63);
         var self = this ;
         cc.weijifen.wxAuth = function(code) {
             self.login(code,self) ;
