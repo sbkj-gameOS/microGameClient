@@ -60,7 +60,7 @@ cc.Class({
     init:function(cvalue,fangwei,bol,direction){
         //this.jiantou.active  = true;
         this.cardcolor();
-        this.xiaochu();
+        // this.xiaochu();
         var gameModelMp3 = "";//播放声音
         if(cc.weijifen.GameBase.gameModel == "wz"){
             gameModelMp3 = "wz";
