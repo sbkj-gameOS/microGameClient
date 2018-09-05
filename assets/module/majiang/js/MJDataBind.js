@@ -309,6 +309,7 @@ cc.Class({
         });
 
         socket.on("StrongGameOver" , function(result){
+            result = JSON.parse(result);
             self.__proto__.__proto__.alert(result.gameOverReason);
         }); 
         self.node.on('overGame',function(event){
