@@ -30,6 +30,7 @@ cc.Class({
     },
     // 首次加载页面方法
     onLoad: function () {
+        var type_id;
         var self = this;
         self.jsbParams = null;// type: ,jsb所需参数
         var platForm = self.clientPlatForm();
@@ -37,6 +38,8 @@ cc.Class({
         cc.weijifen.GameBase = GameBase ;
         cc.sys.localStorage.setItem('version',"1.0.1");
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
+        self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
+
         // cc.weijifen.http.httpGet('? ='+cc.weijifen.GameBase.gameModel+'& ='+platForm,self.getParam,self.error,self) ;  
         if(cc.weijifen.GameBase.gameModel =='wz'){
             sprite.spriteFrame = this.WZLogo;
@@ -78,7 +81,7 @@ cc.Class({
             self.login(code,self) ;
         };
         // 检测是否重新下载app 
-        cc.weijifen.http.httpGet('/gameVersion/findVersionNum?orgi='+cc.weijifen.GameBase.gameModel,self.updateSuccess,self.error,self) ;  
+        cc.weijifen.http.httpGet('/gameVersion/findVersionNum?orgi='+cc.weijifen.GameBase.gameModel + '&type_id=' + type_id,self.updateSuccess,self.error,self) ;  
         cc.weijifen.game = {
             model : null ,
             playway : null,

@@ -1082,7 +1082,9 @@
     "sharing": null,
     "menu": null,
     "match": null,
-    "alts": null
+    "alts": null,
+    "packgeMenu": null,
+    "activityMenu": null
   },
   {
     "__type__": "af91781bDBN/KEZXeUuKQHD",
@@ -4574,7 +4576,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -100,
+      "x": 0,
       "y": -44
     },
     "_skewX": 0,
@@ -4762,7 +4764,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 135

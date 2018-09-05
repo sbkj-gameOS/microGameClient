@@ -5,7 +5,6 @@ cc.Class({
         joinRoom: cc.Prefab,
         createRoom: cc.Prefab,
         setting:cc.Prefab,
-        shareStep: cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');

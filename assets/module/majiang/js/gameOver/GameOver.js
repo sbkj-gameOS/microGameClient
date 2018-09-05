@@ -151,6 +151,12 @@ cc.Class({
 	        gameOver.huaction(playerid);
 	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000);
 	    },
+	    /*
+	    * 结算列表
+	    * @param data       结算数据
+	    * @param context    上下文（这里指mjdatabind组件节点）
+	    * @param playerid   赢家id
+	    */
 	    endList:function(data,context,playerid,a){
 	    	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
 	    	var gameOver = require('GameOver');

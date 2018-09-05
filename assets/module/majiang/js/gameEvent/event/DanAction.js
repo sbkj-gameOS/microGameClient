@@ -41,6 +41,11 @@ cc.Class({
 
     },
     init:function(cvalue,back,fangwei,count,target,dd){
+        // console.log('此处可以查看蛋牌数量！')
+        /*
+        1、蛋牌的prafab为MY
+        2、牌面数量从左向右添加
+        */
         this.back = back;
         this.cardcolor();                                
         this.fangwei = fangwei;
