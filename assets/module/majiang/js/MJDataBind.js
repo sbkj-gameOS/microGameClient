@@ -651,6 +651,7 @@ cc.Class({
                 userId: cc.weijifen.user.id,
                 content:param
             };
+            console.log('发送语音返回数据----player_recording---',param)
             socket.emit("sayOnSound" ,JSON.stringify(param1));
         }
         // 播放语音队列
@@ -665,6 +666,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var jsonRes = JSON.stringify(params);
+                console.log('播放的语音文件----playVideo--',params)
                 var result = jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
             }
             
