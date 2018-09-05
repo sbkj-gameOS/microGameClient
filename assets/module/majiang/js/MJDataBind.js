@@ -859,6 +859,7 @@ cc.Class({
                         cc.find('Canvas/luyin').active = false;
                         m = 0;
                         clearInterval(timer);
+                        return
                     }
                 },1000);
             }
@@ -1346,7 +1347,7 @@ cc.Class({
                         },10000);   
                     } 
                 }
-                if (cc.find('Canvas/players/player_right').getChildByName('player_right')){
+                if (cc.find('Canvas/players/head_right').getChildByName('player_right')){
                     var id_r = cc.find('Canvas/players/head_right').getChildByName('player_right').getChildByName('id').getComponent(cc.Label).string;
                     if (res.userId == id_r) {
                         cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = true;
@@ -1376,7 +1377,7 @@ cc.Class({
                         },10000);   
                     } 
                 }
-                if (cc.find('Canvas/players/player_left').getChildByName('player_left')){
+                if (cc.find('Canvas/players/head_left').getChildByName('player_left')){
                     var id_l = cc.find('Canvas/players/head_left').getChildByName('player_left').getChildByName('id').getComponent(cc.Label).string;
                     if (res.userId == id_l) {
                         cc.find('Canvas/players/head_left').getChildByName('player_head').getChildByName('luyin_flag').active = true;
@@ -1386,7 +1387,7 @@ cc.Class({
                         },10000);   
                     }
                 }
-                if (cc.find('Canvas/players/player_right').getChildByName('player_right')){
+                if (cc.find('Canvas/players/head_right').getChildByName('player_right')){
                     var id_r = cc.find('Canvas/players/head_right').getChildByName('player_right').getChildByName('id').getComponent(cc.Label).string;
                     if (res.userId == id_r) {
                         cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = true;
