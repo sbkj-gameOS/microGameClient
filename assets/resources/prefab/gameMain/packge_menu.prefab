@@ -3593,7 +3593,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Label",
+    "_name": "type",
     "_objFlags": 0,
     "_parent": {
       "__id__": 73
