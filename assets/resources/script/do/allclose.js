@@ -11,8 +11,8 @@ cc.Class({
     },
     closeMenu: function(event){
         let menu = event.target.parent;
-        if (cc.find('Canvas/menu/share')) {
-            cc.find('Canvas/menu/share').active = false;
+        if (menu.getChildByName('share')) {
+            menu.active = false;
             cc.weijifen.menu.put(menu);
             return
         }

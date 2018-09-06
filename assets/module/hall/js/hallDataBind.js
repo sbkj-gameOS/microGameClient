@@ -47,6 +47,8 @@ cc.Class({
     onLoad: function () {
         var self = this ;
         //如果weijifen已经加载好了
+        var met = cc.find('Canvas/js/menuToggle').getComponent('menuToggle');
+        met.hall('12');
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
                 cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
@@ -176,6 +178,7 @@ cc.Class({
             }    
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
+        
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
