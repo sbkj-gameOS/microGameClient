@@ -36,7 +36,7 @@ cc.Class({
         var platForm = self.clientPlatForm();
         var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
-        cc.sys.localStorage.setItem('version',"1.0.1");
+        cc.sys.localStorage.setItem('version',"1.0.16");
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
 
