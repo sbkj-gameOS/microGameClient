@@ -5,6 +5,7 @@ cc.Class({
         joinRoom: cc.Prefab,
         createRoom: cc.Prefab,
         setting:cc.Prefab,
+        shareStep: cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
@@ -137,6 +138,21 @@ cc.Class({
             cc.find('Canvas/menu/setting').destroy();
         }
     },
+    /**
+     * 分享流程指引
+     * @return {[type]} [description]
+     */
+    shareStepFn: function () {
+        var share = cc.instantiate(this.shareStep);
+        share.parent = cc.find('Canvas');
+        cc.weijifen.menu.put(this.node.parent);
+    },
+    /**
+     * 关闭分享流程指引
+     */
+    shareStepClose: function () {
+        cc.find('Canvas/shareStep').destroy();
+    },
     /* 
     * 分享到微信后，微信内容显示 
     * url     多媒体方式下的点击跳转连接
@@ -180,8 +196,5 @@ cc.Class({
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
         },2000);
     },
-   
-
-
 });
  

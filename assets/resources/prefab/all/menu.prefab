@@ -3288,8 +3288,8 @@
       "__id__": 1
     },
     "component": "menuSet",
-    "handler": "shareWxClick",
-    "customEventData": "redBox"
+    "handler": "shareStepFn",
+    "customEventData": ""
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3358,7 +3358,7 @@
       "__uuid__": "2fc96a5d-da1f-4f6c-83f4-87a7df6bc09f"
     },
     "shareStep": {
-      "__uuid__": "54cf1864-21d5-4f59-96ee-ebbc2887e918"
+      "__uuid__": "5a0e26ac-a477-4881-8392-97465c3377d3"
     }
   },
   {
