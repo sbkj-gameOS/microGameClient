@@ -197,5 +197,9 @@ cc.Class({
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
         },2000);
     },
+    /*阻止点击冒泡*/
+    stopBubble: function (event) {
+        event.bubble = false;
+    },
 });
  
