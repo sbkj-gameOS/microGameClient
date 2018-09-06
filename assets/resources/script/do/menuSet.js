@@ -19,12 +19,13 @@ cc.Class({
         var shareWxBtn = this.title.parent.children[4];
         shareWxBtn.active = false;       
         web.setPosition(0,900);
-        if (name == 12) {
-            cc.find('Canvas/menu/share').active = true;
-            return
-        }
         for(let i in this.title.children){
             this.title.children[i].active = false ;
+        }
+        if (name == 12) {
+            cc.find('Canvas/menu/share').active = true;
+            this.title.children[name].active = true;
+            return
         }
         if(name != 15){
         // if(name != 15 || name != 9){
