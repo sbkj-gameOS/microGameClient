@@ -12,7 +12,7 @@ cc.Class({
     closeMenu: function(event){
         let menu = event.target.parent;
         if (menu.getChildByName('share')) {
-            menu.active = false;
+            menu.getChildByName('share').active = false;
             cc.weijifen.menu.put(menu);
             return
         }
