@@ -145,7 +145,7 @@ cc.Class({
     shareStepFn: function () {
         var share = cc.instantiate(this.shareStep);
         share.parent = cc.find('Canvas');
-        cc.weijifen.menu.put(this.node.parent);
+        cc.weijifen.menu.put(this.node);
     },
     /**
      * 关闭分享流程指引
