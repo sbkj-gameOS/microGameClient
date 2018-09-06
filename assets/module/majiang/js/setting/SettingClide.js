@@ -63,6 +63,7 @@ cc.Class({
 
         // this.soundSlider.progress = cc.weijifen.audio.getSFXVolume();
         // this.sound.fillRange =cc.weijifen.audio.getSFXVolume();
+        debugger
         if(cc.find('Canvas/global')){
             this.bgonload();
             this.cardonload();
@@ -78,8 +79,12 @@ cc.Class({
             this.soundon.active = true ;
             this.soundoff.active =false;
         }else{
-            this.soundon.active = false ;
-            this.soundoff.active =true;
+            /*this.soundon.active = false ;
+            this.soundoff.active =true;*/
+            this.soundon.active = true ;
+            this.soundoff.active = false;
+            cc.weijifen.audio.setSFXVolume(1); 
+            cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         }
         if(cc.weijifen.click ==1){
             this.danji.active = true;
