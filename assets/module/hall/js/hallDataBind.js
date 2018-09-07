@@ -161,10 +161,10 @@ cc.Class({
                     }
                 }
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
-            } else {// 浏览器测试（window平台）
+            }/* else {// 浏览器测试（window平台）
                 cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);     
-            }
+            }*/
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
             this.gundongText();
@@ -223,7 +223,6 @@ cc.Class({
         cc.weijifen.user.cards = data.cards;
         object.cards.string = cc.weijifen.user.cards ;
         object.goldcoins.string = cc.weijifen.user.goldcoins;
-
     },
     signSucess:function(result,object){
         //支付成功提示,重新获取用户数据刷新数据。
@@ -232,7 +231,7 @@ cc.Class({
         } else {
             //验证返回的签名是否正确
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,object.cardsucess,object.carderror,object);
-            object.alert("充值成功!");
+            // object.alert("充值成功!");
         }
     },
     signError: function(result,object){
