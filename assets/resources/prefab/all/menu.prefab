@@ -3288,8 +3288,8 @@
       "__id__": 1
     },
     "component": "menuSet",
-    "handler": "shareStepFn",
-    "customEventData": ""
+    "handler": "shareWxClick",
+    "customEventData": "redBox"
   },
   {
     "__type__": "cc.PrefabInfo",

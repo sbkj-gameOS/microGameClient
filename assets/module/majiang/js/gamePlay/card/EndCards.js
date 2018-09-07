@@ -186,6 +186,14 @@ cc.Class({
                         b.init(c[h],a,'','1');
                         b.target.height = 53;
                         b.target.width= 32;
+                        b.target.children[0].width = 30;
+                        b.target.children[0].height = 12;
+                        b.target.children[0].x = 0;
+                        b.target.children[0].y = -23;
+                        b.target.children[1].width = 30;
+                        b.target.children[1].height = 12;
+                        b.target.children[1].x = 0;
+                        b.target.children[1].y = -23;
                         card.parent = kong;   
                     }
                 }else if(this.data.actions[i].action=='dan'){
@@ -200,6 +208,14 @@ cc.Class({
                         xiaocard.init(da.mjtype,false,'',da.count.string);
                         xiaocard.target.height =53;
                         xiaocard.target.width =32;
+                        xiaocard.target.children[0].width = 30;
+                        xiaocard.target.children[0].height = 12;
+                        xiaocard.target.children[0].x = 0;
+                        xiaocard.target.children[0].y = -23;
+                        xiaocard.target.children[1].width = 30;
+                        xiaocard.target.children[1].height = 12;
+                        xiaocard.target.children[1].x = 0;
+                        xiaocard.target.children[1].y = -23;
                         xiao.parent =kong;
                     }
                 }else{
@@ -212,6 +228,14 @@ cc.Class({
                         b.init(c,a,'','1');
                         b.target.height = 53;
                         b.target.width= 32;
+                        b.target.children[0].width = 30;
+                        b.target.children[0].height = 12;
+                        b.target.children[0].x = 0;
+                        b.target.children[0].y = -23;
+                        b.target.children[1].width = 30;
+                        b.target.children[1].height = 12;
+                        b.target.children[1].x = 0;
+                        b.target.children[1].y = -23;
                         card.parent = kong;           
                     }
                 }
@@ -227,6 +251,14 @@ cc.Class({
                     b.init(cardsss[i],false,'','1','',true);
                     b.target.height = 53;
                     b.target.width= 32;
+                    b.target.children[0].width = 30;
+                    b.target.children[0].height = 12;
+                    b.target.children[0].x = 0;
+                    b.target.children[0].y = -23;
+                    b.target.children[1].width = 30;
+                    b.target.children[1].height = 12;
+                    b.target.children[1].x = 0;
+                    b.target.children[1].y = -23;
                     card.parent = kong;     
                 }else{
                     let card = cc.instantiate(this.hua);
@@ -234,6 +266,14 @@ cc.Class({
                     b.init(cardsss[i],'',true);
                     b.target.height = 53;
                     b.target.width= 32;
+                    b.target.children[0].width = 30;
+                    b.target.children[0].height = 12;
+                    b.target.children[0].x = 0;
+                    b.target.children[0].y = -23;
+                    b.target.children[1].width = 30;
+                    b.target.children[1].height = 12;
+                    b.target.children[1].x = 0;
+                    b.target.children[1].y = -23;
                     card.parent = kong;  
                 }
                       
@@ -249,6 +289,14 @@ cc.Class({
                     b.init(this.data.balance.huCard,false,'','1','',true);
                     b.target.height = 53;
                     b.target.width= 32;
+                    b.target.children[0].width = 30;
+                    b.target.children[0].height = 12;
+                    b.target.children[0].x = 0;
+                    b.target.children[0].y = -23;
+                    b.target.children[1].width = 30;
+                    b.target.children[1].height = 12;
+                    b.target.children[1].x = 0;
+                    b.target.children[1].y = -23;
                     card.parent = kong; 
                 }else{
                     let card = cc.instantiate(this.hua);                 
@@ -256,6 +304,14 @@ cc.Class({
                     b.init(this.data.balance.huCard,'',true);
                     b.target.height = 53;
                     b.target.width= 32;
+                    b.target.children[0].width = 30;
+                    b.target.children[0].height = 12;
+                    b.target.children[0].x = 0;
+                    b.target.children[0].y = -23;
+                    b.target.children[1].width = 30;
+                    b.target.children[1].height = 12;
+                    b.target.children[1].x = 0;
+                    b.target.children[1].y = -23;
                     card.parent = kong; 
                 }
                  
