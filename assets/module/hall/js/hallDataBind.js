@@ -46,6 +46,10 @@ cc.Class({
     },
     onLoad: function () {
         var self = this ;
+
+        cc.weijifen.audio.setSFXVolume(1); 
+        cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
+        
         //如果weijifen已经加载好了
         var met = cc.find('Canvas/js/menuToggle').getComponent('menuToggle');
         met.hall('12');
@@ -157,6 +161,9 @@ cc.Class({
                     }
                 }
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
+            } else {// 浏览器测试（window平台）
+                cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
+                cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);     
             }
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);

@@ -652,7 +652,6 @@ cc.Class({
                 userId: cc.weijifen.user.id,
                 content:param
             };
-            console.log('发送语音返回数据----player_recording---',param)
             socket.emit("sayOnSound" ,JSON.stringify(param1));
         }
         // 播放语音队列
@@ -667,7 +666,6 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var jsonRes = JSON.stringify(params);
-                console.log('播放的语音文件----playVideo--',params)
                 var result = jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
             }
             
@@ -1312,9 +1310,7 @@ cc.Class({
                 videoList.shift();
                 // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
                 var jsonRes = JSON.stringify(params);
-                console.log('服务端返回的语音列表-----',JSON.stringify(res.content))
                 var result = jsb.reflection.callStaticMethod(...obj.anMethodParam().recorderApi,jsonRes);  
-                console.log('参数--recorderApi--服务端返回---',...obj.anMethodParam().recorderApi);
             }
             
             let id_c,id_t,id_r,id_l; 
@@ -1327,7 +1323,7 @@ cc.Class({
                         let timer = setTimeout(function(){
                             cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                             clearTimeout(timer);
-                        },10000);   
+                        },7000);   
                     } 
                 }
                 if (res.userId == id_c) {
@@ -1335,7 +1331,7 @@ cc.Class({
                     let timer = setTimeout(function(){
                         cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                         clearTimeout(timer);
-                    },10000);   
+                    },7000);   
                 } 
             }
             if (cc.weijifen.playerNum == 3) {
@@ -1347,7 +1343,7 @@ cc.Class({
                         let timer = setTimeout(function(){
                             cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                             clearTimeout(timer);
-                        },10000);   
+                        },7000);   
                     } 
                 }
                 if (cc.find('Canvas/players/head_right').getChildByName('player_right')){
@@ -1357,7 +1353,7 @@ cc.Class({
                         let timer = setTimeout(function(){
                             cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                             clearTimeout(timer);
-                        },10000);   
+                        },7000);   
                     } 
                 }
                 if (res.userId == id_c) {
@@ -1365,7 +1361,7 @@ cc.Class({
                     let timer = setTimeout(function(){
                         cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                         clearTimeout(timer);
-                    },10000);   
+                    },7000);   
                 } 
             }
             if (cc.weijifen.playerNum == 4) {
@@ -1377,7 +1373,7 @@ cc.Class({
                         let timer = setTimeout(function(){
                             cc.find('Canvas/players/head_top').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                             clearTimeout(timer);
-                        },10000);   
+                        },7000);   
                     } 
                 }
                 if (cc.find('Canvas/players/head_left').getChildByName('player_left')){
@@ -1387,7 +1383,7 @@ cc.Class({
                         let timer = setTimeout(function(){
                             cc.find('Canvas/players/head_left').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                             clearTimeout(timer);
-                        },10000);   
+                        },7000);   
                     }
                 }
                 if (cc.find('Canvas/players/head_right').getChildByName('player_right')){
@@ -1397,7 +1393,7 @@ cc.Class({
                         let timer = setTimeout(function(){
                             cc.find('Canvas/players/head_right').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                             clearTimeout(timer);
-                        },10000);   
+                        },7000);   
                     } 
                 }
                 if (res.userId == id_c) {
@@ -1405,7 +1401,7 @@ cc.Class({
                     let timer = setTimeout(function(){
                         cc.find('Canvas').getChildByName('player_head').getChildByName('luyin_flag').active = false;
                         clearTimeout(timer);
-                    },10000);   
+                    },7000);   
                 } 
             }
             return

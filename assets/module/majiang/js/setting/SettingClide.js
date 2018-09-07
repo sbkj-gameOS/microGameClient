@@ -63,7 +63,6 @@ cc.Class({
 
         // this.soundSlider.progress = cc.weijifen.audio.getSFXVolume();
         // this.sound.fillRange =cc.weijifen.audio.getSFXVolume();
-        debugger
         if(cc.find('Canvas/global')){
             this.bgonload();
             this.cardonload();
