@@ -1,20 +1,9 @@
 var WJFCommon = require("WJFCommon");
 let m = 0;
 cc.Class({
-    // extends: cc.Component,
     extends: WJFCommon,
 
     properties: {
-        // foo: {
-        //    default: null,      // The default value will be used only when the component attaching
-        //                           to a node for the first time
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
         dianpao: cc.Node,
         dayingjia: cc.Node,
         username : cc.Label,

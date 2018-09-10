@@ -161,10 +161,10 @@ cc.Class({
                     }
                 }
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);       
-            }/* else {// 浏览器测试（window平台）
+            } else {// 浏览器测试（window平台）
                 cc.weijifen.http.httpGet('/userInfo/query/token?userId='+cc.weijifen.user.id,self.tokenSuccess,self.carderror,self);
                 cc.weijifen.http.httpGet('/api/room/reConnection?token='+cc.weijifen.authorization,self.roomSuccess,self.roomError,self);     
-            }*/
+            }
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
             this.gundongText();
@@ -239,9 +239,8 @@ cc.Class({
     },
     tzsucess: function(result,object){
 		let data = JSON.parse(result);  
+        if (!object.message) return; 
         let message = object.message.getComponent(cc.Label);
-        // if (data.context) {}
-            // message = 
         data.context ? message.string = data.context : message.string = '暂无公告！';
         if(data.tz){
             object.hall(3);

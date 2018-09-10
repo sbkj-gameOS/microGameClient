@@ -278,48 +278,10 @@ cc.Class({
         let times = matchStartTime / 1000;
         let msg,
             matchFlag = {isStop: null,isMatch: true};
-      /*  var fenNode = list.getChildByName('time').getChildByName('f').getComponent(cc.Label);
-        var miaoNode = list.getChildByName('time').getChildByName('m').getComponent(cc.Label);*/
-        /*if(times<=0 || !cc.sys.localStorage.getItem('matchTime')){
-            clearInterval(timer);
-            return
-        }
-        if (flag == 'hide') {
-            clearInterval(timer);
-        }*/
         var day=0,
             hour=0,
             minute=0,
             second=0;//时间默认值
-        // if(cc.weijifen.dialog.size() > 0){
-       /* // 弹窗模式倒计时
-        this.alertdialog = cc.weijifen.dialog.get();
-        if(this.alertdialog){
-            let node = self.alertdialog.getChildByName("message") ;
-            if(node!=null && node.getComponent(cc.Label)){
-                timer=setInterval(function(){
-                    if(times > 0){
-                        day = Math.floor(times / (60 * 60 * 24));
-                        hour = Math.floor(times / (60 * 60)) - (day * 24);
-                        minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
-                        second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
-                    } else {
-                        clearInterval(timer);
-                        self.alertdialog.destroy();
-                    }
-                    // fenNode.string = minute;
-                    // miaoNode.string = second;
-                    times--;
-                    if (minute <= 9) minute = '0' + minute;
-                    if (second <= 9) second = '0' + second;
-                    msg = `距比赛开始：${minute}分${second}秒`;
-                    node.getComponent(cc.Label).string = msg;
-                },1000);
-                setTimeout(function(){
-                    self.alertdialog.parent = cc.find("Canvas");
-                },1000)
-            }
-        }*/
         // 直接显示在玩法框中
         let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label);
         // timer = setInterval(function(){
@@ -348,8 +310,7 @@ cc.Class({
                 }
                 return
             }
-            // fenNode.string = minute;
-            // miaoNode.string = second;
+            console.log('-----------')
         },1000);
     },
     /* 运行平台判断 */

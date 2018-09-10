@@ -18,25 +18,7 @@ cc.Class({
         this.btnSelectData = 2;
 
     },
-    /*
-    * 获取房卡
-    */
-    /*getRoomCards: function () {
-        let token = {token:cc.weijifen.authorization};
-        cc.weijifen.http.httpPost('/match/matchNum',token,this.getListSuccess,this.getListErr,this) ;            
-    },
-    getRoomSuccess: function (res,obj) {
-        let fangka = cc.find('Canvas/main/matchhall/top/fangka').children[0];
-        fangka.getComponent(cc.Label).string = res.weekNo1;
-    },
-    getRoomErr: function (res,obj) {
-        let data = JSON.parse(res);
-        alert(data.msg);
-    },*/
-    /*
-    * 获取比赛列表
-    *
-    */
+    /* 获取比赛列表 */
     getMatchList: function (event,data) {
         if (event.target.name == 9 && cc.weijifen.GameBase.gameModel != 'ch') {
             return;
@@ -132,15 +114,11 @@ cc.Class({
             cc.find("Canvas/match/count/right/no_data").active = false;
         }
     },
-    getListErr: function (res,obj) {
-        /*let data = JSON.parse(res);
-        obj.alert(data.msg)*/
-    },
+    getListErr: function (res,obj) { },
     /*
     * 加入比赛
     */
     joinMatch: function (event) {
-        // debugger
         // 判断是否是VIP，若不是VIP则提示用户充值升级为VIP
         let self = this;
         let matchJs = cc.find('Canvas/js/match').getComponent('match');
@@ -160,8 +138,7 @@ cc.Class({
                 return
             }
             cc.weijifen.http.httpPost('/match/codeMatch',params,self.joinSuccess,self.joinErr,self) ;            
-        },this.joinErr,this);
-        
+        },self.joinErr,self);
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);

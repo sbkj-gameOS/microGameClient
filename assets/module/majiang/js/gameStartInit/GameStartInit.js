@@ -78,7 +78,6 @@ cc.Class({
         head_right_parent: cc.Node,
     },
 
-    //
     onLoad: function () {
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
@@ -321,9 +320,10 @@ cc.Class({
                 context.wanfa.getComponent(cc.Label).string = cc.weijifen.wanfa;
             }
              // 反作弊提示
-            setTimeout(function(){
+            let ipTimer = setTimeout(function(){
                 let userIp = cc.find("Canvas/userIp");
                 if (userIp) userIp.active = false;
+                clearTimeout(ipTimer);
             },10000);
             cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
@@ -380,12 +380,7 @@ cc.Class({
            
 
             // 游戏规则
-            if(cc.weijifen.GameBase.gameModel == 'jx'){
-                // wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
-                wanfa.string = '座风 座花 双头子 风字百搭 19百搭 漂百搭';
-            }else{
-                wanfa.string = data.op;
-            }
+            wanfa.string = data.op;
             cc.weijifen.wanfa = data.op;
             context.readyNoActive(context);   
             /**
@@ -397,21 +392,14 @@ cc.Class({
             }
             //开局后  头像位移到相应位置
             {
-          /*  var action = cc.moveTo(0.2,570,80);
-            context.right_player.runAction(action);
-            var action = cc.moveTo(0.2,-590,80);
-            context.left_player.runAction(action);
-            var action = cc.moveTo(0.2,389,290);
-            context.top_player.runAction(action);*/
-            var action = cc.moveTo(0.2,570,80);
-            context.right_player.runAction(action);
-            var action = cc.moveTo(0.2,-590,80);
-            context.left_player.runAction(action);
-            var action = cc.moveTo(0.2,389,290);
-            context.top_player.runAction(action);
+                var action = cc.moveTo(0.2,570,80);
+                context.right_player.runAction(action);
+                var action = cc.moveTo(0.2,-590,80);
+                context.left_player.runAction(action);
+                var action = cc.moveTo(0.2,389,290);
+                context.top_player.runAction(action);
             }
             //游戏开始 干掉打牌和听得缓存
-            
             cc.sys.localStorage.removeItem('take');
             cc.sys.localStorage.removeItem('ting') ;        
             context.exchange_state("begin" , context);
@@ -421,10 +409,9 @@ cc.Class({
             * context.decode() Base64.js中方法，用来将cards信息解码为十进制数
             */
             var temp_player = data.player ;
-            // var cards = context.decode(temp_player.cards);
             var cards = data.player.cards;
          
-            if(cc.weijifen.GameBase.gameModel == 'wz' || cc.weijifen.GameBase.gameModel == 'ls' || cc.weijifen.GameBase.gameModel == 'jx'){
+            if(cc.weijifen.GameBase.gameModel == 'wz' || cc.weijifen.GameBase.gameModel == 'ls'){
                 if(temp_player.powerCard){
                     // var powerCard = context.decode(temp_player.powerCard);
                     var powerCard = temp_player.powerCard;
@@ -452,6 +439,7 @@ cc.Class({
                     // 宝牌显示
                     cc.find('Canvas/cards/tesucards/baocard').active =true;
                     if(!data.player.powerCard){
+                        // 可以看到牌值
                         let cards = data.player.powerCard;
                         // let cards = context.decode(data.player.powerCard);
                         //cc.find('Canvas/cards/tesucards/baocard/baocard/card').children[0].destroy();
@@ -462,6 +450,7 @@ cc.Class({
                             LZH.init(cards[i],'B',true);
                         }
                     }else{
+                        // 看不到牌值
                         cc.find('Canvas/cards/tesucards/baocard/child').x = -585;                
                         var laiziFM = cc.instantiate(gameStartInitNode.FM);
                         var LZH = laiziFM.getComponent('DeskCards');
@@ -469,7 +458,6 @@ cc.Class({
                         laiziFM.parent = gameStartInitNode.godcard.children[1];
                     }
                 }
-                
             }
 
             //当前玩家补花 data.player
@@ -497,9 +485,9 @@ cc.Class({
             }
             
 
-            //var cards = temp_player.cards;
-            setTimeout(function(){
+            let cardTime = setTimeout(function(){
                 gameStartInit.calcdesc_cards(gameStartInitNode , 136 , data.deskcards) ;
+                clearTimeout(cardTime);
             } , 0) ;
             var groupNums = 0 ;
             var pTimes;
@@ -549,7 +537,7 @@ cc.Class({
                         }
                         groupNums = groupNums + 1 ;
                     }else{
-                        setTimeout(function(){
+                        let otherPlayerTime = setTimeout(function(){
                             gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
                             /**
                              * 初始化其他玩家数据
@@ -586,11 +574,12 @@ cc.Class({
                                 }
                             }
                             groupNums = groupNums + 1 ;
+                            clearTimeout(otherPlayerTime);
                         } , (times+1) * 200);
                     }    
                 }
             }
-            setTimeout(function(){
+            let sortTime = setTimeout(function(){
                 cc.weijifen.audio.playSFX('shuffle.mp3');         
                 var mp3Music = cc.weijifen.audio.getSFXVolume();
                 // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
@@ -620,12 +609,14 @@ cc.Class({
 
                 if(temp_player.banker == true&&!data.player.played){
                     //maxvalluecard.getComponent("HandCards").lastone() ;
-                }         
+                }  
+                clearTimeout(sortTime);
             } , 1000);
-            setTimeout(function(){
+            let changeTime = setTimeout(function(){
                 if(cc.sys.localStorage.getItem('cb')!='true'){
                     context.exchange_state("play" , context);                
                 }
+                clearTimeout(changeTime);
             } , 1500)
 
             /**
@@ -638,12 +629,10 @@ cc.Class({
             //gameStartInit.statusbtn.active = true ;
             //ljh改  神牌
             
-                
-            
-            setTimeout(function(){
+            let reconnectTime = setTimeout(function(){
                 cc.weijifen.audio.setSFXVolume(0);
                 //重连判断action
-                var istake =false;
+                var istake = false;
                 for(let i=0;i<data.players.length;i++){
                     if(data.players[i].played){
                         istake =true;
@@ -712,7 +701,7 @@ cc.Class({
                     }
                 }  
                     //重连判断 其他人的desk和action
-                    for(let i=0 ; i< data.players.length;i++){
+                for(let i=0 ; i< data.players.length;i++){
                         //判断谁是庄家
                     var player = gameStartInit.player(data.players[i].playuser, context);
                     var datas={}
@@ -771,10 +760,11 @@ cc.Class({
                         }
                     }
                 } 
-                    context.closeloadding();
+                context.closeloadding();
                    /* if(cc.weijifen.playType =='LG'){
                         context.lgdong(data);
                     }*/
+                clearTimeout(reconnectTime);
             },2000)   
             if (gameStartInitNode.head_right_parent.children.length > 5) {
                 cc.director.loadScene('majiang');
@@ -963,8 +953,9 @@ cc.Class({
             start = start - 1 ;
             if(start > end && context.desk_cards){
                 context.desk_cards.string = start ;
-                setTimeout(function(){
+                let timer = setTimeout(function(){
                     gameStartInit.calcdesc_cards(context , start , end ) ;
+                    clearTimeout(timer);
                 } , 5) ;
             }
         },
