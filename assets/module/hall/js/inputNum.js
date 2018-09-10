@@ -124,6 +124,7 @@ cc.Class({
             cc.director.preloadScene('majiang',function(){
                 cc.director.loadScene('majiang');
             });
+            array = '';
         }else if(data.error){
             if (!object.notice) {
                 object.alert(data.msg);
@@ -154,6 +155,7 @@ cc.Class({
         object.inputNum5.string = "";
         object.inputNum6.string = "";
         array = "";
+        cc.weijifen.room = null;
        
     },
     //清空按钮
