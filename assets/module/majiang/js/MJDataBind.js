@@ -1249,7 +1249,7 @@ cc.Class({
             let gameStartInit = require('GameStartInit');
             let player = gameStartInit.player(content.userid , obj)
             obj.addChatList(msg,chatShow,obj);
-            cc.weijifen.audio.playSFX('nv/' + content.musicName + '_' + cc.weijifen.genders[player.tablepos] + '.mp3');
+            if (content.musicName) cc.weijifen.audio.playSFX('nv/' + content.musicName + '_' + cc.weijifen.genders[player.tablepos] + '.mp3');
             cc.weijifen.isPLayVideo = true;
             let timer = setTimeout(function(){
                 cc.weijifen.isPLayVideo = false;
