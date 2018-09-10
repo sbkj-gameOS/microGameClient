@@ -1246,7 +1246,15 @@ cc.Class({
         if (res.type == 1) {
             let content = JSON.parse(res.content);
             let msg = content.username + '：' + content.msg;
+            let gameStartInit = require('GameStartInit');
+            let player = gameStartInit.player(content.userid , obj)
             obj.addChatList(msg,chatShow,obj);
+            cc.weijifen.audio.playSFX('nv/' + content.musicName + '_' + cc.weijifen.genders[player.tablepos] + '.mp3');
+            cc.weijifen.isPLayVideo = true;
+            let timer = setTimeout(function(){
+                cc.weijifen.isPLayVideo = false;
+                clearTimeout(timer);
+            },3800);
             return
         }
         // 表情
@@ -1459,23 +1467,24 @@ cc.Class({
     * 常用聊天语
     */   
     commonMsg: function (event) {
-        let msg = event.target.name;
+        if (cc.weijifen.isPLayVideo) { return };
+        let name = event.target.name;
+        let msg = event.target.children[0].getComponent(cc.Label).string;
         let chatShow = cc.find('Canvas/chatShow');
-        // this.addChatList(msg,chatShow,this);
-        // 
         let socket = this.socket();
         let chat = cc.find('Canvas/chat');
 
         let content = JSON.stringify({
             msg: msg,
-            username: cc.weijifen.user.username
+            musicName: name,
+            username: cc.weijifen.user.username,
+            userid: cc.weijifen.user.id
         })
         // type为文字
         let param = {
             type: 1,
             content: content
         }
-        // console.log(param)
         socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         chat.active = false;
     },
