@@ -138,6 +138,7 @@ cc.Class({
             object.inputNum5.string = "";
             object.inputNum6.string = "";
             array = "";
+            cc.weijifen.room = null;
             if(cc.weijifen.user.cards == 0 ){
                 cc.weijifen.dialog.destroy();
                 cc.weijifen.dialog = null ;
