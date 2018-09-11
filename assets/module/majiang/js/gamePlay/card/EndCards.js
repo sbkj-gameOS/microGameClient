@@ -192,11 +192,14 @@ cc.Class({
                         let b = card.getComponent('DanAction');
                         if(this.data.actions[i].type=='an'&&(h!=2)){
                             a = true;
-                         
-                            b.target.children[2].width = 53;
-                            b.target.children[2].height = 32;
-                            b.target.children[3].width = 53;
-                            b.target.children[3].height = 32;
+                            b.target.children[2].width = 32;
+                            b.target.children[2].height = 40;
+                            b.target.children[3].width = 32;
+                            b.target.children[3].height = 40;
+                            b.target.children[2].x = 0;
+                            b.target.children[2].y = 6;
+                            b.target.children[3].x = 0;
+                            b.target.children[3].y = 6;
                         }
                         b.init(c[h],a,'','1');
                         b.target.height = 53;
