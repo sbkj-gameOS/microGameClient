@@ -106,7 +106,7 @@ cc.Class({
                 var entryConditions = JSON.parse(data1.entryConditions);
                 var name =  '';
                 let m = -1;
-                for (var ele of entryConditions) {
+                /*for (var ele of entryConditions) {
                     m++;
                     if (ele.num) {
                         cc.sys.localStorage.setItem('prizeNum',ele.num);// 支付房卡的数量
@@ -122,6 +122,31 @@ cc.Class({
                         name += data2;
                     }
                     conditions.children[2].getComponent(cc.Label).string = name;
+                }*/
+                // 报名条件
+                if (entryConditions.bmtj) { 
+                    let bmStr = '';
+                    for (let ele of entryConditions.bmtj) {
+                        if (ele.type == 1) {// vip
+                            conditions.children[2].getComponent(cc.Label).string = 'VIP用户 ';
+                        } else {// 普通
+                            let str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime + ',' + '约局次数:' + ele.data.count ;
+                            conditions.children[3].getComponent(cc.Label).string = str;
+                        }
+                    }
+                }
+                 // 参赛条件
+                if (entryConditions.csTj) { 
+                    let bmStr = '';
+                    for (let ele of entryConditions.csTj) {
+                        if (ele.type == 0) {// 房卡
+                            bmStr += '房卡X' + ele.data.roomCard + ',';
+                        } else {// 月赛卡
+                            let str = '月赛卡X' + ele.data.roomCard + ',';
+                            bmStr += str;
+                        }
+                    }
+                    content.getChildByName('cstj').children[2].getComponent(cc.Label).string = bmStr;
                 }
 
             }
