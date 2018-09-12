@@ -124,13 +124,24 @@ cc.Class({
                     conditions.children[2].getComponent(cc.Label).string = name;
                 }*/
                 // 报名条件
+                // entryConditions = {"bmtj":[{"type":"2"}],"csTj":[{"type":"0","data":{"roomCard":"5"}},{"type":"1","data":{"roomCard":"1"}}]};
+                    debugger
                 if (entryConditions.bmtj) { 
                     let bmStr = '';
                     for (let ele of entryConditions.bmtj) {
-                        if (ele.type == 1) {// vip
+                        if (ele.type == 1) {// vip 
                             conditions.children[2].getComponent(cc.Label).string = 'VIP用户 ';
                         } else {// 普通
-                            let str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime + ',' + '约局次数:' + ele.data.count ;
+                            if (ele.data) {
+                                let str = '';
+                                if ((ele.data.startTime || ele.data.endTime) && ele.data.count != undefined) {
+                                    str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime + ',' + '约局次数:' + ele.data.count ;
+                                } else if (ele.data.count == undefined || ele.data.count) {
+                                    str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime ;
+                                }
+                            } else {
+                                str = '普通用户';
+                            }
                             conditions.children[3].getComponent(cc.Label).string = str;
                         }
                     }
@@ -139,11 +150,13 @@ cc.Class({
                 if (entryConditions.csTj) { 
                     let bmStr = '';
                     for (let ele of entryConditions.csTj) {
-                        if (ele.type == 0) {// 房卡
+                        if (ele.type == 0 && ele.data) {// 房卡
                             bmStr += '房卡X' + ele.data.roomCard + ',';
                         } else {// 月赛卡
-                            let str = '月赛卡X' + ele.data.roomCard + ',';
-                            bmStr += str;
+                            if (ele.data) {
+                                let str = '月赛卡X' + ele.data.roomCard + ',';
+                                bmStr += str;
+                            }
                         }
                     }
                     content.getChildByName('cstj').children[2].getComponent(cc.Label).string = bmStr;

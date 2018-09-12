@@ -33,8 +33,9 @@ cc.Class({
 	     * 新创建牌局，首个玩家加入，进入等待状态，等待其他玩家加入，服务端会推送 players数据
 	     * @param {Object} data  
 	     * @param {cc.Component} context
+	     * @param {Boolean} peng    玩家蛋牌被其他玩家抢碰
 	     */
-	    takecard_event:function(data , context){
+	    takecard_event:function(data , context, peng){
 	    	cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
 	    	clearTimeout(context.clock);
 	    	cc.weijifen.clock = null;
@@ -47,6 +48,59 @@ cc.Class({
 	        let kongcard ; 
 	        cc.weijifen.audio.playSFX('give.mp3');
          	let playerss = gameStartInit.player(data.userid , context);
+
+
+         	// 蛋牌被抢碰之后的手牌处理
+            if (!data.cards) {
+            	cc.weijifen.danOrPeng = true;
+            	cc.weijifen.danOrPengData = data;
+            	if (peng) {
+            		for (let inx = 0; inx < context.playercards.length;i++ ) {
+		                let handcards = context.playercards[inx].getComponent("HandCards");
+		                handcards.reinit();
+		                if (data.card == handcards.value) {
+		                    context.playercards[inx].zIndex = 0 ;
+		                    context.playercards[inx].parent = null;
+
+		                    handcards.reinit();
+		                    context.cardpool.put(context.playercards[inx]);
+		                    context.playercards.splice(inx, 1);
+		                    let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
+		                    let temp = desk_card.getComponent("DeskCards");
+		                    temp.init(handcards.value,'B',undefined,'current');
+
+           					desk_card.active = false;
+		                    desk_card.children[0].children[0].width = 90;//122
+		                    desk_card.children[0].children[0].height = 128;//150
+		                    context.deskcards.push(desk_card);
+	                    	desk_card.parent = context.deskcards_current_panel;
+		                }else{
+		                    handcards.reinit();
+		                    if(handcards.selectcolor == true){
+		                        context.playercards[inx].zIndex = 1000 + handcards.value ;
+		                    }else{
+		                        if(handcards.value >= 0){
+		                            context.playercards[inx].zIndex = handcards.value ;
+		                        }else{
+		                            context.playercards[inx].zIndex = 200 + handcards.value ;
+		                        }
+
+		                        if(context.playercards[inx].children[1].active){
+		                            context.playercards[inx].zIndex = -1;
+		                        }
+		                    }
+		                    inx = inx + 1 ;     //遍历 ++,不处理移除的 牌
+		                }
+	            	}
+
+            		cc.weijifen.danOrPeng = null;
+            		cc.weijifen.danOrPengData = null;
+            		return
+            	}
+            } 
+
+
+
 	        if(data.ting){
 	            if(context[playerss.tablepos+'ting'].active ==false){
 	            	cc.find('Canvas/ting').active = true;
@@ -193,10 +247,12 @@ cc.Class({
 	            }
 	            context.exchange_state("takecard" , context);  //隐藏 提示状态
 	        }else{
+	        	// 碰牌玩家执行该处代码
 	        	cc.sys.localStorage.removeItem('take');
 	            //其他玩家出牌   
 	            let temp = gameStartInit.player(data.userid , context) ;
 	            let cardpanel  , cardprefab , deskcardpanel;
+
 	            if(!data.notSend && temp){
 		            if(temp.tablepos == "right"){
 		                for(var inx = 0 ; inx < gameStartInitNode.right_panel.children.length ; inx++){

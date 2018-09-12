@@ -277,6 +277,13 @@ cc.Class({
             }else if(data.action == 'peng'){
                 data.cards.push(data.card); 
                 opCards = data.cards;
+                // 自己蛋牌被别人抢碰
+                if (cc.weijifen.danOrPeng && cc.weijifen.danOrPengData.userid == cc.weijifen.user.id) {
+                    let GamePlay = require('GamePlay');
+                    let gamePlay = new GamePlay();
+                    console.log(GamePlay)
+                    GamePlay.takecard_event(cc.weijifen.danOrPengData,context,true);
+                }
             }else if(data.action == 'gang'){
                 if ( data.card && data.card != -1 ) {
                     data.cards.push(data.card);
