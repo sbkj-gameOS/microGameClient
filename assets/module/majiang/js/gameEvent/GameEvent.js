@@ -281,7 +281,6 @@ cc.Class({
                 if (cc.weijifen.danOrPeng && cc.weijifen.danOrPengData.userid == cc.weijifen.user.id) {
                     let GamePlay = require('GamePlay');
                     let gamePlay = new GamePlay();
-                    console.log(GamePlay)
                     GamePlay.takecard_event(cc.weijifen.danOrPengData,context,true);
                 }
             }else if(data.action == 'gang'){
