@@ -99,7 +99,9 @@ cc.Class({
             var rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
             cc.sys.localStorage.setItem('activityId',data1.id);
             // 报名费用
-            // data1.entryConditions = JSON.stringify([{"id":"2","name":"用户","num":'卡2张'},{"id":"2","name":"VIP用户"}]);
+            // data1.entryConditions = JSON.stringify({"bmtj":[{"type":"2","data":{"startTime":"2018-09-01","endTime":"2018-09-30","count":"0"}},{"type":"1"}],"csTj":[{"type":"0","data":{"roomCard":"5"}},{"type":"1","data":{"roomCard":"1"}}]});
+            // data1.entryConditions = JSON.stringify({"bmtj":[{"type":"2"}],"csTj":[{"type":"0","data":{"roomCard":"5"}},{"type":"1","data":{"roomCard":"1"}}]});
+            
             if (data1.entryConditions) {
                 var bmtj;
                 var conditions = content.children[0];
@@ -124,15 +126,18 @@ cc.Class({
                     conditions.children[2].getComponent(cc.Label).string = name;
                 }*/
                 // 报名条件
-                // entryConditions = {"bmtj":[{"type":"2"}],"csTj":[{"type":"0","data":{"roomCard":"5"}},{"type":"1","data":{"roomCard":"1"}}]};
                 if (entryConditions.bmtj) { 
+                    if (entryConditions.bmtj.length == 1) {
+                        conditions.children[2].y = -30;
+                        conditions.children[3].y = -30;
+                    }
                     let bmStr = '';
                     for (let ele of entryConditions.bmtj) {
                         if (ele.type == 1) {// vip 
                             conditions.children[2].getComponent(cc.Label).string = 'VIP用户 ';
                         } else {// 普通
+                            let str = '';
                             if (ele.data) {
-                                let str = '';
                                 if ((ele.data.startTime || ele.data.endTime) && ele.data.count != undefined) {
                                     str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime + ',' + '约局次数:' + ele.data.count ;
                                 } else if (ele.data.count == undefined || ele.data.count) {
