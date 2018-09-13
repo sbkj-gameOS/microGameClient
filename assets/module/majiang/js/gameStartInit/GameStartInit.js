@@ -328,6 +328,7 @@ cc.Class({
             cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
             cc.sys.localStorage.removeItem("matchTime");
+            cc.sys.localStorage.removeItem("appTime");
             cc.sys.localStorage.setItem('waitting',1);
             context = cc.find('Canvas').getComponent('MJDataBind');
             context.play_flag = true;

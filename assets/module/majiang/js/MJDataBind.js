@@ -195,7 +195,6 @@ cc.Class({
             self.map("over" , settingClick.over_event,self);
             self.map("unOver" , settingClick.unOver_event,self);
         });
-      
         // if(this.ready()){
         //     let socket = this.socket();
         //     *
@@ -241,6 +240,8 @@ cc.Class({
                 socket.emit("healthListen" ,'');
             }
         });
+        if (cc.sys.localStorage.getItem('appTime')) self.setCountDown();
+
         var listenTime = setInterval(function(){
             if (cc.director.getScene().name == 'gameMain') {
                 clearInterval(listenTime);
@@ -629,10 +630,7 @@ cc.Class({
             socket.emit("sayOnSound" ,JSON.stringify(param));
         });
         cc.game.on(cc.game.EVENT_SHOW, function () {
-            let t = new Date();// 当前时间
-            let d = new Date(Number(cc.sys.localStorage.getItem('appTime')));// 比赛开始的本地时间
-            let a = d - t;
-            cc.sys.localStorage.setItem('matchTime',a);
+            self.setCountDown();
             console.log('监听到SHOW事件，游戏进入后台运行！');
             let param = {
                 userId: cc.weijifen.user.id,
@@ -1548,6 +1546,15 @@ cc.Class({
     },
     getErr: function (result,obj) {
         obj.alert('获取位置')
+    },
+    /**
+     * 比赛模式：退出房间、退出房间再次进入后，倒计时
+     */
+    setCountDown: function () {
+        let t = new Date();// 当前时间
+        let d = new Date(Number(cc.sys.localStorage.getItem('appTime')));// 比赛开始的本地时间
+        let a = d - t;
+        cc.sys.localStorage.setItem('matchTime',a);
     }
 });
 

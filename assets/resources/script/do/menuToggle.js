@@ -125,7 +125,6 @@ cc.Class({
                 }*/
                 // 报名条件
                 // entryConditions = {"bmtj":[{"type":"2"}],"csTj":[{"type":"0","data":{"roomCard":"5"}},{"type":"1","data":{"roomCard":"1"}}]};
-                    debugger
                 if (entryConditions.bmtj) { 
                     let bmStr = '';
                     for (let ele of entryConditions.bmtj) {
