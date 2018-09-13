@@ -146,8 +146,10 @@ cc.Class({
             var head = this.headimgs;
             cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
                 sprite.spriteFrame = new cc.SpriteFrame(texture);
-                head.width = 52;
-                head.height = 47;
+                /*head.width = 52;
+                head.height = 47;*/
+                head.width = 65;
+                head.height = 65;
             });
             var headBorder = this.headimgs.children[0].getComponent(cc.Sprite);
             this.headimgs.children[0].width = 70;
