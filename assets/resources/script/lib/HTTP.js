@@ -10,9 +10,17 @@ var HTTP = cc.Class({
         // wsURL : "http://game.daily.bizpartner.cn:9081",
         
         // 正式
-        baseURL:"http://game.bizpartner.cn",
-        wsURL : "http://game.bizpartner.cn:9081",
+     /*   baseURL:"http://game.bizpartner.cn",
+        wsURL : "http://game.bizpartner.cn:9081",*/
+        
+      /*  baseURL:"http://192.168.1.106",
+        wsURL : "http://192.168.1.106:9081",*/
 
+        baseURL:"http://192.168.2.121",
+        wsURL : "http://192.168.2.121:9081",
+
+       /* baseURL:"http://192.168.2.167",
+        wsURL : "http://192.168.2.167:9081",*/
         // 于浩
         // baseURL:"http://tssb.bizpartner.cn:8011",
         // wsURL : "http://tssb.bizpartner.cn:9081",
