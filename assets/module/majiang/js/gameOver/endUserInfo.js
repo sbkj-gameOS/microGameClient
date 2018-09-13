@@ -173,24 +173,11 @@ cc.Class({
         
 
     },
-    // updateItem:function(data){
-    //     this.label1.string = data.type;
-    //     this.label2.string = data.tip;
-    //     this.label3.string = data.point;
-    //     this.label1.node.height = 40;
-    //     this.label2.node.height = 40;
-    //     this.label3.node.height = 40;
-    //     //this.label3.string = data.count;
-    // },
- 
     setData:function(data,dayingjia,dianpao){
         this.data = data ; 
         this.dyj = dayingjia;
         this.dp = dianpao;
         this.init();
     },
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
+ 
 });
