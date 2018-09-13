@@ -110,7 +110,7 @@ cc.Class({
             }  
             // if(cc.weijifen.GameBase.gameModel != 'wz' && cc.weijifen.GameBase.gameModel != 'nj' &&  cc.weijifen.GameBase.gameModel != 'ls'){
             if(cc.weijifen.GameBase.gameModel == 'ch'){
-                this.jifan.string = fan +'番'+'   '+gang +'杠   ';
+                this.jifan.string = fan +'番'+' '+gang +'杠   ';
                 if(this.data.balance.noTing == true){
                     noTing = '未上听';
                 }else{
@@ -317,9 +317,5 @@ cc.Class({
         }
         return type;
     },
-
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
+  
 });

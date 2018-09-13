@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "牌局结束-base_loser",
+    "_name": "gameend",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -75,8 +75,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -415,
-      "y": 23
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -129,7 +129,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -62,
+      "x": 0,
       "y": 79
     },
     "_skewX": 0,
@@ -187,7 +187,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 9,
+      "x": 0,
       "y": 49
     },
     "_skewX": 0,
@@ -245,7 +245,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -468,7 +468,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 127,
+      "width": 260,
       "height": 37
     },
     "_rotationX": 0,
@@ -477,8 +477,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 66,
-      "y": 151
+      "x": 0,
+      "y": 202
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -506,7 +506,7 @@
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "沟通沟通",
-    "_N$horizontalAlign": 0,
+    "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
     "_N$overflow": 2
@@ -659,8 +659,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 3,
-      "y": -152
+      "x": 3.2,
+      "y": -189
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -756,7 +756,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 213,
-      "height": 192
+      "height": 206
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -829,7 +829,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -6,
-      "y": 75
+      "y": 82
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -860,9 +860,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -949,9 +949,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1141,7 +1141,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -6,
-      "y": 31.3
+      "y": 32
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1172,9 +1172,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1453,7 +1453,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -6,
-      "y": -12.399999999999999
+      "y": -18
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1484,9 +1484,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1573,9 +1573,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1765,7 +1765,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -6,
-      "y": -56.1
+      "y": -68
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1796,9 +1796,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1885,9 +1885,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 32,
-      "g": 6,
-      "b": 6,
+      "r": 137,
+      "g": 51,
+      "b": 28,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -2057,7 +2057,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 213,
-      "height": 192
+      "height": 206
     },
     "_resize": 0,
     "_N$layoutType": 2,
@@ -2073,7 +2073,7 @@
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 1.6999999999999997,
+    "_N$spacingY": 8,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
@@ -2283,7 +2283,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "39502b33-1567-4846-9bca-ce8d7e09328b"
+      "__uuid__": "cabe8257-b1cd-487f-af93-9aacdf0b2480"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -2299,7 +2299,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "945672f7-5768-45db-a1b3-6cc361ba2815"
+      "__uuid__": "8a93c078-26f1-46c1-bb07-0a2f89b4cf71"
     }
   },
   {
@@ -2341,7 +2341,7 @@
       "__id__": 1
     },
     "yinse": {
-      "__uuid__": "d0502884-7eee-4313-a815-e223eb9a962a"
+      "__uuid__": "23306bf9-936d-4f35-aaf7-221a7e51c207"
     },
     "yintiao": null,
     "headimgs": {

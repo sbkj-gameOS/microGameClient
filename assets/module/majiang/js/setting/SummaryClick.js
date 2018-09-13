@@ -15,8 +15,8 @@ cc.Class({
         miao: cc.Label,
         list: cc.Prefab,// 每把牌结束后，玩家牌列表
         endlist: cc.Prefab,// 最终结束玩家输赢列表
-        layout:cc.Node,// list节点父元素
-        layout2:cc.Node,        
+        layout:cc.Node,// list节点父元素---小局结算
+        layout2:cc.Node, // 大局---结算       
         action:{default :null},
         win:cc.Node,
         lose:cc.Node,
@@ -43,6 +43,8 @@ cc.Class({
             default:null,
             type:cc.SpriteFrame
         },
+        layout2Sprite:cc.SpriteFrame,
+
     },
 
     // use this for initialization
@@ -135,7 +137,6 @@ cc.Class({
             for(let i = 0 ; i< userInfo.playOvers.length; i++){
                 var list = cc.instantiate(this.list);
                 list.getComponent('EndCards').setData(userInfo.playOvers[i]);
-                
                 list.parent = this.layout;   
                 if(userInfo.playOvers[i].win ==false){
                 }
@@ -173,8 +174,9 @@ cc.Class({
                 var dayingjia = this.dayingjia('pointCount',i);
                 var paoshou = this.dayingjia('dianCount',i);
                 list.getComponent('endUserInfo').setData(userInfo.players[i],dayingjia,paoshou);
-                list.parent = this.layout2;   
-             }
+                list.parent = this.layout2;  
+            }
+            this.layout2.parent.getChildByName('dajubg').getComponent(cc.Sprite).spriteFrame = this.layout2Sprite; 
         }
         
     },
@@ -215,8 +217,4 @@ cc.Class({
         this.init2();
         
     }
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });
