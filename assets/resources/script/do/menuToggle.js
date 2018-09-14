@@ -139,12 +139,12 @@ cc.Class({
                             let str = '';
                             if (ele.data) {
                                 if ((ele.data.startTime || ele.data.endTime) && ele.data.count != undefined) {
-                                    str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime + ',' + '约局次数:' + ele.data.count ;
+                                    str = '会员 ' + ele.data.startTime + '至' + ele.data.endTime + ',' + '约局次数:' + ele.data.count ;
                                 } else if (ele.data.count == undefined || ele.data.count) {
-                                    str = '普通用户 ' + ele.data.startTime + '至' + ele.data.endTime ;
+                                    str = '会员 ' + ele.data.startTime + '至' + ele.data.endTime ;
                                 }
                             } else {
-                                str = '普通用户';
+                                str = '会员';
                             }
                             conditions.children[3].getComponent(cc.Label).string = str;
                         }
