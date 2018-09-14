@@ -16,7 +16,7 @@ cc.Class({
             cc.weijifen.menu.put(menu);
             return
         }
-        if (event.target.getComponent(cc.Button).clickEvents.length && event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'packge_menu') {
+        if (event.target.getComponent(cc.Button).clickEvents.length && event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'packge_menu' || event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'activity') {
             event.target.parent.destroy();
             return
         }
