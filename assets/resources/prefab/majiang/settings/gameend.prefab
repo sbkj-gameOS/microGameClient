@@ -469,7 +469,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 260,
-      "height": 37
+      "height": 25
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -509,7 +509,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 2
+    "_N$overflow": 3
   },
   {
     "__type__": "cc.PrefabInfo",
