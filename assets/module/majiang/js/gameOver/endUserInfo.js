@@ -44,7 +44,9 @@ cc.Class({
             let pl = player[i].getComponent('MaJiangPlayer');
             if(pl.data.id == this.data.user){
                 headimg = pl.data.headimgurl;
-                this.username.string = pl.data.username;
+
+                pl.data.username.length > 8 ? this.username.string = pl.data.username.slice(0,6) + '...' 
+                                            : this.username.string = pl.data.username;
             }
             if(this.data.user == cc.weijifen.user.id){
                 this.myself.active = true;
