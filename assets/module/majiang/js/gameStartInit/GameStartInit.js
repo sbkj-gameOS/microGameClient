@@ -357,7 +357,7 @@ cc.Class({
             {
                 cc.sys.localStorage.setItem('clear','true');
                 var bth = cc.find('Canvas/bg/center/button/readybtn');
-                bth.active =true;  
+                // bth.active =true;  
                 bth.x= -10;
                 var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children
                 if(laizi){

@@ -582,7 +582,7 @@ cc.Class({
                     var context = cc.find('Canvas').getComponent('MajiangDataBind'); 
                     var bth = cc.find('Canvas/bg/center/button/readybtn');
                     if(cc.weijifen.match != 'true'){
-                        bth.active =true;  
+                        // bth.active =true;  
                         bth.x= -10;
                     }
                     var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children
