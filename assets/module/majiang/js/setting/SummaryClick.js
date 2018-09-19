@@ -215,6 +215,8 @@ cc.Class({
         
         this.data = data;
         this.init2();
-        
-    }
+    },
+    stopBubble: function (event) {
+        event.bubble = false;
+    },  
 });
