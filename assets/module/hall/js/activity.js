@@ -3,6 +3,7 @@ cc.Class({
     extends: WJFCommon,
 
     properties: {
+        scrollWord: cc.Node,
         pointer: {
             default: null,
             type: cc.Sprite
@@ -13,6 +14,8 @@ cc.Class({
             type: cc.SpriteFrame
         },
         turnTable: cc.Node,
+        clickBtn: cc.Node,
+        rightBox: cc.Node
     },
     onLoad () {
         cc.weijifen.activityId = 31;
@@ -25,7 +28,7 @@ cc.Class({
     /**
      * 初始化转盘奖项
      */
-    turnTableInit: function () {
+    turnTableInit () {
         // 测试数据
     /* {"activityManange":{"gameType":1,"image":null,"competency":"[{\"id\":\"1\",\"name\":\"1人1天次\"},{\"id\":\"3\",\"name\":\"房卡1天多次\"}]",
      "awardData":"{\"awardData\":[{\"orgi\":\"ch\",\"createTime\":1525685580000,\"count\":\"1\",\"dname\":\"房卡\",\"id\":22,\"isDel\":0,\"did\":1,\"nameValue\":\"房卡-1张\",\"probability\":2},
@@ -44,8 +47,10 @@ cc.Class({
             var data1 = null;
             var data = JSON.parse(res);
             if (data.success) {
+                let arr = [],userType = ['','VIP用户','普通用户'];
                 let awardData = JSON.parse(data.activityManange.awardData).awardData;
-                self.glData = JSON.parse(data.activityManange.awardData).glData;
+                let competency = JSON.parse(data.activityManange.competency);// 参赛资格
+                self.glData = JSON.parse(data.activityManange.awardData).glData;// 顶部滚动信息
                 // 转盘
                 for (let i = 0;i < awardData.length;i++) {
                     let turnModel = cc.instantiate(self.turnModel);
@@ -61,42 +66,131 @@ cc.Class({
                     turnModel.parent = self.turnTable;
                     turnModel.active = true;
                 }
-                // 右侧信息
-
-
+                // 右侧信息（content节点）
+                // @param i           子节点下标
+                // @param childName   孙节点名字
+                // @param dataStr     孙对应要更改的数据
+                function getString (i,childName,dataStr) {
+                    self.rightBox.children[i].getChildByName(childName).getComponent(cc.Label).string = data.activityManange[dataStr];          
+                }
+                for (let ele of competency) { arr.push(ele.name); }
+                getString(0,'name','name');
+                self.rightBox.children[1].getChildByName('name').getComponent(cc.Label).string = 
+                                data.activityManange.startTime.substr(0,data.activityManange.startTime.length - 2) + ' - ' + 
+                                data.activityManange.startTime.substr(0,data.activityManange.startTime.length - 2);
+                self.rightBox.children[2].getChildByName('name').getComponent(cc.Label).string = arr.join('/');          
+                self.rightBox.children[3].getChildByName('name').getComponent(cc.Label).string = userType[data.activityManange.userType];          
+                getString(4,'name','content');
+                self.scrollWord.getComponent(cc.Label).string = data.prizeUser;
+                self.scrollAction();
             }
         };
         cc.weijifen.http.httpPost("/gamePrizeActivity/findActivityOne",{activityId:cc.weijifen.activityId},initData,self.err,self);
+
+    },
+    scrollAction () {
+        let offset_x = 0,action;
+        let self = this;
+        let text = self.scrollWord;
+        console.log(text)
+        let width = 999;// 滚动字幕背景的长度
+        let timer = setInterval(function(){
+            if (!text.name) {
+                clearInterval(timer);
+                return
+            }
+            offset_x -= 5;
+            if (-offset_x > text.width) {
+                offset_x = 0;
+                text.x = 0;
+            } else {
+                text.x = offset_x;
+            }
+        },30);
     },
     /*点击抽奖按钮*/
-    startClick: function () {
+    startClick () {
         let self = this;
         self.lottery();
-
-        self.pointerButtonStartControl();
-
-
     },
     /*查询当前用户是否有资格*/
     lottery () {
-        let self = this;
+        let self = this,
+            params = {
+                token: cc.weijifen.authorization,
+                activityId: cc.weijifen.activityId
+            }
         function query (res) {
-            console.log(res)
-
-
+            let data = JSON.parse(res);
+            if (data.success) {
+                if (data.zige) {
+                    self.clickBtn.getComponent(cc.Button).interactable = false;
+                    self.startGame();
+                } else {
+                    if (data.roomCard) {
+                        self.alert("当前房卡数量："+data.roomCard+"\n继续操作将扣除一张房卡，扣除房卡后可拥有一次抽奖机会，是否继续？");
+                        if (data.roomCard) {
+                            self.subtractCard();
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        // 没有资格
+                        self.alert(data.msg);
+                    }
+                }
+                return
+            }
+            self.alert(data.msg);
         }
-        cc.weijifen.http.httpPost('/gamePrizeActivity/findZiGe',{activityId:cc.weijifen.activityId},query,self.err,self);
+        cc.weijifen.http.httpPost('/gamePrizeActivity/findZiGe',params,query,self.err,self);
     },
-    /*转盘转动动画*/
-    pointerButtonStartControl: function () {
+    /*开始抽奖游戏*/
+    startGame () {
+        let self = this,
+            params = {
+                token: cc.weijifen.authorization,
+                activityId: cc.weijifen.activityId
+            };
+        cc.weijifen.http.httpPost("/gamePrizeActivity/findZpData",params,function(res){
+            let data = JSON.parse(res);
+            if (data.success) {
+                self.pointerButtonStartControl(data);
+            }
+        },self.err,self);
+    },
+    /*
+    * 转盘转动动画
+    * @param data 抽奖的结果
+    */
+    pointerButtonStartControl (data) {
         let self = this;
-        let angle = 200;// 初始状态下，抽奖结果所在的度数
+        // let angle = 200;// 初始状态下，抽奖结果所在的度数
         let rounds = 6; // 转盘转动的圈数
         let clickTimes = 6; // 转盘转动的时间
-        var rotateBy02 = cc.rotateBy(clickTimes, angle + 360 * rounds - self.turnRotation);
+        var rotateBy02 = cc.rotateBy(clickTimes, (360 - data.angle ) + 360 * rounds);
+        // var rotateBy02 = cc.rotateBy(clickTimes, data.angle + 360 * rounds - self.turnRotation);
         self.pointer.node.runAction(rotateBy02).easing(cc.easeCubicActionOut(clickTimes));
+        let timer = setTimeout(function(){
+            self.alert(data.msg);
+            self.clickBtn.getComponent(cc.Button).interactable = true;
+            clearTimeout(timer);
+        },6000);
+    },
+    /*扣除房卡*/
+    subtractCard () {
+        let self = this,
+            token = cc.weijifen.authorization;
+        cc.weijifen.http.httpPost('/gamePrizeActivity/kouRoomCard',{token:token},function(res){
+            let data = JOSN.parse(res);
+            if (data.success) {
+                self.startGame();
+            }
+
+        },self.err,self);
     },
     err () {
         console.log('错误！')
     }
 });
+ 
