@@ -449,19 +449,20 @@ cc.Class({
                     }
                     for (var j = 0;j < cardValueArr.length;j++) {
                         let name = cardOp.cardNode.children[j].getComponent('DanAction').cardName;
-                        let ind = cardValueArr.indexOf(name);
-                        if (cardValueArr.indexOf(name) != -1) {
+                        let idx = cardValueArr.indexOf(name);
+                        if (idx >= 0) {
                             if ( cardOp.isGang ) {
                                 card.zIndex=1;
                                 card.parent = cardOp.cardNode ;
                                 temp.init(cards[0],false,fangwei,'1');
                                 cardOp.cardNode.sortAllChildren();
+                                break;
                             } 
                             if (cardOp.cardNode.children[j].getComponent('DanAction').cardcolors == cardcolors) {
-                                var dan = cardOp.cardNode.children[ind].getComponent('DanAction');
+                                var dan = cardOp.cardNode.children[idx].getComponent('DanAction');
                                 dan.count.string = Number(Number(dan.count.string)+1);
                                 dan.countactive();
-                                return;
+                                break;
                             }
                         } else {
                             card.zIndex=1;
@@ -472,7 +473,35 @@ cc.Class({
                     }
                 }
 
-
+                // 4、蛋牌自身去重
+                if (action != 'gang' && cardValues) {
+                    // 蛋牌去重
+                    for (var i = 0;i < cardValues.length;i++) {
+                        var n = 0;
+                        var dan1 = cardValues[i];
+                        for (var j = 0;j < cardValues.length;j++) {
+                            var dan2 = cardValues[j];
+                            if (dan1.getComponent('DanAction').cardName == dan2.getComponent('DanAction').cardName) {
+                                if (n && dan2.getComponent('DanAction').count.string == 1) { 
+                                    cardValues[j].destroy();
+                                    var dan = cardOp.cardNode.children[j - 1].getComponent('DanAction');
+                                    dan.count.string = Number(Number(dan.count.string)+1);
+                                    dan.countactive();
+                                    return
+                                }
+                                if (dan1.getComponent('DanAction').count.string == dan2.getComponent('DanAction').count.string && dan1.getComponent('DanAction').count.string == 1) {
+                                    n++;
+                                }
+                                if (dan1.getComponent('DanAction').count.string >  dan2.getComponent('DanAction').count.string && n == 0) {
+                                    dan2.destroy();
+                                } else if (dan1.getComponent('DanAction').count.string < dan2.getComponent('DanAction').count.string && n == 0) {
+                                    dan1.destroy();
+                                } 
+                            }
+                            
+                        }
+                    }
+                }
             }else{
                 let cardParent = null ;
                 if(fangwei == 'top'){

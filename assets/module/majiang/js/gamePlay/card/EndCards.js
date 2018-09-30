@@ -185,62 +185,63 @@ cc.Class({
             let action = this.data.actions[i].card;
             function sortNumber(a,b){return a - b};
             action.sort(sortNumber);
-                if(this.data.actions[i].action=='gang'&&action.length ==1){
-                    let c=[action[0],action[0],action[0],action[0]];
-                    for(let h = 0; h<4 ;h++){
-                        let card = cc.instantiate(this.card);
-                        //console.log(cd[j]);
-                        let a = false;
-                        let b = card.getComponent('DanAction');
-                        if(this.data.actions[i].type=='an'&&(h!=2)){
-                            a = true;
-                            b.target.children[2].width = 32;
-                            b.target.children[2].height = 40;
-                            b.target.children[3].width = 32;
-                            b.target.children[3].height = 40;
-                            b.target.children[2].x = 0;
-                            b.target.children[2].y = 6;
-                            b.target.children[3].x = 0;
-                            b.target.children[3].y = 6;
-                        }
-                        b.init(c[h],a,'','1');
-                        b.target.height = 53;
-                        b.target.width= 32;
-                        setCardSize(b.target.children);
-                     
-                        card.parent = kong;   
+            if(this.data.actions[i].action=='gang'&&action.length ==1){
+                let c=[action[0],action[0],action[0],action[0]];
+                for(let h = 0; h<4 ;h++){
+                    let card = cc.instantiate(this.card);
+                    //console.log(cd[j]);
+                    let a = false;
+                    let b = card.getComponent('DanAction');
+                    if(this.data.actions[i].type=='an'&&(h!=2)){
+                        a = true;
+                        b.target.children[2].width = 32;
+                        b.target.children[2].height = 40;
+                        b.target.children[3].width = 32;
+                        b.target.children[3].height = 40;
+                        b.target.children[2].x = 0;
+                        b.target.children[2].y = 6;
+                        b.target.children[3].x = 0;
+                        b.target.children[3].y = 6;
                     }
-                }else if(this.data.actions[i].action=='dan'){
-                    let mj = cc.find('Canvas').getComponent('MJDataBind');
-                    var gameStartInit = require('GameStartInit');
-                    let player = gameStartInit.player(this.data.user,mj);
-                    let card = cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards').children[i+1];
-                    for(let q = 0 ; q< card.children.length; q++){
-                        let xiao = cc.instantiate(this.card);
-                        let xiaocard = xiao.getComponent('DanAction');
-                        let da = card.children[q].getComponent('DanAction');
-                        xiaocard.init(da.mjtype,false,'',da.count.string);
-                        xiaocard.target.height =53;
-                        xiaocard.target.width =32;
-                        setCardSize(xiaocard.target.children);
-
-                        xiao.parent =kong;
-                    }
-                }else{
-                    for(let j=0;j<action.length;j++){
-                        let card = cc.instantiate(this.card);
-                        //console.log(cd[j]);
-                        let a = false;
-                        let c = action[j];
-                        let b = card.getComponent('DanAction');                          
-                        b.init(c,a,'','1');
-                        b.target.height = 53;
-                        b.target.width= 32;
-                        setCardSize(b.target.children);
-
-                        card.parent = kong;           
-                    }
+                    b.init(c[h],a,'','1');
+                    b.target.height = 53;
+                    b.target.width= 32;
+                    setCardSize(b.target.children);
+                 
+                    card.parent = kong;   
                 }
+            }else if(this.data.actions[i].action=='dan'){
+                let mj = cc.find('Canvas').getComponent('MJDataBind');
+                var gameStartInit = require('GameStartInit');
+                let player = gameStartInit.player(this.data.user,mj);
+                let card = cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards').children[i+1];
+                for(let q = 0 ; q< card.children.length; q++){
+                    let xiao = cc.instantiate(this.card);
+                    let xiaocard = xiao.getComponent('DanAction');
+                    let da = card.children[q].getComponent('DanAction');
+                    xiaocard.init(da.mjtype,false,'',da.count.string);
+                    xiaocard.target.height =53;
+                    xiaocard.target.width =32;
+                    setCardSize(xiaocard.target.children);
+
+                    console.log(card.children[i])
+                    xiao.parent =kong;
+                }
+            }else{
+                for(let j=0;j<action.length;j++){
+                    let card = cc.instantiate(this.card);
+                    //console.log(cd[j]);
+                    let a = false;
+                    let c = action[j];
+                    let b = card.getComponent('DanAction');                          
+                    b.init(c,a,'','1');
+                    b.target.height = 53;
+                    b.target.width= 32;
+                    setCardSize(b.target.children);
+
+                    card.parent = kong;           
+                }
+            }
             }
         {
             
