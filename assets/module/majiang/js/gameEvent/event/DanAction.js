@@ -49,6 +49,7 @@ cc.Class({
         this.back = back;
         this.cardcolor();                                
         this.fangwei = fangwei;
+        this.cardName = null;
         if(target !=null){
             if(this.juju&&!dd){
                 this.juju.active = true;
@@ -98,6 +99,7 @@ cc.Class({
             if(this.fangwei == 'left'){
                 this.MJhead.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame('e_mj_b_left');
             }else if(this.fangwei == 'top'){
+                debugger
                 this.MJhead.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame('e_mj_b_bottom');
                 this.target.height =63;
             }else if(fangwei == 'right'){
@@ -119,18 +121,25 @@ cc.Class({
                
                 if(cardcolors==-7){
                     deskcard = fw+'_wind_east';
+                    this.cardName = '_wind_east';
                 } else if(cardcolors==-6){
                     deskcard = fw+'_wind_south';
+                    this.cardName = '_wind_south';
                 } else if(cardcolors==-5){
                     deskcard = fw+'_wind_west';
+                    this.cardName = '_wind_west';
                 } else if(cardcolors == -4){
                     deskcard = fw+'_wind_north';
+                    this.cardName = '_wind_north';
                 }else if(cardcolors == -3){
                     deskcard = fw+'_red';
+                    this.cardName = '_red';
                 }else if(cardcolors == -2){
                     deskcard = fw+'_green';
+                    this.cardName = '_green';
                 }else if(cardcolors == -1){
                     deskcard = fw+'_white';
+                    this.cardName = '_white';
                 }       
                 if(dd&&(cardcolors == csCardColors1 || (csCardColors2!=null &&cardcolors == csCardColors2)||(this.value>=-39&&this.value<=-36))){
                     this.caishenCards();
@@ -139,10 +148,13 @@ cc.Class({
             
                 if(cardtype == 0){ //万
                     deskcard = fw+"_character_"+ (parseInt((this.value%36)/4)+1) ;
+                    this.cardName = '_character_' + (parseInt((this.value%36)/4)+1);
                 }else if(cardtype == 1){ //筒
                     deskcard = fw+"_dot_"+ (parseInt((this.value%36)/4)+1) ;
+                    this.cardName = '_dot_' + (parseInt((this.value%36)/4)+1);
                 }else if(cardtype == 2){  //条
                     deskcard = fw+"_bamboo_"+ (parseInt((this.value%36)/4)+1) ;
+                    this.cardName = '_bamboo_' + (parseInt((this.value%36)/4)+1);
                 }   
                 
                 if(dd&&(cardtype == csType1 && (parseInt((this.value%36)/4)+1) == csValue1)){
@@ -152,7 +164,6 @@ cc.Class({
                 }// }
                 
             }
-            
             cardframe = this.beimi0.getSpriteFrame(deskcard);
             this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
             
@@ -165,11 +176,11 @@ cc.Class({
         if(this.count.string == '1'){
             this.count.node.active = false;
             this.x.active = false;
-     }
+        }
     },
-    countactive:function(){
-        this.count.node.active =true ; 
-        this.x.active =true;
+    countactive:function(num){
+        this.count.node.active = true ; 
+        this.x.active = true;
     },
     setValue: function(values){
         this.value = values;

@@ -696,7 +696,7 @@ cc.Class({
                             var a = cards.slice(0,3);
                             gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);
                             for(let h =3 ; h<cards.length; h++){
-                                gameEvent.selectaction_event({userid:cc.weijifen.user.id,cards:[cards[h]],card:-1,action:'dan'},context);            
+                                gameEvent.selectaction_event({userid:cc.weijifen.user.id,cards:[cards[h]],card:-1,action:'dan'},context,action);            
                             }            
                         }
                     }
@@ -746,7 +746,7 @@ cc.Class({
                                 let a = cards.slice(0,3);
                                 gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards'),isGang,player.tablepos,context,action[j].action);
                                 for(let h =3 ; h<cards.length; h++){
-                                    gameEvent.selectaction_event({userid:player.data.id,cards:[cards[h]],card:-1,action:'dan'},context)                             
+                                    gameEvent.selectaction_event({userid:player.data.id,cards:[cards[h]],card:-1,action:'dan'},context,data.players[i].actions)                             
                                 }                        
                             }                
                         }
@@ -1134,7 +1134,8 @@ cc.Class({
                 gameStartInitNode.current_ready.active = true ;          
             }
         },
-        findCardForKong: function(kong,card,action) {
+        findCardForKong: function(kong,card,action,test) {
+
             var resNode ;
             var isGang ;
             var cardNum;

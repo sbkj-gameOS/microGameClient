@@ -369,8 +369,9 @@ cc.Class({
          * @param  {cc.Node} context
          * @param  {String}  action  
          * @param  {String}  target  
+         * @param  {Array}   action_data 事件数据
          */
-        cardModle: function(cards,parent,back,fangwei,context,action,target){
+        cardModle: function(cards,parent,back,fangwei,context,action,target,action_data){
             var gameStartInit = require('GameStartInit');
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
             // 蛋
@@ -393,17 +394,85 @@ cc.Class({
                     card = cc.instantiate(gameEventNode.dan_mycurrent);
                     temp = card.getComponent('DanAction');
                 } 
-                temp.init(cards[i],false,fangwei,'1');
-                if ( cardOp.isGang ) {
+                // temp.init(cards[i],false,fangwei,'1');
+                /*if ( cardOp.isGang ) {
                     card.zIndex=1;
                     card.parent = cardOp.cardNode ;
                     cardOp.cardNode.sortAllChildren();
                 } else {
-                    // 此处若报错为：Cannot read property 'children' of undefined，则是方位没有存到缓存中
                     var dan = cardOp.cardNode.children[cardOp.cardNum].getComponent('DanAction');
                     dan.count.string = Number(Number(dan.count.string)+1);
                     dan.countactive();
+                }*/
+
+                // 1、将当前值转化为牌值类型和名字
+                var cardName ;
+                var cardcolors = parseInt(cards[0] / 4 ) ;
+                var cardtype  = parseInt(cardcolors / 9);
+                if (cardcolors < 0) {
+                    if(cardcolors==-7){
+                        cardName = '_wind_east';
+                    } else if(cardcolors==-6){
+                        cardName = '_wind_south';
+                    } else if(cardcolors==-5){
+                        cardName = '_wind_west';
+                    } else if(cardcolors == -4){
+                        cardName = '_wind_north';
+                    }else if(cardcolors == -3){
+                        cardName = '_red';
+                    }else if(cardcolors == -2){
+                        cardName = '_green';
+                    }else if(cardcolors == -1){
+                        cardName = '_white';
+                    }       
+                } else {
+                    if(cardtype == 0){ //万
+                        cardName = '_character_' + (parseInt((cards[0] % 36 ) / 4) + 1);
+                    }else if(cardtype == 1){ //筒        
+                        cardName = '_dot_' + (parseInt((cards[0] % 36 ) / 4) + 1);
+                    }else if(cardtype == 2){  //条
+                        cardName = '_bamboo_' + (parseInt((cards[0] % 36) / 4) + 1);
+                    }   
                 }
+                // 3、kongcard中查找蛋牌
+                if (cardOp.cardNode) {
+                    var cardValueArr = [],cardValueArr2 = [];
+                    var cardValues = cardOp.cardNode.children;
+                    for (let m = 0;m < cardValues.length;m++) {
+                        let name = cardValues[m].getComponent('DanAction').cardName;
+                        var ind = cardValueArr.indexOf(name);
+                        if (ind == -1) {
+                            cardValues[m].active = true;
+                            cardValueArr.push(name);
+                            cardValueArr2.push(cardValues[m]);
+                        } 
+                    }
+                    for (var j = 0;j < cardValueArr.length;j++) {
+                        let name = cardOp.cardNode.children[j].getComponent('DanAction').cardName;
+                        let ind = cardValueArr.indexOf(name);
+                        if (cardValueArr.indexOf(name) != -1) {
+                            if ( cardOp.isGang ) {
+                                card.zIndex=1;
+                                card.parent = cardOp.cardNode ;
+                                temp.init(cards[0],false,fangwei,'1');
+                                cardOp.cardNode.sortAllChildren();
+                            } 
+                            if (cardOp.cardNode.children[j].getComponent('DanAction').cardcolors == cardcolors) {
+                                var dan = cardOp.cardNode.children[ind].getComponent('DanAction');
+                                dan.count.string = Number(Number(dan.count.string)+1);
+                                dan.countactive();
+                                return;
+                            }
+                        } else {
+                            card.zIndex=1;
+                            card.parent = cardOp.cardNode ;
+                            temp.init(cards[0],false,fangwei,'1');
+                            cardOp.cardNode.sortAllChildren();
+                        }
+                    }
+                }
+
+
             }else{
                 let cardParent = null ;
                 if(fangwei == 'top'){
