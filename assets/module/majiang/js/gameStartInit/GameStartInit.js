@@ -677,7 +677,6 @@ cc.Class({
                     for(let i = 0;i< action.length;i++){
                         var isGang = false;
                         var cards = action[i].card;
-                        //console.log(cards);
                         
                         if(action[i].type =='an'){
                             isGang =true;
@@ -742,7 +741,7 @@ cc.Class({
                                     cards.sort(sortNumber);
                                     gameEvent.cardModle(cards,cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards'),isGang,player.tablepos,context,action[j].action);   
                                 }
-                                }else {
+                            }else {
                                 let a = cards.slice(0,3);
                                 gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards'),isGang,player.tablepos,context,action[j].action);
                                 for(let h =3 ; h<cards.length; h++){

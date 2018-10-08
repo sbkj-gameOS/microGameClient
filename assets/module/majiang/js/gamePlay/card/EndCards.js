@@ -224,7 +224,7 @@ cc.Class({
                     xiaocard.target.width =32;
                     setCardSize(xiaocard.target.children);
 
-                    console.log(card.children[i])
+                    // console.log(card.children[i])
                     xiao.parent =kong;
                 }
             }else{
