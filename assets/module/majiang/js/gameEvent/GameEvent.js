@@ -435,7 +435,6 @@ cc.Class({
                         cardName = '_bamboo_' + (parseInt((cards[0] % 36) / 4) + 1);
                     }   
                 }
-                if (cards[0] == 104 || cards[0] == 107) debugger;
                 // 3、kongcard中查找蛋牌
                 if (cardOp.cardNode) {
                     temp.init(cards[0],false,fangwei,'1');
@@ -496,10 +495,8 @@ cc.Class({
                                     n++;
                                 }
                                 if (dan1.getComponent('DanAction').count.string >  dan2.getComponent('DanAction').count.string && n == 0) {
-                                    console.log('销毁dan2',dan2)
                                     dan2.destroy();
                                 } else if (dan1.getComponent('DanAction').count.string < dan2.getComponent('DanAction').count.string && n == 0) {
-                                    console.log('销毁dan1',dan1)
                                     dan1.destroy();
                                 } 
                             }

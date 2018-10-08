@@ -215,22 +215,23 @@ cc.Class({
                 var gameStartInit = require('GameStartInit');
                 let player = gameStartInit.player(this.data.user,mj);
                 let card = cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards').children[i+1];
-                for(let q = 0 ; q< card.children.length; q++){
-                    let xiao = cc.instantiate(this.card);
-                    let xiaocard = xiao.getComponent('DanAction');
-                    let da = card.children[q].getComponent('DanAction');
-                    xiaocard.init(da.mjtype,false,'',da.count.string);
-                    xiaocard.target.height =53;
-                    xiaocard.target.width =32;
-                    setCardSize(xiaocard.target.children);
+                if (card) {
+                    for(let q = 0 ; q< card.children.length; q++){
+                        let xiao = cc.instantiate(this.card);
+                        let xiaocard = xiao.getComponent('DanAction');
+                        let da = card.children[q].getComponent('DanAction');
+                        xiaocard.init(da.mjtype,false,'',da.count.string);
+                        xiaocard.target.height =53;
+                        xiaocard.target.width =32;
+                        setCardSize(xiaocard.target.children);
 
-                    // console.log(card.children[i])
-                    xiao.parent =kong;
+                        // console.log(card.children[i])
+                        xiao.parent =kong;
+                    }
                 }
-            }else{
+            }else if (this.data.actions[i].action== 'chi' || this.data.actions[i].action== 'peng') {
                 for(let j=0;j<action.length;j++){
                     let card = cc.instantiate(this.card);
-                    //console.log(cd[j]);
                     let a = false;
                     let c = action[j];
                     let b = card.getComponent('DanAction');                          
@@ -271,6 +272,7 @@ cc.Class({
         }
         {
             if(this.data.win){
+
                 let kong = cc.instantiate(this.mjkong);
                 kong.parent = this.mjloyad;
                 if(this.data.balance.huCard>-32){
