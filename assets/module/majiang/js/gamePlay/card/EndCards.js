@@ -180,7 +180,6 @@ cc.Class({
         };
         for(let i = 0;i<this.data.actions.length;i++){
             let kong = cc.instantiate(this.mjkong);
-            kong.parent = this.mjloyad;
             // let action = this.decode(this.data.actions[i].card);
             let action = this.data.actions[i].card;
             function sortNumber(a,b){return a - b};
@@ -210,7 +209,12 @@ cc.Class({
                  
                     card.parent = kong;   
                 }
-            }else if(this.data.actions[i].action=='dan'){
+                if (kong.children.length) {
+                    kong.parent = this.mjloyad;
+                } else {
+                    kong.destroy();
+                }
+            }else if(this.data.actions[i].action=='dan' && action.length > 0){
                 let mj = cc.find('Canvas').getComponent('MJDataBind');
                 var gameStartInit = require('GameStartInit');
                 let player = gameStartInit.player(this.data.user,mj);
@@ -225,11 +229,15 @@ cc.Class({
                         xiaocard.target.width =32;
                         setCardSize(xiaocard.target.children);
 
-                        // console.log(card.children[i])
                         xiao.parent =kong;
                     }
                 }
-            }else if (this.data.actions[i].action== 'chi' || this.data.actions[i].action== 'peng') {
+                if (kong.children.length) {
+                    kong.parent = this.mjloyad;
+                } else {
+                    kong.destroy();
+                }
+            }else if (action.length > 0) {
                 for(let j=0;j<action.length;j++){
                     let card = cc.instantiate(this.card);
                     let a = false;
@@ -242,13 +250,18 @@ cc.Class({
 
                     card.parent = kong;           
                 }
+                if (kong.children.length) {
+                    kong.parent = this.mjloyad;
+                } else {
+                    kong.destroy();
+                }
             }
-            }
+        }
         {
             
             let kong = cc.instantiate(this.mjkong);
             for(let i = 0;i<cardsss.length;i++){   
-                kong.parent = this.mjloyad;
+                // kong.parent = this.mjloyad;
                 if(cardsss[i]>-32){
                     let card = cc.instantiate(this.card);
                     let b = card.getComponent('DanAction');
@@ -268,13 +281,18 @@ cc.Class({
                     card.parent = kong;  
                 }
                       
+                if (kong.children.length) {
+                    kong.parent = this.mjloyad;
+                } else {
+                    kong.destroy();
+                }
             }
         }
         {
             if(this.data.win){
 
                 let kong = cc.instantiate(this.mjkong);
-                kong.parent = this.mjloyad;
+                // kong.parent = this.mjloyad;
                 if(this.data.balance.huCard>-32){
                     let card = cc.instantiate(this.card);                 
                     let b = card.getComponent('DanAction');
@@ -294,7 +312,12 @@ cc.Class({
                     card.parent = kong; 
                 }
                  
-            }       
+                if (kong.children.length) {
+                    kong.parent = this.mjloyad;
+                } else {
+                    kong.destroy();
+                }    
+            }   
         }
     },
     setData:function(data){

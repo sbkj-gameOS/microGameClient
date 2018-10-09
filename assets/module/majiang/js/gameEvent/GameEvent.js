@@ -460,7 +460,7 @@ cc.Class({
                                 cardOp.cardNode.sortAllChildren();
                                 // break;
                             } 
-                            if (cardOp.cardNode.children[j].getComponent('DanAction').cardcolors == cardcolors) {
+                            if (cardOp.cardNode.children[j].getComponent('DanAction').cardcolors == cardcolors && action != 'gang') {
                                 var dan = cardOp.cardNode.children[idx].getComponent('DanAction');
                                 dan.count.string = Number(Number(dan.count.string)+1);
                                 dan.countactive();
