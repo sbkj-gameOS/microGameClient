@@ -99,7 +99,6 @@ cc.Class({
             if(this.fangwei == 'left'){
                 this.MJhead.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame('e_mj_b_left');
             }else if(this.fangwei == 'top'){
-                debugger
                 this.MJhead.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame('e_mj_b_bottom');
                 this.target.height =63;
             }else if(fangwei == 'right'){
