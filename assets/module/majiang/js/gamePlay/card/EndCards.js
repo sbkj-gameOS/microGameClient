@@ -214,7 +214,7 @@ cc.Class({
                 } else {
                     kong.destroy();
                 }
-            }else if(this.data.actions[i].action=='dan' && action.length > 0){
+            }else if(this.data.actions[i].action=='dan' && action.length > 1){
                 let mj = cc.find('Canvas').getComponent('MJDataBind');
                 var gameStartInit = require('GameStartInit');
                 let player = gameStartInit.player(this.data.user,mj);
@@ -237,7 +237,7 @@ cc.Class({
                 } else {
                     kong.destroy();
                 }
-            }else if (action.length > 0) {
+            }else if (action.length > 0 && this.data.actions[i].action != 'dan') {
                 for(let j=0;j<action.length;j++){
                     let card = cc.instantiate(this.card);
                     let a = false;
