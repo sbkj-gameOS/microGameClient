@@ -34,6 +34,7 @@ cc.Class({
         var self = this;
         self.jsbParams = null;// type: ,jsb所需参数
         var platForm = self.clientPlatForm();
+
         var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
         cc.sys.localStorage.setItem('version',"1.0.21");
@@ -128,7 +129,11 @@ cc.Class({
     	result = JSON.parse(result);
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
-            cc.sys.localStorage.setItem('appUrl',result.url);
+            if (object.clientPlatForm() == 'ANDROID') {
+                cc.sys.localStorage.setItem('appUrl',result.url);
+            } else if (object.clientPlatForm() == 'IOS'){
+                cc.sys.localStorage.setItem('appUrl','https://shangban-game.oss-cn-hangzhou.aliyuncs.com/app/IOS/index.html');
+            }
         }
     },
     signSucess:function(result , object){
