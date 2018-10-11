@@ -105,8 +105,8 @@ cc.Class({
                 this.MJhead.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame('e_mj_b_right');
             }else{
                 this.MJhead.getComponent(cc.Sprite).spriteFrame = this.atlas.getSpriteFrame('e_mj_b_bottom');
-                // this.target.height = 76;
-                this.target.height = 110;
+                // this.target.height = 110;
+                this.target.height = 90;
             }
         } else {
             //确定牌的花色
