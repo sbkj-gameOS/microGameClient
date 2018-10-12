@@ -129,11 +129,7 @@ cc.Class({
     	result = JSON.parse(result);
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
-            if (object.clientPlatForm() == 'ANDROID') {
-                cc.sys.localStorage.setItem('appUrl',result.url);
-            } else if (object.clientPlatForm() == 'IOS'){
-                cc.sys.localStorage.setItem('appUrl','https://shangban-game.oss-cn-hangzhou.aliyuncs.com/app/IOS/index.html');
-            }
+            cc.sys.localStorage.setItem('appUrl',result.url);
         }
     },
     signSucess:function(result , object){
