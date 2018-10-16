@@ -128,7 +128,7 @@ cc.Class({
     updateSuccess:function (result,object) {
         console.log(result)
     	result = JSON.parse(result);
-        object.alert("app版本号："+cc.sys.localStorage.getItem('version'));
+        // object.alert("app版本号："+cc.sys.localStorage.getItem('version'));
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp/version_new').getComponent(cc.Label).string = '当前版本' + cc.sys.localStorage.getItem('version');
             cc.find('Canvas/downloadapp').active = true;
