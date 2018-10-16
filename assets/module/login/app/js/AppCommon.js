@@ -37,7 +37,7 @@ cc.Class({
 
         var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
-        cc.sys.localStorage.setItem('version',"1.0.21");
+        cc.sys.localStorage.setItem('version','1.0.21');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
@@ -127,6 +127,7 @@ cc.Class({
     },
     updateSuccess:function (result,object) {
     	result = JSON.parse(result);
+        object.alert("app版本号："+cc.sys.localStorage.getItem('version'));
         if (result.success && result.version != cc.sys.localStorage.getItem('version')) {
             cc.find('Canvas/downloadapp').active = true;
             cc.sys.localStorage.setItem('appUrl',result.url);
