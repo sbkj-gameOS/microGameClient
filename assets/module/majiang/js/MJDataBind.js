@@ -242,22 +242,24 @@ cc.Class({
         });
         if (cc.sys.localStorage.getItem('appTime')) self.setCountDown();
 
-        var listenTime = setInterval(function(){
-            if (cc.director.getScene().name == 'gameMain') {
-                clearInterval(listenTime);
-                return
-            }
-            if (hasAlert) {return };
-            listenFlag == false ? listenFlag = true : listenFlag = false;
-            // 若为false则为网络正常,true为网络出现正常
-            if (listenFlag == false && cc.weijifen.dialog.size() > 0) {
-                if (hasAlert) {return};
-                self.__proto__.__proto__.alert('当前网络环境较差！');
-                hasAlert = true;
-            } else if (listenFlag == true && cc.find('Canvas/alert') && cc.find('Canvas/alert').length < 6) {
-                cc.weijifen.dialog.put(cc.find('Canvas/alert'));
-            }
-        },4000);
+        if (cc.weijifen.match == 'true') {
+            var listenTime = setInterval(function(){
+                if (cc.director.getScene().name == 'gameMain') {
+                    clearInterval(listenTime);
+                    return
+                }
+                if (hasAlert) {return };
+                listenFlag == false ? listenFlag = true : listenFlag = false;
+                // 若为false则为网络正常,true为网络出现正常
+                if (listenFlag == false && cc.weijifen.dialog.size() > 0) {
+                    if (hasAlert) {return};
+                    self.__proto__.__proto__.alert('当前网络环境较差！');
+                    hasAlert = true;
+                } else if (listenFlag == true && cc.find('Canvas/alert') && cc.find('Canvas/alert').length < 6) {
+                    cc.weijifen.dialog.put(cc.find('Canvas/alert'));
+                }
+            },4000);
+        }
         socket.on("OverPosition",function(result){
             cc.sys.localStorage.setItem('matchOver','true');
             cc.sys.localStorage.setItem('matchPrize',result);
