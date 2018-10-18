@@ -4359,6 +4359,8 @@
     "current_kong": null,
     "mask": null,
     "prohibit_mask": null,
+    "overCount": null,
+    "refuseBtn": null,
     "alert2": {
       "__uuid__": "346832ff-6583-423a-a2d3-20988e571043"
     },
@@ -27265,6 +27267,12 @@
     },
     "prohibit_mask": {
       "__id__": 693
+    },
+    "overCount": {
+      "__uuid__": "37dae852-325c-401f-af91-b80979918198"
+    },
+    "refuseBtn": {
+      "__uuid__": "5fed4676-817c-4326-a45d-5238fb69f3ac"
     }
   }
 ]

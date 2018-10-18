@@ -138,6 +138,8 @@ cc.Class({
         current_kong: cc.Node,
         mask: cc.Node,// 比赛开牌时，手牌初始慢给出的提示
         prohibit_mask: cc.Node,// 比赛倒计时结束时，禁止玩家任何操作
+        overCount: cc.Prefab,
+        refuseBtn: cc.SpriteFrame
     },
     onLoad: function () {
         var listenFlag,hasAlert;// 网络情况，是否有网络提示
@@ -315,6 +317,37 @@ cc.Class({
             result = JSON.parse(result);
             self.__proto__.__proto__.alert(result.gameOverReason);
         }); 
+        // 监听解散进程
+        socket.on("overInfo",function(result){
+            // result = '{"overCount":"1","refuseCount":"0"}';
+           /* var data = self.getSelf().parse(result);
+            self.getSelf().route('play',self)(data , self);*/
+            var data = JSON.parse(result);
+            if (cc.find('Canvas/overCount')) {
+                cc.find('Canvas/overCount').destroy();
+            }
+            if (cc.find('Canvas/alert')) {
+                cc.find('Canvas/alert').zIndex = 100;
+            }
+            var countPrefab = cc.instantiate(self.overCount);
+            console.log(countPrefab)
+            for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
+               
+                let list = cc.instantiate(countPrefab.getChildByName('count').getChildByName('list'));
+                // i=0 count=1
+                // i=1 count=1
+                // i=2 count=1
+                list.active = true;
+                list.parent = countPrefab.getChildByName('count');
+                countPrefab.getChildByName('count').parent = countPrefab;
+                if (data.overCount < i) {
+                    // 只添加节点不改变精灵兔
+                    list.getComponent(cc.Sprite).spriteFrame = self.refuseBtn;
+                }
+            }
+
+            countPrefab.parent = cc.find('Canvas');
+        })
         self.node.on('overGame',function(event){
             let socket = self.getSelf().socket();
             if(event.getUserData()){
