@@ -330,7 +330,6 @@ cc.Class({
                 cc.find('Canvas/alert').zIndex = 100;
             }
             var countPrefab = cc.instantiate(self.overCount);
-            console.log(countPrefab)
             for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
                
                 let list = cc.instantiate(countPrefab.getChildByName('count').getChildByName('list'));
@@ -345,8 +344,10 @@ cc.Class({
                     list.getComponent(cc.Sprite).spriteFrame = self.refuseBtn;
                 }
             }
-
             countPrefab.parent = cc.find('Canvas');
+            if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
+                countPrefab.destroy();
+            }
         })
         self.node.on('overGame',function(event){
             let socket = self.getSelf().socket();
