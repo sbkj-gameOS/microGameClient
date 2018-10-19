@@ -37,7 +37,7 @@ cc.Class({
 
         var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
-        cc.sys.localStorage.setItem('version','1.0.23');
+        cc.sys.localStorage.setItem('version','1.0.24');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;

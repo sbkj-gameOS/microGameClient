@@ -227,6 +227,12 @@ cc.Class({
             let dialog = cc.find("Canvas/alert") ;
             clearTimeout(mj.t);
             mj.alert.put(dialog);
+            if (cc.find('Canvas/overCount')) {
+                let time = setTimeout(function(){
+                    cc.find('Canvas/overCount').destroy();
+                    clearTimeout(time);
+                },1000);
+            }
         },
           // 设置背景有颜色    
         bgsetting: function(){
