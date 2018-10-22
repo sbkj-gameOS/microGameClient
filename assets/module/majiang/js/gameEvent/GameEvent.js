@@ -39,7 +39,7 @@ cc.Class({
 
     //初始化
     onLoad: function () {
-       
+
     },
     onClick:function(event , data){  
         if (cc.find('Canvas/big_cards').children) {
@@ -49,6 +49,15 @@ cc.Class({
     },
     click: function(event){
         event.target.active = false;
+    },
+    // 选牌框消失
+    select_cards_box () {
+        let self = this;
+        let gameEvent = require('GameEvent');
+        cc.find('Canvas/other/New Node').active = false;
+        cc.find('Canvas/other/New Node/New Node/select').removeAllChildren();
+        self.node.dispatchEvent( new cc.Event.EventCustom('guo', true) );
+        cc.sys.localStorage.setItem('take','true');                
     },
     statics: {
         /**
