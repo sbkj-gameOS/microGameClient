@@ -227,16 +227,12 @@ cc.Class({
                 let model = cc.instantiate(listModel);
                 if (ele.type == 'COUPON') {
                     // 优惠券
-                    model.children[0].getChildByName('linkedNum').getComponent(cc.Label).string = ele.linkedId;
-                    model.children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
+                    model.children[0].children[0].getChildByName('linkedNum').getComponent(cc.Label).string = ele.linkedId;
+                    model.children[0].children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
                 } else {
                     if (ele.num < 1) {break}
-                    model.children[0].getChildByName('couponMsg').active = false;
-                    model.getChildByName('type').getComponent(cc.Label).string = '月赛卡';
-                    model.children[0].getChildByName('linkedNum').active = false;
-                    model.children[0].getChildByName('img3').active = false;
-                    // model.children[0].getChildByName('useEndTime').active = false;
-                    model.children[0].getChildByName('$').active = false;
+                    model.children[0].children[0].active = false;//优惠卷样式隐藏
+                    model.children[0].getChildByName('mpnth').active = true;
                 }
                 model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
                 model.children[2].getComponent(cc.Label).string = 'x' + ele.num;
@@ -253,6 +249,7 @@ cc.Class({
         function packgeError () {
             self.alert('失败');
         };
+        // cc.weijifen.authorization = "fc5dc4aaca4f4039a35bd269c23be1d6";
         cc.weijifen.http.httpGet('/package_goods/gain/' + cc.weijifen.authorization,packageSucces,packgeError);
     }
 });

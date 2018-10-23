@@ -11,7 +11,7 @@ cc.Class({
 
     onLoad () {
         var self = this;
-        cc.weijifen.authorization = "0d89e515ed50437fb2e67c6dd1a71aac";
+        // cc.weijifen.authorization = "0d89e515ed50437fb2e67c6dd1a71aac";
         //获取通知列表标题
         cc.weijifen.http.httpGet('/gameNotice/findActivityListGame?token='+cc.weijifen.authorization,this.noticeSuccess,this.rankingError,this);
     },
