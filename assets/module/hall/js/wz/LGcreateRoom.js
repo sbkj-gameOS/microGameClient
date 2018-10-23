@@ -20,11 +20,11 @@ cc.Class({
         if( moShi != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(255,255,255,255));
         }
 
         moShi = this.mosiOrpepleClick(event);
@@ -33,13 +33,13 @@ cc.Class({
         if( userType != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
 
             //2.上一个选中的字体恢复为默认色
             userType = userType.toString();
-            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(255,255,255,255));
         }
 
         userType = this.mosiOrpepleClick(event);
@@ -49,11 +49,11 @@ cc.Class({
         if( playerData != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
             console.log(    )
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(255,255,255,255));
         }
 
         playerData = event.target.name;
@@ -68,11 +68,11 @@ cc.Class({
         if( playerData2 != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(playerData2).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(playerData2).children[2].setColor(cc.color(255,255,255,255));
         }
 
         playerData2 = this.mosiOrpepleClick(event);

@@ -23,10 +23,10 @@ cc.Class({
         if(playerData != this.mosiOrpepleClick(event) ){
              //选中改变颜色
             if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
             //上一个选中的字体恢复为默认色
-             event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(129,74,17,255));
+             event.node._parent.getChildByName(playerData).children[2].setColor(cc.color(255,255,255,255));
         }
        
         playerData = this.mosiOrpepleClick(event);
@@ -36,9 +36,9 @@ cc.Class({
         guiZe = this.gameTypeClick(event,guiZe);
          //选中改变颜色
         if(event.isChecked==true){    
-            event.node.children[2].setColor(cc.color(231,62,65,255));
+            event.node.children[2].setColor(cc.color(255,210,90,255));
         }else{
-            event.node.children[2].setColor(cc.color(129,74,17,255));
+            event.node.children[2].setColor(cc.color(255,255,255,255));
         }
     },
      // 选择买马
@@ -46,10 +46,10 @@ cc.Class({
         if(maiMa != this.mosiOrpepleClick(event) ){
              //选中改变颜色
             if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
             //上一个选中的字体恢复为默认色
-             event.node._parent.getChildByName(maiMa).children[2].setColor(cc.color(129,74,17,255));
+             event.node._parent.getChildByName(maiMa).children[2].setColor(cc.color(255,255,255,255));
         
         }
        
@@ -61,11 +61,11 @@ cc.Class({
         if( moShi != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(255,255,255,255));
         }
 
         //3.更新moshi的值
@@ -77,10 +77,10 @@ cc.Class({
         if(userType != this.mosiOrpepleClick(event) ){
              //选中改变颜色
             if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
             //上一个选中的字体恢复为默认色
-             event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
+             event.node._parent.getChildByName(userType).children[2].setColor(cc.color(255,255,255,255));
         
         }
        

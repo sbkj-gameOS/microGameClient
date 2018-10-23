@@ -22,11 +22,11 @@ cc.Class({
         if( moShi != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(moShi).children[2].setColor(cc.color(255,255,255,255));
         }
 
         moShi = this.mosiOrpepleClick(event);
@@ -35,11 +35,11 @@ cc.Class({
         if( userType != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(userType).children[2].setColor(cc.color(255,255,255,255));
         }
 
         userType = this.mosiOrpepleClick(event);
@@ -49,11 +49,11 @@ cc.Class({
         if( TPPlayer != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(TPPlayer).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(TPPlayer).children[2].setColor(cc.color(255,255,255,255));
         }
         TPPlayer = this.mosiOrpepleClick(event);
         if(TPPlayer == 'smallGun'){
@@ -67,10 +67,10 @@ cc.Class({
         if( TPQiHu != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(TPQiHu).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(TPQiHu).children[2].setColor(cc.color(255,255,255,255));
         }
         TPQiHu = this.mosiOrpepleClick(event);
     },
@@ -78,11 +78,11 @@ cc.Class({
         if( TPPayType != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
 
             //2.上一个选中的字体恢复为默认色
-            event.node._parent.getChildByName(TPPayType).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(TPPayType).children[2].setColor(cc.color(255,255,255,255));
         }
         TPPayType = this.mosiOrpepleClick(event);
     },
@@ -90,12 +90,12 @@ cc.Class({
         if( TPTaiFan != this.mosiOrpepleClick(event)){
             // 1.将当前选中的字体改为红色
              if(event.isChecked==true){    
-                event.node.children[2].setColor(cc.color(231,62,65,255));
+                event.node.children[2].setColor(cc.color(255,210,90,255));
             }
             // TPPlayer = TPPlayer.toString();
             //2.上一个选中的字体恢复为默认色
           
-            event.node._parent.getChildByName(TPTaiFan).children[2].setColor(cc.color(129,74,17,255));
+            event.node._parent.getChildByName(TPTaiFan).children[2].setColor(cc.color(255,255,255,255));
         }
         if(TPPlayer == 'smallGun'){
             TPTaiFan = 10;
