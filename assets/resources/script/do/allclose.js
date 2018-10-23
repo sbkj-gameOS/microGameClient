@@ -10,6 +10,12 @@ cc.Class({
         cc.weijifen.dialog.put(dialog);
     },
     closeMenu: function(event){
+        //清除多余弹框
+        for(var i = event.target.parent.children.length-1; i > 10; i--){
+            if(event.target.parent.children[i]._name != "share"){
+                event.target.parent.children[i].destroy();
+            }
+        }
         let menu = event.target.parent;
         if (menu.getChildByName('share')) {
             menu.getChildByName('share').active = false;

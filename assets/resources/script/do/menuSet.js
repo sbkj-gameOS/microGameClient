@@ -5,7 +5,9 @@ cc.Class({
         joinRoom: cc.Prefab,
         createRoom: cc.Prefab,
         setting:cc.Prefab,
-        shareStep: cc.Prefab
+        shareStep: cc.Prefab,
+        ranking: cc.Prefab,
+        notice: cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
@@ -14,23 +16,25 @@ cc.Class({
     init:function(name,url){
         this.clearPerfab();
         let web = this.title.parent.children[2];
-        let loadImage = this.title.parent.children[3];
-        loadImage.active = true;
-        var shareWxBtn = this.title.parent.children[4];
-        shareWxBtn.active = false;       
-        web.setPosition(0,900);
+        // let loadImage = this.title.parent.children[3];
+        // loadImage.active = true;
+        // var shareWxBtn = this.title.parent.children[4];
+        // shareWxBtn.active = false;       
+        // web.setPosition(0,900);
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
         if (name == 12) {
             cc.find('Canvas/menu/share').active = true;
-            this.title.children[name].active = true;
+            // this.title.children[name].active = true;
             return
         }
         if(name != 15){
         // if(name != 15 || name != 9){
-            this.title.children[name].active = true;
+            // this.title.children[name].active = true;
         }
+
+        
         if(name == 10 || name == 11 || name == 9) {
             let gameroom;
             web.active = false;
@@ -43,6 +47,20 @@ cc.Class({
                 gameroom = cc.instantiate(this.createRoom);
             }
             gameroom.parent = this.node
+        }else if(name == 8){//排名
+            web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
+            let ranking = cc.instantiate(this.ranking);
+            ranking.parent = this.node
+            return;
+        }else if(name == 3){//通知
+            web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
+            let notice = cc.instantiate(this.notice);
+            notice.parent = this.node
+            return;
         }else{
             var self = this ;
             cc.weijifen.loginOut = function(data) {
@@ -118,13 +136,13 @@ cc.Class({
         var webview = event.detail.url.indexOf("help/share");
         let web = this.title.parent.children[2];
         if(webview != -1){
-            web.height = 390;
-            web.setPosition(0,-49);
+            web.height = 500;
+            web.setPosition(0,-40);
             var shareWxBtn = this.title.parent.children[4];
             shareWxBtn.active = true;
         }else{
-            web.height = 490;
-            web.setPosition(0,0);
+            web.height = 500;
+            web.setPosition(0,-40);
         }
     },
     //清除留下的东西
