@@ -26,11 +26,11 @@ cc.Class({
 			default: null,
             type: cc.Label
 		},
-		/*backRoomImg:{
+		backRoomImg:{
 			default:null,
 			type:cc.SpriteFrame
-        },  */
-        backRoomTxt: cc.Label,
+        },  
+        // backRoomTxt: cc.Label,
         backRoom: cc.Node,
         chJoinRoomImg:{
             default:null,
@@ -102,12 +102,12 @@ cc.Class({
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
                 //获取要更换的图片
-                /*var object = this.chJoinRoomImg;
+                var object = this.chJoinRoomImg;
                 //获取更换图片地址
-                var sprite = cc.find("Canvas/main/game/11").getComponent(cc.Sprite);
+                var sprite = cc.find("Canvas/main/game/11/text麻友圈").getComponent(cc.Sprite);
                 //图片地址内的图片路径 = 要更换的图片路径
-                sprite.spriteFrame = object;*/
-                this.backRoomTxt.getComponent(cc.Label).string = '麻友圈';
+                sprite.spriteFrame = object;
+                sprite.node.width = 166;
             }
             if (cc.weijifen.GameBase.gameModel != 'ch') {
                 cc.find('Canvas/main/menu/top/logo').active = false
@@ -271,9 +271,10 @@ cc.Class({
         }
         if(data.room){
 			object.getGame(data);
-          /*  var sprite = object.backRoom.getComponent(cc.Sprite);
-        	sprite.spriteFrame = object.backRoomImg;*/
-            object.backRoomTxt.getComponent(cc.Label).string = '返回房间';
+            var sprite = cc.find("Canvas/main/game/11/text麻友圈").getComponent(cc.Sprite);
+        	sprite.spriteFrame = object.backRoomImg;
+            sprite.node.width = 219;
+            // object.backRoomTxt.getComponent(cc.Label).string = '返回房间';
         } else {
             //有值代表用户是通过分享进入的游戏
             if(cc.weijifen.shareRoomNum){
