@@ -218,20 +218,13 @@ cc.Class({
     * 比赛详情页tab切换
     */
     detail_tab: function (event) {
-        let mainBox = event.node.parent.parent.getChildByName('main').children;//底部切换主体
-        let idx = parseInt(event.node.name);
-        mainBox[idx].active = true;
-        event.node.children[3].setColor(cc.color(255,255,255,255));
-        if (idx == 1) {
-            event.node.parent.getChildByName('1').children[0].active = true;
-            event.node.parent.getChildByName('0').children[0].active = false;
-            event.node.parent.getChildByName('0').children[3].setColor(cc.color(108,83,55,255));
+        if (event.node.name == "toggle1") {
+            event.node.parent.parent.getChildByName("main").children[0].active = true;
+            event.node.parent.parent.getChildByName("main").children[1].active = false;
         } else {
-            event.node.parent.getChildByName('1').children[3].setColor(cc.color(108,83,55,255));
-            event.node.parent.getChildByName('1').children[0].active = false;
-            event.node.parent.getChildByName('0').children[0].active = true;
+            event.node.parent.parent.getChildByName("main").children[0].active = false;
+            event.node.parent.parent.getChildByName("main").children[1].active = true;
         }
-        idx ? mainBox[0].active = false : mainBox[1].active = false;
     },
       /*打开注意事项*/
     openTips: function () {

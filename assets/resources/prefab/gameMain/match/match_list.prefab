@@ -622,7 +622,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 25,
+      "width": 30,
       "height": 30
     },
     "_rotationX": 0,
@@ -650,7 +650,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "c8856607-7f2c-418d-b7eb-20e730b05cd7"
+      "__uuid__": "52e7603c-8fff-4095-857c-9ed53932af03"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -665,7 +665,9 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": null
+    "_atlas": {
+      "__uuid__": "2011768d-cd37-46f2-9847-e2cd7cdc019b"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1929,7 +1931,8 @@
     "match": null,
     "alts": null,
     "packgeMenu": null,
-    "activityMenu": null
+    "activityMenu": null,
+    "situationMenu": null
   },
   {
     "__type__": "cc.PrefabInfo",

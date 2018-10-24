@@ -18,22 +18,17 @@ cc.Class({
     init:function(name,url){
         this.clearPerfab();
         let web = this.title.parent.children[2];
-        // let loadImage = this.title.parent.children[3];
-        // loadImage.active = true;
-        // var shareWxBtn = this.title.parent.children[4];
-        // shareWxBtn.active = false;       
-        // web.setPosition(0,900);
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
-        if (name == 12) {
+        if (name == 12) {//分享
+            web.active = false;
             cc.find('Canvas/menu/share').active = true;
-            // this.title.children[name].active = true;
+            cc.find('Canvas/menu/loading_03').active = false;
             return
         }
         if(name != 15){
-        // if(name != 15 || name != 9){
-            // this.title.children[name].active = true;
+
         }
 
         
@@ -85,17 +80,6 @@ cc.Class({
             web.active = true;
             web = web.getComponent(cc.WebView);
             web.node.on('loaded', this.callback, this);//webview加载完成后执行的方法
-            // var scheme = "aaaabb";// 这里是与内部页面约定的关键字
-            // web.setJavascriptInterfaceScheme(scheme);
-            // function jsCallback (url) {
-            //     // cc.director.loadScene("majiang");
-            //     var str = url.replace(scheme + '://', '');
-            //     var data = JSON.stringify(str);// {a: 0, b: 1}
-            //     alert('成功拿到值',data)
-            //     //回掉操作。当webview里操作外部方法时，通过这里调用。例如，支付。
-            //     var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",url);
-            // }
-            // web.setOnJSCallback(jsCallback);
             /**
              * data数组
              * 0：服务协议内嵌url地址 
@@ -117,18 +101,18 @@ cc.Class({
             var data = [
             /* 0 */     "/help/serviceXy",
             /* 1 */     "/help/parentJhgc",
-            /* 2 */     "/gamePrizeActivity/prizeDzp?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
-            /* 3 */     "/gameNotice/goNoticePage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
+            /* 2 */     "",
+            /* 3 */     "",
             /* 4 */     "/help/chHelp?orgi="+cc.weijifen.GameBase.gameModel+"",
                         // "/shop/shopPage?token=bb52eedc507149c7b3b329471bda7373"+/*cc.weijifen.authorization+*/"&type="+cc.weijifen.GameBase+"",
-            /* 5 */     "http://game.cdn.bizpartner.cn/shop/shopPage.html?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel,
+            /* 5 */     "",
             /* 6 */     "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+"",
-            /* 7 */     "/situation/goSituationPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
-            /* 8 */     "/rankingList/goRankingPage?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
-            /* 9 */     "/match/goMatchPage?token="+cc.weijifen.authorization+"",
+            /* 7 */     "",
+            /* 8 */     "",
+            /* 9 */     "",
             /* 10 */    "",
             /* 11 */    "",
-            /* 12 */    "/help/share?token="+cc.weijifen.authorization+"&type="+cc.weijifen.GameBase.gameModel+"",
+            /* 12 */    "",
             /* 13 */    "/userInfo/goUserInfoPage?token="+cc.weijifen.authorization+""
                     ];
                     // http://game.bizpartner.cn/userInfo/goUserInfoPage?token=46de26af98fd47f88e9d595eef8155d6
@@ -140,9 +124,10 @@ cc.Class({
             if(name == 15){
                 web.url = cc.weijifen.url + url;
             }
-            /*WebView = function(e){
-                e.preventDefault();
-            }*/
+            var title = cc.find('Canvas/menu/title');
+            if(name == 0 || name == 1 || name == 4){//协议标题
+                title.getChildByName(name).active = true;
+            }
         }
     },
     loginOut: function(data,target){
