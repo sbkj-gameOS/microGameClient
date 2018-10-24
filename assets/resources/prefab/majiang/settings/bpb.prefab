@@ -265,7 +265,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "16af731a-a088-4500-aea2-58b93b21b8f8"
+      "__uuid__": "4424c05a-7f85-4e5f-8c8c-a8102270bbf1"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -281,7 +281,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
+      "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
     }
   },
   {
@@ -292,12 +292,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
-    },
-    "weijifen0": {
-      "__uuid__": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1"
-    },
+    "atlas": null,
+    "weijifen0": null,
     "cardvalue": null,
     "target": {
       "__id__": 1

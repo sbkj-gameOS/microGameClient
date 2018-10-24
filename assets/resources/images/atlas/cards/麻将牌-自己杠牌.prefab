@@ -265,7 +265,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "16af731a-a088-4500-aea2-58b93b21b8f8"
+      "__uuid__": "9b326c9e-2120-4262-9131-04cc8d824e24"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -281,7 +281,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
+      "__uuid__": "bd489e17-6703-43ae-9f9a-f4962e2b5f6a"
     }
   },
   {
@@ -292,9 +292,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
-    },
+    "atlas": null,
     "weijifen0": null,
     "cardvalue": {
       "__id__": 1

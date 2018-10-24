@@ -320,7 +320,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "43aae69e-1ffd-48a3-b239-33e5d6d3f49a"
+      "__uuid__": "37481f79-c4df-464a-bf6c-a75486171fd6"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -336,7 +336,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
+      "__uuid__": "bd489e17-6703-43ae-9f9a-f4962e2b5f6a"
     }
   },
   {
