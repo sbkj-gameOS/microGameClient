@@ -106,7 +106,7 @@
       "__id__": 136
     },
     "_id": "",
-    "_opacity": 122,
+    "_opacity": 150,
     "_color": {
       "__type__": "cc.Color",
       "r": 0,
@@ -192,8 +192,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 5
@@ -216,6 +214,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 2
@@ -435,10 +437,6 @@
       "__id__": 6
     },
     "_enabled": true,
-    "music": null,
-    "musicSlider": null,
-    "sound": null,
-    "soundSlider": null,
     "musicon": {
       "__id__": 13
     },
@@ -706,8 +704,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1139,
-      "height": 577
+      "width": 1100,
+      "height": 600
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -811,9 +809,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -856,8 +854,10 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "音效",
     "_N$horizontalAlign": 1,
@@ -1002,9 +1002,7 @@
       "__id__": 22
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "1b02565d-717f-4637-bd23-0626ff1b4cb5"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -1018,9 +1016,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1095,9 +1091,7 @@
       "__id__": 25
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "e8833605-52d0-4c27-8a51-70b26c7153ed"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -1111,9 +1105,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1175,8 +1167,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 30
@@ -1199,6 +1189,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 21
@@ -1376,9 +1370,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1421,8 +1415,10 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "单击出牌",
     "_N$horizontalAlign": 1,
@@ -1567,9 +1563,7 @@
       "__id__": 40
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "1b02565d-717f-4637-bd23-0626ff1b4cb5"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -1583,9 +1577,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1660,9 +1652,7 @@
       "__id__": 43
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "e8833605-52d0-4c27-8a51-70b26c7153ed"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -1676,9 +1666,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1740,8 +1728,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 48
@@ -1764,6 +1750,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 39
@@ -1935,9 +1925,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 218,
-      "g": 170,
-      "b": 170,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1948,7 +1938,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 76.67,
+      "width": 80,
       "height": 40
     },
     "_rotationX": 0,
@@ -1980,8 +1970,10 @@
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "设  置",
     "_N$horizontalAlign": 1,
@@ -2007,7 +1999,7 @@
     "node": {
       "__id__": 53
     },
-    "_enabled": true,
+    "_enabled": false,
     "_spriteFrame": {
       "__uuid__": "440078f6-7020-4feb-89b9-73c4609161e1"
     },
@@ -2046,7 +2038,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "6be6acdc-911a-45aa-ac21-3db9b62fe989"
+      "__uuid__": "78a05dd0-14d1-48b7-a774-ee6c67f1bd30"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -2061,7 +2053,9 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": null
+    "_atlas": {
+      "__uuid__": "524355b3-5a4f-4900-9a00-1ee908553d85"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -2096,9 +2090,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -2141,8 +2135,10 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "音乐",
     "_N$horizontalAlign": 1,
@@ -2289,9 +2285,7 @@
       "__id__": 67
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "1b02565d-717f-4637-bd23-0626ff1b4cb5"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -2305,9 +2299,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "d1d96e5c-707c-4fd6-a0d9-a07ed71d54c1"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -2369,8 +2361,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 72
@@ -2393,6 +2383,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 14
@@ -2426,9 +2420,7 @@
       "__id__": 13
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "e8833605-52d0-4c27-8a51-70b26c7153ed"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -2442,9 +2434,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "c1a3894d-ecd5-4442-adcb-3363966af0a2"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -2884,8 +2874,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 86
@@ -2910,6 +2898,10 @@
     "_N$normalSprite": {
       "__uuid__": "b9d5e2d9-7c79-4a27-893b-f503897f1c95"
     },
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 83
@@ -3202,8 +3194,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 96
@@ -3228,6 +3218,10 @@
     "_N$normalSprite": {
       "__uuid__": "410d09b9-c69e-418c-8025-8c2adf5e6110"
     },
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 93
@@ -3383,8 +3377,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 103
@@ -3409,6 +3401,10 @@
     "_N$normalSprite": {
       "__uuid__": "cf9f1bfc-c637-48b5-a964-481b29f0174f"
     },
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 100
@@ -3629,9 +3625,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3864,8 +3860,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 117
@@ -3888,6 +3882,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 111
@@ -4116,8 +4114,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 125
@@ -4140,6 +4136,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 119
@@ -4178,8 +4178,10 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "桌布",
     "_N$horizontalAlign": 1,
@@ -4249,8 +4251,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 131
@@ -4273,6 +4273,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 109
@@ -4405,8 +4409,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 559,
-      "y": 262
+      "x": 505,
+      "y": 256
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -4477,9 +4481,7 @@
       "__id__": 138
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "5e8aeca7-3686-451b-807e-a16d241ed717"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -4531,8 +4533,6 @@
     },
     "duration": 0.1,
     "zoomScale": 1.2,
-    "pressedSprite": null,
-    "hoverSprite": null,
     "clickEvents": [
       {
         "__id__": 142
@@ -4555,6 +4555,10 @@
       "a": 255
     },
     "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
       "__id__": 137
@@ -4751,9 +4755,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 218,
-      "g": 170,
-      "b": 170,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4764,7 +4768,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 118.34,
+      "width": 130,
       "height": 40
     },
     "_rotationX": 0,
@@ -4773,7 +4777,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 70,
+      "x": 14,
       "y": 0
     },
     "_skewX": 0,
@@ -4796,8 +4800,10 @@
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "     游  戏",
     "_N$horizontalAlign": 1,
@@ -4823,7 +4829,7 @@
     "node": {
       "__id__": 147
     },
-    "_enabled": true,
+    "_enabled": false,
     "_spriteFrame": {
       "__uuid__": "9ebaae2f-a3d9-4f7b-b061-a104a7f7c116"
     },
@@ -4875,9 +4881,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4920,8 +4926,10 @@
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "牌背",
     "_N$horizontalAlign": 1,
