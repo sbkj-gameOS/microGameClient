@@ -95,8 +95,8 @@ cc.Class({
             data1 = JSON.parse(dataStr);
             menu.parent = cc.find('Canvas');
             menu.zIndex = 100000;
-            var content = menu.getChildByName('main').children[0].children[1].children[0];// 概述后代元素---content
-            var rewardTxt = menu.getChildByName('main').children[1].children[1].children[0];// 奖励下的后代元素---content
+            var content = menu.getChildByName('main').children[0].children[0].children[0];// 概述后代元素---content
+            var rewardTxt = menu.getChildByName('main').children[1].children[0].children[0];// 奖励下的后代元素---content
             cc.sys.localStorage.setItem('activityId',data1.id);
             // 报名费用
             // data1.entryConditions = JSON.stringify({"bmtj":[{"type":"2","data":{"startTime":"2018-09-01","endTime":"2018-09-30","count":"0"}},{"type":"1"}],"csTj":[{"type":"0","data":{"roomCard":"5"}},{"type":"1","data":{"roomCard":"1"}}]});
@@ -186,9 +186,11 @@ cc.Class({
                         reward.y = rewardTxt.children[i+1].y - 70;
                     }
                     if (i == 0) {
-                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-1');
+                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('ranking1');
                     } else if (i == 1) {
-                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('crown-2');
+                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('ranking2');
+                    } else if (i == 2) {
+                        reward.children[2].getComponent(cc.Sprite).spriteFrame = self.alts.getSpriteFrame('ranking3');
                     }
                     reward.parent = rewardTxt;
                     reward.active = true;
