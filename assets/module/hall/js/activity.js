@@ -18,11 +18,18 @@ cc.Class({
         rightBox: cc.Node
     },
     onLoad () {
-        cc.weijifen.activityId = 31;
-        this.clickFlag = true; // 是否已经点击抽奖按钮
-        this.turnTableNum = 8; // 转盘格数 
-        this.turnRotation = 360 / (this.turnTableNum); // 每一份转盘格数转动的角度
-        this.turnTableInit();
+        // cc.weijifen.activityId = 31;
+        cc.weijifen.http.httpPost("/gamePrizeActivity/prizeDzpData",{type: 'ch'},function(result,obj){
+            // {"success":"true","activityId":"31"}
+            var res = JSON.parse(result);
+            if (res.success) {
+                cc.weijifen.activityId = res.activityId;
+                obj.clickFlag = true; // 是否已经点击抽奖按钮
+                obj.turnTableNum = 8; // 转盘格数 
+                obj.turnRotation = 360 / (obj.turnTableNum); // 每一份转盘格数转动的角度
+                obj.turnTableInit();
+            }
+        },this.err,this);
 
     },
     /**
@@ -92,7 +99,6 @@ cc.Class({
         let offset_x = 0,action;
         let self = this;
         let text = self.scrollWord;
-        console.log(text)
         let width = 999;// 滚动字幕背景的长度
         let timer = setInterval(function(){
             if (!text.name) {

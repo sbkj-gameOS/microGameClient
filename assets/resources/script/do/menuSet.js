@@ -8,7 +8,8 @@ cc.Class({
         shareStep: cc.Prefab,
         ranking: cc.Prefab,
         notice: cc.Prefab,
-        situation: cc.Prefab
+        situation: cc.Prefab,
+        activity: cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
@@ -67,9 +68,16 @@ cc.Class({
             let loadImage = this.title.parent.children[3];
             loadImage.active = false;
             let situation = cc.instantiate(this.situation);
-            situation.parent = this.node
+            situation.parent = this.node;
             return;
-        }else{
+        }else if(name == 2){// 活动
+            web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
+            let activity = cc.instantiate(this.activity);
+            activity.parent = this.node;
+            return;
+        } else {
             var self = this ;
             cc.weijifen.loginOut = function(data) {
                 self.loginOut(data,self) ;
