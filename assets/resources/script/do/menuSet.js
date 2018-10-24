@@ -25,6 +25,7 @@ cc.Class({
             web.active = false;
             cc.find('Canvas/menu/share').active = true;
             cc.find('Canvas/menu/loading_03').active = false;
+            cc.find('Canvas/menu/title').getChildByName(name).active = true;
             return
         }
         if(name != 15){
@@ -125,7 +126,7 @@ cc.Class({
                 web.url = cc.weijifen.url + url;
             }
             var title = cc.find('Canvas/menu/title');
-            if(name == 0 || name == 1 || name == 4){//协议标题
+            if(name == 0 || name == 1 || name == 4 || name == 6 || name == 13){//协议标题
                 title.getChildByName(name).active = true;
             }
         }
