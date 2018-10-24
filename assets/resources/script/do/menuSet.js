@@ -7,7 +7,8 @@ cc.Class({
         setting:cc.Prefab,
         shareStep: cc.Prefab,
         ranking: cc.Prefab,
-        notice: cc.Prefab
+        notice: cc.Prefab,
+        situation: cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
@@ -60,6 +61,13 @@ cc.Class({
             loadImage.active = false;
             let notice = cc.instantiate(this.notice);
             notice.parent = this.node
+            return;
+        }else if(name == 7){// 战况
+            web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
+            let situation = cc.instantiate(this.situation);
+            situation.parent = this.node
             return;
         }else{
             var self = this ;

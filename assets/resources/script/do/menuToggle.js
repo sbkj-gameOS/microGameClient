@@ -10,7 +10,8 @@ cc.Class({
         match: cc.Prefab,
         alts: cc.SpriteAtlas,
         packgeMenu: cc.Prefab,
-        activityMenu: cc.Prefab
+        activityMenu: cc.Prefab,
+        situationMenu: cc.Prefab,
      },
 
     // use this for initialization
