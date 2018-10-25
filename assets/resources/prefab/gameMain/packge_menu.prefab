@@ -3012,9 +3012,7 @@
       "__id__": 89
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "b67c936a-90ca-4748-bda4-954c5ca4e55e"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -3028,9 +3026,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "cd8dbd18-c63a-4fc8-8848-5cb33ab63c47"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3194,9 +3190,7 @@
       "__id__": 95
     },
     "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "a208bca8-bf51-44b0-b08f-ffee26e7d17f"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -3210,9 +3204,7 @@
     "_isTrimmedMode": true,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_atlas": {
-      "__uuid__": "79938bea-34a0-4ab7-8cdb-4ec11ac6ad4b"
-    }
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -4250,7 +4242,8 @@
     "packgeMenu": {
       "__uuid__": "f01022d9-2fa4-4460-b780-c42ba57f46fd"
     },
-    "activityMenu": null
+    "activityMenu": null,
+    "situationMenu": null
   },
   {
     "__type__": "cc.PrefabInfo",

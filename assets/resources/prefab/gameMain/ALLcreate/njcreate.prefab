@@ -2243,9 +2243,7 @@
     ],
     "editingDidEnded": [],
     "editingReturn": [],
-    "_N$backgroundImage": {
-      "__uuid__": "f4e3ca29-5a7a-4eec-a19c-60a4a170e7d6"
-    },
+    "_N$backgroundImage": null,
     "_N$returnType": 0,
     "_N$inputFlag": 5,
     "_N$inputMode": 6,
@@ -2431,9 +2429,7 @@
     ],
     "editingDidEnded": [],
     "editingReturn": [],
-    "_N$backgroundImage": {
-      "__uuid__": "f4e3ca29-5a7a-4eec-a19c-60a4a170e7d6"
-    },
+    "_N$backgroundImage": null,
     "_N$returnType": 0,
     "_N$inputFlag": 5,
     "_N$inputMode": 6,
@@ -6395,9 +6391,7 @@
     ],
     "editingDidEnded": [],
     "editingReturn": [],
-    "_N$backgroundImage": {
-      "__uuid__": "f4e3ca29-5a7a-4eec-a19c-60a4a170e7d6"
-    },
+    "_N$backgroundImage": null,
     "_N$returnType": 0,
     "_N$inputFlag": 5,
     "_N$inputMode": 6,
