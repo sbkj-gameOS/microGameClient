@@ -7,7 +7,19 @@ cc.Class({
     onLoad: function () {},
     closeAlert: function(){
         let dialog = cc.find("Canvas/alert") ;
+        let flag ;
+        if (dialog.getChildByName('button')) {
+            let str = dialog.getChildByName('message').getComponent(cc.Label).string;
+            if (str.slice(7,8) > 0 && str.length > 25) {
+                flag = 1;
+            }
+        }
         cc.weijifen.dialog.put(dialog);
+        if (flag) {
+            let acti = require('activity');
+            let activityJs = new acti();
+            activityJs.subtractCard();
+        }
     },
     closeMenu: function(event){
         //清除多余弹框

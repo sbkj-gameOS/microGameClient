@@ -153,6 +153,7 @@ cc.Class({
     },
     /*开始抽奖游戏*/
     startGame () {
+        
         let self = this,
             params = {
                 token: cc.weijifen.authorization,
@@ -175,16 +176,21 @@ cc.Class({
         let rounds = 6; // 转盘转动的圈数
         let clickTimes = 6; // 转盘转动的时间
         var rotateBy02 = cc.rotateBy(clickTimes, (360 - data.angle ) + 360 * rounds);
-        // var rotateBy02 = cc.rotateBy(clickTimes, data.angle + 360 * rounds - self.turnRotation);
-        self.pointer.node.runAction(rotateBy02).easing(cc.easeCubicActionOut(clickTimes));
+        // self.pointer.node.runAction(rotateBy02).easing(cc.easeCubicActionOut(clickTimes));
+        cc.find('Canvas/menu/activity/turn_table').runAction(rotateBy02).easing(cc.easeCubicActionOut(clickTimes));
         let timer = setTimeout(function(){
             self.alert(data.msg);
-            self.clickBtn.getComponent(cc.Button).interactable = true;
+            // self.clickBtn.getComponent(cc.Button).interactable = true;
+            cc.find('Canvas/menu/activity/click_btn').getComponent(cc.Button).interactable = true;
+            cc.weijifen.activityFlag = 1;// 已经点了一次
             clearTimeout(timer);
         },6000);
     },
     /*扣除房卡*/
     subtractCard () {
+        if (cc.find('Canvas/alert')) {
+            return
+        }
         let self = this,
             token = cc.weijifen.authorization;
         cc.weijifen.http.httpPost('/gamePrizeActivity/kouRoomCard',{token:token},function(res){
@@ -199,4 +205,3 @@ cc.Class({
         console.log('错误！')
     }
 });
- 
