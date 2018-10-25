@@ -134,7 +134,10 @@ cc.Class({
                     self.startGame();
                 } else {
                     if (data.roomCard) {
-                        self.alert("当前房卡数量："+data.roomCard+"\n继续操作将扣除一张房卡，扣除房卡后可拥有一次抽奖机会，是否继续？");
+                        // self.alert("当前房卡数量："+data.roomCard+"\n继续操作将扣除一张房卡，扣除房卡后可拥有一次抽奖机会，是否继续？");
+                        let str = "当前房卡数量："+data.roomCard+"\n继续操作将扣除一张房卡，扣除房卡后可拥有一次抽奖机会，是否继续？";
+                        cc.find('Canvas/menu/activity/downloadapp').active = true;
+                        cc.find('Canvas/menu/activity/downloadapp').getChildByName('label').getComponent(cc.Label).string = str;
                         if (data.roomCard) {
                             self.subtractCard();
                         } else {
@@ -188,7 +191,7 @@ cc.Class({
     },
     /*扣除房卡*/
     subtractCard () {
-        if (cc.find('Canvas/alert')) {
+        if (cc.find('Canvas/menu/activity/downloadapp').active) {
             return
         }
         let self = this,
@@ -200,6 +203,16 @@ cc.Class({
             }
 
         },self.err,self);
+    },
+    jixu (event) {
+        event.target.parent.active = false;
+        let acti = require('activity');
+        let activityJs = new acti();
+        activityJs.subtractCard();
+    },
+    quxiao (event) {
+        event.target.parent.active = false;
+        cc.weijifen.flag = 1;
     },
     err () {
         console.log('错误！')
