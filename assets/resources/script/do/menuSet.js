@@ -18,6 +18,7 @@ cc.Class({
     init:function(name,url){
         this.clearPerfab();
         let web = this.title.parent.children[2];
+        web.setPosition(0,999);
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
