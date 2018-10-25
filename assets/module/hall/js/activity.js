@@ -188,7 +188,7 @@ cc.Class({
         let self = this,
             token = cc.weijifen.authorization;
         cc.weijifen.http.httpPost('/gamePrizeActivity/kouRoomCard',{token:token},function(res){
-            let data = JOSN.parse(res);
+            let data = JSON.parse(res);
             if (data.success) {
                 self.startGame();
             }
