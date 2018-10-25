@@ -177,9 +177,9 @@ cc.Class({
         var id = target.target._parent.getChildByName("id").getComponent(cc.Label).string;
         target.target.active = false;
         var self = this;
-        // cc.weijifen.http.httpPost("/gameNotice/getPrize",{token:cc.weijifen.authorization,prizeId:id},function(res,object){
-        //     res = JSON.parse(res);
-        //     if(res.success){
+        cc.weijifen.http.httpPost("/gameNotice/getPrize",{token:cc.weijifen.authorization,prizeId:id},function(res,object){
+            res = JSON.parse(res);
+            if(res.success){
                 self.alert("已领取");
                 if(cc.weijifen.prizeData != 0){
                 	//领取奖品信息为房卡时，更新全部房卡渲染数据
@@ -189,10 +189,10 @@ cc.Class({
                 		cc.weijifen.user.cards = parseInt(oldCard) + parseInt(cc.weijifen.prizeData.count);
                 	}
                 }
-        //     }else{
-        //         target.target.active = true;
-        //     }
-        // },self.err,self);   
+            }else{
+                target.target.active = true;
+            }
+        },self.err,self);   
     },
     getNowFormatDate(datetime) {
         var date = new Date(datetime);
