@@ -4333,7 +4333,7 @@
     "node": {
       "__id__": 100
     },
-    "_enabled": true,
+    "_enabled": false,
     "_type": 2,
     "_segements": 64,
     "_N$spriteFrame": null,
