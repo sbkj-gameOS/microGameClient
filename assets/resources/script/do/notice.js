@@ -11,7 +11,7 @@ cc.Class({
 
     onLoad () {
         var self = this;
-        // cc.weijifen.authorization = "0d89e515ed50437fb2e67c6dd1a71aac";
+        // cc.weijifen.authorization = "b9ce47367d85444a80205444747e984f";
         //获取通知列表标题
         cc.weijifen.http.httpGet('/gameNotice/findActivityListGame?token='+cc.weijifen.authorization,this.noticeSuccess,this.rankingError,this);
     },
@@ -67,6 +67,7 @@ cc.Class({
         cc.weijifen.http.httpPost(goUrl,json,function(res,object){
             let data = JSON.parse(res);
             if (data.success) {
+            	cc.weijifen.prizeData = 0;
                 //点击的标题信息如果是中奖信息或者其他信息
                 if(list[0] == "zj" || list[0] == "other"){
                     cc.find("Canvas/menu/notice/right/ScrollView/view/content/prize").active = true;
@@ -85,6 +86,8 @@ cc.Class({
                         prizeContent.getChildByName("getPrizeBtn").active = false;
                     }
                     prizeContent.getChildByName("id").getComponent(cc.Label).string = prizeData.id;//领奖按钮的名称更改为id
+			
+					
                     //如果不是中奖信息  报名成功等信息
                     if(list[0] == "other"){
                         prizeContent.getChildByName("time").getComponent(cc.Label).string = "获得时间：";
@@ -92,6 +95,20 @@ cc.Class({
                         prizeContent.getChildByName("getPrizeBtn").active = false;
                         //奖项内容隐藏
                         prizeContent.getChildByName("prize").active = false;
+                    }else if(list[0] == "zj"){
+                    	cc.weijifen.prizeData = data.prizeData;
+                    	prizeContent.getChildByName("prize").active = true;
+                    	var prizeText = "";
+						prizeContent.getChildByName("prize").children[0].children[data.prizeData.did].active = true;
+						if(data.prizeData.did == 1){
+							prizeText = " x" + data.prizeData.count + "张";
+							prizeContent.getChildByName("prize").children[0].children[4].active = false;
+						}else if(data.prizeData.did == 4){
+							prizeText += " ￥" + data.prizeData.count + "元";
+							prizeContent.getChildByName("prize").children[0].children[1].active = false;
+						}
+						prizeContent.getChildByName("prize").children[0].children[0].active = true;
+	                    prizeContent.getChildByName("prize").children[0].children[0].getComponent(cc.Label).string = prizeText;
                     }
                 }else if(list[0] == "bs"){//标题信息为比赛内容
                     var activity = data.activity;
@@ -160,14 +177,22 @@ cc.Class({
         var id = target.target._parent.getChildByName("id").getComponent(cc.Label).string;
         target.target.active = false;
         var self = this;
-        cc.weijifen.http.httpPost("/gameNotice/getPrize",{token:cc.weijifen.authorization,prizeId:id},function(res,object){
-            res = JSON.parse(res);
-            if(res.success){
+        // cc.weijifen.http.httpPost("/gameNotice/getPrize",{token:cc.weijifen.authorization,prizeId:id},function(res,object){
+        //     res = JSON.parse(res);
+        //     if(res.success){
                 self.alert("已领取");
-            }else{
-                target.target.active = true;
-            }
-        },self.err,self);   
+                if(cc.weijifen.prizeData != 0){
+                	//领取奖品信息为房卡时，更新全部房卡渲染数据
+                	if(cc.weijifen.prizeData.did == 1){
+                		var oldCard = cc.find("Canvas/main/head/5/num").getComponent(cc.Label).string;
+                		cc.find("Canvas/main/head/5/num").getComponent(cc.Label).string = parseInt(oldCard) + parseInt(cc.weijifen.prizeData.count);
+                		cc.weijifen.user.cards = parseInt(oldCard) + parseInt(cc.weijifen.prizeData.count);
+                	}
+                }
+        //     }else{
+        //         target.target.active = true;
+        //     }
+        // },self.err,self);   
     },
     getNowFormatDate(datetime) {
         var date = new Date(datetime);
