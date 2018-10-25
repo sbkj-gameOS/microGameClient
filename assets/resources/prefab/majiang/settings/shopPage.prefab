@@ -861,7 +861,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 47
@@ -896,8 +896,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -272,
-      "y": 43
+      "x": -262,
+      "y": 45
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1028,8 +1028,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 246,
-      "height": 340
+      "width": 306,
+      "height": 376
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1037,7 +1037,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 2,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -1130,7 +1130,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -2,
+      "x": 0,
       "y": 10
     },
     "_skewX": 0,
@@ -1214,8 +1214,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
-      "height": 30
+      "width": 170,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1223,8 +1223,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -2.1,
-      "y": 94
+      "x": 0,
+      "y": 100
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1307,7 +1307,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 57,
+      "width": 71,
       "height": 30
     },
     "_rotationX": 0,
@@ -1316,8 +1316,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 5.684341886080802e-14,
-      "y": 86
+      "x": 0,
+      "y": 99
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1336,7 +1336,7 @@
     "_enabled": true,
     "_N$string": "<b>房卡1张</b>",
     "_N$horizontalAlign": 0,
-    "_N$fontSize": 16,
+    "_N$fontSize": 20,
     "_N$font": {
       "__uuid__": "9078b622-4517-494e-8d47-5d488653ee4c"
     },
@@ -1404,8 +1404,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -0.7,
-      "y": -83
+      "x": 0,
+      "y": -89
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1459,7 +1459,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 6
+      "y": 2
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1661,7 +1661,7 @@
       "height": 40
     },
     "_N$startAxis": 0,
-    "_N$paddingLeft": 0,
+    "_N$paddingLeft": 10,
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,

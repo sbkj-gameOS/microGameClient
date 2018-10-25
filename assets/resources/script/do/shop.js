@@ -22,6 +22,7 @@ cc.Class({
         var content = cc.find("Canvas/setting/content");
         for(let i= 0; i<data.shopList.length;i++){
             var shopOne = cc.instantiate(object.shopOne);
+            shopOne.active = true;
             var idvalue = shopOne.getChildByName("idvalue").getComponent(cc.Label);
             var roomNum = shopOne.getChildByName("roomNum").getComponent(cc.RichText);
             var price = shopOne.getChildByName("shop_btn").getChildByName("price").getComponent(cc.RichText);
