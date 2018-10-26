@@ -380,6 +380,15 @@ cc.Class({
             		cc.find('Canvas/bg/ReplacePowerCard').active = false;
             	},1500);
             }
+            var handCards = cc.find('Canvas/cards/handcards/current/currenthandcards');
+            var length = handCards.children.length ;
+            if (length > 3 && cc.weijifen.user.id == data.userid && handCards.children[length-1].zIndex == 2000) {
+            	let val = handCards.children[length-1].getComponent('HandCards').value;
+            	val > -1 ? handCards.children[length-1].zIndex = val
+            		     : handCards.children[length-1].zIndex = val + 200;
+		        handCards.sortAllChildren();
+            }
+
     		context.clock = setTimeout(function(){
     			if (cc.find('Canvas/big_cards').children) {
     				cc.find('Canvas/big_cards').removeAllChildren();
