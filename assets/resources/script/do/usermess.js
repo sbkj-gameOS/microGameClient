@@ -31,7 +31,7 @@ cc.Class({
 	        })
     	}
     	
-        // cc.weijifen.authorization = "a17872f265004430b3fb5268288b1af9";
+        // cc.weijifen.authorization = "d6e3e3d58ab24a9695fcf2efe8ae509a";
         //获取房卡数据
         cc.weijifen.http.httpGet('/userInfo/getUserCard?token='+cc.weijifen.authorization,this.cardSuccess,this.userError,this);
         //获取可提现金额  总金额   好友数量数据
@@ -103,11 +103,11 @@ cc.Class({
         res = JSON.parse(res);
         var mess1 = cc.find("Canvas/menu/usermess/right/right0");
         if(res.data.trtProfit){
-        	mess1.getChildByName("item3").children[1].children[0].getComponent(cc.Label).string = res.data.trtProfit;//总佣金额度
+        	mess1.getChildByName("item3").children[1].children[0].getComponent(cc.Label).string = res.data.trtProfit.toFixed(2);//总佣金额度
         }
 
         if(res.data.amountPaid){
-        	mess1.getChildByName("item4").children[1].children[0].getComponent(cc.Label).string = res.data.amountPaid;//已提现总额
+        	mess1.getChildByName("item4").children[1].children[0].getComponent(cc.Label).string = res.data.amountPaid.toFixed(2);//已提现总额
         }
 
         if(res.data.subCount){
@@ -123,7 +123,7 @@ cc.Class({
             let list = cc.instantiate(object.txItem);
             list.active = true;
             list.getChildByName('date').getComponent(cc.Label).string = object.getNowFormatDate(res.list[i].presentAppTime,1);//提现时间
-            list.getChildByName('price').getComponent(cc.Label).string = res.list[i].amountMoney;//提现金额
+            list.getChildByName('price').getComponent(cc.Label).string = res.list[i].amountMoney.toFixed(2);//提现金额
             list.getChildByName('type').getComponent(cc.Label).string = "微信";//提现方式
             res.list[i].applicationNum = res.list[i].applicationNum.substring(7,res.list[i].applicationNum.length);
             list.getChildByName('num').getComponent(cc.Label).string = "**"+res.list[i].applicationNum;//提现单号
