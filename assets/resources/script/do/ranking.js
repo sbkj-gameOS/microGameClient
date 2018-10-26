@@ -11,6 +11,7 @@ cc.Class({
 
     onLoad () {
         var self = this;
+        // cc.weijifen.authorization = "a17872f265004430b3fb5268288b1af9";
         //获取次数
         cc.weijifen.http.httpGet('/rankingList/findPrizeCount?token='+cc.weijifen.authorization,this.rankingSuccess,this.rankingError,this);
 
@@ -45,7 +46,7 @@ cc.Class({
             list.getChildByName('num').getComponent(cc.Label).string = res.prizeList[i].prizeRanking;
             list.parent = object.count;
         }
-        // countPrefab.parent = cc.find("Canvas/menu/rangking/right/ScrollView/view");
+        object.count.height = object.listItem.height * res.prizeList.length;
     },
 
     error (res) {
