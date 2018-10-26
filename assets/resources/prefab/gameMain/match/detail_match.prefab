@@ -4668,7 +4668,7 @@
     "inertia": true,
     "brake": 0.75,
     "elastic": true,
-    "bounceDuration": 5,
+    "bounceDuration": 0.73,
     "scrollEvents": [],
     "cancelInnerEvents": true,
     "_N$horizontalScrollBar": null,
@@ -5865,7 +5865,7 @@
     "inertia": true,
     "brake": 0.75,
     "elastic": true,
-    "bounceDuration": 5,
+    "bounceDuration": 0.73,
     "scrollEvents": [
       {
         "__id__": 187
