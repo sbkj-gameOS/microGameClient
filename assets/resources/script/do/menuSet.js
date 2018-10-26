@@ -9,7 +9,8 @@ cc.Class({
         ranking: cc.Prefab,
         notice: cc.Prefab,
         situation: cc.Prefab,
-        activity: cc.Prefab
+        activity: cc.Prefab,
+        usermess:cc.Prefab
     },
     onLoad: function () {
         let h5CallCocos = require('h5CallCocos');
@@ -74,7 +75,14 @@ cc.Class({
             let activity = cc.instantiate(this.activity);
             activity.parent = this.node;
             return;
-        } else {
+        } else if(name == 6 || name == 13){
+            web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
+            let usermess = cc.instantiate(this.usermess);
+            usermess.parent = this.node;
+            return;
+        }else{
             var self = this ;
             cc.weijifen.loginOut = function(data) {
                 self.loginOut(data,self) ;
@@ -127,7 +135,7 @@ cc.Class({
                 web.url = cc.weijifen.url + url;
             }
             var title = cc.find('Canvas/menu/title');
-            if(name == 0 || name == 1 || name == 4 || name == 6 || name == 13){//协议标题
+            if(name == 0 || name == 1 || name == 4){//协议标题
                 title.getChildByName(name).active = true;
             }
         }

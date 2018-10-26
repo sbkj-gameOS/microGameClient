@@ -367,13 +367,7 @@ cc.Class({
         cc.weijifen.GameBase.gameModel == 'ch' ? this.hall(9)
                                                : this.hall(90);
     },
-     /*退出登录*/
-    changeAccount: function () {
-        cc.director.loadScene('appLogin'); 
-        cc.sys.localStorage.clear();
-        cc.weijifen = null;
-        cc.audioEngine.stopAll();
-    },
+    
     /*获取房卡*/
     getRoomCards: function () {
         let token = {token:cc.weijifen.authorization};
