@@ -44,12 +44,15 @@ cc.Class({
             list.parent = object.count;
         }
 
-        var listOne = cc.find("Canvas/menu/notice/left/New ScrollView/view/content/New ToggleContainer").children[1];
+        var listOne = cc.find("Canvas/menu/notice/left/New ScrollView/view/content").children[1];
         //第一个设置为选中
         listOne.getComponent(cc.Toggle).isChecked = true;
-        ;
         var json = {node:{name:listOne.name}};
         object.getDetailClick(json);
+        //获取list总个数
+        var listcount = res.prizeList.length + res.list.length + res.userMessList.length;
+        //设置列表内容的高度  *-25为count layout边距值
+        object.count.height = (listcount * object.listItem.height)+(-25 * listcount) + 10;
     },
     //点击左侧标题响应右边内容
     getDetailClick (target){
