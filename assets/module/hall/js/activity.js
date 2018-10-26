@@ -175,6 +175,7 @@ cc.Class({
     */
     pointerButtonStartControl (data) {
         let self = this;
+        cc.find('Canvas/menu/activity/click_btn').getComponent(cc.Button).interactable = false;
         // let angle = 200;// 初始状态下，抽奖结果所在的度数
         let rounds = 6; // 转盘转动的圈数
         let clickTimes = 6; // 转盘转动的时间
@@ -183,6 +184,11 @@ cc.Class({
         cc.find('Canvas/menu/activity/turn_table').runAction(rotateBy02).easing(cc.easeCubicActionOut(clickTimes));
         let timer = setTimeout(function(){
             self.alert(data.msg);
+            let time2 = setTimeout(function(){
+                var rotate3 = cc.rotateBy(0, (360 + data.angle));
+                cc.find('Canvas/menu/activity/turn_table').runAction(rotate3).easing(cc.easeCubicActionOut(0));
+                clearTimeout(time2);
+            },1300);
             // self.clickBtn.getComponent(cc.Button).interactable = true;
             cc.find('Canvas/menu/activity/click_btn').getComponent(cc.Button).interactable = true;
             cc.weijifen.activityFlag = 1;// 已经点了一次
