@@ -105,6 +105,7 @@ cc.Class({
 				list.parent = obj.rightContent;
 				list.active = true;
 			}
+            obj.rightContent.height = obj.roomList.height * data.length;
 		}  	
     },
     goDetail (event) {
@@ -200,7 +201,7 @@ cc.Class({
     				}	
     			}
 
-
+                obj.detail_content.height = obj.detail_item.height * res.playUserList[0].userRoomDetailList.length;
     		}
     	}
     	
