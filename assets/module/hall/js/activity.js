@@ -23,8 +23,7 @@ cc.Class({
             // {"success":"true","activityId":"31"}
             var res = JSON.parse(result);
             if (res.success) {
-                // cc.weijifen.activityId = res.activityId;
-                cc.weijifen.activityId = 22;
+                cc.weijifen.activityId = res.activityId;
                 obj.clickFlag = true; // 是否已经点击抽奖按钮
                 obj.turnTableNum = 8; // 转盘格数 
                 obj.turnRotation = 360 / (obj.turnTableNum); // 每一份转盘格数转动的角度
