@@ -84,6 +84,7 @@ cc.Class({
             return;
         }else{
             var self = this ;
+            self.title.parent.children[3].active = true;
             cc.weijifen.loginOut = function(data) {
                 self.loginOut(data,self) ;
             };
