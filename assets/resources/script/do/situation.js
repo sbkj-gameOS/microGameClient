@@ -55,6 +55,7 @@ cc.Class({
     },
     /*初始化战况数据*/
     initData () {
+        // cc.weijifen.authorization = "73d2364791ab4c7bb757beced6787ef2";
     	var params = {
             token: cc.weijifen.authorization,
     		type: 1,// 默认约局
@@ -71,8 +72,11 @@ cc.Class({
 			list.getChildByName(name).getComponent(cc.Label).string = str;
 		}
 		function subStr (str) {
-			var res = str.slice(0,4) + '...';
-			return res;
+			var res = "";
+            if(str){
+                res = str.slice(0,4) + '...';
+            }
+            return res;
 		}
 		if (result.success) {
 			var data = result.data;
@@ -132,7 +136,10 @@ cc.Class({
 				list.getChildByName(name).getComponent(cc.Label).string = str;
 			}
 			function subStr (str) {
-				var res = str.slice(0,4) + '...';
+                var res = "";
+                if(str){
+                    res = str.slice(0,4) + '...';
+                }
 				return res;
 			}
     		var res = JSON.parse(result);
