@@ -23,7 +23,8 @@ cc.Class({
             // {"success":"true","activityId":"31"}
             var res = JSON.parse(result);
             if (res.success) {
-                cc.weijifen.activityId = res.activityId;
+                // cc.weijifen.activityId = res.activityId;
+                cc.weijifen.activityId = 22;
                 obj.clickFlag = true; // 是否已经点击抽奖按钮
                 obj.turnTableNum = 8; // 转盘格数 
                 obj.turnRotation = 360 / (obj.turnTableNum); // 每一份转盘格数转动的角度
@@ -58,38 +59,54 @@ cc.Class({
                 let awardData = JSON.parse(data.activityManange.awardData).awardData;
                 let competency = JSON.parse(data.activityManange.competency);// 参赛资格
                 self.glData = JSON.parse(data.activityManange.awardData).glData;// 顶部滚动信息
-                // 转盘
-                for (let i = 0;i < awardData.length;i++) {
-                    let turnModel = cc.instantiate(self.turnModel);
-                    turnModel.getChildByName('txt').getComponent(cc.Label).string = awardData[i].nameValue;
-                    if (awardData[i].dname == '房卡') {
-                        turnModel.getChildByName('img').getComponent(cc.Sprite).spriteFrame = self.turnImgArr[0];
-                    } else if (awardData[i].dname == '再接再厉' || awardData[i].dname == '不要灰心') {
-                        turnModel.getChildByName('img').getComponent(cc.Sprite).spriteFrame = self.turnImgArr[1];
-                    } else if (awardData[i].dname == '月赛卡') {
-                        turnModel.getChildByName('img').getComponent(cc.Sprite).spriteFrame = self.turnImgArr[0];
+                if (awardData.length) {
+                    cc.find("Canvas/menu/activity/data").active = false;
+                    // 转盘
+                    for (let i = 0;i < awardData.length;i++) {
+                        let turnModel = cc.instantiate(self.turnModel);
+                        turnModel.getChildByName('txt').getComponent(cc.Label).string = awardData[i].nameValue;
+                        if (awardData[i].dname == '房卡') {
+                            turnModel.getChildByName('img').getComponent(cc.Sprite).spriteFrame = self.turnImgArr[0];
+                        } else if (awardData[i].dname == '再接再厉' || awardData[i].dname == '不要灰心') {
+                            turnModel.getChildByName('img').getComponent(cc.Sprite).spriteFrame = self.turnImgArr[1];
+                        } else if (awardData[i].dname == '月赛卡') {
+                            turnModel.getChildByName('img').getComponent(cc.Sprite).spriteFrame = self.turnImgArr[0];
+                        }
+                        turnModel.rotation = self.turnRotation * (i + 1);
+                        turnModel.parent = self.turnTable;
+                        turnModel.active = true;
                     }
-                    turnModel.rotation = self.turnRotation * (i + 1);
-                    turnModel.parent = self.turnTable;
-                    turnModel.active = true;
+                    // 右侧信息（content节点）
+                    // @param i           子节点下标
+                    // @param childName   孙节点名字
+                    // @param dataStr     孙对应要更改的数据
+                    function getString (i,childName,dataStr) {
+                        self.rightBox.children[i].getChildByName(childName).getComponent(cc.Label).string = data.activityManange[dataStr];          
+                    }
+                    for (let ele of competency) { arr.push(ele.name); }
+                    getString(0,'name','name');
+                    self.rightBox.children[1].getChildByName('name').getComponent(cc.Label).string = 
+                                    data.activityManange.startTime.substr(0,data.activityManange.startTime.length - 2) + ' - ' + 
+                                    data.activityManange.startTime.substr(0,data.activityManange.startTime.length - 2);
+                    self.rightBox.children[2].getChildByName('name').getComponent(cc.Label).string = arr.join('/');          
+                    self.rightBox.children[3].getChildByName('name').getComponent(cc.Label).string = userType[data.activityManange.userType];          
+                    getString(4,'name','content');
+                    self.scrollWord.getComponent(cc.Label).string = data.prizeUser;
+                    self.scrollAction();
+                } else {
+                    cc.find("Canvas/menu/activity/right_bg").active = false;
+                    cc.find("Canvas/menu/activity/right").active = false;
+                    cc.find("Canvas/menu/activity/click_btn").active = false;
+                    cc.find("Canvas/menu/activity/turn_table").active = false;
+                    cc.find("Canvas/menu/activity/title2").active = false;
+                    return
                 }
-                // 右侧信息（content节点）
-                // @param i           子节点下标
-                // @param childName   孙节点名字
-                // @param dataStr     孙对应要更改的数据
-                function getString (i,childName,dataStr) {
-                    self.rightBox.children[i].getChildByName(childName).getComponent(cc.Label).string = data.activityManange[dataStr];          
-                }
-                for (let ele of competency) { arr.push(ele.name); }
-                getString(0,'name','name');
-                self.rightBox.children[1].getChildByName('name').getComponent(cc.Label).string = 
-                                data.activityManange.startTime.substr(0,data.activityManange.startTime.length - 2) + ' - ' + 
-                                data.activityManange.startTime.substr(0,data.activityManange.startTime.length - 2);
-                self.rightBox.children[2].getChildByName('name').getComponent(cc.Label).string = arr.join('/');          
-                self.rightBox.children[3].getChildByName('name').getComponent(cc.Label).string = userType[data.activityManange.userType];          
-                getString(4,'name','content');
-                self.scrollWord.getComponent(cc.Label).string = data.prizeUser;
-                self.scrollAction();
+            } else {
+                cc.find("Canvas/menu/activity/right_bg").active = false;
+                cc.find("Canvas/menu/activity/right").active = false;
+                cc.find("Canvas/menu/activity/click_btn").active = false;
+                cc.find("Canvas/menu/activity/turn_table").active = false;
+                cc.find("Canvas/menu/activity/title2").active = false;
             }
         };
         cc.weijifen.http.httpPost("/gamePrizeActivity/findActivityOne",{activityId:cc.weijifen.activityId},initData,self.err,self);
@@ -224,3 +241,14 @@ cc.Class({
         console.log('错误！')
     }
 });
+
+
+
+
+
+// right
+// turn_table
+// click_btn
+// right_bg
+// title
+
