@@ -15,10 +15,14 @@ cc.Class({
         txItem:cc.Node,
         txContent:cc.Node,
         playerItem:cc.Node,
-        playerContent:cc.Node
+        playerContent:cc.Node,
+        userName: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
+
+// 提款金额、总佣金额度
+
 
     onLoad () {
     	var self = this;
@@ -31,7 +35,6 @@ cc.Class({
 	        })
     	}
     	
-        // cc.weijifen.authorization = "d6e3e3d58ab24a9695fcf2efe8ae509a";
         //获取房卡数据
         cc.weijifen.http.httpGet('/userInfo/getUserCard?token='+cc.weijifen.authorization,this.cardSuccess,this.userError,this);
         //获取可提现金额  总金额   好友数量数据
@@ -61,7 +64,8 @@ cc.Class({
     	}else if(customEventData == 3){//获取邀请好友列表数据
     		cc.weijifen.http.httpGet('/userInfo/querChildrenList?token='+cc.weijifen.authorization,this.childrenListSuccess,this.userError,this);
     	}else if(customEventData == 5){//加载个人二维码
-    		var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+cc.weijifen.authorization;
+            var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+cc.weijifen.authorization;
+    		// var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+ 'c1007879917b44af8f42875add2643de';
 			let sprite = this.qrcode.getComponent(cc.Sprite);
 	    	cc.loader.load({url:imgurl,type:'jpg'},function(err,texture){
 	            sprite.spriteFrame = new cc.SpriteFrame(texture);
@@ -101,6 +105,7 @@ cc.Class({
     },
     sumSuccess (res,object){
         res = JSON.parse(res);
+        object.userName.getComponent(cc.Label).string = cc.weijifen.user.nickname;
         var mess1 = cc.find("Canvas/menu/usermess/right/right0");
         if(res.data.trtProfit){
         	mess1.getChildByName("item3").children[1].children[0].getComponent(cc.Label).string = res.data.trtProfit.toFixed(2);//总佣金额度
