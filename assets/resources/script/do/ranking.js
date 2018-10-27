@@ -11,7 +11,7 @@ cc.Class({
 
     onLoad () {
         var self = this;
-        cc.weijifen.authorization = "e1425c8e57754496810ac99644adcd14";
+        // cc.weijifen.authorization = "e1425c8e57754496810ac99644adcd14";
         //获取次数
         cc.weijifen.http.httpGet('/rankingList/findPrizeCount?token='+cc.weijifen.authorization,this.rankingSuccess,this.rankingError,this);
         
