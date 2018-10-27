@@ -221,38 +221,46 @@ cc.Class({
     */
     packageMenu: function(){
         let self = this;
+        let menu1 = cc.instantiate(self.packgeMenu);
+        menu1.parent = cc.find('Canvas');
+        //数据加载图显示
+        cc.find("Canvas/packge_menu/main/view/data/load").active = true;
+        cc.find("Canvas/packge_menu/main/view/data/loaddata").active = true;
         function packageSucces (res) {
             let data = JSON.parse(res);
-            let menu1 = cc.instantiate(self.packgeMenu);
             let listModel = menu1.getChildByName('main').children[0].children[0].getChildByName('listModel');
             let isNullData = false;
-            for (let ele of data.packageGoods) {
-                let model = cc.instantiate(listModel);
-                if (ele.type == 'COUPON') {
-                    // 优惠券
-                    model.children[0].children[0].getChildByName('linkedNum').getComponent(cc.Label).string = ele.linkedId;
-                    model.children[0].children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
-                } else {
-                    if (ele.num < 1) {break}
-                    model.children[0].children[0].active = false;//优惠卷样式隐藏
-                    model.children[0].getChildByName('mpnth').active = true;
+            if(data.packageGoods.length > 0){
+                for (let ele of data.packageGoods) {
+                    let model = cc.instantiate(listModel);
+                    if (ele.type == 'COUPON') {
+                        // 优惠券
+                        model.children[0].children[0].getChildByName('linkedNum').getComponent(cc.Label).string = ele.linkedId;
+                        model.children[0].children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
+                    } else {
+                        if (ele.num < 1) {break}
+                        model.children[0].children[0].active = false;//优惠卷样式隐藏
+                        model.children[0].getChildByName('mpnth').active = true;
+                    }
+                    model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
+                    model.children[2].getComponent(cc.Label).string = 'x' + ele.num;
+                    model.active = true;
+                    model.parent = listModel.parent;
+                    isNullData = true;
                 }
-                model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
-                model.children[2].getComponent(cc.Label).string = 'x' + ele.num;
-                model.active = true;
-                model.parent = listModel.parent;
-                isNullData = true;
+            }else{
+                cc.find("Canvas/packge_menu/main/view/data/loaddata").active = false;
+                cc.find("Canvas/packge_menu/main/view/data/nulldata").active = true;
             }
-            menu1.parent = cc.find('Canvas');
+            
 
             if(isNullData){
-                cc.find("Canvas/packge_menu/no_data").active = false;
+                cc.find("Canvas/packge_menu/main/view/data").active = false;
             }
         };
         function packgeError () {
             self.alert('失败');
         };
-        // cc.weijifen.authorization = "fc5dc4aaca4f4039a35bd269c23be1d6";
         cc.weijifen.http.httpGet('/package_goods/gain/' + cc.weijifen.authorization,packageSucces,packgeError);
     }
 });
