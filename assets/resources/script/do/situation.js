@@ -55,7 +55,7 @@ cc.Class({
     },
     /*初始化战况数据*/
     initData () {
-        // cc.weijifen.authorization = "73d2364791ab4c7bb757beced6787ef2";
+        // cc.weijifen.authorization = "1e62f81123f24f5fa8e7e2f31dfe1455";
     	var params = {
             token: cc.weijifen.authorization,
     		type: 1,// 默认约局
@@ -82,6 +82,7 @@ cc.Class({
 			var data = result.data;
 
             if (data.length) {
+                cc.find("Canvas/menu/situation/right/view/data").active = false;
     			for (let i = 0;i < data.length;i++) {
     				var arr = [],scores = [];
     				var list = cc.instantiate(obj.roomList);
@@ -112,7 +113,6 @@ cc.Class({
     				list.active = true;
     			}
                 obj.rightContent.height = obj.roomList.height * data.length;
-                cc.find("Canvas/menu/situation/right/view/data").active = false;
             } else {
                 cc.find("Canvas/menu/situation/right/view/data/loaddata").active = false;
                 cc.find("Canvas/menu/situation/right/view/data/nulldata").active = true;
