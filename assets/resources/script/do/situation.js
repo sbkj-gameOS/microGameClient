@@ -56,7 +56,7 @@ cc.Class({
     /*初始化战况数据*/
     initData () {
     	var params = {
-    		token: cc.weijifen.authorization,
+            token: cc.weijifen.authorization,
     		type: 1,// 默认约局
     		page: 1
     	}
@@ -76,36 +76,43 @@ cc.Class({
 		}
 		if (result.success) {
 			var data = result.data;
-			for (let i = 0;i < data.length;i++) {
-				var arr = [],scores = [];
-				var list = cc.instantiate(obj.roomList);
-				var date = data[i].gameResult.createTime;
-				setString(list,'roomNum',data[i].gameResult.roomNumber);
-				setString(list,'quanNum',data[i].gameResult.countNum + '/' + data[i].gameResult.countNum);
-				setString(list,'date',obj.timestampToTime(date,1));
-				setString(list.getChildByName('detailBtn'),'roomId',data[i].gameResultList[0].roomId);
-				setString(list.getChildByName('detailBtn'),'roomNum',data[i].gameResultList[0].roomNumber);
-				setString(list.getChildByName('detailBtn'),'quanNum',data[i].gameResultList[0].countNum);
-				setString(list.getChildByName('detailBtn'),'date',obj.timestampToTime(date,1));
 
-			
-				for (var j = 0;j < data[i].gameResultList.length;j++) {
-					let pla = cc.instantiate(obj.playerNode);
-					var name = subStr(data[i].gameResultList[j].nickname);
-					setString(pla,'nickName',name);
-					setString(pla,'totalScores',data[i].gameResultList[j].totalScores);
-					pla.active = true;
-					pla.parent = list.getChildByName('playersBox');
-					arr.push(name);
-					scores.push(data[i].gameResultList[j].totalScores);
-				}
+            if (data.length) {
+    			for (let i = 0;i < data.length;i++) {
+    				var arr = [],scores = [];
+    				var list = cc.instantiate(obj.roomList);
+    				var date = data[i].gameResult.createTime;
+    				setString(list,'roomNum',data[i].gameResult.roomNumber);
+    				setString(list,'quanNum',data[i].gameResult.countNum + '/' + data[i].gameResult.countNum);
+    				setString(list,'date',obj.timestampToTime(date,1));
+    				setString(list.getChildByName('detailBtn'),'roomId',data[i].gameResultList[0].roomId);
+    				setString(list.getChildByName('detailBtn'),'roomNum',data[i].gameResultList[0].roomNumber);
+    				setString(list.getChildByName('detailBtn'),'quanNum',data[i].gameResultList[0].countNum);
+    				setString(list.getChildByName('detailBtn'),'date',obj.timestampToTime(date,1));
 
-				setString(list.getChildByName('detailBtn'),'playerArr',JSON.stringify(arr));
-				setString(list.getChildByName('detailBtn'),'totalScores',JSON.stringify(scores));
-				list.parent = obj.rightContent;
-				list.active = true;
-			}
-            obj.rightContent.height = obj.roomList.height * data.length;
+    			
+    				for (var j = 0;j < data[i].gameResultList.length;j++) {
+    					let pla = cc.instantiate(obj.playerNode);
+    					var name = subStr(data[i].gameResultList[j].nickname);
+    					setString(pla,'nickName',name);
+    					setString(pla,'totalScores',data[i].gameResultList[j].totalScores);
+    					pla.active = true;
+    					pla.parent = list.getChildByName('playersBox');
+    					arr.push(name);
+    					scores.push(data[i].gameResultList[j].totalScores);
+    				}
+
+    				setString(list.getChildByName('detailBtn'),'playerArr',JSON.stringify(arr));
+    				setString(list.getChildByName('detailBtn'),'totalScores',JSON.stringify(scores));
+    				list.parent = obj.rightContent;
+    				list.active = true;
+    			}
+                obj.rightContent.height = obj.roomList.height * data.length;
+                cc.find("Canvas/menu/situation/right/view/data").active = false;
+            } else {
+                cc.find("Canvas/menu/situation/right/view/data/loaddata").active = false;
+                cc.find("Canvas/menu/situation/right/view/data/nulldata").active = true;
+            }
 		}  	
     },
     goDetail (event) {
