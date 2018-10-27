@@ -240,7 +240,7 @@ cc.Class({
                     } else {
                         if (ele.num < 1) {break}
                         model.children[0].children[0].active = false;//优惠卷样式隐藏
-                        model.children[0].getChildByName('mpnth').active = true;
+                        model.children[0].getChildByName('month').active = true;
                     }
                     model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
                     model.children[2].getComponent(cc.Label).string = 'x' + ele.num;
@@ -261,6 +261,7 @@ cc.Class({
         function packgeError () {
             self.alert('失败');
         };
+        // cc.weijifen.authorization = "90c4fbbeafd24c78a71ce2750629f7f5";
         cc.weijifen.http.httpGet('/package_goods/gain/' + cc.weijifen.authorization,packageSucces,packgeError);
     }
 });
