@@ -11,10 +11,10 @@ cc.Class({
 
     onLoad () {
         var self = this;
-        // cc.weijifen.authorization = "a17872f265004430b3fb5268288b1af9";
+        cc.weijifen.authorization = "e1425c8e57754496810ac99644adcd14";
         //获取次数
         cc.weijifen.http.httpGet('/rankingList/findPrizeCount?token='+cc.weijifen.authorization,this.rankingSuccess,this.rankingError,this);
-
+        
         //获取中奖列表
         cc.weijifen.http.httpGet('/rankingList/weekList?token='+cc.weijifen.authorization,this.listSuccess,this.rankingError,this);
     },
@@ -37,16 +37,21 @@ cc.Class({
 
     listSuccess (res,object){
         res = JSON.parse(res);
-        // var countPrefab = cc.instantiate(object.listItem);
-        for (let i = 0;i < res.prizeList.length;i++) {
-            let list = cc.instantiate(object.listItem);
-            list.active = true;
-            list.getChildByName('date').getComponent(cc.Label).string = res.prizeList[i].prizeName;
-            list.getChildByName('date2').getComponent(cc.Label).string = object.getNowFormatDate(res.prizeList[i].createTime);
-            list.getChildByName('num').getComponent(cc.Label).string = res.prizeList[i].prizeRanking;
-            list.parent = object.count;
-        }
-        object.count.height = object.listItem.height * res.prizeList.length;
+        if(res.prizeList){
+            for (let i = 0;i < res.prizeList.length;i++) {
+                let list = cc.instantiate(object.listItem);
+                list.active = true;
+                list.getChildByName('date').getComponent(cc.Label).string = res.prizeList[i].prizeName;
+                list.getChildByName('date2').getComponent(cc.Label).string = object.getNowFormatDate(res.prizeList[i].createTime);
+                list.getChildByName('num').getComponent(cc.Label).string = res.prizeList[i].prizeRanking;
+                list.parent = object.count;
+            }
+            object.count.height = object.listItem.height * res.prizeList.length;
+            cc.find("Canvas/menu/rangking/right/ScrollView/view/data").active = false;
+        }else{
+            cc.find("Canvas/menu/rangking/right/ScrollView/view/data/loaddata").active = false;
+            cc.find("Canvas/menu/rangking/right/ScrollView/view/data/nulldata").active = true;
+        }  
     },
 
     error (res) {
