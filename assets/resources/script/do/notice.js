@@ -11,7 +11,7 @@ cc.Class({
 
     onLoad () {
         var self = this;
-        // cc.weijifen.authorization = "a17872f265004430b3fb5268288b1af9";
+        // cc.weijifen.authorization = "b999d74e27964f1b93f9ded363d87af8";
         //获取通知列表标题
         cc.weijifen.http.httpGet('/gameNotice/findActivityListGame?token='+cc.weijifen.authorization,this.noticeSuccess,this.rankingError,this);
     },
@@ -45,14 +45,19 @@ cc.Class({
         }
 
         var listOne = cc.find("Canvas/menu/notice/left/New ScrollView/view/content").children[1];
-        //第一个设置为选中
-        listOne.getComponent(cc.Toggle).isChecked = true;
-        var json = {node:{name:listOne.name}};
-        object.getDetailClick(json);
-        //获取list总个数
-        var listcount = res.prizeList.length + res.list.length + res.userMessList.length;
-        //设置列表内容的高度  *-25为count layout边距值
-        object.count.height = (listcount * object.listItem.height)+(-25 * listcount) + 10;
+        if(listOne){
+            //第一个设置为选中
+            listOne.getComponent(cc.Toggle).isChecked = true;
+            var json = {node:{name:listOne.name}};
+            object.getDetailClick(json);
+            //获取list总个数
+            var listcount = res.prizeList.length + res.list.length + res.userMessList.length;
+            //设置列表内容的高度  *-25为count layout边距值
+            object.count.height = (listcount * object.listItem.height)+(-25 * listcount) + 10;
+        }else{
+            cc.find("Canvas/menu/notice/right/ScrollView/view/data/loaddata").active = false;
+            cc.find("Canvas/menu/notice/right/ScrollView/view/data/nulldata").active = true;
+        }
     },
     //点击左侧标题响应右边内容
     getDetailClick (target){
@@ -76,98 +81,110 @@ cc.Class({
                     cc.find("Canvas/menu/notice/right/ScrollView/view/content/prize").active = true;
                     cc.find("Canvas/menu/notice/right/ScrollView/view/content/bs").active = false;
                     var prizeData = data.prize;
-                    var prizeContent = cc.find("Canvas/menu/notice/right/ScrollView/view/content/prize");
-                    //渲染标题
-                    prizeContent.getChildByName("title").getComponent(cc.Label).string = prizeData.prizeName;
-                    //渲染内容
-                    prizeContent.getChildByName("content").getComponent(cc.Label).string = prizeData.prizeContent;
-                    //渲染时间
-                    prizeContent.getChildByName("time-input").getComponent(cc.Label).string = self.getNowFormatDate(prizeData.createTime);
-                    if(prizeData.isPrize == 0){
-                        prizeContent.getChildByName("getPrizeBtn").active = true;
+                    if(prizeData){
+                        var prizeContent = cc.find("Canvas/menu/notice/right/ScrollView/view/content/prize");
+                        //渲染标题
+                        prizeContent.getChildByName("title").getComponent(cc.Label).string = prizeData.prizeName;
+                        //渲染内容
+                        prizeContent.getChildByName("content").getComponent(cc.Label).string = prizeData.prizeContent;
+                        //渲染时间
+                        prizeContent.getChildByName("time-input").getComponent(cc.Label).string = self.getNowFormatDate(prizeData.createTime);
+                        if(prizeData.isPrize == 0){
+                            prizeContent.getChildByName("getPrizeBtn").active = true;
+                        }else{
+                            prizeContent.getChildByName("getPrizeBtn").active = false;
+                        }
+                        prizeContent.getChildByName("id").getComponent(cc.Label).string = prizeData.id;//领奖按钮的名称更改为id
+                
+                        
+                        //如果不是中奖信息  报名成功等信息
+                        if(list[0] == "other"){
+                            prizeContent.getChildByName("time").getComponent(cc.Label).string = "获得时间：";
+                            //奖项标题隐藏
+                            prizeContent.getChildByName("getPrizeBtn").active = false;
+                            //奖项内容隐藏
+                            prizeContent.getChildByName("prize").active = false;
+                        }else if(list[0] == "zj"){
+                            cc.weijifen.prizeData = data.prizeData;
+                            prizeContent.getChildByName("prize").active = true;
+                            var prizeText = "";
+                            prizeContent.getChildByName("prize").children[0].children[data.prizeData.did].active = true;
+                            if(data.prizeData.did == 1){
+                                prizeText = " x" + data.prizeData.count + "张";
+                                prizeContent.getChildByName("prize").children[0].children[4].active = false;
+                            }else if(data.prizeData.did == 4){
+                                prizeText += " ￥" + data.prizeData.count + "元";
+                                prizeContent.getChildByName("prize").children[0].children[1].active = false;
+                            }
+                            prizeContent.getChildByName("prize").children[0].children[0].active = true;
+                            prizeContent.getChildByName("prize").children[0].children[0].getComponent(cc.Label).string = prizeText;
+                        }
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/data").active = false;
                     }else{
-                        prizeContent.getChildByName("getPrizeBtn").active = false;
-                    }
-                    prizeContent.getChildByName("id").getComponent(cc.Label).string = prizeData.id;//领奖按钮的名称更改为id
-			
-					
-                    //如果不是中奖信息  报名成功等信息
-                    if(list[0] == "other"){
-                        prizeContent.getChildByName("time").getComponent(cc.Label).string = "获得时间：";
-                        //奖项标题隐藏
-                        prizeContent.getChildByName("getPrizeBtn").active = false;
-                        //奖项内容隐藏
-                        prizeContent.getChildByName("prize").active = false;
-                    }else if(list[0] == "zj"){
-                    	cc.weijifen.prizeData = data.prizeData;
-                    	prizeContent.getChildByName("prize").active = true;
-                    	var prizeText = "";
-						prizeContent.getChildByName("prize").children[0].children[data.prizeData.did].active = true;
-						if(data.prizeData.did == 1){
-							prizeText = " x" + data.prizeData.count + "张";
-							prizeContent.getChildByName("prize").children[0].children[4].active = false;
-						}else if(data.prizeData.did == 4){
-							prizeText += " ￥" + data.prizeData.count + "元";
-							prizeContent.getChildByName("prize").children[0].children[1].active = false;
-						}
-						prizeContent.getChildByName("prize").children[0].children[0].active = true;
-	                    prizeContent.getChildByName("prize").children[0].children[0].getComponent(cc.Label).string = prizeText;
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/data/loaddata").active = false;
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/data/nulldata").active = true;
                     }
                 }else if(list[0] == "bs"){//标题信息为比赛内容
                     var activity = data.activity;
-                    //中奖信息·其他信息内容隐藏
-                    cc.find("Canvas/menu/notice/right/ScrollView/view/content/prize").active = false;
-                    var bs = cc.find("Canvas/menu/notice/right/ScrollView/view/content/bs");
-                    bs.active = true;//比赛内容content显示
-                    bs.getChildByName("title").getComponent(cc.Label).string = activity.activiteName;
-                    //渲染内容
-                    bs.getChildByName("content").getComponent(cc.Label).string = activity.activiteContent;
-                    //开始时间
-                    bs.getChildByName("startTime").getComponent(cc.Label).string = activity.startTime+"~"+activity.endTime;
-                    if(activity.bmStartTime){//报名时间有值
-                        bs.getChildByName("bmTime").getComponent(cc.Label).string = activity.bmStartTime+"~"+activity.bmEndTime;
-                    }else{
-                        //报名时间为null
-                        bs.getChildByName("bmTime").active = false;//隐藏报名时间标题
-                        bs.getChildByName("bmTimeTitle").active = false;//隐藏报名时间
-                    }
+                    if(activity){
+                        //中奖信息·其他信息内容隐藏
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/content/prize").active = false;
+                        var bs = cc.find("Canvas/menu/notice/right/ScrollView/view/content/bs");
+                        bs.active = true;//比赛内容content显示
+                        bs.getChildByName("title").getComponent(cc.Label).string = activity.activiteName;
+                        //渲染内容
+                        bs.getChildByName("content").getComponent(cc.Label).string = activity.activiteContent;
+                        //开始时间
+                        bs.getChildByName("startTime").getComponent(cc.Label).string = activity.startTime+"~"+activity.endTime;
+                        if(activity.bmStartTime){//报名时间有值
+                            bs.getChildByName("bmTime").getComponent(cc.Label).string = activity.bmStartTime+"~"+activity.bmEndTime;
+                        }else{
+                            //报名时间为null
+                            bs.getChildByName("bmTime").active = false;//隐藏报名时间标题
+                            bs.getChildByName("bmTimeTitle").active = false;//隐藏报名时间
+                        }
 
-                    //报名条件和参赛条件
-                    var entryConditions = JSON.parse(activity.entryConditions);
-                    for(var i = 0; i < entryConditions.bmtj.length; i++){
-                        var name = "",dataCon = "";
-                        if(entryConditions.bmtj[i].type == 1){
-                            name = "VIP用户  ";
-                        }else{
-                            name = "会员      ";
+                        //报名条件和参赛条件
+                        var entryConditions = JSON.parse(activity.entryConditions);
+                        for(var i = 0; i < entryConditions.bmtj.length; i++){
+                            var name = "",dataCon = "";
+                            if(entryConditions.bmtj[i].type == 1){
+                                name = "VIP用户  ";
+                            }else{
+                                name = "会员      ";
+                            }
+                            if(entryConditions.bmtj[i].data){
+                                dataCon = entryConditions.bmtj[i].data.startTime + "~" + entryConditions.bmtj[i].data.endTime + " 约局次数："+entryConditions.bmtj[i].data.count;
+                            }
+                            bs.getChildByName("bmtj").children[i].getComponent(cc.Label).string = name + dataCon;
                         }
-                        if(entryConditions.bmtj[i].data){
-                            dataCon = entryConditions.bmtj[i].data.startTime + "~" + entryConditions.bmtj[i].data.endTime + " 约局次数："+entryConditions.bmtj[i].data.count;
+                        //参赛条件
+                        for(var i = 0; i < entryConditions.csTj.length; i++){
+                            var name = "",dataCon = "";
+                            if(entryConditions.csTj[i].type == 0){
+                                name = "房卡";
+                            }else{
+                                name = "月赛卡";
+                            }
+                            if(entryConditions.csTj[i].data){
+                                dataCon = "x"+entryConditions.csTj[i].data.roomCard;
+                            }
+                            bs.getChildByName("cstj").children[1].getComponent(cc.Label).string = name + dataCon+"、";
                         }
-                        bs.getChildByName("bmtj").children[i].getComponent(cc.Label).string = name + dataCon;
-                    }
-                    //参赛条件
-                    for(var i = 0; i < entryConditions.csTj.length; i++){
-                        var name = "",dataCon = "";
-                        if(entryConditions.csTj[i].type == 0){
-                            name = "房卡";
-                        }else{
-                            name = "月赛卡";
+                        self.prizeCount.removeAllChildren();
+                        //渲染奖品数据
+                        var prizeData = JSON.parse(activity.prizeData);
+                        for(var i = 0; i < prizeData.length;i++){
+                            let list = cc.instantiate(self.prizeItem);
+                            list.active = true;
+                            list.getChildByName('title').getComponent(cc.Label).string = "第"+prizeData[i].num+"名";
+                            list.getChildByName('con').getComponent(cc.Label).string = prizeData[i].nameValue;
+                            list.parent = self.prizeCount;
                         }
-                        if(entryConditions.csTj[i].data){
-                            dataCon = "x"+entryConditions.csTj[i].data.roomCard;
-                        }
-                        bs.getChildByName("cstj").children[1].getComponent(cc.Label).string = name + dataCon+"、";
-                    }
-                    self.prizeCount.removeAllChildren();
-                    //渲染奖品数据
-                    var prizeData = JSON.parse(activity.prizeData);
-                    for(var i = 0; i < prizeData.length;i++){
-                        let list = cc.instantiate(self.prizeItem);
-                        list.active = true;
-                        list.getChildByName('title').getComponent(cc.Label).string = "第"+prizeData[i].num+"名";
-                        list.getChildByName('con').getComponent(cc.Label).string = prizeData[i].nameValue;
-                        list.parent = self.prizeCount;
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/data").active = false;
+                    }else{
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/data/loaddata").active = false;
+                        cc.find("Canvas/menu/notice/right/ScrollView/view/data/nulldata").active = true;
                     }
                 }
 
