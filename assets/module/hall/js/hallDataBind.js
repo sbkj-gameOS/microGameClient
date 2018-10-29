@@ -178,6 +178,9 @@ cc.Class({
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
+        cc.weijifen.IOSPayBack = function(result) {
+            self.alert();
+        };
         var time = setInterval(function(){
             if (cc.director.getScene().name != 'gameMain') {
                 clearInterval(time);
@@ -186,6 +189,11 @@ cc.Class({
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
         
+    },
+    start: function () {
+        cc.log("我是你爸爸");
+        this.alert("123");
+
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
