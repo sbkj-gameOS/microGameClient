@@ -11,7 +11,7 @@ cc.Class({
 
     onLoad () {
         var self = this;
-        // cc.weijifen.authorization = "e1425c8e57754496810ac99644adcd14";
+        // cc.weijifen.authorization = "20f8de5537b94bfebd2b6e38f6bb7610";
         //获取次数
         cc.weijifen.http.httpGet('/rankingList/findPrizeCount?token='+cc.weijifen.authorization,this.rankingSuccess,this.rankingError,this);
         
@@ -37,7 +37,7 @@ cc.Class({
 
     listSuccess (res,object){
         res = JSON.parse(res);
-        if(res.prizeList){
+        if(res.prizeList && res.prizeList.length > 0){
             for (let i = 0;i < res.prizeList.length;i++) {
                 let list = cc.instantiate(object.listItem);
                 list.active = true;
