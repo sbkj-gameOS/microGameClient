@@ -178,9 +178,6 @@ cc.Class({
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
         };
-        cc.weijifen.IOSPayBack = function(result) {
-            self.alert();
-        };
         var time = setInterval(function(){
             if (cc.director.getScene().name != 'gameMain') {
                 clearInterval(time);
@@ -257,7 +254,7 @@ cc.Class({
             //获取分享进入的时候，是否分享的游戏房间
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
-            object.alert("res:");
+            // object.alert("res:"+res);
             if(res){
                 var result1 = JSON.parse(res);
                 if (object.clientPlatForm() == 'IOS') {
