@@ -190,11 +190,6 @@ cc.Class({
         },10000);
         
     },
-    start: function () {
-        cc.log("我是你爸爸");
-        this.alert("123");
-
-    },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
     */
@@ -262,7 +257,7 @@ cc.Class({
             //获取分享进入的时候，是否分享的游戏房间
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
-            // object.alert("res:"+res);
+            object.alert("res:");
             if(res){
                 var result1 = JSON.parse(res);
                 if (object.clientPlatForm() == 'IOS') {
