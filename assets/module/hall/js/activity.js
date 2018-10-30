@@ -1,3 +1,4 @@
+var roomCard;
 var WJFCommon = require('WJFCommon');
 cc.Class({
     extends: WJFCommon,
@@ -18,7 +19,7 @@ cc.Class({
         rightBox: cc.Node
     },
     onLoad () {
-        // cc.weijifen.authorization = '3bf8bcbb2e45434fa226758e82745776';
+        // cc.weijifen.authorization = 'fb3d59a29e4247d7aba1dc14e82822a8';
         // cc.weijifen.activityId = 31;
         cc.weijifen.http.httpPost("/gamePrizeActivity/prizeDzpData",{type: 'ch'},function(result,obj){
             // {"success":"true","activityId":"31"}
@@ -155,8 +156,8 @@ cc.Class({
                         let str = "当前房卡数量："+data.roomCard+"\n继续操作将扣除一张房卡，扣除房卡后可拥有一次抽奖机会，是否继续？";
                         cc.find('Canvas/menu/activity/downloadapp').active = true;
                         cc.find('Canvas/menu/activity/downloadapp').getChildByName('label').getComponent(cc.Label).string = str;
+                        roomCard = data.roomCard;
                         if (data.roomCard) {
-                            self.roomCard = data.roomCard;
                             self.subtractCard();
                         } else {
                             return false;
@@ -233,12 +234,15 @@ cc.Class({
         let acti = require('activity');
         let activityJs = new acti();
         activityJs.subtractCard();
-        cc.weijifen.http.httpPost('/userInfo/getUserCard',{token:cc.weijifen.authorization},function(res){
+        let fangka = cc.find('Canvas/main/head/5/num');
+        fangka.getComponent(cc.Label).string = roomCard - 1;
+        cc.weijifen.user.cards = roomCard - 1;
+        /*cc.weijifen.http.httpPost('/userInfo/getUserCard',{token:cc.weijifen.authorization},function(res){
             res = JSON.parse(res);
             let fangka = cc.find('Canvas/main/head/5/num');
             fangka.getComponent(cc.Label).string = res.cards;
             cc.weijifen.user.cards = res.cards;
-        },self.err)
+        },self.err)*/
     },
     quxiao (event) {
         event.target.parent.active = false;
