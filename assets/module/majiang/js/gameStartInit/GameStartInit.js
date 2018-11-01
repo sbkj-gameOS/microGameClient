@@ -381,10 +381,8 @@ cc.Class({
            
 
             // 游戏规则
-            /*wanfa.string = data.op;
-            cc.weijifen.wanfa = data.op;*/
-            wanfa.string = '点炮包三家 小鸡飞蛋 三风蛋 下蛋算站立 带缺门';
-            cc.weijifen.wanfa = '点炮包三家 小鸡飞蛋 三风蛋 下蛋算站立 带缺门';
+            wanfa.string = data.op;
+            cc.weijifen.wanfa = data.op;
             context.readyNoActive(context);   
             /**
              * 改变状态，开始发牌
