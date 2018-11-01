@@ -749,7 +749,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 36
+      "y": 32
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -973,7 +973,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 50,
-      "y": -21
+      "y": -27
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1967,8 +1967,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 400,
+      "height": 60
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1976,8 +1976,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 20
+      "x": 462,
+      "y": -34
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2024,7 +2024,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 400,
       "height": 58
     },
     "_rotationX": 0,
@@ -2033,7 +2033,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 238,
+      "x": 0,
       "y": 0
     },
     "_skewX": 0,
@@ -2077,7 +2077,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 400,
       "height": 58
     },
     "_resize": 1,
@@ -2096,7 +2096,7 @@
     "_N$spacingX": 0,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
-    "_N$horizontalDirection": 1
+    "_N$horizontalDirection": 0
   },
   {
     "__type__": "cc.PrefabInfo",
