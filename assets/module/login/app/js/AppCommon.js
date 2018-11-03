@@ -35,7 +35,7 @@ cc.Class({
         self.jsbParams = null;// type: ,jsb所需参数
         var platForm = self.clientPlatForm();
 
-        var GameBase = {'gameModel':'ch'} ;
+        var GameBase = {'gameModel':'nj'} ;
         cc.weijifen.GameBase = GameBase ;
         // 27---10.25 上午10：26
         cc.sys.localStorage.setItem('version','1.0.33');
