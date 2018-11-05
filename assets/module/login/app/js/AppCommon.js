@@ -35,10 +35,10 @@ cc.Class({
         self.jsbParams = null;// type: ,jsb所需参数
         var platForm = self.clientPlatForm();
 
-        var GameBase = {'gameModel':'nj'} ;
+        var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;
         // 27---10.25 上午10：26
-        cc.sys.localStorage.setItem('version','1.0.33');
+        cc.sys.localStorage.setItem('version','1.0.34');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;

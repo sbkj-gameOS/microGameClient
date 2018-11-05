@@ -64,12 +64,23 @@ cc.Class({
     	}else if(customEventData == 3){//获取邀请好友列表数据
     		cc.weijifen.http.httpGet('/userInfo/querChildrenList?token='+cc.weijifen.authorization,this.childrenListSuccess,this.userError,this);
     	}else if(customEventData == 5){//加载个人二维码
-            var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+cc.weijifen.authorization;
-    		// var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+ 'c1007879917b44af8f42875add2643de';
-			let sprite = this.qrcode.getComponent(cc.Sprite);
-	    	cc.loader.load({url:imgurl,type:'jpg'},function(err,texture){
-	            sprite.spriteFrame = new cc.SpriteFrame(texture);
-	        })
+            var obj = this;
+            if (obj.clientPlatForm() == 'ANDROID') {
+                cc.weijifen.http.httpGet("/registerPlayer/getQRImage?token=" + cc.weijifen.authorization, function(res) {
+                    var imgurl = res;
+                    let sprite = obj.qrcode.getComponent(cc.Sprite);
+                    cc.loader.load({url:imgurl,type:'jpg'},function(err,texture){
+                        sprite.spriteFrame = new cc.SpriteFrame(texture);
+                    })
+                } , obj.error , obj);
+            } else {
+                var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+cc.weijifen.authorization;
+                // var imgurl = "http://game.bizpartner.cn/registerPlayer/getEWMImage?token="+ 'c1007879917b44af8f42875add2643de';
+                let sprite = obj.qrcode.getComponent(cc.Sprite);
+                cc.loader.load({url:imgurl,type:'jpg'},function(err,texture){
+                    sprite.spriteFrame = new cc.SpriteFrame(texture);
+                })
+            }
     	}
     },
     //发起提现申请
