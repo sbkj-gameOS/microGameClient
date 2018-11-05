@@ -188,13 +188,14 @@ cc.Class({
                 // obj.alert('报名成功!');
                 cc.sys.localStorage.setItem('signUp','true');
                 obj.alert(data1.msg);
-                let prizeNum = cc.sys.localStorage.getItem('prizeNum');//房卡
-                if (prizeNum) {
-                    prizeNum = Number(prizeNum);
-                    let oldNum = Number(cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string);
-                    cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string = oldNum - prizeNum;
-                    cc.find('Canvas/main/head/5/num').getComponent(cc.Label).string = oldNum - prizeNum;
-                    cc.weijifen.user.cards = oldNum - prizeNum;
+
+                // let prizeNum = cc.sys.localStorage.getItem('prizeNum');//房卡
+                let oldNum = Number(cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string);
+                let prizeNum = Number(oldNum);
+                if (prizeNum > 1) {
+                    cc.find('Canvas/match/title/right/card/roomCard').getComponent(cc.Label).string = prizeNum - 1;
+                    cc.find('Canvas/main/head/5/num').getComponent(cc.Label).string =  prizeNum - 1;
+                    cc.weijifen.user.cards = prizeNum - 1;
                 }
             } else {
                 obj.alert(data1.msg);
