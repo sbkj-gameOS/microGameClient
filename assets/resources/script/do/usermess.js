@@ -81,8 +81,10 @@ cc.Class({
 	    	var inputPrice = right.children[0].children[1].children[0].getComponent(cc.EditBox).string;
 	    	if(inputPrice == null || inputPrice == "" || inputPrice == undefined){
 	    		self.alert("请填写提现金额");
+                self.prceStatus = 0;
 	    	}else if(parseInt(inputPrice) < 10){
 				self.alert("最低提现金额为10元！");
+                self.prceStatus = 0;
 	    	}else{
 	    		cc.weijifen.http.httpPost("/presentapp/appForCash",{token:cc.weijifen.authorization,amountMoney:parseInt(inputPrice)},function(res,object){
 		            res = JSON.parse(res);
