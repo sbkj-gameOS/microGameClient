@@ -23,10 +23,11 @@ cc.Class({
             let settting_box = cc.find('Canvas/other/setting');
             let layer = cc.find('Canvas/layer');
             cc.weijifen.settingflag = !cc.weijifen.settingflag;
-            setTimeout(function(){
+            setTimeout(function() {
                 if(cc.weijifen.settingflag){
                     settting_box.active = true;
-                    var action = cc.moveTo(0.5,cc.p(408,306));
+                    // var action = cc.moveTo(0.5,cc.p(408,306));
+                    var action = cc.moveTo(0.5,cc.p(380,306));
                     settting_box.runAction(action);
                     layer.active = true;
                     if (event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'layer') {
@@ -37,7 +38,7 @@ cc.Class({
                     settting_box.runAction(action);
                     layer.active = false;
                 }
-            },300)
+            },300);
           
             // this.node.dispatchEvent( new cc.Event.EventCustom('settingclick', true) );
             // cc.log(settting_box)
