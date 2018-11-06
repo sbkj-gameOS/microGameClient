@@ -592,7 +592,15 @@ cc.Class({
                     actionCard:[]
                 }));
             }else{
-                cc.sys.localStorage.setItem('take','true');                
+                cc.sys.localStorage.setItem('take','true');    
+                if (cc.weijifen.isGuo == 'guo') {
+                    cc.sys.localStorage.removeItem('altake');
+                    let socket = self.getSelf().socket();
+                    socket.emit("selectaction" , JSON.stringify({
+                        action:"guo",
+                        actionCard:[]
+                    }));
+                }            
             }
             cc.sys.localStorage.removeItem('guo');
             self.getSelf().shouOperationMune();
@@ -1591,6 +1599,10 @@ cc.Class({
         let d = new Date(Number(cc.sys.localStorage.getItem('appTime')));// 比赛开始的本地时间
         let a = d - t;
         cc.sys.localStorage.setItem('matchTime',a);
+    },
+    /*重新加载*/
+    reloadMaJiang () {
+        cc.director.loadScene('majiang');
     }
 });
 

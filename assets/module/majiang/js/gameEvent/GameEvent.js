@@ -42,10 +42,15 @@ cc.Class({
 
     },
     onClick:function(event , data){  
+        if (data == 'guo') {
+            cc.weijifen.isGuo = 'guo';
+        }
         if (cc.find('Canvas/big_cards').children) {
            cc.find('Canvas/big_cards').removeAllChildren();
         }
+                            console.log('点击',cc.weijifen.isGuo)
         this.node.dispatchEvent( new cc.Event.EventCustom(data, true) );
+console.log(this.node)
     },
     click: function(event){
         event.target.active = false;
@@ -66,6 +71,14 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
+            /*
+                定义一个全局变量
+
+                1、收到事件就赋值
+                2、在点过时初始化该值
+                3、若没有点击过，而是直接出的牌，那么在出牌时进行判断。若变量有值就将其初始化，并向后端发送选择的事件
+             */
+            cc.weijifen.isGuo = 'meiguo';
             cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
             // cc.find('Canvas/mask').active = true;
             if (!data.dan) {
