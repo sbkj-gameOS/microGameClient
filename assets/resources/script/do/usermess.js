@@ -89,7 +89,7 @@ cc.Class({
     	if(self.prceStatus == 0){
     		self.prceStatus = 1;
 			var right = cc.find("Canvas/menu/usermess/right/right1");
-	    	var inputPrice = right.children[0].children[1].children[0].getComponent(cc.EditBox).string;
+	    	var inputPrice = right.children[1].children[1].children[0].getComponent(cc.EditBox).string;
 	    	if(inputPrice == null || inputPrice == "" || inputPrice == undefined){
 	    		self.alert("请填写提现金额");
                 self.prceStatus = 0;
