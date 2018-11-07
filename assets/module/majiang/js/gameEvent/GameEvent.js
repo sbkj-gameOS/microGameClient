@@ -48,9 +48,7 @@ cc.Class({
         if (cc.find('Canvas/big_cards').children) {
            cc.find('Canvas/big_cards').removeAllChildren();
         }
-                            console.log('点击',cc.weijifen.isGuo)
         this.node.dispatchEvent( new cc.Event.EventCustom(data, true) );
-console.log(this.node)
     },
     click: function(event){
         event.target.active = false;
