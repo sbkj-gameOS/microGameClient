@@ -150,6 +150,7 @@ cc.Class({
 	        }
 	        gameOver.huaction(playerid);
 	        setTimeout(function(){gameOver.endList(data,context,playerid)},3000);
+	        context.cards_play_flag.active = false;
 	    },
 	    /*
 	    * 结算列表

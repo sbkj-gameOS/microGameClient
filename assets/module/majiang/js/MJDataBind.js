@@ -407,6 +407,29 @@ cc.Class({
                             actionCard:[card_script.value]
                         }));
                         self.getSelf().tingAction();    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        self.cards_play_flag.active = true;
+
+
+
+
+
+
+
+
                     } else {
                         socket.emit("doplaycards" , card_script.value) ;
                     }

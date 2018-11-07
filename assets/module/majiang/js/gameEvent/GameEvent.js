@@ -203,7 +203,7 @@ cc.Class({
             }
         },
         selectaction_event:function(data , context){
-            cc.find('Canvas/card_play_flag').active = false;
+            // cc.find('Canvas/card_play_flag').active = false;
             cc.weijifen.audio.setSFXVolume(parseInt(cc.weijifen.mp3Music));
             if (cc.find('Canvas/big_cards').children) {
                cc.find('Canvas/big_cards').removeAllChildren();
