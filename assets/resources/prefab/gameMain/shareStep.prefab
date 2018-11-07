@@ -742,7 +742,8 @@
     "ranking": null,
     "notice": null,
     "situation": null,
-    "activity": null
+    "activity": null,
+    "usermess": null
   },
   {
     "__type__": "cc.PrefabInfo",
