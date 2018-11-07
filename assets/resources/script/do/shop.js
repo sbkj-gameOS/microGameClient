@@ -59,6 +59,10 @@ cc.Class({
     stopThrough: function (event) {
         event.bubbles = false
     },
-
-
+    closeShop: function () {
+        var self = cc.find('Canvas').getComponent('hallDataBind');
+        cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
+        cc.find('Canvas/setting').destroy();
+    }
+// http://game.bizpartner.cn/api/room/queryRoomCard?token=5d7ad9269bd54a60a0f013db657583d3
 });

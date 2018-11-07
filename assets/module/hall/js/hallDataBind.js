@@ -185,9 +185,7 @@ cc.Class({
             }    
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
-        cc.weijifen.isPaySuccess = function (result) {
-            cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
-        }
+       
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
