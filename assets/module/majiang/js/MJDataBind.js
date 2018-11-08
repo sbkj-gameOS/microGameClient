@@ -408,27 +408,7 @@ cc.Class({
                         }));
                         self.getSelf().tingAction();    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                         self.cards_play_flag.active = true;
-
-
-
-
-
-
-
 
                     } else {
                         socket.emit("doplaycards" , card_script.value) ;
@@ -617,11 +597,15 @@ cc.Class({
             }else{
                 cc.sys.localStorage.setItem('take','true');    
                 if (cc.weijifen.isGuo == 'guo') {
+                    var arr = [];
+                    if (cc.weijifen.receiveTing) {
+                        arr = [-1];
+                    }
                     cc.sys.localStorage.removeItem('altake');
                     let socket = self.getSelf().socket();
                     socket.emit("selectaction" , JSON.stringify({
                         action:"guo",
-                        actionCard:[]
+                        actionCard: arr
                     }));
                 }            
             }

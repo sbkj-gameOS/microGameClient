@@ -101,6 +101,9 @@ cc.Class({
             context.dans = data["dans"]?data["dans"]:[];
             context.tings = data["tings"]?JSON.parse(data["tings"]):[];
             if(data.deal == true){  //发牌的动作
+                if (data.ting) {
+                    cc.weijifen.receiveTing = true;
+                }
                 cc.sys.localStorage.setItem('guo','true');
                 // let desk_script = context.actionnode_two.getComponent("DeskCards") ;
                 // desk_script.init(data.card);
