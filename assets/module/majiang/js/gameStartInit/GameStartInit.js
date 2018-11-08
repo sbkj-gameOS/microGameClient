@@ -302,12 +302,6 @@ cc.Class({
                     break ;
                 }
             }
-            let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
-            let length = currenthandcards.children.length;
-            if (cc.weijifen.bankers && currenthandcards.children && currenthandcards.children.length == 14) {
-                currenthandcards.children[length-1].width = 130;
-            }
-            currenthandcards.x = -583;
             cc.sys.localStorage.setItem('bankerId',cc.weijifen.banker);
         },
         /**
@@ -316,102 +310,84 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
-            if (cc.weijifen.wanfa) {
-                context.wanfa.getComponent(cc.Label).string = cc.weijifen.wanfa;
-            }
-             // 反作弊提示
+        	context.loadding();//加载动画
+        	// 反作弊提示
             let ipTimer = setTimeout(function(){
                 let userIp = cc.find("Canvas/userIp");
                 if (userIp) userIp.active = false;
                 clearTimeout(ipTimer);
-            },10000);
+            },5000);
+        	self = this;
+        	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+        	var gameStartInit = require('GameStartInit');
+        	//比赛倒计时设置为隐藏
+            if(context.starttime.node.parent.active ==true){
+                context.starttime.node.parent.active =false;
+            }
+
+            if(cc.find('Canvas/summary')){
+                cc.find('Canvas/summary').destroy();
+            }
+
+            if(cc.find('Canvas/notice')){
+                cc.sys.localStorage.setItem('notice','true');
+                cc.find('Canvas/notice').active = false;
+            }
+
+        	//初始化数据
+        	cc.weijifen.baopai = null;
+            context.roomInfo.active = true;
             cc.sys.localStorage.removeItem('bankerId');
             cc.sys.localStorage.removeItem("roomNo1");
             cc.sys.localStorage.removeItem("matchTime");
             cc.sys.localStorage.removeItem("appTime");
             cc.sys.localStorage.setItem('waitting',1);
-            context = cc.find('Canvas').getComponent('MJDataBind');
-            context.play_flag = true;
-            var data = JSON.parse(data);
-
-            var gameEvent = require('GameEvent');
-            //比赛倒计时设置为隐藏
-            if(context.starttime.node.parent.active ==true){
-                context.starttime.node.parent.active =false;
-            }
-            var gameStartInit = require('GameStartInit');
-            var gameEvent = require('GameEvent');
-            var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
-            gameStartInit.reinitGame(context);
-            for(let h=0 ;h<data.players.length;h++){
-                var players = data.players[h];
-                //这里有一个判定 如果是重连的话 就不用setouttime   
-                if(data.player.played||players.played||data.player.actions.length>0||players.action){
-                    cc.sys.localStorage.setItem('cb','true');
-                }
-            }
-            context.loadding();                                                
-            if(cc.find('Canvas/summary')){
-                cc.find('Canvas/summary').destroy();
-            }
-            {
-                cc.sys.localStorage.setItem('clear','true');
-                var bth = cc.find('Canvas/bg/center/button/readybtn');
-                // bth.active =true;  
-                bth.x= -10;
-                var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children
-                if(laizi){
-                    for(let i =0 ; i < laizi.length ; i ++ ){
-                        cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
-                    }
-                }     
-            }
-            if(cc.find('Canvas/notice')){
-                cc.sys.localStorage.setItem('notice','true');
-                cc.find('Canvas/notice').active = false;
-            }
-            if(cc.weijifen.playType != "LG"){
-                // context.windFW(context);//显示东南西北
-            }
-            cc.weijifen.baopai = null;
-            context.roomInfo.active = true;    
-            let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];// quan节点            
-            quanNum.string = (data.round+1) +'/'+context.maxRound;//圈数
-            let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];// wanfa节点   
-           
-
-            // 游戏规则
-            wanfa.string = data.op;
-            cc.weijifen.wanfa = data.op;
-            context.readyNoActive(context);   
-            /**
-             * 改变状态，开始发牌
-             * 
-             */
             if(cc.weijifen.playerNum){
                 var peoNum = cc.weijifen.playerNum;
             }
-            //开局后  头像位移到相应位置
-            {
-                var action = cc.moveTo(0.2,570,80);
-                context.right_player.runAction(action);
-                var action = cc.moveTo(0.2,-590,80);
-                context.left_player.runAction(action);
-                var action = cc.moveTo(0.2,389,290);
-                context.top_player.runAction(action);
+            let cardTime = setTimeout(function(){
+                gameStartInit.calcdesc_cards(gameStartInitNode , 136 , data.deskcards) ;
+                clearTimeout(cardTime);
+            } , 0) ;
+
+        	context = cc.find('Canvas').getComponent('MJDataBind');
+        	
+        	var data = JSON.parse(data);//获取json数据
+            context.play_flag = true;
+            if (cc.weijifen.wanfa) {
+                context.wanfa.getComponent(cc.Label).string = cc.weijifen.wanfa;
             }
+            //移动头像到对应位置
+            var action = cc.moveTo(0.2,570,80);
+	        context.right_player.runAction(action);
+	        var action = cc.moveTo(0.2,-590,80);
+	        context.left_player.runAction(action);
+	        var action = cc.moveTo(0.2,389,290);
+	        context.top_player.runAction(action);
+
+	        cc.sys.localStorage.setItem('clear','true');
+			gameStartInit.reinitGame(context);
+	        //设置圈数、玩法
+	        let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];//quan节点位置            
+            quanNum.string = (data.round+1) +'/'+context.maxRound;//圈数
+            let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];//wanfa节点位置  
+            wanfa.string = data.op;
+            cc.weijifen.wanfa = data.op;
+            context.readyNoActive(context); 
+
             //游戏开始 干掉打牌和听得缓存
             cc.sys.localStorage.removeItem('take');
             cc.sys.localStorage.removeItem('ting') ;        
             context.exchange_state("begin" , context);
+
             /*
             * temp_player 为当前用户的信息
             * cards       当前用户手牌的信息
-            * context.decode() Base64.js中方法，用来将cards信息解码为十进制数
             */
             var temp_player = data.player ;
             var cards = data.player.cards;
-         
+
+            //设置包牌
             if(cc.weijifen.GameBase.gameModel == 'wz' || cc.weijifen.GameBase.gameModel == 'ls'){
                 if(temp_player.powerCard){
                     // var powerCard = context.decode(temp_player.powerCard);
@@ -461,37 +437,8 @@ cc.Class({
                 }
             }
 
-            //当前玩家补花 data.player
-            var buhua;
-            if(temp_player.buHua && temp_player.buHua.length){
-                // buhua = context.decode(temp_player.buHua);//补花
-                buhua = temp_player.buHua;
-                let temp = gameStartInit.player(temp_player.playuser, context);
-                for(var i = 0;i<buhua.length;i++){
-                    gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
-                }
-            }
-
-            //其他玩家补花 data.players
-            for(var i = 0; i <data.players.length;i++){
-                if(data.players[i].buHua){
-                    // buhua = context.decode(data.players[i].buHua);//补花
-                    buhua = data.players[i].buHua;
-                    let temp = gameStartInit.player(data.players[i].playuser, context);
-                    //console.log(temp.tablepos);
-                    for(var j = 0;j<buhua.length;j++){
-                        gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
-                    }
-                }
-            }
-            
-
-            let cardTime = setTimeout(function(){
-                gameStartInit.calcdesc_cards(gameStartInitNode , 136 , data.deskcards) ;
-                clearTimeout(cardTime);
-            } , 0) ;
             var groupNums = 0 ;
-            var pTimes;
+            var pTimes;//便利牌数据
             if(cc.weijifen.GameBase.gameModel =='wz'){
                 pTimes = 5;
             }else{
@@ -499,11 +446,44 @@ cc.Class({
             }
             for(var times = 0 ; times < pTimes ; times++){
                 for(let h=0 ;h<data.players.length;h++){
-                    var players = data.players[h];
-                    //这里有一个判定 如果是重连的话 就不用setouttime   
-                    if(data.player.played||players.played||data.player.actions.length>0||players.action){
-                        //cc.sys.localStorage.setItem('cb','true');
-                        gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
+                	var players = data.players[h];
+                	if(data.player.played||players.played||data.player.actions.length>0||players.action){
+                		//渲染当前玩家手牌
+	                    gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
+
+	                    //初始化其他玩家手牌
+	                    var inx = 0 ;
+	                    var sabi = 0;
+	                    var gender_fw;
+	                    for(var i=0 ; i<data.players.length ; i++){
+	                        if(data.players[i].playuser != cc.weijifen.user.id){           
+	                            //通过判断 id 来确定位置上的牌的张数
+	                            var arry = context.playersarray;
+	                            for(let j =0 ; j< arry.length;j++){
+	                                var card = arry[j].getComponent('MaJiangPlayer');     
+	                                if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
+	                                    data.players[i].gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
+	                                    cc.weijifen.genders[card.tablepos] = gender_fw;
+	                                    if(card.tablepos=='left'){
+	                                        sabi = 2;
+	                                        break;
+	                                    }else if(card.tablepos=='top'){
+	                                        sabi = 1;
+	                                        break;
+	                                    }   
+	                                    sabi=0;
+	                                    break;
+	                                } else if (card.tablepos == 'current') {
+	                                    data.player.gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
+	                                    cc.weijifen.genders['current'] = gender_fw;
+	                                }
+	                            }
+	                            gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
+	                        }
+	                    }
+	                    groupNums = groupNums + 1 ;
+                	}else{
+                		gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
                         /**
                          * 初始化其他玩家数据
                          */
@@ -511,205 +491,119 @@ cc.Class({
                         var sabi = 0;
                         var gender_fw;
                         for(var i=0 ; i<data.players.length ; i++){
-                            if(data.players[i].playuser != cc.weijifen.user.id){           
+                            if(data.players[i].playuser != cc.weijifen.user.id){
                                 //通过判断 id 来确定位置上的牌的张数
                                 var arry = context.playersarray;
-                                for(let j =0 ; j< arry.length;j++){
-                                    var card = arry[j].getComponent('MaJiangPlayer');     
-                                    if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
-                                        data.players[i].gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
-                                        cc.weijifen.genders[card.tablepos] = gender_fw;
-                                        if(card.tablepos=='left'){
-                                            sabi = 2;
+                                if (arry) {
+                                    for(let j =0 ; j< arry.length;j++){
+                                        var card = arry[j].getComponent('MaJiangPlayer');                            
+                                        if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
+                                            data.players[i].gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
+                                            cc.weijifen.genders[card.tablepos] = gender_fw;
+                                            if(card.tablepos=='left'){
+                                                sabi = 2;
+                                                break;
+                                            }else if(card.tablepos=='top'){
+                                                sabi = 1;
+                                                break;
+                                            }   
+                                            sabi=0;
                                             break;
-                                        }else if(card.tablepos=='top'){
-                                            sabi = 1;
-                                            break;
-                                        }   
-                                        sabi=0;
-                                        break;
-                                    } else if (card.tablepos == 'current') {
-                                        data.player.gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
-                                        cc.weijifen.genders['current'] = gender_fw;
+                                        } else if (card.tablepos == 'current')  {
+                                            data.player.gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
+                                            cc.weijifen.genders['current'] = gender_fw;
+                                        }
                                     }
+                                    gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
                                 }
-                                gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
                             }
                         }
                         groupNums = groupNums + 1 ;
-                    }else{
-                        let otherPlayerTime = setTimeout(function(){
-                            gameStartInit.initMjCards(groupNums , context , cards , temp_player.banker) ;
-                            /**
-                             * 初始化其他玩家数据
-                             */
-                            var inx = 0 ;
-                            var sabi = 0;
-                            var gender_fw;
-                            for(var i=0 ; i<data.players.length ; i++){
-                                if(data.players[i].playuser != cc.weijifen.user.id){
-                                    //通过判断 id 来确定位置上的牌的张数
-                                    var arry = context.playersarray;
-                                    if (arry) {
-                                        for(let j =0 ; j< arry.length;j++){
-                                            var card = arry[j].getComponent('MaJiangPlayer');                            
-                                            if(data.players[i].playuser==card.data.id&&card.tablepos!='current'){
-                                                data.players[i].gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
-                                                cc.weijifen.genders[card.tablepos] = gender_fw;
-                                                if(card.tablepos=='left'){
-                                                    sabi = 2;
-                                                    break;
-                                                }else if(card.tablepos=='top'){
-                                                    sabi = 1;
-                                                    break;
-                                                }   
-                                                sabi=0;
-                                                break;
-                                            } else if (card.tablepos == 'current')  {
-                                                data.player.gender == 2 ? gender_fw = 'w' : gender_fw = 'm';                      
-                                                cc.weijifen.genders['current'] = gender_fw;
-                                            }
-                                        }
-                                        gameStartInit.initPlayerHandCards(groupNums , data.players[inx++].deskcards , sabi,context ,false, data.players[i].banker,peoNum,data.players[i].playuser);
-                                    }
-                                }
-                            }
-                            groupNums = groupNums + 1 ;
-                            clearTimeout(otherPlayerTime);
-                        } , (times+1) * 200);
-                    }    
+                	}
+                
                 }
             }
-            let sortTime = setTimeout(function(){
-                cc.weijifen.audio.playSFX('shuffle.mp3');         
-                var mp3Music = cc.weijifen.audio.getSFXVolume();
-                // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
-                // ani.play("majiang_reorder") ;
-                var maxvalue  = -130;
-                var maxvalluecard ;
-                //排序 ---设置牌的zIndex（官方排序方法要用到）
-                if (context.playercards) {
-                    for(var i=0 ; i<context.playercards.length ; i++ ){
-                        if(context.playercards[i].children[1].active == false){
-                            let temp_script = context.playercards[i].getComponent("HandCards") ;
-                            if(temp_script.value >= 0){
-                                context.playercards[i].zIndex = temp_script.value ;
-                            }else{
-                                context.playercards[i].zIndex = 200+ temp_script.value ;
-                            }
-                            if(context.playercards[i].zIndex > maxvalue){
-                                maxvalue = context.playercards[i].zIndex ;
-                                maxvalluecard = context.playercards[i] ;
-                            } 
+       
+
+            cc.weijifen.audio.playSFX('shuffle.mp3');         
+            var mp3Music = cc.weijifen.audio.getSFXVolume();
+            // let ani = gameStartInitNode.cards_panel.getComponent(cc.Animation);
+            // ani.play("majiang_reorder") ;
+            var maxvalue  = -130;
+            var maxvalluecard ;
+            //排序 ---设置牌的zIndex（官方排序方法要用到）
+            if (context.playercards) {
+                for(var i=0 ; i<context.playercards.length ; i++ ){
+                    if(context.playercards[i].children[1].active == false){
+                        let temp_script = context.playercards[i].getComponent("HandCards") ;
+                        if(temp_script.value >= 0){
+                            context.playercards[i].zIndex = temp_script.value ;
+                        }else{
+                            context.playercards[i].zIndex = 200+ temp_script.value ;
                         }
-
-                    }
-               
-                }
-                gameStartInit.initcardwidth(); 
-
-                if(temp_player.banker == true&&!data.player.played){
-                    //maxvalluecard.getComponent("HandCards").lastone() ;
-                }  
-                clearTimeout(sortTime);
-            } , 1000);
-            let changeTime = setTimeout(function(){
-                if(cc.sys.localStorage.getItem('cb')!='true'){
-                    context.exchange_state("play" , context);                
-                }
-                clearTimeout(changeTime);
-            } , 1500)
-
-            /**
-             * 统一处理排序 的动画
-             */
-
-            /**
-             * 初始化状态，首个玩家加入，然后开始等待其他玩家 ， 如果是 恢复数据， 则不会进入
-             */
-            //gameStartInit.statusbtn.active = true ;
-            //ljh改  神牌
-            
-            let reconnectTime = setTimeout(function(){
-                cc.weijifen.audio.setSFXVolume(0);
-                //重连判断action
-                var istake = false;
-                for(let i=0;i<data.players.length;i++){
-                    if(data.players[i].played){
-                        istake =true;
-                    }
-                    if(data.players[i].actions.length>0){
-                        istake=true;
-                    }
-                    if(data.players[i].ting){
-                        let playerss = gameStartInit.player(data.players[i].playuser , context);
-                        context[playerss.tablepos+'ting'].active = true;
+                        if(context.playercards[i].zIndex > maxvalue){
+                            maxvalue = context.playercards[i].zIndex ;
+                            maxvalluecard = context.playercards[i] ;
+                        } 
                     }
                 }
-                if(data.player.banker == true){
+            }
+            gameStartInit.initcardwidth();
+            if(cc.sys.localStorage.getItem('cb')!='true'){
+                context.exchange_state("play" , context);                
+            }
+
+            cc.weijifen.audio.setSFXVolume(0);
+            //重连判断action
+            var istake = false;
+            for(let i=0;i<data.players.length;i++){
+                if(data.players[i].played){
+                    istake =true;
+                }
+                if(data.players[i].actions.length>0){
+                    istake=true;
+                }
+                if(data.players[i].ting){
+                    let playerss = gameStartInit.player(data.players[i].playuser , context);
+                    context[playerss.tablepos+'ting'].active = true;
+                }
+            }
+			
+            //渲染自己的排面数据
+            if(data.player.played||istake||data.player.actions.length>0){
+            	cc.sys.localStorage.setItem('cl','true');//重连状态设置为true
+            	if(data.player.played){
+            		//渲染已经打出去的牌面数据
+                    var deskcards  = data.player.played;
+                    for(let i=0;i <deskcards.length;i++){
+                        let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
+                        let temp = desk_card.getComponent("DeskCards");
+                        temp.init(deskcards[i],'B');
+                        context.deskcards.push(desk_card);
+                        desk_card.parent = context.deskcards_current_panel;
+                    }
+                }
+
+                //渲染当前玩家   吃 碰 杠等数据
+                var action = data.player.actions;
+                if(data.player.banker == true){//当前玩家是庄家
                     let datas ={};
                     datas.userid = data.player.playuser;
                     gameStartInit.banker_event(datas,context);
                 }
-                if(data.player.ting){
+                gameStartInit.actionCards(cc.weijifen.user.id,action,context,"current");
+
+                if(data.player.ting){//当前玩家状态为听牌状态
                     context.currentting.active = true ; 
                     cc.sys.localStorage.setItem('alting','true');
                     cc.sys.localStorage.setItem('altings','true');
                     cc.sys.localStorage.setItem('take','true')
                     context.tingAction(true);                
                 }
-                //如果自己有已经打的牌或者其他人有打牌 或者有action的时候
-                if(data.player.played||istake||data.player.actions.length>0){
-                    cc.sys.localStorage.setItem('cl','true');
-                    //重连判断deskcard
-                    if(data.player.played){
-                        // var deskcards  = context.decode(data.player.played);
-                        var deskcards  = data.player.played;
-                        for(let i=0;i <deskcards.length;i++){
-                            let desk_card = cc.instantiate(gameStartInitNode.takecards_one);
-                            let temp = desk_card.getComponent("DeskCards");
-                            temp.init(deskcards[i],'B');
-                            context.deskcards.push(desk_card);
-                            desk_card.parent = context.deskcards_current_panel;
-                        }
-                    }
-                    var action = data.player.actions;
-                    for(let i = 0;i< action.length;i++){
-                        var isGang = false;
-                        var cards = action[i].card;
-                        
-                        if(action[i].type =='an'){
-                            isGang =true;
-                        }
-                        if(cards.length<4||isGang||action[i].action=='gang'||action[i].action=='peng'||action[i].action=='chi'){
-                            if(action[i].action=='gang'&&cards.length==1){
-                                let a =cards.concat(cards);
-                                let b = a.concat(a)
-                                gameEvent.cardModle(b,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
-                            }else{
-                                function sortNumber(a,b){return a - b}
-                                cards.sort(sortNumber);
-                                gameEvent.cardModle(cards,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);  
-                            }
-                        }else {
-                            var a = cards.slice(0,3);
-                            gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/current/kongcards'),isGang,'',context,action[i].action);
-                            for(let h =3 ; h<cards.length; h++){
-                                gameEvent.selectaction_event({userid:cc.weijifen.user.id,cards:[cards[h]],card:-1,action:'dan'},context,action);            
-                            }            
-                        }
-                    }
-                }  
-                    //重连判断 其他人的desk和action
+
+                //渲染其他玩家吃 碰 杠等数据
                 for(let i=0 ; i< data.players.length;i++){
-                        //判断谁是庄家
-                    var player = gameStartInit.player(data.players[i].playuser, context);
-                    var datas={}
-                    if(data.players[i].banker==true){
-                        datas.userid = data.players[i].playuser;
-                        gameStartInit.banker_event(datas,context);
-                    }
-                    //其他玩家的kong 牌
+                	//其他玩家的kong 牌
                     if(data.touchPlay ){
                         let player = gameStartInit.player(data.touchPlay , context)
                         context.exchange_searchlight(player.tablepos , context);
@@ -721,53 +615,96 @@ cc.Class({
                     if(!data.player.played&&data.player.banker){
                         cc.sys.localStorage.setItem('take','true');
                     }
-                    if(data.players[i].actions.length>0){            
-                        var action = data.players[i].actions;                    
-                        for(let j =0 ; j< action.length ;j++){
-                            var isGang =false;
-                            // var cards = context.decode(action[j].card);
-                            var cards = action[j].card;
-                            
-                            if(action[j].type =='an'){
-                                isGang =true;
-                            }
-                            if(cards<4||isGang||action[j].action=='gang'||action[j].action=='peng'||action[j].action=='chi'){
-                                if(action[j].action=='gang'&&cards.length==1){
-                                    let a =cards.concat(cards);
-                                    let b = a.concat(a)
-                                    gameEvent.cardModle(b,cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards'),isGang,player.tablepos,context,action[j].action);   
-                                }else{
-                                    function sortNumber(a,b){return a - b}
-                                    cards.sort(sortNumber);
-                                    gameEvent.cardModle(cards,cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards'),isGang,player.tablepos,context,action[j].action);   
-                                }
-                            }else {
-                                let a = cards.slice(0,3);
-                                gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/'+player.tablepos+'/kongcards'),isGang,player.tablepos,context,action[j].action);
-                                for(let h =3 ; h<cards.length; h++){
-                                    gameEvent.selectaction_event({userid:player.data.id,cards:[cards[h]],card:-1,action:'dan'},context,data.players[i].actions)                             
-                                }                        
-                            }                
-                        }
+                	var player = gameStartInit.player(data.players[i].playuser, context);
+                	//判断谁是庄家
+                	var datas={};
+                    if(data.players[i].banker==true){
+                        datas.userid = data.players[i].playuser;
+                        gameStartInit.banker_event(datas,context);
                     }
-                    //其他玩家的桌牌     
+
+                    if(data.players[i].actions.length>0){//其他玩家有吃碰杠
+                    	var action = data.players[i].actions;
+                    	gameStartInit.actionCards(player.data.id,action,context,player.tablepos);
+                    }
+
+                    //其他玩家的打出去的牌    
                     if(data.players[i].played){
-                        // var deskcardss = context.decode(data.players[i].played); 
                         var deskcardss = data.players[i].played; 
                         var player = gameStartInit.player(data.players[i].playuser, context);
                         for(let j =0 ; j< deskcardss.length;j++){
                             gameStartInit.initDeskCards(deskcardss[j],player.tablepos,context)
                         }
                     }
-                } 
-                context.closeloadding();
-                   /* if(cc.weijifen.playType =='LG'){
-                        context.lgdong(data);
-                    }*/
-                clearTimeout(reconnectTime);
-            },2000)   
-            if (gameStartInitNode.head_right_parent.children.length > 5) {
-                cc.director.loadScene('majiang');
+                }
+
+                //当前玩家补花 data.player
+	            var buhua;
+	            if(temp_player.buHua && temp_player.buHua.length){
+	                // buhua = context.decode(temp_player.buHua);//补花
+	                buhua = temp_player.buHua;
+	                let temp = gameStartInit.player(temp_player.playuser, context);
+	                for(var i = 0;i<buhua.length;i++){
+	                    gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
+	                }
+	            }
+
+	            //其他玩家补花 data.players
+	            for(var i = 0; i <data.players.length;i++){
+	                if(data.players[i].buHua){
+	                    // buhua = context.decode(data.players[i].buHua);//补花
+	                    buhua = data.players[i].buHua;
+	                    let temp = gameStartInit.player(data.players[i].playuser, context);
+	                    //console.log(temp.tablepos);
+	                    for(var j = 0;j<buhua.length;j++){
+	                        gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
+	                    }
+	                }
+	            }
+
+                
+
+                if (gameStartInitNode.head_right_parent.children.length > 5) {
+                	cc.director.loadScene('majiang');
+            	}
+            }
+            context.closeloadding();
+        },
+        /*
+         *渲染玩家吃 碰 杠 蛋 等数据 
+         */
+        actionCards:function(userId,action,context,weizhi){
+        	var gameEvent = require('GameEvent');
+        	var fangwei = "";
+        	if(weizhi == "current"){
+				fangwei = "";
+        	}else{
+        		fangwei = weizhi;
+        	}
+        	for(let i = 0;i< action.length;i++){
+                var isGang = false;
+                var cards = action[i].card;
+                
+                if(action[i].type =='an'){
+                    isGang =true;
+                }
+                if(cards.length<4||isGang||action[i].action=='gang'||action[i].action=='peng'||action[i].action=='chi'){
+                    if(action[i].action=='gang'&&cards.length==1){
+                        let a =cards.concat(cards);
+                        let b = a.concat(a)
+                        gameEvent.cardModle(b,cc.find('Canvas/cards/handcards/'+weizhi+'/kongcards'),isGang,fangwei,context,action[i].action);  
+                    }else{
+                        function sortNumber(a,b){return a - b}
+                        cards.sort(sortNumber);
+                        gameEvent.cardModle(cards,cc.find('Canvas/cards/handcards/'+weizhi+'/kongcards'),isGang,fangwei,context,action[i].action);  
+                    }
+                }else {
+                    var a = cards.slice(0,3);
+                    gameEvent.cardModle(a,cc.find('Canvas/cards/handcards/'+weizhi+'/kongcards'),isGang,fangwei,context,action[i].action);
+                    for(let h =3 ; h<cards.length; h++){
+                        gameEvent.selectaction_event({userid:userId,cards:[cards[h]],card:-1,action:'dan'},context,action);            
+                    }            
+                }
             }
         },
 
@@ -983,18 +920,16 @@ cc.Class({
                         temp.parent = gameStartInitNode.cards_panel ;
                     }
         
-                    setTimeout(function(){
-                        temp.parent = gameStartInitNode.cards_panel ;
-                    } , 200) ;
+                    temp.parent = gameStartInitNode.cards_panel ;
                 }   
             }
             let currenthandcards = cc.find('Canvas/cards/handcards/current/currenthandcards');
             let length = currenthandcards.children.length;
-            if (cc.weijifen.bankers && currenthandcards.children.length == 14) {
-                currenthandcards.children[length-1].width = 130;
-            } else if (currenthandcards.children[length-1]) {
-                currenthandcards.children[length-1].width = 93;
-            }
+            // if (cc.weijifen.bankers && currenthandcards.children.length == 14) {
+            //     currenthandcards.children[length-1].width = 130;
+            // } else if (currenthandcards.children[length-1]) {
+            //     currenthandcards.children[length-1].width = 93;
+            // }
         },
 
         /**
