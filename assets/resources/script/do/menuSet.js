@@ -212,9 +212,14 @@ cc.Class({
                 shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
             } else if (customEventData == 'redBox') {
                 cc.log('redBox')
-                shareUrl = "http://game.bizpartner.cn/coupon/gain/share?sn_id=" + boxId;
+                var WJFCommon = require("WJFCommon");
+                var wjf = new WJFCommon();
+                wjf.alert('即将开放，敬请期待！');
+                return
+               /* shareUrl = "http://game.bizpartner.cn/coupon/gain/share?sn_id=" + boxId;
                 shareTitle = "心缘竞技-770元大礼包";
-                shareText = '好友分享，10份价值77元现金大礼包，点击即可领取！';
+                shareText = '好友分享，10份价值77元现金大礼包，点击即可领取！';*/
+                
             }
             jsonData = {
                 url: shareUrl,
@@ -223,6 +228,7 @@ cc.Class({
                 conType: 1,
                 msgType: 1
             }
+
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
         },2000);
