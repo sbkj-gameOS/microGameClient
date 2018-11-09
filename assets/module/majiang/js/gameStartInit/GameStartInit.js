@@ -553,6 +553,12 @@ cc.Class({
                 context.exchange_state("play" , context);                
             }
 
+            if(data.player.banker == true){//当前玩家是庄家
+                let datas ={};
+                datas.userid = data.player.playuser;
+                gameStartInit.banker_event(datas,context);
+            }
+
             cc.weijifen.audio.setSFXVolume(0);
             //重连判断action
             var istake = false;
@@ -566,6 +572,13 @@ cc.Class({
                 if(data.players[i].ting){
                     let playerss = gameStartInit.player(data.players[i].playuser , context);
                     context[playerss.tablepos+'ting'].active = true;
+                }
+
+                //判断谁是庄家
+                var datas={};
+                if(data.players[i].banker==true){
+                    datas.userid = data.players[i].playuser;
+                    gameStartInit.banker_event(datas,context);
                 }
             }
 			
@@ -586,11 +599,6 @@ cc.Class({
 
                 //渲染当前玩家   吃 碰 杠等数据
                 var action = data.player.actions;
-                if(data.player.banker == true){//当前玩家是庄家
-                    let datas ={};
-                    datas.userid = data.player.playuser;
-                    gameStartInit.banker_event(datas,context);
-                }
                 gameStartInit.actionCards(cc.weijifen.user.id,action,context,"current");
 
                 if(data.player.ting){//当前玩家状态为听牌状态
@@ -616,12 +624,7 @@ cc.Class({
                         cc.sys.localStorage.setItem('take','true');
                     }
                 	var player = gameStartInit.player(data.players[i].playuser, context);
-                	//判断谁是庄家
-                	var datas={};
-                    if(data.players[i].banker==true){
-                        datas.userid = data.players[i].playuser;
-                        gameStartInit.banker_event(datas,context);
-                    }
+                	
 
                     if(data.players[i].actions.length>0){//其他玩家有吃碰杠
                     	var action = data.players[i].actions;
