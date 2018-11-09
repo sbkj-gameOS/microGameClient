@@ -372,6 +372,7 @@ cc.Class({
 
         // 监听出牌拿牌
         self.node.on('takecard', function (event) {
+            cc.sys.localStorage.removeItem('guo');
             var context = cc.find('Canvas').getComponent('MJDataBind');             
             cc.weijifen.audio.playSFX('select.mp3');            
 
@@ -596,18 +597,6 @@ cc.Class({
                 }));
             }else{
                 cc.sys.localStorage.setItem('take','true');    
-                if (cc.weijifen.isGuo == 'guo') {
-                    var arr = [];
-                    if (cc.weijifen.receiveTing) {
-                        arr = [-1];
-                    }
-                    cc.sys.localStorage.removeItem('altake');
-                    let socket = self.getSelf().socket();
-                    socket.emit("selectaction" , JSON.stringify({
-                        action:"guo",
-                        actionCard: arr
-                    }));
-                }            
             }
             cc.sys.localStorage.removeItem('guo');
             self.getSelf().shouOperationMune();

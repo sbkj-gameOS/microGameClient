@@ -247,10 +247,6 @@ cc.Class({
 	            }
 	            context.exchange_state("takecard" , context);  //隐藏 提示状态
 
-	            cc.sys.localStorage.setItem('guo','false');
-	            cc.weijifen.receiveTing = null;
-
-
 	        }else{
 	        	// 碰牌玩家执行该处代码
 	        	cc.sys.localStorage.removeItem('take');

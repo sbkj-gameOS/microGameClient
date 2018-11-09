@@ -51,8 +51,8 @@ cc.Class({
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         
         //如果weijifen已经加载好了
-        var met = cc.find('Canvas/js/menuToggle').getComponent('menuToggle');
-        met.hall('12');
+      /*  var met = cc.find('Canvas/js/menuToggle').getComponent('menuToggle');
+        met.hall('12');*/
         if(this.ready()){   
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
                 cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);

@@ -42,9 +42,6 @@ cc.Class({
 
     },
     onClick:function(event , data){  
-        if (data == 'guo') {
-            cc.weijifen.isGuo = 'guo';
-        }
         if (cc.find('Canvas/big_cards').children) {
            cc.find('Canvas/big_cards').removeAllChildren();
         }
