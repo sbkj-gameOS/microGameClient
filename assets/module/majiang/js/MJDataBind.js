@@ -139,7 +139,8 @@ cc.Class({
         mask: cc.Node,// 比赛开牌时，手牌初始慢给出的提示
         prohibit_mask: cc.Node,// 比赛倒计时结束时，禁止玩家任何操作
         overCount: cc.Prefab,
-        refuseBtn: cc.SpriteFrame
+        refuseBtn: cc.SpriteFrame,
+        headImgCenter: cc.Node,
     },
     onLoad: function () {
         var listenFlag,hasAlert;// 网络情况，是否有网络提示
@@ -778,6 +779,21 @@ cc.Class({
             self.readybth.active = false;
             // this.readybth.x = -4;
             self.current_ready.active = true;
+           /* cc.find('Canvas/players').active = false;
+
+            self.headImgCenter.active = true;
+            self.headImgCenter.getChildByName('username').getComponent(cc.Label).string = cc.weijifen.user.username;
+            // if(cc.weijifen.user.headimgurl){
+                // var imgurl = cc.weijifen.user.headimgurl;
+                var imgurl = 'http://img03.tooopen.com/uploadfile/downs/images/20110714/sy_20110714135215645030.jpg';
+                var head = self.headImgCenter.getChildByName('img');
+                var sprite = head.getComponent(cc.Sprite).spriteFrame;
+                cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
+                    sprite.spriteFrame = new cc.SpriteFrame(texture);
+                    head.width = 110;
+                    head.height = 110;
+                });
+            // }*/
         };
 
         /*设置圈数，圈数条显示*/

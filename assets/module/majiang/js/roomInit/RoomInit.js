@@ -21,6 +21,7 @@ cc.Class({
          * @param context
          */
         joinroom_event:function(data , context){
+            // if (!cc.weijifen.isPlayersSend && cc.weijifen.match == 'true') return; 
             if(cc.sys.localStorage.getItem('waitting') != 1){
                 cc.sys.localStorage.setItem('waitting','true');// (在游戏未开始时只有房主可以解散房间) 玩家等待中
             }
@@ -34,9 +35,13 @@ cc.Class({
                 cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
             	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
-          
+            
+
+            console.log('joinroom---',cc.weijifen.playerNum)
+
+
             if(cc.weijifen.playerNum == 2){
-                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top')){
+                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top') || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
 
                     var player = context.playerspool.get();
                     var playerscript = player.getComponent("MaJiangPlayer");
@@ -100,7 +105,7 @@ cc.Class({
                 // }
 
             }else if(cc.weijifen.playerNum == 3){
-                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top')){
+                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top') || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
                     var player = context.playerspool.get();
                     var playerscript = player.getComponent("MaJiangPlayer");
                     tablepos = "";
@@ -170,7 +175,7 @@ cc.Class({
             }else{
                 // 这是默认的4人模式 
                 // 因为 加入会触发 改变状态也会触发该事件，所以用getitem保存一个数据 如果有了这个数据则 只判断状态的改变  如果没有则表示新玩家加入
-                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('left')&&data.id!=cc.sys.localStorage.getItem('top')){
+                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('left')&&data.id!=cc.sys.localStorage.getItem('top')  || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
                     var player = context.playerspool.get();
                     var playerscript = player.getComponent("MaJiangPlayer");
                     tablepos = "";

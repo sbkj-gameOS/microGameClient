@@ -117,6 +117,18 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
+
+            if (cc.weijifen.match == 'true') {
+                cc.weijifen.playerNum = data.players.length;
+               /* cc.weijifen.isPlayersSend = true;
+                var action = cc.moveTo(0.2,-586,-130);
+
+                // (-586 , -130)
+                // cc.find('Canvas/headImgMatch').runAction(action);
+                // cc.find('Canvas/headImgCenter').runAction(action);
+                cc.find('Canvas/players').active = true;*/
+            }
+            console.log('players_event',cc.weijifen.playerNum)
             //第一个进入房间的人是房主，其他玩家再次进入data.players会增加
             if(data.players.length == 1){
                 cc.sys.localStorage.setItem("roomNo1",cc.weijifen.user.id);
@@ -181,7 +193,6 @@ cc.Class({
                     gameStartInit.fw(2,2,'北0');//left
                     gameStartInit.fw(3,3,'南0');//right
                     gameStartInit.fw(4,0,'西0');//top
-
                 }else if(mytime==2){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
@@ -298,7 +309,9 @@ cc.Class({
                 }
                 if(temp.data.id == data.userid){
                     cc.weijifen.banker = data.userid;
-                    temp.banker(); 
+                    let id = cc.find('Canvas/player_head/id').getComponent(cc.Label).string;
+                    id == data.userid ? cc.find('Canvas/player_head/庄').active = true : temp.banker();
+                    // temp.banker(); 
                     break ;
                 }
             }
@@ -310,7 +323,14 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
-        	context.loadding();//加载动画
+            console.log('play-event---',cc.weijifen.playerNum);
+            if (cc.weijifen.playerNum == 2) {
+                context.right_player.active = false;
+                context.left_player.active = false;
+            } else if (cc.weijifen.playerNum == 3){
+                context.left_player.active = false;
+            } 
+            context.loadding();//加载动画
         	// 反作弊提示
             let ipTimer = setTimeout(function(){
                 let userIp = cc.find("Canvas/userIp");
