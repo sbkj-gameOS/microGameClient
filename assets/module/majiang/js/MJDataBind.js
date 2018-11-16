@@ -779,13 +779,12 @@ cc.Class({
             self.readybth.active = false;
             // this.readybth.x = -4;
             self.current_ready.active = true;
-           cc.find('Canvas/players').active = false;
+            cc.find('Canvas/players').active = false;
 
-           /*  self.headImgCenter.active = true;
+            self.headImgCenter.active = true;
             self.headImgCenter.getChildByName('username').getComponent(cc.Label).string = cc.weijifen.user.username;
-            // if(cc.weijifen.user.headimgurl){
-                // var imgurl = cc.weijifen.user.headimgurl;
-                var imgurl = 'http://img03.tooopen.com/uploadfile/downs/images/20110714/sy_20110714135215645030.jpg';
+            if(cc.weijifen.user.headimgurl){
+                var imgurl = cc.weijifen.user.headimgurl;
                 var head = self.headImgCenter.getChildByName('img');
                 var sprite = head.getComponent(cc.Sprite).spriteFrame;
                 cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
@@ -793,7 +792,7 @@ cc.Class({
                     head.width = 110;
                     head.height = 110;
                 });
-            // }*/
+            }
         };
 
         /*设置圈数，圈数条显示*/

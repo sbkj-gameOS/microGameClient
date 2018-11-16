@@ -121,13 +121,8 @@ cc.Class({
             if (cc.weijifen.match == 'true') {
                 cc.weijifen.playerNum = data.players.length;
                 cc.find('Canvas/players').active = true;
-               /* cc.weijifen.isPlayersSend = true;
-                var action = cc.moveTo(0.2,-586,-130);
-
-                // (-586 , -130)
-                // cc.find('Canvas/headImgMatch').runAction(action);
-                // cc.find('Canvas/headImgCenter').runAction(action);
-                cc.find('Canvas/players').active = true;*/
+                cc.find('Canvas/headImg').active = false;
+                cc.find('Canvas/players').active = true;
             }
             //第一个进入房间的人是房主，其他玩家再次进入data.players会增加
             if(data.players.length == 1){
