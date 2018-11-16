@@ -36,10 +36,6 @@ cc.Class({
             	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
             
-
-            console.log('joinroom---',cc.weijifen.playerNum)
-
-
             if(cc.weijifen.playerNum == 2){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top') || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
 

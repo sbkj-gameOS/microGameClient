@@ -779,9 +779,9 @@ cc.Class({
             self.readybth.active = false;
             // this.readybth.x = -4;
             self.current_ready.active = true;
-           /* cc.find('Canvas/players').active = false;
+           cc.find('Canvas/players').active = false;
 
-            self.headImgCenter.active = true;
+           /*  self.headImgCenter.active = true;
             self.headImgCenter.getChildByName('username').getComponent(cc.Label).string = cc.weijifen.user.username;
             // if(cc.weijifen.user.headimgurl){
                 // var imgurl = cc.weijifen.user.headimgurl;
