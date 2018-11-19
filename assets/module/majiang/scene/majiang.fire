@@ -4613,7 +4613,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_id": "02qvJVzKhD7YU10fY1G/xK",
@@ -27508,7 +27508,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "07b9a12a-8572-4037-9393-c97e8f362fc8"
     },
     "_type": 0,
     "_sizeMode": 0,

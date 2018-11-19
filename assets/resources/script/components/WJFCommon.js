@@ -232,14 +232,19 @@ cc.Class({
      * @param  {[String]}  pic 图片路径
      * @param  {[Boolean]} bol 图片是否显示圆角
      */
-    headImg: function(img,pic,bol){
+    headImg: function(img,pic,bol,big){
         if(pic){
             let imgurl = pic;
             let sprite = img.getComponent(cc.Sprite);
             cc.loader.load({url:imgurl,type:'jpg'},function(err,texture){
                 sprite.spriteFrame = new cc.SpriteFrame(texture);
-                img.width = 64;
-                img.height = 64;
+                if (big) {
+                    img.width = 110;
+                    img.height = 110;
+                } else {
+                    img.width = 64;
+                    img.height = 64;
+                }
                 if(bol == true){
                     img.radius = 10;
                 }

@@ -120,9 +120,6 @@ cc.Class({
 
             if (cc.weijifen.match == 'true') {
                 cc.weijifen.playerNum = data.players.length;
-                cc.find('Canvas/players').active = true;
-                cc.find('Canvas/headImg').active = false;
-                cc.find('Canvas/players').active = true;
             }
             //第一个进入房间的人是房主，其他玩家再次进入data.players会增加
             if(data.players.length == 1){
@@ -318,6 +315,10 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+            if (cc.weijifen.match == 'true') {
+                cc.find('Canvas/headImg').active = false;
+                cc.find('Canvas/players').active = true;
+            }
             if (cc.weijifen.playerNum == 2) {
                 context.right_player.active = false;
                 context.left_player.active = false;

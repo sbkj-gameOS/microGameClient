@@ -770,6 +770,7 @@ cc.Class({
 
         //房间号显示
         if(cc.weijifen.match =='false'){
+            cc.find('Canvas/players').active = true;
             let roomNum = cc.find('Canvas/roomNum').getChildByName('room')._components[0];// roomNum节点
             roomNum.string = cc.weijifen.room;
         }else if(cc.weijifen.match == 'true'){
@@ -779,19 +780,12 @@ cc.Class({
             self.readybth.active = false;
             // this.readybth.x = -4;
             self.current_ready.active = true;
-            cc.find('Canvas/players').active = false;
 
             self.headImgCenter.active = true;
             self.headImgCenter.getChildByName('username').getComponent(cc.Label).string = cc.weijifen.user.username;
+
             if(cc.weijifen.user.headimgurl){
-                var imgurl = cc.weijifen.user.headimgurl;
-                var head = self.headImgCenter.getChildByName('img');
-                var sprite = head.getComponent(cc.Sprite).spriteFrame;
-                cc.loader.load({url:imgurl,type:'jpg'},function(suc,texture){
-                    sprite.spriteFrame = new cc.SpriteFrame(texture);
-                    head.width = 110;
-                    head.height = 110;
-                });
+                self.headImg(self.headImgCenter.getChildByName('img'),cc.weijifen.user.headimgurl,true,true);
             }
         };
 
