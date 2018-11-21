@@ -137,8 +137,14 @@ cc.Class({
         }
     },
     signSucess:function(result , object){
+        // 测试安卓
         // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "iPayHandler",result);
-        var res = jsb.reflection.callStaticMethod(...object.anMethodParam().iPayHandler,result);
+        // 测试IOS
+        var res = jsb.reflection.callStaticMethod("AppController","iPayHandler:",result);
+        
+        
+        // 正式
+        // var res = jsb.reflection.callStaticMethod(...object.anMethodParam().iPayHandler,result);
     },
     err:function(result , object) {
         
