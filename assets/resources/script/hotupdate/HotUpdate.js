@@ -77,7 +77,7 @@ cc.Class({
         // Init with empty manifest url for testing custom manifest
         this._am = new jsb.AssetsManager('', this._storagePath, this.versionCompareHandle);
         if (!cc.sys.ENABLE_GC_FOR_NATIVE_OBJECTS) {
-            this._am.retain();
+            // this._am.retain();
         }
 
         var panel = this.panel;

@@ -4,16 +4,16 @@ var HTTP = cc.Class({
     properties: {
     },
     statics: {
-        //127.0.0.1:8188 192.168.0.101
         // 测试
-        // baseURL:"http://game.daily.bizpartner.cn",
+      /*  baseURL:"http://game.daily.bizpartner.cn",
         // wsURL : "http://game.daily.bizpartner.cn:9081",
+        wsURL : "",*/
         
         // 正式
         baseURL:"http://game.bizpartner.cn",
-        wsURL : "http://game.bizpartner.cn:9081",
+        // wsURL : "http://game.bizpartner.cn:9081",
+        wsURL : "",
         
-   
 
         authorization: null,
         httpGet: function (url , success , error , object) {

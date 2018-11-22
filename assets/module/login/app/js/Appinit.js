@@ -18,8 +18,9 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
+        var GameBase = {'gameModel':'ch'} ;
         this.clientPlatForm();
-        this.initMgr();        
+        this.initMgr(GameBase);        
         let he = this;
         if(!cc.sys.isNative && cc.sys.isMobile){
             var canvas = this.node.getComponent(cc.Canvas);
@@ -29,14 +30,16 @@ cc.Class({
         //预加载majiang场景
         cc.director.preloadScene('majiang');
     },
-    initMgr:function(){
+    initMgr:function(GameBase){
         let he = this;
         if(cc.weijifen == null){
+            let HTTP = require('HTTP');
             cc.weijifen = {};
             cc.weijifen.settingflag = false;
-            cc.weijifen.http = require("HTTP");
+            cc.weijifen.http = HTTP;
             cc.weijifen.localStorage = require('IOUtils');
             cc.weijifen.seckey = "weijifen";
+            cc.weijifen.GameBase = GameBase ;
             // cc.weijifen.dialog = null ;
             cc.weijifen.dialogtwo = null;
             cc.weijifen.paystatus = null ;
@@ -81,6 +84,10 @@ cc.Class({
             if(cc.sys.localStorage.getItem('nobgm') != 'true'){
                 cc.weijifen.audio.playBGM("bgFight.mp3");
             }
+                // HTTP.wsURL = '121.40.98.233:9081';
+            cc.weijifen.http.httpGet('/apps/platform/find/server/address?orgi='+ cc.weijifen.GameBase.gameModel,function(res){
+                HTTP.wsURL = res;
+            },function(err){console.log('请求出错')},he);
         }
     },
     downApp: function () {
