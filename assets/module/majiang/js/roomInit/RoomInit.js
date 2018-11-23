@@ -21,6 +21,8 @@ cc.Class({
          * @param context
          */
         joinroom_event:function(data , context){
+            let RoomInit = require('RoomInit');
+            let roomInit = new RoomInit();
             // if (!cc.weijifen.isPlayersSend && cc.weijifen.match == 'true') return; 
             if(cc.sys.localStorage.getItem('waitting') != 1){
                 cc.sys.localStorage.setItem('waitting','true');// (在游戏未开始时只有房主可以解散房间) 玩家等待中
@@ -33,7 +35,7 @@ cc.Class({
             if(data.msg){
                 cc.find("Canvas/userIp").active = true;
                 cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
-            	// setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
+                // setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
             
             if(cc.weijifen.playerNum == 2){
@@ -43,63 +45,22 @@ cc.Class({
                     var playerscript = player.getComponent("MaJiangPlayer");
                     var inx = null , tablepos = "";
                     if(data.id == cc.weijifen.user.id){
-                        player.setPosition(-586 , -130);
-                        player.parent = context.root();
-                        tablepos = "current" ;
-                        cc.sys.localStorage.setItem('current',data.id);
-                        cc.sys.localStorage.setItem('count','0');
-
+                        tablepos = 'current';
+                        roomInit.playerPosition(player,{x:-586,y:-130},context.root(),'current',data,'0');
                     }else{
-                        player.parent= context.top_player;
-                        tablepos = "top" ;
-                        cc.sys.localStorage.setItem('top',data.id);
-                        player.setPosition(0,0);
-                        cc.sys.localStorage.setItem('count','2')
-                        
+                        tablepos = 'top';
+                        roomInit.playerPosition(player,{x:0,y:0},context.top_player,'top',data,'2');
                     }
+
                     playerscript.init(data , inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                     context.playersarray.push(player) ;
                     if(data.status == 'READY'){    
-                        cc.find('Canvas/players/ok_'+tablepos+'').active =true;
-                        if(data.id == cc.weijifen.user.id){
-                            context.readybth.active = false ;
-                            context.ready2.active = false ;
-                        }  
+                        roomInit.readyHandle(tablepos,context,data);
                     }
                     
                 }else{
-                    var playerarray = context.playersarray;
-                    if(playerarray){
-                        for(let i =0 ; i< playerarray.length;i++){
-                            var playerinfo = playerarray[i].getComponent('MaJiangPlayer');
-                            var tablepos = playerinfo.tablepos;   
-                            var on_off_line = playerinfo.on_off_line;     
-                            var headimg = playerinfo.headimg;
-                            if(data.id == playerinfo.data.id) {
-                                if(data.status == 'READY'){    
-                                    cc.find('Canvas/players/ok_'+tablepos+'').active =true;
-                                }
-                                if(data.online == false){
-                                    on_off_line.active = true;
-                                    headimg.color = new cc.Color(42, 25, 25);
-                                    headimg.color = new cc.Color(100,100,100);
-                                }else{
-                                    on_off_line.active = false;
-                                    headimg.color = new cc.Color(255, 255, 255);
-                                }
-                                if(gameStartInitNode.desk_cards.string!='136'){
-                                    context.readyNoActive(context);
-                                }
-                            }
-                        }
-                    }
+                    roomInit.returnRoom(context,data,gameStartInitNode);
                 }
-                //如果人满了 要求好友的按钮自动消失
-                // if(context.playersarray.length == 2){
-                //     context.ready2.active = false;
-                //     context.readybth.x = -13;
-                // }
-
             }else if(cc.weijifen.playerNum == 3){
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top') || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
                     var player = context.playerspool.get();
@@ -107,66 +68,27 @@ cc.Class({
                     tablepos = "";
                     var inx = cc.sys.localStorage.getItem('count');
                     if(data.id == cc.weijifen.user.id){
-                        player.setPosition(-586 , -130);
-                        player.parent = context.root();
-                        tablepos = "current" ;
-                        cc.sys.localStorage.setItem('current',data.id);
-                        
+                        tablepos = 'current';
+                        roomInit.playerPosition(player,{x:-586,y:-130},context.root(),'current',data);
                     }else{
                         if(inx == 0||inx ==2){
-                            player.parent= context.right_player;
-                            tablepos = "right" ;
-                            cc.sys.localStorage.setItem('right',data.id);
-                            cc.sys.localStorage.setItem('count','1');
+                            tablepos = 'right';
+                            roomInit.playerPosition(player,{x:0,y:0},context.right_player,'right',data,'1');
+
                         }else if(inx == 1){
-                            player.parent= context.top_player;
-                            tablepos = "top" ;
-                            cc.sys.localStorage.setItem('top',data.id);
-                            cc.sys.localStorage.setItem('count','2');   
+                            tablepos = 'top';
+                            roomInit.playerPosition(player,{x:0,y:0},context.top_player,'top',data,'2');
+
                         }
-                        player.setPosition(0,0);
                     }
-                    // cc.log('count-------roomInit---count---tablepos',cc.sys.localStorage.getItem('count'),tablepos);
                     playerscript.init(data , context.inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                     context.playersarray.push(player) ;
                     //这里是用来判定自己重连的时候 如果已经准备了 则准备按钮消失
                     if(data.status == 'READY'){    
-                        cc.find('Canvas/players/ok_'+tablepos+'').active =true;
-                        if(data.id == cc.weijifen.user.id){
-                            context.readybth.active = false ;
-                            context.ready2.active = false ;
-                        }  
+                        roomInit.readyHandle(tablepos,context,data);
                     }
                 }else{
-                    var playerarray = context.playersarray;
-                    if(playerarray){
-                        for(let i =0 ; i< playerarray.length;i++){
-                            var playerinfo = playerarray[i].getComponent('MaJiangPlayer');
-                            var tablepos = playerinfo.tablepos;      
-                            var on_off_line = playerinfo.on_off_line;     
-                            var headimg = playerinfo.headimg;
-                            if(data.id == playerinfo.data.id) {
-                                if(data.status == 'READY'){    
-                                    cc.find('Canvas/players/ok_'+tablepos+'').active =true;
-                                    if(data.id == cc.weijifen.user.id){
-                                        context.readybth.active = false ;
-                                        context.ready2.active = false ;
-                                    }  
-                                }
-                                if(data.online == false){
-                                    on_off_line.active = true;
-                                    headimg.color = new cc.Color(100, 100, 100);
-                                }else{
-                                    on_off_line.active = false;
-                                    headimg.color = new cc.Color(255, 255, 255);
-                                }
-                                //如果已经过了发牌阶段  则隐藏所有的准备状态
-                                if(gameStartInitNode.desk_cards.string !='136'){
-                                    context.readyNoActive(context);
-                                }
-                            }    
-                        }
-                    }
+                    roomInit.returnRoom(context,data,gameStartInitNode);
                 }
             }else{
                 // 这是默认的4人模式 
@@ -177,77 +99,33 @@ cc.Class({
                     tablepos = "";
                     var inx = cc.sys.localStorage.getItem('count');
                     if(data.id == cc.weijifen.user.id){
-                        // player.setPosition(-584 , -269);
-                        player.setPosition(-586 , -130);
-                        player.parent = context.root();
-                        tablepos = "current" ;
-                        cc.sys.localStorage.setItem('current',data.id);
-                        
+                        tablepos = 'current';
+                        roomInit.playerPosition(player,{x:-586,y:-269},context.root(),'current',data);
                     }else{
                         if(inx == 0||inx ==3){
-                            player.parent= context.right_player;
-                            tablepos = "right" ;
-                            cc.sys.localStorage.setItem('right',data.id);
-                            cc.sys.localStorage.setItem('count','1')
+                            tablepos = 'right';
+                            roomInit.playerPosition(player,{x:0,y:0},context.right_player,'right',data,'1');
+
                         }else if(inx == 1){
-                            player.parent= context.top_player;
-                            tablepos = "top" ;
-                            cc.sys.localStorage.setItem('top',data.id);
-                            cc.sys.localStorage.setItem('count','2')   
+                            tablepos = 'top';
+                            roomInit.playerPosition(player,{x:0,y:0},context.top_player,'top',data,'2');
+
                         }else if(inx == 2){
-                            player.parent= context.left_player;
-                            tablepos = "left" ;
-                            cc.sys.localStorage.setItem('left',data.id);
-                            cc.sys.localStorage.setItem('count','3')
+                            tablepos = 'left';
+                            roomInit.playerPosition(player,{x:0,y:0},context.left_player,'left',data,'3');
                         }
-                        player.setPosition(0,0);
+                        // player.setPosition(0,0);
                     }
                     playerscript.init(data , context.inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                     context.playersarray.push(player) ;
                     //这里是用来判定自己重连的时候 如果已经准备了 则准备按钮消失
                     if(data.status == 'READY'){    
-                        cc.find('Canvas/players/ok_'+tablepos+'').active =true;
-                        if(data.id == cc.weijifen.user.id){
-                            context.readybth.active = false ;
-                            context.ready2.active = false ;
-                        }  
+                        roomInit.readyHandle(tablepos,context,data);
                     }
                 }else{
-                    var playerarray = context.playersarray;
-                    if(playerarray){
-                        for(let i =0 ; i< playerarray.length;i++){
-                            var playerinfo = playerarray[i].getComponent('MaJiangPlayer');
-                            var tablepos = playerinfo.tablepos;      
-                            var on_off_line = playerinfo.on_off_line;     
-                            var headimg = playerinfo.headimg;
-                            if(data.id == playerinfo.data.id) {
-                                if(data.status == 'READY'){    
-                                    cc.find('Canvas/players/ok_'+tablepos+'').active =true;
-                                    if(data.id == cc.weijifen.user.id){
-                                        context.readybth.active = false ;
-                                        //context.ready2.active = false ;
-                                    }  
-                                }
-                                if(data.online == false){
-                                    on_off_line.active = true;
-                                    headimg.color = new cc.Color(100, 100, 100);
-                                }else{
-                                    on_off_line.active = false;
-                                    headimg.color = new cc.Color(255, 255, 255);
-                                }
-                                //如果已经过了发牌阶段  则隐藏所有的准备状态
-                                if(gameStartInitNode.desk_cards.string !='136'){
-                                    context.readyNoActive(context);
-                                }
-                            }    
-                        }
-                    }
+                    roomInit.returnRoom(context,data,gameStartInitNode);
                 }
-                // if(context.playersarray.length == 4){
-                //     context.ready2.active = false;
-                //     var action = cc.moveTo(0.2,-21,-151);
-                //     context.readybth.runAction(action);
-                }   
+            }   
 
         },
     },
@@ -298,6 +176,66 @@ cc.Class({
     unactive: function(event){
         event.target.active = false;
     },
+    /**
+     * @param  {[Component]} context 
+     * @param  {[Object]}    data 
+     * @return {[type]}         
+     */
+    returnRoom (context,data,gameStartInitNode) {
+        var playerarray = context.playersarray;
+        if(playerarray){
+            for(let i =0 ; i< playerarray.length;i++){
+                var playerinfo = playerarray[i].getComponent('MaJiangPlayer');
+                var tablepos = playerinfo.tablepos;   
+                var on_off_line = playerinfo.on_off_line;     
+                var headimg = playerinfo.headimg;
+                if(data.id == playerinfo.data.id) {
+                    if(data.status == 'READY'){    
+                        cc.find('Canvas/players/ok_'+tablepos+'').active =true;
+                    }
+                    if(data.online == false){
+                        on_off_line.active = true;
+                        headimg.color = new cc.Color(42, 25, 25);
+                        headimg.color = new cc.Color(100,100,100);
+                    }else{
+                        on_off_line.active = false;
+                        headimg.color = new cc.Color(255, 255, 255);
+                    }
+                    if(gameStartInitNode.desk_cards.string!='136'){
+                        context.readyNoActive(context);
+                    }
+                }
+            }
+        }
+    },
+    /**
+     * 玩家方位等
+     * @param  {[cc.Node]}   player     
+     * @param  {[Object]}    __position 
+     * @param  {[cc.Node]}   parent    
+     * @param  {[String]}    tablepos   
+     * @param  {[Object]}    data       
+     * @param  {[String]}    count      
+     */
+    playerPosition (player,__position,parent,tablepos,data,count) {
+        if (__position) player.setPosition(__position.x,__position.y);
+        player.parent = parent;
+        cc.sys.localStorage.setItem(tablepos,data.id);
+        if (count) cc.sys.localStorage.setItem('count',count);
+    },
+    /**
+     * 准备后操作
+     * @param  {[String]}    tablepos
+     * @param  {[Component]} context 
+     * @param  {[Object]} data 
+     */
+    readyHandle (tablepos,context,data) {
+        cc.find('Canvas/players/ok_'+tablepos+'').active =true;
+        if(data.id == cc.weijifen.user.id){
+            context.readybth.active = false ;
+            context.ready2.active = false ;
+        }  
+    }
 });
 
 
