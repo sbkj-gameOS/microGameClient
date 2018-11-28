@@ -299,7 +299,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 9
@@ -392,7 +392,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 12
@@ -641,8 +641,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
-      "height": 420
+      "width": 820,
+      "height": 490
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -650,8 +650,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 120,
-      "y": -72
+      "x": 125,
+      "y": -40
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -744,7 +744,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 66
     },
     "_skewX": 0,
     "_skewY": 0,
