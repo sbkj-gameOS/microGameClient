@@ -1,14 +1,14 @@
 {
   "ver": "1.0.0",
-  "uuid": "43ba488e-f25a-482c-a1bb-cac5520e78cd",
+  "uuid": "59ae02bd-dc48-4625-9cc7-46f7629f3848",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
   "subMetas": {
     "majiangImgs": {
       "ver": "1.0.3",
-      "uuid": "f729a2dd-aa2f-4066-b6b1-4992478c3f62",
-      "rawTextureUuid": "43ba488e-f25a-482c-a1bb-cac5520e78cd",
+      "uuid": "2d1ee82c-84a2-423d-b526-14b087bf3c7f",
+      "rawTextureUuid": "59ae02bd-dc48-4625-9cc7-46f7629f3848",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
