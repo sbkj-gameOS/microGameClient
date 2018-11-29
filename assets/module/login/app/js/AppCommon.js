@@ -102,13 +102,19 @@ cc.Class({
             }
         };
 
+
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
+            // 虎皮椒支付页面
+            let result = `http://game.daily.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
+            // let result = 'http://game.daily.bizpartner.cn/hpjPay/goPayPage?shopId=' + shopId + '&token=' + cc.weijifen.authorization;
             if (self.clientPlatForm() == 'IOS') {
-                cc.weijifen.http.httpGet("/ipay/IOSsign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
+                // let result = `http://game.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
+                var res = jsb.reflection.callStaticMethod(...self.anMethodParam().iPayHandler,result);
+                // cc.weijifen.http.httpGet("/ipay/IOSsign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);// 爱贝支付
             } else if (self.clientPlatForm() == 'ANDROID') {// 安卓
-                cc.weijifen.http.httpGet("/ipay/sign?token="+cc.weijifen.authorization+"&shopId="+shopId, self.signSucess , self.error , self);
-
+                var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager","raiseEvent","(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",'openView',result);
+                // var res = jsb.reflection.callStaticMethod(...self.anMethodParam().openview,result);// 爱贝支付
             }
         };
         //获取分享进入的时候，是否分享的游戏房间
