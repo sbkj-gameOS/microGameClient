@@ -106,7 +106,7 @@ cc.Class({
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
             // 虎皮椒支付页面
-            let result = `http://game.daily.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
+            let result = `http://game.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
             // let result = 'http://game.daily.bizpartner.cn/hpjPay/goPayPage?shopId=' + shopId + '&token=' + cc.weijifen.authorization;
             if (self.clientPlatForm() == 'IOS') {
                 // let result = `http://game.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
