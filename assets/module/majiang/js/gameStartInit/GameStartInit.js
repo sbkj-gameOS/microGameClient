@@ -108,7 +108,8 @@ cc.Class({
         fw: function (i,j,name) {
             let fangweiNode = cc.find('Canvas/bg/center') ;
             let context = cc.find('Canvas').getComponent('MJDataBind') ;
-            let fw = fangweiNode.children[i].children[j].getComponent(cc.Sprite).spriteFrame = context.fangweiAltas.getSpriteFrame(name);
+            // let fw = fangweiNode.children[i].children[j].getComponent(cc.Sprite).spriteFrame = context.fangweiAltas.getSpriteFrame(name);
+            let fw = fangweiNode.children[i].children[j].getComponent(cc.Sprite).spriteFrame = context.fangweiAltas2.getSpriteFrame(name);
             return fw;
         },
         /*
@@ -161,14 +162,18 @@ cc.Class({
                     if(data.players.length==2){          
                         gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     }
+                    gameStartInit.fw(1,1,'东2');//current
+                    gameStartInit.fw(2,2,'北2');//left
+                    gameStartInit.fw(3,3,'西2');//right
+                    gameStartInit.fw(4,0,'南2');//top     
                 }else{
                     gameStartInit.dong(2);
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(1,data,'current',context.current_player,0,0,context);
-                    gameStartInit.fw(1,1,'南0');//current
-                    gameStartInit.fw(2,2,'北0');//left
-                    gameStartInit.fw(3,3,'西0');//right
-                    gameStartInit.fw(4,0,'东0');//top     
+                    gameStartInit.fw(1,1,'南2');//current
+                    gameStartInit.fw(2,2,'北2');//left
+                    gameStartInit.fw(3,3,'西2');//right
+                    gameStartInit.fw(4,0,'东2');//top     
                 }  
             }else if(cc.weijifen.playerNum==3){
 
@@ -181,10 +186,10 @@ cc.Class({
                         gameStartInit.publicData(1,data,'right',context.right_player,0,1,context);        
                         gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);
                     }
-                    gameStartInit.fw(1,1,'东0');//current
-                    gameStartInit.fw(2,2,'北0');//left
-                    gameStartInit.fw(3,3,'南0');//right
-                    gameStartInit.fw(4,0,'西0');//top
+                    gameStartInit.fw(1,1,'东2');//current
+                    gameStartInit.fw(2,2,'北2');//left
+                    gameStartInit.fw(3,3,'南2');//right
+                    gameStartInit.fw(4,0,'西2');//top
                 }else if(mytime==2){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
@@ -192,19 +197,19 @@ cc.Class({
                     if(data.players.length==3){
                         gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);        
                     }
-                    gameStartInit.fw(1,1,'南0');//current
-                    gameStartInit.fw(2,2,'北0');//left
-                    gameStartInit.fw(3,3,'西0');//right
-                    gameStartInit.fw(4,0,'东0');//top
+                    gameStartInit.fw(1,1,'南2');//current
+                    gameStartInit.fw(2,2,'北2');//left
+                    gameStartInit.fw(3,3,'西2');//right
+                    gameStartInit.fw(4,0,'东2');//top
                 }else if(mytime==3){
                     gameStartInit.dong(2);                
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'current',context.current_player,0,0,context);
-                    gameStartInit.fw(1,1,'西0');//current
-                    gameStartInit.fw(2,2,'北0');//left
-                    gameStartInit.fw(3,3,'东0');//right
-                    gameStartInit.fw(4,0,'南0');//top
+                    gameStartInit.fw(1,1,'西2');//current
+                    gameStartInit.fw(2,2,'北2');//left
+                    gameStartInit.fw(3,3,'东2');//right
+                    gameStartInit.fw(4,0,'南2');//top
                 }
                 
             }else{
@@ -221,10 +226,10 @@ cc.Class({
                         gameStartInit.publicData(2,data,'top',context.top_player,1,2,context);                
                         gameStartInit.publicData(3,data,'left',context.left_player,2,3,context);                                      
                     }
-                    gameStartInit.fw(1,1,'东0');//current
-                    gameStartInit.fw(2,2,'北0');//left
-                    gameStartInit.fw(3,3,'南0');//right
-                    gameStartInit.fw(4,0,'西0');//top
+                    gameStartInit.fw(1,1,'东2');//current
+                    gameStartInit.fw(2,2,'北2');//left
+                    gameStartInit.fw(3,3,'南2');//right
+                    gameStartInit.fw(4,0,'西2');//top
                 }else if(mytime == 2){
                     gameStartInit.dong(3);                
                     gameStartInit.publicData(0,data,'left',context.left_player,2,3,context);
@@ -235,10 +240,10 @@ cc.Class({
                         gameStartInit.publicData(2,data,'right',context.right_player,0,1,context);          
                         gameStartInit.publicData(3,data,'top',context.top_player,1,2,context);         
                     }
-                    gameStartInit.fw(1,1,'南0');//current
-                    gameStartInit.fw(2,2,'东0');//left
-                    gameStartInit.fw(3,3,'西0');//right
-                    gameStartInit.fw(4,0,'北0');//top
+                    gameStartInit.fw(1,1,'南2');//current
+                    gameStartInit.fw(2,2,'东2');//left
+                    gameStartInit.fw(3,3,'西2');//right
+                    gameStartInit.fw(4,0,'北2');//top
                 }else if(mytime ==3){
                     gameStartInit.dong(2);                
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);  
@@ -247,20 +252,20 @@ cc.Class({
                     if(data.players.length ==4){
                         gameStartInit.publicData(3,data,'right',context.right_player,0,1,context);       
                     }
-                    gameStartInit.fw(1,1,'西0');//current
-                    gameStartInit.fw(2,2,'南0');//left
-                    gameStartInit.fw(3,3,'北0');//right
-                    gameStartInit.fw(4,0,'东0');//top
+                    gameStartInit.fw(1,1,'西2');//current
+                    gameStartInit.fw(2,2,'南2');//left
+                    gameStartInit.fw(3,3,'北2');//right
+                    gameStartInit.fw(4,0,'东2');//top
                 }else if(mytime == 4){
                     gameStartInit.dong(1);                
                     gameStartInit.publicData(0,data,'right',context.right_player,0,1,context);
                     gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     gameStartInit.publicData(2,data,'left',context.left_player,2,3,context);               
                     gameStartInit.publicData(3,data,'current',context.current_player,0,0,context);
-                    gameStartInit.fw(1,1,'北0');//current
-                    gameStartInit.fw(2,2,'西0');//left
-                    gameStartInit.fw(3,3,'东0');//right
-                    gameStartInit.fw(4,0,'南0');//top
+                    gameStartInit.fw(1,1,'北2');//current
+                    gameStartInit.fw(2,2,'西2');//left
+                    gameStartInit.fw(3,3,'东2');//right
+                    gameStartInit.fw(4,0,'南2');//top
                 }
             }     
             var peo = context.playersarray;
@@ -315,6 +320,23 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             if (cc.weijifen.match == 'true') {
                 cc.find('Canvas/headImg').active = false;
                 cc.find('Canvas/players').active = true;

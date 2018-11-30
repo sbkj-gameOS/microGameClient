@@ -141,6 +141,10 @@ cc.Class({
         overCount: cc.Prefab,
         refuseBtn: cc.SpriteFrame,
         headImgCenter: cc.Node,
+        fangweiAltas2:{
+            default:null,
+            type:cc.SpriteAtlas
+        },
     },
     onLoad: function () {
         var listenFlag,hasAlert;// 网络情况，是否有网络提示
