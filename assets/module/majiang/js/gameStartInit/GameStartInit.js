@@ -162,10 +162,10 @@ cc.Class({
                     if(data.players.length==2){          
                         gameStartInit.publicData(1,data,'top',context.top_player,1,2,context);
                     }
-                    gameStartInit.fw(1,1,'东2');//current
-                    gameStartInit.fw(2,2,'北2');//left
-                    gameStartInit.fw(3,3,'西2');//right
-                    gameStartInit.fw(4,0,'南2');//top     
+                    // gameStartInit.fw(1,1,'东2');//current
+                    // gameStartInit.fw(2,2,'北2');//left
+                    // gameStartInit.fw(3,3,'西2');//right
+                    // gameStartInit.fw(4,0,'南2');//top     
                 }else{
                     gameStartInit.dong(2);
                     gameStartInit.publicData(0,data,'top',context.top_player,1,2,context);
