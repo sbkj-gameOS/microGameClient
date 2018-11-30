@@ -88,15 +88,16 @@ cc.Class({
         // 头像框
         var _this = this;
         var headBorder = this.target.children[3].getComponent(cc.Sprite);
-        if (data.vip == 2) {
+        var vipLevel = cc.sys.localStorage.getItem('vipLevel');
+        if (vipLevel == 2) {
             headBorder.spriteFrame = obj.headBorder[0];//vip
             return
         } 
-        if (data.vip == 1) {
+        if (vipLevel == 1) {
             headBorder.spriteFrame = obj.headBorder[1];//千人vip
             return
         } 
-        if (data.vip == 0) {
+        if (vipLevel == 0) {
             headBorder.spriteFrame = obj.headBorder[2];//万人vip
             return
         } 
