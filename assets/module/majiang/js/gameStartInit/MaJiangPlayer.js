@@ -90,15 +90,15 @@ cc.Class({
         var headBorder = this.target.children[3].getComponent(cc.Sprite);
         var vipLevel = cc.sys.localStorage.getItem('vipLevel');
         if (vipLevel == 2) {
-            headBorder.spriteFrame = obj.headBorder[0];//vip
+            headBorder.spriteFrame = _this.headBorder[0];//vip
             return
         } 
         if (vipLevel == 1) {
-            headBorder.spriteFrame = obj.headBorder[1];//千人vip
+            headBorder.spriteFrame = _this.headBorder[1];//千人vip
             return
         } 
         if (vipLevel == 0) {
-            headBorder.spriteFrame = obj.headBorder[2];//万人vip
+            headBorder.spriteFrame = _this.headBorder[2];//万人vip
             return
         } 
         function headBorderSuccess () {
