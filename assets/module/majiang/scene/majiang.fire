@@ -3812,7 +3812,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 88
@@ -4008,8 +4008,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 210,
-      "height": 70
+      "width": 220,
+      "height": 75
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -4018,7 +4018,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -120,
-      "y": -215
+      "y": -217
     },
     "_skewX": 0,
     "_skewY": 0,
