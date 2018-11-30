@@ -12,6 +12,10 @@ cc.Class({
             default:null,
             type:cc.Node
         }, 
+        headBorder: {
+            default: [],
+            type: cc.SpriteFrame,
+        },
         txItem:cc.Node,
         txContent:cc.Node,
         playerItem:cc.Node,
@@ -33,8 +37,21 @@ cc.Class({
 	    	cc.loader.load({url:imgurl,type:'jpg'},function(err,texture){
 	            sprite.spriteFrame = new cc.SpriteFrame(texture);
 	        })
-    	}
-    	
+        }
+
+        var headBorder = this.headimg.parent.getComponent(cc.Sprite);
+        let vipLevel = cc.sys.localStorage.getItem('vipLevel');
+        // vip是玩家等级，2-普通vip（充值177元）
+                      // 1、下级有1777人
+                      // 0、下级有17777人
+        if (vipLevel == 2) {
+            headBorder.spriteFrame = self.headBorder[0];//vip
+        } else if (vipLevel == 1) {
+            headBorder.spriteFrame = self.headBorder[1];//千人vip
+        } else if (vipLevel == 0) {
+            headBorder.spriteFrame = self.headBorder[2];//万人vip
+        }
+
         //获取房卡数据
         cc.weijifen.http.httpGet('/userInfo/getUserCard?token='+cc.weijifen.authorization,this.cardSuccess,this.userError,this);
         //获取可提现金额  总金额   好友数量数据

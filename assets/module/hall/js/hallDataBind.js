@@ -41,7 +41,11 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-        headBorder: cc.SpriteAtlas,
+        // headBorder: cc.SpriteAtlas,
+        headBorder: {
+            default: [],
+            type: cc.SpriteFrame
+        },
         prizeBox: cc.Prefab
     },
     onLoad: function () {
@@ -192,21 +196,22 @@ cc.Class({
     */
     headBorderSuccess: function (res,obj) {
         var data = JSON.parse(res);
+        cc.sys.localStorage.setItem('vipLevel', data.vip);
         if (data.vip == undefined) {return};
         var headBorder = cc.find("Canvas/main/head").children[1].getComponent(cc.Sprite);//头像框节点Sprite组件
         // vip是玩家等级，2-普通vip（充值177元）
                       // 1、下级有1777人
                       // 0、下级有17777人
         if (data.vip == 2) {
-            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('333333333');//充值
+            headBorder.spriteFrame = obj.headBorder[0];//vip
             return
         } 
         if (data.vip == 1) {
-            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('111111111');//前人
+            headBorder.spriteFrame = obj.headBorder[1];//千人vip
             return
         } 
         if (data.vip == 0) {
-            headBorder.spriteFrame = obj.headBorder.getSpriteFrame('222222');//万人
+            headBorder.spriteFrame = obj.headBorder[2];//万人vip
             return
         } 
     },

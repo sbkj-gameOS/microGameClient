@@ -377,7 +377,7 @@ cc.Class({
 	        context.right_player.runAction(action);
 	        var action = cc.moveTo(0.2,-590,80);
 	        context.left_player.runAction(action);
-	        var action = cc.moveTo(0.2,389,290);
+	        var action = cc.moveTo(0.2,389,270);
 	        context.top_player.runAction(action);
 
 	        cc.sys.localStorage.setItem('clear','true');

@@ -35,8 +35,10 @@ cc.Class({
             type : cc.Node
         },
         emojiObj: cc.Node,
-        headBorder: cc.SpriteAtlas
-     
+        headBorder: {
+            default: [],
+            type: cc.SpriteFrame,
+        },
     },
 
     // use this for initialization
@@ -86,16 +88,16 @@ cc.Class({
         // 头像框
         var _this = this;
         var headBorder = this.target.children[3].getComponent(cc.Sprite);
-        if (playerdata.playerlevel == 2) {
-            headBorder.spriteFrame = _this.headBorder.getSpriteFrame('333333333');
+        if (data.vip == 2) {
+            headBorder.spriteFrame = obj.headBorder[0];//vip
             return
         } 
-        if (playerdata.playerlevel == 1) {
-            headBorder.spriteFrame = _this.headBorder.getSpriteFrame('111111111');
+        if (data.vip == 1) {
+            headBorder.spriteFrame = obj.headBorder[1];//千人vip
             return
         } 
-        if (playerdata.playerlevel == 0) {
-            headBorder.spriteFrame = _this.headBorder.getSpriteFrame('222222');
+        if (data.vip == 0) {
+            headBorder.spriteFrame = obj.headBorder[2];//万人vip
             return
         } 
         function headBorderSuccess () {

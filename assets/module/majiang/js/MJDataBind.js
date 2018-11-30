@@ -162,7 +162,7 @@ cc.Class({
             this.gameModelMp3 = "wz";
         }
         if(cc.weijifen.GameBase.gameModel == "ch"){
-            cc.find('Canvas/other/setting').children[0].active = false;
+            cc.find('Canvas/other/setting/退出').active = false;
         }
         // dealcard、action  
 

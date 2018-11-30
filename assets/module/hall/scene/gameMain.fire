@@ -4398,7 +4398,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "4a5988dd-62bf-4720-b855-56193d2da3e8"
+      "__uuid__": "599b0fa2-818f-494e-94ef-f999e9b25de7"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -4410,11 +4410,11 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_atlas": {
-      "__uuid__": "524355b3-5a4f-4900-9a00-1ee908553d85"
+      "__uuid__": "d24dc39d-a6f3-4373-a83c-7f13bf4c9ace"
     }
   },
   {
@@ -7311,9 +7311,17 @@
       "__uuid__": "a2822c49-f523-4c9c-b6ac-451c8d370b51"
     },
     "matchNode": null,
-    "headBorder": {
-      "__uuid__": "fbe7732e-95e9-4c8e-b250-57af5348c951"
-    },
+    "headBorder": [
+      {
+        "__uuid__": "1a7ef276-1e41-47d1-80da-d074778c9699"
+      },
+      {
+        "__uuid__": "a6d23548-1f81-47d7-bbdd-6e7aa25ac439"
+      },
+      {
+        "__uuid__": "512833fc-6d91-4c58-b2bb-e78c4249121d"
+      }
+    ],
     "prizeBox": {
       "__uuid__": "093c4c2f-d19b-4d10-b492-4330b10db748"
     }

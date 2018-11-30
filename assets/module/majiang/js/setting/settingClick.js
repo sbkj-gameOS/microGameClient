@@ -9,6 +9,10 @@ cc.Class({
             default:null ,
             type : cc.Prefab
         },
+        moreImg: {
+            default: [],
+            type: cc.SpriteFrame
+        },
     },
 
     // use this for initialization
@@ -18,23 +22,26 @@ cc.Class({
     //设置
     // statics: {
 
-        settingBtnClick: function (event) {
+        settingBtnClick (event) {
             // var action = cc.moveTo(0.5,cc.p(390,265));
             let settting_box = cc.find('Canvas/other/setting');
+            let menu_btn = cc.find('Canvas/bg/right_menu/menu_btn');
             let layer = cc.find('Canvas/layer');
             cc.weijifen.settingflag = !cc.weijifen.settingflag;
-            setTimeout(function() {
+            setTimeout(()=> {
                 if(cc.weijifen.settingflag){
                     settting_box.active = true;
                     // var action = cc.moveTo(0.5,cc.p(408,306));
-                    var action = cc.moveTo(0.5,cc.p(380,306));
+                    var action = cc.moveTo(0.5,cc.p(586,270));
                     settting_box.runAction(action);
                     layer.active = true;
+                    menu_btn.getComponent(cc.Sprite).spriteFrame = this.moreImg[1];
                     if (event.target.getComponent(cc.Button).clickEvents[0].customEventData == 'layer') {
                         event.stopPropagation();
                     }
                 }else{
-                    var action = cc.moveTo(0.5,cc.p(850,306));
+                    var action = cc.moveTo(0.5,cc.p(586,700));
+                    menu_btn.getComponent(cc.Sprite).spriteFrame = this.moreImg[0];
                     settting_box.runAction(action);
                     layer.active = false;
                 }
