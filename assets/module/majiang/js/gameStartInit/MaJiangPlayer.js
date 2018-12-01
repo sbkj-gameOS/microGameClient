@@ -88,7 +88,7 @@ cc.Class({
         // 头像框
         var _this = this;
         var headBorder = this.target.children[3].getComponent(cc.Sprite);
-        var vipLevel = cc.sys.localStorage.getItem('vipLevel');
+        var vipLevel = playerdata.playerlevel;
         if (vipLevel == 2) {
             headBorder.spriteFrame = _this.headBorder[0];//vip
             return

@@ -4622,7 +4622,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_id": "02qvJVzKhD7YU10fY1G/xK",
@@ -15070,8 +15070,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 75,
+      "height": 75
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -15079,8 +15079,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 638.1,
-      "y": 48.9
+      "x": 620,
+      "y": 120
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -15150,8 +15150,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 75,
+      "height": 75
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -15159,8 +15159,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 458,
-      "y": 259
+      "x": 435,
+      "y": 310
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -15230,8 +15230,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 75,
+      "height": 75
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -15239,8 +15239,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -519,
-      "y": -162
+      "x": -510,
+      "y": -160
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -15310,8 +15310,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 75,
+      "height": 75
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -15319,8 +15319,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -521.2,
-      "y": 49.9
+      "x": -545,
+      "y": 120
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -18591,9 +18591,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 169,
-      "g": 169,
-      "b": 169,
+      "r": 185,
+      "g": 180,
+      "b": 185,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -18605,7 +18605,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 197,
-      "height": 40
+      "height": 30
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -18634,7 +18634,7 @@
     "_useOriginalSize": false,
     "_actualFontSize": 30,
     "_fontSize": 30,
-    "_lineHeight": 40,
+    "_lineHeight": 30,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "1ff877b1-82ec-4e7c-9c34-37b0b807192c"

@@ -51,7 +51,6 @@ cc.Class({
                         tablepos = 'top';
                         roomInit.playerPosition(player,{x:0,y:0},context.top_player,'top',data,'2');
                     }
-
                     playerscript.init(data , inx , tablepos,Number(cc.sys.localStorage.getItem('count')));
                     context.playersarray.push(player) ;
                     if(data.status == 'READY'){    
@@ -100,7 +99,7 @@ cc.Class({
                     var inx = cc.sys.localStorage.getItem('count');
                     if(data.id == cc.weijifen.user.id){
                         tablepos = 'current';
-                        roomInit.playerPosition(player,{x:-586,y:-269},context.root(),'current',data);
+                        roomInit.playerPosition(player,{x:-586,y:-130},context.root(),'current',data);
                     }else{
                         if(inx == 0||inx ==3){
                             tablepos = 'right';
