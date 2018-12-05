@@ -7,6 +7,7 @@ cc.Class({
         setting:cc.Prefab,
         shareStep: cc.Prefab,
         ranking: cc.Prefab,
+        invitation: cc.Prefab,
         notice: cc.Prefab,
         situation: cc.Prefab,
         activity: cc.Prefab,
@@ -23,6 +24,7 @@ cc.Class({
         for(let i in this.title.children){
             this.title.children[i].active = false ;
         }
+        
         if (name == 12) {//分享
             web.active = false;
             cc.find('Canvas/menu/share').active = true;
@@ -30,6 +32,16 @@ cc.Class({
             cc.find('Canvas/menu/title').getChildByName(name).active = true;
             return
         }
+
+        if(name == 'invitation'){//分享有礼
+            web.active = false;
+            let loadImage = this.title.parent.children[3];
+            loadImage.active = false;
+            let invitation = cc.instantiate(this.invitation);
+            invitation.parent = this.node
+            return;
+        }
+
         if(name != 15){
 
         }
@@ -195,10 +207,9 @@ cc.Class({
     * conType 内容类型: 1 多媒体 2 图片 3 文字
     * msgType 分享类型: 1 好友 2 朋友圈
     */
-    shareWxClick:function(e){
-        var customEventData,jsonData,shareUrl,shareTitle,shareText,boxId;
+    shareWxClick:function(e, customEventData){
+        var jsonData,shareUrl,shareTitle,shareText,boxId;
         var object = cc.find('Canvas')._components[1];
-        var customEventData = e.currentTarget.getComponent(cc.Button).clickEvents[0].customEventData;
         var wjf = require('WJFCommon');
         var _wjf = new wjf(); 
         cc.weijifen.http.httpGet('/coupon/gain/coupon/id?userId=' + cc.weijifen.user.id,function(data){

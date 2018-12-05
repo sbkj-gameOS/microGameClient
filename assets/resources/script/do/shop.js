@@ -61,6 +61,7 @@ cc.Class({
     },
     closeShop: function () {
         var self = cc.find('Canvas').getComponent('hallDataBind');
+        self.shopFlag = true; // 用于区分是初次进入还是 closeShop
         cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,self.cardsucess,self.carderror,self);
         cc.find('Canvas/setting').destroy();
     }

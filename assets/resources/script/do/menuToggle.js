@@ -217,6 +217,14 @@ cc.Class({
         cc.sys.localStorage.setItem('matchData',dataStr);
     },
     /*
+    * 更多功能
+    */
+    moreClick(e) {
+    	const moreNode = e.target.getChildByName('moreNode');
+    	moreNode.active = !moreNode.active;
+    	// console.log(.active);
+    },
+    /*
     * 背包功能
     */
     packageMenu: function(){

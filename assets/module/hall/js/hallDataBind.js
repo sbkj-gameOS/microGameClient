@@ -190,6 +190,19 @@ cc.Class({
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
        
+        // 判断显示 /main/menu 下的那个bottom节点
+        // const token = '811621fc9f0b4f028c5eadb93160a57a';
+        cc.weijifen.http.httpGet('/gameReward/codeReward?token='+ cc.weijifen.authorization, (res)=>{
+            res = JSON.parse(res);
+            const flag = res.success && res.success != "false"; // 判断什么时间显示 bottomInvite 节点
+            if(flag) {
+                cc.find('Canvas/main/menu/bottom').active = false;
+                cc.find('Canvas/main/menu/bottomInvite').active = true;
+            } else {
+
+            }
+        }, (err)=>{console.log(err)} , self);
+
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
@@ -224,6 +237,9 @@ cc.Class({
     cardsucess:function(result,object){
         var data = JSON.parse(result) ;
         var mainUserCards = cc.find("Canvas/main/head/5/num").getComponent(cc.Label);
+        if(mainUserCards.string != data.cards && object.shopFlag) {
+            object.alert('您已成功充值' + (data.cards - mainUserCards.string) + '张房卡');
+        }
         mainUserCards.string = data.cards;
         cc.weijifen.user.cards = data.cards;
         object.cards.string = cc.weijifen.user.cards ;
