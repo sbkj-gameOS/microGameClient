@@ -218,7 +218,8 @@ cc.Class({
         let time = setTimeout(function(){
             if (customEventData == 'app') {
                 cc.log('app')
-                shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+                // shareUrl = "http://game.bizpartner.cn/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
+                shareUrl = cc.weijifen.url+"/wxController/toCHAuthAgainWx?invitationcode="+cc.weijifen.user.invitationcode;
                 shareTitle = "心缘竞技";
                 shareText = '刺激的玩法、真实的体验，微信好友真诚邀请，快快进入游戏，一起嗨翻天！';
             } else if (customEventData == 'redBox') {
@@ -239,7 +240,7 @@ cc.Class({
                 conType: 1,
                 msgType: 1
             }
-
+            // console.log(jsonData);
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareEvent",JSON.stringify(jsonData));
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareEvent,JSON.stringify(jsonData));
         },2000);

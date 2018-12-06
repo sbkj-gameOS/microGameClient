@@ -8,7 +8,7 @@ cc.Class({
     },
 
     onLoad () {
-        // const token = '811621fc9f0b4f028c5eadb93160a57a';
+        // cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token=811621fc9f0b4f028c5eadb93160a57a', this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
         cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token='+ cc.weijifen.authorization, this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
     },
 
