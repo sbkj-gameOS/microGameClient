@@ -12,12 +12,13 @@ cc.Class({
     },
     closeMenu: function(event){
         //清除多余弹框
+        let menu = event.target.parent;
+        menu.name = 'menu';
         for(var i = event.target.parent.children.length-1; i > 10; i--){
             if(event.target.parent.children[i]._name != "share"){
                 event.target.parent.children[i].destroy();
             }
         }
-        let menu = event.target.parent;
         if (menu.getChildByName('share')) {
             menu.getChildByName('share').active = false;
             cc.weijifen.menu.put(menu);
