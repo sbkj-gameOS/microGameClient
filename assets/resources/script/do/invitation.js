@@ -8,7 +8,7 @@ cc.Class({
     },
 
     onLoad () {
-        // cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token=811621fc9f0b4f028c5eadb93160a57a', this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
+        // cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token=ec9ca75e3da8424db4fcdaf2bb5feabd', this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
         cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token='+ cc.weijifen.authorization, this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
     },
 
@@ -40,7 +40,7 @@ cc.Class({
 
     detailsBtnClick() {
         // succRes.childrenPlayers = [{"headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/icfB3j55O9KhbNOjLHEwnctXGzgn5gQCs1FqAAPcHnwghtU5c62GiaORZzD2TrFVkxZ0PPfjp701lOOH6Da2wEpQ/0","username":"欢的欢","createtime":"1543216846000"},{"headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKXA5unTWbytpksjBGe3YLJ6joOzqvVoXp1I1HHa8K2fGCFlkSQNMZBSYr8xjCiagS2Qy6BJTLL7Ew/132","username":"运河弯","createtime":"1543216846000"},{"headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/icfB3j55O9KhbNOjLHEwnctXGzgn5gQCs1FqAAPcHnwghtU5c62GiaORZzD2TrFVkxZ0PPfjp701lOOH6Da2wEpQ/0","username":"欢的欢","createtime":"1543216846000"}];
-        console.log(succRes);
+        // console.log(succRes);
         const inviNode =  cc.find('Canvas/menu/invitation');
         // 隐藏活动内容节点
         inviNode.getChildByName('inviteTitle').active = false;
@@ -49,7 +49,7 @@ cc.Class({
         inviNode.getChildByName('fridendNode').active = true;
         // 数据处理
         const parentNode = cc.find('Canvas/menu/invitation/fridendNode/content');
-        const itemNode = cc.find('Canvas/menu/invitation/fridendNode/content/item');
+        const itemNode = cc.find('Canvas/menu/invitation/fridendNode/itemCopy');
         parentNode.removeAllChildren();
         this.cloneItem(itemNode, parentNode, 30, succRes, 90);
     },
@@ -79,9 +79,9 @@ cc.Class({
         for(let i = 0; i< forNum;i++) {
             const item = cc.instantiate(itemNode);
             item.active = true;
+            const textNode = item.getChildByName('text').getComponent(cc.Label); // 获取名称节点
             if(i < childrenPlayNum) {
-                // 修改名字
-                const textNode = item.getChildByName('text').getComponent(cc.Label);
+                // 名字处理
                 let username = res.childrenPlayers[i].username;
                 if(username.length > 5) {
                    username = username.substring(0,5) + "...";
@@ -89,12 +89,15 @@ cc.Class({
                 textNode.string = username;
                 // 修改头像
                 // const imgurl = 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKXA5unTWbytpksjBGe3YLJ6joOzqvVoXp1I1HHa8K2fGCFlkSQNMZBSYr8xjCiagS2Qy6BJTLL7Ew/132';
-                cc.loader.load({url: res.childrenPlayers[i].headimgurl, type: 'jpg'}, function(suc,texture){
+                const imgUrl = res.childrenPlayers[i].headimgurl;
+                imgUrl && cc.loader.load({url: imgUrl, type: 'jpg'}, function(suc,texture){
                     const head = item.getChildByName('headImg');
                     head.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(texture);
                     head.width = imgWH;
                     head.height = imgWH;
                 });
+            } else {
+                textNode.string = 'XXX';
             }
             item.parent = parentNode;
         }
