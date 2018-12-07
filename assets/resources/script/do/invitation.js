@@ -8,7 +8,7 @@ cc.Class({
     },
 
     onLoad () {
-        // cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token=ec9ca75e3da8424db4fcdaf2bb5feabd', this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
+        // cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token=6c4e16cfd21b4741bc3f7f13dc85d8ed', this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
         cc.weijifen.http.httpGet('/gameReward/findRewardByInvite?token='+ cc.weijifen.authorization, this.invitationSucc.bind(this), this.invitationError.bind(this) , this);
     },
 
@@ -20,15 +20,26 @@ cc.Class({
         // console.log(res);
         if(res.success && res.success != "false") {
             succRes = Object.assign({}, res);
+
+            // 加载二维码
+            const QRCodeUrl = 'https://shangban-game.oss-cn-hangzhou.aliyuncs.com/app/kefuWxImg/' + cc.weijifen.GameBase.gameModel +'Kefu.jpg';
+            cc.weijifen.GameBase.gameModel && cc.loader.load({url: QRCodeUrl, type: 'jpg'}, function(suc,texture){
+                const QRCodeNode = cc.find('Canvas/menu/invitation/content/QRCode');
+                QRCodeNode.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(texture);
+                QRCodeNode.width = 160;
+                QRCodeNode.height = 160;
+            });
+
             const childrenPlayNum = res.childrenPlayers.length;// 计算邀请的人数
 
             inviNode.getChildByName('content').getComponent(cc.Label).string = res.reward.rewardContent; // 修改活动描述
             cc.find('Canvas/menu/invitation/details/num').getComponent(cc.Label).string = childrenPlayNum + '/30'; // 修改邀请的人数
-            // 对头像的处理
+            // 对头像列表的处理
             const headNode = cc.find('Canvas/menu/invitation/headerList');
             const itemNode = headNode.getChildByName('item');
-            // itemNode.removeAllChildren();
             this.cloneItem(itemNode, itemNode.parent, 9, res);
+
+
             // 对金钱的处理
             cc.find('Canvas/menu/invitation/bottom/money').getComponent(cc.Label).string = res.moneyCount + '元'; // 修改邀请的人数
 

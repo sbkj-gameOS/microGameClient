@@ -191,18 +191,19 @@ cc.Class({
         },10000);
        
         // 判断显示 /main/menu 下的那个bottom节点
-        // cc.weijifen.http.httpGet('/gameReward/codeReward?token=ec9ca75e3da8424db4fcdaf2bb5feabd', (res)=>{
+        // cc.weijifen.http.httpGet('/gameReward/codeReward?token=6c4e16cfd21b4741bc3f7f13dc85d8ed', (res)=>{
         cc.weijifen.http.httpGet('/gameReward/codeReward?token='+ cc.weijifen.authorization, (res)=>{
             res = JSON.parse(res);
             const flag = res.success && res.success != "false"; // 判断什么时间显示 bottomInvite 节点
             if(flag) {
                 cc.find('Canvas/main/menu/bottom').active = false;
                 cc.find('Canvas/main/menu/bottomInvite').active = true;
-            } else {
-
+                if(!cc.weijifen.firstLoadMainFlag){
+                    this.hall('invitation');
+                    cc.weijifen.firstLoadMainFlag = true;
+                }
             }
         }, (err)=>{console.log(err)} , self);
-
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
