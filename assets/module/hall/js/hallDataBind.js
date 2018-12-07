@@ -189,7 +189,9 @@ cc.Class({
             }    
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
-       
+        if(cc.weijifen.user.userType) {
+            cc.find('Canvas/main/head/extension').active = true;
+        }
         // 判断显示 /main/menu 下的那个bottom节点
         // cc.weijifen.http.httpGet('/gameReward/codeReward?token=6c4e16cfd21b4741bc3f7f13dc85d8ed', (res)=>{
         cc.weijifen.http.httpGet('/gameReward/codeReward?token='+ cc.weijifen.authorization, (res)=>{

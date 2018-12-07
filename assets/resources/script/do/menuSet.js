@@ -38,7 +38,9 @@ cc.Class({
             let loadImage = this.title.parent.children[3];
             loadImage.active = false;
             let invitation = cc.instantiate(this.invitation);
-            invitation.parent = this.node
+            invitation.parent = this.node;
+            invitation.parent.name = 'invitationMenu';
+            invitation.parent.zIndex = 1;
             return;
         }
 

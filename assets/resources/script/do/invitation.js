@@ -15,8 +15,7 @@ cc.Class({
     invitationSucc(res) {
         // res = '{"reward":{"orgi":"ch","rewardName":"邀请好友得红包","createTime":"1543818306000","rewardType":"1","del":"0","rewardContent":"123","startTime":"2017-01-03 00:00:00","updateTime":"","endTime":"2019-02-03 00:00:00","id":"5","prize":"","rewardStatus":"0"},"success":"true","childrenPlayers":[{"headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKXA5unTWbytpksjBGe3YLJ6joOzqvVoXp1I1HHa8K2fGCFlkSQNMZBSYr8xjCiagS2Qy6BJTLL7Ew/132","username":"运河弯","createtime":"1543216846000"},{"headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/icfB3j55O9KhbNOjLHEwnctXGzgn5gQCs1FqAAPcHnwghtU5c62GiaORZzD2TrFVkxZ0PPfjp701lOOH6Da2wEpQ/0","username":"欢的欢","createtime":"1543216846000"}],"moneyCount":"20.51"}';
         res = JSON.parse(res);
-        const inviNode =  cc.find('Canvas/menu/invitation');
-
+        const inviNode =  cc.find('Canvas/invitationMenu/invitation');
         // console.log(res);
         if(res.success && res.success != "false") {
             succRes = Object.assign({}, res);
@@ -24,7 +23,7 @@ cc.Class({
             // 加载二维码
             const QRCodeUrl = 'https://shangban-game.oss-cn-hangzhou.aliyuncs.com/app/kefuWxImg/' + cc.weijifen.GameBase.gameModel +'Kefu.jpg';
             cc.weijifen.GameBase.gameModel && cc.loader.load({url: QRCodeUrl, type: 'jpg'}, function(suc,texture){
-                const QRCodeNode = cc.find('Canvas/menu/invitation/content/QRCode');
+                const QRCodeNode = cc.find('Canvas/invitationMenu/invitation/content/QRCode');
                 QRCodeNode.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(texture);
                 QRCodeNode.width = 160;
                 QRCodeNode.height = 160;
@@ -33,15 +32,15 @@ cc.Class({
             const childrenPlayNum = res.childrenPlayers.length;// 计算邀请的人数
 
             inviNode.getChildByName('content').getComponent(cc.Label).string = res.reward.rewardContent; // 修改活动描述
-            cc.find('Canvas/menu/invitation/details/num').getComponent(cc.Label).string = childrenPlayNum + '/30'; // 修改邀请的人数
+            cc.find('Canvas/invitationMenu/invitation/details/num').getComponent(cc.Label).string = childrenPlayNum + '/30'; // 修改邀请的人数
             // 对头像列表的处理
-            const headNode = cc.find('Canvas/menu/invitation/headerList');
+            const headNode = cc.find('Canvas/invitationMenu/invitation/headerList');
             const itemNode = headNode.getChildByName('item');
             this.cloneItem(itemNode, itemNode.parent, 9, res);
 
 
             // 对金钱的处理
-            cc.find('Canvas/menu/invitation/bottom/money').getComponent(cc.Label).string = res.moneyCount + '元'; // 修改邀请的人数
+            cc.find('Canvas/invitationMenu/invitation/bottom/money').getComponent(cc.Label).string = res.moneyCount + '元'; // 修改邀请的人数
 
         } else{
             console.log(res.msg, this);
@@ -52,21 +51,21 @@ cc.Class({
     detailsBtnClick() {
         // succRes.childrenPlayers = [{"headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/icfB3j55O9KhbNOjLHEwnctXGzgn5gQCs1FqAAPcHnwghtU5c62GiaORZzD2TrFVkxZ0PPfjp701lOOH6Da2wEpQ/0","username":"欢的欢","createtime":"1543216846000"},{"headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKXA5unTWbytpksjBGe3YLJ6joOzqvVoXp1I1HHa8K2fGCFlkSQNMZBSYr8xjCiagS2Qy6BJTLL7Ew/132","username":"运河弯","createtime":"1543216846000"},{"headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/icfB3j55O9KhbNOjLHEwnctXGzgn5gQCs1FqAAPcHnwghtU5c62GiaORZzD2TrFVkxZ0PPfjp701lOOH6Da2wEpQ/0","username":"欢的欢","createtime":"1543216846000"}];
         // console.log(succRes);
-        const inviNode =  cc.find('Canvas/menu/invitation');
+        const inviNode =  cc.find('Canvas/invitationMenu/invitation');
         // 隐藏活动内容节点
         inviNode.getChildByName('inviteTitle').active = false;
         this.hiddenNode();
         // 显示好友列表节点  
         inviNode.getChildByName('fridendNode').active = true;
         // 数据处理
-        const parentNode = cc.find('Canvas/menu/invitation/fridendNode/content');
-        const itemNode = cc.find('Canvas/menu/invitation/fridendNode/itemCopy');
+        const parentNode = cc.find('Canvas/invitationMenu/invitation/fridendNode/content');
+        const itemNode = cc.find('Canvas/invitationMenu/invitation/fridendNode/itemCopy');
         parentNode.removeAllChildren();
         this.cloneItem(itemNode, parentNode, 30, succRes, 90);
     },
 
     goBack() {
-        const inviNode =  cc.find('Canvas/menu/invitation');
+        const inviNode =  cc.find('Canvas/invitationMenu/invitation');
         // 显示活动内容节点
         inviNode.getChildByName('inviteTitle').active = true;
         inviNode.getChildByName('content').active = true;
@@ -115,7 +114,7 @@ cc.Class({
     },
 
     hiddenNode() {
-        const inviNode =  cc.find('Canvas/menu/invitation');
+        const inviNode =  cc.find('Canvas/invitationMenu/invitation');
         // 隐藏活动内容节点
         inviNode.getChildByName('content').active = false;
         inviNode.getChildByName('details').active = false;
