@@ -61,6 +61,13 @@ cc.Class({
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
                 cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
             }
+            /*
+            // 多机方案动态获取wsUrl值
+            cc.weijifen.http.httpGet('/apps/platform/find/server/address?token='+ cc.weijifen.authorization,function(res){
+                let HTTP = require('HTTP');
+                HTTP.wsURL = res;
+                // HTTP.wsURL = '192.168.1.81:9081';
+            },function(err){console.log('wsUrl请求出错')},self);*/
             // 牌局结束比赛未结束，玩家退出游戏。再次进入时，弹出上次比赛结果
             let prizeBoxData = cc.sys.localStorage.getItem('matchPrize');
             cc.sys.localStorage.removeItem('matchPrize');
@@ -189,7 +196,7 @@ cc.Class({
             }    
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,self.tzsucess,self.tzerror,self) ;  
         },10000);
-        if(cc.weijifen.user.userType) {
+        if(cc.weijifen.user.userType / 1) {
             cc.find('Canvas/main/head/extension').active = true;
         }
         // 判断显示 /main/menu 下的那个bottom节点
