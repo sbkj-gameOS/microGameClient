@@ -148,15 +148,14 @@ cc.Class({
     },
     onLoad: function () {
         var listenFlag,hasAlert;// 网络情况，是否有网络提示
+        let self = this ;
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         this.actionBox.zIndex = 1000;
         cc.weijifen.isPLayVideo = false;
         this.yuyin_flag;
         cc.sys.localStorage.removeItem('matchOver');
         cc.sys.localStorage.removeItem("jiesanTime");
-        let self = this ;
         //let socket = this.socket(self);
-        let socket = this.connect() ;
         self.msg = null;//反作弊提示信息
         // 初始化对象池
         this.init_pool();
@@ -168,563 +167,588 @@ cc.Class({
         if(cc.weijifen.GameBase.gameModel == "ch"){
             cc.find('Canvas/other/setting/退出').active = false;
         }
-        // dealcard、action  
-
 
         var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
         //初始化房间信息
-        socket.on('connect', function () {
-            self.playerIsReady(self);
-            roomInit = require('RoomInit');
-            gameStartInit = require('GameStartInit');
-            self.map("joinroom" , roomInit.joinroom_event,self);//加入房间
-            self.map("banker" , gameStartInit.banker_event,self);//庄家
-            self.map("players" , gameStartInit.players_event,self);//接受玩家列表
-            self.map("play" , gameStartInit.play_event,self);//人齐了，接收发牌信息
-            self.map("changeRoom" , self.changeRoom_event,self);// 比赛
-            self.map("talkOnSay" , self.talk_event,self);//语音  文字   表情
-           
+        if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
+            self.setting_coin.children[1].active = false;//解散按钮隐藏
+            self.room_num.getComponent(cc.Label).string = '比赛模式';
+            self.ready2.active = false;
+            self.readybth.active = false;
+            // this.readybth.x = -4;
+            self.current_ready.active = true;
 
-            gamePlay = require('GamePlay');
-            self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
-            self.map("takecards" , gamePlay.takecard_event,self);//我出的牌  
-            self.map("dealcard" , gamePlay.dealcard_event,self) ;                //我拿的牌
-            gameEvent = require('GameEvent');
-            self.map("action" , gameEvent.action_event,self);//服务端发送的 动作事件，有杠碰吃胡过可以选择
-            self.map("selectaction" , gameEvent.selectaction_event,self) ;        //我选择的动作， 杠碰吃胡 
-            settingClick = require('settingClick');
-            settingClick = new settingClick();
-            // var settingClick = cc.find('Canvas/js/settingClick');
-            gameOver = require('GameOver');
-            self.map("allcards" , gameOver.allcards_event,self) ;
-            self.map("isOver" , settingClick.isOver_event,self);
-            self.map("gameOver",settingClick.gameOver_event,self);
-            self.map("over" , settingClick.over_event,self);
-            self.map("unOver" , settingClick.unOver_event,self);
-        });
-        // if(this.ready()){
-        //     let socket = this.socket();
-        //     *
-        //      * 接受指令
-        // }
-        socket.on("command" , function(result){
-            var data = self.getSelf().parse(result);
-            if (data.replacePowerCard && data.action == 'ting') {
-                cc.find('Canvas/tip').active = true;
-                var timer;
-                timer = setTimeout(function(){
-                    cc.find('Canvas/tip').active = false;
-                    clearTimeout(timer);
-                },3000);
-            }
+            self.headImgCenter.active = true;
+            self.headImgCenter.getChildByName('username').getComponent(cc.Label).string = cc.weijifen.user.username;
 
-            if (data.command == 'ComingToAnEnd') {
-                 /**
-                 * 比赛模式中，距离比赛结束30s时收到，并显示倒计时
-                 */
-                let seconds = 30;
-                let str = self.wanfa.getComponent(cc.Label);
-                str.string = '距离比赛结束还有30秒';
-                let time = setInterval(function(){
-                    seconds--;
-                    str.string = '距离比赛结束还有' + seconds + '秒';
-                    if (seconds < 1) {
-                        self.prohibit_mask.active = true;
-                        clearInterval(time);
-                    }
-                },1000);
-                let mask_time = setTimeout(function(){
-                    self.prohibit_mask.active = false;
-                    clearTimeout(mask_time);
-                },5000);
-            }else{
-                self.getSelf().route(data.command,self)(data , self);
+            if(cc.weijifen.user.headimgurl){
+                self.headImg(self.headImgCenter.getChildByName('img'),cc.weijifen.user.headimgurl,true,true);
             }
-            // 网络心跳包
-            if (data == 'well') {
-                listenFlag = false;
-                hasAlert = false;
-                socket.emit("healthListen" ,'');
-            }
-        });
-        if (cc.sys.localStorage.getItem('appTime')) self.setCountDown();
-
-        if (cc.weijifen.match == 'true') {
-            var listenTime = setInterval(function(){
-                if (cc.director.getScene().name == 'gameMain') {
-                    clearInterval(listenTime);
-                    return
-                }
-                if (hasAlert) {return };
-                listenFlag == false ? listenFlag = true : listenFlag = false;
-                // 若为false则为网络正常,true为网络出现正常
-                if (listenFlag == false && cc.weijifen.dialog.size() > 0) {
-                    if (hasAlert) {return};
-                    self.__proto__.__proto__.alert('当前网络环境较差！');
-                    hasAlert = true;
-                } else if (listenFlag == true && cc.find('Canvas/alert') && cc.find('Canvas/alert').length < 6) {
-                    cc.weijifen.dialog.put(cc.find('Canvas/alert'));
-                }
-            },4000);
         }
-        socket.on("OverPosition",function(result){
-            cc.sys.localStorage.setItem('matchOver','true');
-            cc.sys.localStorage.setItem('matchPrize',result);
-        })
-        socket.on("play",function(result){
-            var data = self.getSelf().parse(result);
-            self.getSelf().route('play',self)(data , self);
-        })
-        socket.on("takecards",function(result){
-            var data = self.getSelf().parse(result);
-            data = JSON.parse(data);
-            self.getSelf().route('takecards',self)(data , self);
-            // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
-            let h_cards2 = self.handCards;
-            if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
-                cc.log('手牌有误，开始更正！！！！！！');
-                //cc.log('h_cards2手牌---',h_cards2.length);
-                // data.cards.push(36);// 测试数据
-                // data.cards.splice(2,1);// 测试数据
-                cc.director.loadScene('majiang');
-                self.mask.active = true;
-                let time = setTimeout(function(){
-                    if (self.mask) {
-                        self.mask.active = false;
-                    }
-                    clearTimeout(time);
-                },3000);
-            }
-        })
-
-        socket.on("action",function(result){
-            var data = self.getSelf().parse(result);
-            self.getSelf().route('action',self)(JSON.parse(data) , self);
-        })
-        socket.on("allcards",function(result){
-            var data = self.getSelf().parse(result);
-            self.getSelf().route('allcards',self)(JSON.parse(data) , self);
-        })
-        /**
-         * 接受传送的 玩家列表（含AI）
-         */
-        socket.on("players" , function(result){
-            var data = self.getSelf().parse(result) ;
-            self.getSelf().route("players",self)(data, self);
-        });
-
-        socket.on("talkOnSay" , function(result){
-            var data = self.getSelf().parse(result) ;
-            self.getSelf().route("talkOnSay",self)(data, self);
-        });
-
-        socket.on("StrongGameOver" , function(result){
-            result = JSON.parse(result);
-            self.__proto__.__proto__.alert(result.gameOverReason);
-        }); 
-        // 监听解散进程
-        socket.on("overInfo",function(result){
-            // result = '{"overCount":"1","refuseCount":"0"}';
-           /* var data = self.getSelf().parse(result);
-            self.getSelf().route('play',self)(data , self);*/
-            var data = JSON.parse(result);
-            if (cc.find('Canvas/overCount')) {
-                cc.find('Canvas/overCount').destroy();
-            }
-            if (cc.find('Canvas/alert')) {
-                cc.find('Canvas/alert').zIndex = 100;
-            }
-            var countPrefab = cc.instantiate(self.overCount);
-            for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
+        if (cc.sys.localStorage.getItem('gotWsUrl') || cc.sys.localStorage.getItem('isPlay') || cc.weijifen.match == 'false') {
+            var socket = this.connect() ;
+            socket.on('connect', function () {
+                self.playerIsReady(self);
+                roomInit = require('RoomInit');
+                gameStartInit = require('GameStartInit');
+                self.map("joinroom" , roomInit.joinroom_event,self);//加入房间
+                self.map("banker" , gameStartInit.banker_event,self);//庄家
+                self.map("players" , gameStartInit.players_event,self);//接受玩家列表
+                self.map("play" , gameStartInit.play_event,self);//人齐了，接收发牌信息
+                self.map("changeRoom" , self.changeRoom_event,self);// 比赛
+                self.map("talkOnSay" , self.talk_event,self);//语音  文字   表情
                
-                let list = cc.instantiate(countPrefab.getChildByName('count').getChildByName('list'));
-                // i=0 count=1
-                // i=1 count=1
-                // i=2 count=1
-                list.active = true;
-                list.parent = countPrefab.getChildByName('count');
-                countPrefab.getChildByName('count').parent = countPrefab;
-                if (data.overCount < i) {
-                    // 只添加节点不改变精灵兔
-                    list.getComponent(cc.Sprite).spriteFrame = self.refuseBtn;
+
+                gamePlay = require('GamePlay');
+                self.map("lasthands" , gamePlay.lasthands_event,self);//庄家开始打牌了，允许出牌
+                self.map("takecards" , gamePlay.takecard_event,self);//我出的牌  
+                self.map("dealcard" , gamePlay.dealcard_event,self) ;                //我拿的牌
+                gameEvent = require('GameEvent');
+                self.map("action" , gameEvent.action_event,self);//服务端发送的 动作事件，有杠碰吃胡过可以选择
+                self.map("selectaction" , gameEvent.selectaction_event,self) ;        //我选择的动作， 杠碰吃胡 
+                settingClick = require('settingClick');
+                settingClick = new settingClick();
+                // var settingClick = cc.find('Canvas/js/settingClick');
+                gameOver = require('GameOver');
+                self.map("allcards" , gameOver.allcards_event,self) ;
+                self.map("isOver" , settingClick.isOver_event,self);
+                self.map("gameOver",settingClick.gameOver_event,self);
+                self.map("over" , settingClick.over_event,self);
+                self.map("unOver" , settingClick.unOver_event,self);
+            });
+            // if(this.ready()){
+            //     let socket = this.socket();
+            //     *
+            //      * 接受指令
+            // }
+            socket.on("command" , function(result){
+                var data = self.getSelf().parse(result);
+                if (data.replacePowerCard && data.action == 'ting') {
+                    cc.find('Canvas/tip').active = true;
+                    var timer;
+                    timer = setTimeout(function(){
+                        cc.find('Canvas/tip').active = false;
+                        clearTimeout(timer);
+                    },3000);
                 }
-            }
-            countPrefab.parent = cc.find('Canvas');
-            if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
-                countPrefab.destroy();
-            }
-        })
-        self.node.on('overGame',function(event){
-            let socket = self.getSelf().socket();
-            if(event.getUserData()){
-                socket.emit('overGame',JSON.stringify({
-                    REFUSE : event.getUserData()
-                }))
-            }else{
-                socket.emit('overGame',JSON.stringify({
-                }))
-            }
-        });
 
-        self.node.on('readyGM',function(event){ 
-            //alert();
-            var context = cc.find('Canvas').getComponent('MJDataBind'); 
-            context.current_ready.active = true ;    
-            let socket = self.getSelf().socket();
-            socket.emit('readyGame',JSON.stringify({
-            }))
-        });
-
-        // 监听出牌拿牌
-        self.node.on('takecard', function (event) {
-            cc.sys.localStorage.removeItem('guo');
-            var context = cc.find('Canvas').getComponent('MJDataBind');             
-            cc.weijifen.audio.playSFX('select.mp3');            
-
-            if(cc.sys.localStorage.getItem('take') == 'true'){
-                let card = event.target.getComponent("TakeMJCard");
-                if(card != null){
-                    let cardValue = card.target.getComponent('HandCards');
-                    gamePlay.takecard_event({userid:cc.weijifen.user.id,card:cardValue.value},self);
-
-                    self.cards_play_flag.active = false;
-                    let card_script = card.target.getComponent("HandCards") ;
-                    /**
-                     * 提交数据，等待服务器返回
+                if (data.command == 'ComingToAnEnd') {
+                     /**
+                     * 比赛模式中，距离比赛结束30s时收到，并显示倒计时
                      */
-    
-                        //开始匹配
-                    let socket = self.getSelf().socket();
-                    
-                    if (cc.sys.localStorage.getItem('ting') == 'true') {  
-                        cc.find('Canvas/ting').active = true;
-                        var anim = cc.find("Canvas/ting/ting_action");
-                        anim = anim.getComponent(cc.Animation);
-                        anim.play('ting');
-                        setTimeout(function(){
-                            cc.find('Canvas/ting').active = false;
-                            anim.stop('ting');
-                        },1500);
-                        cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting' + '_' +cc.weijifen.genders['current'] + '.mp3');                                
+                    let seconds = 30;
+                    let str = self.wanfa.getComponent(cc.Label);
+                    str.string = '距离比赛结束还有30秒';
+                    let time = setInterval(function(){
+                        seconds--;
+                        str.string = '距离比赛结束还有' + seconds + '秒';
+                        if (seconds < 1) {
+                            self.prohibit_mask.active = true;
+                            clearInterval(time);
+                        }
+                    },1000);
+                    let mask_time = setTimeout(function(){
+                        self.prohibit_mask.active = false;
+                        clearTimeout(mask_time);
+                    },5000);
+                }else{
+                    self.getSelf().route(data.command,self)(data , self);
+                }
+                // 网络心跳包
+                if (data == 'well') {
+                    listenFlag = false;
+                    hasAlert = false;
+                    socket.emit("healthListen" ,'');
+                }
+            });
+            // if (cc.sys.localStorage.getItem('appTime')) self.setCountDown();
+
+            if (cc.weijifen.match == 'true') {
+                var listenTime = setInterval(function(){
+                    if (cc.director.getScene().name == 'gameMain') {
+                        clearInterval(listenTime);
+                        return
+                    }
+                    if (hasAlert) {return };
+                    listenFlag == false ? listenFlag = true : listenFlag = false;
+                    // 若为false则为网络正常,true为网络出现正常
+                    if (listenFlag == false && cc.weijifen.dialog.size() > 0) {
+                        if (hasAlert) {return};
+                        self.__proto__.__proto__.alert('当前网络环境较差！');
+                        hasAlert = true;
+                    } else if (listenFlag == true && cc.find('Canvas/alert') && cc.find('Canvas/alert').length < 6) {
+                        cc.weijifen.dialog.put(cc.find('Canvas/alert'));
+                    }
+                },4000);
+            }
+            socket.on("OverPosition",function(result){
+                cc.sys.localStorage.setItem('matchOver','true');
+                cc.sys.localStorage.setItem('matchPrize',result);
+            })
+            socket.on("play",function(result){
+                var data = self.getSelf().parse(result);
+                self.getSelf().route('play',self)(data , self);
+            })
+            socket.on("takecards",function(result){
+                var data = self.getSelf().parse(result);
+                data = JSON.parse(data);
+                self.getSelf().route('takecards',self)(data , self);
+                // 手牌缺少，出牌之后，牌面缺失查找缺失牌面，并进行补充
+                let h_cards2 = self.handCards;
+                if (data.userid == cc.weijifen.user.id && data.cards && data.cards.length != h_cards2.children.length) {
+                    cc.log('手牌有误，开始更正！！！！！！');
+                    //cc.log('h_cards2手牌---',h_cards2.length);
+                    // data.cards.push(36);// 测试数据
+                    // data.cards.splice(2,1);// 测试数据
+                    cc.director.loadScene('majiang');
+                    self.mask.active = true;
+                    let time = setTimeout(function(){
+                        if (self.mask) {
+                            self.mask.active = false;
+                        }
+                        clearTimeout(time);
+                    },3000);
+                }
+            })
+
+            socket.on("action",function(result){
+                var data = self.getSelf().parse(result);
+                self.getSelf().route('action',self)(JSON.parse(data) , self);
+            })
+            socket.on("allcards",function(result){
+                var data = self.getSelf().parse(result);
+                self.getSelf().route('allcards',self)(JSON.parse(data) , self);
+            })
+            /**
+             * 接受传送的 玩家列表（含AI）
+             */
+            socket.on("players" , function(result){
+                var data = self.getSelf().parse(result) ;
+                self.getSelf().route("players",self)(data, self);
+            });
+
+            socket.on("talkOnSay" , function(result){
+                var data = self.getSelf().parse(result) ;
+                self.getSelf().route("talkOnSay",self)(data, self);
+            });
+
+            socket.on("StrongGameOver" , function(result){
+                result = JSON.parse(result);
+                self.__proto__.__proto__.alert(result.gameOverReason);
+            }); 
+            // 监听解散进程
+            socket.on("overInfo",function(result){
+                // result = '{"overCount":"1","refuseCount":"0"}';
+               /* var data = self.getSelf().parse(result);
+                self.getSelf().route('play',self)(data , self);*/
+                var data = JSON.parse(result);
+                if (cc.find('Canvas/overCount')) {
+                    cc.find('Canvas/overCount').destroy();
+                }
+                if (cc.find('Canvas/alert')) {
+                    cc.find('Canvas/alert').zIndex = 100;
+                }
+                var countPrefab = cc.instantiate(self.overCount);
+                for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
+                   
+                    let list = cc.instantiate(countPrefab.getChildByName('count').getChildByName('list'));
+                    // i=0 count=1
+                    // i=1 count=1
+                    // i=2 count=1
+                    list.active = true;
+                    list.parent = countPrefab.getChildByName('count');
+                    countPrefab.getChildByName('count').parent = countPrefab;
+                    if (data.overCount < i) {
+                        // 只添加节点不改变精灵兔
+                        list.getComponent(cc.Sprite).spriteFrame = self.refuseBtn;
+                    }
+                }
+                countPrefab.parent = cc.find('Canvas');
+                if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
+                    countPrefab.destroy();
+                }
+            })
+
+            self.node.on('overGame',function(event){
+                let socket = self.getSelf().socket();
+                if(event.getUserData()){
+                    socket.emit('overGame',JSON.stringify({
+                        REFUSE : event.getUserData()
+                    }))
+                }else{
+                    socket.emit('overGame',JSON.stringify({
+                    }))
+                }
+            });
+
+            self.node.on('readyGM',function(event){ 
+                //alert();
+                var context = cc.find('Canvas').getComponent('MJDataBind'); 
+                context.current_ready.active = true ;    
+                let socket = self.getSelf().socket();
+                socket.emit('readyGame',JSON.stringify({
+                }))
+            });
+
+            // 监听出牌拿牌
+            self.node.on('takecard', function (event) {
+                cc.sys.localStorage.removeItem('guo');
+                var context = cc.find('Canvas').getComponent('MJDataBind');             
+                cc.weijifen.audio.playSFX('select.mp3');            
+
+                if(cc.sys.localStorage.getItem('take') == 'true'){
+                    let card = event.target.getComponent("TakeMJCard");
+                    if(card != null){
+                        let cardValue = card.target.getComponent('HandCards');
+                        gamePlay.takecard_event({userid:cc.weijifen.user.id,card:cardValue.value},self);
+
+                        self.cards_play_flag.active = false;
+                        let card_script = card.target.getComponent("HandCards") ;
+                        /**
+                         * 提交数据，等待服务器返回
+                         */
+        
+                            //开始匹配
                         let socket = self.getSelf().socket();
-                        cc.sys.localStorage.removeItem('ting') ;
-                        socket.emit("selectaction" , JSON.stringify({
-                            action:"ting",
-                            actionCard:[card_script.value]
-                        }));
-                        self.getSelf().tingAction();    
+                        
+                        if (cc.sys.localStorage.getItem('ting') == 'true') {  
+                            cc.find('Canvas/ting').active = true;
+                            var anim = cc.find("Canvas/ting/ting_action");
+                            anim = anim.getComponent(cc.Animation);
+                            anim.play('ting');
+                            setTimeout(function(){
+                                cc.find('Canvas/ting').active = false;
+                                anim.stop('ting');
+                            },1500);
+                            cc.weijifen.audio.playSFX('nv/'+self.gameModelMp3+'ting' + '_' +cc.weijifen.genders['current'] + '.mp3');                                
+                            let socket = self.getSelf().socket();
+                            cc.sys.localStorage.removeItem('ting') ;
+                            socket.emit("selectaction" , JSON.stringify({
+                                action:"ting",
+                                actionCard:[card_script.value]
+                            }));
+                            self.getSelf().tingAction();    
 
-                        self.cards_play_flag.active = true;
+                            self.cards_play_flag.active = true;
 
-                    } else {
-                        socket.emit("doplaycards" , card_script.value) ;
+                        } else {
+                            socket.emit("doplaycards" , card_script.value) ;
+                        }
+                        //cc.find("");
+                        // self.getSelf().shouOperationMune();
                     }
-                    //cc.find("");
-                    // self.getSelf().shouOperationMune();
+                    event.stopPropagation();
                 }
+            });
+
+
+            self.node.on('mjSelection',function(event){
+                let father = cc.find('Canvas').getComponent('MJDataBind').selectfather;
+                father.active= false;
+                father.children[0].children[1].children.splice(0,father.children[0].children[1].children.length);
+                let socket = self.getSelf().socket();
+                let params = [];
+                let sendEvent ;
+                if ( event.getUserData() ) {
+                    sendEvent = event.getUserData().name ;
+                    params = event.getUserData().params ;
+                }
+                socket.emit("selectaction" , JSON.stringify({
+                    action:sendEvent,
+                    actionCard:params
+                }));
+                //cc.find("");
+                self.getSelf().shouOperationMune();
                 event.stopPropagation();
-            }
-        });
-
-
-        self.node.on('mjSelection',function(event){
-            let father = cc.find('Canvas').getComponent('MJDataBind').selectfather;
-            father.active= false;
-            father.children[0].children[1].children.splice(0,father.children[0].children[1].children.length);
-            let socket = self.getSelf().socket();
-            let params = [];
-            let sendEvent ;
-            if ( event.getUserData() ) {
-                sendEvent = event.getUserData().name ;
-                params = event.getUserData().params ;
-            }
-            socket.emit("selectaction" , JSON.stringify({
-                action:sendEvent,
-                actionCard:params
-            }));
-            //cc.find("");
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-        /**
-         * ActionEvent发射的事件 ， 点击 碰
-         */
-        self.node.on("peng",function(event){
-            cc.sys.localStorage.removeItem('guo');            
-            let socket = self.getSelf().socket();
-            socket.emit("selectaction" , JSON.stringify({
-                action:"peng",
-                actionCard:[]
-            }));
-            //cc.find("");
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-        self.node.on("dan",function(event){
-            cc.sys.localStorage.removeItem('guo');            
-            var context = cc.find('Canvas').getComponent('MJDataBind'); 
-            if ( context.dans && context.dans.length > 1 ) {
-                cc.sys.localStorage.removeItem('take');
-                context.mjOperation('dan', context.dans,context);
-            } else {
-                let socket = self.getSelf().socket();
-                let danParam = [];
-                if ( context.dans ) {
-                    danParam = context.dans[0] ;
-                }
-                socket.emit("selectaction" , JSON.stringify({
-                    action:'dan',
-                    actionCard:danParam
-                }));
-            }
-            //cc.find("");
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-        self.node.on("gang",function(event){
-            cc.sys.localStorage.removeItem('guo');            
-            var context = cc.find('Canvas').getComponent('MJDataBind'); 
-            if ( context.gangs && context.gangs.length > 1 ) {
-                cc.sys.localStorage.removeItem('take');                
-                context.mjOperation('gang', context.gangs,context);
-            } else {
-                let socket = self.getSelf().socket();
-                let gangParam = [];
-                if ( context.gangs ) {
-                    gangParam = context.gangs[0] ;
-                }
-                socket.emit("selectaction" , JSON.stringify({
-                    action:'gang',
-                    actionCard:gangParam
-                }));
-            }
-            //cc.find("");
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-
-        /**
-         * ActionEvent发射的事件 ， 点击 吃
-         */
-        self.node.on("chi",function(event){
-            cc.sys.localStorage.removeItem('guo');            
-            var context = cc.find('Canvas').getComponent('MJDataBind'); 
-            if ( context.chis && context.chis.length > 1 ) {
-                cc.sys.localStorage.removeItem('take');
-                let array = [];
-                let array2 = [];
-                function sortNumber(a,b){return a - b}   
-                function sortNum(a,b){return b.id - a.id}              
-                for(let i = 0 ;i<context.chis.length;i++){
-                    let b = {};
-                    context.chis[i].sort(sortNumber);
-                    b.id = context.chis[i][0];
-                    b.value = context.chis[i];
-                    array.push(b);
-                }
-                array.sort(sortNum);
-                for(let i = 0 ; i<array.length;i++){
-                    array2.push(array[i].value);
-                }
-                
-
-                context.mjOperation('chi',array2,context);
-            } else {
+            });
+            /**
+             * ActionEvent发射的事件 ， 点击 碰
+             */
+            self.node.on("peng",function(event){
+                cc.sys.localStorage.removeItem('guo');            
                 let socket = self.getSelf().socket();
                 socket.emit("selectaction" , JSON.stringify({
-                    action:'chi',
-                    actionCard:context.chis[0]
-                }));
-            }
-            //cc.find("");
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-        /**
-         * ActionEvent发射的事件 ， 点击 听
-         */
-        self.node.on("ting",function(event){
-            cc.sys.localStorage.removeItem('guo');            
-            /*let socket = self.getSelf().socket();
-            socket.emit("selectaction" , JSON.stringify({
-                action:"ting",
-                actionCard:[]
-            }));*/
-            //记录听得状态后，在出牌阶段判断状态并发送听牌事件。
-            var context = cc.find('Canvas').getComponent('MJDataBind'); 
-            var gameStartInit = require('GameStartInit');
-            cc.sys.localStorage.setItem('ting','true') ;
-            cc.sys.localStorage.setItem('alting','true') ;
-            gameStartInit.initcardwidth(true);
-            self.getSelf().tingAction();                 
-            if (context.tings){
-                let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
-                for(let j = 0 ; j< context.tings.length;j++){
-                    let cv = context.tings[j].card;                                    
-                    for(let i =0; i<length;i++){
-                        let cards =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
-                        let button = cc.find('Canvas/cards/handcards/current/currenthandcards').children[i].children[0];
-                        let handCards = cards.getComponent("HandCards");
-                        if((cv<0&&parseInt(cv/4 )== parseInt(handCards.value/4 ))||(cv>=0&&handCards.mjtype==parseInt(cv/36)&&parseInt((handCards.value%36)/4)==parseInt((cv%36)/4))){
-                             handCards.cardvalue.color = new cc.Color(255, 255, 255);
-                             button.getComponent(cc.Button).interactable= true;   
-                        }   
-                    }
-                }
-            }
-            event.stopPropagation();
-            self.getSelf().shouOperationMune();            
-        });
-        /**
-         * ActionEvent发射的事件 ， 点击 胡
-         */
-        self.node.on("hu",function(event){
-            cc.sys.localStorage.removeItem('guo');            
-            let socket = self.getSelf().socket();
-            socket.emit("selectaction" , JSON.stringify({
-                action:"hu",
-                actionCard:[]
-            }));
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-        /**
-         * ActionEvent发射的事件 ， 点击 过
-         */
-        self.node.on("guo",function(event){
-            //当自己收到的事件是guo时  为true  别人
-            if(cc.sys.localStorage.getItem('guo')!='true'||cc.sys.localStorage.getItem('alting')=='true'){
-                cc.sys.localStorage.removeItem('altake');
-                let socket = self.getSelf().socket();
-                socket.emit("selectaction" , JSON.stringify({
-                    action:"guo",
+                    action:"peng",
                     actionCard:[]
                 }));
-            }else{
-                cc.sys.localStorage.setItem('take','true');    
-            }
-            cc.sys.localStorage.removeItem('guo');
-            self.getSelf().shouOperationMune();
-            event.stopPropagation();
-        });
-        // gameStartInit.players_event();
-
-        self.node.on('restar',function(event){
-            var gameStartInit = require('GameStartInit');
-            if(event.getUserData()){     
-                cc.weijifen.menu = new cc.NodePool();
-                cc.weijifen.menu.put(cc.instantiate(self.menuPrefab));//菜单框
-               /* if(cc.weijifen.GameBase.gameModel=='wz'){
-                    cc.director.loadScene('温州');
-                }else{
-                    cc.director.loadScene('gameMain');                    
-                }*/
-                cc.weijifen.gongaoAlertNum = undefined;       
-                cc.director.loadScene('gameMain');         
-            }else{
-                // 初始化
-                if(cc.sys.localStorage.getItem('clear') != 'true'){
-                    var context = cc.find('Canvas').getComponent('MajiangDataBind'); 
-                    var bth = cc.find('Canvas/bg/center/button/readybtn');
-                    if(cc.weijifen.match != 'true'){
-                        // bth.active =true;  
-                        bth.x= -10;
-                    }
-                    var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children
-                    if(laizi){
-                        for(let i =0 ; i < laizi.length ; i ++ ){
-                            cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
-                        }
-                    }     
-                    gameStartInit.reinitGame(context);
-                }
-                cc.sys.localStorage.removeItem('clear');
-                if (cc.weijifen.GameBase.gameModel == 'wz') {
-                    self.shouOperationMune();
+                //cc.find("");
+                self.getSelf().shouOperationMune();
+                event.stopPropagation();
+            });
+            self.node.on("dan",function(event){
+                cc.sys.localStorage.removeItem('guo');            
+                var context = cc.find('Canvas').getComponent('MJDataBind'); 
+                if ( context.dans && context.dans.length > 1 ) {
+                    cc.sys.localStorage.removeItem('take');
+                    context.mjOperation('dan', context.dans,context);
                 } else {
-                    self.getSelf().shouOperationMune();
+                    let socket = self.getSelf().socket();
+                    let danParam = [];
+                    if ( context.dans ) {
+                        danParam = context.dans[0] ;
+                    }
+                    socket.emit("selectaction" , JSON.stringify({
+                        action:'dan',
+                        actionCard:danParam
+                    }));
                 }
-                // self.getSelf().shouOperationMune();
-                event.target.parent.destroy(); 
-            }        
-        });
+                //cc.find("");
+                self.getSelf().shouOperationMune();
+                event.stopPropagation();
+            });
+            self.node.on("gang",function(event){
+                cc.sys.localStorage.removeItem('guo');            
+                var context = cc.find('Canvas').getComponent('MJDataBind'); 
+                if ( context.gangs && context.gangs.length > 1 ) {
+                    cc.sys.localStorage.removeItem('take');                
+                    context.mjOperation('gang', context.gangs,context);
+                } else {
+                    let socket = self.getSelf().socket();
+                    let gangParam = [];
+                    if ( context.gangs ) {
+                        gangParam = context.gangs[0] ;
+                    }
+                    socket.emit("selectaction" , JSON.stringify({
+                        action:'gang',
+                        actionCard:gangParam
+                    }));
+                }
+                //cc.find("");
+                self.getSelf().shouOperationMune();
+                event.stopPropagation();
+            });
 
-          // 查看玩家是否离线（主监测电话中）
-        cc.weijifen.offline = function(status){
-            //status    0:在线   1：离线  2：电话中
-            let param = {
-                userId: cc.weijifen.user.id,
-                // userId: '37a538a553bf4e88820893274669992f',
-                type: 4,
-                status: status
-            };
-            socket.emit("sayOnSound" ,JSON.stringify(param));
-        }
-        // cc.weijifen.offline(2);
-        // 主监测游戏进入后台
-        // 监听到该事件说明玩家已经离线，此时status为1
-        let startTime,endTime;
-        cc.game.on(cc.game.EVENT_HIDE, function () {
-            console.log('监听到hide事件，游戏进入后台运行！');
-            let param = {
-                userId: cc.weijifen.user.id,
-                // userId: '37a538a553bf4e88820893274669992f',
-                type: 4,
-                status: 1
-            };
-            socket.emit("sayOnSound" ,JSON.stringify(param));
-        });
-        cc.game.on(cc.game.EVENT_SHOW, function () {
-            self.setCountDown();
-            console.log('监听到SHOW事件，游戏进入后台运行！');
-            let param = {
-                userId: cc.weijifen.user.id,
-                // userId: '37a538a553bf4e88820893274669992f',
-                type: 4,
-                status: 0
-            };
-            socket.emit("sayOnSound" ,JSON.stringify(param));
-            if (cc.weijifen.room) {
-                cc.director.loadScene('majiang');
-            }
-        });
-        // 发送录音
-        cc.weijifen.player_recording = function(param){
-            var param1 = {
-                type:3,
-                userId: cc.weijifen.user.id,
-                content:param
-            };
-            socket.emit("sayOnSound" ,JSON.stringify(param1));
-        }
-        // 播放语音队列
-        cc.weijifen.playVideo = function () {
-            if(videoList.length == 0){
-                cc.weijifen.isPLayVideo = false;
-            }else{
-                var params = {
-                    act: 4,
-                    url: videoList[0]// 语音播放地址
-                }; 
-                videoList.shift();
-                // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
-                var jsonRes = JSON.stringify(params);
-                var result = jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
-            }
-            
-        }
+            /**
+             * ActionEvent发射的事件 ， 点击 吃
+             */
+            self.node.on("chi",function(event){
+                cc.sys.localStorage.removeItem('guo');            
+                var context = cc.find('Canvas').getComponent('MJDataBind'); 
+                if ( context.chis && context.chis.length > 1 ) {
+                    cc.sys.localStorage.removeItem('take');
+                    let array = [];
+                    let array2 = [];
+                    function sortNumber(a,b){return a - b}   
+                    function sortNum(a,b){return b.id - a.id}              
+                    for(let i = 0 ;i<context.chis.length;i++){
+                        let b = {};
+                        context.chis[i].sort(sortNumber);
+                        b.id = context.chis[i][0];
+                        b.value = context.chis[i];
+                        array.push(b);
+                    }
+                    array.sort(sortNum);
+                    for(let i = 0 ; i<array.length;i++){
+                        array2.push(array[i].value);
+                    }
+                    
 
-        cc.sys.localStorage.setItem('count','0');
-        cc.sys.localStorage.removeItem('current');
-        cc.sys.localStorage.removeItem('right');
-        cc.sys.localStorage.removeItem('left');
-        cc.sys.localStorage.removeItem('top');
-        cc.sys.localStorage.removeItem('altake');      
-        cc.sys.localStorage.removeItem('alting');
-        cc.sys.localStorage.removeItem('guo');  
-        cc.sys.localStorage.removeItem('unOver');      
-        cc.sys.localStorage.removeItem('clear');   
-        cc.sys.localStorage.removeItem('cb');   
+                    context.mjOperation('chi',array2,context);
+                } else {
+                    let socket = self.getSelf().socket();
+                    socket.emit("selectaction" , JSON.stringify({
+                        action:'chi',
+                        actionCard:context.chis[0]
+                    }));
+                }
+                //cc.find("");
+                self.getSelf().shouOperationMune();
+                event.stopPropagation();
+            });
+            /**
+             * ActionEvent发射的事件 ， 点击 听
+             */
+            self.node.on("ting",function(event){
+                cc.sys.localStorage.removeItem('guo');            
+                /*let socket = self.getSelf().socket();
+                socket.emit("selectaction" , JSON.stringify({
+                    action:"ting",
+                    actionCard:[]
+                }));*/
+                //记录听得状态后，在出牌阶段判断状态并发送听牌事件。
+                var context = cc.find('Canvas').getComponent('MJDataBind'); 
+                var gameStartInit = require('GameStartInit');
+                cc.sys.localStorage.setItem('ting','true') ;
+                cc.sys.localStorage.setItem('alting','true') ;
+                gameStartInit.initcardwidth(true);
+                self.getSelf().tingAction();                 
+                if (context.tings){
+                    let length =cc.find('Canvas/cards/handcards/current/currenthandcards').children.length;
+                    for(let j = 0 ; j< context.tings.length;j++){
+                        let cv = context.tings[j].card;                                    
+                        for(let i =0; i<length;i++){
+                            let cards =cc.find('Canvas/cards/handcards/current/currenthandcards').children[i];
+                            let button = cc.find('Canvas/cards/handcards/current/currenthandcards').children[i].children[0];
+                            let handCards = cards.getComponent("HandCards");
+                            if((cv<0&&parseInt(cv/4 )== parseInt(handCards.value/4 ))||(cv>=0&&handCards.mjtype==parseInt(cv/36)&&parseInt((handCards.value%36)/4)==parseInt((cv%36)/4))){
+                                 handCards.cardvalue.color = new cc.Color(255, 255, 255);
+                                 button.getComponent(cc.Button).interactable= true;   
+                            }   
+                        }
+                    }
+                }
+                event.stopPropagation();
+                self.getSelf().shouOperationMune();            
+            });
+            /**
+             * ActionEvent发射的事件 ， 点击 胡
+             */
+            self.node.on("hu",function(event){
+                cc.sys.localStorage.removeItem('guo');            
+                let socket = self.getSelf().socket();
+                socket.emit("selectaction" , JSON.stringify({
+                    action:"hu",
+                    actionCard:[]
+                }));
+                self.getSelf().shouOperationMune();
+                event.stopPropagation();
+            });
+            /**
+             * ActionEvent发射的事件 ， 点击 过
+             */
+            self.node.on("guo",function(event){
+                //当自己收到的事件是guo时  为true  别人
+                if(cc.sys.localStorage.getItem('guo')!='true'||cc.sys.localStorage.getItem('alting')=='true'){
+                    cc.sys.localStorage.removeItem('altake');
+                    let socket = self.getSelf().socket();
+                    socket.emit("selectaction" , JSON.stringify({
+                        action:"guo",
+                        actionCard:[]
+                    }));
+                }else{
+                    cc.sys.localStorage.setItem('take','true');    
+                }
+                cc.sys.localStorage.removeItem('guo');
+                self.getSelf().shouOperationMune();
+                event.stopPropagation();
+            });
+            // gameStartInit.players_event();
+
+            self.node.on('restar',function(event){
+                var gameStartInit = require('GameStartInit');
+                if(event.getUserData()){     
+                    cc.weijifen.menu = new cc.NodePool();
+                    cc.weijifen.menu.put(cc.instantiate(self.menuPrefab));//菜单框
+                   /* if(cc.weijifen.GameBase.gameModel=='wz'){
+                        cc.director.loadScene('温州');
+                    }else{
+                        cc.director.loadScene('gameMain');                    
+                    }*/
+                    cc.weijifen.gongaoAlertNum = undefined;       
+                    cc.director.loadScene('gameMain');         
+                }else{
+                    // 初始化
+                    if(cc.sys.localStorage.getItem('clear') != 'true'){
+                        var context = cc.find('Canvas').getComponent('MajiangDataBind'); 
+                        var bth = cc.find('Canvas/bg/center/button/readybtn');
+                        if(cc.weijifen.match != 'true'){
+                            // bth.active =true;  
+                            bth.x= -10;
+                        }
+                        var laizi = cc.find('Canvas/cards/tesucards/baocard/child').children;
+                        if(laizi){
+                            for(let i =0 ; i < laizi.length ; i ++ ){
+                                cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
+                            }
+                        }     
+                        gameStartInit.reinitGame(context);
+                    }
+                    cc.sys.localStorage.removeItem('clear');
+                    if (cc.weijifen.GameBase.gameModel == 'wz') {
+                        self.shouOperationMune();
+                    } else {
+                        self.getSelf().shouOperationMune();
+                    }
+                    // self.getSelf().shouOperationMune();
+                    event.target.parent.destroy(); 
+                }        
+            });
+              // 查看玩家是否离线（主监测电话中）
+            cc.weijifen.offline = function(status){
+                //status    0:在线   1：离线  2：电话中
+                let param = {
+                    userId: cc.weijifen.user.id,
+                    // userId: '37a538a553bf4e88820893274669992f',
+                    type: 4,
+                    status: status
+                };
+                socket.emit("sayOnSound" ,JSON.stringify(param));
+            }
+            // cc.weijifen.offline(2);
+            // 主监测游戏进入后台
+            // 监听到该事件说明玩家已经离线，此时status为1
+            let startTime,endTime;
+            cc.game.on(cc.game.EVENT_HIDE, function () {
+                console.log('监听到hide事件，游戏进入后台运行！');
+                let param = {
+                    userId: cc.weijifen.user.id,
+                    // userId: '37a538a553bf4e88820893274669992f',
+                    type: 4,
+                    status: 1
+                };
+                socket.emit("sayOnSound" ,JSON.stringify(param));
+            });
+            cc.game.on(cc.game.EVENT_SHOW, function () {
+                console.log('监听到SHOW事件，游戏进入后台运行！');
+                let param = {
+                    userId: cc.weijifen.user.id,
+                    // userId: '37a538a553bf4e88820893274669992f',
+                    type: 4,
+                    status: 0
+                };
+                socket.emit("sayOnSound" ,JSON.stringify(param));
+                if (cc.weijifen.room) {
+                    cc.director.loadScene('majiang');
+                }
+            });
+            // 发送录音
+            cc.weijifen.player_recording = function(param){
+                var param1 = {
+                    type:3,
+                    userId: cc.weijifen.user.id,
+                    content:param
+                };
+                socket.emit("sayOnSound" ,JSON.stringify(param1));
+            }
+            // 播放语音队列
+            cc.weijifen.playVideo = function () {
+                if(videoList.length == 0){
+                    cc.weijifen.isPLayVideo = false;
+                }else{
+                    var params = {
+                        act: 4,
+                        url: videoList[0]// 语音播放地址
+                    }; 
+                    videoList.shift();
+                    // var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'recorderApi',JSON.stringify(params));
+                    var jsonRes = JSON.stringify(params);
+                    var result = jsb.reflection.callStaticMethod(...self.anMethodParam().recorderApi,jsonRes);
+                }
+                
+            }
+            cc.sys.localStorage.setItem('count','0');
+            cc.sys.localStorage.removeItem('current');
+            cc.sys.localStorage.removeItem('right');
+            cc.sys.localStorage.removeItem('left');
+            cc.sys.localStorage.removeItem('top');
+            cc.sys.localStorage.removeItem('altake');      
+            cc.sys.localStorage.removeItem('alting');
+            cc.sys.localStorage.removeItem('guo');  
+            cc.sys.localStorage.removeItem('unOver');      
+            cc.sys.localStorage.removeItem('clear');   
+            cc.sys.localStorage.removeItem('cb');   
+            cc.sys.localStorage.removeItem('timeIsClose');
+        }
+        if (cc.weijifen.match != 'false' && cc.sys.localStorage.getItem('appTime')) {
+            cc.game.on(cc.game.EVENT_SHOW, function () {
+                self.reloadMaJiang();
+            });
+            cc.game.on(cc.game.EVENT_HIDE, function () {
+                for (let i = 0;i < 10*60;i++) {
+                    clearInterval(i);
+                }
+            });
+        }
     },
     getSelf: function(){
         var self =cc.find("Canvas").getComponent("MJDataBind");
@@ -756,7 +780,6 @@ cc.Class({
         
         //设置游戏玩家数量
         if(cc.weijifen.playerNum == 2){
-            // cc
             self.left_player.active = false;
             self.right_player.active = false;
             self.deskcards_current_panel.width = 650;
@@ -805,8 +828,7 @@ cc.Class({
 
 
 
-
-        self.joinRoom();
+        self.joinRoom(self);
 
     },
     /*
@@ -949,9 +971,9 @@ cc.Class({
             lng: '',//j
             lat: ''//w
         }
-        cc.weijifen.http.httpPost('/userInfo/position/save',params,getPosition,getErr,this) ;  
+        /*cc.weijifen.http.httpPost('/userInfo/position/save',params,getPosition,getErr,this) ;  
         function getPosition () {}
-        function getErr () {}
+        function getErr () {}*/
         // 地理位置
         // 调用android方法名：getLocation
         // 返回地址位置：lo经度；alt，海拔；t时间
@@ -980,8 +1002,9 @@ cc.Class({
             param.playway = '402888815e6f0177015e71529f3a0001',
             param.match = 1 ; 
         }
-
-        socket.emit("joinroom" ,JSON.stringify(param)) ;
+        setTimeout(function(){
+            socket.emit("joinroom" ,JSON.stringify(param)) ;
+        },300);
     },
     /**
      * 状态切换，使用状态参数 切换，避免直接修改 对象状态，避免混乱
@@ -1094,7 +1117,7 @@ cc.Class({
                     object.timer(object , 8) ; 
                 }
 
-                if(cc.weijifen.match == 'true'){
+                if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
                     object.timer(object , 10) ;             
                 }
                 break   ;
@@ -1130,7 +1153,7 @@ cc.Class({
                 }
 
 
-                if(cc.weijifen.match == 'true'){
+                if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
                     object.timer(object , 10) ;             
                 }
                 break   ;
@@ -1611,10 +1634,10 @@ cc.Class({
     },
     /*重新加载*/
     reloadMaJiang () {
+        this.disconnect();
         cc.director.loadScene('majiang');
     }
 });
-
 
 
 

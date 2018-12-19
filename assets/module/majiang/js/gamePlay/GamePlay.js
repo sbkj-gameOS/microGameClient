@@ -22,7 +22,7 @@ cc.Class({
 	            for(var inx = 0 ; inx<context.playersarray.length ; inx++){
 	                let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
 	                if(temp.data.id == data.userid){
-	                    context.exchange_searchlight(temp.tablepos,context);; break ;
+	                    context.exchange_searchlight(temp.tablepos,context); break ;
 	                }
 	            }
 	        }
@@ -123,8 +123,6 @@ cc.Class({
                     setTimeout(function(){
                         cc.find('Canvas/ting').active = false;
                     },2000);
-	                // context.tingting.active = true ;
-	                // setTimeout(function(){context.tingting.active = false ;},2000);
 	                context[playerss.tablepos+'ting'].active = true ; 
 	            }
 	        }
@@ -183,49 +181,33 @@ cc.Class({
 		                    let temp = desk_card.getComponent("DeskCards");
 		                    temp.init(handcards.value,'B',undefined,'current');
 
-		                    // if (desk_card.children) {
-		                    	// 大牌显示
-		                    	let big_card = cc.instantiate(context.bigModel);
-		                    	let big_handcards = big_card.getComponent("HandCards");
-		                    	big_handcards.init(handcards.value,'B');
-		                    	/*big_card.x = 410;
-		                    	big_card.y = -240;*/
-		                    	/*big_card.x = 0;
-		                    	big_card.y = -200;
-		               			// cc.find('Canvas/mask').active = true;
-		                    	let move = cc.moveTo(0.2,cc.p(0,-160));
-			                    big_card.runAction(move);*/
-			                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
-			                   /* if (cc.weijifen.match == 'true') {
-			                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
-			                    	big_card.x = -newVec2.x;
-			                    	big_card.y = -newVec2.y;
-			                    } else {
-			                    	big_card.x = cc.weijifen.cardPostion.x;
-			                    	big_card.y = cc.weijifen.cardPostion.y;
-			                    }*/
-			                    if (cc.weijifen.cardPostion) {
-				                    big_card.x = cc.weijifen.cardPostion.x;
-			                    	big_card.y = cc.weijifen.cardPostion.y;
-			                    	cc.weijifen.cardPostion = {x:null,y:null};
-			                    } 
-			                    if (data.ting) {
-			                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
-			                    	big_card.x = -newVec2.x;
-			                    	big_card.y = -newVec2.y;
-			                    }
-		                    	big_card.parent = cc.find('Canvas/big_cards');
-		                    	
+	                    	let big_card = cc.instantiate(context.bigModel);
+	                    	let big_handcards = big_card.getComponent("HandCards");
+	                    	big_handcards.init(handcards.value,'B');
+	                    	
+		                    let h_cards = cc.find('Canvas/cards/handcards/current/currenthandcards').children;
+		                 
+		                    if (cc.weijifen.cardPostion) {
+			                    big_card.x = cc.weijifen.cardPostion.x;
+		                    	big_card.y = cc.weijifen.cardPostion.y;
+		                    	cc.weijifen.cardPostion = {x:null,y:null};
+		                    } 
+		                    if (data.ting) {
+		                    	var newVec2 = h_cards[h_cards.length - 1].convertToNodeSpaceAR(cc.v2(667,375));
+		                    	big_card.x = -newVec2.x;
+		                    	big_card.y = -newVec2.y;
+		                    }
+	                    	big_card.parent = cc.find('Canvas/big_cards');
+	                    	
 
-		                    	let move = cc.moveTo(0.2,cc.p(0,-150));
-			                    big_card.runAction(move);
+	                    	let move = cc.moveTo(0.2,cc.p(0,-150));
+		                    big_card.runAction(move);
 
-	           					desk_card.active = false;
-			                    desk_card.children[0].children[0].width = 90;//122
-			                    desk_card.children[0].children[0].height = 128;//150
-			                    context.deskcards.push(desk_card);
-		                    	desk_card.parent = context.deskcards_current_panel;
-		                    // }
+           					desk_card.active = false;
+		                    desk_card.children[0].children[0].width = 90;//122
+		                    desk_card.children[0].children[0].height = 128;//150
+		                    context.deskcards.push(desk_card);
+	                    	desk_card.parent = context.deskcards_current_panel;
 		                }else{
 		                    handcards.reinit();
 		                    if(handcards.selectcolor == true){
@@ -279,13 +261,11 @@ cc.Class({
                     	let move = cc.moveTo(0.2,cc.p(320,0));
 	                    big_card.runAction(move);
 
-           				// if (desk_card.children) {
-           					desk_card.active = false;
-	  						desk_card.children[0].children[0].width = 128;
-		                    desk_card.children[0].children[0].height = 100;
-	                    	context.deskcards.push(desk_card);
-	                    	desk_card.parent = deskcardpanel;
-	                    // }
+       					desk_card.active = false;
+  						desk_card.children[0].children[0].width = 128;
+	                    desk_card.children[0].children[0].height = 100;
+                    	context.deskcards.push(desk_card);
+                    	desk_card.parent = deskcardpanel;
 
 		            }else if(temp.tablepos == "left"){
 		                for(var inx = 0 ; inx < gameStartInitNode.left_panel.children.length ; inx++){
@@ -307,17 +287,14 @@ cc.Class({
                     	big_card.y = 0;
                     	big_card.parent = cc.find('Canvas/big_cards');
                     	
-                    	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(-320,0));
 	                    big_card.runAction(move);
 
-           				// if (desk_card.children) {
-           					desk_card.active = false;
-	  						desk_card.children[0].children[0].width = 128;
-		                    desk_card.children[0].children[0].height = 100;
-	                    	context.deskcards.push(desk_card);
-	                    	desk_card.parent = deskcardpanel;
-	                    // }
+       					desk_card.active = false;
+  						desk_card.children[0].children[0].width = 128;
+	                    desk_card.children[0].children[0].height = 100;
+                    	context.deskcards.push(desk_card);
+                    	desk_card.parent = deskcardpanel;
 		            }else if(temp.tablepos == "top"){
 		                for(var inx = 0 ; inx < gameStartInitNode.top_panel.children.length ; inx++){
 		                    let top_temp = gameStartInitNode.top_panel.children[inx].getComponent("SpecCards");
@@ -335,30 +312,17 @@ cc.Class({
                     	big_handcards.init(data.card,'B');
                     	big_card.x = 0;
                     	big_card.y = 250;
-                    	/*let x;
-                    	let top = cc.find('Canvas/cards/handcards/top');
-                    	let topNode = top.getChildByName('tophandcards');
-                    	if (topNode.x > 0) {
-                    		x = topNode.x;
-                    	} else {
-                    		x = topNode.x + topNode.children[topNode.children.length - 1].x;
-                    	}
-                    	big_card.x = x;
-                    	big_card.y = top.y;*/
                     	big_card.parent = cc.find('Canvas/big_cards');
                     	
 
-                    	// cc.find('Canvas/mask').active = true;
                     	let move = cc.moveTo(0.2,cc.p(0,160));
 	                    big_card.runAction(move);
 
-           				// if (desk_card.children) {
-           					desk_card.active = false;
-	  						desk_card.children[0].children[0].width = 90;
-		                    desk_card.children[0].children[0].height = 128;
-	                    	context.deskcards.push(desk_card);
-	                    	desk_card.parent = deskcardpanel;
-	                    // }
+       					desk_card.active = false;
+  						desk_card.children[0].children[0].width = 90;
+	                    desk_card.children[0].children[0].height = 128;
+                    	context.deskcards.push(desk_card);
+                    	desk_card.parent = deskcardpanel;
 		            }
 		            /**
 		             * 销毁其中一个对象
@@ -402,7 +366,6 @@ cc.Class({
 	            if (desk_r.children.length > 0) desk_r.children[desk_r.children.length-1].active = true;
 	            if (desk_t.children.length > 0) desk_t.children[desk_t.children.length-1].active = true;
 	            if (desk_l.children.length > 0) desk_l.children[desk_l.children.length-1].active = true;
-    				// clearTimeout(context.clock);
     		},500)
 
 	      	var gamePlay = require('GamePlay');
@@ -462,18 +425,9 @@ cc.Class({
 	        }
 	        gameStartInitNode.desk_cards.string = data.deskcards ;
 	        if(data.power){
+               	// 摸宝牌
 	            if(data.powerCard&&data.powerCard.length>0){
-	                for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/child').children.length;i++){
-	                    cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
-	                }
 	                cc.weijifen.baopai = data.powerCard;
-	                /*for(let i= 0 ; i<data.powerCard.length;i++){
-	                    var laiziZM = cc.instantiate(gameStartInitNode.ZM);
-	                    laiziZM.parent = gameStartInitNode.godcard.children[1];
-	                    var LZH  = laiziZM.getComponent('DeskCards');
-	                    LZH.init(data.powerCard[i],'B',true);
-	                    // cc.weijifen.baopai = data.powerCard[i];
-	                }*/
 	                cc.find('Canvas/cards/tesucards/baocard/child').x = -580;                
                     var laiziFM = cc.instantiate(gameStartInitNode.FM);
                     var LZH = laiziFM.getComponent('DeskCards');
@@ -484,6 +438,9 @@ cc.Class({
 	                var LZH = laiziFM.getComponent('DeskCards');
 	                //LZH.init(-4);
 	                laiziFM.parent = gameStartInitNode.godcard.children[1];
+	            }
+	            if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
+	            	cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
 	            }
 	        }
 	    },

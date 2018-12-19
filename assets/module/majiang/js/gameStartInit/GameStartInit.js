@@ -81,9 +81,46 @@ cc.Class({
     onLoad: function () {
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
+        var appTime = cc.sys.localStorage.getItem('appTime');
+        const getSokectUrl = () => {
+            let Match = require('match');
+            let matchJs = new Match();
+            let activityId = cc.sys.localStorage.getItem('activityId');
+            let params = {
+                token: cc.weijifen.authorization,
+                activityId: activityId
+            }
+            cc.weijifen.http.httpPost('/match/timeWait',params,matchJs.joinSuccess,matchJs.joinErr,matchJs) ;            
+            cc.sys.localStorage.setItem('gotWsUrl','true');
+        }
         if (dataStr && this.countDown && cc.sys.localStorage.getItem('matchTime')) {
-            let time = cc.sys.localStorage.getItem('matchTime');
+            var date = new Date().getTime();
+            var time = Number(appTime - date) + 1000;
+            if (appTime) {
+                if (parseInt(time) > 1000) this.countDown(appTime - date);                
+                if (time > 0) {
+                    let wsUrlTime = setTimeout(function(){
+                        if (cc.sys.localStorage.getItem('timeIsClose') == 'true') {
+                            getSokectUrl();
+                        }   
+                        clearTimeout(wsUrlTime);
+                    },time);
+                } else if (time < 0) {
+                    // 黑屏之后进入游戏
+                    getSokectUrl();
+                    cc.sys.localStorage.removeItem('appTime');
+                }
+                this.emojiObjFlag = false;
+                cc.weijifen.endMatchFlag = 0;
+                return
+            }
             this.countDown(time);//statrtSec距离比赛开始的毫秒数
+            let wsUrlTime = setTimeout(function(){
+                if (cc.sys.localStorage.getItem('timeIsClose') == 'true') {
+                    getSokectUrl();
+                }   
+                clearTimeout(wsUrlTime);
+            },time);
         }
         this.emojiObjFlag = false;
         cc.weijifen.endMatchFlag = 0;
@@ -118,8 +155,7 @@ cc.Class({
         * @param context 上下文对象
         */
         players_event:function(data,context){
-
-            if (cc.weijifen.match == 'true') {
+            if (cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function') {
                 cc.weijifen.playerNum = data.players.length;
             }
             //第一个进入房间的人是房主，其他玩家再次进入data.players会增加
@@ -281,6 +317,16 @@ cc.Class({
                             }
                         }
                     }
+                    // if (cc.weijifen.match != 'false' && cc.sys.localStorage.getItem('gotWsUrl') == 'true' && cc.weijifen.user.id == data.players[i].id) {
+                    /*if (cc.weijifen.match != 'false' && cc.sys.localStorage.getItem('gotWsUrl') == 'true') {
+                        let time = setTimeout(function(){
+                            context.__proto__.__proto__.alert('readyGame时间发送');
+                            context.node.dispatchEvent(new cc.Event.EventCustom('readyGM', true));
+                            // cc.sys.localStorage.removeItem('gotWsUrl');
+                            // clearTimeout(time);
+                        },10);
+
+                    }*/
                 }
             }
             if(cc.weijifen.state !='ready' && cc.weijifen.state !='init'){
@@ -320,24 +366,16 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            if (cc.weijifen.match == 'true') {
+        	self = this;
+        	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
+        	var gameStartInit = require('GameStartInit');
+            cc.sys.localStorage.setItem('isPlay','true');
+            cc.sys.localStorage.setItem('isGotwsurlPlay','true');
+            gameStartInit.readyTrue('current');
+            gameStartInit.readyTrue('right');
+            gameStartInit.readyTrue('top');
+            gameStartInit.readyTrue('left');
+            if (cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function') {
                 cc.find('Canvas/headImg').active = false;
                 cc.find('Canvas/players').active = true;
             }
@@ -348,15 +386,12 @@ cc.Class({
                 context.left_player.active = false;
             } 
             context.loadding();//加载动画
-        	// 反作弊提示
+            // 反作弊提示
             let ipTimer = setTimeout(function(){
                 let userIp = cc.find("Canvas/userIp");
                 if (userIp) userIp.active = false;
                 clearTimeout(ipTimer);
             },5000);
-        	self = this;
-        	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
-        	var gameStartInit = require('GameStartInit');
         	//比赛倒计时设置为隐藏
             if(context.starttime.node.parent.active ==true){
                 context.starttime.node.parent.active =false;
@@ -406,7 +441,7 @@ cc.Class({
 			gameStartInit.reinitGame(context);
 	        //设置圈数、玩法
 	        let quanNum = cc.find('Canvas/roomNum').getChildByName('quan')._components[0];//quan节点位置            
-            quanNum.string = (data.round+1) +'/'+context.maxRound;//圈数
+            quanNum.string = (data.round+1) +'/'+cc.weijifen.maxRound;//圈数
             let wanfa = cc.find('Canvas/rules').getChildByName('label')._components[0];//wanfa节点位置  
             wanfa.string = data.op;
             cc.weijifen.wanfa = data.op;
@@ -695,7 +730,6 @@ cc.Class({
 	                    // buhua = context.decode(data.players[i].buHua);//补花
 	                    buhua = data.players[i].buHua;
 	                    let temp = gameStartInit.player(data.players[i].playuser, context);
-	                    //console.log(temp.tablepos);
 	                    for(var j = 0;j<buhua.length;j++){
 	                        gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
 	                    }
@@ -707,6 +741,9 @@ cc.Class({
                 if (gameStartInitNode.head_right_parent.children.length > 5) {
                 	cc.director.loadScene('majiang');
             	}
+            }
+            if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
+                cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
             }
             context.closeloadding();
         },
@@ -1227,7 +1264,6 @@ cc.Class({
             type: 1,
             content: content
         }
-        // console.log(param)
         socket.emit("sayOnSound" ,JSON.stringify(param)) ;
         chat.active = false;
     },

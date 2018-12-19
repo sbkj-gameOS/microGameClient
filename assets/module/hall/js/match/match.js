@@ -130,6 +130,7 @@ cc.Class({
             token: cc.weijifen.authorization,
             activityId: data.id
         }
+        cc.sys.localStorage.setItem('activityId',data.id);
         // 判断是否时VIP，是否是VIP场
         cc.weijifen.http.httpPost('/gameNotice/check_activity_vip',params,function(res,obj){
             let data = JSON.parse(res);
@@ -137,16 +138,21 @@ cc.Class({
                 obj.alert(data.msg);
                 return
             }
-            cc.weijifen.http.httpPost('/match/codeMatch',params,self.joinSuccess,self.joinErr,self) ;            
+            // cc.weijifen.http.httpPost('/match/codeMatch',params,self.joinSuccess,self.joinErr,self) ;            
+            cc.weijifen.http.httpPost('/match/timeWait',params,self.joinSuccess,self.joinErr,self) ;            
         },self.joinErr,self);
     },
     joinSuccess: function (res,obj) {
         var res = JSON.parse(res);
-        cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
-        // 比赛开始的本地时间
-        let appTimeStr = new Date().getTime();
-        let appTime = new Date(appTimeStr + parseInt(res.statrtSec)).getTime();
-        cc.sys.localStorage.setItem('appTime',appTime);
+        if (res.statrtSec)  {
+            cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
+            // 比赛开始的本地时间
+            let appTimeStr = new Date().getTime();
+            let appTime = new Date(appTimeStr + parseInt(res.statrtSec)).getTime();
+            cc.sys.localStorage.setItem('appTime',appTime);
+            // cc.sys.localStorage.setItem('matchStart','true');
+            console.log('waitTime返回的时间戳---',appTime);
+        }
         // cc.weijifen.matchTime = res.statrtSec;
         // 玩家没有报名，跳转到详情页报名
         if (!res.success) {

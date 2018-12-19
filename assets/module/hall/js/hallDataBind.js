@@ -61,13 +61,13 @@ cc.Class({
             if (cc.weijifen.gongaoAlertNum || cc.weijifen.gongaoAlertNum == undefined) {
                 cc.weijifen.http.httpGet('/gonggaoGame/queryGonGaoUrl?token='+cc.weijifen.authorization,this.noticeSuccess,this.noticeError,this);
             }
-            /*
+            
             // 多机方案动态获取wsUrl值
             cc.weijifen.http.httpGet('/apps/platform/find/server/address?token='+ cc.weijifen.authorization,function(res){
                 let HTTP = require('HTTP');
                 HTTP.wsURL = res;
                 // HTTP.wsURL = '192.168.1.81:9081';
-            },function(err){console.log('wsUrl请求出错')},self);*/
+            },function(err){console.log('wsUrl请求出错')},self);
             // 牌局结束比赛未结束，玩家退出游戏。再次进入时，弹出上次比赛结果
             let prizeBoxData = cc.sys.localStorage.getItem('matchPrize');
             cc.sys.localStorage.removeItem('matchPrize');

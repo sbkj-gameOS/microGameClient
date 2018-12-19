@@ -37,9 +37,10 @@ cc.Class({
                 cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
                 // setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
-            
             if(cc.weijifen.playerNum == 2){
-                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top') || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
+
+                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top') || (typeof cc.weijifen.match == 'function' || cc.weijifen.match == 'true' )&& data.id == cc.sys.localStorage.getItem('current')){
+
 
                     var player = context.playerspool.get();
                     var playerscript = player.getComponent("MaJiangPlayer");
@@ -61,7 +62,7 @@ cc.Class({
                     roomInit.returnRoom(context,data,gameStartInitNode);
                 }
             }else if(cc.weijifen.playerNum == 3){
-                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top') || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
+                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('top') || (typeof cc.weijifen.match == 'function' || cc.weijifen.match == 'true' ) && data.id == cc.sys.localStorage.getItem('current')){
                     var player = context.playerspool.get();
                     var playerscript = player.getComponent("MaJiangPlayer");
                     tablepos = "";
@@ -92,7 +93,7 @@ cc.Class({
             }else{
                 // 这是默认的4人模式 
                 // 因为 加入会触发 改变状态也会触发该事件，所以用getitem保存一个数据 如果有了这个数据则 只判断状态的改变  如果没有则表示新玩家加入
-                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('left')&&data.id!=cc.sys.localStorage.getItem('top')  || cc.weijifen.match == 'true' && data.id == cc.sys.localStorage.getItem('current')){
+                if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('right')&&data.id!=cc.sys.localStorage.getItem('left')&&data.id!=cc.sys.localStorage.getItem('top')  || (typeof cc.weijifen.match == 'function' || cc.weijifen.match == 'true' ) && data.id == cc.sys.localStorage.getItem('current')){
                     var player = context.playerspool.get();
                     var playerscript = player.getComponent("MaJiangPlayer");
                     tablepos = "";
@@ -218,6 +219,7 @@ cc.Class({
      */
     playerPosition (player,__position,parent,tablepos,data,count) {
         if (__position) player.setPosition(__position.x,__position.y);
+        if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
         player.parent = parent;
         cc.sys.localStorage.setItem(tablepos,data.id);
         if (count) cc.sys.localStorage.setItem('count',count);

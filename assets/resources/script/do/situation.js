@@ -87,8 +87,9 @@ cc.Class({
     				var arr = [],scores = [];
     				var list = cc.instantiate(obj.roomList);
     				var date = data[i].gameResult.createTime;
+                    var quanNum = 0 || data[i].gameResult.countNum;
     				setString(list,'roomNum',data[i].gameResult.roomNumber);
-    				setString(list,'quanNum',data[i].gameResult.countNum + '/' + data[i].gameResult.countNum);
+    				setString(list,'quanNum',quanNum);
     				setString(list,'date',obj.timestampToTime(date,1));
     				setString(list.getChildByName('detailBtn'),'roomId',data[i].gameResultList[0].roomId);
     				setString(list.getChildByName('detailBtn'),'roomNum',data[i].gameResultList[0].roomNumber);

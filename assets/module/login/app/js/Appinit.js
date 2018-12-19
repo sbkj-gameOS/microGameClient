@@ -85,9 +85,9 @@ cc.Class({
                 cc.weijifen.audio.playBGM("bgFight.mp3");
             }
                 // HTTP.wsURL = '121.40.98.233:9081';
-            cc.weijifen.http.httpGet('/apps/platform/find/server/address?orgi='+ cc.weijifen.GameBase.gameModel,function(res){
+          /*  cc.weijifen.http.httpGet('/apps/platform/find/server/address?orgi='+ cc.weijifen.GameBase.gameModel,function(res){
                 HTTP.wsURL = res;
-            },function(err){console.log('请求出错')},he);
+            },function(err){console.log('请求出错')},he);*/
         }
     },
     downApp: function () {

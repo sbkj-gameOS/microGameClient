@@ -182,7 +182,6 @@ cc.Class({
                     cards.children[i].getChildByName('select_box').active = false;
                     cards.children[j].getChildByName('select_box').active = true;
                 }
-                // console.log(cards.children[j].getChildByName('select_box'))
             }
         },
         gameOver_event: function(data,context){
@@ -202,6 +201,10 @@ cc.Class({
             setTimeout(function(){self.endGameOver(data,context)},time);
             cc.sys.localStorage.removeItem('subModel');
             cc.sys.localStorage.removeItem('overClickTime');
+            cc.sys.localStorage.removeItem('isPlay');
+            cc.sys.localStorage.removeItem('gotWsUrl');
+            cc.sys.localStorage.removeItem('isGotwsurlPlay');
+            
         },
         endGameOver: function(data,context){
             let temp = cc.instantiate(this.summary) ;
@@ -298,7 +301,6 @@ cc.Class({
 
                 for(let i = 0; i< fangwei.children.length;i++){
                     if(fangwei.children.length){
-                        // console.log('children_component---------------',fangwei.children[i].getComponent(ff))
                         fangwei.children[i].getComponent(ff).cardcolor();                
                     }
                 }
@@ -307,9 +309,6 @@ cc.Class({
         },
         foreachDancrads: function(fangwei){
             if (fangwei) {
-            // console.log('name',fangwei.parent.name)
-            // console.log('this---------',this)
-
                 for(let i = 0 ; i < fangwei.children.length; i++){
                     this.foreachCards(fangwei.children[i],'DanAction');
                 }    

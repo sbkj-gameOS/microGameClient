@@ -100,7 +100,7 @@ cc.Class({
         let he = this;
         this.goon1.active = true;
         this.close1.active =true;
-        if(cc.weijifen.match == 'true'){
+        if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
             this.t = setInterval(function(){he.daojishi()},1000)  ;
         }else{
             this.miao.node.active = false;

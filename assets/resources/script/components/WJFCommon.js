@@ -30,6 +30,7 @@ cc.Class({
          */
         var self = this;
         this.disconnect();
+        
         //cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL + '/bm/game');
         cc.weijifen.socket = window.io.connect(cc.weijifen.http.wsURL,{'reconnect': true});
 
@@ -280,7 +281,7 @@ cc.Class({
         // matchStartTime = '2018-05-22 17:01:03'
         // let times = (new Date('2018-05-22 17:27:00').getTime() - new Date('2018-05-22 17:17:00').getTime()) / 1000;
         // let times = (new Date(matchStartTime).getTime() - new Date().getTime()) / 1000;
-        let times = matchStartTime / 1000;
+        let times = parseInt(matchStartTime / 1000);
         let msg,
             matchFlag = {isStop: null,isMatch: true};
         var day=0,
@@ -290,8 +291,8 @@ cc.Class({
         // 直接显示在玩法框中
         let wanfa = cc.find('Canvas/rules').getChildByName('label').getComponent(cc.Label);
         // timer = setInterval(function(){
-        setInterval(function(){
-            if(times > 0){
+       let a = setInterval(function(){
+            if(times > 1){
                 day = Math.floor(times / (60 * 60 * 24));
                 hour = Math.floor(times / (60 * 60)) - (day * 24);
                 minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
@@ -306,16 +307,18 @@ cc.Class({
                 cc.sys.localStorage.setItem('matchTime',times*1000)
                 wanfa.string = msg;
             } else {
-                wanfa.string = cc.weijifen.wanfa;
+                wanfa.string = '等待比赛开始' || cc.weijifen.wanfa;
+                cc.sys.localStorage.setItem('timeIsClose','true');
                 cc.sys.localStorage.removeItem('matchFlag'); 
                 cc.sys.localStorage.removeItem('matchTime'); 
                 cc.sys.localStorage.removeItem('matchTime2'); 
-                for (let j = 0;j < 1000;j++) {
+                cc.sys.localStorage.removeItem('appTime'); 
+               /* for (let j = 0;j < 10000;j++) {
                     clearInterval(j);
-                }
+                }*/
+                    clearInterval(a);
                 return
             }
-            console.log('-----------')
         },1000);
     },
     /* 运行平台判断 */
