@@ -120,6 +120,8 @@ cc.Class({
             }
             if(data.maxRound){
                 cc.weijifen.maxRound = data.maxRound;
+            } else if (data.maxRound == 0) {
+                cc.weijifen.maxRound = 1;
             }
             cc.director.preloadScene('majiang',function(){
                 cc.director.loadScene('majiang');
@@ -224,6 +226,8 @@ cc.Class({
             }
             if(data.maxRound){
                 cc.weijifen.maxRound = data.maxRound;
+            }else if (data.maxRound == 0) {
+                cc.weijifen.maxRound = 1;
             }
             cc.director.loadScene("majiang");
         }    

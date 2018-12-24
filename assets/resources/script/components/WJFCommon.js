@@ -225,6 +225,8 @@ cc.Class({
         }
         if(data.maxRound){
             cc.weijifen.maxRound = data.maxRound;
+        }else if (data.maxRound == 0) {
+            cc.weijifen.maxRound = 1;
         }
     },
     /**
