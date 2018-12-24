@@ -12,7 +12,7 @@ cc.Class({
     onLoad: function () {
         // 一下为默认选中的选项
         playerData = "both@@";
-        moShi = "2";
+        moShi = "4";
         userType = "4";
         garams={};
     },

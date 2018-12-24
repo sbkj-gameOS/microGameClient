@@ -311,7 +311,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 17
@@ -779,7 +779,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 210,
+      "x": -81,
       "y": 4
     },
     "_skewX": 0,
@@ -891,7 +891,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 26
@@ -1010,7 +1010,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 210,
+      "width": 224,
       "height": 40
     },
     "_rotationX": 0,
@@ -1047,7 +1047,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "4圈（1张房卡）",
+    "_N$string": "一局（1张房卡）",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -1126,7 +1126,7 @@
         "__id__": 32
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -1167,7 +1167,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 44
@@ -1656,7 +1656,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -192,
-      "y": -197
+      "y": -192
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -4077,7 +4077,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 21,
-      "y": -150
+      "y": -145
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -5585,7 +5585,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 149,
-      "y": 63
+      "y": 86
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -5676,7 +5676,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 149,
-      "y": -86
+      "y": -74
     },
     "_skewX": 0,
     "_skewY": 0,
