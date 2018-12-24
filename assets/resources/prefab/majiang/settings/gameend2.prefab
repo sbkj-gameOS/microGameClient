@@ -451,9 +451,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 88,
-      "b": 9,
+      "r": 97,
+      "g": 169,
+      "b": 231,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -501,7 +501,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "",
+    "_N$string": "dsdsfs",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -540,9 +540,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 96,
-      "b": 75,
+      "r": 209,
+      "g": 197,
+      "b": 53,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -726,9 +726,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 224,
-      "g": 87,
-      "b": 4,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -857,9 +857,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 250,
-      "g": 19,
-      "b": 19,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,

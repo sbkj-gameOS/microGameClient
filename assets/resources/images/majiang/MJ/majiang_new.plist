@@ -20,15 +20,15 @@
             <key>关闭.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{413,1977},{59,59}}</string>
+                <string>{{492,1898},{72,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{59,59}}</string>
+                <string>{{0,0},{72,72}}</string>
                 <key>sourceSize</key>
-                <string>{59,59}</string>
+                <string>{72,72}</string>
             </dict>
             <key>分享.png</key>
             <dict>
@@ -248,7 +248,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dd1ebeb8691f29ef49c4aa1806010bf6:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:7606e58a50459cc312f7ecfdcdeee148:1/1$</string>
             <key>textureFileName</key>
             <string>majiang_new.png</string>
         </dict>

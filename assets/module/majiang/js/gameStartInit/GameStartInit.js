@@ -341,7 +341,7 @@ cc.Class({
          * @param data
          * @param context
          */
-        banker_event:function(data, context){
+        banker_event:function(data, context){//设置庄家id
             context = cc.find('Canvas').getComponent('MJDataBind');
             for(var inx = 0 ; inx<context.playersarray.length ; inx++){
                 let temp = context.playersarray[inx].getComponent("MaJiangPlayer") ;
@@ -1254,7 +1254,8 @@ cc.Class({
     sendChatMsg: function (event) {
         let socket = this.socket();
         let chat = cc.find('Canvas/chat');
-
+        let labels=cc.find("Canvas/chat/New ScrollView/form/label1/New EditBox");
+        let label=labels.getComponent(cc.EditBox);
         let content = JSON.stringify({
             msg: WJFCommon.chatStr,
             username: cc.weijifen.user.username
@@ -1265,6 +1266,8 @@ cc.Class({
             content: content
         }
         socket.emit("sayOnSound" ,JSON.stringify(param)) ;
+        label.string="";
+        label.placeholder="输入些什么";
         chat.active = false;
     },
     /*

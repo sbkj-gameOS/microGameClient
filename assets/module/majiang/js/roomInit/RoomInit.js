@@ -181,7 +181,7 @@ cc.Class({
      * @param  {[Object]}    data 
      * @return {[type]}         
      */
-    returnRoom (context,data,gameStartInitNode) {
+    returnRoom (context,data,gameStartInitNode) {//返回游戏房间
         var playerarray = context.playersarray;
         if(playerarray){
             for(let i =0 ; i< playerarray.length;i++){
@@ -202,7 +202,7 @@ cc.Class({
                         headimg.color = new cc.Color(255, 255, 255);
                     }
                     if(gameStartInitNode.desk_cards.string!='136'){
-                        context.readyNoActive(context);
+                        context.readyNoActive(context);  //剩余牌数小于136说明已经开局，隐藏所有准备状态
                     }
                 }
             }

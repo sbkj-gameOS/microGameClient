@@ -2028,7 +2028,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 1237,
+      "x": 1200,
       "y": 0
     },
     "_skewX": 0,
@@ -2057,7 +2057,7 @@
     "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "暂无公告！",
-    "_N$horizontalAlign": 1,
+    "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
     "_N$overflow": 0

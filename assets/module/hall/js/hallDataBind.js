@@ -178,7 +178,7 @@ cc.Class({
             }
 
             cc.weijifen.http.httpGet('/api/room/queryRoomCard?token='+cc.weijifen.authorization,this.cardsucess,this.carderror,this);
-            this.gundongText();
+            this.gundongText();//公告msg缓动
             //获取是否有新的通知
             // cc.weijifen.http.httpGet('/activity/findActivityListGame?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this);  
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
@@ -331,12 +331,13 @@ cc.Class({
                 clearInterval(timer);
                 return
             }
-            offset_x -= 5;
-            if (-offset_x > text.node.width) {
+            offset_x -= 2.8;
+            var nums=text.node.width+1136;
+            if (-offset_x > nums) {
                 offset_x = 0;
-                text.node.x = 0;
+                text.node.x = 1200;
             } else {
-                text.node.x = offset_x;
+                text.node.x -=3;
             }
         },30);
 	},

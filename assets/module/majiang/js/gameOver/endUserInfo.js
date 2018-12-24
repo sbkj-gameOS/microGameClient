@@ -53,14 +53,14 @@ cc.Class({
             }
         }
         //如果分数低于0的时候就是银色的框
-        if(userInfo.pointCount<0){
-            this.bk.getComponent(cc.Sprite).spriteFrame = this.yinse;
-            // this.huCount.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;
-            // this.dianCount.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;
-            // this.touchBao.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;            
-            // this.bankerCount.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;
+        // if(userInfo.pointCount<0){
+        //     this.bk.getComponent(cc.Sprite).spriteFrame = this.yinse;
+        //     // this.huCount.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;
+        //     // this.dianCount.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;
+        //     // this.touchBao.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;            
+        //     // this.bankerCount.node.parent.getComponent(cc.Sprite).spriteFrame = this.yintiao;
 
-        }
+        // }
         //这个值代表大赢家
         if(this.dyj){
             this.dayingjia.active = true;

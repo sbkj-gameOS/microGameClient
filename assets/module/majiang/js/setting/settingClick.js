@@ -45,7 +45,7 @@ cc.Class({
                     settting_box.runAction(action);
                     layer.active = false;
                 }
-            },300);
+            },60);
           
             // this.node.dispatchEvent( new cc.Event.EventCustom('settingclick', true) );
             // cc.log(settting_box)
