@@ -1102,8 +1102,13 @@ cc.Class({
                 /**
                  * 计时器方向
                  */
-               
-                object.timer(object , 8) ; 
+                if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
+                    object.timer(object , 10) ;             
+                } else {
+                    object.timer(object , 15) ;             
+                }
+
+                // object.timer(object , 8) ; 
                 
                 break   ;
             case "otherplayer" :
