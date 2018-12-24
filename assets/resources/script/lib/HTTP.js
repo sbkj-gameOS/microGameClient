@@ -5,14 +5,14 @@ var HTTP = cc.Class({
     },
     statics: {
         // 测试
-        baseURL:"http://game.daily.bizpartner.cn",
+       /* baseURL:"http://game.daily.bizpartner.cn",
        // wsURL : "http://game.daily.bizpartner.cn:9081",
-        wsURL : "", 
+        wsURL : "", */
         
         // 正式
-        // baseURL:"http://game.bizpartner.cn",
+        baseURL:"http://game.bizpartner.cn",
         // // wsURL : "http://game.bizpartner.cn:9081",
-        // wsURL : "",
+        wsURL : "",
         
 
 
