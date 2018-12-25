@@ -47,6 +47,7 @@ cc.Class({
                     }
                     var laizi = cc.find('Canvas/global/main/godcard/child').children
                     if(laizi){
+                        if(cc.weijifen.GameBase.gameModel =='wz')return;
                         for(let i =0 ; i < laizi.length ; i ++ ){
                             cc.find('Canvas/global/main/godcard/child').children[i].destroy();
                         }

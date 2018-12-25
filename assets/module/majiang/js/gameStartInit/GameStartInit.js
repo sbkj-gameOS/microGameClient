@@ -468,7 +468,7 @@ cc.Class({
                     gameStartInitNode.csNode.active = true;
                     //切换财神图片
                     var sprite = gameStartInitNode.csNode.children[0].getComponent(cc.Sprite);
-                    sprite.spriteFrame = gameStartInitNode.caishenNode;
+                    //sprite.spriteFrame = gameStartInitNode.caishenNode;
                     if(powerCard&&powerCard.length>0){
                         for(let i=0 ; i<cc.find('Canvas/cards/tesucards/baocard/child').children.length;i++){
                             cc.find('Canvas/cards/tesucards/baocard/child').children[i].destroy();
@@ -742,9 +742,9 @@ cc.Class({
                 	cc.director.loadScene('majiang');
             	}
             }
-            if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
-                cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
-            }
+            // if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
+            //     cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
+            // }
             context.closeloadding();
         },
         /*

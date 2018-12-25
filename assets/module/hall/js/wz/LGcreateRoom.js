@@ -78,8 +78,8 @@ cc.Class({
         playerData2 = this.mosiOrpepleClick(event);
     },
     createClick:function(){
-        playerData = playerData.split("@@");
-        playerData.pop();
+        //playerData = playerData.split("@@");
+        //playerData.pop();
         //游戏模式
         garams.player = playerData;
         garams.player2 = playerData2;

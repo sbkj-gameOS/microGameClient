@@ -134,6 +134,7 @@ cc.Class({
         this.dabaopai.active = true;
         let card, baopai;
         if (cc.weijifen.GameBase.gameModel == 'wz') {
+            this.dabaopai.children[3].getComponent(cc.Label).string="";
             if (cc.weijifen.baopai) {
                 for (var i = 0; i < cc.weijifen.baopai.length; i++) {
                     card = cc.instantiate(this.bp);
@@ -159,12 +160,15 @@ cc.Class({
                 list.getComponent('EndCards').setData(userInfo.playOvers[i]);
                 list.parent = this.layout;
                 if (userInfo.playOvers[i].win == false) {
+
                 }
                 if (userInfo.playOvers[i].user == cc.weijifen.user.id) {
                     if (userInfo.playOvers[i].win == true) {
                         this.win.active = true;
                     } else if (userInfo.playOvers[i].count < 0) {
                         this.lose.active = true;
+                    }else if(userInfo.playOvers[i].count > 0){
+                        this.win.active = true;
                     }
                 }
             }

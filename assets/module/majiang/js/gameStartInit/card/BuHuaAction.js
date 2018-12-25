@@ -145,15 +145,15 @@ cc.Class({
         this.target.zIndex = -999+this.value;
     },
     cardcolor:function(){
-        if(cc.sys.localStorage.getItem('cardcolor')=='yellow'){
-            this.target.children[0].active = false;
-            this.target.children[1].active = false;
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='blue'){
-            this.target.children[0].active = true;
-            this.target.children[1].active = false;
-        }else if(cc.sys.localStorage.getItem('cardcolor')=='purple'){
-            this.target.children[0].active = false;
-            this.target.children[1].active = true;
-        }
+        // if(cc.sys.localStorage.getItem('cardcolor')=='yellow'){
+        //     this.target.children[0].active = false;
+        //     this.target.children[1].active = false;
+        // }else if(cc.sys.localStorage.getItem('cardcolor')=='blue'){
+        //     this.target.children[0].active = true;
+        //     this.target.children[1].active = false;
+        // }else if(cc.sys.localStorage.getItem('cardcolor')=='purple'){
+        //     this.target.children[0].active = false;
+        //     this.target.children[1].active = true;
+        // }
     }, 
 });

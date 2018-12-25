@@ -55,7 +55,18 @@ cc.Class({
     },
     /*初始化战况数据*/
     initData () {
-        // cc.weijifen.authorization = "1e62f81123f24f5fa8e7e2f31dfe1455";
+		// cc.weijifen.authorization = "1e62f81123f24f5fa8e7e2f31dfe1455";	
+		if(cc.weijifen.GameBase.gameModel =='ch'){
+            this.mjType.children[0].getComponent(cc.Label).string="长春麻将";
+        }else if(cc.weijifen.GameBase.gameModel =='wz'){
+			this.mjType.children[0].getComponent(cc.Label).string="温州麻将";            
+        }else if(cc.weijifen.GameBase.gameModel =='jx'){
+            this.mjType.children[0].getComponent(cc.Label).string="嘉兴麻将";
+        } else if (cc.weijifen.GameBase.gameModel =='nj') {
+            this.mjType.children[0].getComponent(cc.Label).string="南京麻将";
+        } else if (cc.weijifen.GameBase.gameModel == 'ls') {
+			this.mjType.children[0].getComponent(cc.Label).string="丽水麻将";
+        } 
     	var params = {
             token: cc.weijifen.authorization,
     		type: 1,// 默认约局

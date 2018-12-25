@@ -43,7 +43,10 @@ cc.Class({
             let her = cc.instantiate(value[i]);
             if (name[i] == '月赛') her.y = -98;
             her.parent = he.children[1];
+            var toggle=he.getComponent(cc.Toggle);
+            i==0?toggle.isChecked=true:null;
         }
+
     },
 
 
