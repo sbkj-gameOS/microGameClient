@@ -388,7 +388,9 @@
     "atlas": {
       "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
     },
-    "weijifen0": null,
+    "weijifen0": {
+      "__uuid__": "c80abbb2-c412-4736-96c6-734930fa9dd9"
+    },
     "cardvalue": {
       "__id__": 2
     },
