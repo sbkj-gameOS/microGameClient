@@ -117,7 +117,7 @@ cc.Class({
         this.share.active = true;
         this.gameend.active = false;
         this.close.active = false;
-        this.close1.active = true;
+       // this.close1.active = true;
         var basesprite=this.base.getComponent(cc.Sprite);
         basesprite.spriteFrame= this.layout2Sprite;        
         if (cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function') {
@@ -158,23 +158,23 @@ cc.Class({
             for (let i = 0; i < userInfo.playOvers.length; i++) {
                 var list = cc.instantiate(this.list);
                 list.getComponent('EndCards').setData(userInfo.playOvers[i]);
-                list.parent = this.layout;
-                if (userInfo.playOvers[i].win == false) {
-
-                }
+                list.parent = this.layout;              
                 if (userInfo.playOvers[i].user == cc.weijifen.user.id) {
                     if (userInfo.playOvers[i].win == true) {
                         this.win.active = true;
-                    } else if (userInfo.playOvers[i].count < 0) {
+                        this.lose.active = false;
+                        this.liuju.active = false;
+                    } else{
                         this.lose.active = true;
-                    }else if(userInfo.playOvers[i].count > 0){
-                        this.win.active = true;
-                    }
+                        this.win.active = false;
+                        this.liuju.active = false;
+                    }                   
                 }
             }
             if (userInfo.unHu == true) {
                 this.liuju.active = true;
                 this.lose.active = false;
+                this.win.active = false;
             }
         }
 

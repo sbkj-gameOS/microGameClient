@@ -46,6 +46,8 @@ cc.Class({
         // cc.weijifen.http.httpGet('? ='+cc.weijifen.GameBase.gameModel+'& ='+platForm,self.getParam,self.error,self) ;  
         if(cc.weijifen.GameBase.gameModel =='wz'){
             sprite.spriteFrame = this.WZLogo;
+            this.loginLogoNode.width=440;
+            this.loginLogoNode.height=150;
         }else if(cc.weijifen.GameBase.gameModel == 'ch'){
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮

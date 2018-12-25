@@ -439,9 +439,10 @@ cc.Class({
 	                //LZH.init(-4);
 	                laiziFM.parent = gameStartInitNode.godcard.children[1];
 	            }
-	            // if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
-	            // 	cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
-	            // }
+	            if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
+					if(cc.weijifen.GameBase.gameModel =='wz')return;
+	            	cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
+	            }
 	        }
 	    },
 	    select_action_searchlight:function(data , context , player){
