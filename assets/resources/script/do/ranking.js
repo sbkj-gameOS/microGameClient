@@ -9,7 +9,7 @@ cc.Class({
     },
     onLoad() {
         var self = this;
-        cc.weijifen.authorization = "fce05d5cba664ff696bcf9d25b68bdac";
+        // cc.weijifen.authorization = "fce05d5cba664ff696bcf9d25b68bdac";
         this.scrollNode.on("touch-up", this.onScrollViewBounceTop, this);
         this.scrollNode.on("bounce-bottom", this.onScrollViewBounceBottom, this);
         //获取次数
