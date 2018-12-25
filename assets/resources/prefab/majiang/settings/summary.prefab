@@ -376,7 +376,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 4
+      "y": 8
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -879,7 +879,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 44,
       "height": 40
     },
     "_rotationX": 0,
@@ -889,7 +889,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 67.5,
-      "y": 6
+      "y": 7
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -916,7 +916,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "10",
+    "_N$string": "20",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -978,7 +978,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 6
+      "y": 9
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1478,7 +1478,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 6
+      "y": 9
     },
     "_skewX": 0,
     "_skewY": 0,
