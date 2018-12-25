@@ -3622,7 +3622,7 @@
       "__id__": 13
     },
     "component": "suClick",
-    "handler": "endclick",
+    "handler": "onBGClick",
     "customEventData": ""
   },
   {
