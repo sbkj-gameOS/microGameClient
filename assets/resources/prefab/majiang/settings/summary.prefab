@@ -1231,10 +1231,10 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 6,
     "_N$paddingRight": 0,
-    "_N$paddingTop": 0,
-    "_N$paddingBottom": 0,
+    "_N$paddingTop": 1,
+    "_N$paddingBottom": 5,
     "_N$spacingX": 5,
-    "_N$spacingY": 0,
+    "_N$spacingY": 9,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
