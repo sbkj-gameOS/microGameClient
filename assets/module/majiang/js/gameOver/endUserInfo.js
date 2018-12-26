@@ -147,6 +147,8 @@ cc.Class({
                 },1000);
             }
 
+        } else {
+            cc.sys.localStorage.setItem('matchOver','true');
         }
     //     this.username.string = userInfo.userName;
     //     if(userInfo.cur != 'true' ){
