@@ -135,6 +135,8 @@ cc.Class({
         let card, baopai;
         if (cc.weijifen.GameBase.gameModel == 'wz') {
             this.dabaopai.children[3].getComponent(cc.Label).string="";
+            this.dabaopai.children[1].y+=65;
+            this.dabaopai.children[2].y+=65;
             if (cc.weijifen.baopai) {
                 for (var i = 0; i < cc.weijifen.baopai.length; i++) {
                     card = cc.instantiate(this.bp);

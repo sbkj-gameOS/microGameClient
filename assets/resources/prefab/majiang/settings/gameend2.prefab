@@ -870,7 +870,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 16,
+      "width": 0,
       "height": 40
     },
     "_rotationX": 0,
@@ -907,7 +907,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "-",
+    "_N$string": "",
     "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -1848,7 +1848,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 59
@@ -1883,8 +1883,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -464.1,
-      "y": -17.3
+      "x": -535,
+      "y": 44
     },
     "_skewX": 0,
     "_skewY": 0,
