@@ -678,8 +678,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 24,
-      "y": 44
+      "x": 7.2,
+      "y": 17.3
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -819,9 +819,7 @@
     "b_zhu": {
       "__uuid__": "5b899056-bedc-4b7a-aea6-aefb94e81bf8"
     },
-    "hua": {
-      "__id__": 20
-    }
+    "hua": null
   },
   {
     "__type__": "cc.PrefabInfo",

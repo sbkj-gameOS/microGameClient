@@ -143,6 +143,9 @@ cc.Class({
     },
 
     caishenCards: function(){
+        if(this.hua==null){
+            return;
+        }
         this.hua.active = true;
         this.target.zIndex = -999+this.value;
     },
