@@ -42,6 +42,7 @@ cc.Class({
             cc.find("Canvas/match/title/right/card/roomCard").getComponent(cc.Label).string = cc.weijifen.user.cards;
         },1000);
 
+        // var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"},{"type":"5","value":"娃哈哈"}];
         var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"}];
         for(var i = 0; i < json.length; i++){
             var leftBtnList = cc.find("Canvas/match/count/leftbtn");

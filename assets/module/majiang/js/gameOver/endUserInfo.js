@@ -134,7 +134,7 @@ cc.Class({
                     }*/
                     box.parent = cc.find('Canvas');
                     box.zIndex = 1000000000;
-                    cc.sys.localStorage.removeItem('matchOver');
+                    // cc.sys.localStorage.removeItem('matchOver');
                     clearTimeout(timer1);
                 },1000);
             } else {

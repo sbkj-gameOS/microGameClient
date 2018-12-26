@@ -184,7 +184,7 @@ cc.Class({
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
 
         }
-
+        cc.sys.localStorage.removeItem('matchOver');
         cc.weijifen.iPayBack = function(result) {
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
