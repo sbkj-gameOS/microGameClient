@@ -147,14 +147,18 @@ cc.Class({
         },
     },
     onLoad: function () {
+        if (cc.sys.localStorage.getItem('matchOver') == 'true') {
+            cc.director.loadScene('gameMain');
+            cc.sys.localStorage.removeItem('matchOver');
+            cc.sys.localStorage.removeItem("jiesanTime");
+            return
+        }
         var listenFlag,hasAlert;// 网络情况，是否有网络提示
         let self = this ;
         cc.weijifen.mp3Music = cc.weijifen.audio.getSFXVolume();
         this.actionBox.zIndex = 1000;
         cc.weijifen.isPLayVideo = false;
         this.yuyin_flag;
-        cc.sys.localStorage.removeItem('matchOver');
-        cc.sys.localStorage.removeItem("jiesanTime");
         //let socket = this.socket(self);
         self.msg = null;//反作弊提示信息
         // 初始化对象池
@@ -283,7 +287,9 @@ cc.Class({
             }
             socket.on("OverPosition",function(result){
                 cc.sys.localStorage.setItem('matchOver','true');
-                cc.sys.localStorage.setItem('matchPrize',result);
+                typeof result == 'object' ? cc.sys.localStorage.setItem('matchPrize',JSON.stringify(result)) 
+                                          : cc.sys.localStorage.setItem('matchPrize',result);
+
             })
             socket.on("play",function(result){
                 var data = self.getSelf().parse(result);

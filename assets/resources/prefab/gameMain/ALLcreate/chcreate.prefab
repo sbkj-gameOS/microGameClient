@@ -1859,7 +1859,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 207,
+      "width": 224,
       "height": 40
     },
     "_rotationX": 0,
@@ -1896,7 +1896,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "1把（1张房卡）",
+    "_N$string": "一局（1张房卡）",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

@@ -109,6 +109,8 @@ cc.Class({
                 box.zIndex = 1;
                 cc.sys.localStorage.removeItem('matchOver');
                 cc.sys.localStorage.removeItem('prizeBoxData');
+            } else {
+                cc.sys.localStorage.removeItem('matchOver');
             }
             // 牌局类型
             if (cc.weijifen.GameBase.gameModel == 'ch') {
@@ -184,7 +186,6 @@ cc.Class({
             cc.weijifen.http.httpGet('/gameAnnouncement/findAnno?token='+cc.weijifen.authorization,this.tzsucess,this.tzerror,this) ;            
 
         }
-
         cc.weijifen.iPayBack = function(result) {
             result = encodeURIComponent(result);
             cc.weijifen.http.httpGet('/ipay/checkSign?sign='+result,self.signSucess,self.signError,self);
