@@ -11,6 +11,7 @@ cc.Class({
         mjkong:cc.Node,
         jifan:cc.Label,
         card:cc.Prefab,// 牌面
+        cards:cc.Prefab,// 牌面
         win:cc.Node,
         hu: cc.Label,
         dong:cc.Node,
@@ -302,11 +303,11 @@ cc.Class({
                     setCardSize(b.target.children);
                     card.parent = kong; 
                 }else{
-
+                    let card = cc.instantiate(this.hua);   
                     let b = card.getComponent('BuHuaAction');
                     b.init(this.data.balance.huCard,'',true);
                     b.target.height = 53;
-                    b.target.width= 32;
+                    b.target.width= 32;                   
                     setCardSize(b.target.children);
               
                     card.parent = kong; 
