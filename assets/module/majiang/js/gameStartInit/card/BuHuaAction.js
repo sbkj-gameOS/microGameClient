@@ -105,41 +105,40 @@ cc.Class({
                 deskcard = fw+"_red";
                 cardframe = this.weijifen0.getSpriteFrame(deskcard);
                 this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
-            }else if(cvalue <= -4 && cvalue >= -7){
-                deskcard = fw+'_white';//白
             }
             if(dd&&(cardcolors == csCardColors1 || (csCardColors2!=null &&cardcolors == csCardColors2)||(this.value>=-39&&this.value<=-36))){
                 this.caishenCards();
             }
         }
-        // else{
-        //     if(cvalue==-38){
-        //         deskcard = fw+'_autumn';//秋
-        //     } else if(cvalue==-35){
-        //         deskcard = fw+'_bamboo';//竹
-        //     } else if(cvalue==-34){
-        //         deskcard = fw+'_chrysanthemum';//菊
-        //     } else if(cvalue==-33){
-        //         deskcard = fw+'_orchid';//兰
-        //     } else if(cvalue == -32){
-        //         deskcard = fw+'_plum';//梅
-        //     }else if(cvalue == -36){
-        //         deskcard = fw+'_spring';//春
-        //     }else if(cvalue == -37){
-        //         deskcard = fw+'_summer';//夏
-        //     }else if(cvalue == -39){
-        //         deskcard = fw+'_winter';//冬
-        //     }else if(cvalue <= -4 && cvalue >= -7){
-        //         deskcard = fw+'_white';//白
-        //     }else if(cvalue <= -8 && cvalue >= -11){//发财
-        //         deskcard = fw+"_green";
-        //     }else if(cvalue <= -12 && cvalue >= -15){//红中
-        //         deskcard = fw+"_red";
-        //     }
-            
-        //     cardframe = this.weijifen0.getSpriteFrame(deskcard);
-        //     this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
-        // }
+       if(fw!='B'){
+            if(cvalue==-38){
+                deskcard = fw+'_autumn';//秋
+            } else if(cvalue==-35){
+                deskcard = fw+'_bamboo';//竹
+            } else if(cvalue==-34){
+                deskcard = fw+'_chrysanthemum';//菊
+            } else if(cvalue==-33){
+                deskcard = fw+'_orchid';//兰
+            } else if(cvalue == -32){
+                deskcard = fw+'_plum';//梅
+            }else if(cvalue == -36){
+                deskcard = fw+'_spring';//春
+            }else if(cvalue == -37){
+                deskcard = fw+'_summer';//夏
+            }else if(cvalue == -39){
+                deskcard = fw+'_winter';//冬
+            }else if(cvalue <= -4 && cvalue >= -7){
+                deskcard = fw+'_white';//白
+            }else if(cvalue <= -8 && cvalue >= -11){//发财
+                deskcard = fw+"_green";
+            }else if(cvalue <= -12 && cvalue >= -15){//红中
+                deskcard = fw+"_red";
+            }else if(cvalue <= -4 && cvalue >= -7){
+                deskcard = fw+'_white';//白
+            }            
+            cardframe = this.weijifen0.getSpriteFrame(deskcard);
+            this.target.getComponent(cc.Sprite).spriteFrame = cardframe;
+        }
     },
 
     caishenCards: function(){
