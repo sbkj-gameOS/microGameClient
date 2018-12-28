@@ -79,6 +79,7 @@ cc.Class({
     },
 
     onLoad: function () {
+        var self = this;
         // 比赛倒计时显示
         let dataStr = cc.sys.localStorage.getItem('matchData');
         var appTime = cc.sys.localStorage.getItem('appTime');
@@ -92,6 +93,18 @@ cc.Class({
             }
             cc.weijifen.http.httpPost('/match/timeWait',params,matchJs.joinSuccess,matchJs.joinErr,matchJs) ;            
             cc.sys.localStorage.setItem('gotWsUrl','true');
+        }
+        if (cc.sys.localStorage.getItem('matchType') == 5 && !cc.sys.localStorage.getItem('isPlay')) {
+            if (!cc.sys.localStorage.getItem('zuomangjikai') || cc.sys.localStorage.getItem('zuomangjikai') == '1' && cc.sys.localStorage.getItem('zuomangjikai2') == 'true' || cc.sys.localStorage.getItem('zuomangjikai') == '0' && cc.sys.localStorage.getItem('zuomangjikai2') == '0') {
+                getSokectUrl();
+                if (!cc.sys.localStorage.getItem('zuomangjikai')) {
+                    cc.sys.localStorage.setItem('zuomangjikai','true');                
+                    cc.sys.localStorage.setItem('zuomangjikai2','true');                
+                }
+                this.emojiObjFlag = false;
+                cc.weijifen.endMatchFlag = 0;
+            }
+            return
         }
         if (dataStr && this.countDown && cc.sys.localStorage.getItem('matchTime')) {
             var date = new Date().getTime();
@@ -367,10 +380,14 @@ cc.Class({
          */
         play_event:function(data , context, self){
         	self = this;
+            if (cc.sys.localStorage.getItem('isPlay') == 'true') {
+                cc.sys.localStorage.setItem('zuomangjikai','1');
+            }
         	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
         	var gameStartInit = require('GameStartInit');
             cc.sys.localStorage.setItem('isPlay','true');
             cc.sys.localStorage.setItem('isGotwsurlPlay','true');
+            cc.weijifen.zuomangjikai = null;
             gameStartInit.readyTrue('current');
             gameStartInit.readyTrue('right');
             gameStartInit.readyTrue('top');
@@ -712,40 +729,38 @@ cc.Class({
                         }
                     }
                 }
-
-                //当前玩家补花 data.player
-	            var buhua;
-	            if(temp_player.buHua && temp_player.buHua.length){
-	                // buhua = context.decode(temp_player.buHua);//补花
-	                buhua = temp_player.buHua;
-	                let temp = gameStartInit.player(temp_player.playuser, context);
-	                for(var i = 0;i<buhua.length;i++){
-	                    gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
-	                }
-	            }
-
-	            //其他玩家补花 data.players
-	            for(var i = 0; i <data.players.length;i++){
-	                if(data.players[i].buHua){
-	                    // buhua = context.decode(data.players[i].buHua);//补花
-	                    buhua = data.players[i].buHua;
-	                    let temp = gameStartInit.player(data.players[i].playuser, context);
-	                    for(var j = 0;j<buhua.length;j++){
-	                        gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
-	                    }
-	                }
-	            }
-
                 
 
                 if (gameStartInitNode.head_right_parent.children.length > 5) {
-                	cc.director.loadScene('majiang');
-            	}
+                    cc.director.loadScene('majiang');
+                }
             }
-            // if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1) {
-            //     cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
-            // }
+            //当前玩家补花 data.player
+            var buhua;
+            if(temp_player.buHua && temp_player.buHua.length){
+                // buhua = context.decode(temp_player.buHua);//补花
+                buhua = temp_player.buHua;
+                let temp = gameStartInit.player(temp_player.playuser, context);
+                for(var i = 0;i<buhua.length;i++){
+                    gameStartInit.buhuaModle(buhua[i],temp.tablepos,'',temp.tablepos,context,"");
+                }
+            }
+
+            //其他玩家补花 data.players
+            for(var i = 0; i <data.players.length;i++){
+                if(data.players[i].buHua){
+                    // buhua = context.decode(data.players[i].buHua);//补花
+                    buhua = data.players[i].buHua;
+                    let temp = gameStartInit.player(data.players[i].playuser, context);
+                    for(var j = 0;j<buhua.length;j++){
+                        gameStartInit.buhuaModle(buhua[j],temp.tablepos,'',temp.tablepos,context,"");
+                    }
+                }
+            }
             context.closeloadding();
+            if (cc.find('Canvas/cards/tesucards/baocard/child').children.length > 1 && cc.weijifen.GameBase.gameModel == 'ch') {
+                cc.find('Canvas/cards/tesucards/baocard/child').children[1].destroy();
+            }
         },
         /*
          *渲染玩家吃 碰 杠 蛋 等数据 

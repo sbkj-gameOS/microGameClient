@@ -147,9 +147,10 @@ cc.Class({
                 },1000);
             }
 
-        } else {
+        } else /*{
             cc.sys.localStorage.setItem('matchOver','true');
-        }
+        }*/
+        cc.sys.localStorage.removeItem('matchType');
     //     this.username.string = userInfo.userName;
     //     if(userInfo.cur != 'true' ){
     //         this.myself.active = false;

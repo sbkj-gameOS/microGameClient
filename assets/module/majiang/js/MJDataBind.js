@@ -147,7 +147,7 @@ cc.Class({
         },
     },
     onLoad: function () {
-        if (cc.sys.localStorage.getItem('matchOver') == 'true') {
+        if (cc.sys.localStorage.getItem('matchOver') == 'true' || cc.weijifen.room == null) {
             cc.director.loadScene('gameMain');
             cc.sys.localStorage.removeItem('matchOver');
             cc.sys.localStorage.removeItem("jiesanTime");
@@ -189,7 +189,7 @@ cc.Class({
                 self.headImg(self.headImgCenter.getChildByName('img'),cc.weijifen.user.headimgurl,true,true);
             }
         }
-        if (cc.sys.localStorage.getItem('gotWsUrl') || cc.sys.localStorage.getItem('isPlay') || cc.weijifen.match == 'false') {
+        if (cc.sys.localStorage.getItem('gotWsUrl') || cc.sys.localStorage.getItem('isPlay') || cc.weijifen.match == 'false' || cc.sys.localStorage.getItem('matchType') == 5) {
             var socket = this.connect() ;
             socket.on('connect', function () {
                 self.playerIsReady(self);
@@ -744,6 +744,13 @@ cc.Class({
             cc.sys.localStorage.removeItem('clear');   
             cc.sys.localStorage.removeItem('cb');   
             cc.sys.localStorage.removeItem('timeIsClose');
+            if (cc.sys.localStorage.getItem('zuomangjikai') == '1') {
+                cc.sys.localStorage.setItem('zuomangjikai','0');
+                cc.sys.localStorage.setItem('zuomangjikai2','0');
+            } if (cc.sys.localStorage.getItem('zuomangjikai') == 'true' && cc.sys.localStorage.getItem('zuomangjikai2') == 'true') {
+                cc.sys.localStorage.getItem('zuomangjikai') == '1'
+            }
+
         }
         if (cc.weijifen.match != 'false' && cc.sys.localStorage.getItem('appTime')) {
             cc.game.on(cc.game.EVENT_SHOW, function () {

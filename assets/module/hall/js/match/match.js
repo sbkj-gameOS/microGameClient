@@ -38,11 +38,15 @@ cc.Class({
             if(seconds>= 0 && seconds <= 9){
                 seconds = "0"+seconds;
             }
+            if (!cc.find('Canvas/match/title/left/time')) {
+                clearInterval(match_timer);
+                return
+            }
             cc.find("Canvas/match/title/left/time").getComponent(cc.Label).string = hour+":"+minutes+":"+seconds;
             cc.find("Canvas/match/title/right/card/roomCard").getComponent(cc.Label).string = cc.weijifen.user.cards;
         },1000);
 
-        // var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"},{"type":"5","value":"娃哈哈"}];
+        // var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"},{"type":"5","value":"坐满开"}];
         var json = [{"type":"2","value":"日赛"},{"type":"4","value":"月赛"}];
         for(var i = 0; i < json.length; i++){
             var leftBtnList = cc.find("Canvas/match/count/leftbtn");
@@ -77,6 +81,7 @@ cc.Class({
         this.getListData(this.btnSelectData);
     },
     getListData:function(type){
+        cc.sys.localStorage.setItem('matchType',type);
         var parent = cc.find("Canvas/match/count/right/background-right/lists/view/content");
         parent.removeAllChildren();
         let token = {token:cc.weijifen.authorization};
@@ -87,6 +92,7 @@ cc.Class({
     * activiteType值为2，日赛；4为月赛
     */
     getListSuccess: function (res,object) {
+
         let flag;   
         let data = JSON.parse(res);
         if (!data.success) return;
@@ -127,11 +133,15 @@ cc.Class({
         // 当前比赛信息存放在缓存中
         cc.sys.localStorage.setItem('matchData',listData);
         let data = JSON.parse(listData);
+        cc.sys.localStorage.setItem('activityId',data.id);
+        if (cc.sys.localStorage.getItem('matchType') == 5) {
+            this.signUp();
+            return
+        }
         let params = {
             token: cc.weijifen.authorization,
             activityId: data.id
         }
-        cc.sys.localStorage.setItem('activityId',data.id);
         // 判断是否时VIP，是否是VIP场
         cc.weijifen.http.httpPost('/gameNotice/check_activity_vip',params,function(res,obj){
             let data = JSON.parse(res);
@@ -144,6 +154,10 @@ cc.Class({
         },self.joinErr,self);
     },
     joinSuccess: function (res,obj) {
+
+        if (!cc.sys.localStorage.getItem('isPlay') && cc.find('Canvas/player_head')) {
+            cc.find('Canvas/player_head').destroy();
+        }
         var res = JSON.parse(res);
         if (res.statrtSec)  {
             cc.sys.localStorage.setItem('matchTime',res.statrtSec);//比赛开始的毫秒数
@@ -161,6 +175,7 @@ cc.Class({
             obj.alert(res.msg);
 
             let menuToggle = cc.find('Canvas/js/menuToggle');
+            if (!menuToggle) return;
             let me = menuToggle.getComponent('menuToggle');
             me.openMatchDetail(obj.node.getComponent('match'));
         } else {
@@ -183,6 +198,11 @@ cc.Class({
     * 报名
     */
     signUp: function () {
+        if (cc.sys.localStorage.getItem('matchType') == 5) {
+            cc.director.loadScene('majiang');
+            cc.weijifen.match = 'true';
+            return
+        }
         var obj = this;
         let activityId = cc.sys.localStorage.getItem('activityId');
         let params = {

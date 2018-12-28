@@ -11,8 +11,8 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // 一下为默认选中的选项
-        playerData = "both@@";
-        moShi = "4";
+        playerData = "both@@bandgap@@xjmissile@@sfmissile@@xdszl";
+        moShi = "0";
         userType = "4";
         garams={};
     },

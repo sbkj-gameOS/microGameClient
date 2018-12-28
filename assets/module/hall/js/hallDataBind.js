@@ -109,11 +109,11 @@ cc.Class({
                 box.zIndex = 1;
                 cc.sys.localStorage.removeItem('matchOver');
                 cc.sys.localStorage.removeItem('prizeBoxData');
-            } else {
+            } /*else {
                 cc.sys.localStorage.removeItem('matchOver');
-            }
+            }*/
             // 牌局类型
-            if (cc.weijifen.GameBase.gameModel == 'ch') {
+            /*if (cc.weijifen.GameBase.gameModel == 'ch') {
                 //获取要更换的图片
                 var object = this.chJoinRoomImg;
                 //获取更换图片地址
@@ -121,7 +121,7 @@ cc.Class({
                 //图片地址内的图片路径 = 要更换的图片路径
                 sprite.spriteFrame = object;
                 sprite.node.width = 166;
-            }
+            }*/
             if (cc.weijifen.GameBase.gameModel != 'ch') {
                 cc.find('Canvas/main/menu/top/logo').active = false
             }
@@ -287,8 +287,8 @@ cc.Class({
             // var res = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "shareParam","");
             var res = jsb.reflection.callStaticMethod(...object.anMethodParam().shareParam,"");
             // object.alert("res:"+res);
-            if(res){
-                var result1 = JSON.parse(res);
+            var result1 = JSON.parse(res);
+            if(res && res.roomNum){
                 if (object.clientPlatForm() == 'IOS') {
                     cc.weijifen.shareRoomNum = res;
                 } else if (object.clientPlatForm() == 'ANDROID' && result1.code != "10086" && result1.roomNum) {

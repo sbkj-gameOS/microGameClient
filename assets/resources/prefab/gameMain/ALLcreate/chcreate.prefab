@@ -894,7 +894,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 26
@@ -1001,8 +1001,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 210,
-      "b": 90,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1129,7 +1129,7 @@
         "__id__": 32
       }
     ],
-    "_N$isChecked": true
+    "_N$isChecked": false
   },
   {
     "__type__": "cc.ClickEvent",
@@ -1740,7 +1740,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 52
@@ -1847,8 +1847,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 210,
+      "b": 90,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1975,7 +1975,7 @@
         "__id__": 58
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -2767,7 +2767,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 84
@@ -2874,8 +2874,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 210,
+      "b": 90,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3000,7 +3000,7 @@
         "__id__": 90
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -3188,7 +3188,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 97
@@ -3295,8 +3295,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 210,
+      "b": 90,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3421,7 +3421,7 @@
         "__id__": 103
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -3609,7 +3609,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 110
@@ -3716,8 +3716,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 210,
+      "b": 90,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -3842,7 +3842,7 @@
         "__id__": 116
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -4030,7 +4030,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 123
@@ -4137,8 +4137,8 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 210,
+      "b": 90,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -4263,7 +4263,7 @@
         "__id__": 129
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
