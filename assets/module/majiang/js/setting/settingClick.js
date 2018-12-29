@@ -203,7 +203,8 @@ cc.Class({
             cc.sys.localStorage.removeItem('overClickTime');
             cc.sys.localStorage.removeItem('isPlay');
             cc.sys.localStorage.removeItem('gotWsUrl');
-            cc.sys.localStorage.removeItem('isGotwsurlPlay');
+            cc.sys.localStorage.removeItem('zuomangjikai');
+            cc.sys.localStorage.removeItem('zuomangjikai2');
             
         },
         endGameOver: function(data,context){

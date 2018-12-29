@@ -754,6 +754,7 @@ cc.Class({
         }
         if (cc.weijifen.match != 'false' && cc.sys.localStorage.getItem('appTime')) {
             cc.game.on(cc.game.EVENT_SHOW, function () {
+                if(self.clientPlatForm() == 'IOS') self.setCountDown();
                 self.reloadMaJiang();
             });
             cc.game.on(cc.game.EVENT_HIDE, function () {
@@ -1513,26 +1514,37 @@ cc.Class({
             // userId  状态发生改变的用户id
             // status  用户状态
             function playerId (player,userId,status) {
-                let id;
+                let id,parent;
+                player.children.length > 5 ? parent = player : parent = player.children[4];
                 if (player.children[4]) {
-                    id = player.children[4].getChildByName('id').getComponent(cc.Label).string;
+                    id = parent.getChildByName('id').getComponent(cc.Label).string;
                     if (status == 0 && id == userId) {
-                        player.children[4].getChildByName('off_line_sign').active = false;
-                        player.children[4].getChildByName('callingSign').active = false;
-                        player.children[4].children[1].color = new cc.Color(255,255,255);
+                        parent.getChildByName('off_line_sign').active = false;
+                        parent.getChildByName('callingSign').active = false;
+                        parent.children[1].color = new cc.Color(255,255,255);
                     } else if(status == 1 && id == userId) {
-                        player.children[4].getChildByName('off_line_sign').active = true;
-                        player.children[4].getChildByName('callingSign').active = false;
-                        player.children[4].children[1].color = new cc.Color(100,100,100);
+                        parent.getChildByName('off_line_sign').active = true;
+                        parent.getChildByName('callingSign').active = false;
+                        parent.children[1].color = new cc.Color(100,100,100);
                     } else if(status == 2 && id == userId) {
-                        player.children[4].getChildByName('off_line_sign').active = false;
-                        player.children[4].getChildByName('callingSign').active = true;
-                        player.children[4].children[1].color = new cc.Color(100,100,100);
+                        parent.getChildByName('off_line_sign').active = false;
+                        parent.getChildByName('callingSign').active = true;
+                        parent.children[1].color = new cc.Color(100,100,100);
                     }
                 }
             }
             function stateFn (userId,status) {
-                if (num == 2) {
+                if (userId == cc.sys.localStorage.getItem('current')) {
+                    playerId(cc.find('Canvas/player_head'),userId,status);
+                } else  if (userId == cc.sys.localStorage.getItem('right')) {
+                    playerId(obj.right_player,userId,status);
+                } else if (userId == cc.sys.localStorage.getItem('top')) {
+                    playerId(obj.top_player,userId,status);
+                } else if (userId == cc.sys.localStorage.getItem('left')) {
+                    playerId(obj.left_player,userId,status);
+                }
+               
+               /* if (num == 2) {
                     playerId(obj.top_player,userId,status);
                     return
                 }
@@ -1546,7 +1558,7 @@ cc.Class({
                     playerId(obj.top_player,userId,status);
                     playerId(obj.left_player,userId,status);
                     return
-                }
+                }*/
             }
             let num = cc.weijifen.playerNum;
             let time = setTimeout(function(){
