@@ -312,7 +312,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 353
+      "y": 341
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -783,7 +783,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -14
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -886,7 +886,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -219,
-      "y": -20
+      "y": -34
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1248,9 +1248,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 214,
+      "g": 29,
+      "b": 29,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -1270,8 +1270,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -85,
-      "y": 2
+      "x": -539,
+      "y": -15
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1289,12 +1289,14 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 60,
-    "_fontSize": 60,
+    "_actualFontSize": 44,
+    "_fontSize": 44,
     "_lineHeight": 70,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "185e12d2-e6c0-4c11-a01e-a54dcd99a262"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_N$string": "",
     "_N$horizontalAlign": 1,
@@ -1369,7 +1371,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -219,
-      "y": 88
+      "y": 73
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1457,8 +1459,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 167,
-      "y": -3
+      "x": 137,
+      "y": -16
     },
     "_skewX": 0,
     "_skewY": 0,
