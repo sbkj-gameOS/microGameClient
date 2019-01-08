@@ -175,6 +175,11 @@ cc.Class({
             if(data.players.length == 1){
                 cc.sys.localStorage.setItem("roomNo1",cc.weijifen.user.id);
             }
+            if(data.players.length==4){//所有玩家准备好发牌时渲染的players数组里的玩家信息和刷新时的data.players里的顺序不一致，这里更正
+                var mid=data.players[1];
+                data.players[1]=data.players[2];
+                data.players[2]=mid;
+            }
             context = cc.find("Canvas").getComponent("MJDataBind");
             var gameStartInit = require('GameStartInit');
             // gameStartInit.playersData(data);
@@ -1037,24 +1042,25 @@ cc.Class({
             var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             let parent = gameStartInitNode.right_panel;
             let cardarray = context.rightcards;
-            let prefab = gameStartInitNode.cards_right ;
+            let prefab;
+            cc.sys.localStorage.getItem("replayData") == null? prefab = gameStartInitNode.cards_right:prefab = gameStartInitNode.takecards_right ;
             if(peoNum == 2){
                 parent = gameStartInitNode.top_panel  ;
                 cardarray = context.topcards   ;
-                prefab = gameStartInitNode.cards_top ;
+                cc.sys.localStorage.getItem("replayData") == null? prefab = gameStartInitNode.cards_top:prefab = gameStartInitNode.takecards_one ;
             }else if(peoNum ==3&&inx ==1){
                 parent = gameStartInitNode.top_panel  ;
                 cardarray = context.topcards   ;
-                prefab = gameStartInitNode.cards_top ;
+                cc.sys.localStorage.getItem("replayData") == null? prefab = gameStartInitNode.cards_top:prefab = gameStartInitNode.takecards_one ;
             }else{   
                 if(inx == 1){
                     parent = gameStartInitNode.top_panel  ;
                     cardarray = context.topcards   ;
-                    prefab = gameStartInitNode.cards_top ;
+                    cc.sys.localStorage.getItem("replayData") == null? prefab = gameStartInitNode.cards_top:prefab = gameStartInitNode.takecards_one ;
                 }else if(inx == 2){
                     parent = gameStartInitNode.left_panel  ;
                     cardarray = context.leftcards;
-                    prefab = gameStartInitNode.cards_left ;
+                    cc.sys.localStorage.getItem("replayData") == null? prefab = gameStartInitNode.cards_left:prefab = gameStartInitNode.takecards_left ;
                 }
             }
             /*if (peoNum == 3 && cc.weijifen.match == 'true') {

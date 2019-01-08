@@ -219,6 +219,8 @@ cc.Class({
                 self.map("gameOver",settingClick.gameOver_event,self);
                 self.map("over" , settingClick.over_event,self);
                 self.map("unOver" , settingClick.unOver_event,self);
+
+               
             });
             // if(this.ready()){
             //     let socket = this.socket();
@@ -306,14 +308,34 @@ cc.Class({
                     //cc.log('h_cards2手牌---',h_cards2.length);
                     // data.cards.push(36);// 测试数据
                     // data.cards.splice(2,1);// 测试数据
-                    cc.director.loadScene('majiang');
-                    self.mask.active = true;
-                    let time = setTimeout(function(){
-                        if (self.mask) {
-                            self.mask.active = false;
-                        }
-                        clearTimeout(time);
-                    },3000);
+                    h_cards2.removeAllChildren();
+                    self.playercards=new Array();
+                    for(var i=0 ; i< data.cards.length ; i++){
+                        if(self.cardpool){
+                            let temp = self.cardpool.get();
+                            if(temp==undefined||temp==null){
+                                temp=cc.instantiate(self.cards_current);
+                            }
+                            let temp_script = temp.getComponent("HandCards") ;
+                            if(data.cards[i] >= 0){
+                                temp.zIndex = data.cards[i] ;
+                            }else{
+                                temp.zIndex = 200+data.cards[i] ;
+                            }
+                            self.playercards.push(temp);
+                            temp_script.init(data.cards[i]);
+                            temp.parent =h_cards2 ;
+                        }   
+                    }
+                    h_cards2.sortAllChildren();
+                  //  cc.director.loadScene('majiang');
+                    // self.mask.active = true;
+                    // let time = setTimeout(function(){
+                    //     if (self.mask) {
+                    //         self.mask.active = false;
+                    //     }
+                    //     clearTimeout(time);
+                    // },3000);
                 }
             })
 
@@ -754,7 +776,6 @@ cc.Class({
         }
         if (cc.weijifen.match != 'false' && cc.sys.localStorage.getItem('appTime')) {
             cc.game.on(cc.game.EVENT_SHOW, function () {
-                if(self.clientPlatForm() == 'IOS') self.setCountDown();
                 self.reloadMaJiang();
             });
             cc.game.on(cc.game.EVENT_HIDE, function () {
@@ -1514,37 +1535,26 @@ cc.Class({
             // userId  状态发生改变的用户id
             // status  用户状态
             function playerId (player,userId,status) {
-                let id,parent;
-                player.children.length > 5 ? parent = player : parent = player.children[4];
+                let id;
                 if (player.children[4]) {
-                    id = parent.getChildByName('id').getComponent(cc.Label).string;
+                    id = player.children[4].getChildByName('id').getComponent(cc.Label).string;
                     if (status == 0 && id == userId) {
-                        parent.getChildByName('off_line_sign').active = false;
-                        parent.getChildByName('callingSign').active = false;
-                        parent.children[1].color = new cc.Color(255,255,255);
+                        player.children[4].getChildByName('off_line_sign').active = false;
+                        player.children[4].getChildByName('callingSign').active = false;
+                        player.children[4].children[1].color = new cc.Color(255,255,255);
                     } else if(status == 1 && id == userId) {
-                        parent.getChildByName('off_line_sign').active = true;
-                        parent.getChildByName('callingSign').active = false;
-                        parent.children[1].color = new cc.Color(100,100,100);
+                        player.children[4].getChildByName('off_line_sign').active = true;
+                        player.children[4].getChildByName('callingSign').active = false;
+                        player.children[4].children[1].color = new cc.Color(100,100,100);
                     } else if(status == 2 && id == userId) {
-                        parent.getChildByName('off_line_sign').active = false;
-                        parent.getChildByName('callingSign').active = true;
-                        parent.children[1].color = new cc.Color(100,100,100);
+                        player.children[4].getChildByName('off_line_sign').active = false;
+                        player.children[4].getChildByName('callingSign').active = true;
+                        player.children[4].children[1].color = new cc.Color(100,100,100);
                     }
                 }
             }
             function stateFn (userId,status) {
-                if (userId == cc.sys.localStorage.getItem('current')) {
-                    playerId(cc.find('Canvas/player_head'),userId,status);
-                } else  if (userId == cc.sys.localStorage.getItem('right')) {
-                    playerId(obj.right_player,userId,status);
-                } else if (userId == cc.sys.localStorage.getItem('top')) {
-                    playerId(obj.top_player,userId,status);
-                } else if (userId == cc.sys.localStorage.getItem('left')) {
-                    playerId(obj.left_player,userId,status);
-                }
-               
-               /* if (num == 2) {
+                if (num == 2) {
                     playerId(obj.top_player,userId,status);
                     return
                 }
@@ -1558,7 +1568,7 @@ cc.Class({
                     playerId(obj.top_player,userId,status);
                     playerId(obj.left_player,userId,status);
                     return
-                }*/
+                }
             }
             let num = cc.weijifen.playerNum;
             let time = setTimeout(function(){
@@ -1666,7 +1676,8 @@ cc.Class({
     reloadMaJiang () {
         this.disconnect();
         cc.director.loadScene('majiang');
-    }
+    },
+      
 });
 
 
