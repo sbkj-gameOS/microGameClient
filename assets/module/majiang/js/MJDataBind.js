@@ -228,8 +228,7 @@ cc.Class({
             //     *
             //      * 接受指令
             // }
-            socket.on('quit_refresh',function(msgs){
-                var msg=JSON.parse(msgs);
+            socket.on('quit_refresh',function(msg){
                 if(msg.userId){
                     var arr=['left','right','top'];
                     for(var i=0;i<arr.length;i++){
