@@ -214,6 +214,11 @@ cc.Class({
                 }
             }
         }, (err)=>{console.log(err)} , self);
+
+
+        if(cc.sys.localStorage.getItem("replayData")){
+            cc.sys.localStorage.removeItem("replayData");
+        }
     },
     /*
     * 玩家等级判定，根据等级显示不同的头像框
@@ -306,6 +311,9 @@ cc.Class({
             var sprite = cc.find("Canvas/main/game/11/text麻友圈").getComponent(cc.Sprite);
         	sprite.spriteFrame = object.backRoomImg;
             sprite.node.width = 219;
+            var sprite2=cc.find("Canvas/main/game/30/New Sprite").getComponent(cc.Sprite);
+            sprite2.spriteFrame = object.backRoomImg;
+            sprite2.node.width = 219;
             // object.backRoomTxt.getComponent(cc.Label).string = '返回房间';
         } else {
             //有值代表用户是通过分享进入的游戏
@@ -343,12 +351,12 @@ cc.Class({
         },30);
 	},
 	//创建包厢
-	createRoom:function(){
+	createRoom:function(evt){
         //当前玩家不存在未结束的游戏   
 		if(cc.weijifen.room !='null' &&cc.weijifen.room != null){
 			cc.director.loadScene('majiang');// 通过场景名加载场景
 		}else{
-			this.hall(11);
+			this.hall(evt.target.name);
 		}		
 	},
 	//加入包厢

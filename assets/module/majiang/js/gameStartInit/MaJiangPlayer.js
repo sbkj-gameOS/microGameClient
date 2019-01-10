@@ -39,6 +39,7 @@ cc.Class({
             default: [],
             type: cc.SpriteFrame,
         },
+        imgs:cc.SpriteFrame,
     },
 
     // use this for initialization
@@ -47,6 +48,15 @@ cc.Class({
         // this.selected.active = false ;
         this.creator.active = false ;
         
+    },
+    refresh:function(){
+        this.data=null;
+        this.tablepos=null;
+        this.count = null;
+        this.username.string = '' ;
+        this.goldcoins.string = '' ;
+        this.headimg.getComponent(cc.Sprite).spriteFrame=this.imgs;
+        this.node.children[3].getComponent(cc.Sprite).spriteFrame=this.headBorder[3];
     },
     init:function(playerdata , inx , tablepos,count){
         let self = cc.find('Canvas').getComponent('MJDataBind');

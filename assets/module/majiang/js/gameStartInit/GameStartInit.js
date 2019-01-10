@@ -384,10 +384,14 @@ cc.Class({
          * @param context
          */
         play_event:function(data , context, self){
-        	self = this;
+            self = this;
+            
             if (cc.sys.localStorage.getItem('isPlay') == 'true') {
                 cc.sys.localStorage.setItem('zuomangjikai','1');
             }
+            if(cc.weijifen.match!='true'){
+                cc.find('Canvas/other/setting/退出').active = false;
+           }
         	var gameStartInitNode = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
         	var gameStartInit = require('GameStartInit');
             cc.sys.localStorage.setItem('isPlay','true');

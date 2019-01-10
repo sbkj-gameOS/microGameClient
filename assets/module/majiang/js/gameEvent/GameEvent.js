@@ -66,6 +66,8 @@ cc.Class({
          * @param context
          */
         action_event:function(data, context){
+           
+            
             /*
                 定义一个全局变量
 
@@ -234,6 +236,7 @@ cc.Class({
              * 首先，需要找到触发对象，如果触发对象不是 all ， 则 直接找到 对象对应的玩家 桌牌列表，并找到 桌牌里 的最后 的 牌，
              * 然后将此牌 移除即可，如果对象是 all， 则不用做任何处理即可
              */
+
             if(cc.weijifen.user.id == data.userid){   
                 if(cc.sys.localStorage.getItem('cb')!='true'){
                     cc.sys.localStorage.setItem('take','true');             
@@ -267,7 +270,9 @@ cc.Class({
             let img = cc.find("Canvas/"+actionName);
             img.active = true;
             var imgAnim = img.getComponent(cc.Animation);
-            imgAnim.play(actionName);
+            if(imgAnim!=null){
+                 imgAnim.play(actionName);
+            }           
             if (player.tablepos == 'top') {
                 img.x = 0;
                 img.y = 160;
@@ -365,7 +370,10 @@ cc.Class({
                 }
             }
         },
-        otherHandCardRemove: function(data,context,tablepos){
+        otherHandCardRemove: function(data,context,tablepos){           
+            if(cc.sys.localStorage.getItem("replayData") != null){
+                return;
+            }
             var gameStartInit = cc.find('Canvas/js/GameStartInit').getComponent('GameStartInit');
             for(let i = 0 ; i<data.cards.length; i++){
                 if(tablepos =='top' && gameStartInit.top_panel.children){
@@ -395,6 +403,7 @@ cc.Class({
             // console.log('cardModle中传入的cards值---',cards)
             var gameStartInit = require('GameStartInit');
             var gameEventNode = cc.find('Canvas/js/GameEvent').getComponent('GameEvent');
+           
             // 蛋
             if(cards.length == 1){
                 var cardOp,card,temp;
@@ -535,7 +544,9 @@ cc.Class({
                 }else{
                     cardParent = cc.instantiate(gameEventNode.one_card_panel) ;
                 }
-                for(let i = 0 ; i< cards.length;i++){               
+                for(let i = 0 ; i< cards.length;i++){
+                    if(cards[i]!=undefined){                        
+                                   
                     if(fangwei == 'top'){
                         var card = cc.instantiate(gameEventNode.dan_topcurrent);
                     }else if(fangwei == 'left'){
@@ -563,7 +574,8 @@ cc.Class({
                     }
                     card.parent = cardParent;
                     //马上进行排序如果不这个方法 会在所有方法执行完后再排序---官方排序方法
-                    cardParent.sortAllChildren();               
+                    cardParent.sortAllChildren(); 
+                }              
                 }
                 cardParent.getComponent('Kongcards').init(action);
                 cardParent.parent = parent ;

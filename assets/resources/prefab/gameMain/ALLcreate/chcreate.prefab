@@ -894,7 +894,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 26
@@ -1129,7 +1129,7 @@
         "__id__": 32
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",
@@ -1593,7 +1593,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 57
@@ -2136,7 +2136,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 10,
-      "y": 216
+      "y": 267
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2235,7 +2235,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 177,
-      "y": 218
+      "y": 269
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2656,7 +2656,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 402,
-      "y": 218
+      "y": 269
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3077,7 +3077,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 597,
-      "y": 218
+      "y": 269
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3498,7 +3498,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 174,
-      "y": 159
+      "y": 210
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -3919,7 +3919,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 385,
-      "y": 164
+      "y": 215
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -4557,7 +4557,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -203,
-      "y": 19
+      "y": 70
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -4656,7 +4656,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 39,
-      "y": 11
+      "y": 62
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -6011,7 +6011,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 149,
-      "y": 61
+      "y": 112
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -6102,7 +6102,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 149,
-      "y": -84
+      "y": -33
     },
     "_skewX": 0,
     "_skewY": 0,

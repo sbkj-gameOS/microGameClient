@@ -1625,7 +1625,10 @@
       {
         "__uuid__": "599b0fa2-818f-494e-94ef-f999e9b25de7"
       }
-    ]
+    ],
+    "imgs": {
+      "__uuid__": "1a2dfa04-a721-493b-9eee-8c673f15b11b"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",

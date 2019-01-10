@@ -6,13 +6,13 @@ var moShi,playerData,userType,garams;
 cc.Class({
     extends: creat,
     properties: {
-        
+       _kuaiSan:false,
     },
     // use this for initialization
     onLoad: function () {
         // 一下为默认选中的选项
         playerData = "both@@bandgap@@xjmissile@@sfmissile@@xdszl";
-        moShi = "0";
+        moShi = '4';
         userType = "4";
         garams={};
     },
@@ -63,7 +63,7 @@ cc.Class({
         garams.waytype = playerData;
         garams.game = 'CH';
         garams.pepNums = userType;
-        garams.modeltype = moShi;
+        this._kuaiSan?garams.modeltype='0':garams.modeltype = moShi;
         if(cc.weijifen.authorization){
             garams.token = cc.weijifen.authorization;
         }

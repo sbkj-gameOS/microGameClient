@@ -60,6 +60,7 @@ cc.Class({
             let over_btn = cc.find('Canvas').getChildByName('alert').getChildByName('isover_btns');
             over_btn.active = false;
 
+           
         },
         // 点击解散房间按钮
         overClick:function(){
@@ -198,7 +199,12 @@ cc.Class({
               /*  cc.weijifen.GameBase.gameModel == 'ch' ? time = 120000 
                                                        : time = 30000;*/
             }
-            setTimeout(function(){self.endGameOver(data,context)},time);
+           // var replayMgr=require('replayNgr');
+            var replayMgrNode=cc.find('Canvas/rePlay').getComponent('replayMgr');
+            var isplay=replayMgrNode.isReplay();
+            if(!isplay){
+                 setTimeout(function(){self.endGameOver(data,context)},time);
+            }           
             cc.sys.localStorage.removeItem('subModel');
             cc.sys.localStorage.removeItem('overClickTime');
             cc.sys.localStorage.removeItem('isPlay');

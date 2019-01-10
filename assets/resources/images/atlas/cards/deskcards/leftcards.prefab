@@ -29,10 +29,13 @@
       },
       {
         "__id__": 21
+      },
+      {
+        "__id__": 22
       }
     ],
     "_prefab": {
-      "__id__": 22
+      "__id__": 23
     },
     "_id": "",
     "_opacity": 255,
@@ -680,6 +683,18 @@
     },
     "b_zhu": {
       "__uuid__": "5b899056-bedc-4b7a-aea6-aefb94e81bf8"
+    }
+  },
+  {
+    "__type__": "d51b9dEnnJCD61Ot0jdE4XH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "cardvalue": {
+      "__id__": 3
     }
   },
   {

@@ -223,12 +223,12 @@ cc.Class({
                             var mjcard = this.mjloyad.children[u].children[p];
                             var danaction = mjcard.getComponent('DanAction');
                             var valueA, valueB;
-                            if (danaction.value > 0) {//拿到card对应的int值
+                            if (danaction.value >= 0) {//拿到card对应的int值
                                 valueA = parseInt(danaction.value / 4);
                             } else {
                                 valueA = 26 - parseInt(danaction.value / 4);
                             }
-                            if (action[0] > 0) {
+                            if (action[0] >= 0) {
                                 valueB = parseInt(action[0] / 4);
                             } else {
                                 valueB = 26 - parseInt(action[0] / 4);
@@ -268,12 +268,12 @@ cc.Class({
                             var mjcard = kong.children[u];
                             var danaction = mjcard.getComponent('DanAction');
                             var valueA, valueB;
-                            if (danaction.value > 0) {
+                            if (danaction.value >= 0) {//一万有为0的。。。要考虑进去
                                 valueA = parseInt(danaction.value / 4);
                             } else {
                                 valueA = 26 - parseInt(danaction.value / 4);
                             }
-                            if (action[q] > 0) {
+                            if (action[q] >= 0) {
                                 valueB = parseInt(action[q] / 4);
                             } else {
                                 valueB = 26 - parseInt(action[q] / 4);

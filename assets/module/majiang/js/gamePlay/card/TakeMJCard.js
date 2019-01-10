@@ -45,6 +45,9 @@ cc.Class({
         cc.sys.localStorage.removeItem('delta');
     },
     touchendClick:function(event){
+        if(cc.sys.localStorage.getItem("replayData")!=null){
+            return;
+        }
         let card = event.target.parent.getComponent('HandCards');
         /*if(cc.sys.localStorage.getItem('alting')!='true'&&cc.sys.localStorage.getItem('ting')!='true'&&!card.caishen){
             var delta = event.touch.getDelta();
@@ -99,8 +102,10 @@ cc.Class({
                 if(cc.sys.localStorage.getItem('alting')=='true'){
                     cc.sys.localStorage.setItem('take','true');                    
                 }
-                handCards.target.y = handCards.target.y + 20 ;
+                if(cc.sys.localStorage.getItem("replayData")==null){
+                    handCards.target.y = handCards.target.y + 20 ;
                 handCards.cardvalue.color = new cc.Color(230, 190, 190);
+                }                
                 handCards.take = true;
                 if (context.tings&&cc.sys.localStorage.getItem('ting')=='true'){
                     let tinglength = context.tingSelect.children[0].children.length;

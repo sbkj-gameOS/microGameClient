@@ -168,10 +168,11 @@ cc.Class({
         if(cc.weijifen.GameBase.gameModel == "wz"){
             this.gameModelMp3 = "wz";
         }
-        if(cc.weijifen.GameBase.gameModel == "ch"){
-            cc.find('Canvas/other/setting/退出').active = false;
+        if(cc.weijifen.match!='true'){
+             cc.find('Canvas/other/setting/退出').active = true;
         }
 
+       
         var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
         //初始化房间信息
         if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
@@ -191,6 +192,7 @@ cc.Class({
         }
         if (cc.sys.localStorage.getItem('gotWsUrl') || cc.sys.localStorage.getItem('isPlay') || cc.weijifen.match == 'false' || cc.sys.localStorage.getItem('matchType') == 5) {
             var socket = this.connect() ;
+            
             socket.on('connect', function () {
                 self.playerIsReady(self);
                 roomInit = require('RoomInit');
@@ -219,7 +221,6 @@ cc.Class({
                 self.map("gameOver",settingClick.gameOver_event,self);
                 self.map("over" , settingClick.over_event,self);
                 self.map("unOver" , settingClick.unOver_event,self);
-
                
             });
             // if(this.ready()){
@@ -227,6 +228,34 @@ cc.Class({
             //     *
             //      * 接受指令
             // }
+            socket.on('quit_refresh',function(msg){
+                if(msg){
+                    var arr=['left','right','top'];
+                    for(var i=0;i<arr.length;i++){
+                     if(msg== cc.sys.localStorage.getItem(arr[i])){
+                        cc.sys.localStorage.removeItem(arr[i]);
+                     }
+                    }
+                    var labels=cc.find("Canvas/playerExitTip");
+                    for(var inx = 0 ; inx<self.playersarray.length ; inx++){
+                        let temp = self.playersarray[inx].getComponent("MaJiangPlayer") ;
+                        if(temp.data.id == msg){
+                            labels.children[0].getComponent(cc.Label).string='玩家：'+temp.username.string+' 离开了房间!';
+                            var action=cc.moveTo(0.3,0,-320);
+                            labels.runAction(action);
+                            var func=function(){
+                                var action2=cc.moveTo(0.3,0,-420);
+                                labels.runAction(action2);
+                                self.unschedule(func);
+                            }
+                            self.schedule(func,3.5,1);
+                            temp.refresh();
+                            self.playersarray.splice(inx,1);
+                            break ;
+                        }
+                    }
+                }               
+            });
             socket.on("command" , function(result){
                 var data = self.getSelf().parse(result);
                 if (data.replacePowerCard && data.action == 'ting') {
@@ -260,11 +289,13 @@ cc.Class({
                 }else{
                     self.getSelf().route(data.command,self)(data , self);
                 }
-                // 网络心跳包
-                if (data == 'well') {
-                    listenFlag = false;
-                    hasAlert = false;
-                    socket.emit("healthListen" ,'');
+                if(cc.weijifen.match == 'true'){
+                    // 网络心跳包
+                 if (data == 'well') {
+                     listenFlag = false;
+                     hasAlert = false;
+                     socket.emit("healthListen" ,'');
+                  }  
                 }
             });
             // if (cc.sys.localStorage.getItem('appTime')) self.setCountDown();
@@ -285,7 +316,7 @@ cc.Class({
                     } else if (listenFlag == true && cc.find('Canvas/alert') && cc.find('Canvas/alert').length < 6) {
                         cc.weijifen.dialog.put(cc.find('Canvas/alert'));
                     }
-                },4000);
+                },6000);
             }
             socket.on("OverPosition",function(result){
                 cc.sys.localStorage.setItem('matchOver','true');
@@ -308,8 +339,17 @@ cc.Class({
                     //cc.log('h_cards2手牌---',h_cards2.length);
                     // data.cards.push(36);// 测试数据
                     // data.cards.splice(2,1);// 测试数据
-                    h_cards2.removeAllChildren();
-                    self.playercards=new Array();
+                    let handcard =cc.find('Canvas/cards/handcards/'+'current'+'/'+'current'+'handcards').children.length;
+                    for(let i =0 ; i< handcard; i++){
+                        let handcards = self.playercards[i].getComponent("HandCards");
+                        handcards.csImageTop.active = false;
+                        handcards.target.zIndex = 0;
+                        handcards.target.children[0].getComponent(cc.Button).enabled = true;
+                        handcards.cardvalue.color = new cc.Color(255, 255, 255);
+                        handcards.reinit();
+                        self.cardpool.put(self.playercards[i]);
+                        }
+                        self.playercards = [];
                     for(var i=0 ; i< data.cards.length ; i++){
                         if(self.cardpool){
                             let temp = self.cardpool.get();
@@ -708,6 +748,7 @@ cc.Class({
             let startTime,endTime;
             cc.game.on(cc.game.EVENT_HIDE, function () {
                 console.log('监听到hide事件，游戏进入后台运行！');
+                cc.sys.localStorage.setItem("isHide",1);
                 let param = {
                     userId: cc.weijifen.user.id,
                     // userId: '37a538a553bf4e88820893274669992f',
@@ -718,6 +759,7 @@ cc.Class({
             });
             cc.game.on(cc.game.EVENT_SHOW, function () {
                 console.log('监听到SHOW事件，游戏进入后台运行！');
+                cc.sys.localStorage.setItem("isHide",0);
                 let param = {
                     userId: cc.weijifen.user.id,
                     // userId: '37a538a553bf4e88820893274669992f',
@@ -729,6 +771,23 @@ cc.Class({
                     cc.director.loadScene('majiang');
                 }
             });
+            
+            self.node.on("touchend",function(){
+               if(Number(cc.sys.localStorage.getItem("isHide"))==1){
+                   cc.sys.localStorage.setItem("isHide",0);
+                   console.log('监听到SHOW事件，游戏进入后台运行1234！');
+                   let param = {
+                       userId: cc.weijifen.user.id,
+                       // userId: '37a538a553bf4e88820893274669992f',
+                       type: 4,
+                       status: 0
+                   };
+                   socket.emit("sayOnSound" ,JSON.stringify(param));
+                   if (cc.weijifen.room) {
+                      cc.director.loadScene('majiang');
+                   }
+               }
+           });
             // 发送录音
             cc.weijifen.player_recording = function(param){
                 var param1 = {
@@ -759,6 +818,7 @@ cc.Class({
             cc.sys.localStorage.removeItem('right');
             cc.sys.localStorage.removeItem('left');
             cc.sys.localStorage.removeItem('top');
+            cc.sys.localStorage.removeItem('isHide');//游戏切到后台时添加
             cc.sys.localStorage.removeItem('altake');      
             cc.sys.localStorage.removeItem('alting');
             cc.sys.localStorage.removeItem('guo');  

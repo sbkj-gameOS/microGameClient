@@ -12,7 +12,8 @@ cc.Class({
         gd:cc.Prefab,
         jy:cc.Prefab,
         matchHall: cc.Prefab,
-        hangz: cc.Prefab
+        hangz: cc.Prefab,
+        isKuaiSan:false,
     },
 
     // use this for initialization
@@ -41,6 +42,16 @@ cc.Class({
             he.parent = this.left;
             he.children[2].getComponent(cc.Label).string =name[i];
             let her = cc.instantiate(value[i]);
+            if(name[i]=='长春麻将'&&this.isKuaiSan){
+                var moshi=her.children[0].children[1];
+                 var creator= her.children[6].children[0].getComponent("CHcreateRoom");//同样的脚本在一个预制里面挂载了两次。。。魔鬼
+                 creator._kuaiSan=true;
+                  moshi.children[0].active=false;
+                  moshi.children[1].active=false;
+                  moshi.children[3].active=true;
+                  moshi.children[3].x=-96;
+                  moshi.children[3].y=4;
+            }
             if (name[i] == '月赛') her.y = -98;
             her.parent = he.children[1];
             var toggle=he.getComponent(cc.Toggle);

@@ -102,15 +102,35 @@ cc.Class({
         dialog.destroy();
     },
     leaveGameClick:function(){
-        cc.sys.localStorage.setItem('dis','true');        
-        this.disconnect();
+        // cc.sys.localStorage.setItem('dis','true');        
+        
         /*if(cc.weijifen.GameBase.gameModel=='wz'){
             this.scene("温州" , this) ;
         }else{
             this.scene("gameMain" , this);
         }*/
-        this.scene("gameMain" , this);
-        this.node.dispatchEvent( new cc.Event.EventCustom('leaveGame', true) );
+        var userinfo=JSON.parse(cc.sys.localStorage.getItem('userinfo'));
+        var msg={
+            token:cc.weijifen.authorization,
+            orgi:userinfo.data.orgi,
+        }
+        cc.weijifen.http.httpPost('/apps/platform/room/quit',msg,function(data){
+        	var data=JSON.parse(data);
+        	if(data.success){
+                var a = {};
+                a.key = true;
+                var oper = new cc.Event.EventCustom('restar', true) ;
+                oper.setUserData(a) ;
+                this.node.dispatchEvent( oper );
+               // cc.director.loadScene('gameMain');
+           }else{
+             this.txt.string=data.msg;
+           }        	
+             }.bind(this),
+             function(){this.txt.string='离开失败，请稍后重试';
+        }.bind(this));    
+        // this.scene("gameMain" , this);
+        // this.node.dispatchEvent( new cc.Event.EventCustom('leaveGame', true) );
     },
     daojishi: function(){
         this.time =this.time-1;
