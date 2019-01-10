@@ -228,18 +228,19 @@ cc.Class({
             //     *
             //      * 接受指令
             // }
-            socket.on('quit_refresh',function(msg){
-                if(msg){
+            socket.on('quit_refresh',function(msgs){
+                var msg=JSON.parse(msgs);
+                if(msg.userId){
                     var arr=['left','right','top'];
                     for(var i=0;i<arr.length;i++){
-                     if(msg== cc.sys.localStorage.getItem(arr[i])){
+                     if(msg.userId== cc.sys.localStorage.getItem(arr[i])){
                         cc.sys.localStorage.removeItem(arr[i]);
                      }
                     }
                     var labels=cc.find("Canvas/playerExitTip");
                     for(var inx = 0 ; inx<self.playersarray.length ; inx++){
                         let temp = self.playersarray[inx].getComponent("MaJiangPlayer") ;
-                        if(temp.data.id == msg){
+                        if(temp.data.id == msg.userId){
                             labels.children[0].getComponent(cc.Label).string='玩家：'+temp.username.string+' 离开了房间!';
                             var action=cc.moveTo(0.3,0,-320);
                             labels.runAction(action);
