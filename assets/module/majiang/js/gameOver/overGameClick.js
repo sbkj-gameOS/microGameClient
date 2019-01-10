@@ -109,11 +109,11 @@ cc.Class({
         }else{
             this.scene("gameMain" , this);
         }*/
-        var userinfo=JSON.parse(cc.sys.localStorage.getItem('userinfo'));
         var msg={
             token:cc.weijifen.authorization,
-            orgi:userinfo.data.orgi,
+            orgi:cc.weijifen.GameBase.gameModel,
         }
+       
         cc.weijifen.http.httpPost('/apps/platform/room/quit',msg,function(data){
         	var data=JSON.parse(data);
         	if(data.success){
