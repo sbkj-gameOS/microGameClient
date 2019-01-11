@@ -237,6 +237,7 @@ cc.Class({
                         var string='ok_'+arr[i];
                         var ok=cc.find('Canvas/players/'+string);
                         ok.active=false;
+                        cc.sys.localStorage.setItem('quitpeople',msg.userId);
                      }
                     }
                     var labels=cc.find("Canvas/playerExitTip");
@@ -253,8 +254,9 @@ cc.Class({
                             }
                             self.schedule(func,3.5,1);
                             // temp.refresh();
-                            self.playerspool.push(temp.node);
-                            // temp.node.destroy();
+                            self.playerspool.put(temp.node);
+                            self.playerspool.put(temp.node);
+                            temp.node.destroy();
                             self.playersarray.splice(inx,1);
                             break ;
                         }

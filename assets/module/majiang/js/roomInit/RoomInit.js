@@ -23,6 +23,7 @@ cc.Class({
         joinroom_event:function(data , context){
             let RoomInit = require('RoomInit');
             let roomInit = new RoomInit();
+            cc.weijifen.dataOps=data.playWayOp;//房间玩法
             // if (!cc.weijifen.isPlayersSend && cc.weijifen.match == 'true') return; 
             if(cc.sys.localStorage.getItem('waitting') != 1){
                 cc.sys.localStorage.setItem('waitting','true');// (在游戏未开始时只有房主可以解散房间) 玩家等待中
@@ -36,6 +37,10 @@ cc.Class({
                 cc.find("Canvas/userIp").active = true;
                 cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
                 // setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
+            }
+            if(data.id==cc.sys.localStorage.getItem('quitpeople')){
+                cc.sys.localStorage.removeItem('quitpeople');
+                return;
             }
             if(cc.weijifen.playerNum == 2){
 
@@ -161,12 +166,15 @@ cc.Class({
     },
     /*分享好友*/
     showActive: function () {
+        if(!cc.weijifen.dataOps){
+            cc.weijifen.dataOps = "心缘竞技"
+        }
         // let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
         let object = cc.find('Canvas').getComponent('MJDataBind');
         var jsonData = {
             url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room+"&invitationcode="+cc.weijifen.user.invitationcode,
             title:"心缘竞技",
-            context:"房间号："+cc.weijifen.room+"  好友邀请您进入房间",
+            context:"房间："+cc.weijifen.room+"  玩法:"+ cc.weijifen.dataOps+'  人数',
             conType:1,
             msgType:1
         }
