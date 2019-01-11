@@ -38,7 +38,7 @@ cc.Class({
        /* var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;*/
         // 27---10.25 上午10：26
-        cc.sys.localStorage.setItem('version','1.0.50');
+        cc.sys.localStorage.setItem('version','1.1.0');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
@@ -108,7 +108,9 @@ cc.Class({
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
             // 虎皮椒支付页面
-            let result = `http://game.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
+            let result = `${cc.weijifen.http.baseURL}/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
+            
+            
             // let result = 'http://game.daily.bizpartner.cn/hpjPay/goPayPage?shopId=' + shopId + '&token=' + cc.weijifen.authorization;
             if (self.clientPlatForm() == 'IOS') {
                 // let result = `http://game.bizpartner.cn/hpjPay/goPayPage?shopId=${shopId}&token=${cc.weijifen.authorization}`;
