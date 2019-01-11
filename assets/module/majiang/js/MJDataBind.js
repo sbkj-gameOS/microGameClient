@@ -236,6 +236,9 @@ cc.Class({
                     for(var i=0;i<arr.length;i++){
                      if(msg.userId== cc.sys.localStorage.getItem(arr[i])){
                         cc.sys.localStorage.removeItem(arr[i]);
+                        var string='ok_'+arr[i];
+                        var ok=cc.find('Canvas/players/'+string);
+                        ok.active=false;
                      }
                     }
                     var labels=cc.find("Canvas/playerExitTip");
@@ -251,7 +254,8 @@ cc.Class({
                                 self.unschedule(func);
                             }
                             self.schedule(func,3.5,1);
-                            temp.refresh();
+                            // temp.refresh();
+                            temp.node.destroy();
                             self.playersarray.splice(inx,1);
                             break ;
                         }
