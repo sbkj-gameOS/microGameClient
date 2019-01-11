@@ -171,8 +171,6 @@ cc.Class({
         if(cc.weijifen.match!='true'){
              cc.find('Canvas/other/setting/退出').active = true;
         }
-
-       
         var roomInit,gameStartInit,gamePlay,gameEvent,settingClick,gameOver;
         //初始化房间信息
         if(cc.weijifen.match == 'true' || typeof cc.weijifen.match == 'function'){
@@ -255,7 +253,8 @@ cc.Class({
                             }
                             self.schedule(func,3.5,1);
                             // temp.refresh();
-                            temp.node.destroy();
+                            self.playerspool.push(this.node);
+                            // temp.node.destroy();
                             self.playersarray.splice(inx,1);
                             break ;
                         }
