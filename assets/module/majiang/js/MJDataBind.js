@@ -253,7 +253,7 @@ cc.Class({
                             }
                             self.schedule(func,3.5,1);
                             // temp.refresh();
-                            self.playerspool.push(this.node);
+                            self.playerspool.push(temp.node);
                             // temp.node.destroy();
                             self.playersarray.splice(inx,1);
                             break ;
