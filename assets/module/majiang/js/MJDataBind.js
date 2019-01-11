@@ -240,6 +240,8 @@ cc.Class({
                         
                      }                     
                     }
+                    var counts=cc.sys.localStorage.getItem('count')-1;
+                    cc.sys.localStorage.setItem('count',counts)
                     cc.sys.localStorage.setItem('quitpeople',msg.userId);
                     var labels=cc.find("Canvas/playerExitTip");
                     for(var inx = 0 ; inx<self.playersarray.length ; inx++){
