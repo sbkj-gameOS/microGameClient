@@ -228,8 +228,10 @@ cc.Class({
             //     *
             //      * 接受指令
             // }
-            socket.on('quit_refresh',function(msg){
-                if(msg.userId){
+            socket.on('quit_refresh',function(result){
+                if(result){ 
+                    var msg;
+                    typeof result == 'object' ? msg=result:msg=JSON.parse(result);
                     var arr=['left','right','top'];
                     for(var i=0;i<arr.length;i++){
                      if(msg.userId== cc.sys.localStorage.getItem(arr[i])){
