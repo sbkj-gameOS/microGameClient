@@ -237,9 +237,10 @@ cc.Class({
                         var string='ok_'+arr[i];
                         var ok=cc.find('Canvas/players/'+string);
                         ok.active=false;
-                        cc.sys.localStorage.setItem('quitpeople',msg.userId);
-                     }
+                        
+                     }                     
                     }
+                    cc.sys.localStorage.setItem('quitpeople',msg.userId);
                     var labels=cc.find("Canvas/playerExitTip");
                     for(var inx = 0 ; inx<self.playersarray.length ; inx++){
                         let temp = self.playersarray[inx].getComponent("MaJiangPlayer") ;
@@ -254,8 +255,9 @@ cc.Class({
                             }
                             self.schedule(func,3.5,1);
                             // temp.refresh();
-                            self.playerspool.put(temp.node);
-                            self.playerspool.put(temp.node);
+                            var copy=cc.instantiate(self.playersarray[inx]);
+                            self.playerspool.put(self.playersarray[inx]);
+                            self.playerspool.put(copy);
                             temp.node.destroy();
                             self.playersarray.splice(inx,1);
                             break ;
