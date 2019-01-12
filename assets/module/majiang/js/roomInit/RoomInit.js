@@ -38,10 +38,10 @@ cc.Class({
                 cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
                 // setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
             }
-            if(data.id==cc.sys.localStorage.getItem('quitpeople')){
-                cc.sys.localStorage.removeItem('quitpeople');
-                return;
-            }
+            // if(data.id==cc.sys.localStorage.getItem('quitpeople')){
+            //     cc.sys.localStorage.removeItem('quitpeople');
+            //     return;
+            // }
             if(cc.weijifen.playerNum == 2){
 
                 if(data.id!=cc.sys.localStorage.getItem('current')&&data.id!=cc.sys.localStorage.getItem('top') || (typeof cc.weijifen.match == 'function' || cc.weijifen.match == 'true' )&& data.id == cc.sys.localStorage.getItem('current')){
