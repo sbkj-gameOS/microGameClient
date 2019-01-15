@@ -385,7 +385,7 @@ cc.Class({
          */
         play_event:function(data , context, self){
             self = this;
-            
+            cc.sys.localStorage.removeItem("cango");   
             if (cc.sys.localStorage.getItem('isPlay') == 'true') {
                 cc.sys.localStorage.setItem('zuomangjikai','1');
             }

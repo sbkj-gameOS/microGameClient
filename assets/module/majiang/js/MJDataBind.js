@@ -426,15 +426,34 @@ cc.Class({
                 // if(Number(cc.sys.localStorage.getItem('isClickedd'))==1){
                 //     cc.sys.localStorage.setItem('isClickedd',2);
                 // }
-                var data = JSON.parse(result); 
-                if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
-                    countPrefab.destroy();
-                    cc.sys.localStorage.removeItem('isClickedd');
+                 /**
+         * cango：当用户对解散请求做过处理，点过同意或者拒绝，存入数据值
+         * 解决问题：防止用户在没处理解散请求的时候，刷新了界面或者离开了游戏再次进入的时候，加载了页面，获取了overinfo事件，将同意拒绝的弹框过滤掉了
+         */
+                if(cc.sys.localStorage.getItem("cango")!=1){
+                    return;
                 }
+                var data =JSON.parse(result); 
+                // self.__proto__.__proto__.alert("aaadddd "+JSON.stringify(data));
+                if(Number(data.refuseCount)>0){
+                     cc.sys.localStorage.removeItem("dengdai");
+                     cc.sys.localStorage.removeItem("cango");
+                    // self.__proto__.__proto__.alert("aaa2"+Number(data.refuseCount));
+                    if(cc.find("Canvas/overCount")){
+                        // self.__proto__.__proto__.alert("aaa3"+Number(data.refuseCount));
+                        // self.__proto__.__proto__.alert("aaa4"+cc.find("Canvas/overCount"));
+                        cc.find("Canvas/overCount").parent=null;
+                        
+                    }
+                    // self.__proto__.__proto__.alert("aaa5"+Number(data.refuseCount));
+                    return;
+                }
+                // self.__proto__.__proto__.alert("aaadddd ssssss");
+                 var countPrefab = cc.instantiate(self.overCount);
                 if (cc.find('Canvas/overCount')) {
-                    cc.find('Canvas/overCount').getChildByName('count').children=null;
+                    cc.find('Canvas/overCount').getChildByName('count').removeAllChildren();
                     for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
-                        let list = cc.instantiate(cc.find('Canvas/overCount').getChildByName('count').getChildByName('list'));
+                        let list = cc.instantiate(countPrefab.getChildByName('count').getChildByName('list'));
                         list.active = true;
                         list.parent = cc.find('Canvas/overCount').getChildByName('count');
                         if (data.overCount < i) {
@@ -446,18 +465,12 @@ cc.Class({
                     // cc.find('Canvas/overCount').destroy();
                     return;
                 }
-                cc.sys.localStorage.setItem("isClickedd",1);
-                cc.sys.localStorage.setItem("dengdai",cc.find('Canvas/overCount'));
                 if (cc.find('Canvas/alert')) {
                     cc.find('Canvas/alert').zIndex = 100;
                 }
-                var countPrefab = cc.instantiate(self.overCount);
+               
                 for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
-                   
                     let list = cc.instantiate(countPrefab.getChildByName('count').getChildByName('list'));
-                    // i=0 count=1
-                    // i=1 count=1
-                    // i=2 count=1
                     list.active = true;
                     list.parent = countPrefab.getChildByName('count');
                     countPrefab.getChildByName('count').parent = countPrefab;
@@ -466,7 +479,15 @@ cc.Class({
                         list.getComponent(cc.Sprite).spriteFrame = self.refuseBtn;
                     }
                 }
-                countPrefab.parent = cc.find('Canvas');
+                countPrefab.parent = cc.find('Canvas'); 
+                 cc.sys.localStorage.setItem("dengdai",cc.find('Canvas/overCount'));
+                if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
+                    // self.__proto__.__proto__.alert("bbb"+Number(data.refuseCount));
+                    if(cc.find("Canvas/overCount")){
+                        cc.find("Canvas/overCount").parent=null;
+                    }
+                    cc.sys.localStorage.removeItem("dengdai");
+                }
             })
 
             self.node.on('overGame',function(event){
@@ -855,7 +876,8 @@ cc.Class({
             cc.sys.localStorage.removeItem('alting');
             cc.sys.localStorage.removeItem('guo');  
             cc.sys.localStorage.removeItem('unOver');      
-            cc.sys.localStorage.removeItem('clear');   
+            cc.sys.localStorage.removeItem('clear');
+            cc.sys.localStorage.removeItem("cango");   
             cc.sys.localStorage.removeItem('cb');   
             cc.sys.localStorage.removeItem('timeIsClose');
             if (cc.sys.localStorage.getItem('zuomangjikai') == '1') {

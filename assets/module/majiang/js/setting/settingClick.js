@@ -127,7 +127,7 @@ cc.Class({
                 cc.sys.localStorage.removeItem("userOverBtn");
                 return;
             }
-            if(Number(cc.sys.localStorage.getItem('isClickedd'))==1){
+            if(cc.sys.localStorage.getItem("dengdai")&&cc.sys.localStorage.getItem("cango")==1){//当有等待数据且进行过同意取消操作时才可以显示等待数据
                var pre=cc.instantiate(cc.sys.localStorage.getItem("dengdai"));
                if(pre!=null&&pre!=undefined){
                     pre.parent=cc.find("Canvas");
@@ -196,6 +196,12 @@ cc.Class({
             }
         },
         gameOver_event: function(data,context){
+            if(cc.find("Canvas/overCount")){
+				cc.find("Canvas/overCount").parent=null;
+			}
+			if(cc.find("Canvas/alert")){
+				cc.find("Canvas/alert").parent=null;
+			}
             cc.weijifen.matchOver = true;
             cc.weijifen.room = null;
             let self = cc.find('Canvas/js/settingClick').getComponent('settingClick');
@@ -221,7 +227,8 @@ cc.Class({
             cc.sys.localStorage.removeItem('gotWsUrl');
             cc.sys.localStorage.removeItem('zuomangjikai');
             cc.sys.localStorage.removeItem('zuomangjikai2');
-            cc.sys.localStorage.removeItem('isClickedd');
+            cc.sys.localStorage.removeItem("dengdai");
+            
         },
         endGameOver: function(data,context){
             let temp = cc.instantiate(this.summary) ;
@@ -236,7 +243,7 @@ cc.Class({
             cc.weijifen.playerNum = null;
             cc.weijifen.room=null;
             cc.weijifen.cardNum = null;
-            cc.sys.localStorage.removeItem('isClickedd');
+           
             cc.sys.localStorage.setItem('dis','true');        
             /*if(cc.weijifen.GameBase.gameModel=='wz'){
                 cc.director.loadScene('温州');

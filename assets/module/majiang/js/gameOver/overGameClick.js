@@ -62,16 +62,19 @@ cc.Class({
         //this.scene("gameMain" , this);
         let date = new Date();
         cc.sys.localStorage.setItem('unOver','true');
-        cc.sys.localStorage.setItem('overClickTime',date);
+        // cc.sys.localStorage.setItem('overClickTime',date);
         this.button.active = false;
         this.button2.active = false;
-        
         this.labei.active = true;
         this.labei2.active = false;
+        /**
+         * cango：当用户对解散请求做过处理，点过同意或者拒绝，存入数据值
+         * 解决问题：防止用户在没处理解散请求的时候，刷新了界面或者离开了游戏再次进入的时候，加载了页面，获取了overinfo事件，将同意拒绝的弹框过滤掉了
+         */
+        cc.sys.localStorage.setItem("cango",1);
         this.daojishi();
         this.labei2.string = '还有'+this.time +'自动解散';
         this.node.dispatchEvent( new cc.Event.EventCustom('overGame', true) );
-        
         //两秒内消失
         let timer = setTimeout(function(){
             let mj = cc.find('Canvas').getComponent('MJDataBind');
@@ -84,6 +87,7 @@ cc.Class({
     },
     //继续游戏 发送一个不退出请求
     goonGameClick: function(){
+        
         if(cc.sys.localStorage.getItem("userOverBtn") != 1){
             let REFUSE = true;
             var oper = new cc.Event.EventCustom('overGame', true) ;
@@ -91,13 +95,15 @@ cc.Class({
             oper.setUserData(REFUSE) ;
             this.node.dispatchEvent( oper );
         }
+        cc.sys.localStorage.setItem("cango",1);//
+        let mj = cc.find('Canvas').getComponent('MJDataBind');
+        cc.sys.localStorage.removeItem("dengdai");
         cc.sys.localStorage.removeItem("userOverBtn");
-        let mj = cc.find('Canvas').getComponent('MJDataBind')
         let dialog = cc.find("Canvas/alert") ;
         mj.alert.put(dialog);
     },
     dontLeaveGameClick: function(){
-        let mj = cc.find('Canvas').getComponent('MJDataBind')        
+        let mj = cc.find('Canvas').getComponent('MJDataBind');        
         let dialog = cc.find("Canvas/alert") ;
         dialog.destroy();
     },
