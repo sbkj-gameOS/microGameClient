@@ -171,10 +171,22 @@ cc.Class({
         }
         // let mj = cc.find('Canvas').getComponent('MJDataBind').noticeShare.active = true;
         let object = cc.find('Canvas').getComponent('MJDataBind');
+        let players=cc.find('Canvas/players');
+        var count=1;
+        for(let i=0;i<3;i++){
+           if(players.children[i].active){
+               count++;
+           }
+        }
+        var types='快闪局';
+        var num=cc.find("Canvas/roomNum/quan").getComponent(cc.Label).string;
+        if(num[2]!='1'){
+            types='普通局';
+        }
         var jsonData = {
             url:"http://game.bizpartner.cn/wxController/toCHAuthAgainWx?roomNum="+cc.weijifen.room+"&invitationcode="+cc.weijifen.user.invitationcode,
             title:"心缘竞技",
-            context:"房间："+cc.weijifen.room+"  玩法:"+ cc.weijifen.dataOps+'  人数',
+            context:types+" 房间："+cc.weijifen.room+"  玩法:"+ cc.weijifen.dataOps+'  人数:'+object.playersarray.length+'/'+count,
             conType:1,
             msgType:1
         }
