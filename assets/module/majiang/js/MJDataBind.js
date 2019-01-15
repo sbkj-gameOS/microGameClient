@@ -420,10 +420,34 @@ cc.Class({
                 // result = '{"overCount":"1","refuseCount":"0"}';
                /* var data = self.getSelf().parse(result);
                 self.getSelf().route('play',self)(data , self);*/
-                var data = JSON.parse(result);
-                if (cc.find('Canvas/overCount')) {
-                    cc.find('Canvas/overCount').destroy();
+                // if(Number(cc.sys.localStorage.getItem('isClickedd'))==2){
+                //     return;
+                // }
+                // if(Number(cc.sys.localStorage.getItem('isClickedd'))==1){
+                //     cc.sys.localStorage.setItem('isClickedd',2);
+                // }
+                var data = JSON.parse(result); 
+                if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
+                    countPrefab.destroy();
+                    cc.sys.localStorage.removeItem('isClickedd');
                 }
+                if (cc.find('Canvas/overCount')) {
+                    cc.find('Canvas/overCount').getChildByName('count').children=null;
+                    for (let i = 1;i < cc.weijifen.playerNum + 1;i++) {
+                        let list = cc.instantiate(cc.find('Canvas/overCount').getChildByName('count').getChildByName('list'));
+                        list.active = true;
+                        list.parent = cc.find('Canvas/overCount').getChildByName('count');
+                        if (data.overCount < i) {
+                            // 只添加节点不改变精灵兔
+                            list.getComponent(cc.Sprite).spriteFrame = self.refuseBtn;
+                        }
+                    }
+                    cc.sys.localStorage.setItem("dengdai",cc.find('Canvas/overCount'));
+                    // cc.find('Canvas/overCount').destroy();
+                    return;
+                }
+                cc.sys.localStorage.setItem("isClickedd",1);
+                cc.sys.localStorage.setItem("dengdai",cc.find('Canvas/overCount'));
                 if (cc.find('Canvas/alert')) {
                     cc.find('Canvas/alert').zIndex = 100;
                 }
@@ -443,9 +467,6 @@ cc.Class({
                     }
                 }
                 countPrefab.parent = cc.find('Canvas');
-                if (cc.weijifen.playerNum == (Number(data.overCount) + Number(data.refuseCount))) {
-                    countPrefab.destroy();
-                }
             })
 
             self.node.on('overGame',function(event){

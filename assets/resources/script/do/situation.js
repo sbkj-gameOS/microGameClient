@@ -231,7 +231,7 @@ cc.Class({
     		}
     	}
     	
-        cc.weijifen.http.httpPost('/situation/getGameRoomDetail',{roomId: roomId},detailSuccess,this.err,this);
+        cc.weijifen.http.httpPost('/situation/getGameRoomDetail',{roomId: roomId,token:cc.weijifen.authorization},detailSuccess,this.err,this);
     },
     err () {
 

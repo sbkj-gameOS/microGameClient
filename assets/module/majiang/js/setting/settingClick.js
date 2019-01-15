@@ -127,6 +127,13 @@ cc.Class({
                 cc.sys.localStorage.removeItem("userOverBtn");
                 return;
             }
+            if(Number(cc.sys.localStorage.getItem('isClickedd'))==1){
+               var pre=cc.instantiate(cc.sys.localStorage.getItem("dengdai"));
+               if(pre!=null&&pre!=undefined){
+                    pre.parent=cc.find("Canvas");
+               }
+                return;
+            }
             var mj = cc.find('Canvas').getComponent('MJDataBind');
             cc.sys.localStorage.setItem('unOver','true');
 
@@ -163,7 +170,10 @@ cc.Class({
                 } else {
                     node.time = 30;
                 }
-                mj.t = setInterval(function(){node.daojishi()},1000)  ;  
+                if(Number(cc.sys.localStorage.getItem("isHide"))==1){
+                    clearInterval(mj.t);
+                }
+                  mj.t = setInterval(function(){node.daojishi()},1000); 
             }
             
         },
@@ -211,7 +221,7 @@ cc.Class({
             cc.sys.localStorage.removeItem('gotWsUrl');
             cc.sys.localStorage.removeItem('zuomangjikai');
             cc.sys.localStorage.removeItem('zuomangjikai2');
-            
+            cc.sys.localStorage.removeItem('isClickedd');
         },
         endGameOver: function(data,context){
             let temp = cc.instantiate(this.summary) ;
@@ -226,6 +236,7 @@ cc.Class({
             cc.weijifen.playerNum = null;
             cc.weijifen.room=null;
             cc.weijifen.cardNum = null;
+            cc.sys.localStorage.removeItem('isClickedd');
             cc.sys.localStorage.setItem('dis','true');        
             /*if(cc.weijifen.GameBase.gameModel=='wz'){
                 cc.director.loadScene('温州');

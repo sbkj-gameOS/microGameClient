@@ -38,7 +38,7 @@ cc.Class({
        /* var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;*/
         // 27---10.25 上午10：26
-        cc.sys.localStorage.setItem('version','1.1.0');
+        cc.sys.localStorage.setItem('version','1.1.3');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
@@ -52,7 +52,7 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮
             let youkeBtn = cc.find("Canvas/global/button/button2");
-           //youkeBtn.active = false;
+            youkeBtn.active = false;
             //微信登录按钮剧中
             let wxBtn = cc.find("Canvas/global/button/button1");
             wxBtn.setPosition(0,-63);
