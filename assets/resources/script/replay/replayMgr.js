@@ -129,18 +129,19 @@ cc.Class({
     },
 
     onBtnBackClicked: function () {
-        var WJFCommon = require("WJFCommon");
-        let wjf = new WJFCommon();
-        wjf.alert('1');
+        var context = cc.find('Canvas').getComponent('MJDataBind');
+        cc.weijifen.menu = new cc.NodePool();
+        cc.weijifen.menu.put(cc.instantiate(context.menuPrefab));//菜单框
+        /* if(cc.weijifen.GameBase.gameModel=='wz'){
+             cc.director.loadScene('温州');
+         }else{
+             cc.director.loadScene('gameMain');                    
+         }*/
+        cc.weijifen.gongaoAlertNum = undefined;
         this.clear();
+        cc.director.loadScene('gameMain');
         //清空所有需要清除的数据
-        wjf.alert('4');
-        var oper = new cc.Event.EventCustom('restar', true);
-        wjf.alert('5');
-        oper.setUserData({key:true});
-        wjf.alert('6');
-        this.node.dispatchEvent(oper);
-        wjf.alert('7');
+
     },
     onBtnGoClicked: function () {//快进
         if (this._time > 0.5) {
@@ -198,7 +199,7 @@ cc.Class({
     },
 
     getNextAction: function () {//数据没有播放完之前，返回下一步需要播放的数据
-        var length = 1+this._actionMsg.boardPlay.length;
+        var length = 1 + this._actionMsg.boardPlay.length;
         if (this._nowIndex >= length || length == undefined) {
             return null;
         }
@@ -298,6 +299,29 @@ cc.Class({
                 }
                 this._upid = action.user;
                 this._gamePlay.takecard_event(action.takeCards, this._mjDataBind);
+                if (action.user == cc.weijifen.user.id) {
+                    let cardcolors = parseInt(action.takeCards.card / 4);
+                    let cardtype = parseInt(cardcolors / 9);
+                    var fangwei = 'B';
+                    var gameModelMp3 = "";//播放声音
+                    var direction='top';
+                    var value=action.takeCards.card;
+                    if (cc.weijifen.GameBase.gameModel == "wz") {
+                        gameModelMp3 = "wz";
+                    }
+                    if (cardcolors < 0) {
+                        // cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');                
+                        cc.weijifen.audio.playSFX('nv/' + gameModelMp3 + 'wind_' + (cardcolors + 8) + cc.weijifen.genders[direction] + '.mp3');
+                        //东南西北风 ， 中发白
+                    } else if (cardtype == 0) { //万
+                        cc.weijifen.audio.playSFX('nv/' + gameModelMp3 + 'wan_' + (parseInt((value % 36) / 4) + 1) + cc.weijifen.genders[direction] + '.mp3');
+                    } else if (cardtype == 1) { //筒
+                        cc.weijifen.audio.playSFX('nv/' + gameModelMp3 + 'tong_' + (parseInt((value % 36) / 4) + 1) + cc.weijifen.genders[direction] + '.mp3');
+                    } else if (cardtype == 2) {  //条
+                        cc.weijifen.audio.playSFX('nv/' + gameModelMp3 + 'suo_' + (parseInt((value % 36) / 4) + 1) + cc.weijifen.genders[direction] + '.mp3');
+                    }
+
+                }
                 return this._time - 0.2;
             }
             if (action.dealCard) { //摸牌
@@ -330,7 +354,7 @@ cc.Class({
                     lastCard.x = x;
                     lastCard.y = y;
                     // cc.eventManager.pauseTarget(lastCard, true);
-                    deskCard.init(action.dealCard.card, fangwei, undefined, indexs,'false');//渲染别的玩家摸到的牌
+                    deskCard.init(action.dealCard.card, fangwei, undefined, indexs, 'false');//渲染别的玩家摸到的牌
                     return this._time + 1;
                 }
                 return this._time;
@@ -369,6 +393,9 @@ cc.Class({
                     cardvalue: action.actionCard.length,
                 }
                 this._gameEvent.selectaction_event(data, this._mjDataBind);
+                if (action.userId == cc.weijifen.user.id) {
+                    cc.weijifen.audio.playSFX('nv/' + action.action + '_' + cc.weijifen.genders["top"] + '.mp3');
+                }
                 var context = this._mjDataBind;
                 if (action.userId == cc.weijifen.user.id && action.action == 'peng') {//自己碰的时候删除自己手牌中的action牌
                     for (let i = 0; i < data.cards.length - 1; i++) {
@@ -855,7 +882,7 @@ cc.Class({
             if (data.players[i].ting) {
                 let playerss = gameStartInit.player(data.players[i].playuser, context);
                 context[playerss.tablepos + 'ting'].active = true;
-                context[playerss.tablepos + 'ting'].zIndex=111111;
+                context[playerss.tablepos + 'ting'].zIndex = 111111;
             }
 
             //判断谁是庄家
@@ -1010,13 +1037,13 @@ cc.Class({
             if (cardsArrays) {
                 if (inx == 1 || peoNum == 2) {
                     temp.y += 45;
-                    desk.init(cardsArrays[i], 'B', undefined, 'top','false');
+                    desk.init(cardsArrays[i], 'B', undefined, 'top', 'false');
                 } else if (inx == 2) {
                     temp.x = 6;
-                    desk.init(cardsArrays[i], 'L', undefined, 'left','false');
+                    desk.init(cardsArrays[i], 'L', undefined, 'left', 'false');
                 } else {
                     temp.x = -20;
-                    desk.init(cardsArrays[i], 'R', undefined, 'right','false');
+                    desk.init(cardsArrays[i], 'R', undefined, 'right', 'false');
                 }
             }
             temp.zIndex = 200 + cardsArrays[i];
