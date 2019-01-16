@@ -365,6 +365,11 @@ cc.Class({
                     return this._time;
                 }
                 if (action.action == "ting") {
+                    var gameModelMp3 = "";//播放声音
+                    if (cc.weijifen.GameBase.gameModel == "wz") {
+                        gameModelMp3 = "wz";
+                    }
+                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'ting' + '_' +cc.weijifen.genders['current'] + '.mp3'); 
                     return this._time + 1;
                 }
                 if (action.userId != cc.weijifen.user.id) {

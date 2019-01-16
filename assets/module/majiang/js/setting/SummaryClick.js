@@ -121,6 +121,7 @@ cc.Class({
          if(cc.sys.localStorage.getItem("replayData")!=null){
             this.goon1.active = false;
             this.share.active = false;
+            this.close2.active=false;
         }
        // this.close1.active = true;
         var basesprite=this.base.getComponent(cc.Sprite);
