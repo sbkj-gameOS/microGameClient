@@ -111,7 +111,6 @@ cc.Class({
         _upid: null,
     },
     onLoad() {
-
         this._replay = cc.find("Canvas/rePlay");//是否显示回放控制器
         if (this.isReplay()) {
             this.init();
@@ -130,13 +129,22 @@ cc.Class({
     },
 
     onBtnBackClicked: function () {
+        var WJFCommon = require("WJFCommon");
+        let wjf = new WJFCommon();
+        wjf.alert('1');
         this.clear();
         //清空所有需要清除的数据
+        wjf.alert('2');
         var a = {};
+        wjf.alert('3');
         a.key = true;
+        wjf.alert('4');
         var oper = new cc.Event.EventCustom('restar', true);
+        wjf.alert('5');
         oper.setUserData(a);
+        wjf.alert('6');
         this.node.dispatchEvent(oper);
+        wjf.alert('7');
     },
     onBtnGoClicked: function () {//快进
         if (this._time > 0.5) {
@@ -156,11 +164,9 @@ cc.Class({
         this._nowIndex = 0;
         cc.sys.localStorage.removeItem("replayData");
         cc.sys.localStorage.removeItem("replayRes");
-
-        var canvasNode = cc.find("Canvas");
+        // var canvasNode = cc.find("Canvas");
         // cc.eventManager.pauseTarget(canvasNode, false);
     },
-
     init: function () {
         var d = cc.sys.localStorage.getItem("replayData");//初始化，将需要播放的数据放入管理类，并初始化下一步动作和当前播放位置
         var e = JSON.parse(d);
@@ -328,7 +334,7 @@ cc.Class({
                     lastCard.x = x;
                     lastCard.y = y;
                     // cc.eventManager.pauseTarget(lastCard, true);
-                    deskCard.init(action.dealCard.card, fangwei, undefined, indexs);//渲染别的玩家摸到的牌
+                    deskCard.init(action.dealCard.card, fangwei, undefined, indexs,'false');//渲染别的玩家摸到的牌
                     return this._time + 1;
                 }
                 return this._time;
@@ -436,7 +442,7 @@ cc.Class({
                     id: res.playUserList[i].gameResult.userId,
                     headimgurl: res.userImgUrl[res.playUserList[i].gameResult.userId],
                     username: res.playUserList[i].gameResult.nickname,
-                    goldcoins: 520,
+                    goldcoins: '',
                     playerlevel: 1
                 }
                 playerscript.init(data, inx, tablepos, Number(cc.sys.localStorage.getItem('count')));
@@ -853,6 +859,7 @@ cc.Class({
             if (data.players[i].ting) {
                 let playerss = gameStartInit.player(data.players[i].playuser, context);
                 context[playerss.tablepos + 'ting'].active = true;
+                context[playerss.tablepos + 'ting'].zIndex=111111;
             }
 
             //判断谁是庄家
@@ -1007,13 +1014,13 @@ cc.Class({
             if (cardsArrays) {
                 if (inx == 1 || peoNum == 2) {
                     temp.y += 45;
-                    desk.init(cardsArrays[i], 'B', undefined, 'top');
+                    desk.init(cardsArrays[i], 'B', undefined, 'top','false');
                 } else if (inx == 2) {
                     temp.x = 6;
-                    desk.init(cardsArrays[i], 'L', undefined, 'left');
+                    desk.init(cardsArrays[i], 'L', undefined, 'left','false');
                 } else {
                     temp.x = -20;
-                    desk.init(cardsArrays[i], 'R', undefined, 'right');
+                    desk.init(cardsArrays[i], 'R', undefined, 'right','false');
                 }
             }
             temp.zIndex = 200 + cardsArrays[i];

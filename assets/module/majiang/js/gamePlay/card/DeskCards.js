@@ -57,7 +57,7 @@ cc.Class({
      * @param  {[String]}  fangwei {B:current、top;L:left;R:right}
      * @param  {[type]}    bol    
      */
-    init:function(cvalue,fangwei,bol,direction){
+    init:function(cvalue,fangwei,bol,direction,replay){
         //this.jiantou.active  = true;
         this.cardcolor();
         // this.xiaochu();
@@ -106,8 +106,10 @@ cc.Class({
                     }
                     setTimeout(function(){
                         if (direction != undefined) {
-                            // cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');                
-                            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+ cc.weijifen.genders[direction] +'.mp3');    
+                            if(replay!='false'){
+                                // cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+'.mp3');                
+                            cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wind_'+(cardcolors+8)+ cc.weijifen.genders[direction] +'.mp3');
+                            }
                         }
                     },time);
                 }
@@ -133,18 +135,24 @@ cc.Class({
                 if(cardtype == 0){ //万
                     deskcard = fangwei+"_character_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true && direction != undefined){
-                        cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wan_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
+                        if(replay!='false'){
+                             cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'wan_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
+                        }
                     }
                 }else if(cardtype == 1){ //筒
                     deskcard = fangwei+"_dot_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true && direction != undefined){
+                        if(replay!='false'){
                         cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'tong_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
                     }
+                }
                 }else if(cardtype == 2){  //条
                     deskcard = fangwei+"_bamboo_"+ (parseInt((this.value%36)/4)+1) ;
                     if(bol != true && direction != undefined){
+                        if(replay!='false'){
                         cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'suo_'+(parseInt((this.value%36)/4)+1)+ cc.weijifen.genders[direction] +'.mp3');
                     }
+                  }
                 }
             }
             var buhuaTrue = false;
