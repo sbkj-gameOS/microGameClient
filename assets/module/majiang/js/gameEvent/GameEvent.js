@@ -324,6 +324,9 @@ cc.Class({
 
             if( cc.sys.localStorage.getItem('cb')!='true'&&(data.action == 'peng'||(data.action == 'gang'&&data.card!=-1)||data.action=='chi'||data.action == 'hu')){
                 //以下代码是用于找到 杠/碰/吃/胡牌的 目标牌  ， 然后将此牌 从 桌面牌中移除
+                if(cc.sys.localStorage.getItem("replayData")!=null&&data.target==data.userid){
+                    return;
+                }
                 let temp = gameStartInit.player(data.target, context), deskcardpanel=null;
                 if (temp.tablepos == "right") {
                     deskcardpanel = context.deskcards_right_panel;

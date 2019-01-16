@@ -174,9 +174,9 @@ cc.Class({
 	        }else{
 	            gameOverNode.liuju.active = false;
 			}
-			if(cc.sys.localStorage.getItem("replayData") != null){//回放时关闭结算界面的点击响应
-				cc.eventManager.pauseTarget(temp, true);
-			}
+			// if(cc.sys.localStorage.getItem("replayData") != null){//回放时关闭结算界面的点击响应
+			// 	cc.eventManager.pauseTarget(temp, true);
+			// }
 	    },
 	    /*
 	    * 胡牌处理
