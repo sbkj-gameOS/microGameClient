@@ -134,14 +134,10 @@ cc.Class({
         wjf.alert('1');
         this.clear();
         //清空所有需要清除的数据
-        wjf.alert('2');
-        var a = {};
-        wjf.alert('3');
-        a.key = true;
         wjf.alert('4');
         var oper = new cc.Event.EventCustom('restar', true);
         wjf.alert('5');
-        oper.setUserData(a);
+        oper.setUserData({key:true});
         wjf.alert('6');
         this.node.dispatchEvent(oper);
         wjf.alert('7');
