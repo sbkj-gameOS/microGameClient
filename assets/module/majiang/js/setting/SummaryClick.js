@@ -112,11 +112,16 @@ cc.Class({
     */
     init: function () {
         let he = this;
+       
         this.goon1.active = true;
         this.goon2.active = false;
         this.share.active = true;
         this.gameend.active = false;
         this.close.active = false;
+         if(cc.sys.localStorage.getItem("replayData")!=null){
+            this.goon1.active = false;
+            this.share.active = false;
+        }
        // this.close1.active = true;
         var basesprite=this.base.getComponent(cc.Sprite);
         basesprite.spriteFrame= this.layout2Sprite;        
@@ -191,6 +196,11 @@ cc.Class({
         var userInfo = this.data;
         this.gameend.active = true;
         this.close.active = true;
+        if(cc.sys.localStorage.getItem("replayData")!=null){
+            this.share.active = false;
+            this.goon2.active = false;
+            this.close.active = false;
+        }
         var basesprite=this.base.getComponent(cc.Sprite);
         basesprite.spriteFrame= null;     
         if (userInfo.players) {

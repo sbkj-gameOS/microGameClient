@@ -196,7 +196,7 @@ cc.Class({
     },
 
     getNextAction: function () {//数据没有播放完之前，返回下一步需要播放的数据
-        var length = this._actionMsg.boardInit.length / 2 + this._actionMsg.boardEnd.length / 2 + this._actionMsg.boardPlay.length;
+        var length = 1+this._actionMsg.boardPlay.length;
         if (this._nowIndex >= length || length == undefined) {
             return null;
         }
