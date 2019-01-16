@@ -59,7 +59,7 @@ cc.Class({
     // 点击创建按钮
     createClick:function(){
         playerData = playerData.split("@@");
-        playerData.pop();
+        // playerData.pop();
         garams.waytype = playerData;
         garams.game = 'CH';
         garams.pepNums = userType;
