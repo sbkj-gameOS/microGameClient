@@ -289,7 +289,7 @@ cc.Class({
                 this.play_event(JSON.stringify(action), this._mjDataBind);
                 var res = JSON.parse(cc.sys.localStorage.getItem("replayRes"));
                 this.roomLabel.getComponent(cc.Label).string = res.playUserList[0].gameResult.roomNumber;
-                this.ningLabel.getComponent(cc.Label).string = '第' + Number(cc.sys.localStorage.getItem("numQuan") + 1) + '局';
+                this.ningLabel.getComponent(cc.Label).string = '第' + (Number(cc.sys.localStorage.getItem("numQuan")) + 1) + '局';
                 return this._time + 1;
             }
             if (action.takeCards || action.command == 'takeCards') {//出牌
@@ -299,13 +299,13 @@ cc.Class({
                 }
                 this._upid = action.user;
                 this._gamePlay.takecard_event(action.takeCards, this._mjDataBind);
-                if (action.user == cc.weijifen.user.id) {
+                if (action.user == cc.weijifen.user.id && cc.sys.os == cc.sys.OS_ANDROID) {//安卓机自己出牌和动作没有声音
                     let cardcolors = parseInt(action.takeCards.card / 4);
                     let cardtype = parseInt(cardcolors / 9);
                     var fangwei = 'B';
                     var gameModelMp3 = "";//播放声音
-                    var direction='top';
-                    var value=action.takeCards.card;
+                    var direction = 'top';
+                    var value = action.takeCards.card;
                     if (cc.weijifen.GameBase.gameModel == "wz") {
                         gameModelMp3 = "wz";
                     }
@@ -365,11 +365,13 @@ cc.Class({
                     return this._time;
                 }
                 if (action.action == "ting") {
-                    var gameModelMp3 = "";//播放声音
-                    if (cc.weijifen.GameBase.gameModel == "wz") {
-                        gameModelMp3 = "wz";
+                    if (cc.sys.os == cc.sys.OS_ANDROID) {
+                        var gameModelMp3 = "";//播放声音
+                        if (cc.weijifen.GameBase.gameModel == "wz") {
+                            gameModelMp3 = "wz";
+                        }
+                        cc.weijifen.audio.playSFX('nv/' + gameModelMp3 + 'ting' + '_' + cc.weijifen.genders['current'] + '.mp3');
                     }
-                    cc.weijifen.audio.playSFX('nv/'+gameModelMp3+'ting' + '_' +cc.weijifen.genders['current'] + '.mp3'); 
                     return this._time + 1;
                 }
                 if (action.userId != cc.weijifen.user.id) {
@@ -398,7 +400,7 @@ cc.Class({
                     cardvalue: action.actionCard.length,
                 }
                 this._gameEvent.selectaction_event(data, this._mjDataBind);
-                if (action.userId == cc.weijifen.user.id) {
+                if (action.userId == cc.weijifen.user.id && cc.sys.os == cc.sys.OS_ANDROID) {
                     cc.weijifen.audio.playSFX('nv/' + action.action + '_' + cc.weijifen.genders["top"] + '.mp3');
                 }
                 var context = this._mjDataBind;
@@ -430,7 +432,9 @@ cc.Class({
             this.thisNode.zIndex = 9999;
             this.closeOtherBtnClick();
             this.roomLabel.getComponent(cc.Label).string = cc.weijifen.room;
-            this.ningLabel.getComponent(cc.Label).string = '第' + Number(cc.sys.localStorage.getItem("numQuan") + 1) + '局';
+            var topcard=cc.find("Canvas/cards/handcards/top").getComponent(cc.Layout);
+            topcard.spacingX=40;
+            this.ningLabel.getComponent(cc.Label).string = '第' + (Number(cc.sys.localStorage.getItem("numQuan")) + 1) + '局';
             var res = JSON.parse(cc.sys.localStorage.getItem("replayRes"));
             //cc.weijifen.user.id = res.playUserList[0].gameResult.userId;//因为直接用token拿到的战绩，不是自己的所以需要改变默认id以适应gameevent中删除手牌js
             var roomInit = this._roomInit;
@@ -471,8 +475,11 @@ cc.Class({
                     headimgurl: res.userImgUrl[res.playUserList[i].gameResult.userId],
                     username: res.playUserList[i].gameResult.nickname,
                     goldcoins: '',
-                    playerlevel: 1
+                    playerlevel: -1
                 }
+                    // var WJFCommon = require("WJFCommon");
+                    // let wjf = new WJFCommon();
+                    // wjf.alert(cc.weijifen.user.id+' '+res.playUserList[0].gameResult.userId + " " + res.playUserList[1].gameResult.userId + " " +res.playUserList[2].gameResult.userId+' '+res.playUserList[3].gameResult.userId);
                 playerscript.init(data, inx, tablepos, Number(cc.sys.localStorage.getItem('count')));
                 context.playersarray.push(player);
             }

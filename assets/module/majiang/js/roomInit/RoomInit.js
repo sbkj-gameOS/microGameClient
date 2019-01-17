@@ -239,7 +239,13 @@ cc.Class({
      */
     playerPosition (player,__position,parent,tablepos,data,count) {
         if (__position) player.setPosition(__position.x,__position.y);
-        if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
+        if(cc.sys.localStorage.getItem("replayData")!=null){
+            if(cc.sys.os != cc.sys.OS_ANDROID){
+                if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
+            }
+        }else{
+               if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
+        }
         player.parent = parent;
         cc.sys.localStorage.setItem(tablepos,data.id);
         if (count) cc.sys.localStorage.setItem('count',count);
