@@ -149,7 +149,12 @@ cc.Class({
 			var res = JSON.parse(result);
 			cc.sys.localStorage.setItem("replayRes",JSON.stringify(res));
 			if (res.success) {
-
+                 if(res.roomMovies==null||res.roomMovies==undefined){
+					var WJFCommon = require("WJFCommon");
+                    let wjf = new WJFCommon();
+                    wjf.alert("该局游戏无详细战况!");
+					 return;					 
+				 }
 				var url = res.roomMovies.roomMovieUrl;
 				// var u=url.split('/');
 				// var urls=u[3]+'/'+u[4];
