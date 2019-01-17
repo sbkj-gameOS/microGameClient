@@ -39,7 +39,7 @@ cc.Class({
         cc.weijifen.GameBase = GameBase ;*/
         // 27---10.25 上午10：26
         cc.sys.localStorage.clear();
-        cc.sys.localStorage.setItem('version','1.1.6');
+        cc.sys.localStorage.setItem('version','1.1.7');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
