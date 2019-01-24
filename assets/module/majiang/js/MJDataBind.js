@@ -438,7 +438,7 @@ cc.Class({
                 if(Number(data.refuseCount)>0){
                      cc.sys.localStorage.removeItem("dengdai");
                      cc.sys.localStorage.removeItem("cango");
-                    // self.__proto__.__proto__.alert("aaa2"+Number(data.refuseCount));
+                    //  self.__proto__.__proto__.alert("aaa2");
                     if(cc.find("Canvas/overCount")){
                         // self.__proto__.__proto__.alert("aaa3"+Number(data.refuseCount));
                         // self.__proto__.__proto__.alert("aaa4"+cc.find("Canvas/overCount"));
@@ -486,6 +486,7 @@ cc.Class({
                     if(cc.find("Canvas/overCount")){
                         cc.find("Canvas/overCount").parent=null;
                     }
+                    cc.sys.localStorage.removeItem("cango");
                     cc.sys.localStorage.removeItem("dengdai");
                 }
             })
@@ -799,9 +800,10 @@ cc.Class({
             // 主监测游戏进入后台
             // 监听到该事件说明玩家已经离线，此时status为1
             let startTime,endTime;
-            cc.game.on(cc.game.EVENT_HIDE, function () {
-                console.log('监听到hide事件，游戏进入后台运行！');
+            cc.game.on(cc.game.EVENT_HIDE, function () {                
+                if(Number(cc.sys.localStorage.getItem("isHide"))==1)return;
                 cc.sys.localStorage.setItem("isHide",1);
+                console.log('监听到hide事件，游戏进入后台运行！');
                 let param = {
                     userId: cc.weijifen.user.id,
                     // userId: '37a538a553bf4e88820893274669992f',
@@ -866,6 +868,20 @@ cc.Class({
                 }
                 
             }
+
+            //获取地理位置
+            // @param 为IOS或者android返回的经纬度
+            cc.weijifen.getPosition = function (res) {
+                 console.log("地理位置： "+res);                
+                //     let params = {
+                //         token:cc.weijifen.authorization,
+                //         lng: j,//j
+                //         lat: w//w
+                //     }
+                    // cc.sys.localStorage.setItem('tips','true');
+                    cc.weijifen.http.httpPost('/userInfo/position/save',res,this.getPositions,this.getErr,this) ; 
+            }
+
             cc.sys.localStorage.setItem('count','0');
             cc.sys.localStorage.removeItem('current');
             cc.sys.localStorage.removeItem('right');
@@ -876,8 +892,10 @@ cc.Class({
             cc.sys.localStorage.removeItem('alting');
             cc.sys.localStorage.removeItem('guo');  
             cc.sys.localStorage.removeItem('unOver');      
-            cc.sys.localStorage.removeItem('clear');
-            cc.sys.localStorage.removeItem("cango");   
+            cc.sys.localStorage.removeItem('clear');  
+            if(cc.sys.localStorage.getItem("dengdai")==null){
+                cc.sys.localStorage.removeItem("cango");   
+            }
             cc.sys.localStorage.removeItem('cb');   
             cc.sys.localStorage.removeItem('timeIsClose');
             if (cc.sys.localStorage.getItem('zuomangjikai') == '1') {
@@ -1470,6 +1488,7 @@ cc.Class({
     talk_event: function (res1,obj) {
         let chatShow = cc.find('Canvas/chatShow');
         let res = JSON.parse(res1);
+        if(obj==null){obj=cc.find('Canvas').getComponent('MJDataBind');}
         // 文字
         if (res.type == 1) {
             let content = JSON.parse(res.content);
@@ -1787,7 +1806,7 @@ cc.Class({
         cc.sys.localStorage.setItem('matchTime',a);
     },
     /*重新加载*/
-    reloadMaJiang () {
+    reloadMaJiang: function () {
         this.disconnect();
         cc.director.loadScene('majiang');
     },
