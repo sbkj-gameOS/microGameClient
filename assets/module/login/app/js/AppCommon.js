@@ -117,7 +117,9 @@ cc.Class({
             //     // cc.sys.localStorage.setItem('tips','true');
             //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
         }
-
+        if (self.clientPlatForm() == 'IOS') {
+            jsb.reflection.callStaticMethod("AppController","canGetPositions:");
+        } 
 
 
         //app支付初始化
