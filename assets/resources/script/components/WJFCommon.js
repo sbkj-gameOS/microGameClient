@@ -350,7 +350,8 @@ cc.Class({
                     iPayHandler: ["AppController","iPayHandler:"],// 支付 
                     openView:    ["AppController","openView:"],  // 下载app 
                     recorderApi: ["AppController","recorderApi:"],  // 语音 
-                                                                               
+                    getLocation: ['AppController','getLocation:'] ,
+                    canGetPostion: ["AppController","canGetPositions:"],  //ios获取地理位置                                                        
                 }
             // }s
         } else if (platForm == 'ANDROID') {
