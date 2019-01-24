@@ -105,6 +105,20 @@ cc.Class({
             }
         };
 
+         //获取地理位置
+        // @param 为IOS或者android返回的经纬度
+        cc.weijifen.getPosition = function (res) {
+            self.alert("地理位置：" + res);
+            // //  console.log("地理位置： "+res);                
+            //     let params = {
+            //         token:cc.weijifen.authorization,
+            //         data:res
+            //     }
+            //     // cc.sys.localStorage.setItem('tips','true');
+            //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
+        }
+
+
 
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
