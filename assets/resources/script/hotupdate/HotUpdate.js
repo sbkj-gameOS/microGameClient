@@ -39,7 +39,7 @@ cc.Class({
         }
         // 1、本地路径
         this._storagePath = ((jsb.fileUtils ? jsb.fileUtils.getWritablePath() : '/') + 'blackjack-remote-asset');
-
+        // cc.find("Canvas/labels").getComponent(cc.Label).string=this._storagePath;
 
         // 2、本地版本和服务端版本进行比较
         // Setup your own version compare handler, versionA and B is versions in string
@@ -110,11 +110,12 @@ cc.Class({
             // Some Android device may slow down the download process when concurrent tasks is too much.
             // The value may not be accurate, please do more test and find what's most suitable for your game.
             this._am.setMaxConcurrentTask(2);
-            this.panel.info.string = "Max concurrent tasks count have been limited to 2";
+            // this.panel.info.string = "Max concurrent tasks count have been limited to 2";
         }
         
         this.panel.fileProgress.progress = 0;
         this.panel.byteProgress.progress = 0;
+        this.checkUpdate();//直接检查是否有新版本需要更新        
     },
     /*检查更新回调*/
     checkCb: function (event) {
@@ -133,10 +134,15 @@ cc.Class({
                 // this.panel.info.string = "检测到新版本！";
                 break;
             case jsb.EventAssetsManager.NEW_VERSION_FOUND:
-                this.panel.info.string = '检测到新版本，请进行更新！';
-                this.panel.checkBtn.active = false;
-                this.panel.fileProgress.progress = 10;
+                // this.panel.info.string = '检测到新版本，请进行更新！';
+                // this.panel.checkBtn.active = false;
+                // this.panel.fileProgress.progress = 10;
+                // cc.find("Canvas/New Label").getComponent(cc.Label).string='检查到新版本进行默认更新中';
+                cc.find("Canvas/global/button/button1").active=false;
+                this.updateUI.active=true;
                 this.panel.byteProgress.progress = 0;
+                this._updating = false;
+                this.hotUpdate();//检查到新版本直接默认更新                
                 break;
             default:
                 return;
@@ -149,7 +155,7 @@ cc.Class({
 
     updateCb: function (event) {
         var needRestart = false;
-        var failed = false;
+        var failed = false;      
         switch (event.getEventCode())
         {
             case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
@@ -160,8 +166,10 @@ cc.Class({
                 this.panel.byteProgress.progress = event.getPercent();
                 this.panel.fileProgress.progress = event.getPercentByFile();
 
-                this.panel.fileLabel.string = event.getDownloadedFiles() + ' / ' + event.getTotalFiles();
-                this.panel.byteLabel.string = event.getDownloadedBytes() + ' / ' + event.getTotalBytes();
+                // this.panel.fileLabel.string = event.getDownloadedFiles() + ' / ' + event.getTotalFiles();
+                var count=Math.ceil((event.getDownloadedBytes()/event.getTotalBytes())*100);
+                var counts=count>100?100:count;
+                this.panel.byteLabel.string = counts+'%';
 
                 var msg = event.getMessage();
                 if (msg) {
@@ -197,7 +205,7 @@ cc.Class({
                 this.panel.info.string = '资源加载失败';
                 break;
             case jsb.EventAssetsManager.ERROR_DECOMPRESS:
-                this.panel.info.string = event.getMessage();
+                // this.panel.info.string = event.getMessage();
                 break;
             default:
                 break;
@@ -214,8 +222,7 @@ cc.Class({
             cc.eventManager.removeListener(this._updateListener);
             this._updateListener = null;
             // Prepend the manifest's search path
-            var searchPaths =
-             jsb.fileUtils.getSearchPaths();
+            var searchPaths =jsb.fileUtils.getSearchPaths();
             var newPaths = this._am.getLocalManifest().getSearchPaths();
             console.log(JSON.stringify(newPaths));
             Array.prototype.unshift(searchPaths, newPaths);
@@ -224,7 +231,6 @@ cc.Class({
             // !!! Re-add the search paths in main.js is very important, otherwise, new scripts won't take effect.
             cc.sys.localStorage.setItem('HotUpdateSearchPaths', JSON.stringify(searchPaths));
             jsb.fileUtils.setSearchPaths(searchPaths);
-
             cc.audioEngine.stopAll();
             cc.game.restart();
         }
