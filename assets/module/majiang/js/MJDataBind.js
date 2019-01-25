@@ -430,6 +430,8 @@ cc.Class({
          * cango：当用户对解散请求做过处理，点过同意或者拒绝，存入数据值
          * 解决问题：防止用户在没处理解散请求的时候，刷新了界面或者离开了游戏再次进入的时候，加载了页面，获取了overinfo事件，将同意拒绝的弹框过滤掉了
          */
+                  console.log("收到overinfo，msg："+result);
+                  
                 if(cc.sys.localStorage.getItem("cango")!=1){
                     return;
                 }
@@ -813,6 +815,7 @@ cc.Class({
                 socket.emit("sayOnSound" ,JSON.stringify(param));
             });
             cc.game.on(cc.game.EVENT_SHOW, function () {
+                if(Number(cc.sys.localStorage.getItem("isHide"))==0)return;
                 console.log('监听到SHOW事件，游戏进入后台运行！');
                 cc.sys.localStorage.setItem("isHide",0);
                 let param = {
