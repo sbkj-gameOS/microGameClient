@@ -39,7 +39,7 @@ cc.Class({
         cc.weijifen.GameBase = GameBase ;*/
         // 27---10.25 上午10：26
         cc.sys.localStorage.clear();
-        cc.sys.localStorage.setItem('version','1.1.7');
+        cc.sys.localStorage.setItem('version','1.1.8');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
@@ -117,9 +117,9 @@ cc.Class({
             //     // cc.sys.localStorage.setItem('tips','true');
             //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
         }
-        if (self.clientPlatForm() == 'IOS') {
-            jsb.reflection.callStaticMethod("AppController","canGetPositions:");
-        } 
+        // if (self.clientPlatForm() == 'IOS') {
+        //     jsb.reflection.callStaticMethod("AppController","canGetPositions:");
+        // } 
 
 
         //app支付初始化
