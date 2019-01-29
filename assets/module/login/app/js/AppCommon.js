@@ -38,7 +38,20 @@ cc.Class({
        /* var GameBase = {'gameModel':'ch'} ;
         cc.weijifen.GameBase = GameBase ;*/
         // 27---10.25 上午10：26
-        cc.sys.localStorage.clear();
+        
+
+
+
+
+
+        
+        // cc.sys.localStorage.clear();
+
+
+
+
+
+
         cc.sys.localStorage.setItem('version','1.1.8');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
@@ -53,7 +66,7 @@ cc.Class({
             sprite.spriteFrame = this.CCLogo;
             //隐藏游客登录按钮
             let youkeBtn = cc.find("Canvas/global/button/button2");
-            youkeBtn.active = false;
+            // youkeBtn.active = false;
             //微信登录按钮剧中
             let wxBtn = cc.find("Canvas/global/button/button1");
             wxBtn.setPosition(0,-63);
@@ -117,9 +130,9 @@ cc.Class({
             //     // cc.sys.localStorage.setItem('tips','true');
             //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
         }
-        // if (self.clientPlatForm() == 'IOS') {
-        //     jsb.reflection.callStaticMethod("AppController","canGetPositions:");
-        // } 
+        if (self.clientPlatForm() == 'IOS') {
+            jsb.reflection.callStaticMethod("AppController","canGetPositions:");
+        } 
 
 
         //app支付初始化
