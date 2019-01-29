@@ -430,27 +430,26 @@ cc.Class({
          * cango：当用户对解散请求做过处理，点过同意或者拒绝，存入数据值
          * 解决问题：防止用户在没处理解散请求的时候，刷新了界面或者离开了游戏再次进入的时候，加载了页面，获取了overinfo事件，将同意拒绝的弹框过滤掉了
          */
-                  console.log("收到overinfo，msg："+result);
+                //  var a=cc.sys.localStorage.getItem("cango");
+                //  var b=cc.sys.localStorage.removeItem("dengdai");
+                // console.log("收到overinfo，msg："+result+"  cango:"+a+'  dengdai:'+b);
                   
                 if(cc.sys.localStorage.getItem("cango")!=1){
                     return;
                 }
                 var data =JSON.parse(result); 
-                // self.__proto__.__proto__.alert("aaadddd "+JSON.stringify(data));
+                // var c=typeof data.refuseCount;
+                // console.log(data.refuseCount+'  '+Number(data.refuseCount)+'  '+c);
+                
                 if(Number(data.refuseCount)>0){
                      cc.sys.localStorage.removeItem("dengdai");
                      cc.sys.localStorage.removeItem("cango");
-                    //  self.__proto__.__proto__.alert("aaa2");
                     if(cc.find("Canvas/overCount")){
-                        // self.__proto__.__proto__.alert("aaa3"+Number(data.refuseCount));
-                        // self.__proto__.__proto__.alert("aaa4"+cc.find("Canvas/overCount"));
                         cc.find("Canvas/overCount").parent=null;
                         
                     }
-                    // self.__proto__.__proto__.alert("aaa5"+Number(data.refuseCount));
                     return;
                 }
-                // self.__proto__.__proto__.alert("aaadddd ssssss");
                  var countPrefab = cc.instantiate(self.overCount);
                 if (cc.find('Canvas/overCount')) {
                     cc.find('Canvas/overCount').getChildByName('count').removeAllChildren();
@@ -997,7 +996,6 @@ cc.Class({
         quanNum.string = '0/' + self.maxRound;
 
 
-
         self.joinRoom(self);
 
     },
@@ -1136,31 +1134,26 @@ cc.Class({
     joinRoom:function(context){
         //开始匹配
         let socket = this.socket();
-        let params = {
-            token:cc.weijifen.authorization,
-            lng: '',//j
-            lat: ''//w
-        }
-        /*cc.weijifen.http.httpPost('/userInfo/position/save',params,getPosition,getErr,this) ;  
-        function getPosition () {}
-        function getErr () {}*/
         // 地理位置
         // 调用android方法名：getLocation
         // 返回地址位置：lo经度；alt，海拔；t时间
-        // if (cc.sys.localStorage.getItem('tips') == 'false') {
-           /* var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
+        //  if (cc.sys.localStorage.getItem('tips') == 'false') {
+            var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
+            context.__proto__.__proto__.alert('位置：'+result);
             if (result) {
-                console.log('res',res)
                 let res = JSON.parse(result);
+                console.log('经纬度： ',res)
                 let params = {
                     token:cc.weijifen.authorization,
                     lng: res.lo,//j
-                    lat: res.la//w
-                }
-                // cc.sys.localStorage.setItem('tips','true');
+                    lat: res.la,//w
+                    alt:res.alt,
+                    t:res.t,
+                } 
+                //  cc.sys.localStorage.setItem('tips','true');
                 cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
-            }*/
-        // } 
+            }
+        //  } 
         var param = {
             token:cc.weijifen.authorization,
             playway:cc.weijifen.playway,
@@ -1797,7 +1790,7 @@ cc.Class({
         obj.positionMsg = res.msg;
     },
     getErr: function (result,obj) {
-        obj.alert('获取位置')
+        obj.alert('获取地理位置失败')
     },
     /**
      * 比赛模式：退出房间、退出房间再次进入后，倒计时
