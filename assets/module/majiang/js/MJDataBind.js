@@ -1140,7 +1140,7 @@ cc.Class({
         if(cc.sys.os == cc.sys.OS_ANDROID){
         //  if (cc.sys.localStorage.getItem('tips') == 'false') {
             var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
-            context.__proto__.__proto__.alert('位置：'+result);
+            // context.__proto__.__proto__.alert('位置：'+result);
             if (result) {
                 let res = JSON.parse(result);
                 console.log('经纬度： ',res)
