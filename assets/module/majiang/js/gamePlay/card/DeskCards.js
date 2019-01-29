@@ -64,6 +64,7 @@ cc.Class({
         var gameModelMp3 = "";//播放声音
         if(cc.weijifen.GameBase.gameModel == "wz"){
             gameModelMp3 = "wz";
+            cc.weijifen.genders[direction]='';
         }
         // let ani = this.jiantou.getComponent(cc.Animation);
         // let c = fangwei;

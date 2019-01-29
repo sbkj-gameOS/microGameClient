@@ -130,7 +130,8 @@ cc.Class({
             //     // cc.sys.localStorage.setItem('tips','true');
             //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
         }
-        if (self.clientPlatForm() == 'IOS') {
+        if (cc.sys.os == cc.sys.OS_IOS) {
+            self.alert("调用了canGetPositions");
             jsb.reflection.callStaticMethod("AppController","canGetPositions:");
         } 
 
