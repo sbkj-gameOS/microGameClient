@@ -245,10 +245,14 @@ cc.Class({
                         // 优惠券
                         model.children[0].children[0].getChildByName('linkedNum').getComponent(cc.Label).string = ele.linkedId;
                         model.children[0].children[0].getChildByName('couponMsg').getComponent(cc.Label).string = '满' + ele.faceValue + '减' + ele.linkedId;
-                    } else {
+                    } else if(ele.type == 'MONTHRACINGCARD') {
                         if (ele.num < 1) {break}
                         model.children[0].children[0].active = false;//优惠卷样式隐藏
                         model.children[0].getChildByName('month').active = true;
+                    }else{//日赛卡
+                        if (ele.num < 1) {break}
+                        model.children[0].children[0].active = false;//优惠卷样式隐藏
+                        model.children[0].getChildByName('day').active = true;
                     }
                     model.children[0].getChildByName('useEndTime').getComponent(cc.Label).string = self.timestampToTime(ele.useEndTime,2) + '过期';
                     model.children[2].getComponent(cc.Label).string = 'x' + ele.num;

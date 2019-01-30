@@ -802,7 +802,7 @@ cc.Class({
             // 监听到该事件说明玩家已经离线，此时status为1
             let startTime,endTime;
             cc.game.on(cc.game.EVENT_HIDE, function () {                
-                if(Number(cc.sys.localStorage.getItem("isHide"))==1)return;
+                // if(Number(cc.sys.localStorage.getItem("isHide"))==1)return;
                 cc.sys.localStorage.setItem("isHide",1);
                 console.log('监听到hide事件，游戏进入后台运行！');
                 let param = {
@@ -814,7 +814,7 @@ cc.Class({
                 socket.emit("sayOnSound" ,JSON.stringify(param));
             });
             cc.game.on(cc.game.EVENT_SHOW, function () {
-                if(Number(cc.sys.localStorage.getItem("isHide"))==0)return;
+                // if(Number(cc.sys.localStorage.getItem("isHide"))==0)return;
                 console.log('监听到SHOW事件，游戏进入后台运行！');
                 cc.sys.localStorage.setItem("isHide",0);
                 let param = {
