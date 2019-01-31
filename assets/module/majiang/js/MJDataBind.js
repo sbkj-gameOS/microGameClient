@@ -1136,26 +1136,36 @@ cc.Class({
         let socket = this.socket();
         // 地理位置
         // 调用android方法名：getLocation
-        // 返回地址位置：lo经度；alt，海拔；t时间
-    //     if(cc.sys.os == cc.sys.OS_ANDROID){
-    //     //  if (cc.sys.localStorage.getItem('tips') == 'false') {
-    //         var result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
-    //         // context.__proto__.__proto__.alert('位置：'+result);
-    //         if (result) {
-    //             let res = JSON.parse(result);
-    //             console.log('经纬度： ',res)
-    //             let params = {
-    //                 token:cc.weijifen.authorization,
-    //                 lng: res.lo,//j
-    //                 lat: res.la,//w
-    //                 alt:res.alt,
-    //                 t:res.t,
-    //             } 
-    //             //  cc.sys.localStorage.setItem('tips','true');
-    //             cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPosition,this.getErr,this) ;            
-    //         }
-    //     //  } 
-    // }
+        // 返回地址位置：lo经度；alt，海拔；t时间；
+ if (cc.sys.localStorage.getItem('tips') == 'false'||cc.sys.localStorage.getItem('tips') == null) {
+        var result;
+    if(cc.sys.os == cc.sys.OS_ANDROID){
+             result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
+            //  context.__proto__.__proto__.alert('android位置：'+result);
+    }   
+    // cc.weijifen.getPosition = function (res) {
+    //     self.alert('ios位置：'+res);
+    //      result=res;
+    //   }
+    if (cc.sys.os == cc.sys.OS_IOS) {
+        // jsb.reflection.callStaticMethod("AppController","canGetPositions:");
+        result = jsb.reflection.callStaticMethod("AppController","canGetPositions:","123");
+        // context.__proto__.__proto__.alert('ios位置：'+result);
+    }
+    if (result!=null) {
+        let res = JSON.parse(result);
+        console.log('经纬度： ',res)
+        let params = {
+            token:cc.weijifen.authorization,
+            lng: res.lo,//j
+            lat: res.la,//w
+            alt:res.alt,
+            t:res.t,
+        } 
+        cc.sys.localStorage.setItem('tips','true');
+        cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositionX,this.getErr,this) ;            
+    }
+ } 
         var param = {
             token:cc.weijifen.authorization,
             playway:cc.weijifen.playway,
@@ -1788,7 +1798,7 @@ cc.Class({
      /**
      * 获取玩家地理位置成功
      */
-    getPosition: function (result,obj) {
+    getPositionX: function (result,obj) {
         let res = JSON.parse(result);
         obj.positionMsg = res.msg;
     },

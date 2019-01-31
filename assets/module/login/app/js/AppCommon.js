@@ -52,7 +52,7 @@ cc.Class({
 
 
 
-        cc.sys.localStorage.setItem('version','1.1.8');
+        cc.sys.localStorage.setItem('version','1.1.9');
         // 改版本
         var sprite = this.loginLogoNode.getComponent(cc.Sprite);
         self.clientPlatForm() == 'IOS' ? type_id = 1 : type_id = 0;
@@ -117,26 +117,6 @@ cc.Class({
                 return temp ;
             }
         };
-
-         //获取地理位置
-        // @param 为IOS或者android返回的经纬度
-        cc.weijifen.getPosition = function (res) {
-            // self.alert("地理位置：" + res);
-
-            // //  console.log("地理位置： "+res);                
-            //     let params = {
-            //         token:cc.weijifen.authorization,
-            //         data:res
-            //     }
-            //     // cc.sys.localStorage.setItem('tips','true');
-            //     cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
-        }
-        // if (cc.sys.os == cc.sys.OS_IOS) {
-        //      self.alert("调用了canGetPositions");
-        //     jsb.reflection.callStaticMethod("AppController","canGetPositions:");
-        // } 
-
-
         //app支付初始化
         cc.weijifen.pay = function(shopId) {
             // 虎皮椒支付页面
