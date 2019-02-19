@@ -471,7 +471,10 @@ cc.Class({
 				temp_script.init(data.card);
 				temp_script.lastone();
 				temp.zIndex = 2000; //直接放到最后了，出牌后，恢复 zIndex
+				temp.opacity=0;
+				temp.y+=80;
 				temp.parent = context.cards_panel;  //庄家的最后一张牌
+				temp_script.showAction();//渐现
 				if (cc.sys.localStorage.getItem('replayData') != null) {//回放时关闭自己新摸到的牌的点击响应
 					cc.eventManager.pauseTarget(temp, true);
 				}

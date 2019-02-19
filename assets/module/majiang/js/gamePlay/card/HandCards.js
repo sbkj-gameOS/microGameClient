@@ -239,4 +239,10 @@ cc.Class({
             this.cardvalue.children[1].active = true;
         }
     },
+    showAction:function(){
+       var fade=cc.fadeIn(0.3);
+       var move=cc.moveTo(0.3,cc.v2(this.node.x,this.node.y-80));
+       this.node.runAction(fade);
+       this.node.runAction(move);
+    },
 });
