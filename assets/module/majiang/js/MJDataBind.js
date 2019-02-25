@@ -147,7 +147,8 @@ cc.Class({
         },
     },
     onLoad: function () {
-        if (cc.sys.localStorage.getItem('matchOver') == 'true' || cc.weijifen.room == null) {
+        if (cc.sys.localStorage.getItem('matchOver') == 'true' || cc.weijifen.room == null&&cc.weijifen.match!='true') {
+          //坐满即开没有房间id这里会在进入game场景时返回大厅，在这里判断是坐满即开时不返回大厅
             cc.director.loadScene('gameMain');
             cc.sys.localStorage.removeItem('matchOver');
             cc.sys.localStorage.removeItem("jiesanTime");
@@ -188,6 +189,7 @@ cc.Class({
                 self.headImg(self.headImgCenter.getChildByName('img'),cc.weijifen.user.headimgurl,true,true);
             }
         }
+        cc.sys.localStorage.setItem('tips','false');
         if (cc.sys.localStorage.getItem('gotWsUrl') || cc.sys.localStorage.getItem('isPlay') || cc.weijifen.match == 'false' || cc.sys.localStorage.getItem('matchType') == 5) {
             var socket = this.connect() ;
             
@@ -1796,14 +1798,14 @@ cc.Class({
         wjf.alert('即将开放，敬请期待！');
     },
      /**
-     * 获取玩家地理位置成功
+     * 获取玩家地理位置成功-定位
      */
     getPositionX: function (result,obj) {
         let res = JSON.parse(result);
         obj.positionMsg = res.msg;
     },
     getErr: function (result,obj) {
-        obj.alert('获取地理位置失败')
+        obj.alert('获取地理位置失败');
     },
     /**
      * 比赛模式：退出房间、退出房间再次进入后，倒计时
