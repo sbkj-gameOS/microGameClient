@@ -189,7 +189,6 @@ cc.Class({
                 self.headImg(self.headImgCenter.getChildByName('img'),cc.weijifen.user.headimgurl,true,true);
             }
         }
-        cc.sys.localStorage.setItem('tips','false');
         if (cc.sys.localStorage.getItem('gotWsUrl') || cc.sys.localStorage.getItem('isPlay') || cc.weijifen.match == 'false' || cc.sys.localStorage.getItem('matchType') == 5) {
             var socket = this.connect() ;
             
@@ -882,7 +881,6 @@ cc.Class({
             //             token:cc.weijifen.authorization,
             //             data:res
             //         }
-            //         // cc.sys.localStorage.setItem('tips','true');
             //         cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositions,this.getErr,this) ; 
             // }
 
@@ -1139,7 +1137,6 @@ cc.Class({
         // 地理位置
         // 调用android方法名：getLocation
         // 返回地址位置：lo经度；alt，海拔；t时间；
- if (cc.sys.localStorage.getItem('tips') == 'false'||cc.sys.localStorage.getItem('tips') == null) {
         var result;
     if(cc.sys.os == cc.sys.OS_ANDROID){
              result = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/event/EventManager", "raiseEvent", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", 'getLocation','');
@@ -1152,11 +1149,15 @@ cc.Class({
     if (cc.sys.os == cc.sys.OS_IOS) {
         // jsb.reflection.callStaticMethod("AppController","canGetPositions:");
         result = jsb.reflection.callStaticMethod("AppController","canGetPositions:","123");
+        if(result!=null){
+            cc.sys.localStorage.setItem('iosPosition',result);
+        }else{
+            result=cc.sys.localStorage.getItem('iosPosition');
+        }
         // context.__proto__.__proto__.alert('ios位置：'+result);
     }
     if (result!=null) {
         let res = JSON.parse(result);
-        console.log('经纬度： ',res)
         let params = {
             token:cc.weijifen.authorization,
             lng: res.lo,//j
@@ -1164,10 +1165,8 @@ cc.Class({
             alt:res.alt,
             t:res.t,
         } 
-        cc.sys.localStorage.setItem('tips','true');
         cc.weijifen.http.httpPost('/userInfo/position/save',params,this.getPositionX,this.getErr,this) ;            
     }
- } 
         var param = {
             token:cc.weijifen.authorization,
             playway:cc.weijifen.playway,

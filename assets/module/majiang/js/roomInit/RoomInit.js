@@ -36,7 +36,11 @@ cc.Class({
             if(data.msg){
                 cc.find("Canvas/userIp").active = true;
                 cc.find("Canvas/userIp/label").getComponent(cc.Label).string = data.msg;
-                // setTimeout(function(){cc.find("Canvas/userIp").active = false;},6000)
+                let ipTimer = setTimeout(function(){
+                    let userIp = cc.find("Canvas/userIp");
+                    if (userIp) userIp.active = false;
+                    clearTimeout(ipTimer);
+                },5000);
             }
             // if(data.id==cc.sys.localStorage.getItem('quitpeople')){
             //     cc.sys.localStorage.removeItem('quitpeople');
@@ -239,12 +243,8 @@ cc.Class({
      */
     playerPosition (player,__position,parent,tablepos,data,count) {
         if (__position) player.setPosition(__position.x,__position.y);
-        if(cc.sys.localStorage.getItem("replayData")!=null){
-            if(cc.sys.os != cc.sys.OS_ANDROID){
-                if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
-            }
-        }else{
-               if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
+        if(cc.sys.localStorage.getItem("replayData")==null){
+         if (tablepos == 'current' && cc.find('Canvas/player_head')) return;
         }
         player.parent = parent;
         cc.sys.localStorage.setItem(tablepos,data.id);
